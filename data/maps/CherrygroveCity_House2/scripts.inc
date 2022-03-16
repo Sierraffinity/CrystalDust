@@ -14,9 +14,9 @@ CherrygroveCity_House1_EventScript_Girl::
 	end
 
 CherrygroveCity_House1_Text_Boy:
-	.string "POKéMON gain experience in battle\n"
+	.string "{POKEMON} gain experience in battle\n"
 	.string "and change their form.$"
 
 CherrygroveCity_House1_Text_Girl:
-	.string "POKéMON change?\n"
+	.string "{POKEMON} change?\n"
 	.string "I would be shocked if one did that!$"

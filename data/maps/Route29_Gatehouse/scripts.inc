@@ -15,7 +15,7 @@ Route29_Gatehouse_Text_Officer:
 	.string "to take a shortcut.$"
 
 Route29_Gatehouse_Text_Youngster:
-	.string "Different kinds of POKéMON appear\n"
+	.string "Different kinds of {POKEMON} appear\n"
 	.string "past here.\p"
 	.string "If you want to catch them all, you\n"
 	.string "have to look everywhere.$"

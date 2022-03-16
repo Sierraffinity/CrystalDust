@@ -58,8 +58,8 @@ script BugCatchingContest_EventScript_Officer_EnterContest {
     msgbox("Today's {STR_VAR_1}, which means the\n"
             "Bug-Catching Contest is on today.\p"
             "The rules are simple.\p"
-            "Using one of your POKéMON, catch a\n"
-            "BUG POKéMON to be judged.\p"
+            "Using one of your {POKEMON}, catch a\n"
+            "BUG {POKEMON} to be judged.\p"
             "Would you like to give it a try?", MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES)
     {
@@ -69,7 +69,7 @@ script BugCatchingContest_EventScript_Officer_EnterContest {
             msgbox("Uh-oh… Both your party and your PC\n"
                    "BOX are full.\p"
                    "You have no room to put the BUG\n"
-                   "POKéMON you catch.\p"
+                   "{POKEMON} you catch.\p"
                    "Please make room in your party or PC\n"
                    "BOX, then come see me.")
             setvar(VAR_RESULT, 0)
@@ -79,9 +79,9 @@ script BugCatchingContest_EventScript_Officer_EnterContest {
             specialvar(VAR_RESULT, CalculatePlayerPartyCount)
             if (var(VAR_RESULT) != 1)
             {
-                msgbox("Please choose a POKéMON to bring\n"
+                msgbox("Please choose a {POKEMON} to bring\n"
                        "into the contest.\p"
-                       "We'll hold onto your other POKéMON\n"
+                       "We'll hold onto your other {POKEMON}\n"
                        "while you compete.")
                 special(SavePlayerParty)
                 fadescreen(1)
@@ -99,7 +99,7 @@ script BugCatchingContest_EventScript_Officer_EnterContest {
                 }
                 textcolor(MSG_COLOR_SYS)
                 playse(SE_ROTATING_GATE)
-                msgbox("{PLAYER}'s POKéMON were left with\n"
+                msgbox("{PLAYER}'s {POKEMON} were left with\n"
                        "the CONTEST HELPER.")
                 textcolor(MSG_COLOR_PREV)
                 setflag(FLAG_LEFT_MONS_WITH_CONTEST_OFFICER)
@@ -115,13 +115,13 @@ script BugCatchingContest_EventScript_Officer_EnterContest {
             waitfanfare
             textcolor(MSG_COLOR_PREV)
             msgbox("The person who catches the best\n"
-                   "BUG POKéMON will be the winner.\p"
+                   "BUG {POKEMON} will be the winner.\p"
                    "You have 20 minutes, and if you run\n"
                    "out of PARK BALLS, you're done.\p"
-                   "You can keep the last POKéMON you\n"
+                   "You can keep the last {POKEMON} you\n"
                    "catch as your own.\p"
                    "Go out and catch the best BUG\n"
-                   "POKéMON you can find!")
+                   "{POKEMON} you can find!")
             closemessage
             setflag(FLAG_DAILY_BUG_CATCHING_CONTEST)
             setflag(FLAG_IN_BUG_CATCHING_CONTEST)
@@ -187,6 +187,6 @@ script BugCatchingContest_EventScript_ContestSign {
            "TUESDAY, THURSDAY and SATURDAY.\p"
            "Not only do you earn a prize just\n"
            "for participating, you also get to\l"
-           "keep the BUG POKéMON you may\l"
+           "keep the BUG {POKEMON} you may\l"
            "have at the end of the contest.", MSGBOX_SIGN)
 }

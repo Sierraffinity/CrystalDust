@@ -3,14 +3,14 @@ mapscripts MtMortar_B1F_MapScripts {}
 script MtMortar_B1F_EventScript_Kiyo{
     if(flag(FLAG_GOT_TYROGUE_FROM_KIYO))
     {
-        msgbox("TYROGUE is a FIGHTING-type.\nIt evolves into a tougher POKéMON.\pKeep up the hard work.\nI'll keep training too.\pFarewell!", MSGBOX_NPC)
+        msgbox("TYROGUE is a FIGHTING-type.\nIt evolves into a tougher {POKEMON}.\pKeep up the hard work.\nI'll keep training too.\pFarewell!", MSGBOX_NPC)
         end
     }
     if(defeated(TRAINER_KIYO))
     {
         lock
         faceplayer
-        msgbox("I…\nI'm crushed…\pMy training is still not enough…\nBut a loss is a loss. I admit it.\pAs proof that you defeated me, I'll\ngive you a rare fighting POKéMON.", MSGBOX_DEFAULT)
+        msgbox("I…\nI'm crushed…\pMy training is still not enough…\nBut a loss is a loss. I admit it.\pAs proof that you defeated me, I'll\ngive you a rare fighting {POKEMON}.", MSGBOX_DEFAULT)
         specialvar(VAR_RESULT, CalculatePlayerPartyCount)
         if(var(VAR_RESULT) == 6)
         {

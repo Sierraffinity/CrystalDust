@@ -38,9 +38,9 @@ script SproutTower_3F_EventScript_RivalScene {
            "TRAINER.\l"
            "As promised, here is your HM.\p"
            "But let me say this: You should\n"
-           "treat your POKéMON better.\p"
+           "treat your {POKEMON} better.\p"
            "The way you battle is far too harsh.\n"
-           "POKéMON are not tools of war…")
+           "{POKEMON} are not tools of war…")
     closemessage
     playse(SE_PIN)
     applymovement(RIVAL_ID, SproutTower_3F_Movement_RivalExclamationFaceSouth)
@@ -56,11 +56,11 @@ script SproutTower_3F_EventScript_RivalScene {
            "he's weak.\p"
            "It stands to reason.\p"
            "I'd never lose to fools who babble\n"
-           "about being nice to POKéMON.\p"
-           "I only care about strong POKéMON\n"
+           "about being nice to {POKEMON}.\p"
+           "I only care about strong {POKEMON}\n"
            "that can win.\p"
            "I really couldn't care less about\n"
-           "weak POKéMON.")
+           "weak {POKEMON}.")
     applymovement(RIVAL_ID, Common_Movement_WalkInPlaceFastestUp)
     waitmovement(0)
     textcolor(MSG_COLOR_PREV)
@@ -89,12 +89,12 @@ text SproutTower_3F_Text_Li_Prebattle {
     "So good of you to come here!\p"
     "SPROUT TOWER is a place of training\n"
     "and learning.\p"
-    "Here, people and POKéMON test\n"
+    "Here, people and {POKEMON} test\n"
     "their bonds to build a bright\l"
     "future together.\p"
     "I am the final test.\p"
     "Allow me to check the ties between\n"
-    "your POKéMON and you!"
+    "your {POKEMON} and you!"
 }
 
 text SproutTower_3F_Text_Li_Beat {
@@ -102,7 +102,7 @@ text SproutTower_3F_Text_Li_Beat {
 }
 
 script SproutTower_3F_EventScript_Li_PostBattle {
-    msgbox("You and your POKéMON should have\n"
+    msgbox("You and your {POKEMON} should have\n"
            "no problem using this move.\l"
            "Take this FLASH HM.")
     givetmhm_msg("{PLAYER} received HM05\n"

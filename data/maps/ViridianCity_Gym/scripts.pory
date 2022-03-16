@@ -28,10 +28,10 @@ script ViridianCity_Gym_EventScript_Blue {
 script ViridianCity_Gym_EventScript_Statues {
     if(flag(FLAG_BADGE16_GET))
     {
-        msgbox("VIRIDIAN CITY POKéMON GYM\nLEADER: BLUE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        msgbox("VIRIDIAN CITY {POKEMON} GYM\nLEADER: BLUE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
         end
     }
-    msgbox("VIRIDIAN CITY POKéMON GYM", MSGBOX_SIGN)
+    msgbox("VIRIDIAN CITY {POKEMON} GYM", MSGBOX_SIGN)
     end
 }
 

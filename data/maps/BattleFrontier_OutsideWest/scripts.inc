@@ -325,7 +325,7 @@ BattleFrontier_OutsideWest_Text_BattleDomeSign:
 
 BattleFrontier_OutsideWest_Text_BattleFactorySign:
 	.string "This is the BATTLE FACTORY!\n"
-	.string "Seek out the toughest POKéMON!$"
+	.string "Seek out the toughest {POKEMON}!$"
 
 BattleFrontier_OutsideWest_Text_BattlePikeSign:
 	.string "This is the BATTLE PIKE!\n"
@@ -334,7 +334,7 @@ BattleFrontier_OutsideWest_Text_BattlePikeSign:
 BattleFrontier_OutsideWest_Text_ThisIsBattleTower:
 	.string "This is the BATTLE TOWER.\p"
 	.string "TRAINERS bring their best-raised\n"
-	.string "POKéMON for elimination-style matches.$"
+	.string "{POKEMON} for elimination-style matches.$"
 
 BattleFrontier_OutsideWest_Text_MayISeeYourTicket:
 	.string "Hello, are you here for the ferry?\n"
@@ -395,20 +395,20 @@ BattleFrontier_OutsideWest_Text_OnlyToughTrainersBroughtHere:
 BattleFrontier_OutsideWest_Text_SureWeCanChallengeWithNoMons:
 	.string "Hey, bro…\p"
 	.string "Are you sure we can make challenges\n"
-	.string "even if we don't have any POKéMON?$"
+	.string "even if we don't have any {POKEMON}?$"
 
 BattleFrontier_OutsideWest_Text_BigGuySaidIllLendYouMons:
 	.string "Uh…\n"
 	.string "I'm sure it'll be okay.\p"
 	.string "I think…\p"
 	.string "But remember that big scary guy?\n"
-	.string "He said, “I'll lend you POKéMON!”$"
+	.string "He said, “I'll lend you {POKEMON}!”$"
 
 BattleFrontier_OutsideWest_Text_WhosRaisingThoseRentalMons:
 	.string "That's the BATTLE FACTORY.\n"
-	.string "You can rent strong POKéMON there.\p"
+	.string "You can rent strong {POKEMON} there.\p"
 	.string "But it makes me wonder.\n"
-	.string "Who's raising those rental POKéMON?$"
+	.string "Who's raising those rental {POKEMON}?$"
 
 BattleFrontier_OutsideWest_Text_ScaredOfPikeBecauseSeviper:
 	.string "I'm scared of going into the BATTLE\n"
@@ -530,7 +530,7 @@ BattleFrontier_OutsideWest_Text_FansOverThereUsedToBeTrainers:
 
 BattleFrontier_OutsideWest_Text_MonWithLongTailInFrontier:
 	.string "I heard a rumor that someone saw\n"
-	.string "a POKéMON with an unusually long tail\l"
+	.string "a {POKEMON} with an unusually long tail\l"
 	.string "somewhere in the BATTLE FRONTIER.\p"
 	.string "It must be adorable. I'm sure of it…\p"
 	.string "Oh, challenges can wait. I feel driven\n"

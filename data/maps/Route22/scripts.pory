@@ -1,6 +1,6 @@
 mapscripts Route22_MapScripts {}
 
 script Route22_EventScript_RouteSign{
-    msgbox("POKéMON LEAGUE\nVICTORY ROAD ENTRANCE", MSGBOX_SIGN)
+    msgbox("{POKEMON} LEAGUE\nVICTORY ROAD ENTRANCE", MSGBOX_SIGN)
     end
 }

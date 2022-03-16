@@ -4,7 +4,7 @@ mapscripts CianwoodCity_PhotoStudio_MapScripts {}
 script CianwoodCity_PhotoStudio_EventScript_Photographer{
     lock
     faceplayer
-    msgbox("You have magnificent POKéMON\nwith you.\pHow about a photo for a souvenir?", MSGBOX_YESNO)
+    msgbox("You have magnificent {POKEMON}\nwith you.\pHow about a photo for a souvenir?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == NO)
     {
         msgbox("Oh, that's too bad. I thought it\nwould be a great memento…")
@@ -16,7 +16,7 @@ script CianwoodCity_PhotoStudio_EventScript_Photographer{
 	dofieldeffect(FLDEFF_CAMERA_FLASH) // this is the camera flash animation from FRLG
 	delay(60)
     showmoneybox(0, 0, 0)
-    msgbox("I can put a print of your POKéMON\non the back of your TRAINER CARD.\pI'll do it for only ¥50!\nWant to try it?", MSGBOX_YESNO)
+    msgbox("I can put a print of your {POKEMON}\non the back of your TRAINER CARD.\pI'll do it for only ¥50!\nWant to try it?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == NO)
     {
         msgbox("Oh, that's too bad. I thought it\nwould be a great memento…")
@@ -38,7 +38,7 @@ script CianwoodCity_PhotoStudio_EventScript_Photographer{
     multichoice(21, 0, MULTI_TRAINER_CARD_ICON_TINT, TRUE)
     copyvar(VAR_0x8004, VAR_RESULT)
 	special(UpdateTrainerCardPhotoIcons)
-	msgbox("Your POKéMON print is ready!\nCheck your TRAINER CARD.")
+	msgbox("Your {POKEMON} print is ready!\nCheck your TRAINER CARD.")
 	hidemoneybox
 	release
 	end

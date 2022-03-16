@@ -58,7 +58,7 @@ script Route40_Eventscript_MonicaOfMonday {
 				goto(Common_EventScript_ShowBagIsFull)
 			}
 			setflag(FLAG_RECEIVED_SHARP_BEAK_FROM_MONICA)
-			msgbox("MONICA: It's an item that raises the\npower of FLYING-type moves.\pYou should equip a bird POKéMON with\nthat item.")
+			msgbox("MONICA: It's an item that raises the\npower of FLYING-type moves.\pYou should equip a bird {POKEMON} with\nthat item.")
 		}
 		else
 		{
@@ -85,13 +85,13 @@ script Route39_Eventscript_SwimmerElaine { //westernmost female swimmer
 }
 
 script Route39_Eventscript_SwimmerPaula { //easternmost female swimmer
-    trainerbattle_single(TRAINER_PAULA, "No inner tube for me.\nI'm hanging onto a sea POKéMON!", "Ooh, I'm feeling dizzy!")
+    trainerbattle_single(TRAINER_PAULA, "No inner tube for me.\nI'm hanging onto a sea {POKEMON}!", "Ooh, I'm feeling dizzy!")
     msgbox("While I float like this, the waves\ncarry me along.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route39_Eventscript_SwimmerRandall { //southernmost male swimmer
-    trainerbattle_single(TRAINER_RANDALL, "Hey, you're young and fit!\nDon't ride your POKéMON! Swim!", "Uh-oh. I lost…")
+    trainerbattle_single(TRAINER_RANDALL, "Hey, you're young and fit!\nDon't ride your {POKEMON}! Swim!", "Uh-oh. I lost…")
     msgbox("Swimming exercises your entire body.\nIt's healthy.", MSGBOX_AUTOCLOSE)
     end
 }

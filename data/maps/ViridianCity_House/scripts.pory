@@ -1,7 +1,7 @@
 mapscripts ViridianCity_House_MapScripts {}
 
 script ViridianCity_House_EventScript_PokefanM {
-	msgbox("Do you put a lot of thought into\nnaming your POKéMON?\pGiving them good nicknames adds to\nthe fun of trading with others.", MSGBOX_NPC)
+	msgbox("Do you put a lot of thought into\nnaming your {POKEMON}?\pGiving them good nicknames adds to\nthe fun of trading with others.", MSGBOX_NPC)
 	end
 }
 

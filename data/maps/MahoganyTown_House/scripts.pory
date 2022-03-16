@@ -6,6 +6,6 @@ script MahoganyTown_House_Eventscript_Man{
 }
 
 script MahoganyTown_House_Eventscript_Woman{
-    msgbox("My favorite radio program?\nI'd say POKéMON MUSIC.", MSGBOX_NPC)
+    msgbox("My favorite radio program?\nI'd say {POKEMON} MUSIC.", MSGBOX_NPC)
     end
 }

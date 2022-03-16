@@ -1,8 +1,8 @@
 mapscripts VermilionCity_Gym_MapScripts {}
 
 script VermilionCity_Gym_Eventscript_LtSurge{
-    trainerbattle_single(TRAINER_LT_SURGE, "SURGE: Hey, you little tyke!\nI have to hand it to you.\pIt may not be very smart to\nchallenge me, but it takes guts!\pWhen it comes to electric POKéMON,\nI'm number one!\pI've never lost on the battlefield.\pI'll zap you just like I did my\nenemies in war!", "SURGE: Arrrgh! You are strong!\nOK, kid. You get the THUNDERBADGE!", VermilionCity_Gym_Eventscript_SurgeDefeated, NO_MUSIC)
-    msgbox("SURGE: Hey, kid!\pStill slugging and chugging away?\nMy POKéMON and I are still at it!", MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_LT_SURGE, "SURGE: Hey, you little tyke!\nI have to hand it to you.\pIt may not be very smart to\nchallenge me, but it takes guts!\pWhen it comes to electric {POKEMON},\nI'm number one!\pI've never lost on the battlefield.\pI'll zap you just like I did my\nenemies in war!", "SURGE: Arrrgh! You are strong!\nOK, kid. You get the THUNDERBADGE!", VermilionCity_Gym_Eventscript_SurgeDefeated, NO_MUSIC)
+    msgbox("SURGE: Hey, kid!\pStill slugging and chugging away?\nMy {POKEMON} and I are still at it!", MSGBOX_DEFAULT)
     release
     end
 }script(local) VermilionCity_Gym_Eventscript_SurgeDefeated{
@@ -14,7 +14,7 @@ script VermilionCity_Gym_Eventscript_LtSurge{
         textcolor(MSG_COLOR_PREV)
         setflag(FLAG_BADGE11_GET)
         setgymtrainers(11)
-        msgbox("SURGE: THUNDERBADGE increases\nPOKéMON's speed.\pConsider it proof that you defeated\nme. You wear it proudly, hear?", MSGBOX_NPC)
+        msgbox("SURGE: THUNDERBADGE increases\n{POKEMON}'s speed.\pConsider it proof that you defeated\nme. You wear it proudly, hear?", MSGBOX_NPC)
         end
     }
 }
@@ -22,10 +22,10 @@ script VermilionCity_Gym_Eventscript_LtSurge{
 script VermilionCity_Gym_EventScript_GymStatues{
     if(flag(FLAG_BADGE11_GET))
     {
-        msgbox("VERMILION CITY POKéMON GYM\nLEADER: LT. SURGE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        msgbox("VERMILION CITY {POKEMON} GYM\nLEADER: LT. SURGE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
         end
     }
-    msgbox("VERMILION CITY POKéMON GYM", MSGBOX_SIGN)
+    msgbox("VERMILION CITY {POKEMON} GYM", MSGBOX_SIGN)
     end
 }
 
@@ -50,7 +50,7 @@ script VermilionCity_Gym_EventScript_GentlemanGregory {
 }
 
 script VermilionCity_Gym_EventScript_GuitaristVincent {
-	trainerbattle_single(TRAINER_VINCENT, "LT. SURGE recognized my potential\nwith electric POKéMON.\pThink you can beat me?", "Ooh, how shocking!")
+	trainerbattle_single(TRAINER_VINCENT, "LT. SURGE recognized my potential\nwith electric {POKEMON}.\pThink you can beat me?", "Ooh, how shocking!")
 	msgbox("If the GYM's traps were working, you\nwould have been toast…", MSGBOX_AUTOCLOSE)
 }
 

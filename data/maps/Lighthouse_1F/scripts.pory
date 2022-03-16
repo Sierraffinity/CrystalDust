@@ -5,7 +5,7 @@ mapscripts Lighthouse_1F_MapScripts {
 }
 
 script Lighthouse_1F_Eventscript_Woman{
-    msgbox("In the past, POKéMON used to light\nthe sea around OLIVINE at night.\pThe LIGHTHOUSE was made in honor of\nthose POKéMON.", MSGBOX_NPC)
+    msgbox("In the past, {POKEMON} used to light\nthe sea around OLIVINE at night.\pThe LIGHTHOUSE was made in honor of\nthose {POKEMON}.", MSGBOX_NPC)
     end
 }
 

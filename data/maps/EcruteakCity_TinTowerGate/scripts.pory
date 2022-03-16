@@ -153,7 +153,7 @@ script EcruteakCity_TinTowerGate_Eventscript_Triggers{
 }
 
 script EcruteakCity_TinTowerGate_Eventscript_OldMan{
-    msgbox("Two towers…\nTwo POKéMON…\pBut when one burned down, both\nPOKéMON flew away, never to return.", MSGBOX_NPC)
+    msgbox("Two towers…\nTwo {POKEMON}…\pBut when one burned down, both\n{POKEMON} flew away, never to return.", MSGBOX_NPC)
     end
 }
 
@@ -161,7 +161,7 @@ script EcruteakCity_TinTowerGate_Eventscript_WanderingSage{
     checkitem(ITEM_CLEAR_BELL, 1)
     if(var(VAR_RESULT))
     {
-        msgbox("The TIN TOWER shook!\pA POKéMON must have returned\nto the top!", MSGBOX_NPC)
+        msgbox("The TIN TOWER shook!\pA {POKEMON} must have returned\nto the top!", MSGBOX_NPC)
         end
     }
     msgbox("The TIN TOWER ahead is a nine-tier\ntower of divine beauty.\pIt soothes the souls of all who\nsee it.", MSGBOX_NPC)

@@ -36,11 +36,11 @@ script VictoryRoad_Gatehouse_Eventscript_BadgeCheckGuard{
 }
 
 script VictoryRoad_Gatehouse_Eventscript_LeftBlackBelt{
-    msgbox("This way leads to MT. SILVER. You'll\nsee scary-strong POKéMON out there.", MSGBOX_NPC)
+    msgbox("This way leads to MT. SILVER. You'll\nsee scary-strong {POKEMON} out there.", MSGBOX_NPC)
     end
 }
 
 script VictoryRoad_Gatehouse_Eventscript_RightBlackBelt{
-    msgbox("Off to the POKéMON LEAGUE,\nare you?\pThe ELITE FOUR are so strong it's\nscary, and they're ready for you!", MSGBOX_NPC)
+    msgbox("Off to the {POKEMON} LEAGUE,\nare you?\pThe ELITE FOUR are so strong it's\nscary, and they're ready for you!", MSGBOX_NPC)
     end
 }

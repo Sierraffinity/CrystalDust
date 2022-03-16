@@ -241,18 +241,18 @@ movement VioletCity_Movement_EarlIntoDoor {
 script VioletCity_GhostGirl {
     msgbox("Ghosts are rumored to appear in\n"
            "SPROUT TOWER.\p"
-           "They said NORMAL-type POKéMON\n"
+           "They said NORMAL-type {POKEMON}\n"
            "moves had no effect on ghosts.", MSGBOX_NPC)
 }
 
 script VioletCity_PrimeTimeGuy {
-    msgbox("Hey, you're a POKéMON TRAINER?\p"
+    msgbox("Hey, you're a {POKEMON} TRAINER?\p"
 		   "If you beat the GYM LEADER here,\n"
 		   "you'll be ready for prime time!", MSGBOX_NPC)
 }
 
 script VioletCity_Gramps {
-    msgbox("FALKNER, from the VIOLET POKéMON\n"
+    msgbox("FALKNER, from the VIOLET {POKEMON}\n"
 	       "GYM, is a fine TRAINER!\p"
 		   "He inherited his father's GYM and\n"
 		   "has done a great job with it.", MSGBOX_NPC)
@@ -270,17 +270,17 @@ script VioletCity_TownSloganSign {
 }
 
 script VioletCity_GymSign {
-    msgbox("VIOLET CITY POKéMON GYM\n"
+    msgbox("VIOLET CITY {POKEMON} GYM\n"
 		   "LEADER: FALKNER\p"
 		   "The Elegant Master of FLYING\n"
-		   "POKéMON", MSGBOX_SIGN)
+		   "{POKEMON}", MSGBOX_SIGN)
 }
 
 script VioletCity_SproutTowerSign {
     msgbox("SPROUT TOWER\n"
-		   "Experience the Way of POKéMON", MSGBOX_SIGN)
+		   "Experience the Way of {POKEMON}", MSGBOX_SIGN)
 }
 
 script VioletCity_EarlsAcademySign {
-    msgbox("EARL'S POKéMON ACADEMY", MSGBOX_SIGN)
+    msgbox("EARL'S {POKEMON} ACADEMY", MSGBOX_SIGN)
 }

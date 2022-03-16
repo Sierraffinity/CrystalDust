@@ -11,7 +11,7 @@ script PalletTown_BluesHouse_EventScript_Daisy {
         }
         lock
         faceplayer
-        msgbox("DAISY: Hi!\nGood timing.\pI'm about to have some tea.\nWould you like to join me?\pOh, your POKéMON are a bit dirty.\nWould you like me to groom one?", MSGBOX_YESNO)
+        msgbox("DAISY: Hi!\nGood timing.\pI'm about to have some tea.\nWould you like to join me?\pOh, your {POKEMON} are a bit dirty.\nWould you like me to groom one?", MSGBOX_YESNO)
         if(!var(VAR_RESULT))
         {
             msgbox(PalletTown_BluesHouse_Text_RefusedDaisy, MSGBOX_DEFAULT)
@@ -50,7 +50,7 @@ script PalletTown_BluesHouse_EventScript_Daisy {
         playmoncry(VAR_RESULT, 0)
         waitmoncry
         waitbuttonpress
-        msgbox("DAISY: There you go!\nAll done.\pSee? Doesn't it look nice?\nIt's such a cute POKéMON.", MSGBOX_DEFAULT)
+        msgbox("DAISY: There you go!\nAll done.\pSee? Doesn't it look nice?\nIt's such a cute {POKEMON}.", MSGBOX_DEFAULT)
         release
         end        
     }

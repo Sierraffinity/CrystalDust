@@ -96,13 +96,13 @@ script FastShip_Cabins_SE_SSE_Captains_EventScript_PokefanMColin{
 }
 
 script FastShip_Cabins_SE_SSE_Captains_EventScript_TwinMeg{ // left twin
-    trainerbattle_double(TRAINER_MEG_AND_PEG, "You think I'm a baby?\nThat's not fair!", "Oh!\nWe lost!", "You're traveling to KANTO with\nonly one POKéMON?")
+    trainerbattle_double(TRAINER_MEG_AND_PEG, "You think I'm a baby?\nThat's not fair!", "Oh!\nWe lost!", "You're traveling to KANTO with\nonly one {POKEMON}?")
     msgbox("Baby is a rude name to call\nus girls!", MSGBOX_AUTOCLOSE)
     end
 }
 
 script FastShip_Cabins_SE_SSE_Captains_EventScript_TwinPeg{ // right twin
-    trainerbattle_double(TRAINER_MEG_AND_PEG, "I'm not a baby!\nThat's not nice to say to a lady!", "Oh!\nWe lost!", "You're only bringing one POKéMON\nto KANTO?")
+    trainerbattle_double(TRAINER_MEG_AND_PEG, "I'm not a baby!\nThat's not nice to say to a lady!", "Oh!\nWe lost!", "You're only bringing one {POKEMON}\nto KANTO?")
     msgbox("Sometimes, kids are smarter than\ngrown-ups!", MSGBOX_AUTOCLOSE)
     end
 }
@@ -174,20 +174,20 @@ script FastShip_Cabins_SE_SSE_Captains_EventScript_PsychicRodney{
 }
 
 script FastShip_Cabins_SE_SSE_Captains_EventScript_SuperNerdShawn{
-    trainerbattle_single(TRAINER_SHAWN, "What kind of POKé BALLS do\nyou have with you?", "Wait! Stop!\nDon't! Please!")
+    trainerbattle_single(TRAINER_SHAWN, "What kind of {POKE} BALLS do\nyou have with you?", "Wait! Stop!\nDon't! Please!")
     msgbox("You should use the right BALLS\nto fit the situation.", MSGBOX_AUTOCLOSE)
     end
 }
 
 // To Olivine
 script FastShip_Cabins_SE_SSE_Captains_EventScript_PokefanMJeremy{
-    trainerbattle_single(TRAINER_JEREMY, "What do you think?\pMy POKéMON are beautiful, yes?", "Oh no!\nMy beautiful POKéMON!")
-    msgbox("I must go to the POKéMON SALON\nand fix them up nice!", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_JEREMY, "What do you think?\pMy {POKEMON} are beautiful, yes?", "Oh no!\nMy beautiful {POKEMON}!")
+    msgbox("I must go to the {POKEMON} SALON\nand fix them up nice!", MSGBOX_AUTOCLOSE)
     end
 }
 
 script FastShip_Cabins_SE_SSE_Captains_EventScript_PokefanFGeorgia{
     trainerbattle_single(TRAINER_GEORGIA, "I'm going to shop at the DEPT.\nSTORE and then…", "What was I going to do?")
-    msgbox("Oh yes! I have to get my POKéMON\nout of DAY-CARE!", MSGBOX_AUTOCLOSE)
+    msgbox("Oh yes! I have to get my {POKEMON}\nout of DAY-CARE!", MSGBOX_AUTOCLOSE)
     end
 }

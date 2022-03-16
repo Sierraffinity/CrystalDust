@@ -10,10 +10,10 @@ NewBarkTown_NeighborsHouse_EventScript_Woman::
 	end
 
 NewBarkTown_NeighborsHouse_Text_Girl:
-	.string "PIKACHU is an evolved POKéMON. I\n"
+	.string "PIKACHU is an evolved {POKEMON}. I\n"
 	.string "was amazed by PROF. ELM's findings.\p"
 	.string "He's so famous for his research on\n"
-	.string "POKéMON evolution.\p"
+	.string "{POKEMON} evolution.\p"
 	.string "…sigh…\p"
 	.string "I wish I could be a researcher like\n"
 	.string "him…$"
@@ -22,5 +22,5 @@ NewBarkTown_NeighborsHouse_Text_Woman:
 	.string "{PLAYER}, have you heard?\p"
 	.string "My daughter is adamant about\n"
 	.string "becoming PROF. ELM's assistant.\l"
-	.string "She really loves POKéMON!\p"
+	.string "She really loves {POKEMON}!\p"
 	.string "But then, so do I!$"

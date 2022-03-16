@@ -79,7 +79,7 @@ script TeamRocketBase_B1F_Eventscript_CameraSwitch {
 
 script TeamRocketBase_B1F_Eventscript_Shelf{
     signmsg
-    msgbox("TEAM ROCKET OATH\pSteal POKéMON for profit!\nExploit POKéMON for profit!\pAll POKéMON exist for the glory\nof TEAM ROCKET!", MSGBOX_SIGN)
+    msgbox("TEAM ROCKET OATH\pSteal {POKEMON} for profit!\nExploit {POKEMON} for profit!\pAll {POKEMON} exist for the glory\nof TEAM ROCKET!", MSGBOX_SIGN)
     end
 }
 
@@ -441,7 +441,7 @@ script TeamRocketBase_B1F_EventScript_SecurityTriggerRocketBattle2 {
 }text TeamRocketBase_B1F_Text_Guard2Intro{
     "It's my turn!\nThere's no escape!"
 }text TeamRocketBase_B1F_Text_Guard2Loss{
-    "Surveillance cams are in the\nPOKéMON statues.\pWe'll keep appearing until you trip\na secret switch."
+    "Surveillance cams are in the\n{POKEMON} statues.\pWe'll keep appearing until you trip\na secret switch."
 }
 
 script TeamRocketBase_B1F_Eventscript_TrapColumn1_1{

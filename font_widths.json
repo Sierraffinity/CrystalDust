@@ -165,9 +165,9 @@
       "{VERSION}": 56,
       "{AQUA}": 24,
       "{MAGMA}": 30,
-      "{ARCHIE}": 36,
-      "{MAXIE}": 30,
-      "{KYOGRE}": 36,
+      "{POKEMON}": 42,
+      "{POKEDEX}": 42,
+      "{POKE}": 24,
       "{GROUDON}": 42,
       "$": 0
     }

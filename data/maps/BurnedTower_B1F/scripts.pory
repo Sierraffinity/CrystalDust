@@ -207,7 +207,7 @@ script BurnedTower_B1F_EventScript_Trigger{
 
 script BurnedTower_B1F_EventScript_Eusine{
     lockall
-    msgbox("EUSINE: I dug a hole here, too…\nI was shocked!\pSUICUNE raced by like a blur, right\nin front of my eyes!\pFor ten years I chased SUICUNE, and\nI finally got to see it.\pI'm all choked up!\p{PLAYER}, I owe all this to you!\nThank you!\pI heard that the legendary POKéMON\nof ECRUTEAK test chosen humans by\lallowing them to get close.\pI'm going to track SUICUNE.\n{PLAYER}, let's meet again!\pFarewell!", MSGBOX_DEFAULT)
+    msgbox("EUSINE: I dug a hole here, too…\nI was shocked!\pSUICUNE raced by like a blur, right\nin front of my eyes!\pFor ten years I chased SUICUNE, and\nI finally got to see it.\pI'm all choked up!\p{PLAYER}, I owe all this to you!\nThank you!\pI heard that the legendary {POKEMON}\nof ECRUTEAK test chosen humans by\lallowing them to get close.\pI'm going to track SUICUNE.\n{PLAYER}, let's meet again!\pFarewell!", MSGBOX_DEFAULT)
     closemessage
     getplayerxy(VAR_0x8008, VAR_RESULT)
     if(var(VAR_RESULT) == 15)

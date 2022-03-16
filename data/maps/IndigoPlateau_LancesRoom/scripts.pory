@@ -38,12 +38,12 @@ script IndigoPlateau_LancesRoom_EventScript_StairTriggers{
     }
     turnobject(1, DIR_WEST)
     textcolor(0)
-    msgbox("LANCE: I've been waiting for you.\p{PLAYER}!\pI knew that you, with your skills,\nwould eventually reach me here.\pThere's no need for words now.\pWe will battle to determine who is\nthe stronger of the two of us.\pAs the most powerful trainer and as\nthe POKéMON LEAGUE CHAMPION…\pI, LANCE, the dragon master,\naccept your challenge!")
+    msgbox("LANCE: I've been waiting for you.\p{PLAYER}!\pI knew that you, with your skills,\nwould eventually reach me here.\pThere's no need for words now.\pWe will battle to determine who is\nthe stronger of the two of us.\pAs the most powerful trainer and as\nthe {POKEMON} LEAGUE CHAMPION…\pI, LANCE, the dragon master,\naccept your challenge!")
     closemessage
     trainerbattle_no_intro(TRAINER_LANCE, "…It's over.\nBut it's an odd feeling.\pI'm not angry that I lost.\nIn fact, I feel happy.\pHappy that I witnessed the rise\nof a great new CHAMPION!")
     applymovement(OBJ_EVENT_ID_PLAYER, IndigoPlateau_LancesRoom_Movement_PlayerToLanceAfterBattle)
     waitmovement(0)
-    msgbox("…Whew.\pYou have become truly powerful,\n{PLAYER}.\pYour POKéMON have responded to your\nstrong and upstanding nature.\pAs a trainer, you will continue to\ngrow strong with your POKéMON.")
+    msgbox("…Whew.\pYou have become truly powerful,\n{PLAYER}.\pYour {POKEMON} have responded to your\nstrong and upstanding nature.\pAs a trainer, you will continue to\ngrow strong with your {POKEMON}.")
     closemessage
     playse(SE_UNLOCK)
     setmetatile(6, 2, 0x28E, 1)
@@ -70,7 +70,7 @@ script IndigoPlateau_LancesRoom_EventScript_StairTriggers{
     waitmovement(0)
     turnobject(1, DIR_WEST)
     textcolor(0)
-    msgbox("PROF. OAK: Ah, {PLAYER}!\pIt's been a long while.\nYou certainly look more impressive.\pYour conquest of the LEAGUE is just\nfantastic!\pYour dedication, trust and love for\nyour POKéMON made this happen.\lYour POKéMON were outstanding too.\pBecause they believed in you as\na trainer, they persevered.\pCongratulations, {PLAYER}!", MSGBOX_DEFAULT)
+    msgbox("PROF. OAK: Ah, {PLAYER}!\pIt's been a long while.\nYou certainly look more impressive.\pYour conquest of the LEAGUE is just\nfantastic!\pYour dedication, trust and love for\nyour {POKEMON} made this happen.\lYour {POKEMON} were outstanding too.\pBecause they believed in you as\na trainer, they persevered.\pCongratulations, {PLAYER}!", MSGBOX_DEFAULT)
     closemessage
     applymovement(2, IndigoPlateau_LancesRoom_Movement_MaryToPlayer2)
     waitmovement(0)

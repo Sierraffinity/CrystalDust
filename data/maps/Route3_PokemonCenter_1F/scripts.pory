@@ -12,7 +12,7 @@ script Route3_PokemonCenter_1F_EventScript_Hiker{
 }
 
 script Route3_PokemonCenter_1F_EventScript_Camper{
-    msgbox("Many trainers are visiting MT. MOON\nsince it collapsed.\pYou never know what POKéMON you'll\nencounter, so it's important to\lrecover at a place like this.\pDon't forget to make a record of\nyour progress, either!", MSGBOX_NPC)
+    msgbox("Many trainers are visiting MT. MOON\nsince it collapsed.\pYou never know what {POKEMON} you'll\nencounter, so it's important to\lrecover at a place like this.\pDon't forget to make a record of\nyour progress, either!", MSGBOX_NPC)
     end
     // inspired by the HGSS line for this NPC.
 }

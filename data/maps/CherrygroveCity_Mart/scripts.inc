@@ -52,18 +52,18 @@ CherrygroveCity_Mart_EventScript_Youngster::
 	end
 
 CherrygroveCity_Mart_Text_BallGuy_PreDex:
-	.string "They're fresh out of POKé BALLS!\n"
+	.string "They're fresh out of {POKE} BALLS!\n"
 	.string "When will they get more of them?$"
 
 CherrygroveCity_Mart_Text_BallGuy_PostDex:
-	.string "POKé BALLS are in stock!\n"
-	.string "Now I can catch POKéMON!$"
+	.string "{POKE} BALLS are in stock!\n"
+	.string "Now I can catch {POKEMON}!$"
 
 CherrygroveCity_Mart_Text_Youngster:
 	.string "When I was walking in the grass,\n"
-	.string "a BUG POKéMON popped out and\l"
-	.string "poisoned my POKéMON!\p"
+	.string "a BUG {POKEMON} popped out and\l"
+	.string "poisoned my {POKEMON}!\p"
 	.string "I tried to keep going, but then my\n"
-	.string "POKéMON fainted.\p"
+	.string "{POKEMON} fainted.\p"
 	.string "You should always keep an ANTIDOTE\n"
 	.string "with you, just in case.$"

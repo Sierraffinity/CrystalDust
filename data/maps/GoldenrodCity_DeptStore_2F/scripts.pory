@@ -48,7 +48,7 @@ GoldenrodCity_DeptStore_2F_Pokemart_LeftClerk:
 `
 
 script GoldenrodCity_DeptStore_2F_EventScript_Youngster {
-    msgbox("The POKéGEAR can store up to ten\n"
+    msgbox("The {POKE}GEAR can store up to ten\n"
            "phone numbers.\p"
            "It's hard to decide which numbers\n"
            "to keep.", MSGBOX_NPC)

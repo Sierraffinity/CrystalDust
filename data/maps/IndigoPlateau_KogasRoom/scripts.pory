@@ -26,7 +26,7 @@ script IndigoPlateau_KogasRoom_EventScript_Koga {
         msgbox(IndigoPlateau_KogasRoom_Text_KogaAfterBattle, MSGBOX_NPC)
         end
     }
-    msgbox("Fwahahahaha!\pI am KOGA of the ELITE FOUR.\nI live in shadows, a ninja!\pMy intricate style will confound\nand destroy you!\pConfusion, sleep, poison…\pPrepare to be the victim of my\nsinister technique!\pFwahahahaha!\pPOKéMON is not merely about brute\nforce--you shall see soon enough!", MSGBOX_DEFAULT)
+    msgbox("Fwahahahaha!\pI am KOGA of the ELITE FOUR.\nI live in shadows, a ninja!\pMy intricate style will confound\nand destroy you!\pConfusion, sleep, poison…\pPrepare to be the victim of my\nsinister technique!\pFwahahahaha!\p{POKEMON} is not merely about brute\nforce--you shall see soon enough!", MSGBOX_DEFAULT)
     closemessage
     trainerbattle_no_intro(TRAINER_KOGA, "Ah!\nYou have proven your worth!")
     setflag(FLAG_TEMP_3)

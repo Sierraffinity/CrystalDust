@@ -56,7 +56,7 @@ script IlexForest_EventScript_Farfetchd {
 	switch (var(VAR_ILEX_FARFETCHD_STATE))
 	{
 	default:
-		msgbox("It's the missing POKéMON!")
+		msgbox("It's the missing {POKEMON}!")
 		call(IlexForest_EventScript_FarfetchdCry)
 		applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_1to2)
 		waitmovement(0)
@@ -399,7 +399,7 @@ script IlexForest_EventScript_Apprentice {
 	{
 		msgbox("Wow!\n"
 			   "Thanks a whole bunch!\p"
-			   "My boss's POKéMON won't obey me\n"
+			   "My boss's {POKEMON} won't obey me\n"
 			   "because I don't have a BADGE.")
 	}
 	else
@@ -438,7 +438,7 @@ script IlexForest_EventScript_Master {
 		giveitem(ITEM_HM01)
 		setflag(FLAG_RECEIVED_HM01)
 		msgbox("That's the CUT HM. Teach that to a\n"
-			   "POKéMON to clear small trees.\p"
+			   "{POKEMON} to clear small trees.\p"
 			   "Of course, you have to have the\n"
 			   "GYM BADGE from AZALEA to use it.")
 		setflag(FLAG_HIDE_ILEX_FOREST_MASTER)

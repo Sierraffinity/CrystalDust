@@ -6,12 +6,12 @@ mapscripts CianwoodCity_PokemonCenter_1F_MapScripts {
 }
 
 script CianwoodCity_PokemonCenter_1F_Eventscript_Girl{
-    msgbox("Did you meet the POKéMANIAC?\nHe's always bragging about his rare\lPOKéMON.", MSGBOX_NPC)
+    msgbox("Did you meet the {POKE}MANIAC?\nHe's always bragging about his rare\l{POKEMON}.", MSGBOX_NPC)
     end
 }
 
 script CianwoodCity_PokemonCenter_1F_Eventscript_Boy{
-    msgbox("I love showing off the POKéMON that\nI've raised. Don't you?\pI'm going to get into a bunch of\nbattles and show off my POKéMON!", MSGBOX_NPC)
+    msgbox("I love showing off the {POKEMON} that\nI've raised. Don't you?\pI'm going to get into a bunch of\nbattles and show off my {POKEMON}!", MSGBOX_NPC)
     end
 }
 
@@ -21,6 +21,6 @@ script CianwoodCity_PokemonCenter_1F_Eventscript_GymGuy{
         msgbox("{PLAYER}! You won!\nI could tell by looking at you!", MSGBOX_NPC)
         end
     }
-    msgbox("The POKéMON GYM TRAINERS here are\nmacho bullies.\pIf I stick around, they might come\nafter me.\pHere's some advice: the GYM LEADER\nuses the FIGHTING-type.\pYou should confound him with\nPSYCHIC-type POKéMON.\pWipe out his POKéMON before they can\nuse their physical strength!\pAnd those boulders in the middle of\nthe GYM?\pIf you don't move them correctly,\nyou won't reach the GYM LEADER.\pIf you get stuck, go outside and\ncome back in.", MSGBOX_NPC)
+    msgbox("The {POKEMON} GYM TRAINERS here are\nmacho bullies.\pIf I stick around, they might come\nafter me.\pHere's some advice: the GYM LEADER\nuses the FIGHTING-type.\pYou should confound him with\nPSYCHIC-type {POKEMON}.\pWipe out his {POKEMON} before they can\nuse their physical strength!\pAnd those boulders in the middle of\nthe GYM?\pIf you don't move them correctly,\nyou won't reach the GYM LEADER.\pIf you get stuck, go outside and\ncome back in.", MSGBOX_NPC)
     end
 }

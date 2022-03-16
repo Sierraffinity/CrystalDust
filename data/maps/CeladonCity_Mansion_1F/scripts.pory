@@ -6,7 +6,7 @@ script CeladonCity_Mansion_1F_EventScript_Directory {
 }
 
 script CeladonCity_Mansion_1F_EventScript_Manager{
-    msgbox("My dear POKéMON keep me company,\nso I don't ever feel lonely.\pMEOWTH even brings money home.", MSGBOX_NPC)
+    msgbox("My dear {POKEMON} keep me company,\nso I don't ever feel lonely.\pMEOWTH even brings money home.", MSGBOX_NPC)
     end
 }
 

@@ -16,8 +16,8 @@ Route30_BerryMansHouse_EventScript_Man_AlreadyGot::
 	end
 
 Route30_BerryMansHouse_Text_PokemonEatBerries:
-	.string "You know, POKéMON eat BERRIES.\p"
-	.string "Well, my POKéMON got healthier by\n"
+	.string "You know, {POKEMON} eat BERRIES.\p"
+	.string "Well, my {POKEMON} got healthier by\n"
 	.string "eating a BERRY.\p"
 	.string "Here, I'll share one with you!$"
 

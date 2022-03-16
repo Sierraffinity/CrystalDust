@@ -1,14 +1,14 @@
 mapscripts Route2_MapScripts {}
 
 script Route2_EventScript_BugCatcherRob { //lowest
-    trainerbattle_single(TRAINER_ROB, "My bug POKéMON are tough.\nPrepare to lose!", "I was whipped…")
-	msgbox("I'm going to look for stronger\nbug POKéMON.", MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_ROB, "My bug {POKEMON} are tough.\nPrepare to lose!", "I was whipped…")
+	msgbox("I'm going to look for stronger\nbug {POKEMON}.", MSGBOX_DEFAULT)
 	release
 }
 
 script Route2_EventScript_BugCatcherDoug { //middle
-    trainerbattle_single(TRAINER_DOUG, "Why don't girls like bug POKéMON?", "No good!")
-	msgbox("Bug POKéMON squish like plush toys\nwhen you squeeze their bellies.\lI love how they feel!", MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_DOUG, "Why don't girls like bug {POKEMON}?", "No good!")
+	msgbox("Bug {POKEMON} squish like plush toys\nwhen you squeeze their bellies.\lI love how they feel!", MSGBOX_DEFAULT)
 	release
 }
 

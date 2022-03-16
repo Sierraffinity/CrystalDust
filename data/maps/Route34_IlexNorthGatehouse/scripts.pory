@@ -21,9 +21,9 @@ script Route34_IlexNorthGatehouse_EventScript_TauntWoman {
 	elif (!flag(FLAG_RECEIVED_TM12_TAUNT))
 	{
 		msgbox("Oh, honey.\n"
-               "You're making a POKéDEX?\p"
+               "You're making a {POKEDEX}?\p"
                "It must be hard battling so many\n"
-               "different kinds of POKéMON.\p"
+               "different kinds of {POKEMON}.\p"
                "Try using this TM on them.")
 		giveitem(ITEM_TM12)
 		if (!var(VAR_RESULT))
@@ -39,7 +39,7 @@ script Route34_IlexNorthGatehouse_EventScript_TauntWoman {
            "pretty sweet move.\p"
            "Use it in battle, and the opponent\n"
            "can only use moves that damage\l"
-           "your POKéMON for a bit.")
+           "your {POKEMON} for a bit.")
 	release
 }
 
@@ -49,7 +49,7 @@ script Route34_IlexNorthGatehouse_EventScript_Girl {
            "It watches over the FOREST from\n"
            "across time.\p"
            "I think that it must be a GRASS-\n"
-           "type POKéMON.", MSGBOX_NPC)
+           "type {POKEMON}.", MSGBOX_NPC)
 }
 
 script Route34_IlexNorthGatehouse_EventScript_Butterfree {

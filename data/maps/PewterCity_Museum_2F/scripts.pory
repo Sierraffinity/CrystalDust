@@ -6,7 +6,7 @@ script PewterCity_Museum_1F_EventScript_Scientist{
 }
 
 script PewterCity_Museum_1F_EventScript_Man{
-    msgbox("I learned that MOON STONES aren't\njust ordinary rocks.\pCertain POKéMON will evolve when\nexposed to one!", MSGBOX_NPC)
+    msgbox("I learned that MOON STONES aren't\njust ordinary rocks.\pCertain {POKEMON} will evolve when\nexposed to one!", MSGBOX_NPC)
     end
 }
 

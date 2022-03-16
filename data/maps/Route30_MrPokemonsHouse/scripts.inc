@@ -179,7 +179,7 @@ Route30_MrPokemonsHouse_Text_IKnowACouple:
 	.string "service. They gave me that EGG.\p"
 	.string "I was intrigued, so I sent mail to\n"
 	.string "PROF. ELM.\p"
-	.string "For POKéMON evolution, PROF. ELM is\n"
+	.string "For {POKEMON} evolution, PROF. ELM is\n"
 	.string "the authority.$"
 
 Route30_MrPokemonsHouse_Text_EvenOakKnows:
@@ -192,38 +192,38 @@ Route30_MrPokemonsHouse_Text_IfMyAssumption:
 Route30_MrPokemonsHouse_Text_SoYourePlayer:
 	.string "OAK: Aha!\n"
 	.string "So you're {PLAYER}!\p"
-	.string "I'm PROF. OAK, a POKéMON researcher\n"
+	.string "I'm PROF. OAK, a {POKEMON} researcher\n"
 	.string "from the KANTO region.\p"
 	.string "I was just visiting my old friend,\n"
-	.string "MR. POKéMON.\p"
+	.string "MR. {POKEMON}.\p"
 	.string "I heard you were running an errand\n"
 	.string "for PROF. ELM, so I waited here.\p"
 	.string "…Oh! What's this?\n"
-	.string "You have a rare POKéMON with you!\p"
+	.string "You have a rare {POKEMON} with you!\p"
 	.string "Let's see…\p"
 	.string "Hm, I see!\p"
 	.string "I understand why PROF. ELM gave you\n"
-	.string "a POKéMON for this errand.\p"
+	.string "a {POKEMON} for this errand.\p"
 	.string "To researchers like PROF. ELM and I,\n"
-	.string "POKéMON are our friends.\p"
+	.string "{POKEMON} are our friends.\p"
 	.string "He saw that you would treat your\n"
-	.string "POKéMON with love and care.\p"
+	.string "{POKEMON} with love and care.\p"
 	.string "…Ah!\p"
 	.string "You seem to be dependable.\n"
 	.string "How would you like to help me out?\p"
 	.string "See? This is the latest version of\n"
-	.string "the POKéDEX.\p"
+	.string "the {POKEDEX}.\p"
 	.string "It automatically records data on\n"
-	.string "POKéMON you've seen or caught.\p"
+	.string "{POKEMON} you've seen or caught.\p"
 	.string "It's a high-tech encyclopedia!$"
 
 Route30_MrPokemonsHouse_Text_PlayerReceivedPokedex:
-	.string "{PLAYER} received the POKéDEX\n"
+	.string "{PLAYER} received the {POKEDEX}\n"
 	.string "from PROF. OAK.$"
 
 Route30_MrPokemonsHouse_Text_GoMeetManyPokemon:
-	.string "OAK: Go meet many kinds of POKéMON\n"
-	.string "and complete that POKéDEX!\p"
+	.string "OAK: Go meet many kinds of {POKEMON}\n"
+	.string "and complete that {POKEDEX}!\p"
 	.string "But, I've stayed too long.\n"
 	.string "I have to get to GOLDENROD for my\l"
 	.string "usual radio show.\p"
@@ -232,7 +232,7 @@ Route30_MrPokemonsHouse_Text_GoMeetManyPokemon:
 Route30_MrPokemonsHouse_Text_ReturningToElm:
 	.string "You are returning to PROF. ELM?\p"
 	.string "Here.\n"
-	.string "Your POKéMON should have some rest.$"
+	.string "Your {POKEMON} should have some rest.$"
 
 Route30_MrPokemonsHouse_Text_DependingOnYou:
 	.string "I'm depending on you!$"

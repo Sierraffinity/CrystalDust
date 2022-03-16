@@ -26,23 +26,23 @@ script SaffronCity_Gym_EventScript_GymGuide {
         msgbox("That was another fantastic battle!", MSGBOX_NPC)
         end
     }
-    msgbox("Yo, CHAMP in the making!\pA trainer as skilled as you doesn't\nneed to be told how to deal with\lPSYCHIC-type POKéMON, right?\pI expect great things from you!\nGood luck!", MSGBOX_NPC)
+    msgbox("Yo, CHAMP in the making!\pA trainer as skilled as you doesn't\nneed to be told how to deal with\lPSYCHIC-type {POKEMON}, right?\pI expect great things from you!\nGood luck!", MSGBOX_NPC)
     end
 }
 
 script SaffronCity_Gym_EventScript_GymStatues{
     if(flag(FLAG_BADGE14_GET))
     {
-        msgbox("SAFFRON CITY POKéMON GYM\nLEADER: SABRINA\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        msgbox("SAFFRON CITY {POKEMON} GYM\nLEADER: SABRINA\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
         end
     }
-    msgbox("SAFFRON CITY POKéMON GYM", MSGBOX_SIGN)
+    msgbox("SAFFRON CITY {POKEMON} GYM", MSGBOX_SIGN)
     end
 }
 
 script SaffronCity_Gym_EventScript_Sabrina {
     trainerbattle_single(TRAINER_SABRINA, "SABRINA: I knew you were coming…\pThree years ago I had a vision\nof your arrival.\pYou're after my BADGE.\pI don't enjoy battling, but it's my\nduty as a LEADER to confer BADGES\lon anyone who has proven him- or\lherself worthy.\pSince you wish it, I will show you\nmy psychic powers!", "SABRINA: Your power…\nIt far exceeds what I foresaw…\pMaybe it isn't possible to fully\npredict what the future holds…\pOK, you win.\nYou earned yourself MARSHBADGE.", SaffronCity_Gym_Eventscript_SabrinaDefeated, NO_MUSIC)
-    msgbox("SABRINA: Your love for your POKéMON\noverwhelmed my psychic power…\pThe power of love, I think, is also\na kind of psychic power…", MSGBOX_DEFAULT)
+    msgbox("SABRINA: Your love for your {POKEMON}\noverwhelmed my psychic power…\pThe power of love, I think, is also\na kind of psychic power…", MSGBOX_DEFAULT)
     release
     end
 }script(local) SaffronCity_Gym_Eventscript_SabrinaDefeated{

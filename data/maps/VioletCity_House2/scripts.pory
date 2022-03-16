@@ -1,7 +1,7 @@
 mapscripts VioletCity_House2_MapScripts { }
 
 script VioletCity_House2_EventScript_Man {
-    msgbox("A POKéMON you get in a trade\n"
+    msgbox("A {POKEMON} you get in a trade\n"
            "grows quickly.\p"
            "But if you don't have the right\n"
            "GYM BADGE, they may disobey you.", MSGBOX_NPC)
@@ -17,7 +17,7 @@ script VioletCity_House2_EventScript_Kyle {
 
     if (!flag(FLAG_VIOLET_NPC_TRADE_COMPLETED))
     {
-        msgbox("I collect POKéMON.\n"
+        msgbox("I collect {POKEMON}.\n"
                "Do you have {STR_VAR_1}?\p"
                "Want to trade it for my {STR_VAR_2}?", MSGBOX_YESNO)
         

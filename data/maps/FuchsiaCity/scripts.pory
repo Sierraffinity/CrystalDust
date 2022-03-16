@@ -25,7 +25,7 @@ script FuchsiaCity_EventScript_CitySign{
 }
 
 script FuchsiaCity_EventScript_GymSign{
-    msgbox("FUCHSIA CITY POKéMON GYM\nLEADER: JANINE\pThe Poisonous Ninja Master", MSGBOX_SIGN)
+    msgbox("FUCHSIA CITY {POKEMON} GYM\nLEADER: JANINE\pThe Poisonous Ninja Master", MSGBOX_SIGN)
     end
 }
 

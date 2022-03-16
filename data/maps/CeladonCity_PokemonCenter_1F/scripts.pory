@@ -22,11 +22,11 @@ script CeladonCity_PokemonCenter_1F_EventScript_Eusine {
     }
     if(!var(VAR_RESULT)) // doesn't have all three
     {
-        msgbox("{STR_VAR_2}\pOh, by the way, {PLAYER}.\pHave you caught the legendary\nPOKéMON RAIKOU and ENTEI?\p…… …… ……\pOkay…\pIf you catch even one, I hope that\nyou'll inform me.\pI'm counting on you, {PLAYER}!", MSGBOX_NPC)
+        msgbox("{STR_VAR_2}\pOh, by the way, {PLAYER}.\pHave you caught the legendary\n{POKEMON} RAIKOU and ENTEI?\p…… …… ……\pOkay…\pIf you catch even one, I hope that\nyou'll inform me.\pI'm counting on you, {PLAYER}!", MSGBOX_NPC)
         releaseall
         end
     }
-    msgbox("{STR_VAR_2}\p{PLAYER}, have you heard?\pThere have been fresh rumors of a\nrainbow-colored POKéMON appearing\lat TIN TOWER.\pI've just had my party healed, so\nnow I'm headed to ECRUTEAK.\pI'll be seeing you, {PLAYER}!", MSGBOX_DEFAULT)
+    msgbox("{STR_VAR_2}\p{PLAYER}, have you heard?\pThere have been fresh rumors of a\nrainbow-colored {POKEMON} appearing\lat TIN TOWER.\pI've just had my party healed, so\nnow I'm headed to ECRUTEAK.\pI'll be seeing you, {PLAYER}!", MSGBOX_DEFAULT)
     closemessage
     specialvar(VAR_FACING, GetPlayerFacingDirection)
     if(var(VAR_FACING) == DIR_EAST)
@@ -58,7 +58,7 @@ script CeladonCity_PokemonCenter_1F_EventScript_Eusine {
 }
 
 script CeladonCity_PokemonCenter_1F_EventScript_CooltrainerF {
-	msgbox("ERIKA is a master of grass\nPOKéMON.\pShe'll make you pay if you don't\nwatch yourself.", MSGBOX_NPC)
+	msgbox("ERIKA is a master of grass\n{POKEMON}.\pShe'll make you pay if you don't\nwatch yourself.", MSGBOX_NPC)
 	end
 }
 

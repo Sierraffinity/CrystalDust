@@ -221,7 +221,7 @@ script OlivineCity_Port_Eventscript_GetOnBoard{
 }
 
 script OlivineCity_Port_Eventscript_Fisherman1{ //before HoF, rightmost
-    msgbox("How many RODS do you have?\pDifferent rods catch different\nPOKéMON.", MSGBOX_NPC)
+    msgbox("How many RODS do you have?\pDifferent rods catch different\n{POKEMON}.", MSGBOX_NPC)
     end
 }
 
@@ -237,7 +237,7 @@ script OlivineCity_Port_Eventscript_Boy{ //after HoF
 }
 
 script OlivineCity_Port_Eventscript_Girl{ //after HoF
-    msgbox("There are lots of POKéMON in KANTO.\nI wish I could go…", MSGBOX_NPC)
+    msgbox("There are lots of {POKEMON} in KANTO.\nI wish I could go…", MSGBOX_NPC)
     turnobject(VAR_LAST_TALKED, DIR_SOUTH)
     end
 }

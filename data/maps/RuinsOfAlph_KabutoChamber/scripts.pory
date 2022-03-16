@@ -54,7 +54,7 @@ mapscripts RuinsOfAlph_KabutoChamber_MapScripts {
 }
 
 script RuinsOfAlph_KabutoChamber_EventScript_KabutoDescription {
-    msgbox("A POKéMON that hid on the sea floor.\n"
+    msgbox("A {POKEMON} that hid on the sea floor.\n"
            "Eyes on its back scanned the area.", MSGBOX_SIGN)
 }
 
@@ -178,11 +178,11 @@ script RuinsOfAlph_KabutoChamber_EventScript_Scientist {
 script RuinsOfAlph_KabutoChamber_EventScript_Receptionist {
     msgbox("Welcome to this chamber.\p"
            "There are sliding panels that depict\n"
-           "a POKéMON drawn by the ancients.\p"
+           "a {POKEMON} drawn by the ancients.\p"
            "Slide the panels around to form\n"
            "the picture.\p"
            "To the sides are descriptions of\n"
-           "the POKéMON.\p"
+           "the {POKEMON}.\p"
            "Scientists in the back are examining\n"
            "some newly found patterns.", MSGBOX_NPC)
 }

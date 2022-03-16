@@ -1,8 +1,8 @@
 mapscripts Route8_MapScripts {}
 
 script Route8_EventScript_BikerDwayne{ //topmost
-    trainerbattle_single(TRAINER_DWAYNE, "We're the KANTO POKéMON FEDERATION\ntrainer group.\pWe'll drive you under our wheels!", "S-sorry!")
-	msgbox("The KANTO POKéMON FEDERATION will\nnever fall!", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_DWAYNE, "We're the KANTO {POKEMON} FEDERATION\ntrainer group.\pWe'll drive you under our wheels!", "S-sorry!")
+	msgbox("The KANTO {POKEMON} FEDERATION will\nnever fall!", MSGBOX_AUTOCLOSE)
 }
 
 script Route8_EventScript_BikerHarris{ //middle
@@ -11,7 +11,7 @@ script Route8_EventScript_BikerHarris{ //middle
 }
 
 script Route8_EventScript_BikerZeke{ //bottom
-    trainerbattle_single(TRAINER_ZEKE, "We're the KANTO POKéMON FEDERATION!\nRight on!", "Yikes!\nSorry!")
+    trainerbattle_single(TRAINER_ZEKE, "We're the KANTO {POKEMON} FEDERATION!\nRight on!", "Yikes!\nSorry!")
 	msgbox("We'll try not to disturb anyone\nfrom now on…", MSGBOX_AUTOCLOSE)
 }
 

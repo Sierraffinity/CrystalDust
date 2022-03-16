@@ -8,7 +8,7 @@ script SaffronCity_CopycatsHouse_1F_EventScript_PokefanM{
 script SaffronCity_CopycatsHouse_1F_EventScript_PokefanF{
     if(flag(FLAG_RETURNED_MACHINE_PART))
     {
-        msgbox("She recently lost the POKé DOLL that\na boy gave her three years ago.\pEver since then, she's gotten even\nbetter at mimicry…", MSGBOX_NPC)
+        msgbox("She recently lost the {POKE} DOLL that\na boy gave her three years ago.\pEver since then, she's gotten even\nbetter at mimicry…", MSGBOX_NPC)
         end
     }
     msgbox("My daughter is so self-centered…\pShe only has a few friends.", MSGBOX_NPC)

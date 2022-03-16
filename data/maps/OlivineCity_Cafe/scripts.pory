@@ -21,7 +21,7 @@ script OlivineCity_Cafe_EventScript_StrengthSailor {
     }
     lock
     faceplayer
-    msgbox("Hah! Your POKéMON sure look like\nlightweights!\pThey don't have the power to move\nboulders aside.\pHere, use this and teach them\nSTRENGTH!", MSGBOX_DEFAULT)
+    msgbox("Hah! Your {POKEMON} sure look like\nlightweights!\pThey don't have the power to move\nboulders aside.\pHere, use this and teach them\nSTRENGTH!", MSGBOX_DEFAULT)
     giveitem(ITEM_HM04)
     release
     end

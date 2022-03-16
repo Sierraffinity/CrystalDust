@@ -11,7 +11,7 @@ script Route25_BillsHouse_EventScript_BillsGrandpa{
     }
     if(flag(FLAG_GOT_THUNDER_STONE_FROM_BILLS_GRANDPA))
     {
-        msgbox("Thanks for showing me so many cute\nPOKéMON.\pI really enjoyed myself. I'm glad\nI've lived such a long life.", MSGBOX_DEFAULT)
+        msgbox("Thanks for showing me so many cute\n{POKEMON}.\pI really enjoyed myself. I'm glad\nI've lived such a long life.", MSGBOX_DEFAULT)
         release
         end
     }
@@ -40,7 +40,7 @@ script Route25_BillsHouse_EventScript_BillsGrandpa{
         }
         //ask for Pichu
         setvar(VAR_0x8008, SPECIES_PICHU)
-        msgbox("Do you know that hugely popular\nPOKéMON?\pThe POKéMON that has a yellow body\nand red cheeks.\pI would love to see what it looks\nlike before it evolves.\p{STR_VAR_2}", MSGBOX_YESNO)
+        msgbox("Do you know that hugely popular\n{POKEMON}?\pThe {POKEMON} that has a yellow body\nand red cheeks.\pI would love to see what it looks\nlike before it evolves.\p{STR_VAR_2}", MSGBOX_YESNO)
         if(!var(VAR_RESULT))
         {
             goto(Route25_BillsHouse_EventScript_SaidNo)
@@ -60,7 +60,7 @@ script Route25_BillsHouse_EventScript_BillsGrandpa{
         }
         //ask for Growlithe
         setvar(VAR_0x8008, SPECIES_GROWLITHE)
-        msgbox("Bill told me about a POKéMON that\nis very loyal to its trainer.\lIt's supposed to ROAR well.\p{STR_VAR_2}", MSGBOX_YESNO)
+        msgbox("Bill told me about a {POKEMON} that\nis very loyal to its trainer.\lIt's supposed to ROAR well.\p{STR_VAR_2}", MSGBOX_YESNO)
         if(!var(VAR_RESULT))
         {
             goto(Route25_BillsHouse_EventScript_SaidNo)
@@ -80,7 +80,7 @@ script Route25_BillsHouse_EventScript_BillsGrandpa{
         }
         //ask for Staryu
         setvar(VAR_0x8008, SPECIES_STARYU)
-        msgbox("Do you know of a sea POKéMON that\nhas a red sphere in its body?\pYou know, the one that's shaped\nlike a star?\pI heard that it appears at night.\nI would surely like to see it.\p{STR_VAR_2}", MSGBOX_YESNO)
+        msgbox("Do you know of a sea {POKEMON} that\nhas a red sphere in its body?\pYou know, the one that's shaped\nlike a star?\pI heard that it appears at night.\nI would surely like to see it.\p{STR_VAR_2}", MSGBOX_YESNO)
         if(!var(VAR_RESULT))
         {
             goto(Route25_BillsHouse_EventScript_SaidNo)
@@ -100,7 +100,7 @@ script Route25_BillsHouse_EventScript_BillsGrandpa{
         }
         //ask for Oddish
         setvar(VAR_0x8008, SPECIES_ODDISH)
-        msgbox("My grandson BILL mentioned a\nround, green POKéMON that has\lleaves growing on its head.\p{STR_VAR_2}", MSGBOX_YESNO)
+        msgbox("My grandson BILL mentioned a\nround, green {POKEMON} that has\lleaves growing on its head.\p{STR_VAR_2}", MSGBOX_YESNO)
         if(!var(VAR_RESULT))
         {
             goto(Route25_BillsHouse_EventScript_SaidNo)
@@ -112,7 +112,7 @@ script Route25_BillsHouse_EventScript_BillsGrandpa{
     }
     //ask for Lickitung
     setvar(VAR_0x8008, SPECIES_LICKITUNG)
-    msgbox("My grandson BILL told me about a\nPOKéMON that has a long tongue.\p{STR_VAR_2}", MSGBOX_YESNO)
+    msgbox("My grandson BILL told me about a\n{POKEMON} that has a long tongue.\p{STR_VAR_2}", MSGBOX_YESNO)
     if(!var(VAR_RESULT))
     {
         goto(Route25_BillsHouse_EventScript_SaidNo)
@@ -122,7 +122,7 @@ script Route25_BillsHouse_EventScript_BillsGrandpa{
         goto(Route25_BillsHouse_EventScript_SaidYes)
     }
 }text(local) Route25_BillsHouse_Text_AskToSeeMon{
-    "If you have that POKéMON, may I\nsee it, please?"
+    "If you have that {POKEMON}, may I\nsee it, please?"
 }script(local) Route25_BillsHouse_EventScript_SaidNo{
     msgbox("You don't have it?\nThat's too bad…", MSGBOX_DEFAULT)
     release
@@ -145,7 +145,7 @@ script Route25_BillsHouse_EventScript_BillsGrandpa{
     specialvar(VAR_RESULT, GetSelectedMonNicknameAndSpecies)
     if(var(VAR_RESULT) != VAR_0x8008)
     {
-        msgbox("Hm?\pThat's not the POKéMON that I was\ntold about.", MSGBOX_DEFAULT)
+        msgbox("Hm?\pThat's not the {POKEMON} that I was\ntold about.", MSGBOX_DEFAULT)
         release
         end
     }

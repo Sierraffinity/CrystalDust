@@ -9,7 +9,7 @@ script SproutTower_1F_EventScript_SageHM {
 
 script SproutTower_1F_EventScript_SageHistorian {
     msgbox("SPROUT TOWER was built long ago\n"
-           "as a place for POKéMON training.", MSGBOX_NPC)
+           "as a place for {POKEMON} training.", MSGBOX_NPC)
 }
 
 script SproutTower_1F_EventScript_OldWoman {

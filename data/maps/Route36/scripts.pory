@@ -95,7 +95,7 @@ script Route36_EventScript_Arthur {
                 goto(Common_EventScript_ShowBagIsFull)
             }
             setflag(FLAG_RECEIVED_HARD_STONE_FROM_ARTHUR)
-            msgbox("ARTHUR: A POKéMON that uses ROCK-\n"
+            msgbox("ARTHUR: A {POKEMON} that uses ROCK-\n"
                    "type moves should hold onto that.\p"
                    "It pumps up ROCK-type attacks.")
         }
@@ -122,14 +122,14 @@ script Route36_EventScript_BlockedGirl {
         msgbox("An odd tree is blocking the way\n"
                "to GOLDENROD CITY.\p"
                "I wanted to go see the huge\n"
-               "POKéMON CENTER they just opened…")
+               "{POKEMON} CENTER they just opened…")
     }
     else
     {
         msgbox("That odd tree disappeared without\n"
                "a trace.\p"
                "Oh!\n"
-               "That tree was really a POKéMON?")
+               "That tree was really a {POKEMON}?")
     }
     release
 }
@@ -298,12 +298,12 @@ script Route36_EventScript_RuinsOfAlphSign {
 
 script Route36_EventScript_TrainerTipsStatsSign {
     msgbox("TRAINER TIPS\p"
-           "POKéMON stats vary--even within\n"
+           "{POKEMON} stats vary--even within\n"
            "the same species.\p"
            "Their stats may appear to be similar\n"
            "at first.\p"
            "However, differences will become\n"
-           "pronounced as the POKéMON grow.", MSGBOX_SIGN)
+           "pronounced as the {POKEMON} grow.", MSGBOX_SIGN)
 }
 
 script Route36_EventScript_TrainerTipsDigSign {
@@ -341,7 +341,7 @@ script Route36_EventScript_Floria {
                "Listen, listen!\p"
                "When I sprinkled water on that\n"
                "wiggly tree, it jumped right up!\l"
-               "It just has to be a POKéMON.\p"
+               "It just has to be a {POKEMON}.\p"
                "I bet it would be shocked out of\n"
                "its disguise if you soaked it!\p"
                "I know! I'll tell my sis and borrow\n"

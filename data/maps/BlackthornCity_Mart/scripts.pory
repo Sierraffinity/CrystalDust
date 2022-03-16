@@ -1,12 +1,12 @@
 mapscripts BlackthornCity_Mart_MapScripts {}
 
 script BlackthornCity_Mart_Eventscript_BlackBelt{
-    msgbox("MAX REPEL keeps weak POKéMON away\nfrom you.\pIt's the longest lasting of the\nREPEL sprays.", MSGBOX_NPC)
+    msgbox("MAX REPEL keeps weak {POKEMON} away\nfrom you.\pIt's the longest lasting of the\nREPEL sprays.", MSGBOX_NPC)
     end
 }
 
 script BlackthornCity_Mart_Eventscript_Boy{
-    msgbox("You can't buy MAX REVIVE, but it\nfully restores a fainted POKéMON.\pBeware--it won't restore PP, the\nPOWER POINTS needed for moves.", MSGBOX_NPC)
+    msgbox("You can't buy MAX REVIVE, but it\nfully restores a fainted {POKEMON}.\pBeware--it won't restore PP, the\nPOWER POINTS needed for moves.", MSGBOX_NPC)
     end
 }
 

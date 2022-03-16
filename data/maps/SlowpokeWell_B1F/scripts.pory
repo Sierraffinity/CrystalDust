@@ -21,7 +21,7 @@ script SlowpokeWell_B1F_EventScript_Kurt {
            "WELL.\p"
            "I slammed down hard on my back,\n"
            "so I can't move.\p"
-           "Rats! If I were fit, my POKéMON\n"
+           "Rats! If I were fit, my {POKEMON}\n"
            "would've punished them…\l"
            "Ah, it can't be helped.\p"
            "{PLAYER}, show them how gutsy you\n"

@@ -40,17 +40,17 @@ script NewBarkTown_PlayersHouse_1F_MomEncounter {
            "looking for you.\p"
            "He said he wanted you to do\n"
            "something for him.\p"
-           "Oh, I almost forgot! Your POKéMON\n"
+           "Oh, I almost forgot! Your {POKEMON}\n"
            "GEAR is back from the repair shop.\l"
            "Here you go!")
     textcolor(MSG_COLOR_PREV)
     playfanfare(MUS_OBTAIN_ITEM)
-    message("{PLAYER} received the POKéGEAR.")
+    message("{PLAYER} received the {POKE}GEAR.")
     waitfanfare
     setflag(FLAG_SYS_POKEGEAR_GET)
     setflag(FLAG_PHONE_CARD_MOM)
     textcolor(MSG_COLOR_RED)
-    msgbox("POKéMON GEAR, or just POKéGEAR.\n"
+    msgbox("{POKEMON} GEAR, or just {POKE}GEAR.\n"
            "It's essential if you want to be\l"
            "a good TRAINER.\p"
            "Oh, the day of the week isn't set.\n"
@@ -65,7 +65,7 @@ script NewBarkTown_PlayersHouse_1F_MomEncounter {
     if (var(VAR_RESULT) == NO)
     {
         msgbox("I'll read the instructions.\p"
-               "“Turn the POKéGEAR on and select\n"
+               "“Turn the {POKE}GEAR on and select\n"
                "the PHONE icon by scrolling to it.\p"
                "“Phone numbers are stored in memory.\n"
                "Just choose who you want to call.”\p"
@@ -73,7 +73,7 @@ script NewBarkTown_PlayersHouse_1F_MomEncounter {
     }
     else
     {
-        msgbox("Don't you just turn the POKéGEAR on\n"
+        msgbox("Don't you just turn the {POKE}GEAR on\n"
                "and select the PHONE icon?\p"
                "“Phone numbers are stored in memory.\n"
                "Just choose who you want to call.”\p"
@@ -206,7 +206,7 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
         setflag(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST)
         setflag(FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM)
         setvar(VAR_ROUTE31_STATE, 1)
-        msgbox("MOM: Wow, that's a cute POKéMON.\n"
+        msgbox("MOM: Wow, that's a cute {POKEMON}.\n"
                "Where did you get it?\p"
                "…\p"
                "So, you're leaving on an adventure…\p"
@@ -224,7 +224,7 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
                    "………………")
         }
         msgbox("Be careful.\p"
-               "POKéMON are your friends.\n"
+               "{POKEMON} are your friends.\n"
                "You need to work as a team.\p"
                "Now, go on!")
     }
@@ -336,7 +336,7 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomLostBooklet {
     if (var(VAR_RESULT) == YES)
     {
         msgbox("I think I lost the instruction\n"
-               "booklet for the POKéGEAR…\p"
+               "booklet for the {POKE}GEAR…\p"
                "I need to go look for it.\n"
                "Come back again in a while.")
     }
@@ -364,7 +364,7 @@ script NewBarkTown_PlayersHouse_1F_NeighborTalk {
     msgbox("{PLAYER}, have you heard?\p"
            "My daughter is adamant about\n"
            "becoming PROF. ELM's assistant.\l"
-           "She really loves POKéMON!")
+           "She really loves {POKEMON}!")
     closemessage
     applymovement(VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestRight)
     waitmovement(0)

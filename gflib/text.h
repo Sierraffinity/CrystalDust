@@ -259,9 +259,9 @@
 #define PLACEHOLDER_ID_VERSION       0x7
 #define PLACEHOLDER_ID_AQUA          0x8
 #define PLACEHOLDER_ID_MAGMA         0x9
-#define PLACEHOLDER_ID_ARCHIE        0xA 
-#define PLACEHOLDER_ID_MAXIE         0xB
-#define PLACEHOLDER_ID_KYOGRE        0xC
+#define PLACEHOLDER_ID_POKEMON       0xA 
+#define PLACEHOLDER_ID_POKE          0xB
+#define PLACEHOLDER_ID_POKEDEX       0xC
 #define PLACEHOLDER_ID_GROUDON       0xD
 
 // battle placeholders are located in battle_message.h

@@ -1,21 +1,21 @@
 mapscripts LavenderTown_SoulHouse_MapScripts {}
 
 script LavenderTown_SoulHouse_EventScript_OldWoman{
-    msgbox("The POKéMON that lived with me…\nI loved them like my grandchildren…", MSGBOX_NPC)
+    msgbox("The {POKEMON} that lived with me…\nI loved them like my grandchildren…", MSGBOX_NPC)
     end
 }
 
 script LavenderTown_SoulHouse_EventScript_Woman{
-    msgbox("There are other graves of POKéMON\nhere, I think.\pThere are many chambers that only\nMR. FUJI may enter.", MSGBOX_NPC)
+    msgbox("There are other graves of {POKEMON}\nhere, I think.\pThere are many chambers that only\nMR. FUJI may enter.", MSGBOX_NPC)
     end
 }
 
 script LavenderTown_SoulHouse_EventScript_Lass{
-    msgbox("I came with my mom to visit POKéMON\ngraves…", MSGBOX_NPC)
+    msgbox("I came with my mom to visit {POKEMON}\ngraves…", MSGBOX_NPC)
     end
 }
 
 script LavenderTown_SoulHouse_EventScript_MrFuji{
-    msgbox("MR. FUJI: Welcome.\pHmm… You appear to be raising\nyour POKéMON in a kind and loving\lmanner.\pPOKéMON lovers come here to pay\ntheir respects to departed POKéMON.\pPlease offer condolences for the\nsouls of the departed POKéMON.\pI'm sure that will make them happy.", MSGBOX_NPC)
+    msgbox("MR. FUJI: Welcome.\pHmm… You appear to be raising\nyour {POKEMON} in a kind and loving\lmanner.\p{POKEMON} lovers come here to pay\ntheir respects to departed {POKEMON}.\pPlease offer condolences for the\nsouls of the departed {POKEMON}.\pI'm sure that will make them happy.", MSGBOX_NPC)
     end
 }

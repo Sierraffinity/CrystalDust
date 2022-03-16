@@ -36,11 +36,11 @@ script Route34_DayCare_EventScript_DaycareManCommon {
         {
         case DAYCARE_EGG_WAITING:
             msgbox("Ah, it's you!\p"
-                   "We were raising your POKéMON, and\n"
+                   "We were raising your {POKEMON}, and\n"
                    "my goodness, were we surprised!\p"
-                   "Your POKéMON had an EGG!\p"
+                   "Your {POKEMON} had an EGG!\p"
                    "We don't know how it got there,\n"
-                   "but your POKéMON had it.\p"
+                   "but your {POKEMON} had it.\p"
                    "You do want it, yes?", MSGBOX_YESNO)
             if (var(VAR_RESULT) == YES)
             {
@@ -85,9 +85,9 @@ script Route34_DayCare_EventScript_DaycareManCommon {
         default:
 	        msgbox("I'm the DAY-CARE MAN.\p"
                    "I help take care of the precious\n"
-                   "POKéMON of TRAINERS.\p"
+                   "{POKEMON} of TRAINERS.\p"
                    "If you'd like me to raise your\n"
-                   "POKéMON, have a word with my wife.", MSGBOX_DEFAULT)
+                   "{POKEMON}, have a word with my wife.", MSGBOX_DEFAULT)
         }
     }
     release
@@ -183,7 +183,7 @@ script Route34_DayCare_EventScript_DaycareWoman {
     {
         msgbox("I'm the DAY-CARE LADY.\p"
                "Have you been to GOLDENROD's new\n"
-               "POKéMON CENTER?\p"
+               "{POKEMON} CENTER?\p"
                "My husband went there recently\n"
                "and got this promotional item.\p"
                "We don't need it, since we have\n"
@@ -230,7 +230,7 @@ script Route34_DayCare_EventScript_DaycareWoman {
             if (flag(FLAG_TALKED_TO_DAYCARE_LADY))
             {
                 msgbox("I'm the DAY-CARE LADY.\p"
-                       "We can raise POKéMON for you.\p"
+                       "We can raise {POKEMON} for you.\p"
                        "Would you like us to raise one?", MSGBOX_YESNO)
             }
             else
@@ -239,10 +239,10 @@ script Route34_DayCare_EventScript_DaycareWoman {
                 msgbox("I'm the DAY-CARE LADY.\p"
                        "Do you know about EGGS?\p"
                        "My husband and I were raising some\n"
-                       "POKéMON, you see.\p"
+                       "{POKEMON}, you see.\p"
                        "We were shocked to find an EGG!\n"
                        "How incredible could that be?\p"
-                       "We can raise POKéMON for you, too.\p"
+                       "We can raise {POKEMON} for you, too.\p"
                        "Would you like us to raise one?", MSGBOX_YESNO)
             }
             if (var(VAR_RESULT) == YES)
@@ -263,7 +263,7 @@ script Route34_DayCare_EventScript_GiveMonToRaise {
     specialvar(VAR_RESULT, CountPartyNonEggMons)
     if (var(VAR_RESULT) == 1)
     {
-        msgbox("Oh? But you have just one POKéMON.\n"
+        msgbox("Oh? But you have just one {POKEMON}.\n"
                "Come back another time.", MSGBOX_DEFAULT)
     }
     else
@@ -273,14 +273,14 @@ script Route34_DayCare_EventScript_GiveMonToRaise {
         {
             msgbox("Huh?\n"
                    "Now, now.\p"
-                   "If you leave that POKéMON with\n"
+                   "If you leave that {POKEMON} with\n"
                    "me, you'll be left with just one.\p"
                    "You will be better off if you catch\n"
                    "some more, I dare say.", MSGBOX_DEFAULT)
         }
         else
         {
-            msgbox("Which POKéMON should we raise for\n"
+            msgbox("Which {POKEMON} should we raise for\n"
                    "you?", MSGBOX_DEFAULT)
             fadescreen(FADE_TO_BLACK)
             special(ChooseSendDaycareMon)
@@ -292,7 +292,7 @@ script Route34_DayCare_EventScript_GiveMonToRaise {
             specialvar(VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot)
             if (var(VAR_RESULT) == 0)
             {
-                msgbox("If you leave me that POKéMON,\n"
+                msgbox("If you leave me that {POKEMON},\n"
                        "what will you battle with?\p"
                        "Come back another time.", MSGBOX_DEFAULT)
             }
@@ -341,7 +341,7 @@ script Route34_DayCare_EventScript_TryRetrieveMon {
 	specialvar(VAR_RESULT, CalculatePlayerPartyCount)
     if (var(VAR_RESULT) == PARTY_SIZE)
     {
-	    msgbox("Your POKéMON team is full.\n"
+	    msgbox("Your {POKEMON} team is full.\n"
                "Make room, then come see me.", MSGBOX_DEFAULT)
     }
     else
@@ -384,7 +384,7 @@ script Route34_DayCare_EventScript_CostPrompt {
             special(SubtractMoneyFromVar0x8005)
             playse(SE_SHOP)
             msgbox("Perfect!\n"
-                   "Here's your POKéMON.", MSGBOX_DEFAULT)
+                   "Here's your {POKEMON}.", MSGBOX_DEFAULT)
             waitse
             playmoncry(VAR_RESULT, 0)
 	        textcolor(MSG_COLOR_SYS)
@@ -446,15 +446,15 @@ script EventScript_EggHatch {
 }
 
 text Route34_DayCare_Text_WeCanRaiseOneMore {
-    "We can raise two of your POKéMON.\n"
+    "We can raise two of your {POKEMON}.\n"
     "Would you like us to raise one more?"
 }
 
 text Route34_DayCare_Text_GoodToSeeYou {
     "Ah, it's you! Good to see you.\n"
-    "Your POKéMON can only be doing good!"
+    "Your {POKEMON} can only be doing good!"
 }
 
 text Route34_DayCare_Text_TakeYourMonBack {
-    "Will you take your POKéMON back?"
+    "Will you take your {POKEMON} back?"
 }

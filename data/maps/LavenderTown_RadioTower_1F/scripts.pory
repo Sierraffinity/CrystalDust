@@ -51,7 +51,7 @@ script LavenderTown_RadioTower_1F_EventScript_MusicDirector{
         msgbox("{STR_VAR_1}I'm responsible for the gorgeous\nmelodies that go out over the air.\pDon't be square.\nGrab your music off the air!", MSGBOX_NPC)
         end
     }
-    msgbox("{STR_VAR_1}Huh? Your POKéGEAR can't tune into\nmy music programs. How unfortunate!\pIf you get an EXPN CARD upgrade,\nyou can tune in.\lYou'd better get one!", MSGBOX_NPC)
+    msgbox("{STR_VAR_1}Huh? Your {POKE}GEAR can't tune into\nmy music programs. How unfortunate!\pIf you get an EXPN CARD upgrade,\nyou can tune in.\lYou'd better get one!", MSGBOX_NPC)
     end
 }
 
@@ -61,12 +61,12 @@ script LavenderTown_RadioTower_1F_EventScript_DirectorySign{
 }
 
 script LavenderTown_RadioTower_1F_EventScript_PokeFluteSign{
-    msgbox("Perk up POKéMON with Mellow Sounds\nof the POKé FLUTE on CHANNEL 20", MSGBOX_SIGN)
+    msgbox("Perk up {POKEMON} with Mellow Sounds\nof the {POKE} FLUTE on CHANNEL 20", MSGBOX_SIGN)
     end
 }
 
 // Apparently unused.
 //script LavenderTown_RadioTower_1F_EventScript_CDRackSign{
-//    msgbox("Wow! A full rack of POKéMON CDs\nand videos.\lThis must be the reference library.", MSGBOX_SIGN)
+//    msgbox("Wow! A full rack of {POKEMON} CDs\nand videos.\lThis must be the reference library.", MSGBOX_SIGN)
 //    end
 //}

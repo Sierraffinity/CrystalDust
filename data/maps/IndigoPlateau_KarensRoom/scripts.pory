@@ -26,7 +26,7 @@ script IndigoPlateau_KarensRoom_EventScript_Karen {
         msgbox(IndigoPlateau_KarensRoom_Text_KarenAfterBattle, MSGBOX_NPC)
         end
     }
-    msgbox("I am KAREN of the ELITE FOUR.\pYou're {PLAYER}? How amusing.\nI love DARK-type POKéMON.\pI find their wild, tough image to be\nso appealing. And they're so strong.\pThink you can take them?\nJust try to entertain me.\pLet's go.", MSGBOX_DEFAULT)
+    msgbox("I am KAREN of the ELITE FOUR.\pYou're {PLAYER}? How amusing.\nI love DARK-type {POKEMON}.\pI find their wild, tough image to be\nso appealing. And they're so strong.\pThink you can take them?\nJust try to entertain me.\pLet's go.", MSGBOX_DEFAULT)
     closemessage
     trainerbattle_no_intro(TRAINER_KAREN, "Well, aren't you good.\nI like that in a trainer.")
     setflag(FLAG_TEMP_5)
@@ -39,5 +39,5 @@ script IndigoPlateau_KarensRoom_EventScript_Karen {
     release
     end
 }text(local) IndigoPlateau_KarensRoom_Text_KarenAfterBattle{
-    "Strong POKéMON.\pWeak POKéMON.\pThat is only the selfish perception\nof people.\pTruly skilled trainers should\ntry to win with their favorites.\pI like your style.\nYou understand what's important.\pGo on--the CHAMPION is waiting."
+    "Strong {POKEMON}.\pWeak {POKEMON}.\pThat is only the selfish perception\nof people.\pTruly skilled trainers should\ntry to win with their favorites.\pI like your style.\nYou understand what's important.\pGo on--the CHAMPION is waiting."
 }

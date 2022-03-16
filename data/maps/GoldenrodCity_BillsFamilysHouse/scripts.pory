@@ -73,7 +73,7 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_Bill {
 script GoldenrodCity_BillsFamilysHouse_EventScript_Bill_PartyFull {
     textcolor(MSG_COLOR_PREV)
     msgbox("Whoa, wait.\n"
-           "You can't carry any more POKéMON.")
+           "You can't carry any more {POKEMON}.")
     release
 }
 
@@ -92,14 +92,14 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_BillsMom {
     if (flag(FLAG_MET_BILL_IN_ECRUTEAK))
     {
         msgbox("My husband was once known as a\n"
-               "POKéMANIAC. BILL must have taken\l"
+               "{POKE}MANIAC. BILL must have taken\l"
                "after his father.")
     }
     else
     {
-        msgbox("Oh, you collect POKéMON?\n"
+        msgbox("Oh, you collect {POKEMON}?\n"
                "My son BILL is an expert collector.\p"
-               "He just got called to the POKéMON\n"
+               "He just got called to the {POKEMON}\n"
                "CENTER in ECRUTEAK CITY.\p"
                "My husband went off to the GAME\n"
                "CORNER without being called…")
@@ -128,7 +128,7 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister {
         }
         else
         {
-            msgbox("My brother made the PC POKéMON\n"
+            msgbox("My brother made the PC {POKEMON}\n"
                    "storage system.\p"
                    "I was going to give you BILL's\n"
                    "number…")
@@ -143,5 +143,5 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister {
 
 text GoldenrodCity_BillsFamilysHouse_Text_BillsSister_AfterPhoneNumber {
     "My big brother BILL made the PC\n"
-    "POKéMON storage system."
+    "{POKEMON} storage system."
 }

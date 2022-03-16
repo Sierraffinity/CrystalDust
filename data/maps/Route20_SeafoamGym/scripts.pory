@@ -21,12 +21,12 @@ mapscripts Route20_SeafoamGym_MapScripts {
 }
 
 script Route20_SeafoamGym_EventScript_Blaine {
-    trainerbattle_single(TRAINER_BLAINE, "BLAINE: Waaah!\nMy GYM in CINNABAR burned down.\pMy fire-breathing POKéMON and I are\nhomeless because of the volcano.\pWaaah!\pBut I'm back in business as a GYM\nLEADER here in this cave.\pIf you can beat me,\nI'll give you a BADGE.\pHa!\nYou'd better have BURN HEAL!", "BLAINE: Awesome. I've burned out…\nYou've earned the VOLCANOBADGE!", Route20_SeafoamGym_EventScript_BlaineDefeated, NO_MUSIC)
+    trainerbattle_single(TRAINER_BLAINE, "BLAINE: Waaah!\nMy GYM in CINNABAR burned down.\pMy fire-breathing {POKEMON} and I are\nhomeless because of the volcano.\pWaaah!\pBut I'm back in business as a GYM\nLEADER here in this cave.\pIf you can beat me,\nI'll give you a BADGE.\pHa!\nYou'd better have BURN HEAL!", "BLAINE: Awesome. I've burned out…\nYou've earned the VOLCANOBADGE!", Route20_SeafoamGym_EventScript_BlaineDefeated, NO_MUSIC)
     if(!flag(FLAG_GOT_TM50_FROM_BLAINE))
     {
         goto(Route20_SeafoamGym_EventScript_GiveOverheat)
     }
-    msgbox("BLAINE: My fire POKéMON will be\neven stronger. Just you watch!", MSGBOX_DEFAULT)
+    msgbox("BLAINE: My fire {POKEMON} will be\neven stronger. Just you watch!", MSGBOX_DEFAULT)
     release
     end
 }script(local) Route20_SeafoamGym_EventScript_BlaineDefeated{
@@ -61,7 +61,7 @@ script Route20_SeafoamGym_EventScript_Blaine {
 script Route20_SeafoamGym_EventScript_GymGuide {
     if(flag(FLAG_TALKED_TO_SEAFOAM_GYM_GUIDE))
     {
-        msgbox("A POKéMON GYM can be anywhere as\nlong as the GYM LEADER is there.\lThere's no need for a building.", MSGBOX_NPC)
+        msgbox("A {POKEMON} GYM can be anywhere as\nlong as the GYM LEADER is there.\lThere's no need for a building.", MSGBOX_NPC)
         end
     }
     msgbox("Yo!\p…Huh? It's over already?\nSorry, sorry!\pCINNABAR GYM was gone, so I didn't\nknow where to find you.\pBut, hey, you're plenty strong even\nwithout my advice. I knew you'd win!", MSGBOX_NPC)

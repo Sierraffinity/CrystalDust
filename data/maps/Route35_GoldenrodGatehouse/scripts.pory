@@ -28,7 +28,7 @@ script Route35_GoldenrodGatehouse_EventScript_Officer {
     {
         msgbox("Excuse me, kid!\n"
                "Can you do a guy a favor?\p"
-               "Can you take this POKéMON with MAIL\n"
+               "Can you take this {POKEMON} with MAIL\n"
                "to my friend? He's on ROUTE 31.", MSGBOX_YESNO)
         if (var(VAR_RESULT) == TRUE)
         {
@@ -41,13 +41,13 @@ script Route35_GoldenrodGatehouse_EventScript_Officer {
             special(GivePlayerSpecialGiftMon)
             if (!var(VAR_RESULT))
             {
-                msgbox("You can't carry another POKéMON…")
+                msgbox("You can't carry another {POKEMON}…")
             }
             else
             {
                 textcolor(MSG_COLOR_SYS)
                 playfanfare(MUS_OBTAIN_ITEM)
-                message("{PLAYER} received a POKéMON\nwith MAIL.")
+                message("{PLAYER} received a {POKEMON}\nwith MAIL.")
                 waitmessage
                 waitfanfare
 	            textcolor(MSG_COLOR_PREV)
@@ -89,14 +89,14 @@ script Route35_GoldenrodGatehouse_EventScript_ConcernedWoman {
     }
     else
     {
-        msgbox("I like the POKéMON Lullaby they play\n"
+        msgbox("I like the {POKEMON} Lullaby they play\n"
                "on the radio.")
     }
 	release
 }
 
 script Route35_GoldenrodGatehouse_EventScript_CuriousMan {
-    msgbox("I wonder how many kinds of POKéMON\n"
+    msgbox("I wonder how many kinds of {POKEMON}\n"
            "there are in the world.\p"
            "Three years ago, PROF. OAK said that\n"
            "there were 150 different kinds.", MSGBOX_NPC)

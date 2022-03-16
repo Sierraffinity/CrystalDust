@@ -378,8 +378,8 @@ TrainerHill_Entrance_Text_ExplainTrainerHill:
 @ Unused
 TrainerHill_Entrance_Text_NeedAtLeastTwoPokemon:
 	.string "Oh, I'm sorry, but you appear to have\n"
-	.string "only one POKéMON with you.\p"
-	.string "You will need at least two POKéMON\n"
+	.string "only one {POKEMON} with you.\p"
+	.string "You will need at least two {POKEMON}\n"
 	.string "to enter this event.$"
 
 TrainerHill_Roof_Text_YouFinallyCameBravo:
@@ -437,7 +437,7 @@ TrainerHill_Entrance_Text_ChallengeTime:
 
 TrainerHill_Entrance_Text_WhatSortOfTrainersAreAhead:
 	.string "Who knows what sort of TRAINERS\n"
-	.string "and POKéMON combos are ahead?\p"
+	.string "and {POKEMON} combos are ahead?\p"
 	.string "All I know is that I'll knock aside\n"
 	.string "anyone that stands in my way!$"
 

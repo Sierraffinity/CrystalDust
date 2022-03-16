@@ -21,8 +21,8 @@ script RadioTower_3F_EventScript_RocketM1 {
 }
 
 script RadioTower_3F_EventScript_RocketM2 {
-    trainerbattle_single(TRAINER_RADIO_TOWER_3F_GRUNT_2, "It feels great ordering POKéMON\nto commit crimes.", "You're kidding!")
-    msgbox("I feel lousy over losing!\nDarn it! I hate useless POKéMON!")
+    trainerbattle_single(TRAINER_RADIO_TOWER_3F_GRUNT_2, "It feels great ordering {POKEMON}\nto commit crimes.", "You're kidding!")
+    msgbox("I feel lousy over losing!\nDarn it! I hate useless {POKEMON}!")
     release
 }
 
@@ -75,7 +75,7 @@ script RadioTower_3F_EventScript_FloorSign {
 }
 
 script RadioTower_3F_EventScript_PokemonMusicAd {
-    msgbox("POKéMON MUSIC with Host DJ BEN", MSGBOX_SIGN)
+    msgbox("{POKEMON} MUSIC with Host DJ BEN", MSGBOX_SIGN)
 }
 
 script RadioTower_3F_EventScript_SuperNerd {
@@ -84,7 +84,7 @@ script RadioTower_3F_EventScript_SuperNerd {
         msgbox("We run 24 hours a day to broadcast\nentertaining programs.\pI'll do my best to run around the\nclock too!", MSGBOX_NPC)
         end
     }
-    msgbox("To trainers, POKéMON are their\nbeloved partners.\pIt's terrible how TEAM ROCKET\nis trying to control POKéMON.", MSGBOX_NPC)
+    msgbox("To trainers, {POKEMON} are their\nbeloved partners.\pIt's terrible how TEAM ROCKET\nis trying to control {POKEMON}.", MSGBOX_NPC)
     end
 }
 
@@ -122,6 +122,6 @@ script RadioTower_3F_EventScript_WorkerF {
 }
 
 script RadioTower_3F_EventScript_Boy {
-    msgbox("We have recordings of the cries of\nall POKéMON that have been found.\lWe must have about 200 kinds.", MSGBOX_NPC)
+    msgbox("We have recordings of the cries of\nall {POKEMON} that have been found.\lWe must have about 200 kinds.", MSGBOX_NPC)
     end
 }

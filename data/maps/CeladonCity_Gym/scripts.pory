@@ -18,7 +18,7 @@ script CeladonCity_Gym_Eventscript_Erika{
     setgymtrainers(12)
     //falls through to next script
 }script(local) CeladonCity_Gym_Eventscript_GiveGigaDrain{
-    msgbox("ERIKA: That was a delightful match.\nI felt inspired.\pPlease, I wish you to have this TM.\nIt is GIGA DRAIN.\pIt's a wonderful move that drains\nhalf the damage it inflicts to heal\lyour POKéMON.\pPlease use it if it pleases you…")
+    msgbox("ERIKA: That was a delightful match.\nI felt inspired.\pPlease, I wish you to have this TM.\nIt is GIGA DRAIN.\pIt's a wonderful move that drains\nhalf the damage it inflicts to heal\lyour {POKEMON}.\pPlease use it if it pleases you…")
     checkitemspace(ITEM_TM19, 1)
     if(!var(VAR_RESULT))
     {
@@ -52,13 +52,13 @@ script CeladonCity_Gym_EventScript_BeautyJulia {
 }
 
 script CeladonCity_Gym_EventScript_TwinsJoAndZoe1 {
-    trainerbattle_double(TRAINER_JO_AND_ZOE, "We'll show you POKéMON moves that\nERIKA taught us!", "Oh…\nWe lost…", "Where are all your POKéMON?")
+    trainerbattle_double(TRAINER_JO_AND_ZOE, "We'll show you {POKEMON} moves that\nERIKA taught us!", "Oh…\nWe lost…", "Where are all your {POKEMON}?")
     msgbox("ERIKA will get you\nback for us!", MSGBOX_DEFAULT)
     release
 }
 
 script CeladonCity_Gym_EventScript_TwinsJoAndZoe2 {
-    trainerbattle_double(TRAINER_JO_AND_ZOE, "We're going to protect ERIKA!", "We couldn't win…", "You're only raising one POKéMON?")
+    trainerbattle_double(TRAINER_JO_AND_ZOE, "We're going to protect ERIKA!", "We couldn't win…", "You're only raising one {POKEMON}?")
     msgbox("ERIKA is much, much stronger!", MSGBOX_DEFAULT)
     release
 }
@@ -66,9 +66,9 @@ script CeladonCity_Gym_EventScript_TwinsJoAndZoe2 {
 script CeladonCity_Gym_EventScript_Statues {
     if(flag(FLAG_BADGE12_GET))
     {
-        msgbox("CELADON CITY POKéMON GYM\nLEADER: ERIKA\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        msgbox("CELADON CITY {POKEMON} GYM\nLEADER: ERIKA\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
         end
     }
-    msgbox("CELADON CITY POKéMON GYM", MSGBOX_SIGN)
+    msgbox("CELADON CITY {POKEMON} GYM", MSGBOX_SIGN)
     end
 }

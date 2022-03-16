@@ -41,7 +41,7 @@ script BlackthornCity_Gym_1F_Eventscript_Clair{
     {
         if(flag(FLAG_GOT_TM02_FROM_CLAIR))
         {
-            msgbox("What's the matter?\pAren't you headed to the POKéMON\nLEAGUE?\pDon't you know where it is?\nFrom here, go to NEW BARK TOWN.\pThen SURF east. The route there\nis very tough.\pDon't you dare lose at the\nPOKéMON LEAGUE!\pIf you do, I'll feel even worse\nabout having lost to you!\pGive it everything you've got.", MSGBOX_NPC)
+            msgbox("What's the matter?\pAren't you headed to the {POKEMON}\nLEAGUE?\pDon't you know where it is?\nFrom here, go to NEW BARK TOWN.\pThen SURF east. The route there\nis very tough.\pDon't you dare lose at the\n{POKEMON} LEAGUE!\pIf you do, I'll feel even worse\nabout having lost to you!\pGive it everything you've got.", MSGBOX_NPC)
             end
         }
         msgbox("You've kept me waiting!\nHere! Take this!", MSGBOX_DEFAULT)
@@ -62,10 +62,10 @@ script BlackthornCity_Gym_1F_Eventscript_Clair{
         msgbox("What's the matter?\nIs it too much to expect from you?", MSGBOX_NPC)
         end
     }
-    msgbox("I am CLAIR.\nThe world's best dragon master.\pI can hold my own against even the\nPOKéMON LEAGUE's ELITE FOUR.\pDo you still want to take me on?\n…Fine. Let's do it!\pAs a GYM LEADER, I will use my full\npower against any opponent!", MSGBOX_DEFAULT)
+    msgbox("I am CLAIR.\nThe world's best dragon master.\pI can hold my own against even the\n{POKEMON} LEAGUE's ELITE FOUR.\pDo you still want to take me on?\n…Fine. Let's do it!\pAs a GYM LEADER, I will use my full\npower against any opponent!", MSGBOX_DEFAULT)
     closemessage
     trainerbattle_no_intro(TRAINER_CLAIR, "I lost?\pI don't believe it.\nThere must be some mistake…")
-    msgbox("I won't admit this.\pI may have lost, but you're still\nnot ready for the POKéMON LEAGUE.\pI know. You should take the dragon\nuser challenge.\pBehind this GYM is a place\ncalled DRAGON'S DEN.\pThere is a small shrine at its\ncenter. Go there.\pIf you can prove that you've lost\nyour lazy ideals, I will recognize\lyou as a trainer worthy of a GYM\lBADGE!", MSGBOX_DEFAULT)
+    msgbox("I won't admit this.\pI may have lost, but you're still\nnot ready for the {POKEMON} LEAGUE.\pI know. You should take the dragon\nuser challenge.\pBehind this GYM is a place\ncalled DRAGON'S DEN.\pThere is a small shrine at its\ncenter. Go there.\pIf you can prove that you've lost\nyour lazy ideals, I will recognize\lyou as a trainer worthy of a GYM\lBADGE!", MSGBOX_DEFAULT)
     setgymtrainers(8)
     release
     end
@@ -74,25 +74,25 @@ script BlackthornCity_Gym_1F_Eventscript_Clair{
 script BlackthornCity_Gym_1F_Eventscript_Statues{
     if(flag(FLAG_BADGE08_GET))
     {
-        msgbox("BLACKTHORN CITY POKéMON GYM\nLEADER: CLAIR\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        msgbox("BLACKTHORN CITY {POKEMON} GYM\nLEADER: CLAIR\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
         end
     }
-    msgbox("BLACKTHORN CITY POKéMON GYM", MSGBOX_SIGN)
+    msgbox("BLACKTHORN CITY {POKEMON} GYM", MSGBOX_SIGN)
     end
 }
 
 script BlackthornCity_Gym_1F_Eventscript_GymGuy{
     if(defeated(TRAINER_CLAIR))
     {
-        msgbox("You were great to beat CLAIR!\pAll that's left is the POKéMON\nLEAGUE challenge.\pYou're on the way to becoming the\nPOKéMON CHAMPION!", MSGBOX_NPC)
+        msgbox("You were great to beat CLAIR!\pAll that's left is the {POKEMON}\nLEAGUE challenge.\pYou're on the way to becoming the\n{POKEMON} CHAMPION!", MSGBOX_NPC)
         end
     }
-    msgbox("Yo! CHAMP in making!\pIt's been a long journey, but we are\nalmost done! Count on me!\pCLAIR uses the mythical and sacred\nDRAGON-type POKéMON.\pYou can't damage them very easily.\pBut you know, they're supposed to be\nweak against ICE-type moves.", MSGBOX_NPC)
+    msgbox("Yo! CHAMP in making!\pIt's been a long journey, but we are\nalmost done! Count on me!\pCLAIR uses the mythical and sacred\nDRAGON-type {POKEMON}.\pYou can't damage them very easily.\pBut you know, they're supposed to be\nweak against ICE-type moves.", MSGBOX_NPC)
     end
 }
 
 script BlackthornCity_Gym_1F_Eventscript_CooltrainerPaul{ // nearest entrance
-    trainerbattle_single(TRAINER_PAUL, "Your first battle against dragons?\nI'll show you how tough they are!", "My dragon POKéMON lost?")
+    trainerbattle_single(TRAINER_PAUL, "Your first battle against dragons?\nI'll show you how tough they are!", "My dragon {POKEMON} lost?")
     msgbox("LANCE told you that he'd like to\nsee you again? Not a chance!", MSGBOX_AUTOCLOSE)
     end
 }
@@ -104,7 +104,7 @@ script BlackthornCity_Gym_1F_Eventscript_CooltrainerMike{ // middle island
 }
 
 script BlackthornCity_Gym_1F_Eventscript_CooltrainerLola{
-    trainerbattle_single(TRAINER_LOLA, "Dragons are sacred POKéMON.\nThey are full of life energy.\pIf you're not serious, you won't be\nable to beat them.", "Way to go!")
+    trainerbattle_single(TRAINER_LOLA, "Dragons are sacred {POKEMON}.\nThey are full of life energy.\pIf you're not serious, you won't be\nable to beat them.", "Way to go!")
     msgbox("Dragons are weak against DRAGON-\ntype moves.", MSGBOX_AUTOCLOSE)
     end
 }

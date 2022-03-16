@@ -60,7 +60,7 @@ mapscripts RuinsOfAlph_OmanyteChamber_MapScripts {
 }
 
 script RuinsOfAlph_OmanyteChamber_EventScript_OmanyteDescription {
-    msgbox("This POKéMON drifted in the\nsea by twisting its ten tentacles.", MSGBOX_SIGN)
+    msgbox("This {POKEMON} drifted in the\nsea by twisting its ten tentacles.", MSGBOX_SIGN)
 }
 
 script RuinsOfAlph_OmanyteChamber_EventScript_BackWall {

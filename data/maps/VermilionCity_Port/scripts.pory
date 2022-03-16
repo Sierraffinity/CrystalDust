@@ -171,6 +171,6 @@ script VermilionCity_Port_Eventscript_GetOnBoard{
 }
 
 script VermilionCity_Port_EventScript_Boy{
-    msgbox("You came from JOHTO?\pI hear many rare POKéMON live\nover there.", MSGBOX_NPC)
+    msgbox("You came from JOHTO?\pI hear many rare {POKEMON} live\nover there.", MSGBOX_NPC)
     end
 }

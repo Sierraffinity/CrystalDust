@@ -9,10 +9,10 @@ script Route27_House_Eventscript_SandstormLady {
     lock
     faceplayer
     specialvar(VAR_RESULT, GetLeadMonFriendshipScore)
-    msgbox("Where are you off to with POKéMON?\nPOKéMON LEAGUE?\pAre your POKéMON loyal enough for\nyou to win?\pLet me see…", MSGBOX_DEFAULT)
+    msgbox("Where are you off to with {POKEMON}?\n{POKEMON} LEAGUE?\pAre your {POKEMON} loyal enough for\nyou to win?\pLet me see…", MSGBOX_DEFAULT)
     if(var(VAR_RESULT) > 4)
     {
-        msgbox("Ah! Your POKéMON trusts you very\nmuch.\pIt's nice to see a good trainer.\nHere. A gift for your journey.", MSGBOX_DEFAULT)
+        msgbox("Ah! Your {POKEMON} trusts you very\nmuch.\pIt's nice to see a good trainer.\nHere. A gift for your journey.", MSGBOX_DEFAULT)
         checkitemspace(ITEM_TM37, 1)
         if(var(VAR_RESULT) == FALSE)
         {
@@ -22,7 +22,7 @@ script Route27_House_Eventscript_SandstormLady {
         setflag(FLAG_GOT_SANDSTORM_TM_ON_ROUTE_27)
         goto(Route27_House_Eventscript_SandstormLady)
     }
-    msgbox("If it doesn't come to trust you some\nmore, it could be tough going.\pTrust is the tie that binds POKéMON\nand trainers.", MSGBOX_DEFAULT)
+    msgbox("If it doesn't come to trust you some\nmore, it could be tough going.\pTrust is the tie that binds {POKEMON}\nand trainers.", MSGBOX_DEFAULT)
     release
     end
 }

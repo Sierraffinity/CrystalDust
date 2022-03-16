@@ -15,17 +15,17 @@ script LavenderTown_EventScript_RadioTowerSign{
 }
 
 script LavenderTown_EventScript_FujisHouseSign{
-    msgbox("LAVENDER VOLUNTEER POKéMON HOUSE", MSGBOX_SIGN)
+    msgbox("LAVENDER VOLUNTEER {POKEMON} HOUSE", MSGBOX_SIGN)
     end
 }
 
 script LavenderTown_EventScript_SoulHouseSign{
-    msgbox("SOUL HOUSE\nMay the Souls of POKéMON Rest Easy", MSGBOX_SIGN)
+    msgbox("SOUL HOUSE\nMay the Souls of {POKEMON} Rest Easy", MSGBOX_SIGN)
     end
 }
 
 script LavenderTown_EventScript_Boy{
-    msgbox("You need a POKé FLUTE to wake\nsleeping POKéMON.\lEvery trainer has to know that!", MSGBOX_NPC)
+    msgbox("You need a {POKE} FLUTE to wake\nsleeping {POKEMON}.\lEvery trainer has to know that!", MSGBOX_NPC)
     end
 }
 
@@ -40,6 +40,6 @@ script LavenderTown_EventScript_PokefanM{
 }
 
 script LavenderTown_EventScript_OldMan{
-    msgbox("People come from all over to pay\ntheir respects to the departed\lsouls of POKéMON.", MSGBOX_NPC)
+    msgbox("People come from all over to pay\ntheir respects to the departed\lsouls of {POKEMON}.", MSGBOX_NPC)
     end
 }

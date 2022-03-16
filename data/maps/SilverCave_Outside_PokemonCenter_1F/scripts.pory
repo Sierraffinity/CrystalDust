@@ -6,6 +6,6 @@ mapscripts SilverCave_Outside_PokemonCenter_1F_MapScripts {
 }
 
 script SilverCave_Outside_PokemonCenter_1F_EventScript_OldWoman{
-    msgbox("Trainers who seek power climb MT.\nSILVER despite its many dangers…\pWith their trusted POKéMON, they\nmust feel they can go anywhere…", MSGBOX_NPC)
+    msgbox("Trainers who seek power climb MT.\nSILVER despite its many dangers…\pWith their trusted {POKEMON}, they\nmust feel they can go anywhere…", MSGBOX_NPC)
     end
 }

@@ -25,7 +25,7 @@ mapscripts UnionCave_B2F_MapScripts {
 
 script UnionCave_B2F_EventScript_Nick {
     trainerbattle_single(TRAINER_NICK, "There are two kinds of people.\nThose who have style, and those\lwho don't.\pWhat kind of person are you?", "You've got dazzling style!")
-	msgbox("Your POKéMON style is stunning and\ncolorful, I admit.\pYou'll just keep getting better!", MSGBOX_NPC)
+	msgbox("Your {POKEMON} style is stunning and\ncolorful, I admit.\pYou'll just keep getting better!", MSGBOX_NPC)
     end
 }
 
@@ -36,8 +36,8 @@ script UnionCave_B2F_EventScript_Gwen {
 }
 
 script UnionCave_B2F_EventScript_Emma {
-    trainerbattle_single(TRAINER_EMMA, "If the POKéMON I liked were there,\nI'd go anywhere.\pThat's what a real trainer does.", "I'd rather pet my babies than this!")
-	msgbox("Just once a week, a POKéMON comes\nto the water's edge.\pI wanted to see that POKéMON…", MSGBOX_NPC)
+    trainerbattle_single(TRAINER_EMMA, "If the {POKEMON} I liked were there,\nI'd go anywhere.\pThat's what a real trainer does.", "I'd rather pet my babies than this!")
+	msgbox("Just once a week, a {POKEMON} comes\nto the water's edge.\pI wanted to see that {POKEMON}…", MSGBOX_NPC)
     end
 }
 

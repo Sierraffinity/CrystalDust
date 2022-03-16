@@ -124,7 +124,7 @@ script IndigoPlateau_WillsRoom_EventScript_Will {
         msgbox(IndigoPlateau_WillsRoom_Text_WillAfterBattle, MSGBOX_NPC)
         end
     }
-    msgbox("Welcome to the POKéMON LEAGUE,\n{PLAYER}.\pAllow me to introduce myself.\nI am WILL.\pI have trained all around the\nworld, making my psychic POKéMON\lmore powerful.\pAnd, at last, I've been accepted\ninto the ELITE FOUR.\pI can only keep getting better!\nLosing is not an option!", MSGBOX_DEFAULT)
+    msgbox("Welcome to the {POKEMON} LEAGUE,\n{PLAYER}.\pAllow me to introduce myself.\nI am WILL.\pI have trained all around the\nworld, making my psychic {POKEMON}\lmore powerful.\pAnd, at last, I've been accepted\ninto the ELITE FOUR.\pI can only keep getting better!\nLosing is not an option!", MSGBOX_DEFAULT)
     closemessage
     trainerbattle_no_intro(TRAINER_WILL, "I…\nI can't… believe it…")
     setflag(FLAG_TEMP_2)

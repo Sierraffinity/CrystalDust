@@ -39,7 +39,7 @@ script GoldenrodCity_DeptStore_5F_EventScript_ReturnFrustrationLady {
         !flag(FLAG_DAILY_GOLDENROD_DEPT_STORE_RETURN_FRUSTRATION_EVENT))
     {
         msgbox("Hello.\n"
-               "Oh, your POKéMON…")
+               "Oh, your {POKEMON}…")
         specialvar(VAR_RESULT, GetLeadMonFriendshipScore)
         if (var(VAR_RESULT) >= 4)
         {
@@ -83,7 +83,7 @@ script GoldenrodCity_DeptStore_5F_EventScript_ReturnFrustrationLady {
     else
     {
         msgbox("There are sure to be TMs that are\n"
-               "just perfect for your POKéMON.")
+               "just perfect for your {POKEMON}.")
     }
     release
 }
@@ -98,7 +98,7 @@ script GoldenrodCity_DeptStore_5F_EventScript_Mike {
 
     if (!flag(FLAG_GOLDENROD_NPC_TRADE_COMPLETED))
     {
-        msgbox("I collect POKéMON.\n"
+        msgbox("I collect {POKEMON}.\n"
                "Do you have {STR_VAR_1}?\p"
                "Want to trade it for my {STR_VAR_2}?", MSGBOX_YESNO)
         
@@ -163,12 +163,12 @@ text GoldenrodCity_DeptStore_5F_Text_Mike_NoTrade {
 
 script GoldenrodCity_DeptStore_5F_EventScript_Lass {
     msgbox("On SUNDAYS, a lady comes to check\n"
-           "out POKéMON.\p"
+           "out {POKEMON}.\p"
            "She even gives away TMs!", MSGBOX_NPC)
 }
 
 script GoldenrodCity_DeptStore_5F_EventScript_RenameGuy {
-    msgbox("You can't rename a POKéMON you get\n"
+    msgbox("You can't rename a {POKEMON} you get\n"
            "in a trade.\p"
            "The name is a reflection of the\n"
            "original TRAINER's feelings for it.", MSGBOX_NPC)
@@ -182,6 +182,6 @@ script GoldenrodCity_DeptStore_5F_EventScript_MysteryGiftGirl {
 }
 
 script GoldenrodCity_DeptStore_5F_EventScript_FloorNumber {
-    msgbox("Customize Your POKéMON\p"
+    msgbox("Customize Your {POKEMON}\p"
            "5F TM CORNER", MSGBOX_SIGN)
 }

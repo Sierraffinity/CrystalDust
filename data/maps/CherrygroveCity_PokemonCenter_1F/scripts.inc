@@ -38,19 +38,19 @@ CherrygroveCity_PokemonCenter_1F_EventScript_1FC04F::
 
 CherrygroveCity_PokemonCenter_1F_Text_FatMan:
 	.string "It's great! I can store any number\n"
-	.string "of POKéMON, and it's all free.$"
+	.string "of {POKEMON}, and it's all free.$"
 
 CherrygroveCity_PokemonCenter_1F_Text_Gentleman: @ 81FC0CD
 	.string "That PC in the corner is free for\n"
 	.string "any TRAINER to use.$"
 
 CherrygroveCity_PokemonCenter_1F_Text_1FC148: @ 81FC148
-	.string "The POKéMON WIRELESS CLUB upstairs\n"
+	.string "The {POKEMON} WIRELESS CLUB upstairs\n"
 	.string "was just built.\p"
 	.string "But they're still finishing it up.$"
 
 CherrygroveCity_PokemonCenter_1F_Text_1FC1B9: @ 81FC1B9
-	.string "The POKéMON WIRELESS CLUB upstairs\n"
+	.string "The {POKEMON} WIRELESS CLUB upstairs\n"
 	.string "was just built.\p"
-	.string "I traded POKéMON there already!$"
+	.string "I traded {POKEMON} there already!$"
 

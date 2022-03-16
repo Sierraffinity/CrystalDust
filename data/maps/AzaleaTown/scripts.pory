@@ -83,7 +83,7 @@ script AzaleaTown_EventScript_RivalTrigger_All {
     }
 
     msgbox("I hate the weak.\p"
-           "POKéMON, TRAINERS.\n"
+           "{POKEMON}, TRAINERS.\n"
            "It doesn't matter who or what.\p"
            "I'm going to be strong and wipe\n"
            "out the weak.\p"
@@ -118,9 +118,9 @@ script AzaleaTown_EventScript_RivalTrigger_All {
 
 text AzaleaTown_Text_RivalLost {
     "… Humph!\n"
-    "Useless POKéMON!\p"
+    "Useless {POKEMON}!\p"
     "Listen, you. You only won because\n"
-    "my POKéMON were weak."
+    "my {POKEMON} were weak."
 }
 
 text AzaleaTown_Text_RivalWon {
@@ -195,7 +195,7 @@ script AzaleaTown_EventScript_Youngster {
            "in ILEX FOREST.\p"
            "But these skinny trees make it\n"
            "impossible to get through.\p"
-           "The CHARCOAL MAN's POKéMON can CUT\n"
+           "The CHARCOAL MAN's {POKEMON} can CUT\n"
            "down trees.", MSGBOX_NPC)
 }
 
@@ -221,7 +221,7 @@ script AzaleaTown_EventScript_GymRocket {
 
 script AzaleaTown_EventScript_TownSign {
     msgbox("AZALEA TOWN\n"
-           "Where People and POKéMON Live in\l"
+           "Where People and {POKEMON} Live in\l"
            "Happy Harmony", MSGBOX_SIGN)
 }
 
@@ -230,9 +230,9 @@ script AzaleaTown_EventScript_KurtsHouseSign {
 }
 
 script AzaleaTown_EventScript_GymSign {
-    msgbox("AZALEA TOWN POKéMON GYM\n"
+    msgbox("AZALEA TOWN {POKEMON} GYM\n"
            "LEADER: BUGSY\p"
-           "The Walking BUG POKéMON\n"
+           "The Walking BUG {POKEMON}\n"
            "Encyclopedia", MSGBOX_SIGN)
 }
 

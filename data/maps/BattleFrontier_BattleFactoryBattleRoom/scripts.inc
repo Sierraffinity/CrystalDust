@@ -285,7 +285,7 @@ BattleFrontier_BattleFactoryBattleRoom_Text_NolandImFactoryHead:
 	.string "your heart and your body, understand?\p"
 	.string "I'll take you on under the same\n"
 	.string "conditions as you.\p"
-	.string "I'll be using rental POKéMON, too!$"
+	.string "I'll be using rental {POKEMON}, too!$"
 
 BattleFrontier_BattleFactoryBattleRoom_Text_ShakeOutKnowledgeBringItOn:
 	.string "Shake out every last bit of your\n"

@@ -324,7 +324,7 @@ NewBarkTown_EventScript_ElmsHouse::
 
 NewBarkTown_Text_RivalText1:
 	.string "… … …\p"
-	.string "So this is the famous ELM POKéMON\n"
+	.string "So this is the famous ELM {POKEMON}\n"
 	.string "LAB…$"
 
 NewBarkTown_Text_RivalText2:
@@ -332,14 +332,14 @@ NewBarkTown_Text_RivalText2:
 
 NewBarkTown_Text_FatMan:
 	.string "Yo, {PLAYER}! I hear PROF. ELM\n"
-	.string "discovered some new POKéMON.$"
+	.string "discovered some new {POKEMON}.$"
 
 NewBarkTown_Text_GearImpressive:
-	.string "Wow, your POKéGEAR is impressive!\n"
+	.string "Wow, your {POKE}GEAR is impressive!\n"
 	.string "Did your mom get it for you?$"
 
 NewBarkTown_Text_MonIsAdorable:
-	.string "Oh! Your POKéMON is adorable!\n"
+	.string "Oh! Your {POKEMON} is adorable!\n"
 	.string "I wish I had one!$"
 
 NewBarkTown_Text_TellMomYoureLeaving:
@@ -349,7 +349,7 @@ NewBarkTown_Text_TellMomYoureLeaving:
 	.string "leaving town.$"
 
 NewBarkTown_Text_CallMom:
-	.string "Call your mom on your POKéGEAR to\n"
+	.string "Call your mom on your {POKE}GEAR to\n"
 	.string "let her know how you're doing.$"
 
 NewBarkTown_Text_WaitPlayer:
@@ -360,8 +360,8 @@ NewBarkTown_Text_WhatDoYouThinkYoureDoing:
 
 NewBarkTown_Text_ItsDangerousToGoAlone:
 	.string "It's dangerous to go out without a\n"
-	.string "POKéMON!\p"
-	.string "Wild POKéMON jump out of the grass\n"
+	.string "{POKEMON}!\p"
+	.string "Wild {POKEMON} jump out of the grass\n"
 	.string "on the way to the next town.$"
 
 NewBarkTown_Text_TownSlogan:
@@ -370,7 +370,7 @@ NewBarkTown_Text_TownSlogan:
 	.string "New Beginning Blow$"
 
 NewBarkTown_Text_ElmLab:
-	.string "ELM POKéMON LAB$"
+	.string "ELM {POKEMON} LAB$"
 
 NewBarkTown_Text_PlayersHouse:
 	.string "{PLAYER}'s house$"

@@ -54,14 +54,14 @@ script Route42_Eventscript_MtMortarSign { //used for both signs near the cave
 
 script Route42_Eventscript_FishermanTully {
     // TODO: Phone
-    trainerbattle_single(TRAINER_TULLY_1, "Let me demonstrate the power of the\nPOKéMON I caught!", "What? That's not right.")
-    msgbox("I want to become the TRAINER CHAMP\nusing the POKéMON I caught.\pThat's the best part of fishing!", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_TULLY_1, "Let me demonstrate the power of the\n{POKEMON} I caught!", "What? That's not right.")
+    msgbox("I want to become the TRAINER CHAMP\nusing the {POKEMON} I caught.\pThat's the best part of fishing!", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route42_Eventscript_PokemaniacShane {
     trainerbattle_single(TRAINER_SHANE, "HEY! This is my secret place!\nGet lost, you outsider!", "I should have used my MOON STONE…")
-    msgbox("You're working on a POKéDEX?\pWow, you must know some pretty rare\nPOKéMON!\pMay I please see it?\nPlease?", MSGBOX_AUTOCLOSE)
+    msgbox("You're working on a {POKEDEX}?\pWow, you must know some pretty rare\n{POKEMON}!\pMay I please see it?\nPlease?", MSGBOX_AUTOCLOSE)
     end
 }
 

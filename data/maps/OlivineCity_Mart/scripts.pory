@@ -1,7 +1,7 @@
 mapscripts OlivineCity_Mart_MapScripts {}
 
 script OlivineCity_Mart_Eventscript_Girl1 { //uppermost
-    msgbox("Do your POKéMON already know the\nmove for carrying people on water?", MSGBOX_NPC)
+    msgbox("Do your {POKEMON} already know the\nmove for carrying people on water?", MSGBOX_NPC)
     end
 }
 

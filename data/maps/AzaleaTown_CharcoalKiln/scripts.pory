@@ -44,7 +44,7 @@ script AzaleaTown_CharcoalKiln_EventScript_Apprentice {
         msgbox("I'm sorry--I forgot to thank you\n"
                "for helping me with FARFETCH'D.\p"
                "This is CHARCOAL that I made.\n"
-               "FIRE-type POKéMON would be happy\l"
+               "FIRE-type {POKEMON} would be happy\l"
                "to hold that.")
         giveitem(ITEM_CHARCOAL)
         if (!var(VAR_RESULT))

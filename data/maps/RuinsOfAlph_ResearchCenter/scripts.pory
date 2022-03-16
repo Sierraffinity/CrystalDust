@@ -6,7 +6,7 @@ script RuinsOfAlph_ResearchCenter_EventScript_Scientist1 {
     // TODO: Unown Dex stuff
     if (flag(FLAG_MADE_UNOWN_APPEAR_IN_RUINS))
     {
-        msgbox("POKéMON appeared in the RUINS?\n"
+        msgbox("{POKEMON} appeared in the RUINS?\n"
                "That's incredible news!\l"
                "We'll need to investigate this.")
     }
@@ -26,7 +26,7 @@ script RuinsOfAlph_ResearchCenter_EventScript_Scientist2 {
     // TODO: Unown Dex stuff, unused Pokécom Center text
     if (flag(FLAG_MADE_UNOWN_APPEAR_IN_RUINS))
     {
-        msgbox("The strange POKéMON you saw in\n"
+        msgbox("The strange {POKEMON} you saw in\n"
                "the RUINS?\p"
                "They appear to be very much like\n"
                "the drawings on the walls there.\p"

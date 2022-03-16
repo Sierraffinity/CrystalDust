@@ -28,7 +28,7 @@ script  OlivineCity_Gym_Eventscript_Jasmine{
     }
     if(!flag(FLAG_GOT_TM23_FROM_JASMINE))
     {
-        msgbox("The MINERALBADGE raises POKéMON's\nDEFENSE.\p…Um…\nPlease take this too…")
+        msgbox("The MINERALBADGE raises {POKEMON}'s\nDEFENSE.\p…Um…\nPlease take this too…")
         checkitemspace(ITEM_TM23, 1)
         if(!var(VAR_RESULT))
         {
@@ -48,10 +48,10 @@ script  OlivineCity_Gym_Eventscript_Jasmine{
 script OlivineCity_Gym_Eventscript_Statues{
     if(flag(FLAG_BADGE06_GET))
     {
-        msgbox("OLIVINE CITY POKéMON GYM\nLEADER: JASMINE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        msgbox("OLIVINE CITY {POKEMON} GYM\nLEADER: JASMINE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
         end
     }
-    msgbox("OLIVINE CITY POKéMON GYM", MSGBOX_SIGN)
+    msgbox("OLIVINE CITY {POKEMON} GYM", MSGBOX_SIGN)
     end
 }
 
@@ -66,6 +66,6 @@ script OlivineCity_Gym_Eventscript_GymGuy{
         msgbox("JASMINE uses the newly-discovered \nSTEEL type.\pI don't know very much about it.", MSGBOX_NPC)
         end
     }
-    msgbox("JASMINE, the GYM LEADER, is at\nthe LIGHTHOUSE.\pShe's been tending to a sick\nPOKéMON.\pA strong trainer has to be\ncompassionate.", MSGBOX_NPC)
+    msgbox("JASMINE, the GYM LEADER, is at\nthe LIGHTHOUSE.\pShe's been tending to a sick\n{POKEMON}.\pA strong trainer has to be\ncompassionate.", MSGBOX_NPC)
     end
 }

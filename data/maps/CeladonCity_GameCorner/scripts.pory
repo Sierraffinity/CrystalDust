@@ -1,7 +1,7 @@
 mapscripts CeladonCity_GameCorner_MapScripts {}
 
 script CeladonCity_GameCorner_EventScript_GymGuide {
-    msgbox("Hey! CHAMP in making!\nAre you playing the slots too?\pI'm trying to get enough coins for a\nprize POKéMON.\pBut I don't have enough coins yet…", MSGBOX_NPC)
+    msgbox("Hey! CHAMP in making!\nAre you playing the slots too?\pI'm trying to get enough coins for a\nprize {POKEMON}.\pBut I don't have enough coins yet…", MSGBOX_NPC)
     end
 }
 

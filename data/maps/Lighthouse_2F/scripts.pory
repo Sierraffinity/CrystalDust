@@ -2,7 +2,7 @@ mapscripts Lighthouse_2F_MapScripts {}
 
 script Lighthouse_2F_EventScript_GentlemanAlfred {
     trainerbattle_single(TRAINER_ALFRED,  "Hm? This is no place for playing.", "Ah! I can see that you're serious.")
-    msgbox("Up top is a POKéMON that keeps the\nLIGHTHOUSE lit.\pBut I hear that it's sick now and\ncan't be cured by ordinary medicine.", MSGBOX_AUTOCLOSE)
+    msgbox("Up top is a {POKEMON} that keeps the\nLIGHTHOUSE lit.\pBut I hear that it's sick now and\ncan't be cured by ordinary medicine.", MSGBOX_AUTOCLOSE)
     end
 }
 

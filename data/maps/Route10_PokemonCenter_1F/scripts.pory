@@ -6,7 +6,7 @@ mapscripts Route10_PokemonCenter_1F_MapScripts {
 }
 
 script Route10_PokemonCenter_1F_EventScripts_Gentleman {
-    msgbox("A POKéMON CENTER near a cave?\nThat's mighty convenient.", MSGBOX_NPC)
+    msgbox("A {POKEMON} CENTER near a cave?\nThat's mighty convenient.", MSGBOX_NPC)
     end
 }
 
@@ -16,7 +16,7 @@ script Route10_PokemonCenter_1F_EventScript_SuperNerd {
         msgbox("I hear TEAM ROCKET got back together\nin JOHTO but fell apart right away.\pI didn't know anything about that.", MSGBOX_NPC)
         end
     }
-    msgbox("THe POWER PLANT's MANAGER is looking\nfor a strong POKéMON trainer.\pHe needs help getting back\nsomething that was stolen.", MSGBOX_NPC)
+    msgbox("THe POWER PLANT's MANAGER is looking\nfor a strong {POKEMON} trainer.\pHe needs help getting back\nsomething that was stolen.", MSGBOX_NPC)
     end
 }
 

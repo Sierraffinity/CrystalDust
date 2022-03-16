@@ -99,7 +99,7 @@ Route30_EventScript_Trainer_Don::
 	end
 
 Route30_Text_DirectionsBoy:
-	.string "MR. POKéMON's house?\n"
+	.string "MR. {POKEMON}'s house?\n"
 	.string "It's a bit farther ahead.$"
 
 Route30_Text_DirectionsBoyPostEgg:
@@ -124,15 +124,15 @@ Route30_Text_Directions:
 	.string "VIOLET CITY - CHERRYGROVE CITY$"
 
 Route30_Text_MrPokemonsHouseAhead:
-	.string "MR. POKéMON'S HOUSE\n"
+	.string "MR. {POKEMON}'S HOUSE\n"
 	.string "STRAIGHT AHEAD!$"
 
 Route30_Text_MrPokemonsHouse:
-	.string "MR. POKéMON'S HOUSE$"
+	.string "MR. {POKEMON}'S HOUSE$"
 
 Route30_Text_TrainerTips:
 	.string "TRAINER TIPS\p"
 	.string "There's no stealing of other\n"
-	.string "people's POKéMON!\p"
-	.string "POKé BALLS are to be thrown only\n"
-	.string "at wild POKéMON!$"
+	.string "people's {POKEMON}!\p"
+	.string "{POKE} BALLS are to be thrown only\n"
+	.string "at wild {POKEMON}!$"

@@ -63,7 +63,7 @@ mapscripts DragonsDen_MapScripts {
             }
             giveitem(ITEM_TM02, 1)
             setflag(FLAG_GOT_TM02_FROM_CLAIR)
-            msgbox("That contains DRAGON CLAW.\pNo, it doesn't have anything\nto do with my nails.\pIf you don't want it, you don't\nhave to take it.\pWhat's the matter?\pAren't you going on to the\nPOKéMON LEAGUE?\pDo you know how to get there?\nFrom here, go to NEW BARK TOWN.\pThen SURF east to POKéMON LEAGUE.\nThe route there is very tough.\pDon't you dare lose at the\nPOKéMON LEAGUE!\pIf you do, I'll feel even worse\nabout having lost to you!\pGive it everything you've got.", MSGBOX_DEFAULT)
+            msgbox("That contains DRAGON CLAW.\pNo, it doesn't have anything\nto do with my nails.\pIf you don't want it, you don't\nhave to take it.\pWhat's the matter?\pAren't you going on to the\n{POKEMON} LEAGUE?\pDo you know how to get there?\nFrom here, go to NEW BARK TOWN.\pThen SURF east to {POKEMON} LEAGUE.\nThe route there is very tough.\pDon't you dare lose at the\n{POKEMON} LEAGUE!\pIf you do, I'll feel even worse\nabout having lost to you!\pGive it everything you've got.", MSGBOX_DEFAULT)
             closemessage
             goto(DragonsDen_Eventscript_ClairLeaves)
         }
@@ -94,14 +94,14 @@ script DragonsDen_Eventscript_Rival {
         fadedefaultbgm
         end
     }
-    msgbox("…\nWhat? {PLAYER}?\p…No, I won't battle you now…\pMy POKéMON aren't ready to beat you.\nI can't push them too hard now.\pI have to be disciplined to become\nthe greatest POKéMON trainer…", MSGBOX_NPC)
+    msgbox("…\nWhat? {PLAYER}?\p…No, I won't battle you now…\pMy {POKEMON} aren't ready to beat you.\nI can't push them too hard now.\pI have to be disciplined to become\nthe greatest {POKEMON} trainer…", MSGBOX_NPC)
     setflag(FLAG_TALKED_TO_RIVAL)
     fadedefaultbgm
     end
 }
 
 script DragonsDen_Eventscript_Sign {
-    msgbox("DRAGON SHRINE\pA shrine honoring the dragon POKéMON\nsaid to have lived in the DRAGON'S\lDEN.", MSGBOX_SIGN)
+    msgbox("DRAGON SHRINE\pA shrine honoring the dragon {POKEMON}\nsaid to have lived in the DRAGON'S\lDEN.", MSGBOX_SIGN)
     end
 }
 
@@ -118,13 +118,13 @@ script DragonsDen_Eventscript_CooltrainerCara {
 }
 
 script DragonsDen_Eventscript_TwinTop { // top twin
-    trainerbattle_double(TRAINER_LEA_AND_PIA, "It's a stranger we don't know.", "Ouchies.", "We don't battle strangers with\nonly one POKéMON.")
+    trainerbattle_double(TRAINER_LEA_AND_PIA, "It's a stranger we don't know.", "Ouchies.", "We don't battle strangers with\nonly one {POKEMON}.")
     msgbox("It was like having to battle LANCE.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script DragonsDen_Eventscript_TwinBottom { // bottom twin
-    trainerbattle_double(TRAINER_LEA_AND_PIA, "Who are you?", "Meanie.", "Your POKéMON looks lonely without\na friend to battle with.")
+    trainerbattle_double(TRAINER_LEA_AND_PIA, "Who are you?", "Meanie.", "Your {POKEMON} looks lonely without\na friend to battle with.")
     msgbox("We'll tell on you.\nMASTER will be angry with you.", MSGBOX_AUTOCLOSE)
     end
 }

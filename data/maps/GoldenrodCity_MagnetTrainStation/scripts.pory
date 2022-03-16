@@ -70,7 +70,7 @@ script GoldenrodCity_MagnetTrainStation_Officer {
 script GoldenrodCity_MagnetTrainStation_Gentleman {
     msgbox("I'm the PRESIDENT.\p"
            "My dream was to build a train that\n"
-           "is faster than any POKéMON.\p"
+           "is faster than any {POKEMON}.\p"
            "It really brings JOHTO much closer\n"
            "to KANTO.", MSGBOX_NPC)
 }

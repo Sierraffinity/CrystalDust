@@ -100,9 +100,9 @@ script RadioTower_5F_EventScript_FinalExecutiveTrigger{
     applymovement(1, RadioTower_5F_Movement_DirectorToPlayer)
     waitmovement(0)
     turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
-    msgbox("DIRECTOR: {PLAYER}, thank you!\pYour courageous actions have saved\nPOKéMON nationwide.\pI know it's not much, but please\ntake this.")
+    msgbox("DIRECTOR: {PLAYER}, thank you!\pYour courageous actions have saved\n{POKEMON} nationwide.\pI know it's not much, but please\ntake this.")
     giveitem(ITEM_CLEAR_BELL, 1)
-    msgbox("There used to be a tower right\nhere in GOLDENROD CITY.\lBut it was old and creaky.\pSo we replaced it with our\nRADIO TOWER.\pWe dug up that bell during\nconstruction.\pI heard that all sorts of POKéMON\nlived in GOLDENROD in the past.\pPerhaps…\pThat bell has some connection to the\nTIN TOWER in ECRUTEAK CITY…\pAh!\pThat reminds me… I overheard\nTEAM ROCKET whispering.\pApparently, something is going on\nat the TIN TOWER.\pI have no idea what is happening,\nbut you might look into it.\pOK, I better go to my office.")
+    msgbox("There used to be a tower right\nhere in GOLDENROD CITY.\lBut it was old and creaky.\pSo we replaced it with our\nRADIO TOWER.\pWe dug up that bell during\nconstruction.\pI heard that all sorts of {POKEMON}\nlived in GOLDENROD in the past.\pPerhaps…\pThat bell has some connection to the\nTIN TOWER in ECRUTEAK CITY…\pAh!\pThat reminds me… I overheard\nTEAM ROCKET whispering.\pApparently, something is going on\nat the TIN TOWER.\pI have no idea what is happening,\nbut you might look into it.\pOK, I better go to my office.")
     closemessage
     applymovement(1, RadioTower_5F_Movement_DirectorExits)
     waitmovement(0)
@@ -132,7 +132,7 @@ script RadioTower_5F_EventScript_Ben {
 script RadioTower_5F_EventScript_Director{
     if(flag(FLAG_CLEARED_RADIO_TOWER))
     {
-        msgbox("DIRECTOR: Hello, {PLAYER}!\nYou know, I love POKéMON.\pI built this RADIO TOWER so I could\nexpress my love of POKéMON.\pIt would be nice if people enjoyed\nour programs.", MSGBOX_NPC)
+        msgbox("DIRECTOR: Hello, {PLAYER}!\nYou know, I love {POKEMON}.\pI built this RADIO TOWER so I could\nexpress my love of {POKEMON}.\pIt would be nice if people enjoyed\nour programs.", MSGBOX_NPC)
         end
     }
     msgbox(RadioTower_5F_Text_FakeDirectorAfterBattle, MSGBOX_NPC)

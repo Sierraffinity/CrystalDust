@@ -61,7 +61,7 @@ script CianwoodCity_Eventscript_SuicuneTrigger {
         release
         trainerbattle_no_intro(TRAINER_EUSINE, "I hate to admit it, but you win.")
         textcolor(0)
-        msgbox("You're amazing, {PLAYER}! No wonder\nPOKéMON gravitate to you.\pI get it now.\pI'm going to keep searching for\nSUICUNE.\pI'm sure we'll see each other again.\nSee you around!", MSGBOX_DEFAULT)
+        msgbox("You're amazing, {PLAYER}! No wonder\n{POKEMON} gravitate to you.\pI get it now.\pI'm going to keep searching for\nSUICUNE.\pI'm sure we'll see each other again.\nSee you around!", MSGBOX_DEFAULT)
         release
         applymovement(12, CianwoodCity_Movement_EusineExits)
         waitmovement(0)
@@ -100,7 +100,7 @@ script CianwoodCity_Eventscript_PharmacySign {
 }
 
 script CianwoodCity_Eventscript_GymSign {
-    msgbox("CIANWOOD CITY POKéMON GYM\nLEADER: CHUCK\pHis Roaring Fists Do the Talking", MSGBOX_SIGN)
+    msgbox("CIANWOOD CITY {POKEMON} GYM\nLEADER: CHUCK\pHis Roaring Fists Do the Talking", MSGBOX_SIGN)
     end
 }
 
@@ -110,12 +110,12 @@ script CianwoodCity_Eventscript_StudioSign {
 }
 
 script CianwoodCity_Eventscript_PokeSeerSign {
-    msgbox("THE POKé SEER AHEAD", MSGBOX_SIGN)
+    msgbox("THE {POKE} SEER AHEAD", MSGBOX_SIGN)
     end
 }
 
 script CianwoodCity_Eventscript_FatMan{
-    msgbox("Boulders to the north of town\ncan be crushed.\pThey may be hiding something.\pYour POKéMON could use ROCK SMASH\nto break them.", MSGBOX_NPC)
+    msgbox("Boulders to the north of town\ncan be crushed.\pThey may be hiding something.\pYour {POKEMON} could use ROCK SMASH\nto break them.", MSGBOX_NPC)
     end
 }
 
@@ -125,7 +125,7 @@ script CianwoodCity_Eventscript_Boy{
 }
 
 script CianwoodCity_Eventscript_Girl{
-    msgbox("CHUCK, the GYM LEADER, spars with\nhis FIGHTING-type POKéMON.", MSGBOX_NPC)
+    msgbox("CHUCK, the GYM LEADER, spars with\nhis FIGHTING-type {POKEMON}.", MSGBOX_NPC)
     end
 }
 
@@ -140,7 +140,7 @@ script CianwoodCity_Eventscript_ChucksWife{
     }
     lock
     faceplayer
-    msgbox("You crossed the sea to get here?\nThat must have been hard.\pIt would be much easier if your\nPOKéMON knew how to FLY…", MSGBOX_DEFAULT)
+    msgbox("You crossed the sea to get here?\nThat must have been hard.\pIt would be much easier if your\n{POKEMON} knew how to FLY…", MSGBOX_DEFAULT)
     if(!flag(FLAG_BADGE05_GET))
     {
         msgbox("But you can't use FLY without this\ncity's GYM BADGE.\pIf you beat the GYM LEADER here,\ncome see me.\pI'll have a nice gift for you.", MSGBOX_DEFAULT)
@@ -149,7 +149,7 @@ script CianwoodCity_Eventscript_ChucksWife{
     }
     msgbox("That's CIANWOOD's GYM BADGE!\nThen you should take this HM.", MSGBOX_DEFAULT)
     giveitem(ITEM_HM02)
-    message("Teach FLY to your POKéMON.\pYou will be able to FLY instantly to\nanywhere you have visited.\p")
+    message("Teach FLY to your {POKEMON}.\pYou will be able to FLY instantly to\nanywhere you have visited.\p")
     waitmessage
     msgbox(CianwoodCity_Text_GotFly, MSGBOX_DEFAULT)
     release

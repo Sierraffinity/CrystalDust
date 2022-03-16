@@ -14,7 +14,7 @@ mapscripts VioletCity_EarlsAcademy_MapScripts { }
 
 script VioletCity_EarlsAcademy_EventScript_StatusInfoBoard {
     lockall
-    msgbox("The blackboard lists POKéMON\n"
+    msgbox("The blackboard lists {POKEMON}\n"
            "status problems in battle.")
     goto(StatusBoard_Loop)
 }
@@ -26,7 +26,7 @@ script(local) StatusBoard_Loop {
     switch (var(VAR_RESULT))
     {
         case PSN:
-            msgbox("If poisoned, a POKéMON steadily\n"
+            msgbox("If poisoned, a {POKEMON} steadily\n"
                    "loses HP.\p"
                    "Poison lingers after the battle,\n"
                    "and HP is lost as you walk.\p"
@@ -39,9 +39,9 @@ script(local) StatusBoard_Loop {
                    "PARALYZE HEAL.")
             goto(StatusBoard_Loop)
         case SLP:
-            msgbox("If asleep, your POKéMON can't make\n"
+            msgbox("If asleep, your {POKEMON} can't make\n"
                    "a move.\p"
-                   "A sleeping POKéMON doesn't wake up\n"
+                   "A sleeping {POKEMON} doesn't wake up\n"
                    "after battle, so wake it up with\l"
                    "an AWAKENING.")
             goto(StatusBoard_Loop)
@@ -52,7 +52,7 @@ script(local) StatusBoard_Loop {
                    "Use a BURN HEAL as the cure.")
             goto(StatusBoard_Loop)
         case FRZ:
-            msgbox("If your POKéMON is frozen, it can't\n"
+            msgbox("If your {POKEMON} is frozen, it can't\n"
                    "do a thing.\p"
                    "It remains frozen after battle.\n"
                    "Thaw it out with an ICE HEAL.")
@@ -67,29 +67,29 @@ script(local) StatusBoard_Loop {
 script VioletCity_EarlsAcademy_EventScript_Notes {
     lockall
     msgbox("It's this kid's notebook…\p"
-           "Catch POKéMON using POKé BALLS.\n"
+           "Catch {POKEMON} using {POKE} BALLS.\n"
            "Up to six can be in your party.\p"
            "Keep reading?", MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES)
     {
-        msgbox("Before throwing a POKé BALL, weaken\n"
+        msgbox("Before throwing a {POKE} BALL, weaken\n"
                "the target first.\p"
-               "A poisoned or burned POKéMON is\n"
+               "A poisoned or burned {POKEMON} is\n"
                "easier to catch.\p"
                "Keep reading?", MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
             msgbox("Some moves may cause confusion.\p"
-                   "Confusion may make a POKéMON attack\n"
+                   "Confusion may make a {POKEMON} attack\n"
                    "itself.\p"
                    "Leaving battle clears up any\n"
                    "confusion.\p"
                    "Keep reading?", MSGBOX_YESNO)
             if (var(VAR_RESULT) == YES)
             {
-                msgbox("People who catch and use POKéMON\n"
-                       "in battle are POKéMON TRAINERS.\p"
-                       "They are expected to visit POKéMON\n"
+                msgbox("People who catch and use {POKEMON}\n"
+                       "in battle are {POKEMON} TRAINERS.\p"
+                       "They are expected to visit {POKEMON}\n"
                        "GYMS and defeat other TRAINERS.\p"
                        "The next page is…\n"
                        "Blank!")
@@ -110,7 +110,7 @@ script VioletCity_EarlsAcademy_Earl {
     waitmovement(0)
     faceplayer
     msgbox("EARL, I am!\n"
-           "Wonderful are POKéMON, yes!\p"
+           "Wonderful are {POKEMON}, yes!\p"
            "Teach you I will to be a better\n"
            "TRAINER!\p"
            "What you want to know?\n"
@@ -119,7 +119,7 @@ script VioletCity_EarlsAcademy_Earl {
     {
         msgbox("Good!\n"
                "Teach you, I will!\p"
-               "In battle, POKéMON left of list\n"
+               "In battle, {POKEMON} left of list\n"
                "jump out first!\p"
                "Change order in list, make battle\n"
                "easy, maybe!\p"
@@ -127,16 +127,16 @@ script VioletCity_EarlsAcademy_Earl {
         if (var(VAR_RESULT) == YES)
         {
             msgbox("So, want to know how to raise\n"
-                "POKéMON well?", MSGBOX_YESNO)
+                "{POKEMON} well?", MSGBOX_YESNO)
             if (var(VAR_RESULT) == YES)
             {
                 msgbox("Fine!\n"
                        "Teach you, I will!\p"
-                       "If POKéMON come out in battle even\n"
+                       "If {POKEMON} come out in battle even\n"
                        "briefly, some EXP. Points it gets.\p"
-                       "At left of list put weak POKéMON.\n"
+                       "At left of list put weak {POKEMON}.\n"
                        "Switch in battle quick!\p"
-                       "This way, weak POKéMON strong\n"
+                       "This way, weak {POKEMON} strong\n"
                        "become!")
             }
             else
@@ -196,7 +196,7 @@ script VioletCity_EarlsAcademy_EventScript_NoteTakingKid {
 script VioletCity_EarlsAcademy_EventScript_TradingKid1 {
     lock
     faceplayer
-    msgbox("I traded my best POKéMON to the\n"
+    msgbox("I traded my best {POKEMON} to the\n"
             "guy beside me.")
     closemessage
     applymovement(GBKID_1, Common_Movement_WalkInPlaceFastestDown)
@@ -207,7 +207,7 @@ script VioletCity_EarlsAcademy_EventScript_TradingKid1 {
 script VioletCity_EarlsAcademy_EventScript_TradingKid2 {
     lock
     faceplayer
-    msgbox("Huh? The POKéMON I just got is\n"
+    msgbox("Huh? The {POKEMON} I just got is\n"
             "holding something!")
     closemessage
     applymovement(GBKID_2, Common_Movement_WalkInPlaceFastestDown)
@@ -216,9 +216,9 @@ script VioletCity_EarlsAcademy_EventScript_TradingKid2 {
 }
 
 script VioletCity_EarlsAcademy_EventScript_HeldItemsKid {
-    msgbox("A POKéMON holding a BERRY will heal\n"
+    msgbox("A {POKEMON} holding a BERRY will heal\n"
            "itself in battle…\p"
            "Many other items can be held by\n"
-           "POKéMON…\p"
+           "{POKEMON}…\p"
            "It sure is tough taking notes…", MSGBOX_NPC)
 }

@@ -26,7 +26,7 @@ script NationalPark_EventScript_QuickClawTeacher {
 		msgbox("Pay attention, please!\p"
                "…Oops, I have to quit thinking like\n"
                "a teacher all the time.\p"
-               "You must be a POKéMON TRAINER.\p"
+               "You must be a {POKEMON} TRAINER.\p"
                "Since you're working so hard, I\n"
                "want you to have this.")
 		giveitem(ITEM_QUICK_CLAW)
@@ -39,7 +39,7 @@ script NationalPark_EventScript_QuickClawTeacher {
 			setflag(FLAG_GOT_QUICK_CLAW)
 		}
 	}
-	msgbox("Let one of your POKéMON hold that\n"
+	msgbox("Let one of your {POKEMON} hold that\n"
            "QUICK CLAW.\p"
            "Sometimes it will strike first\n"
            "during battle.")
@@ -49,12 +49,12 @@ script NationalPark_EventScript_QuickClawTeacher {
 script NationalPark_EventScript_Youngster1 {
     msgbox("I'm playing with cards that have\n"
            "a stripe down the side.\p"
-           "You can scan them and see POKéMON\n"
+           "You can scan them and see {POKEMON}\n"
            "stats on the screen!", MSGBOX_NPC)
 }
 
 script NationalPark_EventScript_Youngster2 {
-    msgbox("I get the other guy's POKéMON\n"
+    msgbox("I get the other guy's {POKEMON}\n"
            "cards if I win.", MSGBOX_NPC)
 }
 

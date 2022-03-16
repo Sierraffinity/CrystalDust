@@ -242,9 +242,9 @@ script FuchsiaCity_Gym_EventScript_GymGuide {
 script FuchsiaCity_Gym_EventScript_Statues {
     if(flag(FLAG_BADGE13_GET))
     {
-        msgbox("FUCHSIA CITY POKéMON GYM\nLEADER: JANINE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        msgbox("FUCHSIA CITY {POKEMON} GYM\nLEADER: JANINE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
         end
     }
-    msgbox("FUCHSIA CITY POKéMON GYM", MSGBOX_SIGN)
+    msgbox("FUCHSIA CITY {POKEMON} GYM", MSGBOX_SIGN)
     end
 }

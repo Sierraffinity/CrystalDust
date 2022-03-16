@@ -7,7 +7,7 @@ script CianwoodCity_ManiasHouse_EventScript_Mania{
     {
         if(!flag(FLAG_GOT_SHUCKIE))
         {
-            msgbox("I, I'm in shock!\pA guy about your age with piercing\neyes and long hair came in.\pHe scared me into giving him my\nprized POKéMON!\pI still have one left, but what if\nhe comes back?\pYou look strong. Could you look\nafter my POKéMON for a while?", MSGBOX_YESNO)
+            msgbox("I, I'm in shock!\pA guy about your age with piercing\neyes and long hair came in.\pHe scared me into giving him my\nprized {POKEMON}!\pI still have one left, but what if\nhe comes back?\pYou look strong. Could you look\nafter my {POKEMON} for a while?", MSGBOX_YESNO)
             if(var(VAR_RESULT) == NO)
             {
                 msgbox("Oh, no… What'll I do if he\ncomes back?")
@@ -19,13 +19,13 @@ script CianwoodCity_ManiasHouse_EventScript_Mania{
             special(GivePlayerSpecialGiftMon)
             if(!var(VAR_RESULT))
             {
-                msgbox("Your POKéMON party is full.")
+                msgbox("Your {POKEMON} party is full.")
                 release
                 end
             }
             msgbox(CianwoodCity_ManiasHouse_Text_TakeCareOfShuckle, MSGBOX_DEFAULT)
             playfanfare(MUS_OBTAIN_ITEM)
-            msgbox("{PLAYER} received a POKéMON!", MSGBOX_DEFAULT)
+            msgbox("{PLAYER} received a {POKEMON}!", MSGBOX_DEFAULT)
             waitfanfare
             release
             setflag(FLAG_GOT_SHUCKIE)
@@ -40,7 +40,7 @@ script CianwoodCity_ManiasHouse_EventScript_Mania{
             end
         }
         // Asking to return Shuckie
-        msgbox("Hi!\nHow's my POKéMON?\pI think I'm safe now, so may\nI have it back?", MSGBOX_YESNO)
+        msgbox("Hi!\nHow's my {POKEMON}?\pI think I'm safe now, so may\nI have it back?", MSGBOX_YESNO)
         if(var(VAR_RESULT) == NO)
         {
             goto(CianwoodCity_ManiasHouse_EventScript_WontReturnShuckie)
@@ -63,7 +63,7 @@ script CianwoodCity_ManiasHouse_EventScript_Mania{
             {
                 if(var(VAR_0x8006) >= 150)
                 {   // Shuckie is happy to stay
-                    msgbox("My POKéMON has come to like you.\pAll right, you should keep it.\nBut promise to be good to it!", MSGBOX_DEFAULT)
+                    msgbox("My {POKEMON} has come to like you.\pAll right, you should keep it.\nBut promise to be good to it!", MSGBOX_DEFAULT)
                     release
                     setflag(FLAG_SHUCKIE_RETURNED_OR_KEPT)
                     end
@@ -83,7 +83,7 @@ script CianwoodCity_ManiasHouse_EventScript_Mania{
             }
         }
         // Selected mon wasn't Shuckie
-        msgbox("Hey, you don't have my POKéMON\nwith you.")
+        msgbox("Hey, you don't have my {POKEMON}\nwith you.")
         release
         end
     }
@@ -94,7 +94,7 @@ script CianwoodCity_ManiasHouse_EventScript_Mania{
     release
     end
 }script CianwoodCity_ManiasHouse_EventScript_ShuckieReturnedOrKept{
-    msgbox("For POKéMON, happiness is being\nwith a person who treats them well.", MSGBOX_DEFAULT)
+    msgbox("For {POKEMON}, happiness is being\nwith a person who treats them well.", MSGBOX_DEFAULT)
     release
     end
 }text CianwoodCity_ManiasHouse_Text_TakeCareOfShuckle{

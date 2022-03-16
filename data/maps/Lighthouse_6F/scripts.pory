@@ -8,7 +8,7 @@ script Lighthouse_6F_Eventscript_Jasmine{
     {
         if(!flag(FLAG_LEARNED_AMPHY_IS_SICK))
         {
-            msgbox("JASMINE: …This POKéMON always\nkept the sea lit at night.\p…But it suddenly got sick… It's\ngasping for air…\p…I understand that there is a\nwonderful PHARMACY in CIANWOOD…\pBut that's across the sea…\nAnd I can't leave AMPHY unattended…", MSGBOX_DEFAULT)
+            msgbox("JASMINE: …This {POKEMON} always\nkept the sea lit at night.\p…But it suddenly got sick… It's\ngasping for air…\p…I understand that there is a\nwonderful PHARMACY in CIANWOOD…\pBut that's across the sea…\nAnd I can't leave AMPHY unattended…", MSGBOX_DEFAULT)
             setflag(FLAG_LEARNED_AMPHY_IS_SICK)
         }
         msgbox("…May I ask you to get some medicine\nfor me? Please?", MSGBOX_DEFAULT)

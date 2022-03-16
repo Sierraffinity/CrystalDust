@@ -1,13 +1,13 @@
 mapscripts Lighthouse_4F_MapScripts {}
 
 script Lighthouse_4F_EventScript_LassConnie {
-    trainerbattle_single(TRAINER_CONNIE,  "JASMINE is this city's GYM LEADER.\nI mean to bring her back with me.\pNobody had better get in my way!", "Aaack! My POKéMON!")
-    msgbox("Right. Anybody would be worried if\nhis or her own POKéMON were hurt.\pI'll pray for the POKéMON here, so\nJASMINE can come back to the GYM.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_CONNIE,  "JASMINE is this city's GYM LEADER.\nI mean to bring her back with me.\pNobody had better get in my way!", "Aaack! My {POKEMON}!")
+    msgbox("Right. Anybody would be worried if\nhis or her own {POKEMON} were hurt.\pI'll pray for the {POKEMON} here, so\nJASMINE can come back to the GYM.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Lighthouse_4F_Eventscript_SailorKent {
-    trainerbattle_single(TRAINER_KENT, "JASMINE must be worried sick about\nthe POKéMON here.\pShe won't even smile these days.", "I can't manage a smile either…")
+    trainerbattle_single(TRAINER_KENT, "JASMINE must be worried sick about\nthe {POKEMON} here.\pShe won't even smile these days.", "I can't manage a smile either…")
     msgbox("Speaking of sick, I've heard there's\na good PHARMACY in CIANWOOD.", MSGBOX_AUTOCLOSE)
     end
 }

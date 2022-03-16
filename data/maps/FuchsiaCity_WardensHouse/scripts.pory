@@ -1,22 +1,22 @@
 mapscripts FuchsiaCity_WardensHouse_MapScripts {}
 
 script FuchsiaCity_WardensHouse_EventScript_LeftPicture{
-    msgbox("It's a photo of a grinning old man\nwho's surrounded by POKéMON.", MSGBOX_SIGN)
+    msgbox("It's a photo of a grinning old man\nwho's surrounded by {POKEMON}.", MSGBOX_SIGN)
     end
 }
 
 script FuchsiaCity_WardensHouse_EventScript_RightPicture{
-    msgbox("It's a photo of a huge grassy plain\nwith rare POKéMON frolicking in it.", MSGBOX_SIGN)
+    msgbox("It's a photo of a huge grassy plain\nwith rare {POKEMON} frolicking in it.", MSGBOX_SIGN)
     end
 }
 
 script FuchsiaCity_WardensHouse_EventScript_LeftDisplay{
-    msgbox("POKéMON photos and fossils are on\ndisplay.", MSGBOX_SIGN)
+    msgbox("{POKEMON} photos and fossils are on\ndisplay.", MSGBOX_SIGN)
     end
 }
 
 script FuchsiaCity_WardensHouse_EventScript_RightDisplay{
-    msgbox("Old POKéMON merchandise is on\ndisplay.", MSGBOX_SIGN)
+    msgbox("Old {POKEMON} merchandise is on\ndisplay.", MSGBOX_SIGN)
     end
 }
 

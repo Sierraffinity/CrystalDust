@@ -12,7 +12,7 @@ script ViridianCity_EventScript_CitySign {
 }
 
 script ViridianCity_EventScript_GymSign {
-	msgbox("VIRIDIAN CITY POKéMON GYM\nLEADER: …\pThe rest of the text is illegible…", MSGBOX_SIGN)
+	msgbox("VIRIDIAN CITY {POKEMON} GYM\nLEADER: …\pThe rest of the text is illegible…", MSGBOX_SIGN)
     end
 }
 
@@ -39,7 +39,7 @@ script ViridianCity_EventScript_GymOldMan{
 script ViridianCity_EventScript_OldMan{
     lock
     faceplayer
-    msgbox("Hey, kid! I just had a double shot\nof espresso, and I'm wired!\pI need to talk to someone, so\nyou'll have to do!\pI might not look like much now,\nbut I was an expert at catching\lPOKéMON.\pDo you believe me?", MSGBOX_YESNO)
+    msgbox("Hey, kid! I just had a double shot\nof espresso, and I'm wired!\pI need to talk to someone, so\nyou'll have to do!\pI might not look like much now,\nbut I was an expert at catching\l{POKEMON}.\pDo you believe me?", MSGBOX_YESNO)
     if(var(VAR_RESULT))
     {
         msgbox("Good, good. Yes, I was something out\nof the ordinary, let me tell you!", MSGBOX_DEFAULT)

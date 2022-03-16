@@ -531,7 +531,7 @@ BattleFrontier_BattleArenaBattleRoom_Text_WinnerIsOpponent:
 	.string "REFEREE: The winner is {STR_VAR_1}!$"
 
 BattleFrontier_BattleArenaBattleRoom_Text_MonsWillBeRestored:
-	.string "Your POKéMON will be restored to\n"
+	.string "Your {POKEMON} will be restored to\n"
 	.string "full health.$"
 
 BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor2ndOpponent:

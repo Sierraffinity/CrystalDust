@@ -2,7 +2,7 @@ mapscripts Route12_MapScripts {}
 
 script Route12_EventScript_FisherKyle { //topmost
     trainerbattle_single(TRAINER_KYLE, "Do you remember?", "You do remember?")
-	msgbox("The tug you feel on the ROD when\nyou hook a POKéMON…\pThat's the best feeling ever for\nan angler like me.", MSGBOX_DEFAULT)
+	msgbox("The tug you feel on the ROD when\nyou hook a {POKEMON}…\pThat's the best feeling ever for\nan angler like me.", MSGBOX_DEFAULT)
 	release
 }
 
@@ -19,7 +19,7 @@ script Route12_EventScript_FisherBarney {
 }
 
 script Route12_EventScript_FisherMartin {
-    trainerbattle_single(TRAINER_MARTIN, "Patience is the key to both\nfishing and POKéMON…", "Gwaaah!")
+    trainerbattle_single(TRAINER_MARTIN, "Patience is the key to both\nfishing and {POKEMON}…", "Gwaaah!")
 	msgbox("I'm too impatient for fishing…", MSGBOX_DEFAULT)
 	release
 }

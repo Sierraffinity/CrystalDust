@@ -22,7 +22,7 @@ script GoldenrodCity_Underground_Warehouse_EventScript_Director{
     checkitem(ITEM_CARD_KEY, 1)
     if(var(VAR_RESULT))
     {
-        msgbox("I'm begging you to help.\pThere's no telling what they'll do if\nthey control the transmitter.\pThey may even be able to control\nPOKéMON using a special signal!\pYou're the only one I can call on.\nPlease save the RADIO TOWER…\lAnd all POKéMON nationwide!", MSGBOX_NPC)
+        msgbox("I'm begging you to help.\pThere's no telling what they'll do if\nthey control the transmitter.\pThey may even be able to control\n{POKEMON} using a special signal!\pYou're the only one I can call on.\nPlease save the RADIO TOWER…\lAnd all {POKEMON} nationwide!", MSGBOX_NPC)
         end
     }
     lock

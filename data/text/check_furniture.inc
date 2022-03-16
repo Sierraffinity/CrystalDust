@@ -7,24 +7,24 @@ Text_MyReflection:
 
 Text_AncientPokemonReplica:
 	.string "It's a replica of an ancient\n"
-	.string "POKéMON.$"
+	.string "{POKEMON}.$"
 
 Text_DistinguishedStatue:
-	.string "A POKéMON statue…\n"
+	.string "A {POKEMON} statue…\n"
 	.string "It looks very distinguished.$"
 
 Text_PictureBookShelf:
-	.string "It's a whole collection of POKéMON\n"
+	.string "It's a whole collection of {POKEMON}\n"
 	.string "picture books!$"
 
 Text_BookShelf:
 	.string "It's full of difficult books.$"
 
 Text_PokemonCenterBookShelf:
-	.string "POKéMON magazines!\n"
-	.string "POKéMON PAL…\p"
-	.string "POKéMON HANDBOOK…\n"
-	.string "POKéMON GRAPH…$"
+	.string "{POKEMON} magazines!\n"
+	.string "{POKEMON} PAL…\p"
+	.string "{POKEMON} HANDBOOK…\n"
+	.string "{POKEMON} GRAPH…$"
 
 Text_Vase:
 	.string "This vase looks expensive…\n"
@@ -35,7 +35,7 @@ Text_EmptyTrashCan:
 	.string "It's empty.$"
 
 Text_ShopShelf: @ 82A82BF
-	.string "Lots of POKéMON merchandise!$"
+	.string "Lots of {POKEMON} merchandise!$"
 
 Text_Blueprint:
 	.string "A blueprint of some sort?\n"

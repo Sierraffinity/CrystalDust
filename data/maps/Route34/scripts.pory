@@ -117,5 +117,5 @@ script Route34_EventScript_TrainerTipsSign {
 
 script Route34_EventScript_DaycareSign {
     msgbox("DAY-CARE\n"
-           "LET US RAISE YOUR POKéMON FOR YOU!", MSGBOX_SIGN)
+           "LET US RAISE YOUR {POKEMON} FOR YOU!", MSGBOX_SIGN)
 }

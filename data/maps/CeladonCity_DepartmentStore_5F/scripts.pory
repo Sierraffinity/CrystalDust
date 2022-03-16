@@ -6,7 +6,7 @@ script CeladonCity_DepartmentStore_5F_EventScript_Directory {
 }
 
 script CeladonCity_DepartmentStore_5F_EventScript_Teacher{
-    msgbox("Using items on them makes POKéMON\nhappy.\pThey hate certain items, though…", MSGBOX_NPC)
+    msgbox("Using items on them makes {POKEMON}\nhappy.\pThey hate certain items, though…", MSGBOX_NPC)
     end
 }
 
@@ -16,7 +16,7 @@ script CeladonCity_DepartmentStore_5F_EventScript_Sailor{
 }
 
 script CeladonCity_DepartmentStore_5F_EventScript_Gentleman{
-    msgbox("I want to buy some items that raise\nPOKéMON stats, but I don't have\lenough money…", MSGBOX_NPC)
+    msgbox("I want to buy some items that raise\n{POKEMON} stats, but I don't have\lenough money…", MSGBOX_NPC)
     end
 }
 

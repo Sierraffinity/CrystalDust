@@ -73,12 +73,12 @@ script PewterCity_Museum_1F_EventScript_Scientist2{ //bottom computer
 }
 
 script PewterCity_Museum_1F_EventScript_Scientist3{ // left table
-    msgbox("We used to study POKéMON extensively\nevery day in CINNABAR.\pPeople even brought us rare\nPOKéMON to examine.\pBut we don't have the resources\nto do that anymore without our LAB.", MSGBOX_NPC)
+    msgbox("We used to study {POKEMON} extensively\nevery day in CINNABAR.\pPeople even brought us rare\n{POKEMON} to examine.\pBut we don't have the resources\nto do that anymore without our LAB.", MSGBOX_NPC)
     end
 }
 
 script PewterCity_Museum_1F_EventScript_Scientist4{ // near entrance
-    msgbox("We discovered that EEVEE can \nevolve into five kinds of POKéMON.\pNot too long ago we thought\nit could only evolve into three!", MSGBOX_NPC)
+    msgbox("We discovered that EEVEE can \nevolve into five kinds of {POKEMON}.\pNot too long ago we thought\nit could only evolve into three!", MSGBOX_NPC)
     end
 }
 
@@ -99,7 +99,7 @@ script PewterCity_Museum_1F_EventScript_AerodactylFossil{
     releaseall
     end
 }text(local) PewterCity_Museum_1F_Text_Fossils{
-    " Fossil\nA primitive and rare POKéMON."
+    " Fossil\nA primitive and rare {POKEMON}."
 }
 
 script PewterCity_Museum_1F_EventScript_KabutopsFossil{
@@ -267,7 +267,7 @@ script PewterCity_Museum_1F_EventScript_FossilRevivalScientist{
     }
     lock
     faceplayer
-    msgbox("Hiya!\nI fixed my machine!\pI am important doctor.\nYes, very much so, indeed.\pHere, I study rare POKéMON fossils.\nAll the time, I study.\pYou!\nHave you a fossil for me?", MSGBOX_DEFAULT)
+    msgbox("Hiya!\nI fixed my machine!\pI am important doctor.\nYes, very much so, indeed.\pHere, I study rare {POKEMON} fossils.\nAll the time, I study.\pYou!\nHave you a fossil for me?", MSGBOX_DEFAULT)
     setvar(VAR_TEMP_9, 0)
     checkitem(ITEM_HELIX_FOSSIL, 1)
     copyvar(VAR_0x8008, VAR_RESULT)
@@ -621,7 +621,7 @@ script PewterCity_Museum_1F_EventScript_FossilRevivalScientist{
             bufferspeciesname(0, SPECIES_ANORITH)
             bufferitemname(1, ITEM_CLAW_FOSSIL)
     }
-    msgbox("Oh!\nThat is {STR_VAR_2}, it is!\pIt is fossil of {STR_VAR_1},\na POKéMON that is already extinct!\pMy Resurrection Machine will make\nthat POKéMON live again!", MSGBOX_YESNO)
+    msgbox("Oh!\nThat is {STR_VAR_2}, it is!\pIt is fossil of {STR_VAR_1},\na {POKEMON} that is already extinct!\pMy Resurrection Machine will make\nthat {POKEMON} live again!", MSGBOX_YESNO)
     if(!var(VAR_RESULT))
     {
         msgbox("Aiyah!\nYou come again!", MSGBOX_DEFAULT)

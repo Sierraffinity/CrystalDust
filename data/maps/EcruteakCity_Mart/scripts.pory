@@ -6,7 +6,7 @@ script EcruteakCity_Mart_Eventscript_Boy{
 }
 
 script EcruteakCity_Mart_Eventscript_OldWoman{
-    msgbox("If you use REVIVE, a POKéMON that's\nfainted will wake right up.", MSGBOX_NPC)
+    msgbox("If you use REVIVE, a {POKEMON} that's\nfainted will wake right up.", MSGBOX_NPC)
     end
 }
 

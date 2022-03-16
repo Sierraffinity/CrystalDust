@@ -5,7 +5,7 @@ script CianwoodCity_Gym_Eventscript_Chuck{
     faceplayer
     if(!flag(FLAG_BADGE05_GET))
     {
-        msgbox("WAHAHAH!\pSo you've come this far!\nLet me tell you, I'm tough!\pMy POKéMON will crush stones\nand shatter bones!\pWatch this!", MSGBOX_DEFAULT)
+        msgbox("WAHAHAH!\pSo you've come this far!\nLet me tell you, I'm tough!\pMy {POKEMON} will crush stones\nand shatter bones!\pWatch this!", MSGBOX_DEFAULT)
         release
         turnobject(5, DIR_EAST)
         msgbox("CHUCK: Urggh!\n…\pOooarrgh!", MSGBOX_DEFAULT)
@@ -24,7 +24,7 @@ script CianwoodCity_Gym_Eventscript_Chuck{
         removeobject(9)
         delay(30)
         faceplayer
-        trainerbattle_single(TRAINER_CHUCK, "There! Scared now, are you?\pWhat?\nIt has nothing to do with POKéMON?\pThat's true!\nCome on. We shall do battle!", "Wha? Huh?\nI lost?\pHow about that!\nYou're worthy of the STORMBADGE!", CianwoodCity_Gym_EventScript_ChuckDefeated, NO_MUSIC)
+        trainerbattle_single(TRAINER_CHUCK, "There! Scared now, are you?\pWhat?\nIt has nothing to do with {POKEMON}?\pThat's true!\nCome on. We shall do battle!", "Wha? Huh?\nI lost?\pHow about that!\nYou're worthy of the STORMBADGE!", CianwoodCity_Gym_EventScript_ChuckDefeated, NO_MUSIC)
     }
     goto(CianwoodCity_Gym_EventScript_GiveTM)
 }script CianwoodCity_Gym_EventScript_ChuckDefeated{
@@ -44,7 +44,7 @@ script CianwoodCity_Gym_Eventscript_Chuck{
 }script CianwoodCity_Gym_EventScript_GiveTM{
     if(!flag(FLAG_GOT_TM31_FROM_CHUCK))
     {
-        msgbox("STORMBADGE makes all POKéMON up to\nlevel 70 obey, even traded ones.\pIt also lets your POKéMON use FLY\nwhen you're not in a battle.\pHere, take this too!", MSGBOX_DEFAULT)
+        msgbox("STORMBADGE makes all {POKEMON} up to\nlevel 70 obey, even traded ones.\pIt also lets your {POKEMON} use FLY\nwhen you're not in a battle.\pHere, take this too!", MSGBOX_DEFAULT)
         release
         checkitemspace(ITEM_TM31, 1)
         if (!var(VAR_RESULT))
@@ -69,22 +69,22 @@ script CianwoodCity_Gym_Eventscript_Chuck{
 script CianwoodCity_Gym_Eventscript_Statues{
     if(flag(FLAG_BADGE05_GET))
     {
-        msgbox("CIANWOOD CITY POKéMON GYM\nLEADER: CHUCK\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        msgbox("CIANWOOD CITY {POKEMON} GYM\nLEADER: CHUCK\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
         end
     }
-    msgbox("CIANWOOD CITY POKéMON GYM", MSGBOX_SIGN)
+    msgbox("CIANWOOD CITY {POKEMON} GYM", MSGBOX_SIGN)
     end
 }
 
 script CianwoodCity_Gym_Eventscript_BlackBeltYoshi{ //bottommost left
-    trainerbattle_single(TRAINER_YOSHI, "My POKéMON and I are bound together\nby friendship.\pOur bond will never be broken!", "This isn't real!")
-    msgbox("You seem to have a strong bond with\nyour POKéMON too!", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_YOSHI, "My {POKEMON} and I are bound together\nby friendship.\pOur bond will never be broken!", "This isn't real!")
+    msgbox("You seem to have a strong bond with\nyour {POKEMON} too!", MSGBOX_AUTOCLOSE)
     end
 }
 
 script CianwoodCity_Gym_Eventscript_BlackBeltLao{ //bottommost right
     trainerbattle_single(TRAINER_LAO, "We martial artists fear nothing!", "That's shocking!")
-    msgbox("FIGHTING-type POKéMON are afraid of\nPSYCHIC-types…", MSGBOX_AUTOCLOSE)
+    msgbox("FIGHTING-type {POKEMON} are afraid of\nPSYCHIC-types…", MSGBOX_AUTOCLOSE)
     end
 }
 
@@ -95,7 +95,7 @@ script CianwoodCity_Gym_Eventscript_BlackBeltNob{ //under boulders
 }
 
 script CianwoodCity_Gym_Eventscript_BlackBeltLung{ //under boulders
-    trainerbattle_single(TRAINER_LUNG, "My raging fists will shatter your\nPOKéMON!", "I got shattered!")
-    msgbox("My POKéMON lost…\nMy… my pride is shattered…", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_LUNG, "My raging fists will shatter your\n{POKEMON}!", "I got shattered!")
+    msgbox("My {POKEMON} lost…\nMy… my pride is shattered…", MSGBOX_AUTOCLOSE)
     end
 }

@@ -16,20 +16,20 @@ script Route37_Eventscript_RouteSign {
 }
 
 script Route37_Eventscript_PsychicGreg{
-    trainerbattle_single(TRAINER_GREG, "POKéMON can't do a thing if\nthey are asleep.\pI'll show you how scary that is!", "I lost.\nThat's pretty sad…")
-    msgbox("Putting POKéMON to sleep or\nparalyzing them are good battle\ltechniques.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_GREG, "{POKEMON} can't do a thing if\nthey are asleep.\pI'll show you how scary that is!", "I lost.\nThat's pretty sad…")
+    msgbox("Putting {POKEMON} to sleep or\nparalyzing them are good battle\ltechniques.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route37_Eventscript_TwinAnn{ // left twin
-    trainerbattle_double(TRAINER_ANN_AND_ANNE, "ANN: ANNE and I are in this\ntogether!", "ANN & ANNE: Nnn…\nA little too strong.", "ANN: You can't battle us with\njust one POKéMON!")
-    msgbox("ANN: I can tell what my sister and\nmy POKéMON are thinking.", MSGBOX_AUTOCLOSE)
+    trainerbattle_double(TRAINER_ANN_AND_ANNE, "ANN: ANNE and I are in this\ntogether!", "ANN & ANNE: Nnn…\nA little too strong.", "ANN: You can't battle us with\njust one {POKEMON}!")
+    msgbox("ANN: I can tell what my sister and\nmy {POKEMON} are thinking.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route37_Eventscript_TwinAnne{ // right twin
-    trainerbattle_double(TRAINER_ANN_AND_ANNE, "ANNE: ANN and I are in this\ntogether!", "ANN & ANNE: Nnn…\nA little too strong.", "ANNE: We don't like to battle\nagainst lonesome POKéMON!")
-    msgbox("ANNE: We share the same feelings as\nour POKéMON.", MSGBOX_AUTOCLOSE)
+    trainerbattle_double(TRAINER_ANN_AND_ANNE, "ANNE: ANN and I are in this\ntogether!", "ANN & ANNE: Nnn…\nA little too strong.", "ANNE: We don't like to battle\nagainst lonesome {POKEMON}!")
+    msgbox("ANNE: We share the same feelings as\nour {POKEMON}.", MSGBOX_AUTOCLOSE)
     end
 }
 
@@ -56,7 +56,7 @@ script Route37_Eventscript_SunnyOfSunday {
 				goto(Common_EventScript_ShowBagIsFull)
 			}
 			setflag(FLAG_RECEIVED_MAGNET_FROM_SUNNY)
-			msgbox("SUNNY: That thing…\nUm…\p…What was it now…\p…\nOh! I remember now!\pA POKéMON that knows ELECTRIC-type\nmoves should hold it.\pMy sis MONICA said it powers up\nELECTRIC-type moves!")
+			msgbox("SUNNY: That thing…\nUm…\p…What was it now…\p…\nOh! I remember now!\pA {POKEMON} that knows ELECTRIC-type\nmoves should hold it.\pMy sis MONICA said it powers up\nELECTRIC-type moves!")
 		}
 		else
 		{

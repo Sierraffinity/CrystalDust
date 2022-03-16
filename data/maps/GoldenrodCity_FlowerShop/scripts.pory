@@ -60,7 +60,7 @@ script GoldenrodCity_FlowerShop_EventScript_Floria {
     faceplayer
     if (flag(FLAG_DEFEATED_SUDOWOODO) || flag(FLAG_SYS_GAME_CLEAR))
     {
-        msgbox("So it really was a POKéMON!")
+        msgbox("So it really was a {POKEMON}!")
     }
     elif (flag(FLAG_GOT_SQUIRTBOTTLE))
     {

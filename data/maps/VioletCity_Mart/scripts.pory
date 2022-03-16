@@ -27,16 +27,16 @@ VioletCity_Mart_Pokemart:
 `
 
 script VioletCity_Mart_EventScript_OldWoman {
-    msgbox("When you first catch a POKéMON,\n"
+    msgbox("When you first catch a {POKEMON},\n"
            "it may be weak.\p"
            "But it will eventually grow to\n"
            "be strong.\p"
-           "It's important to treat POKéMON\n"
+           "It's important to treat {POKEMON}\n"
            "with love.", MSGBOX_NPC)
 }
 
 script VioletCity_Mart_EventScript_Man {
-    msgbox("POKéMON can hold items like POTION\n"
+    msgbox("{POKEMON} can hold items like POTION\n"
            "and ANTIDOTE.\p"
            "But they don't appear to know how\n"
            "to use man-made items.", MSGBOX_NPC)

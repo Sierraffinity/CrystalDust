@@ -5,11 +5,11 @@ script GoldenrodCity_NameRatersHouse_EventScript_NameRater {
     faceplayer
     msgbox("Hello, hello!\n"
            "I'm the NAME RATER.\p"
-           "I rate the names of POKéMON.\n"
+           "I rate the names of {POKEMON}.\n"
            "Would you like me to rate names?", MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES)
     {
-        msgbox("Which POKéMON's nickname should\n"
+        msgbox("Which {POKEMON}'s nickname should\n"
                "I rate for you?")
         special(ChoosePartyMon)
         waitstate
@@ -53,14 +53,14 @@ script GoldenrodCity_NameRatersHouse_EventScript_NameRater {
                             specialvar(VAR_RESULT, NameRaterWasNicknameChanged)
                             if (var(VAR_RESULT) == TRUE)
                             {
-                                msgbox("Done! From now on, this POKéMON\n"
+                                msgbox("Done! From now on, this {POKEMON}\n"
                                        "shall be known as {STR_VAR_1}!\p"
                                        "That's a better name than before!\n"
                                        "Well done!")
                             }
                             else
                             {
-                                msgbox("Done! From now on, this POKéMON\n"
+                                msgbox("Done! From now on, this {POKEMON}\n"
                                        "shall be known as {STR_VAR_1}!\p"
                                        "It might look the same as before,\n"
                                        "but this new name is much better!\l"

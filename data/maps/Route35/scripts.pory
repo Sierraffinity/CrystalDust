@@ -53,7 +53,7 @@ script Route35_EventScript_Dirk {
     }
     else
     {
-        msgbox("Your POKéMON look pretty tough.\n"
+        msgbox("Your {POKEMON} look pretty tough.\n"
                "You could go anywhere safely.")
     }
     release

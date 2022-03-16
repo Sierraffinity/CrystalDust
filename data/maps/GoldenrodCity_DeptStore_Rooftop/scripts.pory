@@ -70,7 +70,7 @@ script GoldenrodCity_DeptStore_Rooftop_EventScript_CheapTeacher {
 }
 
 script GoldenrodCity_DeptStore_Rooftop_EventScript_ParalyzedBugCatcher {
-    msgbox("My POKéMON always get paralyzed or\n"
+    msgbox("My {POKEMON} always get paralyzed or\n"
            "poisoned when the chips are down…\l"
            "So I came to buy some FULL HEAL.\p"
            "I wonder if there's any left?", MSGBOX_NPC)
@@ -85,7 +85,7 @@ script GoldenrodCity_DeptStore_Rooftop_EventScript_Binoculars1 {
 script GoldenrodCity_DeptStore_Rooftop_EventScript_Binoculars2 {
     msgbox("Hey! Some TRAINERS are battling on\n"
            "the road!\p"
-           "A POKéMON fired a flurry of\n"
+           "A {POKEMON} fired a flurry of\n"
            "leaves!\p"
            "That makes me feel like battling\n"
            "right now!", MSGBOX_SIGN)
@@ -98,7 +98,7 @@ script GoldenrodCity_DeptStore_Rooftop_EventScript_Binoculars3 {
 }
 
 script GoldenrodCity_DeptStore_Rooftop_EventScript_PokeDollGachaMachine {
-    msgbox("A vending machine for POKéMON dolls?\n"
+    msgbox("A vending machine for {POKEMON} dolls?\n"
            "Insert money, then turn the crank…\p"
            "But it's almost empty…", MSGBOX_SIGN)
 }

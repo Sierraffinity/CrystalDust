@@ -127,7 +127,7 @@ script MahoganyTown_Shop_BlackBelt {
         msgbox("Heheh!\nThe experiment worked like a charm.\pMAGIKARP are just worthless, but\nGYARADOS are big moneymakers.", MSGBOX_NPC)
         end
     }
-    msgbox("Urrgh…\nThat guy's dragon POKéMON are tough…", MSGBOX_NPC)
+    msgbox("Urrgh…\nThat guy's dragon {POKEMON} are tough…", MSGBOX_NPC)
     end
 }
 

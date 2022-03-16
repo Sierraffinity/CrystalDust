@@ -6,27 +6,27 @@ script Route45_Eventscript_RouteSign {
 }
 
 script Route45_Eventscript_HikerErik { // uppermost Hiker
-    trainerbattle_single(TRAINER_ERIK, "Be prepared for anything!\pLet me see if your POKéMON have\nbeen raised properly!", "Oh, I lost that!")
+    trainerbattle_single(TRAINER_ERIK, "Be prepared for anything!\pLet me see if your {POKEMON} have\nbeen raised properly!", "Oh, I lost that!")
     msgbox("I'll head back to BLACKTHORN's\nICE PATH and train some more.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route45_Eventscript_CooltrainerRyan {
-    trainerbattle_single(TRAINER_RYAN, "What are your thoughts on\nraising POKéMON?", "You've won my respect.")
-    msgbox("I see you're raising your POKéMON\nwith care.\pThe bond you build will save you\nin tough situations.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_RYAN, "What are your thoughts on\nraising {POKEMON}?", "You've won my respect.")
+    msgbox("I see you're raising your {POKEMON}\nwith care.\pThe bond you build will save you\nin tough situations.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route44_Eventscript_HikerParry { // middle, above Cooltrainer Kelly
     // TODO: Phone
-    trainerbattle_single(TRAINER_PARRY_1, "My POKéMON are power packed!", "Wahahah!\nI'm the big loser!")
+    trainerbattle_single(TRAINER_PARRY_1, "My {POKEMON} are power packed!", "Wahahah!\nI'm the big loser!")
     msgbox("I'm not much good at thinking, see?\nSo, I just plow ahead with power!", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route45_Eventscript_CooltrainerKelly {
     trainerbattle_single(TRAINER_KELLY, "What is your battle strategy?\pIt is foolish to use strong moves\nindiscriminately.", "Fine.\nI lost.")
-    msgbox("I'm not in favor of overly powerful\nmoves.\pI want to win, but I also don't want\nto harm POKéMON.", MSGBOX_AUTOCLOSE)
+    msgbox("I'm not in favor of overly powerful\nmoves.\pI want to win, but I also don't want\nto harm {POKEMON}.", MSGBOX_AUTOCLOSE)
     end
 }
 
@@ -38,14 +38,14 @@ script Route45_Eventscript_BlackBeltKenji {
 }
 
 script Route45_Eventscript_HikerTimothy { // lower & leftmost
-    trainerbattle_single(TRAINER_TIMOTHY, "Why do I climb mountains?\nBecause they're there.\pWhy do I train POKéMON?\nBecause they're there!", "Losses…\nThey're there too!")
-    msgbox("The best thing to ever happen to me\nwas discovering POKéMON.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_TIMOTHY, "Why do I climb mountains?\nBecause they're there.\pWhy do I train {POKEMON}?\nBecause they're there!", "Losses…\nThey're there too!")
+    msgbox("The best thing to ever happen to me\nwas discovering {POKEMON}.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route45_Eventscript_HikerMichael { // lower & rightmost
-    trainerbattle_single(TRAINER_MICHAEL, "Yo! You're spunky!\nBut you know what?\pWhen it comes to sheer spunkiness,\nI'm the man!", "My POKéMON weren't spunky enough!")
-    msgbox("Boy, do I love HP UP!\nMmmm, yum!\pI keep drinking my POKéMON's!\nI can't help it!", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_MICHAEL, "Yo! You're spunky!\nBut you know what?\pWhen it comes to sheer spunkiness,\nI'm the man!", "My {POKEMON} weren't spunky enough!")
+    msgbox("Boy, do I love HP UP!\nMmmm, yum!\pI keep drinking my {POKEMON}'s!\nI can't help it!", MSGBOX_AUTOCLOSE)
     end
 }
 

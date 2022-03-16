@@ -4,7 +4,7 @@ script GoldenrodCity_House1_EventScript_HappinessRater {
     lock
     faceplayer
     bufferpartymonnick(0, 0)
-    msgbox("If you treat your POKéMON nicely,\n"
+    msgbox("If you treat your {POKEMON} nicely,\n"
            "they will love you in return.\p"
            "Oh?\n"
            "Let me see your {STR_VAR_1}…")
@@ -34,12 +34,12 @@ script GoldenrodCity_House1_EventScript_HappinessRater {
 
 script GoldenrodCity_House1_EventScript_LoserWoman {
     msgbox("I keep losing in battles, and my\n"
-           "POKéMON end up fainting…\p"
-           "Maybe that's why my POKéMON don't\n"
+           "{POKEMON} end up fainting…\p"
+           "Maybe that's why my {POKEMON} don't\n"
            "like me much…", MSGBOX_NPC)
 }
 
 script GoldenrodCity_House1_EventScript_ItemGirl {
-    msgbox("When I use an item on my POKéMON,\n"
+    msgbox("When I use an item on my {POKEMON},\n"
            "it acts really glad!", MSGBOX_NPC)
 }

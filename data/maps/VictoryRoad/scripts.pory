@@ -39,7 +39,7 @@ script VictoryRoad_EventScript_RivalTriggers {
     playbgm(MUS_ENCOUNTER_RIVAL, 0)
     savebgm(MUS_RIVAL_EXIT)
     textcolor(0)
-    msgbox("Hold it.\p…Are you going to take the POKéMON\nLEAGUE challenge?\p…Don't make me laugh.\pYou're so much weaker than I am.\nI'm not like I was before.\pI now have the best and strongest\nPOKéMON with me.\lI'm invincible!\p{PLAYER}!\nI challenge you!", MSGBOX_DEFAULT)
+    msgbox("Hold it.\p…Are you going to take the {POKEMON}\nLEAGUE challenge?\p…Don't make me laugh.\pYou're so much weaker than I am.\nI'm not like I was before.\pI now have the best and strongest\n{POKEMON} with me.\lI'm invincible!\p{PLAYER}!\nI challenge you!", MSGBOX_DEFAULT)
     closemessage
     switch(var(VAR_STARTER_MON))
     {

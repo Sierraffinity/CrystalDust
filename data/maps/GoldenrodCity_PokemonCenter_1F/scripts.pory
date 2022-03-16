@@ -49,9 +49,9 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse {
         else
         {
             msgbox("Hello!\p"
-                   "This is the POKéMON COMMUNICATION\n"
-                   "CENTER--or the POKéCOM CENTER.\p"
-                   "We can heal your POKéMON to\n"
+                   "This is the {POKEMON} COMMUNICATION\n"
+                   "CENTER--or the {POKE}COM CENTER.\p"
+                   "We can heal your {POKEMON} to\n"
                    "perfect health.\p"
                    "Shall we…", MSGBOX_DEFAULT)
             goto(EventScript_PkmnCenterNurse_GoldCard_Notice)
@@ -64,18 +64,18 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse {
         {
             case TIME_MORNING:
                 message("Good morning!\p"
-                        "This is the POKéMON COMMUNICATION\n"
-                        "CENTER--or the POKéCOM CENTER.\p")
+                        "This is the {POKEMON} COMMUNICATION\n"
+                        "CENTER--or the {POKE}COM CENTER.\p")
                 break
             case TIME_DAY:
                 message("Hello!\p"
-                        "This is the POKéMON COMMUNICATION\n"
-                        "CENTER--or the POKéCOM CENTER.\p")
+                        "This is the {POKEMON} COMMUNICATION\n"
+                        "CENTER--or the {POKE}COM CENTER.\p")
                 break
             case TIME_NIGHT:
                 message("Good to see you working so late.\p"
-                        "This is the POKéMON COMMUNICATION\n"
-                        "CENTER--or the POKéCOM CENTER.\p")
+                        "This is the {POKEMON} COMMUNICATION\n"
+                        "CENTER--or the {POKE}COM CENTER.\p")
                 break
         }
 
@@ -92,7 +92,7 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_OldMan {
     else
     {
         msgbox("I came over here when I got word\n"
-               "that GOLDENROD's POKéMON CENTER\l"
+               "that GOLDENROD's {POKEMON} CENTER\l"
                "has new machines that no one's\l"
                "ever seen before.\p"
                "But it looks like they're still busy\n"
@@ -101,12 +101,12 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_OldMan {
 }
 
 script GoldenrodCity_PokemonCenter_1F_EventScript_TypeAdvantageGirl {
-    msgbox("A higher level POKéMON doesn't\n"
+    msgbox("A higher level {POKEMON} doesn't\n"
            "always win.\p"
            "After all, it may have a type\n"
            "disadvantage.\p"
            "I don't think there is a single\n"
-           "POKéMON that is the toughest.", MSGBOX_NPC)
+           "{POKEMON} that is the toughest.", MSGBOX_NPC)
 }
 
 script GoldenrodCity_PokemonCenter_1F_EventScript_HugeCenterBoy {
@@ -124,7 +124,7 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_HugeCenterBoy {
     }
     else
     {
-        msgbox("Whoa, this POKéMON CENTER is huge.\n"
+        msgbox("Whoa, this {POKEMON} CENTER is huge.\n"
                "They just built this place.\p"
                "They installed lots of new machines\n"
                "too.", MSGBOX_NPC)
@@ -180,7 +180,7 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl {
         }
         else
         {
-            msgbox("They said you can trade POKéMON\n"
+            msgbox("They said you can trade {POKEMON}\n"
                    "with total strangers up here.\p"
                    "But they're still adjusting things.", MSGBOX_NPC)
         }
@@ -236,31 +236,31 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_NewsWoman {
     }
     else
     {
-        msgbox("The POKéCOM CENTER will link with all\n"
-               "POKéMON CENTERS in a wireless net.\p"
+        msgbox("The {POKE}COM CENTER will link with all\n"
+               "{POKEMON} CENTERS in a wireless net.\p"
                "That must mean I'll be able to\n"
                "link with all sorts of people.", MSGBOX_NPC)
     }
 }
 
 script GoldenrodCity_PokemonCenter_1F_EventScript_InfoSign {
-    msgbox("POKéCOM CENTER\n"
+    msgbox("{POKE}COM CENTER\n"
            "1F INFORMATION\p"
            "Left: ADMINISTRATION\n"
            "Center: TRADE CORNER\l"
-           "Right: POKéMON NEWS", MSGBOX_SIGN)
+           "Right: {POKEMON} NEWS", MSGBOX_SIGN)
 }
 
 script GoldenrodCity_PokemonCenter_1F_EventScript_NewsMachine {
     if (flag(FLAG_POKECOM_CENTER_ENABLED))
     {
-        msgbox("It's a POKéMON NEWS MACHINE.\n"
+        msgbox("It's a {POKEMON} NEWS MACHINE.\n"
                "…and? Why are you here?\l"
                "Just to suffer?", MSGBOX_SIGN)
     }
     else
     {
-        msgbox("It's a POKéMON NEWS MACHINE!\n"
+        msgbox("It's a {POKEMON} NEWS MACHINE!\n"
                "It's not in operation yet…", MSGBOX_SIGN)
     }
 }
@@ -278,9 +278,9 @@ movement GoldenrodCity_PokemonCenter_1F_Movement_TradeCounterNurseToPlayer {
 script GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse {
     lock
     faceplayer
-    msgbox("Hello! Welcome to the POKéCOM\n"
+    msgbox("Hello! Welcome to the {POKE}COM\n"
            "CENTER TRADE CORNER.\p"
-           "You can trade POKéMON with other\n"
+           "You can trade {POKEMON} with other\n"
            "people far away.")
     checkitem(ITEM_EGG_TICKET, 1)
     if (var(VAR_RESULT))
@@ -288,7 +288,7 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse {
         msgbox("Oh!\n"
                "I see you have an EGG TICKET!\p"
                "It's a coupon that special people\n"
-               "can redeem for a special POKéMON!\p"
+               "can redeem for a special {POKEMON}!\p"
                "We have a few left, so an ODD EGG\n"
                "is available just for you.\p"
                "Would you like to redeem your\n"
@@ -344,7 +344,7 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse {
             else
             {
                 msgbox("Oh, you can't carry any more\n"
-                       "POKéMON with you, it seems.\p"
+                       "{POKEMON} with you, it seems.\p"
                        "Please make room in your party,\n"
                        "then come see me.")
             }

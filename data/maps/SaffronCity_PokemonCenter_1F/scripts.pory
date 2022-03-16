@@ -6,7 +6,7 @@ mapscripts SaffronCity_PokemonCenter_1F_MapScripts {
 }
 
 script SaffronCity_PokemonCenter_1F_EventScript_Woman{
-    msgbox("What are JOHTO's POKéMON\nCENTERS like?\p…Oh, I see. So they're not much\ndifferent from the ones in KANTO.\pI can go to JOHTO without worrying,\nthen!", MSGBOX_NPC)
+    msgbox("What are JOHTO's {POKEMON}\nCENTERS like?\p…Oh, I see. So they're not much\ndifferent from the ones in KANTO.\pI can go to JOHTO without worrying,\nthen!", MSGBOX_NPC)
     end
 }
 

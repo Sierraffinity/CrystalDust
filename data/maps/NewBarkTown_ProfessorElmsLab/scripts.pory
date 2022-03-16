@@ -27,9 +27,9 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
     checkitem(ITEM_SS_TICKET, 1)
     if(flag(FLAG_SYS_GAME_CLEAR) && !var(VAR_RESULT))
     {
-        msgbox("ELM: {PLAYER}!\nThere you are!\pI called because I have something\nfor you.\pSee? It's an S.S. TICKET.\nNow you can catch POKéMON in KANTO.", MSGBOX_DEFAULT)
+        msgbox("ELM: {PLAYER}!\nThere you are!\pI called because I have something\nfor you.\pSee? It's an S.S. TICKET.\nNow you can catch {POKEMON} in KANTO.", MSGBOX_DEFAULT)
         giveitem(ITEM_SS_TICKET, 1)
-        msgbox("The ship departs from OLIVINE CITY.\nBut you knew that already,\l{PLAYER}.\pAfter all, you've traveled all over\nwith your POKéMON.\pGive my regards to PROF. OAK\nin KANTO!", MSGBOX_DEFAULT)
+        msgbox("The ship departs from OLIVINE CITY.\nBut you knew that already,\l{PLAYER}.\pAfter all, you've traveled all over\nwith your {POKEMON}.\pGive my regards to PROF. OAK\nin KANTO!", MSGBOX_DEFAULT)
         closemessage
         release
         end
@@ -70,10 +70,10 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
             waitmovement(0)
             applymovement(OBJ_EVENT_ID_ELM, Common_Movement_Delay48)
             waitmovement(0)
-            msgbox("What? That POKéMON!?!\n"
+            msgbox("What? That {POKEMON}!?!\n"
                    "The EGG hatched!\p"
-                   "So, POKéMON are born from EGGS…\n"
-                   "No, perhaps not all POKéMON are.\p"
+                   "So, {POKEMON} are born from EGGS…\n"
+                   "No, perhaps not all {POKEMON} are.\p"
                    "Wow, there's still a lot of research\n"
                    "to be done.\p", MSGBOX_CONTINUE)
             setflag(FLAG_SHOWED_TOGEPI_TO_ELM)
@@ -85,7 +85,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
         msgbox("ELM: {PLAYER}?\n"
                "Didn't you meet my assistant?\p"
                "He should have met you with the EGG\n"
-               "at VIOLET CITY's POKéMON CENTER.\p"
+               "at VIOLET CITY's {POKEMON} CENTER.\p"
                "You must have just missed him.\n"
                "Try to catch him there.")
     }
@@ -97,7 +97,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
     elif (flag(FLAG_RECEIVED_MYSTERY_EGG))
     {
         msgbox("ELM: {PLAYER}, this is terrible…\p"
-               "Oh, yes, what was MR. POKéMON's big\n"
+               "Oh, yes, what was MR. {POKEMON}'s big\n"
                "discovery?")
         textcolor(MSG_COLOR_SYS)
         playfanfare(MUS_OBTAIN_ITEM)
@@ -141,10 +141,10 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
                 applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsLeft)
                 waitmovement(0)
         }
-        msgbox("But… Is it a POKéMON EGG?\n"
+        msgbox("But… Is it a {POKEMON} EGG?\n"
                "If it is, it's a great discovery!\p"
                "What?!?\n"
-               "PROF. OAK gave you a POKéDEX?\p"
+               "PROF. OAK gave you a {POKEDEX}?\p"
                "{PLAYER}, is that true?\n"
                "Th-that's incredible!\p"
                "He is superb at seeing the potential\n"
@@ -152,8 +152,8 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
                "Wow, {PLAYER}. You may have what it\n"
                "takes to become the CHAMPION.\p"
                "You seem to be getting on great with\n"
-               "POKéMON too.\p"
-               "You should take the POKéMON GYM\n"
+               "{POKEMON} too.\p"
+               "You should take the {POKEMON} GYM\n"
                "challenge.\p"
                "The closest GYM would be the one in\n"
                "VIOLET CITY.\p"
@@ -171,15 +171,15 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
     }
     elif (flag(FLAG_SYS_POKEMON_GET))
     {
-        msgbox("ELM: MR. POKéMON goes everywhere\n"
+        msgbox("ELM: MR. {POKEMON} goes everywhere\n"
                "and finds rarities.\p"
                "Too bad they're just rare and\n"
                "not very useful…")
     }
     else
     {
-        msgbox("ELM: If a wild POKéMON appears,\n"
-               "let your POKéMON battle it!")
+        msgbox("ELM: If a wild {POKEMON} appears,\n"
+               "let your {POKEMON} battle it!")
     }
     release
 }
@@ -202,7 +202,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm_CheckMasterBall {
         end
     }
     giveitem(ITEM_MASTER_BALL, 1)
-    msgbox("The MASTER BALL is the best!\nIt's the ultimate BALL!\pIt'll catch any POKéMON without\nfail.\pIt's given only to recognized POKéMON\nresearchers.\pI think you can make much better\nuse of it than I can, {PLAYER}!", MSGBOX_DEFAULT)
+    msgbox("The MASTER BALL is the best!\nIt's the ultimate BALL!\pIt'll catch any {POKEMON} without\nfail.\pIt's given only to recognized {POKEMON}\nresearchers.\pI think you can make much better\nuse of it than I can, {PLAYER}!", MSGBOX_DEFAULT)
     setflag(FLAG_GOT_MASTER_BALL_FROM_ELM)
     release
     end
@@ -213,7 +213,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon {
     {
         msgbox("ELM: {PLAYER}?\n"
                 "I thought the EGG hatched.\l"
-                "Where is the POKéMON?")
+                "Where is the {POKEMON}?")
     }
     else
     {
@@ -228,7 +228,7 @@ text NewBarkTown_ProfessorElmsLab_Text_Elm_HasThatEggHatched {
 
 script NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone {
     msgbox("Thanks, {PLAYER}! You're helping\n"
-           "unravel POKéMON mysteries for us!\p"
+           "unravel {POKEMON} mysteries for us!\p"
            "I want you to have this as a token\n"
            "of our appreciation.")
     checkitemspace(ITEM_EVERSTONE, 1)
@@ -242,11 +242,11 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone {
         giveitem_msg("{PLAYER} received the EVERSTONE\n"
                      "from PROF. ELM.", ITEM_EVERSTONE)
         msgbox("That's an EVERSTONE.\p"
-               "Some species of POKéMON evolve\n"
+               "Some species of {POKEMON} evolve\n"
                "when they grow to certain levels.\p"
-               "A POKéMON holding the EVERSTONE\n"
+               "A {POKEMON} holding the EVERSTONE\n"
                "won't evolve.\p"
-               "Give it to a POKéMON you don't want\n"
+               "Give it to a {POKEMON} you don't want\n"
                "to evolve."
         )
         setflag(FLAG_GOT_EVERSTONE_FROM_ELM)
@@ -313,7 +313,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction {
     msgbox("ELM: {PLAYER}!\n"
            "There you are!\l"
            "I needed to ask you a favor.\p"
-           "I'm conducting POKéMON research\n"
+           "I'm conducting {POKEMON} research\n"
            "right now, and I was wondering if\l"
            "you could help me with it, {PLAYER}.\p"
            "You see…\p"
@@ -321,7 +321,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction {
            "present at a conference.\p"
            "But there are some things I don't\n"
            "quite understand yet.\p"
-           "So! I'd like you to raise a POKéMON\n"
+           "So! I'd like you to raise a {POKEMON}\n"
            "that I recently caught.", MSGBOX_YESNO)
     goto(NewBarkTown_ProfessorElmsLab_EventScript_ElmBeggingLoop)
 }
@@ -341,7 +341,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging {
            "You're a great help!\p"
            "When I announce my findings, I'm\n"
            "sure we'll delve a bit deeper into\l"
-           "the many mysteries of POKéMON.\p"
+           "the many mysteries of {POKEMON}.\p"
            "You can count on it!")
     closemessage
     delay(20)
@@ -366,13 +366,13 @@ script NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging {
     waitmovement(0)
     msgbox("Hey, listen.\p"
            "I have an acquaintance called\n"
-           "MR. POKéMON.\p"
+           "MR. {POKEMON}.\p"
            "He keeps finding weird things and\n"
            "raving about his discoveries.\p"
            "Anyway, I just got an e-mail from\n"
            "him saying that this time it's real.\p"
            "It is intriguing, but we're busy with\n"
-           "our POKéMON research…\p"
+           "our {POKEMON} research…\p"
            "Wait!\n"
            "I know!\p"
            "{PLAYER}, can you go in our place?")
@@ -381,9 +381,9 @@ script NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging {
     applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_ElmWalkToPokeBalls)
     waitmovement(0)
     msgbox("I want you to raise one of the\n"
-           "POKéMON contained in these\l"
-           "POKé BALLS.\p"
-           "You'll be that POKéMON's first\n"
+           "{POKEMON} contained in these\l"
+           "{POKE} BALLS.\p"
+           "You'll be that {POKEMON}'s first\n"
            "partner, {PLAYER}!\p"
            "Go on, then.\n"
            "Pick one!")
@@ -453,7 +453,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Cyndaquil {
 script NewBarkTown_EventScript_PokeBallMain {
     if (flag(FLAG_SYS_POKEMON_GET))
     {
-        msgbox("It contains a POKéMON caught by\n"
+        msgbox("It contains a {POKEMON} caught by\n"
                "PROF. ELM.")
     }
     else
@@ -468,17 +468,17 @@ script NewBarkTown_EventScript_PokeBallMain {
                 msgbox("ELM: Hm! CHIKORITA is your choice.\n"
                        "Take your time raising it.\p"
                        "So, {PLAYER}, do you like CHIKORITA,\n"
-                       "the GRASS POKéMON?", MSGBOX_YESNO)
+                       "the GRASS {POKEMON}?", MSGBOX_YESNO)
             case STARTER_TOTODILE:
                 msgbox("ELM: Ah! TOTODILE is your choice.\n"
                        "It would be rewarding to raise.\p"
                        "So, {PLAYER}, do you want TOTODILE,\n"
-                       "the WATER POKéMON?", MSGBOX_YESNO)
+                       "the WATER {POKEMON}?", MSGBOX_YESNO)
             case STARTER_CYNDAQUIL:
                 msgbox("ELM: Oh! CYNDAQUIL is your choice.\n"
                        "Raising it would be a cinch.\p"
                        "So, {PLAYER}, you'll take CYNDAQUIL,\n"
-                       "the FIRE POKéMON?", MSGBOX_YESNO)
+                       "the FIRE {POKEMON}?", MSGBOX_YESNO)
         }
         hidemonpic
         if (var(VAR_RESULT) != YES)
@@ -490,7 +490,7 @@ script NewBarkTown_EventScript_PokeBallMain {
         {
             removeobject(VAR_LAST_TALKED)
             msgbox("ELM: I think that's a great\n"
-                   "POKéMON too!")
+                   "{POKEMON} too!")
             textcolor(MSG_COLOR_PREV)
             setflag(FLAG_SYS_POKEMON_GET)
             givemon(PLAYER_STARTER_SPECIES, 5, ITEM_ORAN_BERRY)
@@ -543,7 +543,7 @@ script NewBarkTown_EventScript_PokeBallMain {
             waitmovement(0)
             delay(20)
             textcolor(MSG_COLOR_BLUE)
-            msgbox("MR. POKéMON lives a bit beyond\n"
+            msgbox("MR. {POKEMON} lives a bit beyond\n"
                    "CHERRYGROVE, the next city over.\p"
                    "It's almost a direct route there,\n"
                    "so you can't miss it.\p"
@@ -558,7 +558,7 @@ script NewBarkTown_EventScript_PokeBallMain {
             applymovement(OBJ_EVENT_ID_ELM, Common_Movement_WalkInPlaceFastestLeft)
             waitmovement(0)
             textcolor(MSG_COLOR_BLUE)
-            msgbox("If your POKéMON is hurt, you should\n"
+            msgbox("If your {POKEMON} is hurt, you should\n"
                    "heal it with this machine.\l"
                    "Feel free to use it anytime.")
             applymovement(OBJ_EVENT_ID_ELM, Common_Movement_WalkInPlaceFastestDown)
@@ -766,7 +766,7 @@ movement NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromRight {
 script NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain {
     waitmovement(0)
     textcolor(MSG_COLOR_BLUE)
-    msgbox("I heard a POKéMON was stolen from\n"
+    msgbox("I heard a {POKEMON} was stolen from\n"
            "here…\p"
            "I was just getting some information\n"
            "from PROF. ELM.\p"
@@ -827,12 +827,12 @@ script NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain {
     waitmovement(0)
     textcolor(MSG_COLOR_BLUE)
     msgbox("{PLAYER}!\n"
-           "Use these on your POKéDEX quest!")
-    giveitem_msg("{PLAYER} received the POKé BALLS\n"
+           "Use these on your {POKEDEX} quest!")
+    giveitem_msg("{PLAYER} received the {POKE} BALLS\n"
                  "from the AIDE.", ITEM_POKE_BALL, 5)
-    msgbox("To add to your POKéDEX, you have\n"
-           "to catch POKéMON.\p"
-           "Throw POKé BALLS at wild POKéMON\n"
+    msgbox("To add to your {POKEDEX}, you have\n"
+           "to catch {POKEMON}.\p"
+           "Throw {POKE} BALLS at wild {POKEMON}\n"
            "to get them.")
     closemessage
     switch (var(VAR_TEMP_1))
@@ -854,28 +854,28 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Aide {
     faceplayer
     if (flag(FLAG_GOT_ELMS_EGG))
     {
-        msgbox("…sigh… That stolen POKéMON.\n"
+        msgbox("…sigh… That stolen {POKEMON}.\n"
                "I wonder how it's doing.\p"
-               "They say a POKéMON raised by a bad\n"
+               "They say a {POKEMON} raised by a bad\n"
                "person turns bad itself.")
     }
     elif (flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
     {
-        msgbox("To add to your POKéDEX, you have\n"
-               "to catch POKéMON.\p"
-               "Throw POKé BALLS at wild POKéMON\n"
+        msgbox("To add to your {POKEDEX}, you have\n"
+               "to catch {POKEMON}.\p"
+               "Throw {POKE} BALLS at wild {POKEMON}\n"
                "to get them.")
     }
     elif (flag(FLAG_RECEIVED_MYSTERY_EGG))
     {
         msgbox("There was a loud noise outside…\p"
                "When we went to look, someone stole\n"
-               "a POKéMON off the table.\p"
+               "a {POKEMON} off the table.\p"
                "It's unbelievable that anyone would\n"
                "do that!\p"
-               "…sigh… That stolen POKéMON.\n"
+               "…sigh… That stolen {POKEMON}.\n"
                "I wonder how it's doing.\p"
-               "They say a POKéMON raised by a bad\n"
+               "They say a {POKEMON} raised by a bad\n"
                "person turns bad itself.")
     }
     else
@@ -905,7 +905,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_HealingMachine {
     }
     else
     {
-        msgbox("Would you like to heal your POKéMON?", MSGBOX_YESNO)
+        msgbox("Would you like to heal your {POKEMON}?", MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
             closemessage
@@ -916,7 +916,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_HealingMachine {
 }
 
 script NewBarkTown_ProfessorElmsLab_EventScript_ElmsPC {
-    msgbox("“OBSERVATIONS ON POKéMON\n"
+    msgbox("“OBSERVATIONS ON {POKEMON}\n"
            "EVOLUTION”, it says on the screen…", MSGBOX_SIGN)
 }
 
@@ -965,7 +965,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Shelf4 {
     msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro)
     signmsg
     msgbox("Travel Tip 4:\n"
-           "Check your POKéMON moves.\l"
+           "Check your {POKEMON} moves.\l"
            "Press the A Button to switch moves.")
     normalmsg
     releaseall

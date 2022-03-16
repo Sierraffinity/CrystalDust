@@ -60,7 +60,7 @@ mapscripts RuinsOfAlph_HoOhChamber_MapScripts {
 }
 
 script RuinsOfAlph_HoOhChamber_EventScript_HoOhDescription {
-    msgbox("A POKéMON that flew gracefully on\nrainbow-colored wings.", MSGBOX_SIGN)
+    msgbox("A {POKEMON} that flew gracefully on\nrainbow-colored wings.", MSGBOX_SIGN)
 }
 
 script RuinsOfAlph_HoOhChamber_EventScript_BackWall {

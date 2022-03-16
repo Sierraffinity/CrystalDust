@@ -394,7 +394,7 @@ script GoldenrodCity_GameCorner_EventScript_WontStopWoman {
 script GoldenrodCity_GameCorner_EventScript_Gentleman {
     lock
     faceplayer
-    msgbox("I taught BLIZZARD to my POKéMON.\p"
+    msgbox("I taught BLIZZARD to my {POKEMON}.\p"
            "It was hard to get enough coins for\n"
            "it, but it was worth it.")
     call(GoldenrodCity_GameCorner_EventScript_FaceSlotMachine)

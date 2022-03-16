@@ -8,7 +8,7 @@ mapscripts IndigoPlateau_HallOfFame_MapScripts {
             applymovement(OBJ_EVENT_ID_PLAYER, IndigoPlateau_HallOfFame_Movement_PlayerToMachine)
             waitmovement(0)
             textcolor(0)
-            msgbox("LANCE: It's been a long time since\nI last came here.\pThis is where we honor the LEAGUE\nCHAMPIONS for all eternity.\pTheir courageous POKéMON are also\ninducted.\pHere today, we witnessed the rise\nof a new LEAGUE CHAMPION--a\ltrainer who feels compassion for,\land trust toward, all POKéMON.\pA trainer who succeeded through\nperserverance and determination.\pThe new LEAGUE CHAMPION who has\nall the makings of greatness!\p{PLAYER}, allow me to register you\nand your partners as CHAMPIONS!", MSGBOX_DEFAULT)
+            msgbox("LANCE: It's been a long time since\nI last came here.\pThis is where we honor the LEAGUE\nCHAMPIONS for all eternity.\pTheir courageous {POKEMON} are also\ninducted.\pHere today, we witnessed the rise\nof a new LEAGUE CHAMPION--a\ltrainer who feels compassion for,\land trust toward, all {POKEMON}.\pA trainer who succeeded through\nperserverance and determination.\pThe new LEAGUE CHAMPION who has\nall the makings of greatness!\p{PLAYER}, allow me to register you\nand your partners as CHAMPIONS!", MSGBOX_DEFAULT)
             closemessage
             applymovement(OBJ_EVENT_ID_PLAYER, IndigoPlateau_HallOfFame_Movement_PlayerApproachMachine)
             waitmovement(0)

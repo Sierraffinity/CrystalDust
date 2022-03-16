@@ -12,7 +12,7 @@ script Route9_EventScript_PicnickerEdna{ //bottom left
 
 script Route9_EventScript_CamperDean{ //east of Sid
     trainerbattle_single(TRAINER_DEAN, "I came to explore ROCK TUNNEL.", "Whoa!\nDanger, man.")
-	msgbox("My POKéMON were hurt before even\nentering ROCK TUNNEL.\pI'd better take them to a\nPOKéMON CENTER right away.", MSGBOX_AUTOCLOSE)
+	msgbox("My {POKEMON} were hurt before even\nentering ROCK TUNNEL.\pI'd better take them to a\n{POKEMON} CENTER right away.", MSGBOX_AUTOCLOSE)
 }
 
 script Route9_EventScript_PicnickerHeidi{ //rightmost

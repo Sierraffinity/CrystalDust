@@ -95,7 +95,7 @@ script GoldenrodCity_Underground_EventScript_HerbMerchant {
 		msgbox("Hello, dear.\n"
 			   "I sell inexpensive herbal medicine.\p"
 			   "They're good but a trifle bitter.\n"
-			   "Your POKéMON may not like them.\l"
+			   "Your {POKEMON} may not like them.\l"
 			   "Hehehehe…")
 		special(HerbShop)
 		waitstate
@@ -127,10 +127,10 @@ script GoldenrodCity_Underground_EventScript_OlderHaircutBrother {
 		{
 			showmoneybox(0, 0, FALSE)
 			msgbox("Welcome!\n"
-				   "I run the POKéMON SALON!\p"
+				   "I run the {POKEMON} SALON!\p"
 				   "I'm the older and better of the two\n"
 				   "HAIRCUT BROTHERS.\p"
-				   "I can make your POKéMON beautiful\n"
+				   "I can make your {POKEMON} beautiful\n"
 				   "for just ¥500.\p"
 				   "Would you like me to do that?", MSGBOX_YESNO)
 			if (var(VAR_RESULT) == YES)
@@ -138,7 +138,7 @@ script GoldenrodCity_Underground_EventScript_OlderHaircutBrother {
 				checkmoney(500, FALSE)
 				if (var(VAR_RESULT) == TRUE)
 				{
-					msgbox("Which POKéMON should I work on?")
+					msgbox("Which {POKEMON} should I work on?")
 					special(ChoosePartyMon)
 					waitstate
 					if(var(VAR_0x8004) == 0xFF)
@@ -212,10 +212,10 @@ script GoldenrodCity_Underground_EventScript_YoungerHaircutBrother {
 		else
 		{
 			showmoneybox(0, 0, FALSE)
-			msgbox("Welcome to the POKéMON SALON!\p"
+			msgbox("Welcome to the {POKEMON} SALON!\p"
 				   "I'm the younger and less expensive\n"
 				   "of the two HAIRCUT BROTHERS.\p"
-				   "I'll spiff up your POKéMON for\n"
+				   "I'll spiff up your {POKEMON} for\n"
 				   "just ¥300.\p"
 				   "So? How about it?", MSGBOX_YESNO)
 			if (var(VAR_RESULT) == YES)
@@ -223,7 +223,7 @@ script GoldenrodCity_Underground_EventScript_YoungerHaircutBrother {
 				checkmoney(300, FALSE)
 				if (var(VAR_RESULT) == TRUE)
 				{
-					msgbox("Okay, which POKéMON should I do?")
+					msgbox("Okay, which {POKEMON} should I do?")
 					special(ChoosePartyMon)
 					waitstate
 					if(var(VAR_0x8004) == 0xFF)

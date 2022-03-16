@@ -49,7 +49,7 @@ script Route32_PokemonCenter_1F_EventScript_FishingGuru {
 
 script Route32_PokemonCenter_1F_EventScript_HoldItemGirl {
     msgbox("What item should I make my\n"
-           "POKéMON hold?\p"
+           "{POKEMON} hold?\p"
            "Maybe something that increases the\n"
            "power of its attacks…", MSGBOX_NPC)
 }

@@ -33,7 +33,7 @@ script GoldenrodCity_DeptStore_3F_EventScript_Rocker {
 script GoldenrodCity_DeptStore_3F_EventScript_ImpatientNerd {
     msgbox("I, I, I'm really impatient!\n"
            "I use X SPEED in battle to speed\l"
-           "up my POKéMON.", MSGBOX_NPC)
+           "up my {POKEMON}.", MSGBOX_NPC)
 }
 
 script GoldenrodCity_DeptStore_3F_EventScript_FloorNumber {

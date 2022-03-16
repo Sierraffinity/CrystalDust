@@ -61,7 +61,7 @@ script OlivineCity_EventScript_RivalTrigger{
     }
     playbgm(MUS_ENCOUNTER_RIVAL, 0)
     textcolor(0)
-    msgbox("…\nYou again?\pThere's no need to panic. I don't\nbother with wimps like you.\pSpeaking of weaklings, the city's\nGYM LEADER isn't here.\pSupposedly taking care of a sick\nPOKéMON at the LIGHTHOUSE.\pHumph! Boo-hoo!\nJust let sick POKéMON go!\pA POKéMON that can't battle is\nworthless!\pWhy don't you go train at the\nLIGHTHOUSE?\pWho knows?\nIt may make you a bit less weak!", MSGBOX_DEFAULT)
+    msgbox("…\nYou again?\pThere's no need to panic. I don't\nbother with wimps like you.\pSpeaking of weaklings, the city's\nGYM LEADER isn't here.\pSupposedly taking care of a sick\n{POKEMON} at the LIGHTHOUSE.\pHumph! Boo-hoo!\nJust let sick {POKEMON} go!\pA {POKEMON} that can't battle is\nworthless!\pWhy don't you go train at the\nLIGHTHOUSE?\pWho knows?\nIt may make you a bit less weak!", MSGBOX_DEFAULT)
     release
     delay(10)
     getplayerxy(VAR_0x8001, VAR_RESULT)
@@ -133,7 +133,7 @@ script OlivineCity_EventScript_CitySign{
 }
 
 script OlivineCity_EventScript_GymSign{
-    msgbox("OLIVINE CITY POKéMON GYM\nLEADER: JASMINE\pThe Steel-Clad Defense Girl", MSGBOX_SIGN)
+    msgbox("OLIVINE CITY {POKEMON} GYM\nLEADER: JASMINE\pThe Steel-Clad Defense Girl", MSGBOX_SIGN)
     end
 }
 
@@ -157,10 +157,10 @@ script OlivineCity_EventScript_Boy{ //northernmost NPC
     random(2)
     if(var(VAR_RESULT) == 0)
     {
-        msgbox("That thing you have--it's a\nPOKéGEAR, right? Wow, that's cool.", MSGBOX_NPC)
+        msgbox("That thing you have--it's a\n{POKE}GEAR, right? Wow, that's cool.", MSGBOX_NPC)
         end
     }
-    msgbox("Wow, you have a POKéDEX!\nThat is just so awesome.", MSGBOX_NPC)
+    msgbox("Wow, you have a {POKEDEX}!\nThat is just so awesome.", MSGBOX_NPC)
     end
 }
 

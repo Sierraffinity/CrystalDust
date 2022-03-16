@@ -2,7 +2,7 @@ Route111_Text_MakingRoomUseTMToMakeYourOwn:
 	.string "What's that?\n"
 	.string "What am I doing?\p"
 	.string "I'm thinking about making my own room\n"
-	.string "here using a POKéMON move.\p"
+	.string "here using a {POKEMON} move.\p"
 	.string "I know! I'll give you this TM.\n"
 	.string "Will you use it to make your own room?$"
 

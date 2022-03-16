@@ -6,7 +6,7 @@ mapscripts CeruleanCity_PokemonCenter_1F_MapScripts {
 }
 
 script CeruleanCity_PokemonCenter_1F_EventScript_SuperNerd {
-	msgbox("For battles, I'd much rather use\nPOKéMON I've been raising, even if\lthey're weaker than some newly\lcaught POKéMON.", MSGBOX_NPC)
+	msgbox("For battles, I'd much rather use\n{POKEMON} I've been raising, even if\lthey're weaker than some newly\lcaught {POKEMON}.", MSGBOX_NPC)
 	end
 }
 

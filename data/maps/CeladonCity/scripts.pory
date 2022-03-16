@@ -10,7 +10,7 @@ script CeladonCity_EventScript_CitySign {
 }
 
 script CeladonCity_EventScript_GymSign {
-	msgbox("CELADON CITY POKéMON GYM\nLEADER: ERIKA\pThe Nature-Loving Princess", MSGBOX_SIGN)
+	msgbox("CELADON CITY {POKEMON} GYM\nLEADER: ERIKA\pThe Nature-Loving Princess", MSGBOX_SIGN)
     end
 }
 
@@ -30,7 +30,7 @@ script CeladonCity_EventScript_GameCornerSign {
 }
 
 script CeladonCity_EventScript_TrainerTipsSign {
-	msgbox("TRAINER TIPS\pGUARD SPEC. protects POKéMON against\nSPECIAL attacks such as\lfire and water.\pGet your items at CELADON DEPT.\nSTORE!", MSGBOX_SIGN)
+	msgbox("TRAINER TIPS\pGUARD SPEC. protects {POKEMON} against\nSPECIAL attacks such as\lfire and water.\pGet your items at CELADON DEPT.\nSTORE!", MSGBOX_SIGN)
 	end
 }
 
@@ -70,7 +70,7 @@ script CeladonCity_EventScript_Teacher1{
 }
 
 script CeladonCity_EventScript_Fisher{
-    msgbox("This POLIWRATH is my partner.\pI wonder if it'll ever evolve into a\nfrog POKéMON.", MSGBOX_NPC)
+    msgbox("This POLIWRATH is my partner.\pI wonder if it'll ever evolve into a\nfrog {POKEMON}.", MSGBOX_NPC)
     end
 }
 

@@ -1,19 +1,19 @@
 mapscripts Lighthouse_3F_MapScripts {}
 
 script Lighthouse_3F_EventScript_GentlemanPreston {
-    trainerbattle_single(TRAINER_PRESTON,  "I travel the world to train my\nPOKéMON. I wish to battle with you.", "…sigh… I must train some more…")
-    msgbox("JASMINE used to use rock POKéMON\nlike ONIX.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_PRESTON,  "I travel the world to train my\n{POKEMON}. I wish to battle with you.", "…sigh… I must train some more…")
+    msgbox("JASMINE used to use rock {POKEMON}\nlike ONIX.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Lighthouse_3F_Eventscript_SailorTerrell {
     trainerbattle_single(TRAINER_TERRELL, "SAILORS are both kind and strong.\nHow about you?", "You are both kind and strong…")
-    msgbox("Every time I come back to OLIVINE,\nI visit the GYM.\pThe GYM LEADER's POKéMON type has\nchanged without me noticing.", MSGBOX_AUTOCLOSE)
+    msgbox("Every time I come back to OLIVINE,\nI visit the GYM.\pThe GYM LEADER's {POKEMON} type has\nchanged without me noticing.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Lighthouse_3F_Eventscript_BirdKeeperTheo {
     trainerbattle_single(TRAINER_THEO, "Why are you here? Are you just going\nto gawk? I suggest that you leave!", "You really are concerned…")
-    msgbox("How the heck do you go up?\pI want to visit the sick POKéMON,\nbut I can't get up there…", MSGBOX_AUTOCLOSE)
+    msgbox("How the heck do you go up?\pI want to visit the sick {POKEMON},\nbut I can't get up there…", MSGBOX_AUTOCLOSE)
     end
 }

@@ -44,7 +44,7 @@ script RadioTower_1F_EventScript_LuckyNumberMan {
         msgbox("Hi, are you here for the LUCKY\n"
                "NUMBER SHOW?\p"
                "Want me to check the ID numbers\n"
-               "of your POKéMON?\p"
+               "of your {POKEMON}?\p"
                "If you get lucky, you win a prize.\n"
                "How about it?", MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
@@ -193,13 +193,13 @@ script RadioTower_1F_EventScript_RadioCardWoman {
             "going on right now.\p"
             "Answer five questions correctly\n"
             "to win a RADIO CARD.\p"
-            "Slide it into your POKéGEAR to play\n"
+            "Slide it into your {POKE}GEAR to play\n"
             "the radio anytime, anywhere.\p"
             "Would you like to take the quiz?", MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES)
     {
         msgbox("Question 1:\p"
-               "Is there a POKéMON that appears\n"
+               "Is there a {POKEMON} that appears\n"
                "only in the morning?", MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
@@ -223,7 +223,7 @@ script RadioTower_1F_EventScript_RadioCardWoman {
                     msgbox("So far so good!\n"
                            "Question 4:\p"
                            "Is FALKNER the VIOLET GYM LEADER\n"
-                           "who uses BIRD POKéMON?", MSGBOX_YESNO)
+                           "who uses BIRD {POKEMON}?", MSGBOX_YESNO)
                     if (var(VAR_RESULT) == YES)
                     {
                         playse(SE_DING_DONG)
@@ -245,7 +245,7 @@ script RadioTower_1F_EventScript_RadioCardWoman {
                             message("{PLAYER} received the RADIO CARD\n"
                                     "from the receptionist.")
                             waitfanfare
-                            msgbox("{PLAYER}'s POKéGEAR can now double\n"
+                            msgbox("{PLAYER}'s {POKE}GEAR can now double\n"
                                    "as a radio!")
                             textcolor(MSG_COLOR_PREV)
                             goto(RadioTower_1F_EventScript_RadioCardWoman_EndQuiz)
@@ -274,7 +274,7 @@ script RadioTower_1F_EventScript_RadioCardWoman_EndQuiz {
 }
 
 script RadioTower_1F_EventScript_MaryLoverBoy {
-    msgbox("I love MARY, from POKéMON TALK.\p"
+    msgbox("I love MARY, from {POKEMON} TALK.\p"
            "I only know what she sounds like,\n"
            "though.", MSGBOX_NPC)
 }
@@ -294,7 +294,7 @@ script RadioTower_1F_EventScript_DirectorySign {
 
 script RadioTower_1F_EventScript_LuckyChannelSign {
     msgbox("LUCKY CHANNEL!\n"
-           "Win with POKéMON ID numbers!\p"
-           "Trade your POKéMON to collect\n"
+           "Win with {POKEMON} ID numbers!\p"
+           "Trade your {POKEMON} to collect\n"
            "different ID numbers!", MSGBOX_SIGN)
 }

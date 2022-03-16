@@ -12,7 +12,7 @@ mapscripts SaffronCity_CopycatsHouse_2F_MapScripts {
 
 script SaffronCity_CopycatsHouse_2F_EventScript_Dolls {
     lock
-    msgbox("This is a rare POKéMON! Huh?\nIt's only a doll…", MSGBOX_DEFAULT)
+    msgbox("This is a rare {POKEMON}! Huh?\nIt's only a doll…", MSGBOX_DEFAULT)
     release
     end
 }
@@ -29,7 +29,7 @@ script SaffronCity_CopycatsHouse_2F_EventScript_Dodrio {
 }
 
 script SaffronCity_CopycatsHouse_2F_EventScript_PC {
-    msgbox("…\pMy Secrets!\pSkill: Mimicry!\nHobby: Collecting dolls!\lFavorite POKéMON: CLEFAIRY!", MSGBOX_SIGN)
+    msgbox("…\pMy Secrets!\pSkill: Mimicry!\nHobby: Collecting dolls!\lFavorite {POKEMON}: CLEFAIRY!", MSGBOX_SIGN)
     end
 }
 
@@ -63,7 +63,7 @@ script SaffronCity_CopycatsHouse_2F_EventScript_Copycat {
     checkitem(ITEM_LOST_ITEM, 1)
     if(var(VAR_RESULT))
     {
-        msgbox("COPYCAT: Yay!\nThat's my CLEFAIRY POKé DOLL!\pSee the tear where the right leg is\nsewn on? That's proof!\pOK. Here's the MAGNET TRAIN PASS\nlike I promised!", MSGBOX_DEFAULT)
+        msgbox("COPYCAT: Yay!\nThat's my CLEFAIRY {POKE} DOLL!\pSee the tear where the right leg is\nsewn on? That's proof!\pOK. Here's the MAGNET TRAIN PASS\nlike I promised!", MSGBOX_DEFAULT)
         removeitem(ITEM_LOST_ITEM, 1)
         giveitem(ITEM_PASS, 1) // Copycat takes a Key Item before this, so it's impossible to not have space.
         msgbox("COPYCAT: That's the PASS for the\nMAGNET TRAIN.\pThe rail company man gave me that\nwhen they tore down our old house\lfor the STATION.", MSGBOX_DEFAULT)
@@ -76,11 +76,11 @@ script SaffronCity_CopycatsHouse_2F_EventScript_Copycat {
         checkplayergender
         if(var(VAR_RESULT) == MALE)
         {
-            msgbox("{PLAYER}: Hi!\pI heard that you lost your\nfavorite POKé DOLL.\p{PLAYER}: If I find it, you'll give\nme a rail PASS?\p{PLAYER}: I'll go find it for you.\pYou think you lost it when you went\nto VERMILION CITY?", MSGBOX_DEFAULT)
+            msgbox("{PLAYER}: Hi!\pI heard that you lost your\nfavorite {POKE} DOLL.\p{PLAYER}: If I find it, you'll give\nme a rail PASS?\p{PLAYER}: I'll go find it for you.\pYou think you lost it when you went\nto VERMILION CITY?", MSGBOX_DEFAULT)
         }
         else
         {
-            msgbox("{PLAYER}: Hi. Did you really lose\nyour POKé DOLL?\p{PLAYER}: You'll really give me a\nrail PASS if I find it for you?\p{PLAYER}: Sure, I'll look for it!\pYou think you lost it when you\nwere in VERMILION?", MSGBOX_DEFAULT)
+            msgbox("{PLAYER}: Hi. Did you really lose\nyour {POKE} DOLL?\p{PLAYER}: You'll really give me a\nrail PASS if I find it for you?\p{PLAYER}: Sure, I'll look for it!\pYou think you lost it when you\nwere in VERMILION?", MSGBOX_DEFAULT)
         }
         closemessage
         call(SaffronCity_CopycatsHouse_2F_EventScript_CopycatTransformsBack)
@@ -92,11 +92,11 @@ script SaffronCity_CopycatsHouse_2F_EventScript_Copycat {
     checkplayergender
     if(var(VAR_RESULT) == MALE)
     {
-        msgbox("{PLAYER}: Hi!\nDo you like POKéMON?\p{PLAYER}: Uh, no, I just asked you.\p{PLAYER}: Huh?\nYou're strange!", MSGBOX_DEFAULT)
+        msgbox("{PLAYER}: Hi!\nDo you like {POKEMON}?\p{PLAYER}: Uh, no, I just asked you.\p{PLAYER}: Huh?\nYou're strange!", MSGBOX_DEFAULT)
     }
     else
     {
-        msgbox("{PLAYER}: Hi.\nYou must like POKéMON.\p{PLAYER}: No, not me.\nI asked you.\p{PLAYER}: Pardon?\nYou're weird!", MSGBOX_DEFAULT)
+        msgbox("{PLAYER}: Hi.\nYou must like {POKEMON}.\p{PLAYER}: No, not me.\nI asked you.\p{PLAYER}: Pardon?\nYou're weird!", MSGBOX_DEFAULT)
     }
     closemessage
     call(SaffronCity_CopycatsHouse_2F_EventScript_CopycatTransformsBack)

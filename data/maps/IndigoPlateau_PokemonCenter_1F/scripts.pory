@@ -52,7 +52,7 @@ script IndigoPlateau_PokemonCenter_1F_Eventscript_RivalRematchTriggers{
     playbgm(MUS_ENCOUNTER_RIVAL, 0)
     savebgm(MUS_RIVAL_EXIT)
     textcolor(0)
-    msgbox("Hold it.\pYou're going to take the POKéMON\nLEAGUE challenge now?\pThat's not going to happen.\pMy super-well-trained POKéMON\nare going to pound you.\p{PLAYER}!\nI challenge you!", MSGBOX_DEFAULT)
+    msgbox("Hold it.\pYou're going to take the {POKEMON}\nLEAGUE challenge now?\pThat's not going to happen.\pMy super-well-trained {POKEMON}\nare going to pound you.\p{PLAYER}!\nI challenge you!", MSGBOX_DEFAULT)
     closemessage
     // only one attempt per day
     settrainerflag(TRAINER_RIVAL_REMATCH_CHIKORITA)
@@ -67,7 +67,7 @@ script IndigoPlateau_PokemonCenter_1F_Eventscript_RivalRematchTriggers{
         case STARTER_TOTODILE:
             trainerbattle_wintext(TRAINER_RIVAL_REMATCH_TOTODILE, 0, IndigoPlateau_PokemonCenter_1F_Text_RivalLost, IndigoPlateau_PokemonCenter_1F_Text_RivalWon)
     }
-    msgbox("…Darn…\nI still can't win…\pI… I have to think more about\nmy POKéMON.\pHumph!\nTry not to lose!", MSGBOX_DEFAULT)
+    msgbox("…Darn…\nI still can't win…\pI… I have to think more about\nmy {POKEMON}.\pHumph!\nTry not to lose!", MSGBOX_DEFAULT)
     closemessage
     turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
     getplayerxy(VAR_RESULT, VAR_0x8008)
@@ -123,7 +123,7 @@ script IndigoPlateau_PokemonCenter_1F_Eventscript_RivalRematchTriggers{
 }
 
 script IndigoPlateau_PokemonCenter_1F_Eventscript_Guy{
-    msgbox("At the POKéMON LEAGUE, you'll get\ntested by the ELITE FOUR.\pYou have to beat them all. If you\nlose, you have to start all over!", MSGBOX_NPC)
+    msgbox("At the {POKEMON} LEAGUE, you'll get\ntested by the ELITE FOUR.\pYou have to beat them all. If you\nlose, you have to start all over!", MSGBOX_NPC)
     end
 }
 

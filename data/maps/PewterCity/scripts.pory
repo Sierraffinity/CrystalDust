@@ -31,7 +31,7 @@ script PewterCity_EventScript_GiftShopSign {
 }
 
 script PewterCity_EventScript_GymSign {
-    msgbox("PEWTER CITY POKéMON GYM\nLEADER: BROCK\pThe Rock-Solid POKéMON Trainer", MSGBOX_SIGN)
+    msgbox("PEWTER CITY {POKEMON} GYM\nLEADER: BROCK\pThe Rock-Solid {POKEMON} Trainer", MSGBOX_SIGN)
     end
 }
 
@@ -41,7 +41,7 @@ script PewterCity_EventScript_MuseumSign {
 }
 
 script PewterCity_EventScript_CooltrainerF{
-    msgbox("Have you visited PEWTER GYM?\nThe LEADER uses ROCK-type POKéMON.", MSGBOX_NPC)
+    msgbox("Have you visited PEWTER GYM?\nThe LEADER uses ROCK-type {POKEMON}.", MSGBOX_NPC)
     end
 }
 

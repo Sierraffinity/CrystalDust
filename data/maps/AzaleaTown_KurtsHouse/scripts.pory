@@ -79,7 +79,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt {
                "Ah, don't worry.\n"
                "I'll tell you anyhow.\p"
                "TEAM ROCKET's an evil gang that\n"
-               "uses POKéMON for their dirty work.\p"
+               "uses {POKEMON} for their dirty work.\p"
                "They're supposed to have disbanded\n"
                "three years ago.\p"
                "Anyway, they're at the WELL, cutting\n"
@@ -191,7 +191,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
 
 text AzaleaTown_KurtsHouse_Text_Kurt_TurnedOutGreat {
     "KURT: That turned out great.\n"
-    "Try catching POKéMON with it."
+    "Try catching {POKEMON} with it."
 }
 
 text AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement {

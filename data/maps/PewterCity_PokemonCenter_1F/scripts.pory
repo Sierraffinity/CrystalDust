@@ -12,7 +12,7 @@ script PewterCity_PokemonCenter_1F_EventScript_Woman{
 
 
 script PewterCity_PokemonCenter_1F_EventScript_Youngster{
-    msgbox("Most POKéMON get drowsy if they\nhear a JIGGLYPUFF singing.\pThere are several moves that can be\nused only while a POKéMON is asleep.", MSGBOX_NPC)
+    msgbox("Most {POKEMON} get drowsy if they\nhear a JIGGLYPUFF singing.\pThere are several moves that can be\nused only while a {POKEMON} is asleep.", MSGBOX_NPC)
     end
 }
 
@@ -36,7 +36,7 @@ script PewterCity_PokemonCenter_1F_EventScript_Chris {
 
     if (!flag(FLAG_PEWTER_CITY_NPC_TRADE_COMPLETED))
     {
-        msgbox("Hi, I'm looking for this POKéMON.\pIf you have {STR_VAR_1}, would\nyou trade it for my {STR_VAR_2}?", MSGBOX_YESNO)
+        msgbox("Hi, I'm looking for this {POKEMON}.\pIf you have {STR_VAR_1}, would\nyou trade it for my {STR_VAR_2}?", MSGBOX_YESNO)
         
         if (var(VAR_RESULT) != NO)
         {

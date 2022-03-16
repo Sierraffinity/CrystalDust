@@ -39,7 +39,7 @@ mapscripts BurnedTower_1F_MapScripts {
                 applymovement(1, BurnedTower_1F_Movement_EusineToPlayer)
                 waitmovement(0)
                 textcolor(0)
-                msgbox("EUSINE: My name's EUSINE. I'm on the\ntrail of a POKéMON named SUICUNE.\pAnd you are?\n{PLAYER}? Glad to meet you!\pI heard rumors that SUICUNE is in\nthis BURNED TOWER, so I came\lto look.\pBut where exactly could it be?", MSGBOX_DEFAULT)
+                msgbox("EUSINE: My name's EUSINE. I'm on the\ntrail of a {POKEMON} named SUICUNE.\pAnd you are?\n{PLAYER}? Glad to meet you!\pI heard rumors that SUICUNE is in\nthis BURNED TOWER, so I came\lto look.\pBut where exactly could it be?", MSGBOX_DEFAULT)
                 setvar(VAR_TEMP_1, 1)
                 setflag(FLAG_MET_EUSINE)
                 release
@@ -80,7 +80,7 @@ script BurnedTower_1F_EventScript_RivalTrigger{
     playbgm(MUS_ENCOUNTER_RIVAL, 0)
 	savebgm(MUS_RIVAL_EXIT)
     textcolor(0)
-    msgbox("…… …… ……\n…Oh, it's you.\pI came looking for some legendary\nPOKéMON that they say roosts here.\pBut there's nothing here!\pNothing after all the trouble of\ncoming to this dump? No way!\pIt's all your fault!")
+    msgbox("…… …… ……\n…Oh, it's you.\pI came looking for some legendary\n{POKEMON} that they say roosts here.\pBut there's nothing here!\pNothing after all the trouble of\ncoming to this dump? No way!\pIt's all your fault!")
     closemessage
     setvar(VAR_LAST_TALKED, 3)
     if (var(VAR_STARTER_MON) == STARTER_CHIKORITA)
@@ -96,7 +96,7 @@ script BurnedTower_1F_EventScript_RivalTrigger{
         trainerbattle_wintext(TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL, 0, BurnedTower_1F_Text_RivalLost, BurnedTower_1F_Text_RivalWon)
     }
     textcolor(0)
-    msgbox("…Aw, whatever.\pYou would never be able to catch a\nlegendary POKéMON anyway.", MSGBOX_DEFAULT)
+    msgbox("…Aw, whatever.\pYou would never be able to catch a\nlegendary {POKEMON} anyway.", MSGBOX_DEFAULT)
     closemessage
     fadeoutbgm(0)
     playbgm(MUS_NONE, TRUE)
@@ -163,6 +163,6 @@ script BurnedTower_1F_EventScript_Eusine{
 }
 
 script BurnedTower_1F_EventScript_Morty{
-    msgbox("MORTY: ECRUTEAK's GYM LEADER has to\nstudy what are said to be the\llegendary POKéMON--SUICUNE, ENTEI\land RAIKOU.\pEUSINE is here, so I've decided to\ninvestigate the TOWER with him.", MSGBOX_NPC)
+    msgbox("MORTY: ECRUTEAK's GYM LEADER has to\nstudy what are said to be the\llegendary {POKEMON}--SUICUNE, ENTEI\land RAIKOU.\pEUSINE is here, so I've decided to\ninvestigate the TOWER with him.", MSGBOX_NPC)
     end
 }

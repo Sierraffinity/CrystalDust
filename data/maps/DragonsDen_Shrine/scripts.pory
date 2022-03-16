@@ -23,7 +23,7 @@ mapscripts DragonsDen_Shrine_MapScripts {
             closemessage
             setvar(VAR_QUESTION_NUM, 1)
             call(DragonsDen_Shrine_EventScript_Questions)
-            msgbox("Hm…\nI see…\pYou care deeply for POKéMON.\nVery commendable.\pThat conviction is what is important!\n{PLAYER} don't lose that belief.\pIt will see you through at the\nPOKéMON LEAGUE.", MSGBOX_DEFAULT)
+            msgbox("Hm…\nI see…\pYou care deeply for {POKEMON}.\nVery commendable.\pThat conviction is what is important!\n{PLAYER} don't lose that belief.\pIt will see you through at the\n{POKEMON} LEAGUE.", MSGBOX_DEFAULT)
             closemessage
             addobject(2)
             playse(SE_EXIT)
@@ -74,7 +74,7 @@ mapscripts DragonsDen_Shrine_MapScripts {
             fadeinbgm(0)
             textcolor(1)
             setflag(FLAG_BADGE08_GET)
-            msgbox("The RISINGBADGE will enable your\nPOKéMON to use the move for\lclimbing waterfalls.\pAlso, all POKéMON will recognize you\nas a trainer and obey your every\lcommand without question.", MSGBOX_DEFAULT)
+            msgbox("The RISINGBADGE will enable your\n{POKEMON} to use the move for\lclimbing waterfalls.\pAlso, all {POKEMON} will recognize you\nas a trainer and obey your every\lcommand without question.", MSGBOX_DEFAULT)
             closemessage
             applymovement(1, DragonsDen_Shrine_Movement_ClairReturnsToPlayer)
             waitmovement(0)
@@ -136,7 +136,7 @@ script DragonsDen_Shrine_EventScript_Questions{
     switch(var(VAR_QUESTION_NUM))
     {
         case 1:
-            message("What are POKéMON to you?")
+            message("What are {POKEMON} to you?")
             waitmessage
             multichoice(19, 6, MULTI_DRAGON_SHRINE_QUESTION_1, TRUE)
             switch(var(VAR_RESULT))
@@ -172,7 +172,7 @@ script DragonsDen_Shrine_EventScript_Questions{
                     setvar(VAR_ANSWER, RIGHT_ANSWER)
             }
         case 4:
-            message("What is most important for\nraising POKéMON?")
+            message("What is most important for\nraising {POKEMON}?")
             waitmessage
             multichoice(19, 6, MULTI_DRAGON_SHRINE_QUESTION_4, TRUE)
             switch(var(VAR_RESULT))
@@ -184,7 +184,7 @@ script DragonsDen_Shrine_EventScript_Questions{
                     setvar(VAR_ANSWER, WRONG_ANSWER)
             }
         case 5:
-            message("Strong POKéMON. Weak POKéMON.\nWhich is more important?")
+            message("Strong {POKEMON}. Weak {POKEMON}.\nWhich is more important?")
             waitmessage
             multichoice(19, 6, MULTI_DRAGON_SHRINE_QUESTION_5, TRUE)
             switch(var(VAR_RESULT))
@@ -226,7 +226,7 @@ script DragonsDen_Shrine_EventScript_DragonMaster {
     }
     if(flag(FLAG_TEMP_3))
     {
-        msgbox("Dragon POKéMON are symbolic of\nour clan.\pYou have shown that you can be\nentrusted with one.", MSGBOX_NPC)
+        msgbox("Dragon {POKEMON} are symbolic of\nour clan.\pYou have shown that you can be\nentrusted with one.", MSGBOX_NPC)
         end
     }
     if(!flag(FLAG_GOT_DRATINI_FROM_DRAGON_SHRINE))
@@ -237,7 +237,7 @@ script DragonsDen_Shrine_EventScript_DragonMaster {
         specialvar(VAR_RESULT, CalculatePlayerPartyCount)
         if(var(VAR_RESULT) == 6)
         {
-            msgbox("Hm?\nYour POKéMON party is full.", MSGBOX_DEFAULT)
+            msgbox("Hm?\nYour {POKEMON} party is full.", MSGBOX_DEFAULT)
             release
             end
         }

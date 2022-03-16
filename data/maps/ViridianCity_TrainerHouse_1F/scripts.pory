@@ -21,7 +21,7 @@ script ViridianCity_TrainerHouse_1F_EventScript_Youngster {
 }
 
 script ViridianCity_TrainerHouse_1F_EventScript_Gentleman {
-	msgbox("Whew… I'm taking a rest from\nPOKéMON battles.", MSGBOX_NPC)
+	msgbox("Whew… I'm taking a rest from\n{POKEMON} battles.", MSGBOX_NPC)
 	end
 }
 

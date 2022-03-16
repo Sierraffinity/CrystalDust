@@ -10,7 +10,7 @@ script CianwoodCity_Pharmacy_EventScript_Pharmacist{
         {
             goto(CianwoodCity_Pharmacy_EventScript_Mart)
         }
-        msgbox("Your POKéMON appear to be fine.\nIs something worrying you?\p…\pThe LIGHTHOUSE POKéMON is in\ntrouble? I got it!\pThis ought to do the trick.", MSGBOX_NPC)
+        msgbox("Your {POKEMON} appear to be fine.\nIs something worrying you?\p…\pThe LIGHTHOUSE {POKEMON} is in\ntrouble? I got it!\pThis ought to do the trick.", MSGBOX_NPC)
         checkitemspace(ITEM_SECRET_POTION, 1)
         if (!var(VAR_RESULT))
         {

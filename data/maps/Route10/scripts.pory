@@ -28,6 +28,6 @@ script Route10_EventScript_HikerJim{
 }
 
 script Route10_EventScript_PokefanMRobert{
-    trainerbattle_single(TRAINER_ROBERT, "You like POKéMON, don't you?\nMe too!", "I'd have to say that's my loss.")
-	msgbox("Look what you did to my POKéMON…\nI won't forget this…", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_ROBERT, "You like {POKEMON}, don't you?\nMe too!", "I'd have to say that's my loss.")
+	msgbox("Look what you did to my {POKEMON}…\nI won't forget this…", MSGBOX_AUTOCLOSE)
 }

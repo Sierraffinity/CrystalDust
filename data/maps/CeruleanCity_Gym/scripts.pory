@@ -74,7 +74,7 @@ mapscripts CeruleanCity_Gym_MapScripts {
 }
 
 script CeruleanCity_Gym_Eventscript_Misty{
-    trainerbattle_single(TRAINER_MISTY, "MISTY: I was expecting you,\nyou pest!\pYou may have a lot of JOHTO GYM\nBADGES, but you'd better not take\lme too lightly.\pMy WATER-type POKéMON are tough!", "MISTY: You really are good…\pI'll admit that you are skilled…\nHere you go. It's the CASCADEBADGE.", CeruleanCity_Gym_Eventscript_MistyDefeated, NO_MUSIC)
+    trainerbattle_single(TRAINER_MISTY, "MISTY: I was expecting you,\nyou pest!\pYou may have a lot of JOHTO GYM\nBADGES, but you'd better not take\lme too lightly.\pMy WATER-type {POKEMON} are tough!", "MISTY: You really are good…\pI'll admit that you are skilled…\nHere you go. It's the CASCADEBADGE.", CeruleanCity_Gym_Eventscript_MistyDefeated, NO_MUSIC)
     msgbox("MISTY: Are there many strong trainers\nin JOHTO? Like you, I mean.\pI'm going to travel one day, so\nI can battle some skilled trainers.", MSGBOX_NPC)
     release
     end
@@ -101,10 +101,10 @@ script CeruleanCity_Gym_EventScript_LeftGymStatue{
 }script CeruleanCity_Gym_EventScript_GymStatues{
     if(flag(FLAG_BADGE10_GET))
     {
-        msgbox("CERULEAN CITY POKéMON GYM\nLEADER: MISTY\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        msgbox("CERULEAN CITY {POKEMON} GYM\nLEADER: MISTY\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
         end
     }
-    msgbox("CERULEAN CITY POKéMON GYM", MSGBOX_SIGN)
+    msgbox("CERULEAN CITY {POKEMON} GYM", MSGBOX_SIGN)
     end
 }
 

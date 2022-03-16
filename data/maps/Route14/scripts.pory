@@ -1,23 +1,23 @@
 mapscripts Route14_MapScripts {}
 
 script Route14_EventScript_PokefanMTrevor { //left
-    trainerbattle_single(TRAINER_TREVOR, "Hi.\nDid you know…?\pPOKéMON get more friendly if\nyou train them in a place that\lthey remember.", "Where did I meet this PSYDUCK?")
-	msgbox("When and where did I get my\nPOKéMON…?\pI bet if I checked its SUMMARY,\nI'd remember!", MSGBOX_DEFAULT)
-    // The original line was, "If only there were\nan easy way to\pidentify where I\ngot my POKéMON…"
+    trainerbattle_single(TRAINER_TREVOR, "Hi.\nDid you know…?\p{POKEMON} get more friendly if\nyou train them in a place that\lthey remember.", "Where did I meet this PSYDUCK?")
+	msgbox("When and where did I get my\n{POKEMON}…?\pI bet if I checked its SUMMARY,\nI'd remember!", MSGBOX_DEFAULT)
+    // The original line was, "If only there were\nan easy way to\pidentify where I\ngot my {POKEMON}…"
     // Which doesn't make sense in the context of Gen 3. This new line is inspired by HGSS which was,
     // "When and where did I get my Pokémon…\pI'll bet if I checked my Trainer Memo,\nI'd remember!"
 	release
 }
 
 script Route14_EventScript_PokefanMCarter { //right
-    trainerbattle_single(TRAINER_CARTER, "Let me tell you, I had a hard time\ncatching my prized POKéMON.", "Awaaah!")
+    trainerbattle_single(TRAINER_CARTER, "Let me tell you, I had a hard time\ncatching my prized {POKEMON}.", "Awaaah!")
 	msgbox("SQUIRTLE, CHARMANDER and BULBASAUR…\nI think that's a well-balanced mix.", MSGBOX_DEFAULT)
 	release
 }
 
 script Route14_EventScript_BirdKeeperRoy {
-    trainerbattle_single(TRAINER_ROY, "My dream is to fly with my\nbeloved bird POKéMON.", "I can dream, but I can't ever fly…")
-	msgbox("You have POKéMON that know the HM\nmove FLY, don't you? I envy you.", MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_ROY, "My dream is to fly with my\nbeloved bird {POKEMON}.", "I can dream, but I can't ever fly…")
+	msgbox("You have {POKEMON} that know the HM\nmove FLY, don't you? I envy you.", MSGBOX_DEFAULT)
 	release
 }
 

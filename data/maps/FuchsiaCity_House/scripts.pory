@@ -6,6 +6,6 @@ script FuchsiaCity_House_EventScript_BillsSister{
 }
 
 script FuchsiaCity_House_EventScript_Boy{
-    msgbox("I saw these weird, slow POKéMON\non CYCLING ROAD.", MSGBOX_NPC)
+    msgbox("I saw these weird, slow {POKEMON}\non CYCLING ROAD.", MSGBOX_NPC)
     end
 }

@@ -16,7 +16,7 @@ script Route18_EventScript_BirdKeeperBob { //nearest gatehouse
 }
 
 script Route18_EventScript_BirdKeeperBoris { //in grass
-    trainerbattle_single(TRAINER_BORIS, "If you're looking for POKéMON, you\nhave to look in the tall grass.", "Ayieee!")
+    trainerbattle_single(TRAINER_BORIS, "If you're looking for {POKEMON}, you\nhave to look in the tall grass.", "Ayieee!")
 	msgbox("Since you're so strong, it must be\nfun to battle.", MSGBOX_DEFAULT)
 	release
 }

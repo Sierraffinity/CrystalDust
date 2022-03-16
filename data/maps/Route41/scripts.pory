@@ -2,7 +2,7 @@ mapscripts Route41_MapScripts {}
 
 script Route41_Eventscript_SwimmerKaylee { //topmost & leftmost
     trainerbattle_single(TRAINER_KAYLEE, "I'm on my way to the WHIRL ISLANDS.\nI'm going exploring with friends.", "Is that how you do it?")
-    msgbox("There's supposed to be a big POKéMON\ndeep beneath the WHIRL ISLANDS.\pI wonder what it could be?", MSGBOX_AUTOCLOSE)
+    msgbox("There's supposed to be a big {POKEMON}\ndeep beneath the WHIRL ISLANDS.\pI wonder what it could be?", MSGBOX_AUTOCLOSE)
     end
 }
 
@@ -13,20 +13,20 @@ script Route41_Eventscript_SwimmerCharlie { //topmost middle (between Kaylee & G
 }
 
 script Route41_Eventscript_SwimmerGeorge { //topmost & rightmost
-    trainerbattle_single(TRAINER_GEORGE, "I'm a bit tired.\nIf I win, lend me your POKéMON.", "Pant, pant…")
+    trainerbattle_single(TRAINER_GEORGE, "I'm a bit tired.\nIf I win, lend me your {POKEMON}.", "Pant, pant…")
     msgbox("It's so far to CIANWOOD, but it's no\neasy return trip to OLIVINE either.\pWhat should I do?", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route41_Eventscript_SwimmerSusie { //between top two islands
-    trainerbattle_single(TRAINER_SUSIE, "You look so elegant, riding your\nPOKéMON.", "I'm crushed…")
+    trainerbattle_single(TRAINER_SUSIE, "You look so elegant, riding your\n{POKEMON}.", "I'm crushed…")
     msgbox("Wasn't there a hit song about a boy\nriding a LAPRAS?", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route41_Eventscript_SwimmerBerke { //first male south of Susie
     trainerbattle_single(TRAINER_BERKE, "See those islands that are blocked\nby whirlpools?\pThere just has to be a secret inside!", "What's the secret to your strength?")
-    msgbox("It was a dark and stormy night…\pI saw this giant POKéMON flying from\nthe islands.\pIt was scattering feathers from its\nsilver wings.", MSGBOX_AUTOCLOSE)
+    msgbox("It was a dark and stormy night…\pI saw this giant {POKEMON} flying from\nthe islands.\pIt was scattering feathers from its\nsilver wings.", MSGBOX_AUTOCLOSE)
     end
 }
 

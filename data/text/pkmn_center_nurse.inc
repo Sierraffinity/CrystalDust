@@ -1,34 +1,34 @@
 gText_NurseIntro_Morning::
 	.string "Good morning!\n"
-	.string "Welcome to our POKéMON CENTER.\p$"
+	.string "Welcome to our {POKEMON} CENTER.\p$"
 
 gText_NurseIntro_Day::
 	.string "Hello!\n"
-	.string "Welcome to our POKéMON CENTER.\p$"
+	.string "Welcome to our {POKEMON} CENTER.\p$"
 
 gText_NurseIntro_Night::
 	.string "Good evening! You're out late.\n"
-	.string "Welcome to our POKéMON CENTER.\p$"
+	.string "Welcome to our {POKEMON} CENTER.\p$"
 
 gText_NurseIntro_Common::
-	.string "We can heal your POKéMON to\n"
+	.string "We can heal your {POKEMON} to\n"
 	.string "perfect health.\p"
-	.string "Shall we heal your POKéMON?$"
+	.string "Shall we heal your {POKEMON}?$"
 
 gText_IllTakeYourPkmn::
-	.string "Okay, may I see your POKéMON?$"
+	.string "Okay, may I see your {POKEMON}?$"
 
 gText_RestoredPkmnToFullHealth::
 	.string "Thank you for waiting.\n"
-	.string "Your POKéMON are fully healed.$"
+	.string "Your {POKEMON} are fully healed.$"
 
 gText_WeHopeToSeeYouAgain::
     .string "We hope to see you again!$"
 
 gText_WelcomeCutShort::
 	.string "Hello!\n"
-	.string "Welcome to our POKéMON CENTER.\p"
-	.string "We can heal your POKéMON to\n"
+	.string "Welcome to our {POKEMON} CENTER.\p"
+	.string "We can heal your {POKEMON} to\n"
 	.string "perfect health.\p"
 	.string "Shall we…$"
 
@@ -42,14 +42,14 @@ gText_NoticesGoldCard::
     .string "you're the first TRAINER I've ever\l"
     .string "seen with a GOLD CARD!\p"
     .string "Okay, {PLAYER}, please allow me\n"
-    .string "the honor of resting your POKéMON!$"
+    .string "the honor of resting your {POKEMON}!$"
 
 gText_YouWantTheUsual::
     .string "I'm delighted to see you, {PLAYER}!\n"
     .string "You want the usual, am I right?$"
 
 gText_IllTakeYourPkmn2::
-    .string "Okay, I'll take your POKéMON\n"
+    .string "Okay, I'll take your {POKEMON}\n"
     .string "for a few seconds.$"
 
 gText_ThankYouForWaiting::

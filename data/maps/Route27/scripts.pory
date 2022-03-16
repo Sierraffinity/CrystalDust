@@ -21,7 +21,7 @@ mapscripts Route27_MapScripts {
             }
             turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
             textcolor(0)
-            msgbox("Hey!\pDo you know what you just did?\nYou've taken your first step into\lKANTO!\pCheck your POKéGEAR MAP and see.")
+            msgbox("Hey!\pDo you know what you just did?\nYou've taken your first step into\lKANTO!\pCheck your {POKE}GEAR MAP and see.")
             setvar(VAR_TEMP_0, 1)
             setflag(FLAG_ENTERED_KANTO)
             releaseall
@@ -33,7 +33,7 @@ mapscripts Route27_MapScripts {
 }
 
 script Route27_Eventscript_FatGuy {
-    msgbox("Do you know what you just did?\nYou've taken your first step into KANTO!\pCheck your POKéGEAR MAP and see.", MSGBOX_NPC)
+    msgbox("Do you know what you just did?\nYou've taken your first step into KANTO!\pCheck your {POKE}GEAR MAP and see.", MSGBOX_NPC)
     end
 }
 
@@ -44,7 +44,7 @@ script Route27_Eventscript_TohjoFallsSign {
 //trainers from left to right
 script Route27_Eventscript_CooltrainerMegan {
     trainerbattle_single(TRAINER_MEGAN, "It's rare to see anyone come here.\nAre you training on your own?", "Oh!\nYou're really strong!")
-    msgbox("I'm checking out pre- and post-\nevolution POKéMON.\pEvolution really does make POKéMON\nstronger.\pBut evolved forms also learn moves\nlater on.", MSGBOX_AUTOCLOSE)
+    msgbox("I'm checking out pre- and post-\nevolution {POKEMON}.\pEvolution really does make {POKEMON}\nstronger.\pBut evolved forms also learn moves\nlater on.", MSGBOX_AUTOCLOSE)
     end
 }
 
@@ -63,19 +63,19 @@ script Route27_Eventscript_CooltrainerBrian { // on bridge
 script Route27_Eventscript_BirdKeeperJose {
     // TODO: Phone
     trainerbattle_single(TRAINER_JOSE_1, "Tweet! Tweet! Tetweet!", "Tweet!")
-    msgbox("BIRD KEEPERS like me mimic bird\nwhistles to command POKéMON.", MSGBOX_AUTOCLOSE)
+    msgbox("BIRD KEEPERS like me mimic bird\nwhistles to command {POKEMON}.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route27_Eventscript_PsychicGilbert {
-    trainerbattle_single(TRAINER_GILBERT, "Don't say a thing!\nLet me guess what you're thinking.\pMmmmmmm…\pI got it! You're on the POKéMON\nLEAGUE challenge!", "You're too much!")
+    trainerbattle_single(TRAINER_GILBERT, "Don't say a thing!\nLet me guess what you're thinking.\pMmmmmmm…\pI got it! You're on the {POKEMON}\nLEAGUE challenge!", "You're too much!")
     msgbox("With your skills, you'll do well at\nthe LEAGUE.\pThat's what my premonition says.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route27_Eventscript_CooltrainerReena {
     // TODO: Phone
-    trainerbattle_single(TRAINER_REENA_1, "You shouldn't underestimate the wild\nPOKéMON in these parts.", "Oh!\nYou're much too strong!")
+    trainerbattle_single(TRAINER_REENA_1, "You shouldn't underestimate the wild\n{POKEMON} in these parts.", "Oh!\nYou're much too strong!")
     msgbox("You're just a kid, but you're not\nto be underestimated either.", MSGBOX_AUTOCLOSE)
     end
 }

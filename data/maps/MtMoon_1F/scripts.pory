@@ -75,7 +75,7 @@ mapscripts MtMoon_1F_MapScripts {
             playbgm(MUS_ENCOUNTER_RIVAL, 0)
             savebgm(MUS_RIVAL_EXIT)
             textcolor(0)
-            msgbox("…… …… ……\nIt's been a while, {PLAYER}.\p…Since I lost to you, I thought\nabout what I was lacking with my\lPOKéMON…\pAnd we came up with an answer.\n{PLAYER}, now we'll show you!", MSGBOX_DEFAULT)
+            msgbox("…… …… ……\nIt's been a while, {PLAYER}.\p…Since I lost to you, I thought\nabout what I was lacking with my\l{POKEMON}…\pAnd we came up with an answer.\n{PLAYER}, now we'll show you!", MSGBOX_DEFAULT)
             closemessage
             setvar(VAR_LAST_TALKED, 3)
             if (var(VAR_STARTER_MON) == STARTER_CHIKORITA)
@@ -90,7 +90,7 @@ mapscripts MtMoon_1F_MapScripts {
             {
                 trainerbattle_wintext(TRAINER_RIVAL_MT_MOON_CYNDAQUIL, 0, MtMoon_1F_Text_RivalLost, MtMoon_1F_Text_RivalWon)
             }
-            msgbox("…… …… ……\n…You won, fair and square.\pI admit it.\nBut this isn't the end.\pI'm going to be the greatest\nPOKéMON trainer ever.\pBecause these guys are behind me.\p…Listen, {PLAYER}.\pOne of these days I'm going to prove\nhow good I am by beating you.", MSGBOX_DEFAULT)
+            msgbox("…… …… ……\n…You won, fair and square.\pI admit it.\nBut this isn't the end.\pI'm going to be the greatest\n{POKEMON} trainer ever.\pBecause these guys are behind me.\p…Listen, {PLAYER}.\pOne of these days I'm going to prove\nhow good I am by beating you.", MSGBOX_DEFAULT)
             closemessage
             applymovement(OBJ_EVENT_ID_PLAYER, MtMoon_1F_Movement_PlayerStepsRight)
             applymovement(1, MtMoon_1F_Movement_RivalExits)
@@ -113,9 +113,9 @@ mapscripts MtMoon_1F_MapScripts {
     walk_down
     face_down
 }text(local) MtMoon_1F_Text_RivalLost{
-    "…… …… ……\pI thought I raised my POKéMON to be\nthe best they could be…\p…But it still wasn't enough…"
+    "…… …… ……\pI thought I raised my {POKEMON} to be\nthe best they could be…\p…But it still wasn't enough…"
 }text(local) MtMoon_1F_Text_RivalWon{
-    "…… …… ……\pI've repaid my debt to you.\pWith my POKéMON, I'm going to beat\nthe CHAMPION and become the world's\lgreatest trainer."
+    "…… …… ……\pI've repaid my debt to you.\pWith my {POKEMON}, I'm going to beat\nthe CHAMPION and become the world's\lgreatest trainer."
 }movement(local) MtMoon_1F_Movement_PlayerStepsRight{
     walk_right
     face_left

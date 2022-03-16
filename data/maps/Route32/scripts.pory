@@ -84,9 +84,9 @@ script Route32_EventScript_RoadblockMan_Common {
     }
     elif (!flag(FLAG_BADGE01_GET))
     {
-        msgbox("Have you gone to the POKéMON\n"
+        msgbox("Have you gone to the {POKEMON}\n"
                "GYM in VIOLET yet?\p"
-               "You can test your POKéMON and\n"
+               "You can test your {POKEMON} and\n"
                "yourself there.\p"
                "It's a rite of passage for all\n"
                "TRAINERS!")
@@ -94,7 +94,7 @@ script Route32_EventScript_RoadblockMan_Common {
     elif (flag(FLAG_GOT_ELMS_EGG))
     {
         msgbox("Looks like you have some good\n"
-               "POKéMON there.\p"
+               "{POKEMON} there.\p"
                "It must be from the training you\n"
                "gave them around VIOLET CITY.\p"
                "The training at the GYM must have\n"
@@ -120,7 +120,7 @@ script Route32_EventScript_RoadblockMan_Common {
                "Some guy wearing glasses was\l"
                "looking for you.\p"
                "Go see for yourself. He's waiting\n"
-               "for you at the POKéMON CENTER.")
+               "for you at the {POKEMON} CENTER.")
     }
 }
 
@@ -261,7 +261,7 @@ script Route32_EventScript_RoarTMGuy {
 	}
 	msgbox("WROOOAR!\n"
 		   "IT'S ROAR!\p"
-		   "EVEN POKéMON WILL RUN FROM A\n"
+		   "EVEN {POKEMON} WILL RUN FROM A\n"
 		   "GOOD ROAR!")
 	release
 }
@@ -294,7 +294,7 @@ script Route32_EventScript_Frieda {
 				goto(Common_EventScript_ShowBagIsFull)
 			}
 			setflag(FLAG_RECEIVED_POISON_BARB_FROM_FRIEDA)
-			msgbox("FRIEDA: Give it to a POKéMON that\n"
+			msgbox("FRIEDA: Give it to a {POKEMON} that\n"
                    "has POISON-type moves.\p"
                    "Oh!\n"
                    "It's wicked!\p"

@@ -59,16 +59,16 @@ NewBarkTown_PlayersHouse_2F_Radio_AlreadyListened:
 	end
 
 NewBarkTown_PlayersHouse_2F_Text_RadioText1:
-	.string "This was PROF. OAK'S POKéMON TALK!\n"
+	.string "This was PROF. OAK'S {POKEMON} TALK!\n"
 	.string "Please tune in next time!$"
 
 NewBarkTown_PlayersHouse_2F_Text_RadioText2:
-	.string "POKéMON CHANNEL!$"
+	.string "{POKEMON} CHANNEL!$"
 
 NewBarkTown_PlayersHouse_2F_Text_RadioText3:
 	.string "This is DJ MARY, your co-host,\n"
 	.string "signing off!$"
 
 NewBarkTown_PlayersHouse_2F_Text_RadioText4:
-	.string "POKéMON!\n"
-	.string "POKéMON CHANNEL…$"
+	.string "{POKEMON}!\n"
+	.string "{POKEMON} CHANNEL…$"

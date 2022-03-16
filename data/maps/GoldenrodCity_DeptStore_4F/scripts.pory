@@ -25,18 +25,18 @@ GoldenrodCity_DeptStore_4F_Pokemart_Clerk:
 
 script GoldenrodCity_DeptStore_4F_EventScript_ProteinGuy {
     msgbox("Hey.\n"
-           "I love strong POKéMON.\p"
+           "I love strong {POKEMON}.\p"
            "I feed them PROTEIN to crank up\n"
            "their ATTACK.", MSGBOX_NPC)
 }
 
 script GoldenrodCity_DeptStore_4F_EventScript_BugCatcher {
-    msgbox("IRON adds to your POKéMON's\n"
+    msgbox("IRON adds to your {POKEMON}'s\n"
            "DEFENSE.", MSGBOX_NPC)
 }
 
 script GoldenrodCity_DeptStore_4F_EventScript_GameboyKid {
-    msgbox("Some POKéMON evolve only by being\n"
+    msgbox("Some {POKEMON} evolve only by being\n"
            "traded via a Wireless Adapter or\l"
 	       "a GBA Game Link cable.\p"
            "I know of four: MACHOKE, KADABRA,\n"
@@ -45,6 +45,6 @@ script GoldenrodCity_DeptStore_4F_EventScript_GameboyKid {
 }
 
 script GoldenrodCity_DeptStore_4F_EventScript_FloorNumber {
-    msgbox("Let Us Pump Up Your POKéMON!\p"
+    msgbox("Let Us Pump Up Your {POKEMON}!\p"
            "4F MEDICINE BOX", MSGBOX_SIGN)
 }

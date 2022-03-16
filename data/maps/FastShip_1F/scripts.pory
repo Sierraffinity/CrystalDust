@@ -192,10 +192,10 @@ script FastShip_1F_EventScript_DoorSailor{
 script FastShip_1F_EventScript_CabinSailor{
     if(!flag(FLAG_VISITED_VERMILION_CITY))
     {
-        msgbox("Here's your cabin.\pIf your POKéMON are hurt, take a\nnap in the bed.\lThat will heal them.", MSGBOX_NPC)
+        msgbox("Here's your cabin.\pIf your {POKEMON} are hurt, take a\nnap in the bed.\lThat will heal them.", MSGBOX_NPC)
         end
     }
-    msgbox("Here's your cabin.\pYou can heal your POKéMON by taking\na nap in the bed.\pThe ship will arrive while\nyou're sleeping.", MSGBOX_NPC)
+    msgbox("Here's your cabin.\pYou can heal your {POKEMON} by taking\na nap in the bed.\pThe ship will arrive while\nyou're sleeping.", MSGBOX_NPC)
     end
 }
 

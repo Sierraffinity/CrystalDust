@@ -167,7 +167,7 @@ mapscripts TinTower_1F_MapScripts {
             waitmovement(0)
             turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
             textcolor(0)
-            msgbox("EUSINE: Awesome!\nToo awesome, even!\pI've never seen a battle that great.\nThat was truly inspiring to see.\pSUICUNE was tough, but you were\neven more incredible, {PLAYER}.\pI heard SUICUNE's mystic power\nsummons a rainbow-colored POKéMON.\pMaybe, just maybe, what went on\ntoday will cause that POKéMON to\lappear.\pI'm going to study the legends more.\nThanks for showing me that fantastic\lbattle.\pLater, {PLAYER}!")
+            msgbox("EUSINE: Awesome!\nToo awesome, even!\pI've never seen a battle that great.\nThat was truly inspiring to see.\pSUICUNE was tough, but you were\neven more incredible, {PLAYER}.\pI heard SUICUNE's mystic power\nsummons a rainbow-colored {POKEMON}.\pMaybe, just maybe, what went on\ntoday will cause that {POKEMON} to\lappear.\pI'm going to study the legends more.\nThanks for showing me that fantastic\lbattle.\pLater, {PLAYER}!")
             closemessage
             applymovement(7, TinTower_1F_Movement_EusineExits)
             waitmovement(0)
@@ -231,10 +231,10 @@ script TinTower_1F_EventScript_Sage1{
             msgbox("HO-OH appears to have descended\nupon this, the TIN TOWER!", MSGBOX_NPC)
             end
         }
-        msgbox("The legendary POKéMON are said\nto embody three powers…\pThe lightning that struck the\nTOWER.\pThe fire that burned the TOWER.\pAnd the rain that put out the fire…", MSGBOX_NPC)
+        msgbox("The legendary {POKEMON} are said\nto embody three powers…\pThe lightning that struck the\nTOWER.\pThe fire that burned the TOWER.\pAnd the rain that put out the fire…", MSGBOX_NPC)
         end
     }
-    msgbox("According to legend…\pWhen the souls of POKéMON and humans\ncommune, from the heavens descends\la POKéMON of rainbow colors…\pCould it mean the legendary POKéMON\nare testing us humans?", MSGBOX_NPC)
+    msgbox("According to legend…\pWhen the souls of {POKEMON} and humans\ncommune, from the heavens descends\la {POKEMON} of rainbow colors…\pCould it mean the legendary {POKEMON}\nare testing us humans?", MSGBOX_NPC)
     end
 }
 
@@ -243,7 +243,7 @@ script TinTower_1F_EventScript_Sage2{
     {
         if(flag(FLAG_DEFEATED_HO_OH))
         {
-            msgbox("When the legendary POKéMON\nappeared…\pThey struck terror in those who saw\ntheir rise.\pAnd…\nSome even took to futile attacks.\pThe legendary POKéMON, knowing\ntheir own power, fled, ignoring\lthe frightened people.", MSGBOX_NPC)
+            msgbox("When the legendary {POKEMON}\nappeared…\pThey struck terror in those who saw\ntheir rise.\pAnd…\nSome even took to futile attacks.\pThe legendary {POKEMON}, knowing\ntheir own power, fled, ignoring\lthe frightened people.", MSGBOX_NPC)
             end
         }
         checkitem(ITEM_RAINBOW_WING, 1)
@@ -291,7 +291,7 @@ script TinTower_1F_EventScript_Sage2{
             goto(TinTower_1F_EventScript_Sage2)
         }
     }
-    msgbox("When the BRASS TOWER burned down,\nthree nameless POKéMON were said\lto have perished. It was tragic.\pHowever…\pA rainbow-colored POKéMON…\nIn other words…\pHO-OH descended from the sky\nand gave new life to the three\lPOKéMON.\pThey are…\pSUICUNE, ENTEI, and RAIKOU.\nThat is what they say.", MSGBOX_NPC)
+    msgbox("When the BRASS TOWER burned down,\nthree nameless {POKEMON} were said\lto have perished. It was tragic.\pHowever…\pA rainbow-colored {POKEMON}…\nIn other words…\pHO-OH descended from the sky\nand gave new life to the three\l{POKEMON}.\pThey are…\pSUICUNE, ENTEI, and RAIKOU.\nThat is what they say.", MSGBOX_NPC)
     end
 }
 
@@ -303,14 +303,14 @@ script TinTower_1F_EventScript_Sage3{
             msgbox("I believe you are being tested.\pFree your mind from uncertainty,\nand advance.", MSGBOX_NPC)
             end
         }
-        msgbox("Of the legendary POKéMON, SUICUNE\nis said to be the closest to HO-OH.\pI hear there may also be a link to\nPOKéMON known as UNOWN.\pThe POKéMON UNOWN must be sharing a\ncooperative bond with SUICUNE.", MSGBOX_NPC)
+        msgbox("Of the legendary {POKEMON}, SUICUNE\nis said to be the closest to HO-OH.\pI hear there may also be a link to\n{POKEMON} known as UNOWN.\pThe {POKEMON} UNOWN must be sharing a\ncooperative bond with SUICUNE.", MSGBOX_NPC)
         end
     }
-    msgbox("The two TOWERS are said to have\nbeen built to foster friendship and\lhope between POKéMON and people.\pThat was 700 years ago, but the\nideal still remains important today.", MSGBOX_NPC)
+    msgbox("The two TOWERS are said to have\nbeen built to foster friendship and\lhope between {POKEMON} and people.\pThat was 700 years ago, but the\nideal still remains important today.", MSGBOX_NPC)
     end
 }
 
 script TinTower_1F_EventScript_Eusine {
-    msgbox("I knew it.\pI knew you'd get to see the POKéMON\nof rainbow colors, {PLAYER}.\pIt happened just as I envisioned.\nMy research isn't bad, I might say.\pI'm going to keep studying POKéMON\nto become a famous POKéMANIAC!", MSGBOX_NPC)
+    msgbox("I knew it.\pI knew you'd get to see the {POKEMON}\nof rainbow colors, {PLAYER}.\pIt happened just as I envisioned.\nMy research isn't bad, I might say.\pI'm going to keep studying {POKEMON}\nto become a famous {POKE}MANIAC!", MSGBOX_NPC)
     end
 }

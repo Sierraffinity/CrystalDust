@@ -143,7 +143,7 @@ script MahoganyTown_Eventscript_ShopSign {
 }
 
 script MahoganyTown_Eventscript_GymSign {
-    msgbox("MAHOGANY TOWN POKéMON GYM\nLEADER: PRYCE\pThe Teacher of Winter's Harshness", MSGBOX_SIGN)
+    msgbox("MAHOGANY TOWN {POKEMON} GYM\nLEADER: PRYCE\pThe Teacher of Winter's Harshness", MSGBOX_SIGN)
     end
 }
 

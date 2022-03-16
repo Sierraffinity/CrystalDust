@@ -72,12 +72,12 @@ script GoldenrodCity_DeptStore_6F_EventScript_ExitVendingMachine {
 script GoldenrodCity_DeptStore_6F_EventScript_Boy {
     msgbox("If you're tired, try the vending\n"
            "machine's drinks.\p"
-           "Your POKéMON will love them too.", MSGBOX_NPC)
+           "Your {POKEMON} will love them too.", MSGBOX_NPC)
 }
 
 script GoldenrodCity_DeptStore_6F_EventScript_Girl {
     msgbox("Do you listen to LUCKY CHANNEL?\p"
-           "If you want to win, trade POKéMON\n"
+           "If you want to win, trade {POKEMON}\n"
            "with as many people as possible to\l"
            "get different ID numbers.", MSGBOX_NPC)
 }

@@ -34,7 +34,7 @@ mapscripts GoldenrodCity_MapScripts {
 script GoldenrodCity_EventScript_MoveTutor{
     lock
     faceplayer
-    msgbox("I have TMs that contain amazing\nmoves for your POKéMON.\pYou can have one if you'd like.\nDo you want a TM?", MSGBOX_YESNO)
+    msgbox("I have TMs that contain amazing\nmoves for your {POKEMON}.\pYou can have one if you'd like.\nDo you want a TM?", MSGBOX_YESNO)
     if(!var(VAR_RESULT))
     {
         msgbox("Aww…\nBut they're amazing…", MSGBOX_DEFAULT)
@@ -165,7 +165,7 @@ script GoldenrodCity_EventScript_CuriousWoman {
 script GoldenrodCity_EventScript_RadioWoman {
     if (flag(FLAG_SYS_HAS_RADIO_CARD))
     {
-        msgbox("Oh, your POKéGEAR works as a radio!\n"
+        msgbox("Oh, your {POKE}GEAR works as a radio!\n"
                "How useful!", MSGBOX_NPC)
     }
     else
@@ -174,7 +174,7 @@ script GoldenrodCity_EventScript_RadioWoman {
                "is a landmark.\p"
                "They're running a promotional\n"
                "campaign right now.\p"
-               "They'll modify your POKéGEAR, so\n"
+               "They'll modify your {POKE}GEAR, so\n"
                "it can also serve as a radio.", MSGBOX_NPC)
     }
 }
@@ -187,9 +187,9 @@ script GoldenrodCity_EventScript_BasementKid {
 
 script GoldenrodCity_EventScript_NameRaterInformerGirl {
     msgbox("The man at that house rates your\n"
-           "POKéMON names.\p"
+           "{POKEMON} names.\p"
            "He can even help you rename your\n"
-           "POKéMON.", MSGBOX_NPC)
+           "{POKEMON}.", MSGBOX_NPC)
 }
 
 script GoldenrodCity_EventScript_LostOldMan {
@@ -221,7 +221,7 @@ script GoldenrodCity_EventScript_RocketGrunt2 {
 }
 
 script GoldenrodCity_EventScript_RocketGrunt3 {
-    msgbox("POKéMON? They're nothing more than\n"
+    msgbox("{POKEMON}? They're nothing more than\n"
            "tools for making money!", MSGBOX_NPC)
 }
 
@@ -250,12 +250,12 @@ script GoldenrodCity_EventScript_RadioTowerSign {
 }
 
 script GoldenrodCity_EventScript_DeptStoreSign {
-    msgbox("Full Selection of POKéMON Goods!\n"
+    msgbox("Full Selection of {POKEMON} Goods!\n"
            "GOLDENROD CITY DEPT. STORE", MSGBOX_SIGN)
 }
 
 script GoldenrodCity_EventScript_GymSign {
-    msgbox("GOLDENROD CITY POKéMON GYM\n"
+    msgbox("GOLDENROD CITY {POKEMON} GYM\n"
            "LEADER: WHITNEY\p"
            "The Incredibly Pretty Girl!", MSGBOX_SIGN)
 }
@@ -277,7 +277,7 @@ script GoldenrodCity_EventScript_GameCornerSign {
 
 script GoldenrodCity_EventScript_NameRaterSign {
     msgbox("NAME RATER\n"
-           "Get Your POKéMON Nicknames Rated", MSGBOX_SIGN)
+           "Get Your {POKEMON} Nicknames Rated", MSGBOX_SIGN)
 }
 
 script GoldenrodCity_EventScript_UndergroundEntranceSign {
@@ -286,7 +286,7 @@ script GoldenrodCity_EventScript_UndergroundEntranceSign {
 
 script GoldenrodCity_EventScript_PokecomCenterSign {
     msgbox("For Mobile Tips!\n"
-           "POKéCOM CENTER", MSGBOX_SIGN)
+           "{POKE}COM CENTER", MSGBOX_SIGN)
 }
 
 script GoldenrodCity_EventScript_FlowerShopSign {

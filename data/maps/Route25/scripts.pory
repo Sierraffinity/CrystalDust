@@ -157,7 +157,7 @@ script Route25_EventScript_SuperNerdPat{
 script Route25_EventScript_CooltrainerMKevin {
     if(defeated(TRAINER_KEVIN))
     {
-        msgbox("That was a great battle!\pYou and your POKéMON are truly\noutstanding!", MSGBOX_NPC)
+        msgbox("That was a great battle!\pYou and your {POKEMON} are truly\noutstanding!", MSGBOX_NPC)
         end
     }
     if(flag(FLAG_CLEARED_NUGGET_BRIDGE))

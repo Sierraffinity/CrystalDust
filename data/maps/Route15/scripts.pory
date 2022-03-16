@@ -14,7 +14,7 @@ script Route15_EventScript_TeacherColette { //right teacher
 
 script Route15_EventScript_SchoolBoyBilly { // second from right
     trainerbattle_single(TRAINER_BILLY, "My favorite class is gym!", "Oh no!\nHow could I lose?")
-	msgbox("If POKéMON were a subject at\nschool, I'd be the best!", MSGBOX_DEFAULT)
+	msgbox("If {POKEMON} were a subject at\nschool, I'd be the best!", MSGBOX_DEFAULT)
 	release
 }
 

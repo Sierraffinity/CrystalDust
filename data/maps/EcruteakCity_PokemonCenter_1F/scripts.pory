@@ -28,7 +28,7 @@ script EcruteakCity_PokemonCenter_1F_Eventscript_Bill{
     waitmovement(0)
     delay(10)
     turnobject(5, DIR_SOUTH)
-    msgbox("Hi, I'm BILL.\nAnd who are you?\pHmm, {PLAYER}, huh?\nYou've come at the right time.\pI just finished adjustments on the\nWIRELESS and CABLE CLUBS upstairs.\pYou know that POKéMON can be\ntraded, right?\pMy TIME CAPSULE modification was\ndeveloped to enable trades with\lthe past.\pDon't you worry.\nI'm done installing it.\pTomorrow, TIME CAPSULES will be\nrunning at all POKéMON CENTERS.\pI have to hurry on back to\nGOLDENROD and see my folks.\pBuh-bye!", MSGBOX_DEFAULT)
+    msgbox("Hi, I'm BILL.\nAnd who are you?\pHmm, {PLAYER}, huh?\nYou've come at the right time.\pI just finished adjustments on the\nWIRELESS and CABLE CLUBS upstairs.\pYou know that {POKEMON} can be\ntraded, right?\pMy TIME CAPSULE modification was\ndeveloped to enable trades with\lthe past.\pDon't you worry.\nI'm done installing it.\pTomorrow, TIME CAPSULES will be\nrunning at all {POKEMON} CENTERS.\pI have to hurry on back to\nGOLDENROD and see my folks.\pBuh-bye!", MSGBOX_DEFAULT)
     closemessage
     applymovement(5, Movement_BillToExit1)
     waitmovement(0)
@@ -77,7 +77,7 @@ movement(local) Movement_BillToExit3{
 }
 
 script EcruteakCity_PokemonCenter_1F_Eventscript_Girl{
-    msgbox("MORTY, the GYM LEADER, is\nsoooo cool.\pHis POKéMON are really tough too.", MSGBOX_NPC)
+    msgbox("MORTY, the GYM LEADER, is\nsoooo cool.\pHis {POKEMON} are really tough too.", MSGBOX_NPC)
     end
 }
 
@@ -87,6 +87,6 @@ script EcruteakCity_PokemonCenter_1F_Eventscript_Man{
 }
 
 script EcruteakCity_PokemonCenter_1F_Eventscript_Hiker{
-    msgbox("The way the KIMONO GIRLS dance is\nmarvelous. Just like the way they\luse their POKéMON.", MSGBOX_NPC)
+    msgbox("The way the KIMONO GIRLS dance is\nmarvelous. Just like the way they\luse their {POKEMON}.", MSGBOX_NPC)
     end
 }

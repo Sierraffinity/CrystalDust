@@ -8,7 +8,7 @@ script VioletCity_Gym_EventScript_Falkner {
     {
         goto(VioletCity_Gym_EventScript_GiveAerialAce)
     }
-    msgbox("There are POKéMON GYMS in cities\n"
+    msgbox("There are {POKEMON} GYMS in cities\n"
 		   "and towns ahead.\p"
 		   "You should test your skills at\n"
 		   "these GYMS.\p"
@@ -19,22 +19,22 @@ script VioletCity_Gym_EventScript_Falkner {
 
 text VioletCity_Gym_Text_FalknerPreBattle {
 	"I'm FALKNER, the VIOLET CITY\n"
-	"POKéMON GYM LEADER!\p"
+	"{POKEMON} GYM LEADER!\p"
 	"People say you can clip FLYING-\n"
-	"type POKéMON's wings with a jolt\l"
+	"type {POKEMON}'s wings with a jolt\l"
 	"of electricity…\p"
 	"I won't allow such insults to\n"
-	"BIRD POKéMON!\p"
+	"BIRD {POKEMON}!\p"
 	"I'll show you the real power of\n"
-	"the magnificent BIRD POKéMON!"
+	"the magnificent BIRD {POKEMON}!"
 }
 
 text VioletCity_Gym_Text_FalknerDefeat {
 	"…Darn! My dad's cherished bird\n"
-	"POKéMON…\p"
+	"{POKEMON}…\p"
 	"All right.\n"
 	"Take this.\p"
-	"It's the official POKéMON LEAGUE\n"
+	"It's the official {POKEMON} LEAGUE\n"
 	"ZEPHYRBADGE."
 }
 
@@ -54,8 +54,8 @@ script VioletCity_Gym_EventScript_FalknerDefeated {
 
 script VioletCity_Gym_EventScript_GiveAerialAce {
     msgbox("The ZEPHYRBADGE raises the ATTACK\n"
-           "power of POKéMON.\p"
-           "It also enables POKéMON to use\n"
+           "power of {POKEMON}.\p"
+           "It also enables {POKEMON} to use\n"
            "FLASH, if they have it, anytime.\p"
            "Here--take this too.")
     checkitemspace(ITEM_TM40, 1)
@@ -68,7 +68,7 @@ script VioletCity_Gym_EventScript_GiveAerialAce {
 		givetmhm_msg("{PLAYER} received TM40\n"
 					 "from FALKNER.", ITEM_TM40)
 		setflag(FLAG_GOT_TM40_FROM_FALKNER)
-		msgbox("By using a TM, a POKéMON will\n"
+		msgbox("By using a TM, a {POKEMON} will\n"
 			   "instantly learn a new move.\p"
 			   "Think before you act--a TM can\n"
 			   "be used only once.\p"
@@ -96,14 +96,14 @@ script VioletCity_Gym_EventScript_GymStatue {
     lockall
     if (flag(FLAG_BADGE01_GET))
     {
-        msgbox("VIOLET CITY POKéMON GYM\n"
+        msgbox("VIOLET CITY {POKEMON} GYM\n"
                "LEADER: FALKNER\p"
                "WINNING TRAINERS:\n"
                "{PLAYER}")
     }
     else
     {
-        msgbox("VIOLET CITY POKéMON GYM")
+        msgbox("VIOLET CITY {POKEMON} GYM")
     }
     releaseall
 }
@@ -124,8 +124,8 @@ script VioletCity_Gym_EventScript_GymGuide {
                "championship dream can come true.\p"
                "You believe?\n"
                "Then listen.\p"
-               "GRASS-type POKéMON are weak\n"
-               "against FLYING-type POKéMON.\l"
+               "GRASS-type {POKEMON} are weak\n"
+               "against FLYING-type {POKEMON}.\l"
                "Keep this in mind.")
     }
 	release

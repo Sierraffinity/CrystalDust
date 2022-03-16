@@ -7,7 +7,7 @@ mapscripts FuchsiaCity_PokemonCenter_1F_MapScripts {
 }
 
 script FuchsiaCity_PokemonCenter_1F_EventScript_CooltrainerM{
-    msgbox("Hey! You have a brand new kind\nof POKéDEX!\lDid PROF. OAK give that to you?", MSGBOX_NPC)
+    msgbox("Hey! You have a brand new kind\nof {POKEDEX}!\lDid PROF. OAK give that to you?", MSGBOX_NPC)
     end
 }
 

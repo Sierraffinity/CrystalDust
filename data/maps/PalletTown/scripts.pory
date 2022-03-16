@@ -5,12 +5,12 @@ mapscripts PalletTown_MapScripts {
 }
 
 script PalletTown_EventScript_Woman{
-    msgbox("I'm raising POKéMON too.\nThey serve as my private guards.", MSGBOX_NPC)
+    msgbox("I'm raising {POKEMON} too.\nThey serve as my private guards.", MSGBOX_NPC)
     end
 }
 
 script PalletTown_EventScript_FatMan{
-    msgbox("Technology is incredible!\pYou can now trade POKéMON across\ntime like e-mail.", MSGBOX_NPC)
+    msgbox("Technology is incredible!\pYou can now trade {POKEMON} across\ntime like e-mail.", MSGBOX_NPC)
     end
 }
 
@@ -30,6 +30,6 @@ script PalletTown_EventScript_BluesHouseSign{
 }
 
 script PalletTown_EventScript_LabSign{
-    msgbox("OAK POKéMON RESEARCH LAB", MSGBOX_SIGN)
+    msgbox("OAK {POKEMON} RESEARCH LAB", MSGBOX_SIGN)
     end
 }

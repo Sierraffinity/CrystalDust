@@ -37,9 +37,9 @@ script GoldenrodCity_Gym_EventScript_Whitney {
 text GoldenrodCity_Gym_Text_WhitneyPreBattle {
 	"Hi!\n"
     "I'm WHITNEY!\p"
-    "Everyone was into POKéMON, so I got\n"
+    "Everyone was into {POKEMON}, so I got\n"
     "into it too!\p"
-    "POKéMON are super-cute!\p"
+    "{POKEMON} are super-cute!\p"
     "You want to battle?\n"
     "I'm warning you--I'm good!"
 }
@@ -102,9 +102,9 @@ movement GoldenrodCity_Gym_Movement_BridgetReturns
 }
 
 script GoldenrodCity_Gym_EventScript_GiveAttract {
-    msgbox("The PLAINBADGE lets your POKéMON\n"
+    msgbox("The PLAINBADGE lets your {POKEMON}\n"
            "use STRENGTH outside of battle.\p"
-           "It also boosts your POKéMON's\n"
+           "It also boosts your {POKEMON}'s\n"
            "SPEED.\p"
            "Oh, you can have this too!")
     checkitemspace(ITEM_TM45, 1)
@@ -118,7 +118,7 @@ script GoldenrodCity_Gym_EventScript_GiveAttract {
 					 "from WHITNEY.", ITEM_TM45)
 		setflag(FLAG_GOT_TM45_FROM_WHITNEY)
 		msgbox("It's ATTRACT! It makes full use\n"
-               "of a POKéMON's charm.\p"
+               "of a {POKEMON}'s charm.\p"
                "Isn't it just perfect for a cutie\n"
                "like me?")
 	}
@@ -138,9 +138,9 @@ script GoldenrodCity_Gym_EventScript_Guide {
         msgbox("Yo!\n"
                "Champ in the making!\p"
                "This GYM is home to NORMAL-type\n"
-               "POKéMON TRAINERS.\p"
+               "{POKEMON} TRAINERS.\p"
                "I recommend you use FIGHTING-type\n"
-               "POKéMON.")
+               "{POKEMON}.")
     }
     release
 }
@@ -150,14 +150,14 @@ script GoldenrodCity_Gym_EventScript_Statue {
     faceplayer
     if (flag(FLAG_BADGE03_GET))
     {
-        msgbox("GOLDENROD CITY POKéMON GYM\n"
+        msgbox("GOLDENROD CITY {POKEMON} GYM\n"
                "LEADER: WHITNEY\p"
                "WINNING TRAINERS:\n"
                "{PLAYER}")
     }
     else
     {
-        msgbox("GOLDENROD CITY POKéMON GYM")
+        msgbox("GOLDENROD CITY {POKEMON} GYM")
     }
     release
 }

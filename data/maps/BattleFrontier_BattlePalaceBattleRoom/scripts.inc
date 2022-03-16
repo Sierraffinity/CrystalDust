@@ -469,7 +469,7 @@ BattleFrontier_BattlePalaceBattleRoom_Movement_SpenserEnter:
 
 BattleFrontier_BattlePalaceBattleRoom_Text_LetMeRestoreYourMons:
 	.string "Excellent…\n"
-	.string "Let me restore your POKéMON.$"
+	.string "Let me restore your {POKEMON}.$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor2ndOpponent:
 	.string "The 2nd opponent is next.\n"
@@ -526,18 +526,18 @@ BattleFrontier_BattlePalaceBattleRoom_Text_AnnounceArrivalOfSpenser:
 
 BattleFrontier_BattlePalaceBattleRoom_Text_SpenserFirstIntro:
 	.string "SPENSER: My physical being is with\n"
-	.string "POKéMON always!\p"
+	.string "{POKEMON} always!\p"
 	.string "My heart beats as one with\n"
-	.string "POKéMON always!\p"
+	.string "{POKEMON} always!\p"
 	.string "Young one of a TRAINER!\n"
-	.string "Do you believe in your POKéMON?\p"
+	.string "Do you believe in your {POKEMON}?\p"
 	.string "Can you believe them through\n"
 	.string "and through?\p"
 	.string "If your bonds of trust are frail,\n"
 	.string "you will never beat my brethren!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_ProveYourBondWithMons:
-	.string "The bond you share with your POKéMON!\n"
+	.string "The bond you share with your {POKEMON}!\n"
 	.string "Prove it to me here!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_SpenserPostSilverBattle:
@@ -558,7 +558,7 @@ BattleFrontier_BattlePalaceBattleRoom_Text_ReceivedSpiritsSymbol:
 	.string "the FRONTIER PASS!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_SpenserAwaitNextTime:
-	.string "SPENSER: Your POKéMON's eyes are \n"
+	.string "SPENSER: Your {POKEMON}'s eyes are \n"
 	.string "truly clear and unclouded.\p"
 	.string "I will eagerly await the next\n"
 	.string "opportunity to see you.$"
@@ -567,7 +567,7 @@ BattleFrontier_BattlePalaceBattleRoom_Text_SpenserThisTimeWontHoldBack:
 	.string "SPENSER: Gwahahah!\n"
 	.string "You've battled your way up again?\p"
 	.string "You must have developed a truly\n"
-	.string "formidable bond with your POKéMON.\p"
+	.string "formidable bond with your {POKEMON}.\p"
 	.string "So be it!\p"
 	.string "This time, I won't bluster or hold back.\n"
 	.string "This time, there's no fooling around.\p"

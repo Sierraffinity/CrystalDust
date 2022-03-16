@@ -1,19 +1,19 @@
 mapscripts Route26_MapScripts {}
 
 script Route26_Eventscript_Sign {
-    msgbox("ROUTE 26\nPOKéMON LEAGUE RECEPTION GATE", MSGBOX_SIGN)
+    msgbox("ROUTE 26\n{POKEMON} LEAGUE RECEPTION GATE", MSGBOX_SIGN)
     end
 }
 // trainers from bottom to top
 script Route26_Eventscript_FishermanScott {
     trainerbattle_single(TRAINER_SCOTT, "I'm feeling great today!\pI feel like I could boot even the\nLEAGUE CHAMP!", "No!\nNot in this battle!")
-    msgbox("Just like in fishing, it's all over\nin POKéMON if you give up.", MSGBOX_AUTOCLOSE)
+    msgbox("Just like in fishing, it's all over\nin {POKEMON} if you give up.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route26_Eventscript_PsychicRichard {
     trainerbattle_single(TRAINER_RICHARD, "Wow, look at all those BADGES!\nI'm impressed.\pBut you're not satisfied by just\ncollecting them, right?", "Good battle!")
-    msgbox("People and POKéMON grow from their\nexperiences.\pDon't get lazy and complacent.", MSGBOX_AUTOCLOSE)
+    msgbox("People and {POKEMON} grow from their\nexperiences.\pDon't get lazy and complacent.", MSGBOX_AUTOCLOSE)
     end
 }
 
@@ -26,19 +26,19 @@ script Route26_Eventscript_CooltrainerJoyce {
 script Route26_Eventscript_CooltrainerGaven {
     // TODO: Phone
     trainerbattle_single(TRAINER_GAVEN_1, "By experiencing tough battles,\nyou gain power.", "Gaah!\nLife is even tougher!")
-    msgbox("To get to the POKéMON LEAGUE, you\nhave to get through VICTORY ROAD.\pBut VICTORY ROAD is tough.\nPractically nobody goes there!", MSGBOX_AUTOCLOSE)
+    msgbox("To get to the {POKEMON} LEAGUE, you\nhave to get through VICTORY ROAD.\pBut VICTORY ROAD is tough.\nPractically nobody goes there!", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route26_Eventscript_CooltrainerJake {
-    trainerbattle_single(TRAINER_JAKE, "I'm making my final preparations\nfor the POKéMON LEAGUE.", "I blew it!")
+    trainerbattle_single(TRAINER_JAKE, "I'm making my final preparations\nfor the {POKEMON} LEAGUE.", "I blew it!")
     msgbox("It's going to be tough to win\nat the LEAGUE.\pI need to do some more training.\pI hear that the LEAGUE's ELITE FOUR\nare tougher than GYM LEADERS.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route26_Eventscript_CooltrainerBeth {
     // TODO: Phone
-    trainerbattle_single(TRAINER_BETH_1, "I lost to a TRAINER named {RIVAL}.\nHe was really strong, but…\pIt was as if he absolutely had to\nwin at any cost.\pI feel sorry for his POKéMON.", "POKéMON aren't tools of war.")
-    msgbox("POKéMON are invaluable, lifelong\npartners.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_BETH_1, "I lost to a TRAINER named {RIVAL}.\nHe was really strong, but…\pIt was as if he absolutely had to\nwin at any cost.\pI feel sorry for his {POKEMON}.", "{POKEMON} aren't tools of war.")
+    msgbox("{POKEMON} are invaluable, lifelong\npartners.", MSGBOX_AUTOCLOSE)
     end
 }

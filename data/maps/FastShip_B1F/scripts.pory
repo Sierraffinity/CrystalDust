@@ -225,7 +225,7 @@ script FastShip_B1F_EventScript_BlackBeltWai{
 
 // To Olivine
 script FastShip_B1F_EventScript_SailorKenneth{
-    trainerbattle_single(TRAINER_KENNETH, "I'm a sailor man!\pBut I'm training POKéMON, so I can\nbecome the CHAMP!", "My lack of training is obvious…")
+    trainerbattle_single(TRAINER_KENNETH, "I'm a sailor man!\pBut I'm training {POKEMON}, so I can\nbecome the CHAMP!", "My lack of training is obvious…")
     msgbox("Eight BADGES! They must prove\nthat you've beaten GYM LEADERS.\pNo wonder you're so good!", MSGBOX_AUTOCLOSE)
     end
 }

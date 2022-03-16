@@ -14,7 +14,7 @@ mapscripts Route31_MapScripts {
 
 script Route31_EventScript_Explorer {
     msgbox("DARK CAVE…\p"
-	       "If POKéMON could light it up, I'd\n"
+	       "If {POKEMON} could light it up, I'd\n"
 	       "explore it.", MSGBOX_NPC)
 }
 
@@ -56,17 +56,17 @@ script Route31_EventScript_SleepyMan {
             switch (var(VAR_RESULT))
             {
                 case GIFTMON_NO_MAIL:
-                    msgbox("Why is this POKéMON so special?\n"
+                    msgbox("Why is this {POKEMON} so special?\n"
                            "It doesn't have any MAIL.")
                 case GIFTMON_LAST_MON:
-                    msgbox("If I take that POKéMON from you,\n"
+                    msgbox("If I take that {POKEMON} from you,\n"
                            "what are you going to use in battle?")
                 case GIFTMON_WRONG_MAIL:
                     msgbox("This MAIL isn't for me.")
                 default:
                     if (var(VAR_RESULT) == GIFTMON_WRONG_MON)
                     {
-                        msgbox("…Huh? Who's that POKéMON?\n"
+                        msgbox("…Huh? Who's that {POKEMON}?\n"
                                "It's not one I know.\p"
                                "You can keep it, and I'll just\n"
                                "take the MAIL.")
@@ -78,7 +78,7 @@ script Route31_EventScript_SleepyMan {
                     {
                         textcolor(MSG_COLOR_SYS)
                         playfanfare(MUS_OBTAIN_ITEM)
-                        msgbox("{PLAYER} handed over the POKéMON\n"
+                        msgbox("{PLAYER} handed over the {POKEMON}\n"
                                "holding the MAIL.")
                     }
                     setflag(FLAG_GAVE_KENYA_TO_RANDYS_FRIEND)
@@ -113,9 +113,9 @@ script Route31_EventScript_SleepyMan {
     {
         msgbox("…Hnuurg… Huh?\p"
                "I walked too far today looking\n"
-               "for POKéMON.\p"
+               "for {POKEMON}.\p"
                "My feet hurt and I'm sleepy…\p"
-               "If I were a wild POKéMON, I'd be\n"
+               "If I were a wild {POKEMON}, I'd be\n"
                "easy to catch…\p"
                "…Zzzz…")
     }
@@ -125,7 +125,7 @@ script Route31_EventScript_SleepyMan {
 text Route31_Text_SleepyMan_TMDescription {
     "TM44 is REST.\p"
     "It's a wonderful move that lets a\n"
-    "POKéMON sleep to recover HP.\p"
+    "{POKEMON} sleep to recover HP.\p"
     "Ooooh…\n"
     "That's tempting…\p"
     "Hopefully I won't have any bad\n"
@@ -143,7 +143,7 @@ script Route31_EventScript_SleepyMan_TryGiveTM {
 }
 
 script Route31_EventScript_Youngster {
-    msgbox("I found a good POKéMON in\n"
+    msgbox("I found a good {POKEMON} in\n"
            "DARK CAVE.\p"
            "I'm going to raise it to take on\n"
            "FALKNER, the leader of VIOLET\l"

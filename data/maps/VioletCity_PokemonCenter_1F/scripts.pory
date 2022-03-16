@@ -16,19 +16,19 @@ script VioletCity_PokemonCenter_1F_EventScript_Nurse {
 }
 
 script VioletCity_PokemonCenter_1F_EventScript_Gameboy_Kid {
-    msgbox("A guy named BILL made the POKéMON\n"
+    msgbox("A guy named BILL made the {POKEMON}\n"
            "PC storage system.", MSGBOX_NPC)
 }
 
 script VioletCity_PokemonCenter_1F_EventScript_Gentleman {
     msgbox("Around three years ago, TEAM ROCKET\n"
-           "was up to no good with POKéMON.\p"
+           "was up to no good with {POKEMON}.\p"
            "But justice prevailed--a young kid\n"
            "broke 'em up.", MSGBOX_NPC)
 }
 
 script VioletCity_PokemonCenter_1F_EventScript_Youngster {
-    msgbox("POKéMON are smart. They won't obey\n"
+    msgbox("{POKEMON} are smart. They won't obey\n"
            "a TRAINER they don't respect.\p"
            "Without the right GYM BADGES,\n"
            "they'll do just as they please.", MSGBOX_NPC)
@@ -44,7 +44,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
                "Long time, no see.\p"
                "PROF. ELM asked me to find you.\n"
                "He has another favor to ask.\p"
-               "Would you take the POKéMON EGG?", MSGBOX_YESNO)
+               "Would you take the {POKEMON} EGG?", MSGBOX_YESNO)
     }
     else
     {
@@ -64,10 +64,10 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
             waitfanfare
             giveegg(SPECIES_TOGEPI)
             textcolor(MSG_COLOR_PREV)
-            msgbox("We discovered that a POKéMON won't\n"
+            msgbox("We discovered that a {POKEMON} won't\n"
                    "hatch until it grows in the EGG.\p"
                    "It also has to be with other active\n"
-                   "POKéMON to hatch.\p"
+                   "{POKEMON} to hatch.\p"
                    "{PLAYER}, you're the only person\n"
                    "we can rely on.\p"
                    "Please call PROF. ELM when that\n"
@@ -155,7 +155,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
         else
         {
             msgbox("Oh, no. You can't carry any more\n"
-                   "POKéMON with you.\p"
+                   "{POKEMON} with you.\p"
                    "I'll wait here while you make\n"
                    "room for the EGG.")
         }

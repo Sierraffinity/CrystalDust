@@ -13,7 +13,7 @@ script Route39_MooMooFarmHouse_EventScript_Man {
         lock
         faceplayer
         showmoneybox(0, 0, 0)
-        msgbox("How'd you like my MOOMOO MILK?\pIt's my pride and joy, there.\nGive it to POKéMON to restore HP!\pI'll give it to ya fer just ¥500.", MSGBOX_YESNO)
+        msgbox("How'd you like my MOOMOO MILK?\pIt's my pride and joy, there.\nGive it to {POKEMON} to restore HP!\pI'll give it to ya fer just ¥500.", MSGBOX_YESNO)
         if(var(VAR_RESULT) == NO)
         {
             msgbox("You don't want it?\nCome again, hear?", MSGBOX_AUTOCLOSE)
@@ -59,7 +59,7 @@ script Route39_MooMooFarmHouse_EventScript_Woman {
     }
     if(flag(FLAG_GOT_FACADE_FROM_MOOMOO_FARM))
     {
-        msgbox("That there's FACADE.\pIt's a rare move that works better\nwhen the POKéMON is burned,\lpoisoned, or paralyzed.\pYou best think how you ought\nto use it, hon.", MSGBOX_NPC)
+        msgbox("That there's FACADE.\pIt's a rare move that works better\nwhen the {POKEMON} is burned,\lpoisoned, or paralyzed.\pYou best think how you ought\nto use it, hon.", MSGBOX_NPC)
         end
     }
     faceplayer

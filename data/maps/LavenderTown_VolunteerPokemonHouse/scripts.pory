@@ -1,7 +1,7 @@
 mapscripts LavenderTown_VolunteerPokemonHouse_MapScripts {}
 
 script LavenderTown_VolunteerPokemonHouse_EventScript_Girl{
-    msgbox("Some cold-hearted people stop\ncaring for their POKéMON.\pGrandpa takes in the poor homeless\nPOKéMON and takes care of them.", MSGBOX_NPC)
+    msgbox("Some cold-hearted people stop\ncaring for their {POKEMON}.\pGrandpa takes in the poor homeless\n{POKEMON} and takes care of them.", MSGBOX_NPC)
     end
 }
 

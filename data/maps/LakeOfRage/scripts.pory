@@ -191,7 +191,7 @@ script LakeOfRage_Eventscript_WesleyOfWednesday {
 
 script LakeOfRage_Eventscript_CooltrainerAaron { //on left side of lake
     trainerbattle_single(TRAINER_AARON, "If a TRAINER spots another TRAINER,\nhe has to make a challenge.\pThat is our destiny.", "Whew…\nGood battle.")
-    msgbox("POKéMON and their TRAINER become\npowerful through constant battling.", MSGBOX_AUTOCLOSE)
+    msgbox("{POKEMON} and their TRAINER become\npowerful through constant battling.", MSGBOX_AUTOCLOSE)
     end
 }
 
@@ -218,13 +218,13 @@ script LakeOfRage_Eventscript_CooltrainerLois {
 }
 
 script LakeOfRage_Eventscript_FishermanAndre { // the one looking left
-    trainerbattle_single(TRAINER_ANDRE, "Let me battle with the POKéMON I\njust caught!", "I might be an expert angler, but I\nstink as a POKéMON TRAINER…")
-    msgbox("I won't lose as an angler!\nI catch POKéMON all day.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_ANDRE, "Let me battle with the {POKEMON} I\njust caught!", "I might be an expert angler, but I\nstink as a {POKEMON} TRAINER…")
+    msgbox("I won't lose as an angler!\nI catch {POKEMON} all day.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script LakeOfRage_Eventscript_FishermanRaymond { // the one looking up nearest sign
-    trainerbattle_single(TRAINER_RAYMOND, "No matter what I do, all I catch are\nthe same POKéMON…", "My line's all tangled up…")
-    msgbox("Why can't I catch any good POKéMON?", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_RAYMOND, "No matter what I do, all I catch are\nthe same {POKEMON}…", "My line's all tangled up…")
+    msgbox("Why can't I catch any good {POKEMON}?", MSGBOX_AUTOCLOSE)
     end
 }

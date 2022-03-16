@@ -11,7 +11,7 @@ script EcruteakCity_House2_Eventscript_ItemfinderGuy{
     }
     lock
     faceplayer
-    msgbox("Ah. You're on an adventure with your\nPOKéMON?\pWell, what's an adventure without\ntreasure hunting?\pAm I right, or am I right?", MSGBOX_YESNO)
+    msgbox("Ah. You're on an adventure with your\n{POKEMON}?\pWell, what's an adventure without\ntreasure hunting?\pAm I right, or am I right?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES)
     {
         msgbox("Good! You understand the true spirit\nof adventure.\pI like that!\nTake this with you.", MSGBOX_DEFAULT)
@@ -34,11 +34,11 @@ script EcruteakCity_House2_Eventscript_Book{
     if(var(VAR_RESULT) == YES)
     {
         signmsg
-        msgbox("In ECRUTEAK, there were two\ntowers.\pEach tower was the roost of powerful\nflying POKéMON.\pBut one of the towers burned to the\nground.\pThe two POKéMON haven't been seen\nsince…\pKeep reading?", MSGBOX_YESNO)
+        msgbox("In ECRUTEAK, there were two\ntowers.\pEach tower was the roost of powerful\nflying {POKEMON}.\pBut one of the towers burned to the\nground.\pThe two {POKEMON} haven't been seen\nsince…\pKeep reading?", MSGBOX_YESNO)
         if(var(VAR_RESULT) == YES)
         {
             signmsg
-            msgbox("ECRUTEAK was also home to three\nPOKéMON that raced around\lthe town.\pThey were said to have been born of\nwater, lightning and fire.\pBut they could not contain their\nexcessive power.\pSo they say the three ran like the\nwind off into the grassland…", MSGBOX_DEFAULT)
+            msgbox("ECRUTEAK was also home to three\n{POKEMON} that raced around\lthe town.\pThey were said to have been born of\nwater, lightning and fire.\pBut they could not contain their\nexcessive power.\pSo they say the three ran like the\nwind off into the grassland…", MSGBOX_DEFAULT)
             release
             end
         }

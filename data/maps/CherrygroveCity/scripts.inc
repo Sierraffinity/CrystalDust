@@ -421,25 +421,25 @@ CherrygroveCity_Text_GuideGent_OkayThen:
 	.string "Follow me!$"
 
 CherrygroveCity_Text_GuideGent_PokemonCenter:
-	.string "This is a POKéMON CENTER.\p"
-	.string "They heal your POKéMON in no time\n"
+	.string "This is a {POKEMON} CENTER.\p"
+	.string "They heal your {POKEMON} in no time\n"
 	.string "at all.\p"
 	.string "You'll be relying on them a lot, so\n"
 	.string "you better learn about them.$"
 
 CherrygroveCity_Text_GuideGent_PokemonMart:
-	.string "This is a POKéMON MART.\p"
-	.string "They sell POKé BALLS for catching\n"
-	.string "wild POKéMON and other useful items.$"
+	.string "This is a {POKEMON} MART.\p"
+	.string "They sell {POKE} BALLS for catching\n"
+	.string "wild {POKEMON} and other useful items.$"
 
 CherrygroveCity_Text_GuideGent_Route30:
 	.string "ROUTE 30 is out this way.\p"
 	.string "TRAINERS will be battling their\n"
-	.string "prized POKéMON there.$"
+	.string "prized {POKEMON} there.$"
 
 CherrygroveCity_Text_GuideGent_Sea:
 	.string "This is the sea, as you can see.\p"
-	.string "Some POKéMON are found only in\n"
+	.string "Some {POKEMON} are found only in\n"
 	.string "water.$"
 
 CherrygroveCity_Text_GuideGent_ItsMyHouse:
@@ -453,21 +453,21 @@ CherrygroveCity_Text_GuideGent_GetMapCard1:
 	.string "from the GUIDE GENT.$"
 
 CherrygroveCity_Text_GuideGent_GetMapCard2:
-	.string "{PLAYER}'s POKéGEAR now has a MAP!$"
+	.string "{PLAYER}'s {POKE}GEAR now has a MAP!$"
 
 CherrygroveCity_Text_GuideGent_Pokegear:
-	.string "The POKéGEAR becomes more useful\n"
+	.string "The {POKE}GEAR becomes more useful\n"
 	.string "as you add CARDS.\p"
 	.string "I wish you luck on your journey!$"
 
 CherrygroveCity_Text_Rival_GotAMon:
 	.string "…… …… ……\n"
-	.string "You got a POKéMON at the lab.\p"
-	.string "What a waste of a POKéMON.\n"
+	.string "You got a {POKEMON} at the lab.\p"
+	.string "What a waste of a {POKEMON}.\n"
 	.string "Given to a wimp like you.\p"
 	.string "…… …… ……\n"
 	.string "Don't you get what I'm saying?\p"
-	.string "Well, I too have a good POKéMON.\n"
+	.string "Well, I too have a good {POKEMON}.\n"
 	.string "I'll show you what I mean!$"
 
 CherrygroveCity_Text_Rival_BattleWin:
@@ -482,7 +482,7 @@ CherrygroveCity_Text_Rival_PostBattle:
 	.string "…… …… ……\n"
 	.string "My name's ???.\p"
 	.string "I'm going to be the world's greatest\n"
-	.string "POKéMON TRAINER.$"
+	.string "{POKEMON} TRAINER.$"
 
 CherrygroveCity_Text_GuideGent_Rejected:
 	.string "Oh…\n"
@@ -491,24 +491,24 @@ CherrygroveCity_Text_GuideGent_Rejected:
 
 CherrygroveCity_Text_TeacherPreMapCard:
 	.string "Did you talk to the old man by the\n"
-	.string "POKéMON CENTER?\p"
+	.string "{POKEMON} CENTER?\p"
 	.string "He'll put a map of JOHTO on your\n"
-	.string "POKéGEAR.$"
+	.string "{POKE}GEAR.$"
 
 CherrygroveCity_Text_TeacherPostMapCard:
-	.string "When you're with POKéMON, going\n"
+	.string "When you're with {POKEMON}, going\n"
 	.string "anywhere is fun.$"
 
 CherrygroveCity_Text_YoungsterPreDex:
-	.string "MR. POKéMON's house is still farther\n"
+	.string "MR. {POKEMON}'s house is still farther\n"
 	.string "up ahead.$"
 
 CherrygroveCity_Text_YoungsterPostDex:
 	.string "I battled the TRAINERS on the road.\n"
-	.string "My POKéMON lost.\l"
+	.string "My {POKEMON} lost.\l"
 	.string "They're a mess!\p"
 	.string "I really need to take them to a\n"
-	.string "POKéMON CENTER.$"
+	.string "{POKEMON} CENTER.$"
 
 CherrygroveCity_Text_GuideGentsHouse:
 	.string "GUIDE GENT'S HOUSE$"
@@ -518,7 +518,7 @@ CherrygroveCity_Text_Slogan:
 	.string "The City of Cute, Fragrant Flowers$"
 
 CherrygroveCity_Text_MysticWaterGuy:
-	.string "A POKéMON I caught had an item.\nI think it's MYSTIC WATER.\pI don't need it, so do you want it?$"
+	.string "A {POKEMON} I caught had an item.\nI think it's MYSTIC WATER.\pI don't need it, so do you want it?$"
 
 CherrygroveCity_Text_MysticWaterGuyReceived:
 	.string "Back to fishing for me, then.$"

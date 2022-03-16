@@ -46,7 +46,7 @@ mapscripts RuinsOfAlph_AerodactylChamber_MapScripts {
 }
 
 script RuinsOfAlph_AerodactylChamber_EventScript_AerodactylDescription {
-    msgbox("This flying POKéMON attacked its\n"
+    msgbox("This flying {POKEMON} attacked its\n"
            "prey with saw-like fangs.", MSGBOX_SIGN)
 }
 

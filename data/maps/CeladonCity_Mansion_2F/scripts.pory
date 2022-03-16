@@ -6,6 +6,6 @@ script CeladonCity_Mansion_2F_EventScript_Directory {
 }
 
 script CeladonCity_Mansion_2F_EventScript_PC {
-	msgbox("{PLAYER} turned on the PC.\p…\pSomeone was in the middle of\ncomposing an e-mail.\p…I hope you'll come visit KANTO.\pI think you'll be surprised at how\nmuch things have changed here.\pYou'll also see many POKéMON that\naren't native to JOHTO.\pTo the PRODUCER\p…", MSGBOX_SIGN)
+	msgbox("{PLAYER} turned on the PC.\p…\pSomeone was in the middle of\ncomposing an e-mail.\p…I hope you'll come visit KANTO.\pI think you'll be surprised at how\nmuch things have changed here.\pYou'll also see many {POKEMON} that\naren't native to JOHTO.\pTo the PRODUCER\p…", MSGBOX_SIGN)
 	end
 }

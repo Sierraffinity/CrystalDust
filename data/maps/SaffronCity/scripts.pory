@@ -10,7 +10,7 @@ script SaffronCity_EventScript_CitySign{
 }
 
 script SaffronCity_EventScript_GymSign{
-    msgbox("SAFFRON CITY POKéMON GYM\nLEADER: SABRINA\pThe Master of Psychic POKéMON!", MSGBOX_SIGN)
+    msgbox("SAFFRON CITY {POKEMON} GYM\nLEADER: SABRINA\pThe Master of Psychic {POKEMON}!", MSGBOX_SIGN)
     end
 }
 
@@ -37,7 +37,7 @@ script SaffronCity_EventScript_MagnetTrainStationSign{
 script SaffronCity_EventScript_Lass1{
     if(flag(FLAG_RETURNED_MACHINE_PART))
     {
-        msgbox("The COPYCAT girl looked unhappy.\pShe said she lost her favorite\nPOKé DOLL--CLEFAIRY.", MSGBOX_NPC)
+        msgbox("The COPYCAT girl looked unhappy.\pShe said she lost her favorite\n{POKE} DOLL--CLEFAIRY.", MSGBOX_NPC)
         end
     }
     msgbox("A little girl who is an expert at\nmimicking people lives here.\pShe even mimics the people she's\nconversing with. It's confusing.", MSGBOX_NPC)
@@ -61,7 +61,7 @@ script SaffronCity_EventScript_CooltrainerM{
 }
 
 script SaffronCity_EventScript_CooltrainerF{
-    msgbox("This is SILPH CO., famous for\nPOKéMON merchandise.\pIn the past, TEAM ROCKET wanted the\ncompany because of that.", MSGBOX_NPC)
+    msgbox("This is SILPH CO., famous for\n{POKEMON} merchandise.\pIn the past, TEAM ROCKET wanted the\ncompany because of that.", MSGBOX_NPC)
     end
 }
 

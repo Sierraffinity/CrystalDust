@@ -80,7 +80,7 @@ script FastShip_Cabins_SW_SSW_NW_EventScript_BurglarCorey{
 
 script FastShip_Cabins_SW_SSW_NW_EventScript_BugCatcherKen{
     trainerbattle_single(TRAINER_KEN, "I'm visiting my grandma to catch\nme some bugs!", "Ooh, wow.\nYou're tough!")
-    msgbox("You can find lots of POKéMON in\nthe trees of JOHTO!", MSGBOX_AUTOCLOSE)
+    msgbox("You can find lots of {POKEMON} in\nthe trees of JOHTO!", MSGBOX_AUTOCLOSE)
     end
 }
 

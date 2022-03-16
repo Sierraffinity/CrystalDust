@@ -37,7 +37,7 @@ script EcruteakCity_Gym_Mapscript_OldMan{
 }
 
 script EcruteakCity_Gym_Eventscript_Morty{
-    trainerbattle_single(TRAINER_MORTY, "Good of you to have come.\pHere in ECRUTEAK, POKéMON have been\nrevered.\pIt's said that a rainbow-colored\nPOKéMON will come down to appear\lbefore a truly powerful TRAINER.\pI believed that tale, so I have\nsecretly trained here all my life.\pAs a result, I can now see what\nothers cannot.\pJust a bit more…\pWith a little more, I could see a\nfuture in which I meet the POKéMON\lof rainbow colors.\pYou're going to help me reach that\nlevel!", "I'm not good enough yet…\nAll right. This BADGE is yours.", EcruteakCity_Gym_Eventscript_MortyDefeated, NO_MUSIC)
+    trainerbattle_single(TRAINER_MORTY, "Good of you to have come.\pHere in ECRUTEAK, {POKEMON} have been\nrevered.\pIt's said that a rainbow-colored\n{POKEMON} will come down to appear\lbefore a truly powerful TRAINER.\pI believed that tale, so I have\nsecretly trained here all my life.\pAs a result, I can now see what\nothers cannot.\pJust a bit more…\pWith a little more, I could see a\nfuture in which I meet the {POKEMON}\lof rainbow colors.\pYou're going to help me reach that\nlevel!", "I'm not good enough yet…\nAll right. This BADGE is yours.", EcruteakCity_Gym_Eventscript_MortyDefeated, NO_MUSIC)
     if(!flag(FLAG_GOT_TM30_FROM_MORTY))
     {
         goto(EcruteakCity_Gym_Eventscript_GiveShadowBall)
@@ -54,7 +54,7 @@ script EcruteakCity_Gym_Eventscript_Morty{
     setgymtrainers(4)
     //falls through to next script
 }script(local) EcruteakCity_Gym_Eventscript_GiveShadowBall{
-    msgbox("By having the FOGBADGE, POKéMON up\nto Lv50 will obey you.\pAlso, POKéMON that know SURF will be\nable to use that move anytime.\pI want you to have this too.")
+    msgbox("By having the FOGBADGE, {POKEMON} up\nto Lv50 will obey you.\pAlso, {POKEMON} that know SURF will be\nable to use that move anytime.\pI want you to have this too.")
     checkitemspace(ITEM_TM30, 1)
     if(!var(VAR_RESULT))
     {
@@ -70,10 +70,10 @@ script EcruteakCity_Gym_Eventscript_Morty{
 script EcruteakCity_Gym_Eventscript_Statues{
     if(flag(FLAG_BADGE04_GET))
     {
-        msgbox("ECRUTEAK CITY POKéMON GYM\nLEADER: MORTY\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        msgbox("ECRUTEAK CITY {POKEMON} GYM\nLEADER: MORTY\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
         end
     }
-    msgbox("ECRUTEAK CITY POKéMON GYM", MSGBOX_SIGN)
+    msgbox("ECRUTEAK CITY {POKEMON} GYM", MSGBOX_SIGN)
     end
 }
 
@@ -88,8 +88,8 @@ script EcruteakCity_Gym_Eventscript_GymGuy{
 }
 
 script EcruteakCity_Gym_Eventscript_SagePing{ // lower Sage
-    trainerbattle_single(TRAINER_PING, "Can you inflict any damage on our\nPOKéMON?", "Ah! Well done!")
-    msgbox("We use only GHOST-type POKéMON.\nNo NORMAL-type attack can harm them!", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_PING, "Can you inflict any damage on our\n{POKEMON}?", "Ah! Well done!")
+    msgbox("We use only GHOST-type {POKEMON}.\nNo NORMAL-type attack can harm them!", MSGBOX_AUTOCLOSE)
     end
 }
 
@@ -100,8 +100,8 @@ script EcruteakCity_Gym_Eventscript_MediumGrace{ // lower Medium
 }
 
 script EcruteakCity_Gym_Eventscript_SageJeffrey{ // upper Sage
-    trainerbattle_single(TRAINER_JEFFREY, "I spent the spring with my POKéMON.\nThen summer, fall, and winter…\pThen spring came again. We have\nlived together for a long time.", "Wins and losses, I experienced both.")
-    msgbox("Where did POKéMON come from?", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_JEFFREY, "I spent the spring with my {POKEMON}.\nThen summer, fall, and winter…\pThen spring came again. We have\nlived together for a long time.", "Wins and losses, I experienced both.")
+    msgbox("Where did {POKEMON} come from?", MSGBOX_AUTOCLOSE)
     end
 }
 

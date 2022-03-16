@@ -28,7 +28,7 @@ script CeladonCity_Mansion_3F_EventScript_GameProgram {
 }
 
 script CeladonCity_Mansion_3F_EventScript_ReferenceMaterial {
-	msgbox("It's crammed with reference materials.\nThere's even a POKé DOLL.", MSGBOX_SIGN)
+	msgbox("It's crammed with reference materials.\nThere's even a {POKE} DOLL.", MSGBOX_SIGN)
 	end
 }
 

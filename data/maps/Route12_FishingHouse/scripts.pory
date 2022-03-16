@@ -4,7 +4,7 @@ script Route12_FishingHouse_EventScript_FishingGuru{
     checkitem(ITEM_SUPER_ROD, 1)
     if(var(VAR_RESULT))
     {
-        msgbox("Try your hand at fishing wherever\nthere is water.\pRemember--you can catch different\nPOKéMON using different RODS.", MSGBOX_NPC)
+        msgbox("Try your hand at fishing wherever\nthere is water.\pRemember--you can catch different\n{POKEMON} using different RODS.", MSGBOX_NPC)
         end
     }
     lock

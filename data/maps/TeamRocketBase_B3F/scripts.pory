@@ -68,12 +68,12 @@ script TeamRocketBase_B3F_EventScript_GruntM{
 
 script TeamRocketBase_B3F_EventScript_ScientistRoss{
     trainerbattle_single(TRAINER_ROSS, "I used to work for SILPH, but now I\nrun research for TEAM ROCKET.\pA meddlesome child like you needs\nto be punished.", "A mere tactical error cost me…")
-    msgbox("A radio signal that drives\nPOKéMON mad…\pMy experiment is a complete success.\nMy promotion is assured.\lThis loss means absolutely nothing.", MSGBOX_AUTOCLOSE)
+    msgbox("A radio signal that drives\n{POKEMON} mad…\pMy experiment is a complete success.\nMy promotion is assured.\lThis loss means absolutely nothing.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script TeamRocketBase_B3F_EventScript_ScientistMitch{
-    trainerbattle_single(TRAINER_MITCH, "I don't care that POKéMON are hurt\nby our experiment.", "Thinking is my strong suit,\nnot battling.")
+    trainerbattle_single(TRAINER_MITCH, "I don't care that {POKEMON} are hurt\nby our experiment.", "Thinking is my strong suit,\nnot battling.")
     msgbox("If we turn up the power of our radio\nsignal for broadcast nationwide…\pThe very thought excites me!", MSGBOX_AUTOCLOSE)
     end
 }
@@ -136,7 +136,7 @@ script TeamRocketBase_B3F_EventScript_RivalTriggers{
     waitmovement(0)
     playbgm(MUS_ENCOUNTER_RIVAL, 0)
     textcolor(0)
-    msgbox("…\pDidn't I tell you that I was going\nto destroy TEAM ROCKET?\p…Tell me, who was the guy in the\ncape who used dragon POKéMON?\lMy POKéMON were no match at all.\pI don't care that I lost. I can beat\nhim by getting stronger POKéMON.\pIt's what he said that bothers me…\pHe told me that I don't love and\ntrust my POKéMON enough.\pI'm furious that I lost to a bleeding\nheart like him.\p…Humph! I don't have time for\nthe likes of you!", MSGBOX_DEFAULT)
+    msgbox("…\pDidn't I tell you that I was going\nto destroy TEAM ROCKET?\p…Tell me, who was the guy in the\ncape who used dragon {POKEMON}?\lMy {POKEMON} were no match at all.\pI don't care that I lost. I can beat\nhim by getting stronger {POKEMON}.\pIt's what he said that bothers me…\pHe told me that I don't love and\ntrust my {POKEMON} enough.\pI'm furious that I lost to a bleeding\nheart like him.\p…Humph! I don't have time for\nthe likes of you!", MSGBOX_DEFAULT)
     closemessage
     delay(10)
 	playse(SE_NOT_EFFECTIVE)

@@ -11,12 +11,12 @@ CherrygroveCity_House1_EventScript_Child::
 
 CherrygroveCity_House1_Text_Pokefan:
 	.string "You're trying to see how good you\n"
-	.string "are as a POKéMON TRAINER?\p"
-	.string "You better visit the POKéMON GYMS\n"
+	.string "are as a {POKEMON} TRAINER?\p"
+	.string "You better visit the {POKEMON} GYMS\n"
 	.string "all over JOHTO and collect BADGES.$"
 
 CherrygroveCity_House1_Text_Child:
 	.string "When I get older, I'm going to be\n"
 	.string "a GYM LEADER!\p"
-	.string "I make my POKéMON battle with my\n"
+	.string "I make my {POKEMON} battle with my\n"
 	.string "friend's to make them tougher!$"

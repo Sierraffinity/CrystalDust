@@ -54,12 +54,12 @@ script BlackthornCity_Eventscript_MoveDeleterSign {
 }
 
 script BlackthornCity_Eventscript_TrainerTipsSign {
-    msgbox("TRAINER TIPS\pA POKéMON holding a LUM BERRY will\ncure itself of any status problem.", MSGBOX_SIGN)
+    msgbox("TRAINER TIPS\pA {POKEMON} holding a LUM BERRY will\ncure itself of any status problem.", MSGBOX_SIGN)
     end
 }
 
 script BlackthornCity_Eventscript_GymSign {
-    msgbox("BLACKTHORN CITY POKéMON GYM\nLEADER: CLAIR\pThe Blessed User of Dragon POKéMON", MSGBOX_SIGN)
+    msgbox("BLACKTHORN CITY {POKEMON} GYM\nLEADER: CLAIR\pThe Blessed User of Dragon {POKEMON}", MSGBOX_SIGN)
     end
 }
 
@@ -79,7 +79,7 @@ script BlackthornCity_Eventscript_BlackBelt{
 }
 
 script BlackthornCity_Eventscript_Girl{ // nearest Move Deleter's house
-    msgbox("Are you going to make your POKéMON\nforget some moves?", MSGBOX_NPC)
+    msgbox("Are you going to make your {POKEMON}\nforget some moves?", MSGBOX_NPC)
     end
 }
 

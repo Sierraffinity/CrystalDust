@@ -8,7 +8,7 @@ script LakeOfRage_HiddenPowerHouse_FatGuy{
     }
     lock
     faceplayer
-    msgbox("…You have strayed far…\pHere I have meditated. Inside me,\na new power has been awakened.\pLet me share my power with your\nPOKéMON. Take this, child.", MSGBOX_DEFAULT)
+    msgbox("…You have strayed far…\pHere I have meditated. Inside me,\na new power has been awakened.\pLet me share my power with your\n{POKEMON}. Take this, child.", MSGBOX_DEFAULT)
     closemessage
     checkitemspace(ITEM_TM10, 1)
     if(!var(VAR_RESULT))
@@ -19,7 +19,7 @@ script LakeOfRage_HiddenPowerHouse_FatGuy{
     }
     giveitem(ITEM_TM10, 1)
     setflag(FLAG_GOT_TM10_HIDDEN_POWER)
-    msgbox("Do you see it?\nIt is HIDDEN POWER!\pIt draws out the power of POKéMON\nfor attacking.\pRemember this: its type and power\ndepend on the POKéMON using it.", MSGBOX_DEFAULT)
+    msgbox("Do you see it?\nIt is HIDDEN POWER!\pIt draws out the power of {POKEMON}\nfor attacking.\pRemember this: its type and power\ndepend on the {POKEMON} using it.", MSGBOX_DEFAULT)
     release
     end
 }

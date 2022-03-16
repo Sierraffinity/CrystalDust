@@ -371,7 +371,7 @@ Route29_Movement_DudeFromBottom:
 
 Route29_Text_Youngster:
 	.string "Yo.\n"
-	.string "How are your POKéMON?\p"
+	.string "How are your {POKEMON}?\p"
 	.string "If they're weak and not ready for\n"
 	.string "battle, keep out of the grass.$"
 
@@ -386,37 +386,37 @@ Route29_Text_FatMan:
 	.string "saved to record my progress.$"
 
 Route29_Text_WaitingForNight:
-	.string "I'm waiting for POKéMON that appear\n"
+	.string "I'm waiting for {POKEMON} that appear\n"
 	.string "only at night.$"
 
 Route29_Text_WaitingForMorning:
-	.string "I'm waiting for POKéMON that appear\n"
+	.string "I'm waiting for {POKEMON} that appear\n"
 	.string "only in the morning.$"
 
 Route29_Text_PokemonInTheGrass:
-	.string "POKéMON hide in the grass.\n"
+	.string "{POKEMON} hide in the grass.\n"
 	.string "Who knows when they'll pop out…$"
 
 Route29_Text_Dude_CatchingIntro:
 	.string "I've seen you a couple times.\n"
-	.string "How many POKéMON have you caught?\p"
+	.string "How many {POKEMON} have you caught?\p"
 	.string "Would you like me to show you how\n"
-	.string "to catch POKéMON?$"
+	.string "to catch {POKEMON}?$"
 
 Route29_Text_Dude_CatchingOutro:
 	.string "That's how you do it.\p"
-	.string "If you weaken them first, POKéMON\n"
+	.string "If you weaken them first, {POKEMON}\n"
 	.string "are easier to catch.$"
 
 Route29_Text_Dude_HowAboutNow:
 	.string "Huh? You want me to show you how\n"
-	.string "to catch POKéMON?$"
+	.string "to catch {POKEMON}?$"
 
 Route29_Text_Dude_CatchingTutRejected:
 	.string "Oh.\n"
 	.string "Fine, then.\p"
 	.string "Anyway, if you want to catch\n"
-	.string "POKéMON, you have to walk a lot.$"
+	.string "{POKEMON}, you have to walk a lot.$"
 
 Route29_Text_DirectionSign:
 	.string "ROUTE 29\n"

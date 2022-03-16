@@ -24,7 +24,7 @@ script RadioTower_2F_EventScript_RocketM3 {
 }
 
 script RadioTower_2F_EventScript_RocketM1 {
-    trainerbattle_single(TRAINER_RADIO_TOWER_2F_GRUNT_1, "We're TEAM ROCKET, the exploiters\nof POKéMON!\pWe love being evil!\nScared?", "You think you're a hero?")
+    trainerbattle_single(TRAINER_RADIO_TOWER_2F_GRUNT_1, "We're TEAM ROCKET, the exploiters\nof {POKEMON}!\pWe love being evil!\nScared?", "You think you're a hero?")
     msgbox("We're not always evil.\nWe just do whatever we like.")
     release
 }
@@ -51,7 +51,7 @@ script RadioTower_2F_EventScript_LullabyWoman {
     else
     {
         msgbox("Lullabies on the radio may make\n"
-               "POKéMON sleep.")
+               "{POKEMON} sleep.")
     }
     release
 }
@@ -398,11 +398,11 @@ script RadioTower_2F_EventScript_BuenasAssistantMenu {
 
 script RadioTower_2F_EventScript_PokemonRadioSign {
     msgbox("Anywhere, Anytime\n"
-           "POKéMON Radio", MSGBOX_SIGN)
+           "{POKEMON} Radio", MSGBOX_SIGN)
 }
 
 script RadioTower_2F_EventScript_OaksPkmnTalkSign {
-    msgbox("PROF. OAK'S POKéMON TALK\n"
+    msgbox("PROF. OAK'S {POKEMON} TALK\n"
            "The Hottest Show on the Air!", MSGBOX_SIGN)
 }
 

@@ -272,7 +272,7 @@ BattleDome_Text_NeglectsSpDef::
 	.string "Neglects SP. DEFENSE.$"
 
 BattleDome_Text_RaisesMonsWellBalanced::
-	.string "Raises POKéMON in a well-balanced way.$"
+	.string "Raises {POKEMON} in a well-balanced way.$"
 
 BattleDome_Text_LetTheBattleBegin::
 	.string "Let the battle begin!$"

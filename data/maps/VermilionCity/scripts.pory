@@ -25,7 +25,7 @@ script VermilionCity_EventScript_Snorlax{
         release
         end
     }
-    message("The POKéGEAR was placed near the\nsleeping SNORLAX…\p…\pSNORLAX woke up!")
+    message("The {POKE}GEAR was placed near the\nsleeping SNORLAX…\p…\pSNORLAX woke up!")
     waitmessage
     delay(15)
     playmoncry(SPECIES_SNORLAX, 0)
@@ -66,12 +66,12 @@ script VermilionCity_EventScript_TownSign{
 }
 
 script VermilionCity_EventScript_GymSign{
-    msgbox("VERMILION CITY POKéMON GYM\nLEADER: LT. SURGE\pThe Lightning American", MSGBOX_SIGN)
+    msgbox("VERMILION CITY {POKEMON} GYM\nLEADER: LT. SURGE\pThe Lightning American", MSGBOX_SIGN)
     end
 }
 
 script VermilionCity_EventScript_FanClubSign{
-    msgbox("POKéMON FAN CLUB\nAll POKéMON Fans Welcome!", MSGBOX_SIGN)
+    msgbox("{POKEMON} FAN CLUB\nAll {POKEMON} Fans Welcome!", MSGBOX_SIGN)
     end
 }
 
@@ -91,7 +91,7 @@ script VermilionCity_EventScript_Teacher{
 }
 
 script VermilionCity_EventScript_MachopOwner{
-    msgbox("My POKéMON is preparing the land\nfor construction.\pBut I have no money to start\nthe project…", MSGBOX_NPC)
+    msgbox("My {POKEMON} is preparing the land\nfor construction.\pBut I have no money to start\nthe project…", MSGBOX_NPC)
     end
 }
 
@@ -115,14 +115,14 @@ script VermilionCity_EventScript_Machop {
 }
 
 script VermilionCity_EventScript_SuperNerd{
-    msgbox("There are eight GYMS in KANTO.\pThat big building is VERMILION's\nPOKéMON GYM.", MSGBOX_NPC)
+    msgbox("There are eight GYMS in KANTO.\pThat big building is VERMILION's\n{POKEMON} GYM.", MSGBOX_NPC)
     end
 }
 
 script VermilionCity_EventScript_BadgeGuy{
     if(flag(FLAG_GOT_HP_UP_FROM_VERMILION_GUY))
     {
-        msgbox("Having a variety of POKéMON types\nshould give you an edge in battle.\pI'm sure the KANTO GYM BADGES will\nhelp you.", MSGBOX_NPC)
+        msgbox("Having a variety of {POKEMON} types\nshould give you an edge in battle.\pI'm sure the KANTO GYM BADGES will\nhelp you.", MSGBOX_NPC)
         end
     }
     lock

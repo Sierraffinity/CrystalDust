@@ -223,7 +223,7 @@ Text_Pokegear_Mom_RegularCall_Landmark:
 
 Text_Pokegear_Mom_RegularCall_Route:
 	.string "Wow, you're in {STR_VAR_1}?\n"
-	.string "Good luck on your POKéMON quest!\p$"
+	.string "Good luck on your {POKEMON} quest!\p$"
 
 Text_Pokegear_Mom_RegularCall_Determined:
 	.string "That sounds really tough.\p"
@@ -308,31 +308,31 @@ PhoneScript_Elm_SawMrPokemon::
 Text_Pokegear_Elm_Start::
 	.string "Hello, {PLAYER}?\n"
 	.string "Try not to overdo it.\p"
-	.string "Be sure to heal your POKéMON if\n"
+	.string "Be sure to heal your {POKEMON} if\n"
 	.string "they are hurt.$"
 
 Text_Pokegear_Elm_SawMrPokemon::
 	.string "Hello, {PLAYER}?\n"
-	.string "Did you meet MR. POKéMON?\p"
+	.string "Did you meet MR. {POKEMON}?\p"
 	.string "Great!\n"
 	.string "Come back safely!$"
 
 Text_Pokegear_Elm_MonWasStolen::
 	.string "{PLAYER}?\n"
 	.string "I'm very upset right now.\p"
-	.string "We had a POKéMON stolen from here.\n"
+	.string "We had a {POKEMON} stolen from here.\n"
 	.string "How could anyone do that?$"
 
 Text_Pokegear_Elm_CheckingEgg::
 	.string "Hello, {PLAYER}?\n"
 	.string "We're checking the EGG now.\p"
-	.string "It does appear to be a POKéMON\n"
+	.string "It does appear to be a {POKEMON}\n"
 	.string "EGG.$"
 
 Text_Pokegear_Elm_SeeAssistant::
 	.string "Hello, {PLAYER}?\n"
 	.string "Did you see my assistant?\p"
-	.string "He's at the POKéMON CENTER in\n"
+	.string "He's at the {POKEMON} CENTER in\n"
 	.string "VIOLET CITY.$"
 
 Text_Pokegear_Elm_EggUnhatched::
@@ -345,19 +345,19 @@ Text_Pokegear_Elm_EggHatched::
 	.string "Hello, {PLAYER}?\n"
 	.string "How is the EGG?\p"
 	.string "What? It hatched?\n"
-	.string "Wow! What kind of POKéMON is it?\p"
+	.string "Wow! What kind of {POKEMON} is it?\p"
 	.string "Please come show me now!$"
 
 Text_Pokegear_Elm_Discovery1::
 	.string "Hello, {PLAYER}?\n"
 	.string "I just made a new discovery.\p"
 	.string "The time it takes for an EGG to\n"
-	.string "hatch depends on the POKéMON.$"
+	.string "hatch depends on the {POKEMON}.$"
 
 Text_Pokegear_Elm_Discovery2::
 	.string "Hello, {PLAYER}?\p"
 	.string "It's still a mystery what kinds\n"
-	.string "of moves hatched POKéMON have.\l"
+	.string "of moves hatched {POKEMON} have.\l"
 	.string "We're investigating that now.$"
 
 Route30_PhoneScript_ElmCall::
@@ -384,7 +384,7 @@ VioletCity_Text_ElmCall:
 	.string "Hello, {PLAYER}?\n"
 	.string "We discovered something about\l"
 	.string "the EGG!\p"
-	.string "My assistant is at the POKéMON\n"
+	.string "My assistant is at the {POKEMON}\n"
 	.string "CENTER in VIOLET CITY.\l"
 	.string "Could you talk to him?$"
 
@@ -471,17 +471,17 @@ PhoneScript_Bill_NoSpace:
 
 Text_Bill_Greeting_Morning:
 	.string "Good morning!\p"
-	.string "This is the POKéMON STORAGE SYSTEM\n"
+	.string "This is the {POKEMON} STORAGE SYSTEM\n"
 	.string "ADMINISTRATION SERVICE.\p$"
 
 Text_Bill_Greeting_Day:
 	.string "Good day!\p"
-	.string "This is the POKéMON STORAGE SYSTEM\n"
+	.string "This is the {POKEMON} STORAGE SYSTEM\n"
 	.string "ADMINISTRATION SERVICE.\p$"
 
 Text_Bill_Greeting_Night:
 	.string "Good evening!\p"
-	.string "This is the POKéMON STORAGE SYSTEM\n"
+	.string "This is the {POKEMON} STORAGE SYSTEM\n"
 	.string "ADMINISTRATION SERVICE.\p$"
 
 Text_Bill_WhosCalling:
@@ -512,35 +512,35 @@ Text_Bill_StartingOnThisBox_Variant3:
 Text_Bill_RoomRemaining:
 	.string "Okay, including the space left in\n"
 	.string "“{STR_VAR_1},” you have room for {STR_VAR_2}\l"
-	.string "more POKéMON in the PC.\p"
+	.string "more {POKEMON} in the PC.\p"
 	.string "Get out there and keep collecting!$"
 
 Text_Bill_LittleRoomRemaining:
 	.string "Okay, including the space left in\n"
 	.string "“{STR_VAR_1},” you only have room for\l"
-	.string "{STR_VAR_2} more POKéMON in the PC.\p"
+	.string "{STR_VAR_2} more {POKEMON} in the PC.\p"
 	.string "Soon, you'll have to release some\n"
-	.string "POKéMON if you want to catch more.$"
+	.string "{POKEMON} if you want to catch more.$"
 
 Text_Bill_NoRoomRemaining:
 	.string "Thanks for waiting!\p"
 	.string "{PLAYER}, your PC BOXES are chock-\n"
-	.string "full of POKéMON!\p"
-	.string "You'll have to release some POKéMON\n"
+	.string "full of {POKEMON}!\p"
+	.string "You'll have to release some {POKEMON}\n"
 	.string "if you want to catch more.\p"
 	.string "Bye now!$"
 
 Text_Bill_JustRanOutOfRoom:
 	.string "Hi, {PLAYER}? It's me, BILL!\n"
 	.string "Thanks for using my STORAGE SYSTEM.\p"
-	.string "That last POKéMON you sent filled\n"
+	.string "That last {POKEMON} you sent filled\n"
 	.string "your PC BOXES up! Wow!\p"
 	.string "Seriously, I know a stellar collection\n"
 	.string "when I see it! Well done!\p"
 	.string "However, if you want to catch more\n"
-	.string "POKéMON, you'll have to release some…\p"
+	.string "{POKEMON}, you'll have to release some…\p"
 	.string "I just don't have the storage capacity\n"
-	.string "to hold any more POKéMON for you!\p"
+	.string "to hold any more {POKEMON} for you!\p"
 	.string "Though, I know a girl named BRIGETTE\n"
 	.string "who might have some extra space…\l"
 	.string "Well, for now, you're full up!\p"

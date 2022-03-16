@@ -27,14 +27,14 @@ AzaleaTown_Mart_Pokemart:
 
 script AzaleaTown_Mart_EventScript_Cooltrainer {
     msgbox("They don't sell GREAT BALLS here.\n"
-           "POKé BALLS will have to do.\p"
+           "{POKE} BALLS will have to do.\p"
            "I wish KURT would make me some of\n"
            "his custom BALLS.", MSGBOX_NPC)
 }
 
 script AzaleaTown_Mart_EventScript_BugCatcher {
     msgbox("A GREAT BALL is better for catching\n"
-           "POKéMON than a POKé BALL.\p"
+           "{POKEMON} than a {POKE} BALL.\p"
            "But KURT's might be even better\n"
            "than those sometimes.", MSGBOX_NPC)
 }

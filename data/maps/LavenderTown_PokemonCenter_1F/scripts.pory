@@ -11,7 +11,7 @@ script LavenderTown_PokemonCenter_1F_EventScript_Gentleman{
 }
 
 script LavenderTown_PokemonCenter_1F_EventScript_Woman{
-    msgbox("There's a radio program that plays\nPOKé FLUTE music.\pOh? Ah, your radio needs an EXPN\nCARD to tune into it.", MSGBOX_NPC)
+    msgbox("There's a radio program that plays\n{POKE} FLUTE music.\pOh? Ah, your radio needs an EXPN\nCARD to tune into it.", MSGBOX_NPC)
     end
 }
 

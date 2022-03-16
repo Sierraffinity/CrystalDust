@@ -7,7 +7,7 @@ script CeruleanCity_House2_EventScript_Gramps{
 }
 
 script CeruleanCity_House2_EventScript_Granny{
-    msgbox("My husband lives happily with\nPOKéMON he got through trades.", MSGBOX_NPC)
+    msgbox("My husband lives happily with\n{POKEMON} he got through trades.", MSGBOX_NPC)
     end
 }
 

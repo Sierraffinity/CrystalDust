@@ -180,7 +180,7 @@ script Route10_PowerPlant_EventScript_Forest { // at table
 
     if (!flag(FLAG_POWER_PLANT_NPC_TRADE_COMPLETED))
     {
-        msgbox("I collect POKéMON.\n"
+        msgbox("I collect {POKEMON}.\n"
                "Do you have {STR_VAR_1}?\p"
                "Want to trade it for my {STR_VAR_2}?", MSGBOX_YESNO)
         

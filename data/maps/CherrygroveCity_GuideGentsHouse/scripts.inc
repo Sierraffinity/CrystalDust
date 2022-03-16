@@ -9,5 +9,5 @@ CherrygroveCity_GuideGentsHouse_Text_GuideGent:
 	.string "When I was a wee lad, I was a\n"
 	.string "hot-shot TRAINER!\p"
 	.string "Here's a word of advice:\n"
-	.string "Catch lots of POKéMON!\l"
+	.string "Catch lots of {POKEMON}!\l"
 	.string "Treat them all with kindness!$"

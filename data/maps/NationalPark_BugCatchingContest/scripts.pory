@@ -5,28 +5,28 @@ mapscripts NationalPark_BugCatchingContest_MapScripts {
 }
 
 script NationalPark_BugCatchingContest_Nick {
-    msgbox("NICK: I'm raising fast POKéMON\n"
+    msgbox("NICK: I'm raising fast {POKEMON}\n"
            "for battles.", MSGBOX_NPC)
 }
 
 script NationalPark_BugCatchingContest_William {
     msgbox("WILLIAM: I'm not concerned about\n"
            "winning.\p"
-           "I'm just looking for rare POKéMON.", MSGBOX_NPC)
+           "I'm just looking for rare {POKEMON}.", MSGBOX_NPC)
 }
 
 script NationalPark_BugCatchingContest_Samuel {
     msgbox("SAMUEL: If you've got the time to\n"
-           "chat, go find some BUG POKéMON.", MSGBOX_NPC)
+           "chat, go find some BUG {POKEMON}.", MSGBOX_NPC)
 }
 
 script NationalPark_BugCatchingContest_Barry {
     msgbox("BARRY: You should weaken BUG\n"
-           "POKéMON first, then throw a BALL.", MSGBOX_NPC)
+           "{POKEMON} first, then throw a BALL.", MSGBOX_NPC)
 }
 
 script NationalPark_BugCatchingContest_Ed {
-    msgbox("ED: My PARASECT puts POKéMON to\n"
+    msgbox("ED: My PARASECT puts {POKEMON} to\n"
            "sleep with SPORE.", MSGBOX_NPC)
 }
 
@@ -37,7 +37,7 @@ script NationalPark_BugCatchingContest_Benny {
 
 script NationalPark_BugCatchingContest_Josh {
     msgbox("JOSH: I've been collecting BUG\n"
-           "POKéMON since I was just a baby.\l"
+           "{POKEMON} since I was just a baby.\l"
            "Theres no way I'm going to lose!", MSGBOX_NPC)
 }
 
@@ -47,11 +47,11 @@ script NationalPark_BugCatchingContest_Don {
 }
 
 script NationalPark_BugCatchingContest_Kipp {
-    msgbox("KIPP: I've studied BUG POKéMON a\n"
+    msgbox("KIPP: I've studied BUG {POKEMON} a\n"
            "lot. I'm going to win for sure.", MSGBOX_NPC)
 }
 
 script NationalPark_BugCatchingContest_Cindy {
-    msgbox("CINDY: I love BUG POKéMON.\n"
+    msgbox("CINDY: I love BUG {POKEMON}.\n"
            "I guess you must like them, too.", MSGBOX_NPC)
 }

@@ -27,8 +27,8 @@ script RadioTower_4F_EventScript_RocketExecutive {
 }
 
 script RadioTower_4F_EventScript_RocketF {
-    trainerbattle_single(TRAINER_RADIO_TOWER_4F_GRUNT_F, "Don't I think POKéMON are cute?\pI'll think my POKéMON are cute--\nafter they beat yours!", "Oh, no!\nThey're so useless!")
-    msgbox("I love my beautiful self!\nWho cares about POKéMON?")
+    trainerbattle_single(TRAINER_RADIO_TOWER_4F_GRUNT_F, "Don't I think {POKEMON} are cute?\pI'll think my {POKEMON} are cute--\nafter they beat yours!", "Oh, no!\nThey're so useless!")
+    msgbox("I love my beautiful self!\nWho cares about {POKEMON}?")
     release
 }
 
@@ -49,7 +49,7 @@ script RadioTower_4F_EventScript_FatMan{
 script RadioTower_4F_EventScript_DJMary {
     if(flag(FLAG_GOT_SILK_SCARF_FROM_DJ_MARY))
     {
-        msgbox("MARY: Please tune into me on\nPROF. OAK'S POKéMON TALK show.", MSGBOX_NPC)
+        msgbox("MARY: Please tune into me on\nPROF. OAK'S {POKEMON} TALK show.", MSGBOX_NPC)
         end
     }
     if(flag(FLAG_CLEARED_RADIO_TOWER))
@@ -65,7 +65,7 @@ script RadioTower_4F_EventScript_DJMary {
             end
         }
         giveitem(ITEM_SILK_SCARF, 1)
-        msgbox("MARY: It's just right for POKéMON\nthat know NORMAL-type moves.")
+        msgbox("MARY: It's just right for {POKEMON}\nthat know NORMAL-type moves.")
         setflag(FLAG_GOT_SILK_SCARF_FROM_DJ_MARY)
         release
         end

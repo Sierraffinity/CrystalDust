@@ -27,7 +27,7 @@ gText_MoveUsedMostOften::
 	.string "{STR_VAR_1}{PAUSE_UNTIL_PRESS}$"
 
 gText_MostImpressiveMon::
-	.string "The most impressive POKéMON:\n"
+	.string "The most impressive {POKEMON}:\n"
 	.string "{STR_VAR_1}'s {STR_VAR_2}{PAUSE_UNTIL_PRESS}$"
 
 gText_SetEventNumX2::

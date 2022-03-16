@@ -665,7 +665,7 @@ BattleFrontier_BattlePikeRoomNormal_Movement_CameraPanDown:
 BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreToFullHealth:
 	.string "Welcome…\n"
 	.string "You must be commended for your luck…\p"
-	.string "Your POKéMON shall be restored\n"
+	.string "Your {POKEMON} shall be restored\n"
 	.string "to full health…$"
 
 BattleFrontier_BattlePikeRoomNormal_Text_EnjoyRestOfChallenge:
@@ -675,7 +675,7 @@ BattleFrontier_BattlePikeRoomNormal_Text_EnjoyRestOfChallenge:
 BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreOneMon:
 	.string "Ah, you're a lucky one.\n"
 	.string "I'm in somewhat-good spirits now.\p"
-	.string "I will restore one of your POKéMON\n"
+	.string "I will restore one of your {POKEMON}\n"
 	.string "to full health.$"
 
 BattleFrontier_BattlePikeRoomNormal_Text_BestOfLuckFarewell:
@@ -688,7 +688,7 @@ BattleFrontier_BattlePikeRoomNormal_Text_BestOfLuckFarewell:
 BattleFrontier_BattlePikeRoomNormal_Text_CareForBattleWillRestoreMons:
 	.string "Excuse me…\p"
 	.string "Would you care for a battle?\n"
-	.string "I'll restore your POKéMON if you win.$"
+	.string "I'll restore your {POKEMON} if you win.$"
 
 @ Unused
 BattleFrontier_BattlePikeRoomNormal_Text_NowShallWe:
@@ -704,7 +704,7 @@ BattleFrontier_BattlePikeRoomNormal_Text_HowUnsportingOfYou:
 BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreMonsAsPromised:
 	.string "Magnificent…\p"
 	.string "As promised, I shall restore your\n"
-	.string "POKéMON to full health.$"
+	.string "{POKEMON} to full health.$"
 
 @ Unused
 BattleFrontier_BattlePikeRoomNormal_Text_BestOfLuckFarewell2:
@@ -756,11 +756,11 @@ BattleFrontier_BattlePikeRoomNormal_Text_ApologizeForDusclops:
 BattleFrontier_BattlePikeRoomNormal_Text_AttacksWhenStartled:
 	.string "It attacks without warning if it is\n"
 	.string "startled by another person…\p"
-	.string "Are you and your POKéMON all right?$"
+	.string "Are you and your {POKEMON} all right?$"
 
 BattleFrontier_BattlePikeRoomNormal_Text_ApologizeHopeMonsAreFine:
 	.string "I do apologize for what happened…\n"
-	.string "I do hope your POKéMON are fine.$"
+	.string "I do hope your {POKEMON} are fine.$"
 
 BattleFrontier_BattlePikeRoomNormal_Text_Silence:
 	.string "… … … … … …\n"
@@ -773,7 +773,7 @@ BattleFrontier_BattlePikeRoomNormal_Text_BattleSomewhatToughTrainer:
 
 BattleFrontier_BattlePikeRoomNormal_Text_RestoreToFullHealth:
 	.string "How wonderful…\p"
-	.string "To honor your victory, your POKéMON\n"
+	.string "To honor your victory, your {POKEMON}\n"
 	.string "shall be restored to full health…$"
 
 BattleFrontier_BattlePikeRoomNormal_Text_EnjoyRestOfChallenge2:
@@ -836,17 +836,17 @@ BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomNoHeal:
 	.string "Giggle…\n"
 	.string "You seem to be bereft of luck…\p"
 	.string "If only you hadn't chosen this room,\n"
-	.string "your POKéMON could have been healed…$"
+	.string "your {POKEMON} could have been healed…$"
 
 BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomHealOne:
 	.string "I welcome you…\p"
 	.string "Since you have chosen this room, I will\n"
-	.string "restore one POKéMON to full health…$"
+	.string "restore one {POKEMON} to full health…$"
 
 BattleFrontier_BattlePikeRoomNormal_Text_ChoseRoomHealTwo:
 	.string "I welcome you…\p"
 	.string "Since you have chosen this room, I will\n"
-	.string "restore two POKéMON to full health…$"
+	.string "restore two {POKEMON} to full health…$"
 
 @ Unused
 BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreAllMons:
@@ -854,7 +854,7 @@ BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreAllMons:
 	.string "Giggle…\n"
 	.string "You should thank your lucky stars…\p"
 	.string "Since you have chosen this room,\n"
-	.string "all your POKéMON will be restored…$"
+	.string "all your {POKEMON} will be restored…$"
 
 BattleFrontier_BattlePikeRoomNormal_Text_ShallFetchOurMaster:
 	.string "I shall go fetch our master…$"
@@ -862,6 +862,6 @@ BattleFrontier_BattlePikeRoomNormal_Text_ShallFetchOurMaster:
 BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreTwoMons:
 	.string "Ah, you're a lucky one!\n"
 	.string "I'm in good spirits now.\p"
-	.string "I will restore two of your POKéMON\n"
+	.string "I will restore two of your {POKEMON}\n"
 	.string "to full health!$"
 

@@ -4,7 +4,7 @@ script VioletCity_House1_EventScript_Woman {
     msgbox("She uses the names of her favorite\n"
            "things to eat.\p"
            "For the nicknames she gives to her\n"
-           "POKéMON, I mean.", MSGBOX_NPC)
+           "{POKEMON}, I mean.", MSGBOX_NPC)
 }
 
 script VioletCity_House1_EventScript_Girl {

@@ -111,7 +111,7 @@ movement Route36_NationalParkGatehouse_Movement_CameraPanRight {
 script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
     special(DetermineBugCatchingContestStandings)
     textcolor(MSG_COLOR_BLUE)
-    message("We will now judge the POKéMON\n"
+    message("We will now judge the {POKEMON}\n"
             "you've caught.\p"
             "…{PAUSE 15}…{PAUSE 15}…{PAUSE 15}\n"
             "…{PAUSE 15}…{PAUSE 15}…{PAUSE 15}")
@@ -151,10 +151,10 @@ script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
         playse(SE_SHINY)
         showmonpic(VAR_0x8004, 10, 3, TRUE)
         waitse
-        message("Amazing! The POKéMON has an unusual\n"
+        message("Amazing! The {POKEMON} has an unusual\n"
                 "and rare coloration!\p"
                 "I've never seen such a beautiful\n"
-                "BUG POKéMON!")
+                "BUG {POKEMON}!")
         waitmessage
     }
 
@@ -219,7 +219,7 @@ script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
 
     if (flag(FLAG_LEFT_MONS_WITH_CONTEST_OFFICER))
     {
-        msgbox("We'll return the POKéMON we kept for\n"
+        msgbox("We'll return the {POKEMON} we kept for\n"
                "you. Here you go!")
         call(EventScript_ReturnBugCatchingContestMons)
         clearflag(FLAG_LEFT_MONS_WITH_CONTEST_OFFICER)
@@ -315,7 +315,7 @@ script Route36_NationalParkGatehouse_EventScript_BugContestOfficer {
 }
 
 text Route36_NationalParkGatehouse_Text_Officer_NoContest {
-    "Some POKéMON can only be seen in\n"
+    "Some {POKEMON} can only be seen in\n"
     "the PARK."
 }
 
@@ -354,12 +354,12 @@ script Route36_NationalParkGatehouse_Nick {
     if (flag(FLAG_TEMP_1))
     {
         msgbox("NICK: Well done! I'm going to\n"
-               "raise my POKéMON better.", MSGBOX_NPC)
+               "raise my {POKEMON} better.", MSGBOX_NPC)
     }
     else
     {
         msgbox("NICK: Maybe you get a higher score\n"
-               "for POKéMON of an unusual color.", MSGBOX_NPC)
+               "for {POKEMON} of an unusual color.", MSGBOX_NPC)
     }
 }
 
@@ -372,7 +372,7 @@ script Route36_NationalParkGatehouse_William {
     else
     {
         msgbox("WILLIAM: Well, I'm satisfied because\n"
-               "I caught a POKéMON that I wanted.", MSGBOX_NPC)
+               "I caught a {POKEMON} that I wanted.", MSGBOX_NPC)
     }
 }
 
@@ -391,13 +391,13 @@ script Route36_NationalParkGatehouse_Samuel {
 script Route36_NationalParkGatehouse_Barry {
     if (flag(FLAG_TEMP_1))
     {
-        msgbox("BARRY: That POKéMON you caught…\n"
+        msgbox("BARRY: That {POKEMON} you caught…\n"
                "It's awesome!", MSGBOX_NPC)
     }
     else
     {
         msgbox("BARRY: It's easier to win if you get\n"
-               "a high-level BUG POKéMON.\p"
+               "a high-level BUG {POKEMON}.\p"
                "But I think they also consider some\n"
                "other points.", MSGBOX_NPC)
     }
@@ -411,7 +411,7 @@ script Route36_NationalParkGatehouse_Ed {
     }
     else
     {
-        msgbox("ED: Maybe you win with big POKéMON?", MSGBOX_NPC)
+        msgbox("ED: Maybe you win with big {POKEMON}?", MSGBOX_NPC)
     }
 }
 
@@ -450,7 +450,7 @@ script Route36_NationalParkGatehouse_Don {
     else
     {
         msgbox("DON: Luck plays a big part in this.\p"
-               "You never know what POKéMON will\n"
+               "You never know what {POKEMON} will\n"
                "appear.", MSGBOX_NPC)
     }
 }
@@ -474,10 +474,10 @@ script Route36_NationalParkGatehouse_Cindy {
         msgbox("CINDY: You won?\n"
                "That's great!\p"
                "Do you feel like looking for BUG\n"
-               "POKéMON with me sometime?", MSGBOX_NPC)
+               "{POKEMON} with me sometime?", MSGBOX_NPC)
     }
     else
     {
-        msgbox("CINDY: I really love BUG POKéMON!", MSGBOX_NPC)
+        msgbox("CINDY: I really love BUG {POKEMON}!", MSGBOX_NPC)
     }
 }

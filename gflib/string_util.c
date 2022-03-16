@@ -469,19 +469,19 @@ static const u8 *ExpandPlaceholder_Magma(void)
     return gText_ExpandedPlaceholder_Magma;
 }
 
-static const u8 *ExpandPlaceholder_Archie(void)
+static const u8 *ExpandPlaceholder_Pokemon(void)
 {
-    return gText_ExpandedPlaceholder_Archie;
+    return gText_ExpandedPlaceholder_Pokemon;
 }
 
-static const u8 *ExpandPlaceholder_Maxie(void)
+static const u8 *ExpandPlaceholder_Poke(void)
 {
-    return gText_ExpandedPlaceholder_Maxie;
+    return gText_ExpandedPlaceholder_Poke;
 }
 
-static const u8 *ExpandPlaceholder_Kyogre(void)
+static const u8 *ExpandPlaceholder_Pokedex(void)
 {
-    return gText_ExpandedPlaceholder_Kyogre;
+    return gText_ExpandedPlaceholder_Pokedex;
 }
 
 static const u8 *ExpandPlaceholder_Groudon(void)
@@ -505,9 +505,9 @@ const u8 *GetExpandedPlaceholder(u32 id)
         [PLACEHOLDER_ID_VERSION]      = ExpandPlaceholder_Version,
         [PLACEHOLDER_ID_AQUA]         = ExpandPlaceholder_Aqua,
         [PLACEHOLDER_ID_MAGMA]        = ExpandPlaceholder_Magma,
-        [PLACEHOLDER_ID_ARCHIE]       = ExpandPlaceholder_Archie,
-        [PLACEHOLDER_ID_MAXIE]        = ExpandPlaceholder_Maxie,
-        [PLACEHOLDER_ID_KYOGRE]       = ExpandPlaceholder_Kyogre,
+        [PLACEHOLDER_ID_POKEMON]      = ExpandPlaceholder_Pokemon,
+        [PLACEHOLDER_ID_POKE]         = ExpandPlaceholder_Poke,
+        [PLACEHOLDER_ID_POKEDEX]      = ExpandPlaceholder_Pokedex,
         [PLACEHOLDER_ID_GROUDON]      = ExpandPlaceholder_Groudon,
     };
 

@@ -10,7 +10,7 @@ script CeruleanCity_EventScript_CitySign {
 }
 
 script CeruleanCity_EventScript_GymSign {
-	msgbox("CERULEAN CITY POKéMON GYM\nLEADER: MISTY\pThe Tomboyish Mermaid", MSGBOX_SIGN)
+	msgbox("CERULEAN CITY {POKEMON} GYM\nLEADER: MISTY\pThe Tomboyish Mermaid", MSGBOX_SIGN)
     end
 }
 
@@ -37,7 +37,7 @@ script CeruleanCity_EventScript_SuperNerd{
 script CeruleanCity_EventScript_CooltrainerM{
     if(flag(FLAG_RETURNED_MACHINE_PART))
     {
-        msgbox("You're collecting every single kind\nof POKéMON?\pThat must be quite a challenge,\nbut it sounds fun too.", MSGBOX_NPC)
+        msgbox("You're collecting every single kind\nof {POKEMON}?\pThat must be quite a challenge,\nbut it sounds fun too.", MSGBOX_NPC)
         end
     }
     msgbox("KANTO's POWER PLANT?\pIt's near the end of ROUTE 9, the\nroad that heads east from here.\pI think there was an accident of\nsome sort there.", MSGBOX_NPC)
@@ -87,7 +87,7 @@ script CeruleanCity_EventScript_Slowbro {
 script CeruleanCity_EventScript_Youngster {
     lock
     faceplayer
-    msgbox("There used to be a cave here that\nhad horribly powerful POKéMON in it.", MSGBOX_DEFAULT)
+    msgbox("There used to be a cave here that\nhad horribly powerful {POKEMON} in it.", MSGBOX_DEFAULT)
     closemessage
     if(!flag(FLAG_HIDDEN_ITEM_CERULEAN_CITY_BERSERK_GENE))
     {

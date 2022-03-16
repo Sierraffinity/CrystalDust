@@ -1,17 +1,17 @@
 mapscripts PewterCity_Gym_MapScripts {}
 
 script PewterCity_Gym_EventScript_Camper {
-	trainerbattle_single(TRAINER_JERRY, "The trainers of this GYM use\nROCK-type POKéMON.\lThe ROCK-type has high DEFENSE.\pBattles could end up going a long\ntime. Are you ready for this?", "I have to win these battles…")
+	trainerbattle_single(TRAINER_JERRY, "The trainers of this GYM use\nROCK-type {POKEMON}.\lThe ROCK-type has high DEFENSE.\pBattles could end up going a long\ntime. Are you ready for this?", "I have to win these battles…")
 	msgbox("Hey, you! Trainer from JOHTO!\pBROCK is tough. He'll punish you if\nyou don't take him seriously.", MSGBOX_AUTOCLOSE)
 }
 
 script PewterCity_Gym_EventScript_GymStatues{
     if(flag(FLAG_BADGE09_GET))
     {
-        msgbox("PEWTER CITY POKéMON GYM\nLEADER: BROCK\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        msgbox("PEWTER CITY {POKEMON} GYM\nLEADER: BROCK\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
         end
     }
-    msgbox("PEWTER CITY POKéMON GYM", MSGBOX_SIGN)
+    msgbox("PEWTER CITY {POKEMON} GYM", MSGBOX_SIGN)
     end
 }
 
@@ -26,7 +26,7 @@ script PewterCity_Gym_EventScript_GymGuide {
 }
 
 script PewterCity_Gym_EventScript_Brock {
-    trainerbattle_single(TRAINER_BROCK, "BROCK: Wow, it's not often that we\nget a challenger from JOHTO.\pI'm BROCK, the PEWTER GYM LEADER.\nI'm an expert on ROCK-type\lPOKéMON.\pMy POKéMON are impervious to most\nphysical attacks.\pYou'll have a hard time inflicting\nany damage. Come on!", "BROCK: Your POKéMON's powerful attacks\novercame my rock-hard defense…\pYou're stronger than I expected…\nGo ahead--take this BADGE.", PewterCity_Gym_Eventscript_BrockDefeated, NO_MUSIC)
+    trainerbattle_single(TRAINER_BROCK, "BROCK: Wow, it's not often that we\nget a challenger from JOHTO.\pI'm BROCK, the PEWTER GYM LEADER.\nI'm an expert on ROCK-type\l{POKEMON}.\pMy {POKEMON} are impervious to most\nphysical attacks.\pYou'll have a hard time inflicting\nany damage. Come on!", "BROCK: Your {POKEMON}'s powerful attacks\novercame my rock-hard defense…\pYou're stronger than I expected…\nGo ahead--take this BADGE.", PewterCity_Gym_Eventscript_BrockDefeated, NO_MUSIC)
     msgbox("BROCK: The world is huge. There are\nstill many strong trainers like you.\pJust wait and see. I'm going to\nbecome a lot stronger too.", MSGBOX_DEFAULT)
     release
     end
@@ -39,7 +39,7 @@ script PewterCity_Gym_EventScript_Brock {
         textcolor(MSG_COLOR_PREV)
         setflag(FLAG_BADGE09_GET)
         setgymtrainers(9)
-        msgbox("BROCK: {PLAYER}, thanks.\pI enjoyed battling you, even though\nI am a bit upset.\pThat BOULDERBADGE will make your\nPOKéMON even more powerful.", MSGBOX_NPC)
+        msgbox("BROCK: {PLAYER}, thanks.\pI enjoyed battling you, even though\nI am a bit upset.\pThat BOULDERBADGE will make your\n{POKEMON} even more powerful.", MSGBOX_NPC)
         end
     }
 }

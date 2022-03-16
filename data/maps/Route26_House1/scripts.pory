@@ -3,8 +3,8 @@ mapscripts Route26_House1_MapScripts {}
 script Route26_House1_Eventscript_Woman{
     lock
     faceplayer
-    msgbox("Your POKéMON look a little tired.\nYou should rest them a while.", MSGBOX_NPC)
+    msgbox("Your {POKEMON} look a little tired.\nYou should rest them a while.", MSGBOX_NPC)
     call(Common_EventScript_OutOfCenterPartyHeal)
-    msgbox("There! Your POKéMON are looking\ngood! Keep at it!", MSGBOX_NPC)
+    msgbox("There! Your {POKEMON} are looking\ngood! Keep at it!", MSGBOX_NPC)
     end
 }
