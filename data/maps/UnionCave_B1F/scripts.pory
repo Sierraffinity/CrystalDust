@@ -1,25 +1,25 @@
 mapscripts UnionCave_B1F_MapScripts { }
 
 script UnionCave_B1F_EventScript_Phillip {
-    trainerbattle_single(TRAINER_PHILLIP, UnionCave_B1F_Text_PhillipIntro, UnionCave_B1F_Text_PhillipDefeat)
-	msgbox(UnionCave_B1F_Text_PhillipPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_PHILLIP, "It's been a while since I last\nsaw another person.\pHey, don't be shy.\nLet's battle!", "Uurggh…")
+	msgbox("I've been lost down here for a\nlong time…\pI don't mind it here, but I am\nsoooo hungry!", MSGBOX_DEFAULT)
 	release
 }
 
 script UnionCave_B1F_EventScript_Leonard {
-    trainerbattle_single(TRAINER_LEONARD, UnionCave_B1F_Text_LeonardIntro, UnionCave_B1F_Text_LeonardDefeat)
-	msgbox(UnionCave_B1F_Text_LeonardPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_LEONARD, "Hey, what do you know!\nIt's a visitor!", "Wahahah!\nYou're a feisty one!")
+	msgbox("I live down here.\nYou can, too, if you'd like.\pThere's plenty of room here,\nyou see.", MSGBOX_DEFAULT)
 	release
 }
 
 script UnionCave_B1F_EventScript_Andrew {
-    trainerbattle_single(TRAINER_ANDREW, UnionCave_B1F_Text_AndrewIntro, UnionCave_B1F_Text_AndrewDefeat)
-	msgbox(UnionCave_B1F_Text_AndrewPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_ANDREW, "Who's there?\nLeave me and my {POKEMON} alone!", "Go…\nGo away!")
+	msgbox("It's just me and my {POKEMON}.\nI'm delirious with joy.", MSGBOX_DEFAULT)
 	release
 }
 
 script UnionCave_B1F_EventScript_Calvin {
-    trainerbattle_single(TRAINER_CALVIN, UnionCave_B1F_Text_CalvinIntro, UnionCave_B1F_Text_CalvinDefeat)
-	msgbox(UnionCave_B1F_Text_CalvinPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_CALVIN, "I came all the way here to conduct\nmy {POKEMON} research.\pLet me demonstrate my findings in\na real battle!", "You demonstrated on me!")
+	msgbox("I should compile and announce the\nfindings of my study.\pI might even become famous like\nPROF. ELM.", MSGBOX_DEFAULT)
 	release
 }

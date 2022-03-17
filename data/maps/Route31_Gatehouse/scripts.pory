@@ -1,0 +1,11 @@
+mapscripts Route31_Gatehouse_MapScripts{}
+
+script Route31_Gatehouse_EventScript_Officer{
+	msgbox("Hi there!\nDid you visit SPROUT TOWER?", MSGBOX_NPC)
+	end
+}
+
+script Route31_Gatehouse_EventScript_Girl{
+	msgbox("I came too far out.\nI'd better phone home!", MSGBOX_NPC)
+	end
+}

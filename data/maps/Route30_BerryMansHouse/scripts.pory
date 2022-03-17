@@ -1,0 +1,22 @@
+mapscripts Route30_BerryMansHouse_MapScripts{}
+
+script Route30_BerryMansHouse_EventScript_Man{
+	lock
+	faceplayer
+    if(!flag(FLAG_ROUTE_30_RECEIVED_BERRY_MAN))
+    {
+        msgbox("You know, {POKEMON} eat BERRIES.\pWell, my {POKEMON} got healthier by\neating a BERRY.\pHere, I'll share one with you!", MSGBOX_DEFAULT)
+        giveitem(ITEM_ORAN_BERRY, 1)
+        if(!var(VAR_RESULT))
+        {
+            call(Common_EventScript_ShowBagIsFull)
+            release
+            end
+        }
+        setflag(FLAG_ROUTE_30_RECEIVED_BERRY_MAN)
+    }
+    msgbox("Check trees for BERRIES.\nThey just drop right off.", MSGBOX_DEFAULT)
+    release
+    end
+}
+

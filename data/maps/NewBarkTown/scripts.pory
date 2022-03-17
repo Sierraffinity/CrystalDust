@@ -1,0 +1,189 @@
+mapscripts NewBarkTown_MapScripts{
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_VISITED_NEW_BARK_TOWN)
+	    clearflag(FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM)
+    }
+}
+
+script NewBarkTown_EventScript_FatMan{
+	msgbox("Yo, {PLAYER}! I hear PROF. ELM\ndiscovered some new {POKEMON}.", MSGBOX_NPC)
+	end
+}
+
+script NewBarkTown_EventScript_Teacher{
+    if(flag(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST))
+    {
+        msgbox("Call your mom on your {POKE}GEAR to\nlet her know how you're doing.", MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
+    {
+        msgbox("Hi, {PLAYER}!\nLeaving again?\pYou should tell your mom if you're\nleaving town.", MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_SYS_POKEMON_GET))
+    {
+        msgbox("Oh! Your {POKEMON} is adorable!\nI wish I had one!", MSGBOX_NPC)
+        end
+    }
+	msgbox("Wow, your {POKE}GEAR is impressive!\nDid your mom get it for you?", MSGBOX_NPC)
+	end
+}
+
+script NewBarkTown_EventScript_Slogan{
+	msgbox("NEW BARK TOWN\nThe Town Where the Winds of a\lNew Beginning Blow", MSGBOX_SIGN)
+	end
+}
+
+script NewBarkTown_EventScript_ElmLab{
+	msgbox("ELM {POKEMON} LAB", MSGBOX_SIGN)
+	end
+}
+
+script NewBarkTown_EventScript_PlayersHouse{
+	msgbox("{PLAYER}'s house", MSGBOX_SIGN)
+	end
+}
+
+script NewBarkTown_EventScript_ElmsHouse{
+	msgbox("PROF. ELM'S HOUSE", MSGBOX_SIGN)
+	end
+}
+
+script NewBarkTown_EventScript_Rival{
+	lockall
+	msgbox("… … …\pSo this is the famous ELM {POKEMON}\nLAB…")
+	closemessage
+	delay(20)
+	faceplayer
+	delay(20)
+	msgbox("…What are you staring at?")
+	closemessage
+	delay(10)
+    if(var(VAR_FACING) == DIR_NORTH)
+    {
+        applymovement(3, NewBarkTown_Movement_RivalEncounter_RivalStepsDown)
+        applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerStepsBackDown)
+        waitmovement(0)
+    }
+    else // DIR_EAST
+    {
+        applymovement(3, NewBarkTown_Movement_RivalEncounter_RivalStepsLeft)
+        applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerStepsBackLeft)
+        waitmovement(0)
+    }
+	delay(10)
+	playse(SE_NOT_EFFECTIVE)
+	applymovement(3, NewBarkTown_Movement_RivalEncounter_RivalKicksPlayer)
+	applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerJumpsBack)
+	waitmovement(0)
+	applymovement(3, NewBarkTown_Movement_RivalEncounter_RivalStepsToWindow)
+	waitmovement(0)
+	releaseall
+	end
+}movement(local) NewBarkTown_Movement_RivalEncounter_RivalStepsLeft{
+	walk_left
+	walk_down
+}movement(local) NewBarkTown_Movement_RivalEncounter_RivalStepsDown{
+    walk_down
+	walk_left
+	face_down
+}movement(local) NewBarkTown_Movement_RivalEncounter_PlayerStepsBackLeft{
+    face_up
+	lock_facing_direction
+	walk_down * 2
+	unlock_facing_direction
+}movement(local) NewBarkTown_Movement_RivalEncounter_PlayerStepsBackDown{
+    face_right
+	lock_facing_direction
+	walk_left
+	unlock_facing_direction
+	face_up
+	lock_facing_direction
+	walk_down
+	unlock_facing_direction
+}movement(local) NewBarkTown_Movement_RivalEncounter_RivalKicksPlayer{
+    walk_in_place_down
+}movement(local) NewBarkTown_Movement_RivalEncounter_PlayerJumpsBack{
+    lock_facing_direction
+	jump_2_down
+	unlock_facing_direction
+}movement(local) NewBarkTown_Movement_RivalEncounter_RivalStepsToWindow{
+    walk_up
+	walk_right
+}
+
+script NewBarkTown_EventScript_TeacherTriggers{
+    lockall
+    getplayerxy(VAR_RESULT, VAR_TEMP_1)
+	textcolor(MSG_COLOR_RED)
+	playbgm(MUS_MOMS_THEME, 0)
+	turnobject(2, DIR_WEST)
+	msgbox("Wait, {PLAYER}!")
+	closemessage
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+	waitmovement(0)
+	delay(10)
+    switch(var(VAR_TEMP_1))
+    {
+        case 10:
+            applymovement(2, NewBarkTown_Movement_TeacherToTopSpot)
+        case 11:
+            applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher)
+            applymovement(2, NewBarkTown_Movement_TeacherToMiddleSpot)
+        case 12:
+            applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher)
+	        applymovement(2, NewBarkTown_Movement_TeacherToBottomSpot)
+    }
+    waitmovement(0)
+	msgbox("What do you think you're doing?")
+	closemessage
+    switch(var(VAR_TEMP_1))
+    {
+        case 10:
+            applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_PlayerFromTopSpot)
+            applymovement(2, NewBarkTown_Movement_TeacherFromTopSpot)
+        case 11:
+            applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_PlayerFromMiddleSpot)
+	        applymovement(2, NewBarkTown_Movement_TeacherFromMiddleSpot)
+        case 12:
+            applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_PlayerFromBottomSpot)
+	        applymovement(2, NewBarkTown_Movement_TeacherFromBottomSpot)
+    }
+    waitmovement(0)
+	msgbox("It's dangerous to go out without a\n{POKEMON}!\pWild {POKEMON} jump out of the grass\non the way to the next town.")
+	closemessage
+	savebgm(MUS_DUMMY)
+	fadedefaultbgm
+	releaseall
+	end
+}movement(local) NewBarkTown_Movement_TeacherToTopSpot{
+    walk_left * 5
+}movement(local) NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher{
+    delay_16 * 6
+    walk_in_place_fastest_up
+}movement(local) NewBarkTown_Movement_TeacherToMiddleSpot{
+    walk_left * 6
+    face_down
+}movement(local) NewBarkTown_Movement_TeacherToBottomSpot{
+    walk_left * 6
+    walk_down
+}movement(local) NewBarkTown_Movement_PlayerFromTopSpot{
+    walk_right * 5
+}movement(local) NewBarkTown_Movement_TeacherFromTopSpot{
+    walk_right * 5
+    face_left
+}movement(local) NewBarkTown_Movement_PlayerFromMiddleSpot{
+    walk_up
+	walk_right * 5
+}movement(local) NewBarkTown_Movement_TeacherFromMiddleSpot{
+    walk_right * 6
+	face_left
+}movement(local) NewBarkTown_Movement_PlayerFromBottomSpot{
+    walk_up * 2
+    walk_right * 5
+}movement(local) NewBarkTown_Movement_TeacherFromBottomSpot{
+    walk_up
+    walk_right * 6
+    face_left
+}

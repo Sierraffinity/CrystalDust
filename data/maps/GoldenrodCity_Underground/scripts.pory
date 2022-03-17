@@ -298,26 +298,26 @@ script GoldenrodCity_Underground_EventScript_Haircut_Result {
 }
 
 script GoldenrodCity_Underground_EventScript_Eric {
-    trainerbattle_single(TRAINER_ERIC, GoldenrodCity_Underground_Text_EricIntro, GoldenrodCity_Underground_Text_EricDefeated)
-	msgbox(GoldenrodCity_Underground_Text_EricPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_ERIC, "I got booted out of the GAME\nCORNER.\pI was trying to cheat using my\n{POKEMON}…", "…Grumble…")
+	msgbox("I guess I have to do things fair and\nsquare…", MSGBOX_DEFAULT)
 	release
 }
 
 script GoldenrodCity_Underground_EventScript_Teru {
-    trainerbattle_single(TRAINER_TERU, GoldenrodCity_Underground_Text_TeruIntro, GoldenrodCity_Underground_Text_TeruDefeated)
-	msgbox(GoldenrodCity_Underground_Text_TeruPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_TERU, "Do you consider type alignments in\nbattle?\pIf you know your type advantages,\nyou'll do better in battle.", "Ow, ow, ow!")
+	msgbox("I know my {POKEMON} type alignments.\nBut I only use one type of {POKEMON}.", MSGBOX_DEFAULT)
 	release
 }
 
 script GoldenrodCity_Underground_EventScript_Isaac {
-    trainerbattle_single(TRAINER_ISAAC, GoldenrodCity_Underground_Text_IsaacIntro, GoldenrodCity_Underground_Text_IsaacDefeated)
-	msgbox(GoldenrodCity_Underground_Text_IsaacPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_ISAAC, "My {POKEMON} just got a haircut!\nI'll show you how strong it is!", "Aiyeeee!")
+	msgbox("Your {POKEMON} will like you more if\nyou give them haircuts.", MSGBOX_DEFAULT)
 	release
 }
 
 script GoldenrodCity_Underground_EventScript_Donald {
-    trainerbattle_single(TRAINER_DONALD, GoldenrodCity_Underground_Text_DonaldIntro, GoldenrodCity_Underground_Text_DonaldDefeated)
-	msgbox(GoldenrodCity_Underground_Text_DonaldPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_DONALD, "I think you have some rare {POKEMON}\nwith you.\pLet me see them!", "Gaah! I lost!\nThat makes me mad!")
+	msgbox("Are you making a {POKEDEX}?\nHere's a hot tip.\pThe HIKER on ROUTE 33, ANTHONY, is\na good guy.\pHe'll phone you if he sees any rare\n{POKEMON}.", MSGBOX_DEFAULT)
 	release
 }
 

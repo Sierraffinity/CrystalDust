@@ -1,0 +1,150 @@
+mapscripts Route30_MrPokemonsHouse_MapScripts{
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_MR_POKEMONS_HOUSE_STATE, 0: Route30_MrPokemonsHouse_MapScript_MrPokemonIntro
+    ]
+}
+
+script Route30_MrPokemonsHouse_MapScript_MrPokemonIntro{
+	lockall
+	textcolor(MSG_COLOR_BLUE)
+	playse(SE_PIN)
+	applymovement(1, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(1, Common_Movement_Delay48)
+	waitmovement(0)
+	applymovement(1, Common_Movement_WalkInPlaceFastestDown)
+	waitmovement(0)
+	msgbox("Hello, hello!\nYou must be {PLAYER}.\pPROF. ELM said that you would visit.")
+	closemessage
+	applymovement(OBJ_EVENT_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PlayerToMrPokemon)
+	waitmovement(0)
+	msgbox("This is what I want PROF. ELM to\nexamine.")
+	giveitem(ITEM_MYSTERY_EGG)
+	setflag(FLAG_RECEIVED_MYSTERY_EGG)
+	msgbox("I know a couple who run a DAY-CARE\nservice. They gave me that EGG.\pI was intrigued, so I sent mail to\nPROF. ELM.\pFor {POKEMON} evolution, PROF. ELM is\nthe authority.")
+	applymovement(1, Common_Movement_WalkInPlaceFastestRight)
+	waitmovement(0)
+	msgbox("Even PROF. OAK here recognizes that.")
+	applymovement(1, Common_Movement_WalkInPlaceFastestDown)
+	applymovement(2, Common_Movement_WalkInPlaceFastestLeft)
+	waitmovement(0)
+	msgbox("If my assumption is correct, PROF.\nELM will know what to do.")
+	closemessage
+	playbgm(MUS_OAKS_THEME, 0)
+	applymovement(OBJ_EVENT_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PauseThenTurnRight)
+	applymovement(2, Route30_MrPokemonsHouse_Movement_OakToPlayer)
+	waitmovement(0)
+	msgbox("OAK: Aha!\nSo you're {PLAYER}!\pI'm PROF. OAK, a {POKEMON} researcher\nfrom the KANTO region.\pI was just visiting my old friend,\nMR. {POKEMON}.\pI heard you were running an errand\nfor PROF. ELM, so I waited here.\p…Oh! What's this?\nYou have a rare {POKEMON} with you!\pLet's see…\pHm, I see!\pI understand why PROF. ELM gave you\na {POKEMON} for this errand.\pTo researchers like PROF. ELM and I,\n{POKEMON} are our friends.\pHe saw that you would treat your\n{POKEMON} with love and care.\p…Ah!\pYou seem to be dependable.\nHow would you like to help me out?\pSee? This is the latest version of\nthe {POKEDEX}.\pIt automatically records data on\n{POKEMON} you've seen or caught.\pIt's a high-tech encyclopedia!")
+	textcolor(MSG_COLOR_SYS)
+	playfanfare(MUS_RG_OBTAIN_KEY_ITEM)
+	message("{PLAYER} received the {POKEDEX}\nfrom PROF. OAK.")
+	waitmessage
+	waitfanfare
+	textcolor(MSG_COLOR_PREV)
+	setflag(FLAG_SYS_POKEDEX_GET)
+	msgbox("OAK: Go meet many kinds of {POKEMON}\nand complete that {POKEDEX}!\pBut, I've stayed too long.\nI have to get to GOLDENROD for my\lusual radio show.\p{PLAYER}, I'm counting on you!")
+	closemessage
+	applymovement(OBJ_EVENT_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PauseThenTurnDown)
+	applymovement(2, Route30_MrPokemonsHouse_Movement_OakToDoor)
+	waitmovement(0)
+	delay(10)
+	playse(SE_EXIT)
+	fadedefaultbgm
+	removeobject(2)
+	waitse
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp)
+	waitmovement(0)
+	msgbox("You are returning to PROF. ELM?\pHere.\nYour {POKEMON} should have some rest.")
+	closemessage
+	call(Common_EventScript_OutOfCenterPartyHeal)
+	msgbox(Route30_MrPokemonsHouse_Text_DependingOnYou)
+	closemessage
+	turnobject(1, DIR_EAST)
+	setrespawn(HEAL_LOCATION_CHERRYGROVE_CITY)
+	setflag(FLAG_HIDE_NEW_BARK_TOWN_RIVAL)
+	setflag(FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_1F_NEIGHBOR)
+	clearflag(FLAG_HIDE_NEW_BARK_TOWN_NEIGHBORS_HOUSE_NEIGHBOR)
+	clearflag(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_OFFICER)
+	setvar(VAR_CHERRYGROVE_CITY_STATE, 1)
+	setvar(VAR_ELM_LAB_STATE, 4)
+    switch(var(VAR_STARTER_MON))
+    {
+        case STARTER_CHIKORITA:
+            setflag(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL)
+        case STARTER_TOTODILE:
+            setflag(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA)
+        case STARTER_CYNDAQUIL:
+            setflag(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_TOTODILE)
+    }
+	setflag(FLAG_FORCED_CALL_ELM_STOLEN_MON)
+	setvar(VAR_MR_POKEMONS_HOUSE_STATE, 1)
+	releaseall
+	end
+}movement(local) Route30_MrPokemonsHouse_Movement_PlayerToMrPokemon{
+    walk_right
+    walk_up
+}movement(local) Route30_MrPokemonsHouse_Movement_PauseThenTurnRight{
+	delay_16
+	walk_in_place_fastest_right
+}movement(local) Route30_MrPokemonsHouse_Movement_OakToPlayer{
+	walk_down
+	walk_left * 4
+}movement(local) Route30_MrPokemonsHouse_Movement_PauseThenTurnDown{
+	delay_16
+	walk_in_place_fastest_down
+}movement(local) Route30_MrPokemonsHouse_Movement_OakToDoor{
+    walk_down
+	walk_left * 2
+	face_down
+}text(local) Route30_MrPokemonsHouse_Text_DependingOnYou{
+    "I'm depending on you!"
+}
+
+script Route30_MrPokemonsHouse_EventScript_MrPokemon{
+	lock
+	faceplayer
+	checkitem(ITEM_RED_SCALE, 1)
+    if(var(VAR_RESULT))
+    {
+        msgbox("Hm? That SCALE!\nWhat's that? A red GYARADOS?\pThat's rare!\nI, I want it…\p{PLAYER}, would you care to\ntrade it?\pI can offer this EXP. SHARE I got\nfrom PROF. OAK.", MSGBOX_YESNO)
+        if(!var(VAR_RESULT))
+        {
+            msgbox("That's disappointing.\nThat happens to be very rare.")
+            release
+            end
+        }
+        checkitemspace(ITEM_EXP_SHARE, 1)
+        if(!var(VAR_RESULT))
+        {
+            call(Common_EventScript_BagIsFull)
+            release
+            end
+        }
+        giveitem(ITEM_EXP_SHARE, 1)
+        removeitem(ITEM_RED_SCALE, 1)
+    }
+    if(flag(FLAG_ADVENTURE_STARTED))
+    {
+        msgbox("Life is delightful!\nAlways, new discoveries to be made!")
+        release
+        end
+    }
+	msgbox(Route30_MrPokemonsHouse_Text_DependingOnYou)
+	release
+	end
+}
+
+script Route30_MrPokemonsHouse_EventScript_ForeignMagazines{
+	msgbox("It's a bookshelf packed with foreign\nmagazines.\pCan't even read their titles…", MSGBOX_SIGN)
+	end
+}
+
+script Route30_MrPokemonsHouse_EventScript_BrokenComputer{
+	msgbox("It's a big mainframe computer.\nHm… It seems to be broken.", MSGBOX_SIGN)
+	end
+}
+
+script Route30_MrPokemonsHouse_EventScript_StrangeCoins{
+	msgbox("It's a whole pile of strange coins.\nMaybe they're from another country…", MSGBOX_SIGN)
+	end
+}

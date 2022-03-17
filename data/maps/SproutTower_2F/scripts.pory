@@ -1,13 +1,13 @@
 mapscripts SproutTower_2F_MapScripts { }
 
 script SproutTower_2F_EventScript_SageNico {
-    trainerbattle_single(TRAINER_NICO, Trainer_Text_Nico_See, Trainer_Text_Nico_Beat)
-	msgbox(Trainer_Text_Nico_After, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_NICO, "However hard we battle, the TOWER\nwill stay strong.", "I fought hard, but I'm too weak.")
+	msgbox("The flexible pillar protects the\nTOWER, even from earthquakes.", MSGBOX_DEFAULT)
 	release
 }
 
 script SproutTower_2F_EventScript_SageEdmond {
-    trainerbattle_single(TRAINER_EDMOND, Trainer_Text_Edmond_See, Trainer_Text_Edmond_Beat)
-	msgbox(Trainer_Text_Edmond_After, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_EDMOND, "…Sway like leaves in the wind…", "Oh, I'm weak!")
+	msgbox("I tried to copy BELLSPROUT'S gentle\nmovements for battle…\pBut I didn't train well enough.", MSGBOX_DEFAULT)
 	release
 }

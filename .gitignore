@@ -33,7 +33,6 @@ porymap.project.cfg
 .vscode/
 *.a
 .fuse_hidden*
-data/text/trainers.inc
 src/*.s
 alphas/
 scripts.inc

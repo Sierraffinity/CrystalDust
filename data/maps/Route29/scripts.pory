@@ -1,3 +1,13 @@
+mapscripts Route29_MapScripts{
+	MAP_SCRIPT_ON_TRANSITION{
+		gettime
+		if(!flag(FLAG_BADGE01_GET) || var(VAR_0x8003) != DAY_TUESDAY)
+		{
+			setflag(FLAG_TEMP_1)
+		}
+	}
+}
+
 script Route29_EventScript_Tuscany {
 	lock
 	faceplayer
@@ -8,20 +18,12 @@ script Route29_EventScript_Tuscany {
 		{
 			if (!flag(FLAG_MET_TUSCANY_OF_TUESDAY))
 			{
-				msgbox("TUSCANY: I do believe that this\n"
-                       "is the first time we've met?\p"
-                       "Please allow me to introduce\n"
-                       "myself.\p"
-                       "I am TUSCANY of TUESDAY.\p"
-                       "By way of introduction, please\n"
-                       "accept this gift, a SILK SCARF.")
+				msgbox("TUSCANY: I do believe that this\nis the first time we've met?\pPlease allow me to introduce\nmyself.\pI am TUSCANY of TUESDAY.\pBy way of introduction, please\naccept this gift, a SILK SCARF.")
 				setflag(FLAG_MET_TUSCANY_OF_TUESDAY)
 			}
 			else
 			{
-				msgbox("TUSCANY: By way of introduction,\n"
-                       "please accept this gift, a\l"
-                       "SILK SCARF.")
+				msgbox("TUSCANY: By way of introduction,\nplease accept this gift, a\lSILK SCARF.")
 			}
 			giveitem(ITEM_SILK_SCARF)
 			if (!var(VAR_RESULT))
@@ -29,396 +31,192 @@ script Route29_EventScript_Tuscany {
 				goto(Common_EventScript_ShowBagIsFull)
 			}
 			setflag(FLAG_RECEIVED_SILK_SCARF_FROM_TUSCANY)
-			msgbox("TUSCANY: Wouldn't you agree that\n"
-                   "it is most adorable?\p"
-                   "It strengthens NORMAL-type moves.\n"
-                   "I am certain it will be of use.")
+			msgbox("TUSCANY: Wouldn't you agree that\nit is most adorable?\pIt strengthens NORMAL-type moves.\nI am certain it will be of use.")
 		}
 		else
 		{
-			msgbox("TUSCANY: Today is not TUESDAY.\n"
-                   "That is unfortunate…")
+			msgbox("TUSCANY: Today is not TUESDAY.\nThat is unfortunate…")
 		}
 	}
 	else
 	{
-		msgbox("TUSCANY: Have you met MONICA,\n"
-               "my older sister?\l"
-               "Or my younger brother, WESLEY?\p"
-               "I am the second of seven children.")
+		msgbox("TUSCANY: Have you met MONICA,\nmy older sister?\lOr my younger brother, WESLEY?\pI am the second of seven children.")
 	}
 	release
 }
 
-raw `
-Route29_MapScripts:: @ 81EBCBA
-	map_script 3, Route29_MapScript1_Type3
-	map_script 2, Route29_MapScript2_Type2
-	.byte 0
-
-Route29_MapScript1_Type3: @ 81EBCC5
-	call Route29_MapScript1_CheckForTuscany
+script Route29_EventScript_Youngster{
+	msgbox("Yo.\nHow are your {POKEMON}?\pIf they're weak and not ready for\nbattle, keep out of the grass.", MSGBOX_NPC)
 	end
+}
 
-Route29_MapScript1_CheckForTuscany:
-	goto_if_unset FLAG_BADGE01_GET, Route29_EventScript_HideTuscany
-	gettime
-	compare VAR_0x8003, DAY_TUESDAY
-	goto_if_ne Route29_EventScript_HideTuscany
-	clearflag FLAG_HIDE_ROUTE_29_TUSCANY
-	return
-
-Route29_EventScript_HideTuscany:
-	setflag FLAG_HIDE_ROUTE_29_TUSCANY
-	return
-
-Route29_MapScript2_Type2:
-	.2byte 0
-
-Route29_EventScript_Youngster::
-	msgbox Route29_Text_Youngster, MSGBOX_NPC
+script Route29_EventScript_LedgeGirl{
+	msgbox("See those ledges?\nIt's scary to jump off them.\pBut you can go to NEW BARK without\nwalking through the grass.", MSGBOX_NPC)
 	end
+}
 
-Route29_EventScript_LedgeGirl::
-	msgbox Route29_Text_LedgeGirl, MSGBOX_NPC
+script Route29_EventScript_FatMan{
+	msgbox("I wanted to take a break, so I\nsaved to record my progress.", MSGBOX_NPC)
 	end
+}
 
-Route29_EventScript_FatMan::
-	msgbox Route29_Text_FatMan, MSGBOX_NPC
-	end
-
-Route29_EventScript_WaitingMan::
+script Route29_EventScript_WaitingMan{
 	lock
 	faceplayer
 	gettime
-	compare VAR_0x8002, TIME_NIGHT
-	goto_if_eq Route29_EventScript_ManWaitingForMorning
-	msgbox Route29_Text_WaitingForNight
+	if(var(VAR_0x8002) == TIME_NIGHT)
+	{
+		bufferstring(0, " in the morning.")
+	}
+	else
+	{
+		bufferstring(0, " at night.")
+	}
+	msgbox("I'm waiting for {POKEMON} that appear\nonly{STR_VAR_1}")
 	release
 	end
+}
 
-Route29_EventScript_ManWaitingForMorning::
-	msgbox Route29_Text_WaitingForMorning
-	release
+script Route29_EventScript_DirectionSign{
+	msgbox("ROUTE 29\nCHERRYGROVE CITY - NEW BARK TOWN", MSGBOX_SIGN)
 	end
+}
 
-Route29_EventScript_DirectionSign::
-	msgbox Route29_Text_DirectionSign, MSGBOX_SIGN
-	end
-
-Route29_EventScript_Dude::
+script Route29_EventScript_Dude{
 	lock
 	faceplayer
-	goto_if_set FLAG_LEARNED_TO_CATCH_POKEMON, Route29_EventScript_Dude_NothingToTeach
-	goto_if_unset FLAG_GAVE_MYSTERY_EGG_TO_ELM, Route29_EventScript_Dude_NothingToTeach
-	msgbox Route29_Text_Dude_HowAboutNow, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq Route29_EventScript_Dude_CatchingTutorialRejected
+	if(flag(FLAG_LEARNED_TO_CATCH_POKEMON) || !flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
+	{
+		msgbox("{POKEMON} hide in the grass.\nWho knows when they'll pop out…")
+		release
+		end
+	}
+	msgbox("Huh? You want me to show you how\nto catch {POKEMON}?", MSGBOX_YESNO)
+	if(!var(VAR_RESULT))
+	{
+		msgbox(Route29_Text_Dude_CatchingTutRejected)
+		release
+		end
+	}
 	closemessage
-	special StartDudeTutorialBattle
+	special(StartDudeTutorialBattle)
 	waitstate
-	lock @ hack
-	msgbox Route29_Text_Dude_CatchingOutro
-	setflag FLAG_LEARNED_TO_CATCH_POKEMON
+	lock //hack
+	msgbox(Route29_Text_Dude_CatchingOutro)
+	setflag(FLAG_LEARNED_TO_CATCH_POKEMON)
 	release
 	end
+}text(local) Route29_Text_Dude_CatchingTutRejected{
+	"Oh.\nFine, then.\pAnyway, if you want to catch\n{POKEMON}, you have to walk a lot."
+}text(local) Route29_Text_Dude_CatchingOutro{
+	"That's how you do it.\pIf you weaken them first, {POKEMON}\nare easier to catch."
+}
 
-Route29_EventScript_Dude_CatchingTutorialRejected:
-	msgbox Route29_Text_Dude_CatchingTutRejected
-	release
-	end
-
-Route29_EventScript_Dude_NothingToTeach:
-	msgbox Route29_Text_PokemonInTheGrass
-	release
-	end
-
-Route29_EventScript_CatchingTutorial1::
+script Route29_EventScript_CatchingTutorialTriggers{
 	lockall
-	setvar VAR_TEMP_1, 0
-	turnobject 1, 2
-	playse SE_PIN
-	applymovement 1, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement 1, Common_Movement_Delay48
-	waitmovement 0
-	applymovement 1, Route29_Movement_DudeToPlayerTop
-	waitmovement 0
-	goto Route29_EventScript_CatchingTutorialMain
-
-Route29_Movement_DudeToPlayerTop:
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_right
-	walk_right
-	step_end
-
-Route29_EventScript_CatchingTutorial2::
-	lockall
-	setvar VAR_TEMP_1, 1
-	turnobject 1, 2
-	playse SE_PIN
-	applymovement 1, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement 1, Common_Movement_Delay48
-	waitmovement 0
-	applymovement 1, Route29_Movement_DudeToPlayerMiddleTop
-	waitmovement 0
-	goto Route29_EventScript_CatchingTutorialMain
-
-Route29_Movement_DudeToPlayerMiddleTop:
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_right
-	walk_right
-	step_end
-
-Route29_EventScript_CatchingTutorial3::
-	lockall
-	setvar VAR_TEMP_1, 2
-	turnobject 1, 2
-	playse SE_PIN
-	applymovement 1, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement 1, Common_Movement_Delay48
-	waitmovement 0
-	applymovement 1, Route29_Movement_DudeToPlayerMiddleBottom
-	waitmovement 0
-	goto Route29_EventScript_CatchingTutorialMain
-
-Route29_Movement_DudeToPlayerMiddleBottom:
-	walk_up
-	walk_up
-	walk_up
-	walk_right
-	walk_right
-	step_end
-
-Route29_EventScript_CatchingTutorial4::
-	lockall
-	setvar VAR_TEMP_1, 3
-	turnobject 1, 2
-	playse SE_PIN
-	applymovement 1, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement 1, Common_Movement_Delay48
-	waitmovement 0
-	applymovement 1, Route29_Movement_DudeToPlayerBottom
-	waitmovement 0
-	goto Route29_EventScript_CatchingTutorialMain
-
-Route29_Movement_DudeToPlayerBottom:
-	walk_up
-	walk_up
-	walk_right
-	walk_right
-	step_end
-
-Route29_EventScript_CatchingTutorialMain:
-	textcolor MSG_COLOR_BLUE
-	setflag FLAG_DUDE_TALKED_TO_YOU
-	setvar VAR_ROUTE29_STATE, 2
-	msgbox Route29_Text_Dude_CatchingIntro, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq Route29_EventScript_CatchingTutorialRejected
+	getplayerxy(VAR_RESULT, VAR_TEMP_1)
+	turnobject(1, DIR_NORTH)
+	playse(SE_PIN)
+	applymovement(1, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(1, Common_Movement_Delay48)
+	waitmovement(0)
+	switch(var(VAR_TEMP_1))
+	{
+		case 10:
+			applymovement(1, Route29_Movement_DudeToPlayerTop)
+		case 11:
+			applymovement(1, Route29_Movement_DudeToPlayerMiddleTop)
+		case 12:
+			applymovement(1, Route29_Movement_DudeToPlayerMiddleBottom)
+		case 13:
+			applymovement(1, Route29_Movement_DudeToPlayerBottom)
+	}
+	waitmovement(1)
+	textcolor(MSG_COLOR_BLUE)
+	setflag(FLAG_DUDE_TALKED_TO_YOU)
+	setvar(VAR_ROUTE29_STATE, 2)
+	msgbox("I've seen you a couple times.\nHow many {POKEMON} have you caught?\pWould you like me to show you how\nto catch {POKEMON}?", MSGBOX_YESNO)
+	if(!var(VAR_RESULT))
+	{
+		msgbox(Route29_Text_Dude_CatchingTutRejected)
+		closemessage
+		switch(var(VAR_TEMP_1))
+		{
+			case 10:
+				applymovement(1, Route29_Movement_DudeFromTop)
+			case 11:
+				applymovement(1, Route29_Movement_DudeFromMiddleTop)
+			case 12:
+				applymovement(1, Route29_Movement_DudeFromMiddleBottom)
+			case 13:
+				applymovement(1, Route29_Movement_DudeFromBottom)
+		}
+		waitmovement(1)
+		releaseall
+		end
+	}
 	closemessage
-	compare VAR_TEMP_1, 0
-	call_if_eq Route29_EventScript_DudeAndPlayerWalkFromTop
-	compare VAR_TEMP_1, 1
-	call_if_eq Route29_EventScript_DudeAndPlayerWalkFromMiddleTop
-	compare VAR_TEMP_1, 2
-	call_if_eq Route29_EventScript_DudeAndPlayerWalkFromMiddleBottom
-	compare VAR_TEMP_1, 3
-	call_if_eq Route29_EventScript_DudeAndPlayerWalkFromBottom
-	special StartDudeTutorialBattle
+	switch(var(VAR_TEMP_1))
+	{
+		case 10:
+			applymovement(OBJ_EVENT_ID_PLAYER, Route29_Movement_PlayerFromTop)
+			applymovement(1, Route29_Movement_DudeFromTop)
+			waitmovement(0)
+		case 11:
+			applymovement(OBJ_EVENT_ID_PLAYER, Route29_Movement_PlayerFromMiddleTop)
+			applymovement(1, Route29_Movement_DudeFromMiddleTop)
+			waitmovement(0)
+		case 12:
+			applymovement(OBJ_EVENT_ID_PLAYER, Route29_Movement_PlayerFromMiddleBottom)
+			applymovement(1, Route29_Movement_DudeFromMiddleBottom)
+			waitmovement(0)
+		case 13:
+			applymovement(OBJ_EVENT_ID_PLAYER, Route29_Movement_PlayerFromBottom)
+			applymovement(1, Route29_Movement_DudeFromBottom)
+			waitmovement(0)
+	}
+	special(StartDudeTutorialBattle)
 	waitstate
-	turnobject 1, 2
-	msgbox Route29_Text_Dude_CatchingOutro
-	setflag FLAG_LEARNED_TO_CATCH_POKEMON
+	turnobject(1, DIR_NORTH)
+	msgbox(Route29_Text_Dude_CatchingOutro)
+	setflag(FLAG_LEARNED_TO_CATCH_POKEMON)
 	releaseall
 	end
-
-Route29_EventScript_DudeAndPlayerWalkFromTop:
-	applymovement OBJ_EVENT_ID_PLAYER, Route29_Movement_PlayerFromTop
-	applymovement 1, Route29_Movement_DudeFromTop
-	waitmovement 0
-	return
-
-Route29_Movement_PlayerFromTop:
-	walk_left
-	walk_left
-	walk_left
+}movement(local) Route29_Movement_DudeToPlayerTop{
+	walk_up * 5
+	walk_right * 2
+}movement(local) Route29_Movement_DudeToPlayerMiddleTop{
+	walk_up * 4
+	walk_right * 2
+}movement(local) Route29_Movement_DudeToPlayerMiddleBottom{
+	walk_up * 3
+	walk_right * 2
+}movement(local) Route29_Movement_DudeToPlayerBottom{
+	walk_up * 2
+	walk_right * 2
+}movement(local) Route29_Movement_DudeFromTop{
+	walk_left * 2
+	walk_down * 5
+}movement(local) Route29_Movement_DudeFromMiddleTop{
+	walk_left * 2
+	walk_down * 4
+}movement(local) Route29_Movement_DudeFromMiddleBottom{
+	walk_left * 2
+	walk_down * 3
+}movement(local) Route29_Movement_DudeFromBottom{
+	walk_left * 2
+	walk_down * 2
+}movement(local) Route29_Movement_PlayerFromTop{
+	walk_left * 3
+	walk_down * 4
+}movement(local) Route29_Movement_PlayerFromMiddleTop{
+	walk_left * 3
+	walk_down * 3
+}movement(local) Route29_Movement_PlayerFromMiddleBottom{
+	walk_left * 3
+	walk_down * 2
+}movement(local) Route29_Movement_PlayerFromBottom{
+	walk_left * 3
 	walk_down
-	walk_down
-	walk_down
-	walk_down
-	step_end
-
-Route29_EventScript_DudeAndPlayerWalkFromMiddleTop:
-	applymovement OBJ_EVENT_ID_PLAYER, Route29_Movement_PlayerFromMiddleTop
-	applymovement 1, Route29_Movement_DudeFromMiddleTop
-	waitmovement 0
-	return
-
-Route29_Movement_PlayerFromMiddleTop:
-	walk_left
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	walk_down
-	step_end
-
-Route29_EventScript_DudeAndPlayerWalkFromMiddleBottom:
-	applymovement OBJ_EVENT_ID_PLAYER, Route29_Movement_PlayerFromMiddleBottom
-	applymovement 1, Route29_Movement_DudeFromMiddleBottom
-	waitmovement 0
-	return
-
-Route29_Movement_PlayerFromMiddleBottom:
-	walk_left
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-Route29_EventScript_DudeAndPlayerWalkFromBottom:
-	applymovement OBJ_EVENT_ID_PLAYER, Route29_Movement_PlayerFromBottom
-	applymovement 1, Route29_Movement_DudeFromBottom
-	waitmovement 0
-	return
-
-Route29_Movement_PlayerFromBottom:
-	walk_left
-	walk_left
-	walk_left
-	walk_down
-	step_end
-
-Route29_EventScript_CatchingTutorialRejected:
-	msgbox Route29_Text_Dude_CatchingTutRejected
-	closemessage
-	compare VAR_TEMP_1, 0
-	call_if_eq Route29_EventScript_DudeWalkBackFromTop
-	compare VAR_TEMP_1, 1
-	call_if_eq Route29_EventScript_DudeWalkBackFromMiddleTop
-	compare VAR_TEMP_1, 2
-	call_if_eq Route29_EventScript_DudeWalkBackFromMiddleBottom
-	compare VAR_TEMP_1, 3
-	call_if_eq Route29_EventScript_DudeWalkBackFromBottom
-	releaseall
-	end
-
-Route29_EventScript_DudeWalkBackFromTop:
-	applymovement 1, Route29_Movement_DudeFromTop
-	waitmovement 0
-	return
-
-Route29_Movement_DudeFromTop:
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	step_end
-
-Route29_EventScript_DudeWalkBackFromMiddleTop:
-	applymovement 1, Route29_Movement_DudeFromMiddleTop
-	waitmovement 0
-	return
-
-Route29_Movement_DudeFromMiddleTop:
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	step_end
-
-Route29_EventScript_DudeWalkBackFromMiddleBottom:
-	applymovement 1, Route29_Movement_DudeFromMiddleBottom
-	waitmovement 0
-	return
-
-Route29_Movement_DudeFromMiddleBottom:
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	walk_down
-	step_end
-
-Route29_EventScript_DudeWalkBackFromBottom:
-	applymovement 1, Route29_Movement_DudeFromBottom
-	waitmovement 0
-	return
-
-Route29_Movement_DudeFromBottom:
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-Route29_Text_Youngster:
-	.string "Yo.\n"
-	.string "How are your {POKEMON}?\p"
-	.string "If they're weak and not ready for\n"
-	.string "battle, keep out of the grass.$"
-
-Route29_Text_LedgeGirl:
-	.string "See those ledges?\n"
-	.string "It's scary to jump off them.\p"
-	.string "But you can go to NEW BARK without\n"
-	.string "walking through the grass.$"
-
-Route29_Text_FatMan:
-	.string "I wanted to take a break, so I\n"
-	.string "saved to record my progress.$"
-
-Route29_Text_WaitingForNight:
-	.string "I'm waiting for {POKEMON} that appear\n"
-	.string "only at night.$"
-
-Route29_Text_WaitingForMorning:
-	.string "I'm waiting for {POKEMON} that appear\n"
-	.string "only in the morning.$"
-
-Route29_Text_PokemonInTheGrass:
-	.string "{POKEMON} hide in the grass.\n"
-	.string "Who knows when they'll pop out…$"
-
-Route29_Text_Dude_CatchingIntro:
-	.string "I've seen you a couple times.\n"
-	.string "How many {POKEMON} have you caught?\p"
-	.string "Would you like me to show you how\n"
-	.string "to catch {POKEMON}?$"
-
-Route29_Text_Dude_CatchingOutro:
-	.string "That's how you do it.\p"
-	.string "If you weaken them first, {POKEMON}\n"
-	.string "are easier to catch.$"
-
-Route29_Text_Dude_HowAboutNow:
-	.string "Huh? You want me to show you how\n"
-	.string "to catch {POKEMON}?$"
-
-Route29_Text_Dude_CatchingTutRejected:
-	.string "Oh.\n"
-	.string "Fine, then.\p"
-	.string "Anyway, if you want to catch\n"
-	.string "{POKEMON}, you have to walk a lot.$"
-
-Route29_Text_DirectionSign:
-	.string "ROUTE 29\n"
-	.string "CHERRYGROVE CITY - NEW BARK TOWN$"
-`
+}

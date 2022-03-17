@@ -1,0 +1,11 @@
+mapscripts CherrygroveCity_House1_MapScripts{}
+
+script CherrygroveCity_House1_EventScript_Pokefan{
+	msgbox("You're trying to see how good you\nare as a {POKEMON} TRAINER?\pYou better visit the {POKEMON} GYMS\nall over JOHTO and collect BADGES.", MSGBOX_NPC)
+	end
+}
+
+script CherrygroveCity_House1_EventScript_Child{
+	msgbox("When I get older, I'm going to be\na GYM LEADER!\pI make my {POKEMON} battle with my\nfriend's to make them tougher!", MSGBOX_NPC)
+	end
+}

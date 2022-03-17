@@ -1,0 +1,15 @@
+mapscripts CherrygroveCity_House2_MapScripts{}
+
+script CherrygroveCity_House1_EventScript_Boy{
+	lock
+	msgbox("{POKEMON} gain experience in battle\nand change their form.")
+	release
+	end
+}
+
+script CherrygroveCity_House1_EventScript_Girl{
+	lock
+	msgbox("{POKEMON} change?\nI would be shocked if one did that!")
+	release
+	end
+}

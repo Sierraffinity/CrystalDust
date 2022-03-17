@@ -5,31 +5,31 @@ mapscripts UnionCave_1F_MapScripts {
 }
 
 script UnionCave_1F_EventScript_Daniel {
-    trainerbattle_single(TRAINER_DANIEL, UnionCave_1F_Text_DanielIntro, UnionCave_1F_Text_DanielDefeat)
-    msgbox(UnionCave_1F_Text_DanielPostBattle)
+    trainerbattle_single(TRAINER_DANIEL, "Whoa!\nWhat a surprise!\pI didn't expect to see anyone\nelse in here!", "Whoa!\nI'm beaten big time!")
+    msgbox("I was conned into buying a\nSLOWPOKETAIL from some guy.\pI feel sorry for the poor {POKEMON}.")
     release
 }
 
 script UnionCave_1F_EventScript_Larry {
-    trainerbattle_single(TRAINER_LARRY, UnionCave_1F_Text_LarryIntro, UnionCave_1F_Text_LarryDefeat)
-    msgbox(UnionCave_1F_Text_LarryPostBattle)
+    trainerbattle_single(TRAINER_LARRY, "I roam far and wide in search of\n{POKEMON}.\pAre you looking for {POKEMON} too?\nThen you're my collecting rival!", "Ugh.\nMy poor {POKEMON}…")
+    msgbox("Every FRIDAY, you can hear {POKEMON}\nroars from deep inside the cave.")
     release
 }
 
 script UnionCave_1F_EventScript_Russell {
-    trainerbattle_single(TRAINER_RUSSELL, UnionCave_1F_Text_RussellIntro, UnionCave_1F_Text_RussellDefeat)
-    msgbox(UnionCave_1F_Text_RussellPostBattle)
+    trainerbattle_single(TRAINER_RUSSELL, "You're headed to AZALEA TOWN,\nare you?\pLet my {POKEMON} see if you're good\nenough to battle.", "Oh, oh, oh!")
+    msgbox("All right, then!\nI've decided I'm not leaving until\lmy {POKEMON} get tougher!")
     release
 }
 
 script UnionCave_1F_EventScript_Ray {
-    trainerbattle_single(TRAINER_RAY, UnionCave_1F_Text_RayIntro, UnionCave_1F_Text_RayDefeat)
-    msgbox(UnionCave_1F_Text_RayPostBattle)
+    trainerbattle_single(TRAINER_RAY, "If there's light inside, a cave\nisn't scary.\pIf you're strong inside, {POKEMON}\naren't scary.", "FLASH!")
+    msgbox("It's my {POKEMON}'s fire that lights\nup this cave.")
     release
 }
 
 script UnionCave_1F_EventScript_Bill {
-    trainerbattle_single(TRAINER_BILL, UnionCave_1F_Text_BillIntro, UnionCave_1F_Text_BillDefeat)
-    msgbox(UnionCave_1F_Text_BillPostBattle)
+    trainerbattle_single(TRAINER_BILL, "ZUBAT's SUPERSONIC keeps confusing\nmy {POKEMON}.\pI'm seriously upset about that!", "I flamed out!")
+    msgbox("On weekends, you can hear strange\nroars from deep in the cave.")
     release
 }

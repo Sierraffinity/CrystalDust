@@ -1,45 +1,45 @@
 mapscripts Route35_MapScripts { }
 
 script Route35_EventScript_Ivan {
-    trainerbattle_single(TRAINER_IVAN, Route35_Text_IvanIntro, Route35_Text_IvanDefeated)
-    msgbox(Route35_Text_IvanPostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_IVAN, "I've been getting {POKEMON} data off\nmy radio. I think I'm good.", "I give!")
+    msgbox("Music on the radio changes the moods\nof wild {POKEMON}.", MSGBOX_AUTOCLOSE)
 }
 
 script Route35_EventScript_Elliot {
-    trainerbattle_single(TRAINER_ELLIOT, Route35_Text_ElliotIntro, Route35_Text_ElliotDefeated)
-    msgbox(Route35_Text_ElliotPostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_ELLIOT, "I'm gonna show my girlfriend I'm\nhot stuff!", "I wish you would have lost for me…")
+    msgbox("I was humiliated in front of\nmy girlfriend…", MSGBOX_AUTOCLOSE)
 }
 
 script Route35_EventScript_Brooke {
-    trainerbattle_single(TRAINER_BROOKE, Route35_Text_BrookeIntro, Route35_Text_BrookeDefeated)
-    msgbox(Route35_Text_BrookePostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_BROOKE, "My boyfriend's weak, so I can't\nrely on him.", "Oh, my!\nYou're so strong!")
+    msgbox("I can count on my {POKEMON} more\nthan my boyfriend.", MSGBOX_AUTOCLOSE)
 }
 
 script Route35_EventScript_Kim {
-    trainerbattle_single(TRAINER_KIM, Route35_Text_KimIntro, Route35_Text_KimDefeated)
-    msgbox(Route35_Text_KimPostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_KIM, "Are you going to the GYM?\nMe too!", "Oh.\nI couldn't win…")
+    msgbox("The GYM BADGES are pretty.\nI collect them.", MSGBOX_AUTOCLOSE)
 }
 
 script Route35_EventScript_Bryan {
-    trainerbattle_single(TRAINER_BRYAN, Route35_Text_BryanIntro, Route35_Text_BryanDefeated)
-    msgbox(Route35_Text_BryanPostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_BRYAN, "What kinds of {POKE} BALLS do\nyou use?", "Yikes!\nNot fast enough!")
+    msgbox("Some {POKEMON} are pretty speedy.\nTry catching them with KURT's\lFAST BALL.\pWhenever I find a WHT APRICORN, I\ntake it to KURT.\lHe turns it into a custom BALL.", MSGBOX_AUTOCLOSE)
 }
 
 script Route35_EventScript_Walt {
-    trainerbattle_single(TRAINER_WALT, Route35_Text_WaltIntro, Route35_Text_WaltDefeated)
-    msgbox(Route35_Text_WaltPostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_WALT, "I'm practicing my fire breathing.", "Ow!\nI scorched the tip of my nose!")
+    msgbox("The {POKEMON} March on the radio\nlures wild {POKEMON} near.", MSGBOX_AUTOCLOSE)
 }
 
 script Route35_EventScript_Arnie {
     // TODO: Phone
-    trainerbattle_single(TRAINER_ARNIE_1, Route35_Text_ArnieIntro, Route35_Text_ArnieDefeated)
-    msgbox(Route35_Text_ArniePostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_ARNIE_1, "I'll go anywhere if BUG {POKEMON}\nappear there.", "Huh?\nI shouldn't have lost that…")
+    msgbox("My VENONAT won me the Bug-Catching\nContest at the NATIONAL PARK.", MSGBOX_AUTOCLOSE)
 }
 
 script Route35_EventScript_Irwin {
     // TODO: Phone
-    trainerbattle_single(TRAINER_IRWIN, Route35_Text_IrwinIntro, Route35_Text_IrwinDefeated)
-    msgbox(Route35_Text_IrwinPostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_IRWIN, "Behold my graceful {POKE} BALL\ndexterity!", "Whew!\nThat was a jolt!")
+    msgbox("I was going to dazzle you with my\nprize {POKEMON}.\pBut your prowess electrified me!", MSGBOX_AUTOCLOSE)
 }
 
 script Route35_EventScript_Dirk {
@@ -48,8 +48,8 @@ script Route35_EventScript_Dirk {
     gettime
     if (var(VAR_0x8002) == TIME_NIGHT)
     {
-        trainerbattle_single(TRAINER_DIRK, Route35_Text_DirkIntro, Route35_Text_DirkDefeated)
-        msgbox(Route35_Text_DirkPostBattle)
+        trainerbattle_single(TRAINER_DIRK, "Danger lurks in the night!", "Whoops!")
+        msgbox("You know, nighttime is fun in its\nown ways.\lBut don't overdo it, okay?")
     }
     else
     {

@@ -151,9 +151,9 @@ script Route31_EventScript_Youngster {
 }
 
 script Route31_EventScript_Trainer_Wade {
-    trainerbattle_single(TRAINER_WADE_1, Trainer_Text_Wade_See, Trainer_Text_Wade_Beat)
+    trainerbattle_single(TRAINER_WADE_1, "I caught a bunch of {POKEMON}.\nLet me battle with you!", "Awwwww…")
     // TODO: Phone
-	msgbox(Trainer_Text_Wade_After, MSGBOX_DEFAULT)
+	msgbox("You can catch {POKEMON} even if you\nhave six with you.\pIf you catch one, it'll go to your\nBOX automatically.", MSGBOX_DEFAULT)
 	release
 }
 

@@ -1,0 +1,16 @@
+mapscripts NewBarkTown_ElmsHouse_MapScripts{}
+
+script NewBarkTown_ElmsHouse_EventScript_ElmsWife{
+	msgbox("Hi, {PLAYER}! My husband's always\nso busy--I hope he's okay.\pWhen he's caught up in his {POKEMON}\nresearch, he even forgets to eat.", MSGBOX_NPC)
+	end
+}
+
+script NewBarkTown_ElmsHouse_EventScript_ElmsSon{
+	msgbox("When I grow up, I'm going to\nhelp my dad!\pI'm going to be a great {POKEMON}\nPROFESSOR!", MSGBOX_NPC)
+	end
+}
+
+script NewBarkTown_ElmsHouse_EventScript_ResearchPaper{
+	msgbox("{POKEMON}. Where do they come from?\nWhere are they going?\pWhy has no one ever witnessed a\n{POKEMON}'s birth?\pI want to know! I will dedicate my\nlife to the study of {POKEMON}!\p…\pIt's a part of PROF. ELM's research\npapers.", MSGBOX_SIGN)
+	end
+}

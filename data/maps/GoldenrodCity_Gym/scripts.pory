@@ -163,21 +163,21 @@ script GoldenrodCity_Gym_EventScript_Statue {
 }
 
 script GoldenrodCity_Gym_EventScript_Carrie {
-    trainerbattle_single(TRAINER_CARRIE, GoldenrodCity_Gym_Text_CarrieIntro, GoldenrodCity_Gym_Text_CarrieDefeated)
-    msgbox(GoldenrodCity_Gym_Text_CarriePostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_CARRIE, "Don't let my {POKEMON}'s cute looks\nfool you. They can whip you!", "Darn…\nI thought you were weak…")
+    msgbox("Do my {POKEMON} think I'm cute?", MSGBOX_AUTOCLOSE)
 }
 
 script GoldenrodCity_Gym_EventScript_Bridget {
-    trainerbattle_single(TRAINER_BRIDGET, GoldenrodCity_Gym_Text_BridgetIntro, GoldenrodCity_Gym_Text_BridgetDefeated)
-    msgbox(GoldenrodCity_Gym_Text_BridgetPostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_BRIDGET, "I like cute {POKEMON} better than\nstrong {POKEMON}.\pBut I have strong and cute {POKEMON}!", "Oh, no, no, no!")
+    msgbox("I'm trying to beat WHITNEY, but…\nIt's depressing.\pI'm okay! If I lose, I'll just try\nharder next time!", MSGBOX_AUTOCLOSE)
 }
 
 script GoldenrodCity_Gym_EventScript_Victoria {
-    trainerbattle_single(TRAINER_VICTORIA, GoldenrodCity_Gym_Text_VictoriaIntro, GoldenrodCity_Gym_Text_VictoriaDefeated)
-    msgbox(GoldenrodCity_Gym_Text_VictoriaPostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_VICTORIA, "Oh, you are a cute little TRAINER!\nI like you, but I won't hold back!", "Let's see…\nOops, it's over?")
+    msgbox("Wow, you must be good to beat me!\nKeep it up!", MSGBOX_AUTOCLOSE)
 }
 
 script GoldenrodCity_Gym_EventScript_Samantha {
-    trainerbattle_single(TRAINER_SAMANTHA, GoldenrodCity_Gym_Text_SamanthaIntro, GoldenrodCity_Gym_Text_SamanthaDefeated)
-    msgbox(GoldenrodCity_Gym_Text_SamanthaPostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_SAMANTHA, "Give it your best shot, or I'll take\nyou down!", "No!\nOh, MEOWTH, I'm so sorry!")
+    msgbox("I taught MEOWTH moves for taking on\nany type…", MSGBOX_AUTOCLOSE)
 }

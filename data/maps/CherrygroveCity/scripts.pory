@@ -1,0 +1,262 @@
+mapscripts CherrygroveCity_MapScripts{
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_VISITED_CHERRYGROVE_CITY)
+    }
+}
+
+script CherrygroveCity_EventScript_GuideGentsHouse{
+	msgbox("GUIDE GENT'S HOUSE", MSGBOX_SIGN)
+	end
+}
+
+script CherrygroveCity_EventScript_Slogan{
+	msgbox("CHERRYGROVE CITY\nThe City of Cute, Fragrant Flowers", MSGBOX_SIGN)
+	end
+}
+
+script CherrygroveCity_EventScript_Teacher{
+    if(flag(FLAG_SYS_HAS_MAP_CARD))
+    {
+        msgbox("When you're with {POKEMON}, going\nanywhere is fun.", MSGBOX_NPC)
+        end
+    }
+	msgbox("Did you talk to the old man by the\n{POKEMON} CENTER?\pHe'll put a map of JOHTO on your\n{POKE}GEAR.", MSGBOX_NPC)
+	end
+}
+
+script CherrygroveCity_EventScript_Youngster{
+    if(flag(FLAG_SYS_POKEDEX_GET))
+    {
+        msgbox("I battled the TRAINERS on the road.\nMy {POKEMON} lost.\lThey're a mess!\pI really need to take them to a\n{POKEMON} CENTER.", MSGBOX_NPC)
+	    end
+    }
+	msgbox("MR. {POKEMON}'s house is still farther\nup ahead.", MSGBOX_NPC)
+	end
+}
+
+script CherrygroveCity_EventScript_MysticWaterGuy{
+    if(flag(FLAG_GOT_MYSTIC_WATER_IN_CHERRYGROVE))
+    {
+        msgbox("Back to fishing for me, then.", MSGBOX_NPC)
+        end
+    }
+    lock
+	faceplayer
+	msgbox("A {POKEMON} I caught had an item.\nI think it's MYSTIC WATER.\pI don't need it, so do you want it?", MSGBOX_DEFAULT)
+	checkitemspace(ITEM_MYSTIC_WATER, 1)
+    if(!var(VAR_RESULT))
+    {
+        call(Common_EventScript_ShowBagIsFull)
+        release
+        end
+    }
+	giveitem(ITEM_MYSTIC_WATER, 1)
+	setflag(FLAG_GOT_MYSTIC_WATER_IN_CHERRYGROVE)
+    goto(CherrygroveCity_EventScript_MysticWaterGuy)
+}
+
+script CherrygroveCity_EventScript_GuideGent{
+    lock
+	faceplayer
+	msgbox("You're a rookie TRAINER, aren't you?\nI can tell!\pThat's okay!\nEveryone is a rookie at some point!\pIf you'd like, I can teach you a\nfew things.", MSGBOX_YESNO)
+	if(!var(VAR_RESULT))
+    {
+        msgbox("Oh…\nIt's something I enjoy doing…\pFine. Come see me when you like.")
+        release
+        end
+    }
+	msgbox("Okay, then!\nFollow me!")
+	closemessage
+	playbgm(MUS_FOLLOW_ME, 0)
+    switch(var(VAR_FACING))
+    {
+        case DIR_EAST:
+            applymovement(1, CherrygroveCity_Movement_GuideGentFromLeft)
+            applymovement(OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_PlayerFromLeft)
+            waitmovement(0)
+        case DIR_NORTH:
+            applymovement(1, CherrygroveCity_Movement_GuideGentFromBelow)
+            applymovement(OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_PlayerFromBelow)
+            waitmovement(0)
+        case DIR_WEST:
+            applymovement(1, CherrygroveCity_Movement_GuideGentFromRight)
+            applymovement(OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_PlayerFromRight)
+            waitmovement(0)
+    }
+	msgbox("This is a {POKEMON} CENTER.\pThey heal your {POKEMON} in no time\nat all.\pYou'll be relying on them a lot, so\nyou better learn about them.")
+	closemessage
+	applymovement(1, CherrygroveCity_Movement_ToMart)
+	applymovement(OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_ToMart)
+	waitmovement(0)
+	msgbox("This is a {POKEMON} MART.\pThey sell {POKE} BALLS for catching\nwild {POKEMON} and other useful items.")
+	closemessage
+	applymovement(1, CherrygroveCity_Movement_ToRoute30)
+	applymovement(OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_ToRoute30)
+	waitmovement(0)
+	msgbox("ROUTE 30 is out this way.\pTRAINERS will be battling their\nprized {POKEMON} there.")
+	closemessage
+	applymovement(1, CherrygroveCity_Movement_GuideGentToSea)
+	applymovement(OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_PlayerToSea)
+	waitmovement(0)
+	msgbox("This is the sea, as you can see.\pSome {POKEMON} are found only in\nwater.")
+	closemessage
+	applymovement(1, CherrygroveCity_Movement_GuideGentToGuideGentsHouse)
+	applymovement(OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_PlayerToGuideGentsHouse)
+	waitmovement(0)
+	delay(60)
+	turnobject(1, DIR_WEST)
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+	msgbox("Here…\pIt's my house!\nThanks for your company.\pLet me give you a small gift.")
+	textcolor(MSG_COLOR_BLACK)
+	playfanfare(MUS_OBTAIN_ITEM)
+	setflag(FLAG_SYS_HAS_MAP_CARD)
+	message("{PLAYER} received the MAP CARD\nfrom the GUIDE GENT.")
+	waitfanfare
+	msgbox("{PLAYER}'s {POKE}GEAR now has a MAP!")
+	textcolor(MSG_COLOR_PREV)
+	msgbox("The {POKE}GEAR becomes more useful\nas you add CARDS.\pI wish you luck on your journey!")
+	closemessage
+	fadedefaultbgm
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+	applymovement(1, CherrygroveCity_Movement_WalkUp)
+	waitmovement(0)
+	opendoor(36, 12)
+	waitdooranim
+	applymovement(1, CherrygroveCity_Movement_WalkUp)
+	waitmovement(0)
+	removeobject(1)
+	closedoor(36, 12)
+	waitdooranim
+	clearflag(FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE)
+	release
+	end
+}movement(local) CherrygroveCity_Movement_GuideGentFromLeft{
+    delay_16
+	walk_left * 4
+	walk_up
+	walk_left
+	walk_in_place_fastest_up
+}movement(local) CherrygroveCity_Movement_PlayerFromLeft{
+    walk_down
+	walk_in_place_fastest_up
+	delay_8
+	delay_4
+	walk_up
+	walk_left * 3
+	walk_up
+}movement(local) CherrygroveCity_Movement_GuideGentFromBelow{
+    walk_left * 4
+	walk_up
+	walk_left
+	walk_in_place_fastest_up
+}movement(local) CherrygroveCity_Movement_PlayerFromBelow{
+    walk_up
+	walk_left * 4
+	walk_up
+}movement(local) CherrygroveCity_Movement_GuideGentFromRight{
+    walk_left * 4
+	walk_up
+	walk_left
+	walk_in_place_fastest_up
+}movement(local) CherrygroveCity_Movement_PlayerFromRight{
+    walk_left * 5
+	walk_up
+}movement(local) CherrygroveCity_Movement_ToMart{
+    walk_left * 6
+	walk_in_place_fastest_up
+}movement(local) CherrygroveCity_Movement_ToRoute30{
+    walk_left * 10
+	walk_in_place_fastest_up
+}movement(local) CherrygroveCity_Movement_GuideGentToSea{
+    walk_left * 4
+	walk_down
+	walk_left * 3
+	walk_down
+	walk_in_place_fastest_left
+}movement(local) CherrygroveCity_Movement_PlayerToSea{
+    walk_left * 5
+	walk_down
+	walk_left * 3
+}movement(local) CherrygroveCity_Movement_GuideGentToGuideGentsHouse{
+    walk_down * 4
+	walk_right * 13
+	walk_down
+	walk_right * 5
+	walk_in_place_fastest_up
+}movement(local) CherrygroveCity_Movement_PlayerToGuideGentsHouse{
+    walk_down * 5
+	walk_right * 13
+	walk_down
+	walk_right * 4
+	walk_in_place_fastest_up
+}movement(local) CherrygroveCity_Movement_WalkUp{
+    walk_up
+}
+
+script CherrygroveCity_EventScript_RivalTriggers{
+    lockall
+    getplayerxy(VAR_RESULT, VAR_TEMP_1)
+    if(var(VAR_TEMP_1) == 9)
+    {
+        setobjectxyperm(2, 55, 9)
+    }
+    if(var(VAR_TEMP_1) == 10)
+    {
+        setobjectxyperm(2, 55, 10)
+    }
+    addobject(2)
+	textcolor(MSG_COLOR_BLUE)
+	fadenewbgm(0)
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+	playse(SE_PIN)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48)
+	waitmovement(0)
+	applymovement(2, CherrygroveCity_Movement_RivalToPlayer)
+	waitmovement(0)
+	playbgm(MUS_ENCOUNTER_RIVAL, 0)
+	savebgm(MUS_RIVAL_EXIT)
+    // Was this text changed intentionally from Crystal?
+	msgbox ("…… …… ……\nYou got a {POKEMON} at the LAB.\pWhat a waste of a {POKEMON}.\nGiven to a wimp like you.\p…… …… ……\nDon't you get what I'm saying?\pWell, I too have a good {POKEMON}.\nI'll show you what I mean!")
+	setvar(VAR_LAST_TALKED, 2)
+    switch(var(VAR_STARTER_MON))
+    {
+        case STARTER_CHIKORITA:
+            trainerbattle_wintext(TRAINER_RIVAL_CHERRYGROVE_CHIKORITA, TUTORIAL_BATTLE_HEAL_AFTER, CherrygroveCity_Text_Rival_BattleWin, CherrygroveCity_Text_Rival_BattleLose)
+        case STARTER_CYNDAQUIL:
+            trainerbattle_wintext(TRAINER_RIVAL_CHERRYGROVE_CYNDAQUIL, TUTORIAL_BATTLE_HEAL_AFTER, CherrygroveCity_Text_Rival_BattleWin, CherrygroveCity_Text_Rival_BattleLose)
+        case STARTER_TOTODILE:
+            trainerbattle_wintext(TRAINER_RIVAL_CHERRYGROVE_TOTODILE, TUTORIAL_BATTLE_HEAL_AFTER, CherrygroveCity_Text_Rival_BattleWin, CherrygroveCity_Text_Rival_BattleLose)
+    }
+	special(HealPlayerParty)
+	msgbox("…… …… ……\nMy name's ???.\pI'm going to be the world's greatest\n{POKEMON} TRAINER.")
+	closemessage
+	delay(10)
+	playse(SE_NOT_EFFECTIVE)
+	applymovement(OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_RivalPushesPlayer)
+	applymovement(2, CherrygroveCity_Movement_RivalRunsAway)
+	waitmovement(0)
+	savebgm(MUS_DUMMY)
+	fadedefaultbgm
+	removeobject(2)
+	setvar(VAR_CHERRYGROVE_CITY_STATE, 2)
+	releaseall
+	end
+}movement(local) CherrygroveCity_Movement_RivalToPlayer{
+    walk_left * 7
+}text(local) CherrygroveCity_Text_Rival_BattleWin{
+    "…Humph.\nAre you happy you won?"
+}text(local) CherrygroveCity_Text_Rival_BattleLose{
+    "…Humph.\nThat was a waste of time."
+}movement(local) CherrygroveCity_Movement_RivalPushesPlayer{
+    face_up
+	lock_facing_direction
+	walk_fast_down
+	unlock_facing_direction
+	walk_in_place_fastest_left
+}movement(local) CherrygroveCity_Movement_RivalRunsAway{
+    walk_fast_left * 5
+	walk_fast_up * 2
+	walk_fast_left * 4
+}

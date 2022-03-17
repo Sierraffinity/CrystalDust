@@ -1,0 +1,11 @@
+mapscripts NewBarkTown_NeighborsHouse_MapScripts{}
+
+script NewBarkTown_NeighborsHouse_EventScript_Girl{
+	msgbox("PIKACHU is an evolved {POKEMON}. I\nwas amazed by PROF. ELM's findings.\pHe's so famous for his research on\n{POKEMON} evolution.\p…sigh…\pI wish I could be a researcher like\nhim…", MSGBOX_NPC)
+	end
+}
+
+script NewBarkTown_NeighborsHouse_EventScript_Woman{
+	msgbox("{PLAYER}, have you heard?\pMy daughter is adamant about\nbecoming PROF. ELM's assistant.\lShe really loves {POKEMON}!\pBut then, so do I!", MSGBOX_NPC)
+	end
+}

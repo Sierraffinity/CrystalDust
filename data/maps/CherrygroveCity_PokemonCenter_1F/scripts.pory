@@ -1,0 +1,35 @@
+mapscripts CherrygroveCity_PokemonCenter_1F_MapScripts{
+    MAP_SCRIPT_ON_TRANSITION{
+        setrespawn(HEAL_LOCATION_CHERRYGROVE_CITY)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script CherrygroveCity_PokemonCenter_1F_EventScript_Nurse{
+	setvar(VAR_0x800B, 1)
+	call(Common_EventScript_PkmnCenterNurse)
+	waitmessage
+	waitbuttonpress
+	release
+	end
+}
+
+script CherrygroveCity_PokemonCenter_1F_EventScript_FatMan{
+	msgbox("It's great! I can store any number\nof {POKEMON}, and it's all free.", MSGBOX_NPC)
+	end
+}
+
+script CherrygroveCity_PokemonCenter_1F_EventScript_Gentleman{
+	msgbox("That PC in the corner is free for\nany TRAINER to use.", MSGBOX_NPC)
+	end
+}
+
+script CherrygroveCity_PokemonCenter_1F_EventScript_Teacher{
+    if(flag(FLAG_ADVENTURE_STARTED))
+    {
+        msgbox("The {POKEMON} WIRELESS CLUB upstairs\nwas just built.\pI traded {POKEMON} there already!", MSGBOX_NPC)
+        end
+    }
+	msgbox("The {POKEMON} WIRELESS CLUB upstairs\nwas just built.\pBut they're still finishing it up.", MSGBOX_NPC)
+	end
+}

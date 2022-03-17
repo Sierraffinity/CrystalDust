@@ -25,7 +25,7 @@ script SproutTower_1F_EventScript_Woman {
 }
 
 script SproutTower_1F_EventScript_SageChow {
-    trainerbattle_single(TRAINER_CHOW, Trainer_Text_Chow_See, Trainer_Text_Chow_Beat)
-	msgbox(Trainer_Text_Chow_After, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_CHOW, "We stand guard in this tower.\nHere, we express our gratitude to\lhonor all {POKEMON}.", "Th-Thank you!")
+	msgbox("All living beings coexist through\ncooperation. We must always be\lthankful for this.", MSGBOX_DEFAULT)
 	release
 }

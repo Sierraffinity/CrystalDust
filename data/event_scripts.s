@@ -761,7 +761,6 @@ Common_EventScript_FindItem::
 	.include "data/scripts/flash.inc"
 	.include "data/scripts/berry_blender.inc"
 	.include "data/text/mauville_man.inc"
-	.include "data/text/trainers.inc"
 	.include "data/scripts/repel.inc"
 	.include "data/scripts/safari_zone.inc"
 	.include "data/scripts/bug_catching_contest.inc"

@@ -148,7 +148,7 @@
       "elevation": 3,
       "var": "VAR_CHERRYGROVE_CITY_STATE",
       "var_value": "1",
-      "script": "CherrygroveCity_EventScript_Rival1"
+      "script": "CherrygroveCity_EventScript_RivalTriggers"
     },
     {
       "type": "trigger",
@@ -157,7 +157,7 @@
       "elevation": 3,
       "var": "VAR_CHERRYGROVE_CITY_STATE",
       "var_value": "1",
-      "script": "CherrygroveCity_EventScript_Rival2"
+      "script": "CherrygroveCity_EventScript_RivalTriggers"
     },
     {
       "type": "trigger",
@@ -166,7 +166,7 @@
       "elevation": 3,
       "var": "VAR_CHERRYGROVE_CITY_STATE",
       "var_value": "1",
-      "script": "CherrygroveCity_EventScript_Rival3"
+      "script": "CherrygroveCity_EventScript_RivalTriggers"
     }
   ],
   "bg_events": [

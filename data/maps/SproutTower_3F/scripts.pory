@@ -152,19 +152,19 @@ movement SproutTower_3F_Movement_RivalFlyAway {
 }
 
 script SproutTower_3F_EventScript_SageJin {
-    trainerbattle_single(TRAINER_JIN, Trainer_Text_Jin_See, Trainer_Text_Jin_Beat)
-	msgbox(Trainer_Text_Jin_After, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_JIN, "I train to find enlightenment in\n{POKEMON}!", "My training is incomplete…")
+	msgbox("As {POKEMON} grow stronger, so does\nthe TRAINER.\pNo, wait. As the TRAINER grows\nstronger, so do the {POKEMON}.", MSGBOX_DEFAULT)
 	release
 }
 
 script SproutTower_3F_EventScript_SageTroy {
-    trainerbattle_single(TRAINER_TROY, Trainer_Text_Troy_See, Trainer_Text_Troy_Beat)
-	msgbox(Trainer_Text_Troy_After, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_TROY, "Let me see how much you trust your\n{POKEMON}.", "Yes, your trust is real!")
+	msgbox("It is not far to the ELDER.", MSGBOX_DEFAULT)
 	release
 }
 
 script SproutTower_3F_EventScript_SageNeal {
-    trainerbattle_single(TRAINER_NEAL, Trainer_Text_Neal_See, Trainer_Text_Neal_Beat)
-	msgbox(Trainer_Text_Neal_After, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_NEAL, "The ELDER's HM lights even pitch-\nblack darkness.", "It is my head that is bright!")
+	msgbox("Let there be light on your journey.", MSGBOX_DEFAULT)
 	release
 }

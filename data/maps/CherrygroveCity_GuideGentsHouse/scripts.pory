@@ -1,0 +1,6 @@
+mapscripts CherrygroveCity_GuideGentsHouse_MapScripts{}
+
+script CherrygroveCity_GuideGentsHouse_EventScript_GuideGent{
+	msgbox("When I was a wee lad, I was a\nhot-shot TRAINER!\pHere's a word of advice:\nCatch lots of {POKEMON}!\lTreat them all with kindness!", MSGBOX_NPC)
+	end
+}

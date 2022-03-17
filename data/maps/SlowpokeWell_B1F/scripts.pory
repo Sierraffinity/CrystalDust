@@ -29,20 +29,20 @@ script SlowpokeWell_B1F_EventScript_Kurt {
 }
 
 script SlowpokeWell_B1F_EventScript_Rocket1 {
-    trainerbattle_single(TRAINER_ROCKET_SLOWPOKE_WELL_1, SlowpokeWell_B1F_Text_Rocket1Intro, SlowpokeWell_B1F_Text_Rocket1Defeat)
-    msgbox(SlowpokeWell_B1F_Text_Rocket1PostBattle)
+    trainerbattle_single(TRAINER_ROCKET_SLOWPOKE_WELL_1, "Darn! I was standing guard up top\nwhen some old coot yelled at me.\pHe startled me so much that I fell\ndown here.\pI think I'll vent my anger by taking\nit out on you!", "Arrgh\nThis is NOT my day!")
+    msgbox("Sure, we've been hacking the tails\noff SLOWPOKE and selling them.\lEverything we do is for profit.\pThat's right! We're TEAM ROCKET,\nand we'll do anything for money!")
     release
 }
 
 script SlowpokeWell_B1F_EventScript_Rocket2 {
-    trainerbattle_single(TRAINER_ROCKET_SLOWPOKE_WELL_2, SlowpokeWell_B1F_Text_Rocket2Intro, SlowpokeWell_B1F_Text_Rocket2Defeat)
-    msgbox(SlowpokeWell_B1F_Text_Rocket2PostBattle)
+    trainerbattle_single(TRAINER_ROCKET_SLOWPOKE_WELL_2, "You want us to stop taking TAILS?\nYeah, just try to defeat all of us!", "You rotten brat!")
+    msgbox("SLOWPOKETAILS grow back fast!\nWhat's wrong with selling them?")
     release
 }
 
 script SlowpokeWell_B1F_EventScript_Rocket3 {
-    trainerbattle_single(TRAINER_ROCKET_SLOWPOKE_WELL_3, SlowpokeWell_B1F_Text_Rocket3Intro, SlowpokeWell_B1F_Text_Rocket3Defeat)
-    msgbox(SlowpokeWell_B1F_Text_Rocket3PostBattle)
+    trainerbattle_single(TRAINER_ROCKET_SLOWPOKE_WELL_3, "Quit taking SLOWPOKETAILS?\pIf we obeyed you, TEAM ROCKET's\nrep would be ruined!", "Just…\nToo strong…")
+    msgbox("We need the money, but selling\nSLOWPOKETAILS?\pIt's tough being a ROCKET GRUNT!")
     release
 }
 

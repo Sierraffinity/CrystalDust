@@ -1,0 +1,11 @@
+mapscripts Route29_Gatehouse_MapScripts{}
+
+script Route29_Gatehouse_EventScript_Officer{
+	msgbox("You can't climb ledges.\pBut you can jump down from them\nto take a shortcut.", MSGBOX_NPC)
+	end
+}
+
+script Route29_Gatehouse_EventScript_Youngster{
+	msgbox("Different kinds of {POKEMON} appear\npast here.\pIf you want to catch them all, you\nhave to look everywhere.$", MSGBOX_NPC)
+	end
+}

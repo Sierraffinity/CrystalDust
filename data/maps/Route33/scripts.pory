@@ -10,9 +10,9 @@ script Route33_EventScript_Girl {
 }
 
 script Route33_EventScript_Anthony {
-    trainerbattle_single(TRAINER_ANTHONY_1, Route33_Text_AnthonyIntro, Route33_Text_AnthonyDefeat)
+    trainerbattle_single(TRAINER_ANTHONY_1, "I came through the tunnel, but I\nstill have plenty of energy left!", "Whoa!\nYou've got more zip than me!")
     // TODO: Phone
-    msgbox(Route33_Text_AnthonyPostBattle)
+    msgbox("We HIKERS are at our best in\nthe mountains.")
     release
 }
 

@@ -81,14 +81,14 @@ script VioletCity_Gym_EventScript_GiveAerialAce {
 }
 
 script VioletCity_Gym_EventScript_Abe {
-    trainerbattle_single(TRAINER_ABE, VioletCity_Gym_Text_AbeIntro, VioletCity_Gym_Text_AbeDefeat)
-	msgbox(VioletCity_Gym_Text_AbePostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_ABE, "Let me see if you are good enough\nto face FALKNER!", "This can't be true!")
+	msgbox("This is pathetic, losing to some\nrookie TRAINER…", MSGBOX_DEFAULT)
 	release
 }
 
 script VioletCity_Gym_EventScript_Rod {
-    trainerbattle_single(TRAINER_ROD, VioletCity_Gym_Text_RodIntro, VioletCity_Gym_Text_RodDefeat)
-	msgbox(VioletCity_Gym_Text_RodPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_ROD, "The key word is guts!\pThose here are training night and\nday to become BIRD {POKEMON}\lmasters. Come on!", "Gaaah!")
+	msgbox("FALKNER's skills are for real!\nDon't get cocky just because you\lbeat me!", MSGBOX_DEFAULT)
 	release
 }
 

@@ -1,0 +1,67 @@
+mapscripts NewBarkTown_PlayersHouse_2F_MapScripts{
+    MAP_SCRIPT_ON_TRANSITION{
+        call(SecretBase_EventScript_SetDecorationFlags)
+        setvar(VAR_SECRET_BASE_INITIALIZED, 0)
+        end
+    }
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_SECRET_BASE_INITIALIZED, 0: SecretBase_EventScript_InitDecorations
+    ]
+}
+
+script EventScript_PlayerPC{
+    lockall
+    setvar(VAR_0x8004, 1)
+	special(DoPCTurnOnEffect)
+	playse(SE_PC_ON)
+	msgbox(gText_PlayerHouseBootPC, MSGBOX_DEFAULT)
+	special(BedroomPC)
+	waitstate
+	releaseall
+	end
+}
+
+script NewBarkTown_PlayersHouse_2F_EventScript_TurnOffPlayerPC{
+    setvar(VAR_0x8004, 1)
+	playse(SE_PC_OFF)
+	special(DoPCTurnOffEffect)
+	releaseall
+	end
+}
+
+text Common_Text_LookCloserAtMap{
+	"It's the TOWN MAP."
+}
+
+script NewBarkTown_PlayersHouse_2F_Radio{
+    if(flag(FLAG_SYS_POKEDEX_GET))
+    {
+        goto(EventScript_Radio1)
+    }
+    if(flag(FLAG_LISTENED_TO_INITIAL_RADIO))
+    {
+        msgbox(NewBarkTown_PlayersHouse_2F_Text_RadioTextDone, MSGBOX_SIGN)
+        end
+    }
+    playbgm(MUS_OAKS_LAB 0)
+	message("This was PROF. OAK'S {POKEMON} TALK!\nPlease tune in next time!")
+	waitmessage
+	delay(90)
+	message("{POKEMON} CHANNEL!")
+	waitmessage
+	delay(90)
+	message("This is DJ MARY, your co-host,\nsigning off!")
+	waitmessage
+	delay(90)
+	fadedefaultbgm
+	setflag(FLAG_LISTENED_TO_INITIAL_RADIO)
+	message(NewBarkTown_PlayersHouse_2F_Text_RadioTextDone)
+	waitmessage
+	delay(90)
+	closemessage
+	end
+}
+
+text(local) NewBarkTown_PlayersHouse_2F_Text_RadioTextDone{
+	"{POKEMON}!\n{POKEMON} CHANNEL…"
+}

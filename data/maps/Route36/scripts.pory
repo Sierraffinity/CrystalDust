@@ -315,14 +315,14 @@ script Route36_EventScript_TrainerTipsDigSign {
 }
 
 script Route36_EventScript_Mark {
-    trainerbattle_single(TRAINER_MARK, Route36_Text_MarkIntro, Route36_Text_MarkDefeated)
-    msgbox(Route36_Text_MarkPostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_MARK, "I'm going to read your thoughts!", "I misread you!")
+    msgbox("I'd be strong if only I could tell\nwhat my opponent was thinking.", MSGBOX_AUTOCLOSE)
 }
 
 script Route36_EventScript_Alan {
     // TODO: Phone
-    trainerbattle_single(TRAINER_ALAN_1, Route36_Text_AlanIntro, Route36_Text_AlanDefeated)
-    msgbox(Route36_Text_AlanPostBattle, MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_ALAN_1, "Thanks to my studies, I'm ready\nfor any {POKEMON}!", "Oops!\nComputation error?")
+    msgbox("Darn.\nI study five hours a day too.\pThere's more to learning than just\nreading books.", MSGBOX_AUTOCLOSE)
 }
 
 script Route36_EventScript_Floria {

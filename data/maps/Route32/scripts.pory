@@ -319,52 +319,52 @@ script Route32_EventScript_Frieda {
 }
 
 script Route32_EventScript_Albert {
-    trainerbattle_single(TRAINER_ALBERT, Route32_Text_AlbertIntro, Route32_Text_AlbertDefeat)
-	msgbox(Route32_Text_AlbertPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_ALBERT, "I haven't seen you around before.\nSo you think you're pretty tough?", "You're stronger than you look!")
+	msgbox("I'm going to try to be the best\nwith my favorites.\pI'm not using the same tough\n{POKEMON} as everyone else.", MSGBOX_DEFAULT)
 	release
 }
 
 script Route32_EventScript_Liz {
-    trainerbattle_single(TRAINER_LIZ_1, Route32_Text_LizIntro, Route32_Text_LizDefeat)
+    trainerbattle_single(TRAINER_LIZ_1, "Uh-huh.\nYeah, and you know…\pPardon? You want to battle?\nI'm on the phone.\pOh, all right.\nBut let's make this fast.", "Oh!\nI've got to relieve my anger!")
 	// TODO: Phone
-	msgbox(Route32_Text_LizPostBattle, MSGBOX_DEFAULT)
+	msgbox("I was having a nice chat, too.", MSGBOX_DEFAULT)
 	release
 }
 
 script Route32_EventScript_Roland {
-    trainerbattle_single(TRAINER_ROLAND, Route32_Text_RolandIntro, Route32_Text_RolandDefeat)
-	msgbox(Route32_Text_RolandPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_ROLAND, "That glance…\nIt's intriguing.", "Hmmm.\nThis is disappointing.")
+	msgbox("If you don't want to battle, just\navoid eye contact.", MSGBOX_DEFAULT)
 	release
 }
 
 script Route32_EventScript_Henry {
-    trainerbattle_single(TRAINER_HENRY, Route32_Text_HenryIntro, Route32_Text_HenryDefeat)
-	msgbox(Route32_Text_HenryPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_HENRY, "My {POKEMON}?\nThey're freshly caught!", "SPLASH?")
+	msgbox("Freshly caught {POKEMON} are no\nmatch for properly raised ones.", MSGBOX_DEFAULT)
 	release
 }
 
 script Route32_EventScript_Justin {
-    trainerbattle_single(TRAINER_JUSTIN, Route32_Text_JustinIntro, Route32_Text_JustinDefeat)
-	msgbox(Route32_Text_JustinPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_JUSTIN, "Whoa!\nYou made me lose that big fish!", "Sploosh!")
+	msgbox("Calm, collected…\nThe essence of fishing and {POKEMON}\lis the same.", MSGBOX_DEFAULT)
 	release
 }
 
 script Route32_EventScript_Ralph {
-    trainerbattle_single(TRAINER_RALPH_1, Route32_Text_RalphIntro, Route32_Text_RalphDefeat)
+    trainerbattle_single(TRAINER_RALPH_1, "I'm really good at both fishing\nand {POKEMON}.\pI'm not about to lose to any kid!", "Tch!\nI tried to rush things…")
 	// TODO: Phone
-	msgbox(Route32_Text_RalphPostBattle, MSGBOX_DEFAULT)
+	msgbox("Fishing is a lifelong passion.\n{POKEMON} are lifelong friends!", MSGBOX_DEFAULT)
 	release
 }
 
 script Route32_EventScript_Gordon {
-    trainerbattle_single(TRAINER_GORDON, Route32_Text_GordonIntro, Route32_Text_GordonDefeat)
-	msgbox(Route32_Text_GordonPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_GORDON, "I found some good {POKEMON} in the\ngrass around here!\pI think they'll do it for me!", "Darn.\nI thought I could win.")
+	msgbox("The grass is full of clingy things.", MSGBOX_DEFAULT)
 	release
 }
 
 script Route32_EventScript_Peter {
-    trainerbattle_single(TRAINER_PETER, Route32_Text_PeterIntro, Route32_Text_PeterDefeat)
-	msgbox(Route32_Text_PeterPostBattle, MSGBOX_DEFAULT)
+    trainerbattle_single(TRAINER_PETER, "That BADGE!\nIt's from VIOLET CITY's GYM!\pYou beat FALKNER?", "I know what my weaknesses are.")
+	msgbox("I should train again at the GYM\nin VIOLET CITY.", MSGBOX_DEFAULT)
 	release
 }
 

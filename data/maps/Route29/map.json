@@ -120,7 +120,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route29_EventScript_Tuscany",
-      "flag": "FLAG_HIDE_ROUTE_29_TUSCANY"
+      "flag": "FLAG_TEMP_1"
     },
     {
       "type": "original",
@@ -192,7 +192,7 @@
       "elevation": 3,
       "var": "VAR_ROUTE29_STATE",
       "var_value": "1",
-      "script": "Route29_EventScript_CatchingTutorial1"
+      "script": "Route29_EventScript_CatchingTutorialTriggers"
     },
     {
       "type": "trigger",
@@ -201,7 +201,7 @@
       "elevation": 3,
       "var": "VAR_ROUTE29_STATE",
       "var_value": "1",
-      "script": "Route29_EventScript_CatchingTutorial2"
+      "script": "Route29_EventScript_CatchingTutorialTriggers"
     },
     {
       "type": "trigger",
@@ -210,7 +210,7 @@
       "elevation": 3,
       "var": "VAR_ROUTE29_STATE",
       "var_value": "1",
-      "script": "Route29_EventScript_CatchingTutorial3"
+      "script": "Route29_EventScript_CatchingTutorialTriggers"
     },
     {
       "type": "trigger",
@@ -219,7 +219,7 @@
       "elevation": 3,
       "var": "VAR_ROUTE29_STATE",
       "var_value": "1",
-      "script": "Route29_EventScript_CatchingTutorial4"
+      "script": "Route29_EventScript_CatchingTutorialTriggers"
     }
   ],
   "bg_events": [

@@ -110,26 +110,28 @@ script AzaleaTown_Gym_EventScript_GymStatue {
 }
 
 script AzaleaTown_Gym_EventScript_Benny {
-	trainerbattle_single(TRAINER_BENNY, AzaleaTown_Gym_Text_BennyIntro, AzaleaTown_Gym_Text_BennyDefeat)
-	msgbox(AzaleaTown_Gym_Text_BennyPostBattle, MSGBOX_AUTOCLOSE)
+	trainerbattle_single(TRAINER_BENNY, "BUG {POKEMON} evolve young, so they\nget stronger that much faster.", "Just evolving isn't enough!")
+	msgbox("{POKEMON} become stronger if they\nevolve. Really!", MSGBOX_AUTOCLOSE)
 }
 
 script AzaleaTown_Gym_EventScript_Al {
-	trainerbattle_single(TRAINER_AL, AzaleaTown_Gym_Text_AlIntro, AzaleaTown_Gym_Text_AlDefeat)
-	msgbox(AzaleaTown_Gym_Text_AlPostBattle, MSGBOX_AUTOCLOSE)
+	trainerbattle_single(TRAINER_AL, "BUG {POKEMON} are cool and tough!\nI'll prove it to you!", "You proved how tough you are…")
+	msgbox("They're so cool, but most girls\ndon't like BUG {POKEMON}.\lI don't know why…", MSGBOX_AUTOCLOSE)
 }
 
 script AzaleaTown_Gym_EventScript_Josh {
-	trainerbattle_single(TRAINER_JOSH, AzaleaTown_Gym_Text_JoshIntro, AzaleaTown_Gym_Text_JoshDefeat)
-	msgbox(AzaleaTown_Gym_Text_JoshPostBattle, MSGBOX_AUTOCLOSE)
+	trainerbattle_single(TRAINER_JOSH, "You saved all the SLOWPOKE?\nWhew, you're mighty!\pBut my grown-up {POKEMON} are pretty\ntough too!", "Urrgggh!")
+	msgbox("I guess I should teach them\nbetter moves…", MSGBOX_AUTOCLOSE)
 }
 
 script AzaleaTown_Gym_EventScript_Amy {
-	trainerbattle_double(TRAINER_AMY_AND_MAY, AzaleaTown_Gym_Text_AmyIntro, AzaleaTown_Gym_Text_AmyAndMayDefeat, AzaleaTown_Gym_Text_AmyNotEnoughMons)
-	msgbox(AzaleaTown_Gym_Text_AmyPostBattle, MSGBOX_AUTOCLOSE)
+	trainerbattle_double(TRAINER_AMY_AND_MAY, "AMY: Hi! Are you challenging the\nLEADER? No way!", AzaleaTown_Gym_Text_AmyAndMayDefeat, "AMY: Your {POKEMON} doesn't have a\nfriend to battle with!")
+	msgbox("AMY: You're really strong!", MSGBOX_AUTOCLOSE)
+}text(local) AzaleaTown_Gym_Text_AmyAndMayDefeat{
+    "AMY & MAY: Oh, double goodness!"
 }
 
 script AzaleaTown_Gym_EventScript_May {
-	trainerbattle_double(TRAINER_AMY_AND_MAY, AzaleaTown_Gym_Text_MayIntro, AzaleaTown_Gym_Text_AmyAndMayDefeat, AzaleaTown_Gym_Text_MayNotEnoughMons)
-	msgbox(AzaleaTown_Gym_Text_MayPostBattle, MSGBOX_AUTOCLOSE)
+	trainerbattle_double(TRAINER_AMY_AND_MAY, "MAY: You want to see the LEADER?\nWe come first!", AzaleaTown_Gym_Text_AmyAndMayDefeat, "MAY: Oh, you don't have another\n{POKEMON} with you? What a shame…")
+	msgbox("MAY: Our BUG {POKEMON} lost!\nOh, what a shame.", MSGBOX_AUTOCLOSE)
 }

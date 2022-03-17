@@ -1,0 +1,53 @@
+mapscripts CherrygroveCity_Mart_MapScripts{}
+
+script CherrygroveCity_Mart_EventScript_BallGuy{
+    if(flag(FLAG_ADVENTURE_STARTED))
+    {
+        msgbox("{POKE} BALLS are in stock!\nNow I can catch {POKEMON}!", MSGBOX_NPC)
+        end
+    }
+	msgbox("They're fresh out of {POKE} BALLS!\nWhen will they get more of them?", MSGBOX_NPC)
+	end
+}
+
+script CherrygroveCity_Mart_EventScript_Youngster{
+	msgbox("When I was walking in the grass,\na BUG {POKEMON} popped out and\lpoisoned my {POKEMON}!\pI tried to keep going, but then my\n{POKEMON} fainted.\pYou should always keep an ANTIDOTE\nwith you, just in case.", MSGBOX_NPC)
+	end
+}
+
+script CherrygroveCity_Mart_EventScript_Clerk{
+	lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    if(flag(FLAG_ADVENTURE_STARTED))
+    {
+        pokemart(CherrygroveCity_Mart_Pokemart_PostDex)
+        msgbox(gText_PleaseComeAgain)
+        release
+        end
+    }
+	pokemart(CherrygroveCity_Mart_Pokemart_PreDex)
+	msgbox(gText_PleaseComeAgain)
+	release
+	end
+}
+
+raw `
+    .align 2
+CherrygroveCity_Mart_Pokemart_PreDex:
+	.2byte ITEM_POTION
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_AWAKENING
+	.2byte ITEM_NONE
+
+	.align 2
+CherrygroveCity_Mart_Pokemart_PostDex:
+	.2byte ITEM_POKE_BALL
+	.2byte ITEM_POTION
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_AWAKENING
+	.2byte ITEM_NONE
+`
