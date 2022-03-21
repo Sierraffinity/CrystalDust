@@ -42,6 +42,7 @@ script MtMoon_Square_EventScript_ClefairyDanceTriggers{
     applymovement(OBJ_EVENT_ID_PLAYER, MtMoon_Square_Movement_PlayerWalksUp)
     waitmovement(0)
     delay(15)
+    applymovement(2, Common_Movement_WalkInPlaceFastestDown)
     addobject(3)
     turnobject(1, DIR_EAST)
     playmoncry(SPECIES_CLEFAIRY, 0)
