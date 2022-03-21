@@ -1,13 +1,15 @@
 mapscripts TeamRocketBase_B2F_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_TEMP_1)
+        setflag(FLAG_TEMP_2)
         if(flag(FLAG_HIDEOUT_LANCE_HEALED_MONS))
         {
             setvar(VAR_TEMP_0, 1)
         }
-        if(defeated(TRAINER_MAHOGANY_EXECUTIVE_F))
+        if(defeated(TRAINER_MAHOGANY_EXECUTIVE_F) && !flag(FLAG_CLEARED_ROCKET_HIDEOUT))
         {
             setvar(VAR_TEMP_0, 2)
+            clearflag(FLAG_TEMP_2)
         }
         if(flag(FLAG_CLEARED_ROCKET_HIDEOUT))
         {
@@ -200,6 +202,8 @@ script TeamRocketBase_B2F_EventScript_Electrode_3{
 }
 
 script TeamRocketBase_B2F_EventScript_RendevousWithLanceAfterElectrodes{
+    setflag(FLAG_TEMP_2)
+    removeobject(16)
     setobjectxyperm(15, 24, 15)
     addobject(15)
     applymovement(15, TeamRocketBase_B2F_Movement_LanceRendevous)
@@ -522,6 +526,37 @@ script TeamRocketBase_B2F_EventScript_ElectrodeTriggers{
     end
 }movement(local) TeamRocketBase_B2F_Movement_PlayerLeft{
     walk_left
+}
+
+script TeamRocketBase_B2F_EventScript_WhiteOutTriggers{
+    lock
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    switch(var(VAR_RESULT))
+    {
+        case 18:
+            applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_PlayerToSideLeft)
+            waitmovement(0)
+        case 19:
+            applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_PlayerToSideMid)
+            waitmovement(0)
+        case 20:
+            applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_PlayerToSideRight)
+            waitmovement(0)
+    }
+    release
+    end
+}movement(local) TeamRocketBase_B2F_Movement_PlayerToSideLeft{
+    walk_up
+    walk_left * 5
+    face_up
+}movement(local) TeamRocketBase_B2F_Movement_PlayerToSideMid{
+    walk_up
+    walk_left * 6
+    face_up
+}movement(local) TeamRocketBase_B2F_Movement_PlayerToSideRight{
+    walk_up
+    walk_left * 7
+    face_up
 }
 
 script TeamRocketBase_B2F_EventScript_LanceTriggers{
