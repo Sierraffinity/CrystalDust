@@ -11,7 +11,36 @@ script CianwoodCity_PokemonCenter_1F_Eventscript_Girl{
 }
 
 script CianwoodCity_PokemonCenter_1F_Eventscript_Boy{
-    msgbox("I love showing off the {POKEMON} that\nI've raised. Don't you?\pI'm going to get into a bunch of\nbattles and show off my {POKEMON}!", MSGBOX_NPC)
+    specialvar(VAR_RESULT, HasMoreThanOnePokemon)
+    if(var(VAR_RESULT) == TRUE)
+    {
+        msgbox("I love showing off the {POKEMON} that\nI've raised. Don't you?\pI'm going to get into a bunch of\nbattles and show off my {POKEMON}!", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("Huh? Do you happen to…\nhave only one {POKEMON}?\pThat must be hard on you.\n…\pThat's right!\nI'll give you a TENTACOOL!\pI just caught a little too many.\nI was going to release it,\lso take it. Go ahead!", MSGBOX_DEFAULT)
+    textcolor(MSG_COLOR_SYS)
+    bufferspeciesname(0, SPECIES_TENTACOOL)
+    playfanfare(MUS_OBTAIN_ITEM)
+    message("{PLAYER} received\nthe {STR_VAR_1}!")
+    waitmessage
+    waitfanfare
+    givemon(SPECIES_TENTACOOL, 15, ITEM_NONE)
+    msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        call(Common_EventScript_GetGiftMonPartySlot)
+        call(Common_EventScript_NameReceivedPartyMon)
+    }
+    textcolor(0)
+    closemessage
+    checkitem(ITEM_HM03_SURF, 1) // Surf HM is optional.
+    if(!var(VAR_RESULT))
+    {   // If no Surf HM, teach Tentacool Surf.
+        setmonmove(1, 3, MOVE_SURF)
+    }
+    release
     end
 }
 

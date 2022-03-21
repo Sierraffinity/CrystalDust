@@ -10105,3 +10105,26 @@ static void UnkUtil_DmaRun(struct UnkUtilData *data)
         data->dest += 64;
     }
 }
+
+bool32 HasMoreThanOnePokemon(void)
+{
+    u32 i;
+    u32 j;
+    u32 count = CountPartyMons();
+
+    if(count > 1)
+        return TRUE;
+
+    for(i = 0; i < TOTAL_BOXES_COUNT; i++)
+    {
+        for(j = 0; j < IN_BOX_COUNT; j++)
+        {
+            if(GetBoxMonDataAt(i, j, MON_DATA_SPECIES2) != SPECIES_NONE)
+            {
+                return TRUE;
+            }
+        }
+    }
+
+    return FALSE;
+}
