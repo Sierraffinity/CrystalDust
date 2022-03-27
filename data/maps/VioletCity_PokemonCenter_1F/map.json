@@ -12,10 +12,12 @@
   "allow_running": false,
   "show_map_name": false,
   "floor_number": 0,
+  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_NURSE",
       "in_connection": false,
       "x": 7,
@@ -27,10 +29,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VioletCity_PokemonCenter_1F_EventScript_Nurse",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_GAMEBOY_KID",
       "in_connection": false,
       "x": 11,
@@ -42,10 +44,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VioletCity_PokemonCenter_1F_EventScript_Gameboy_Kid",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "in_connection": false,
       "x": 2,
@@ -57,10 +59,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VioletCity_PokemonCenter_1F_EventScript_Gentleman",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "in_connection": false,
       "x": 12,
@@ -72,10 +74,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VioletCity_PokemonCenter_1F_EventScript_Youngster",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
       "in_connection": false,
       "x": 6,
@@ -87,8 +89,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VioletCity_PokemonCenter_1F_EventScript_Aide",
-      "flag": "FLAG_HIDE_VIOLET_CITY_POKEMON_CENTER_1F_ELMS_AIDE",
-      "type": "original"
+      "flag": "FLAG_HIDE_VIOLET_CITY_POKEMON_CENTER_1F_ELMS_AIDE"
     }
   ],
   "warp_events": [
@@ -112,6 +113,5 @@
   ],
   "bg_events": [
 
-  ],
-  "phone_service": ""
+  ]
 }

@@ -12,10 +12,12 @@
   "allow_running": false,
   "show_map_name": false,
   "floor_number": 0,
+  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_LASS",
       "in_connection": false,
       "x": 8,
@@ -27,10 +29,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VioletCity_House1_EventScript_Girl",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN",
       "in_connection": false,
       "x": 4,
@@ -42,10 +44,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VioletCity_House1_EventScript_Woman",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_PIDGEY",
       "in_connection": false,
       "x": 7,
@@ -57,8 +59,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VioletCity_House1_EventScript_Strawberry",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -75,6 +76,5 @@
   ],
   "bg_events": [
 
-  ],
-  "phone_service": ""
+  ]
 }

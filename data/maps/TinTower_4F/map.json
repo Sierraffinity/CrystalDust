@@ -12,7 +12,7 @@
   "allow_running": false,
   "show_map_name": true,
   "floor_number": 4,
-  "phone_service": false,
+  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
