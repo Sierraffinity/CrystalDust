@@ -1776,11 +1776,32 @@ bool8 IsGoldenrodDeptStore(u16 mapSec)
     return TRUE;
 }
 
+bool8 IsCeladonDeptStore(u16 mapSec)
+{
+    if (mapSec != MAPSEC_CELADON_CITY)
+        return FALSE;
+    if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(CELADON_CITY_DEPARTMENT_STORE_1F))
+        return FALSE;
+    if (gSaveBlock1Ptr->location.mapNum != MAP_NUM(CELADON_CITY_DEPARTMENT_STORE_1F)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(CELADON_CITY_DEPARTMENT_STORE_2F)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(CELADON_CITY_DEPARTMENT_STORE_3F)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(CELADON_CITY_DEPARTMENT_STORE_4F)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(CELADON_CITY_DEPARTMENT_STORE_5F)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(CELADON_CITY_DEPARTMENT_STORE_ROOF)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(CELADON_CITY_DEPARTMENT_STORE_ELEVATOR))
+        return FALSE;
+    return TRUE;
+}
+
 u8 *GetMapNameHandleSpecialMaps(u8 *dest, u16 mapSec)
 {
     if (IsGoldenrodDeptStore(mapSec))
     {
         return StringCopy(dest, gText_GoldenrodDept);
+    }
+    else if(IsCeladonDeptStore(mapSec))
+    {
+        return StringCopy(dest, gText_CeladonDept);
     }
     else
     {

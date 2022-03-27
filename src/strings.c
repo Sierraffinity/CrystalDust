@@ -1121,6 +1121,7 @@ const u8 gText_Ferry[] = _("FERRY");
 const u8 gText_SecretBase[] = _("SECRET BASE");
 const u8 gText_Hideout[] = _("HIDEOUT");
 const u8 gText_GoldenrodDept[] = _("GOLDENROD DEPT.");
+const u8 gText_CeladonDept[] = _("CELADON DEPT.");
 const u8 gText_ResetRTCConfirmCancel[] = _("Reset RTC?\nA: Confirm, B: Cancel");
 const u8 gText_PresentTime[] = _("Present time in game");
 const u8 gText_PreviousTime[] = _("Previous time in game");
