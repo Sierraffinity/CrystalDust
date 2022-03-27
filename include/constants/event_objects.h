@@ -245,8 +245,33 @@
 #define OBJ_EVENT_GFX_OLD_MAN_2                  241
 #define OBJ_EVENT_GFX_CELIO                      242
 #define OBJ_EVENT_GFX_SS_AQUA                    243
+#define OBJ_EVENT_GFX_ZSURFING_PIKACHU_DOLL      244
+#define OBJ_EVENT_GFX_ZBULBASAUR_DOLL            245
+#define OBJ_EVENT_GFX_ZODDISH_DOLL               246
+#define OBJ_EVENT_GFX_ZGENGAR_DOLL               247
+#define OBJ_EVENT_GFX_ZSHELLDER_DOLL             248
+#define OBJ_EVENT_GFX_ZGRIMER_DOLL               249
+#define OBJ_EVENT_GFX_ZVOLTORB_DOLL              250
+#define OBJ_EVENT_GFX_ZWEEDLE_DOLL               251
+#define OBJ_EVENT_GFX_ZMAGIKARP_DOLL             252
+#define OBJ_EVENT_GFX_ZCHARMANDER_DOLL           253
+#define OBJ_EVENT_GFX_ZSQUIRTLE_DOLL             254
+#define OBJ_EVENT_GFX_ZPOLIWAG_DOLL              255
+#define OBJ_EVENT_GFX_ZDIGLETT_DOLL              256
+#define OBJ_EVENT_GFX_ZSTARYU_DOLL               257
+#define OBJ_EVENT_GFX_ZTENTACOOL_DOLL            258
+#define OBJ_EVENT_GFX_ZUNOWN_DOLL                259
+#define OBJ_EVENT_GFX_ZGEODUDE_DOLL              260
+#define OBJ_EVENT_GFX_ZMACHOP_DOLL               261
+#define OBJ_EVENT_GFX_ZGOLD_TROPHY               262
+#define OBJ_EVENT_GFX_ZSILVER_TROPHY             263
+#define OBJ_EVENT_GFX_ZBIG_ONIX_DOLL             264
+#define OBJ_EVENT_GFX_ZMAGNEMITE_DOLL            265
+#define OBJ_EVENT_GFX_ZNATU_DOLL                 266
+#define OBJ_EVENT_GFX_ZPORYGON2_DOLL             267
+#define OBJ_EVENT_GFX_ZWOOPER_DOLL               268
 
-#define NUM_OBJ_EVENT_GFX                        244
+#define NUM_OBJ_EVENT_GFX                        269
 
 
 // These are dynamic object gfx ids.

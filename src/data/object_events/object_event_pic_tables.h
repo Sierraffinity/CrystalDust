@@ -1703,6 +1703,106 @@ static const struct SpriteFrameImage sPicTable_BigRegisteelDoll[] = {
     obj_frame_tiles(gObjectEventPic_BigRegisteelDoll),
 };
 
+static const struct SpriteFrameImage sPicTable_BigOnixDoll[] = {
+    obj_frame_tiles(gObjectEventPic_BigOnixDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_SurfingPikachuDoll[] = {
+    obj_frame_tiles(gObjectEventPic_SurfingPikachuDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_BulbasaurDoll[] = {
+    obj_frame_tiles(gObjectEventPic_BulbasaurDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_OddishDoll[] = {
+    obj_frame_tiles(gObjectEventPic_OddishDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_GengarDoll[] = {
+    obj_frame_tiles(gObjectEventPic_GengarDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_ShellderDoll[] = {
+    obj_frame_tiles(gObjectEventPic_ShellderDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_GrimerDoll[] = {
+    obj_frame_tiles(gObjectEventPic_GrimerDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_VoltorbDoll[] = {
+    obj_frame_tiles(gObjectEventPic_VoltorbDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_WeedleDoll[] = {
+    obj_frame_tiles(gObjectEventPic_WeedleDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_MagikarpDoll[] = {
+    obj_frame_tiles(gObjectEventPic_MagikarpDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_CharmanderDoll[] = {
+    obj_frame_tiles(gObjectEventPic_CharmanderDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_SquirtleDoll[] = {
+    obj_frame_tiles(gObjectEventPic_SquirtleDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_PoliwagDoll[] = {
+    obj_frame_tiles(gObjectEventPic_PoliwagDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_DiglettDoll[] = {
+    obj_frame_tiles(gObjectEventPic_DiglettDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_StaryuDoll[] = {
+    obj_frame_tiles(gObjectEventPic_StaryuDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_TentacoolDoll[] = {
+    obj_frame_tiles(gObjectEventPic_TentacoolDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_UnownDoll[] = {
+    obj_frame_tiles(gObjectEventPic_UnownDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_GeodudeDoll[] = {
+    obj_frame_tiles(gObjectEventPic_GeodudeDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_MachopDoll[] = {
+    obj_frame_tiles(gObjectEventPic_MachopDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_GoldTrophy[] = {
+    obj_frame_tiles(gObjectEventPic_GoldTrophy),
+};
+
+static const struct SpriteFrameImage sPicTable_SilverTrophy[] = {
+    obj_frame_tiles(gObjectEventPic_SilverTrophy),
+};
+
+static const struct SpriteFrameImage sPicTable_MagnemiteDoll[] = {
+    obj_frame_tiles(gObjectEventPic_MagnemiteDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_NatuDoll[] = {
+    obj_frame_tiles(gObjectEventPic_NatuDoll),
+};
+
+static const struct SpriteFrameImage sPicTable_Porygon2Doll[] = {
+    obj_frame_tiles(gObjectEventPic_Porygon2Doll),
+};
+
+static const struct SpriteFrameImage sPicTable_WooperDoll[] = {
+    obj_frame_tiles(gObjectEventPic_WooperDoll),
+};
+
 static const struct SpriteFrameImage sPicTable_LatiasLatios[] = {
     overworld_frame(gObjectEventPic_LatiasLatios, 4, 4, 0),
     overworld_frame(gObjectEventPic_LatiasLatios, 4, 4, 0),

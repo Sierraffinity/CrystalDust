@@ -249,6 +249,31 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Diglett;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OldMan2;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Celio;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SSAqua;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SurfingPikachuDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BulbasaurDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OddishDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_GengarDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ShellderDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_GrimerDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_VoltorbDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_WeedleDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MagikarpDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CharmanderDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SquirtleDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PoliwagDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_DiglettDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_StaryuDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TentacoolDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnownDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_GeodudeDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MachopDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_GoldTrophy;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SilverTrophy;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BigOnixDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MagnemiteDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_NatuDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Porygon2Doll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_WooperDoll;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] = {
     [OBJ_EVENT_GFX_GOLD_NORMAL] =              &gObjectEventGraphicsInfo_GoldNormal,
@@ -495,6 +520,31 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_OLD_MAN_2] =                &gObjectEventGraphicsInfo_OldMan2,
     [OBJ_EVENT_GFX_CELIO] =                    &gObjectEventGraphicsInfo_Celio,
     [OBJ_EVENT_GFX_SS_AQUA] =                  &gObjectEventGraphicsInfo_SSAqua,
+    [OBJ_EVENT_GFX_ZSURFING_PIKACHU_DOLL] =    &gObjectEventGraphicsInfo_SurfingPikachuDoll,
+    [OBJ_EVENT_GFX_ZBULBASAUR_DOLL] =          &gObjectEventGraphicsInfo_BulbasaurDoll,
+    [OBJ_EVENT_GFX_ZODDISH_DOLL] =             &gObjectEventGraphicsInfo_OddishDoll,
+    [OBJ_EVENT_GFX_ZGENGAR_DOLL] =             &gObjectEventGraphicsInfo_GengarDoll,
+    [OBJ_EVENT_GFX_ZSHELLDER_DOLL] =           &gObjectEventGraphicsInfo_ShellderDoll,
+    [OBJ_EVENT_GFX_ZGRIMER_DOLL] =             &gObjectEventGraphicsInfo_GrimerDoll,
+    [OBJ_EVENT_GFX_ZVOLTORB_DOLL] =            &gObjectEventGraphicsInfo_VoltorbDoll,
+    [OBJ_EVENT_GFX_ZWEEDLE_DOLL] =             &gObjectEventGraphicsInfo_WeedleDoll,
+    [OBJ_EVENT_GFX_ZMAGIKARP_DOLL] =           &gObjectEventGraphicsInfo_MagikarpDoll,
+    [OBJ_EVENT_GFX_ZCHARMANDER_DOLL] =         &gObjectEventGraphicsInfo_CharmanderDoll,
+    [OBJ_EVENT_GFX_ZSQUIRTLE_DOLL] =           &gObjectEventGraphicsInfo_SquirtleDoll,
+    [OBJ_EVENT_GFX_ZPOLIWAG_DOLL] =            &gObjectEventGraphicsInfo_PoliwagDoll,
+    [OBJ_EVENT_GFX_ZDIGLETT_DOLL] =            &gObjectEventGraphicsInfo_DiglettDoll,
+    [OBJ_EVENT_GFX_ZSTARYU_DOLL] =             &gObjectEventGraphicsInfo_StaryuDoll,
+    [OBJ_EVENT_GFX_ZTENTACOOL_DOLL] =          &gObjectEventGraphicsInfo_TentacoolDoll,
+    [OBJ_EVENT_GFX_ZUNOWN_DOLL] =              &gObjectEventGraphicsInfo_UnownDoll,
+    [OBJ_EVENT_GFX_ZGEODUDE_DOLL] =            &gObjectEventGraphicsInfo_GeodudeDoll,
+    [OBJ_EVENT_GFX_ZMACHOP_DOLL] =             &gObjectEventGraphicsInfo_MachopDoll,
+    [OBJ_EVENT_GFX_ZGOLD_TROPHY] =             &gObjectEventGraphicsInfo_GoldTrophy,
+    [OBJ_EVENT_GFX_ZSILVER_TROPHY] =           &gObjectEventGraphicsInfo_SilverTrophy,
+    [OBJ_EVENT_GFX_ZBIG_ONIX_DOLL] =           &gObjectEventGraphicsInfo_BigOnixDoll,
+    [OBJ_EVENT_GFX_ZMAGNEMITE_DOLL] =          &gObjectEventGraphicsInfo_MagnemiteDoll,
+    [OBJ_EVENT_GFX_ZNATU_DOLL] =               &gObjectEventGraphicsInfo_NatuDoll,
+    [OBJ_EVENT_GFX_ZPORYGON2_DOLL] =           &gObjectEventGraphicsInfo_Porygon2Doll,
+    [OBJ_EVENT_GFX_ZWOOPER_DOLL] =             &gObjectEventGraphicsInfo_WooperDoll,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {
