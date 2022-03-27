@@ -1033,17 +1033,28 @@ static void InitMapBasedOnPlayerLocation(void)
         {MAP_GROUP(ROUTE35_NATIONAL_PARK_GATEHOUSE), MAP_NUM(ROUTE35_NATIONAL_PARK_GATEHOUSE), 7, 6},
         {MAP_GROUP(ROUTE36_RUINS_OF_ALPH_GATEHOUSE), MAP_NUM(ROUTE36_RUINS_OF_ALPH_GATEHOUSE), 10, 5},
         {MAP_GROUP(ROUTE36_NATIONAL_PARK_GATEHOUSE), MAP_NUM(ROUTE36_NATIONAL_PARK_GATEHOUSE), 8, 5},
+        {MAP_GROUP(ROUTE38_GATEHOUSE), MAP_NUM(ROUTE38_GATEHOUSE), 8, 3},
+        {MAP_GROUP(ROUTE40_GATEHOUSE), MAP_NUM(ROUTE40_GATEHOUSE), 3, 6},
+        {MAP_GROUP(ROUTE42_GATEHOUSE), MAP_NUM(ROUTE42_GATEHOUSE), 10, 3},
+        {MAP_GROUP(VICTORY_ROAD_GATEHOUSE), MAP_NUM(VICTORY_ROAD_GATEHOUSE), 1, 7},
+        {MAP_GROUP(ROUTE5_GATEHOUSE), MAP_NUM(ROUTE5_GATEHOUSE), 14, 5},
+        {MAP_GROUP(ROUTE6_GATEHOUSE), MAP_NUM(ROUTE6_GATEHOUSE), 14, 7},
+        {MAP_GROUP(ROUTE7_GATEHOUSE), MAP_NUM(ROUTE7_GATEHOUSE), 13, 6},
+        {MAP_GROUP(ROUTE8_GATEHOUSE), MAP_NUM(ROUTE8_GATEHOUSE), 15, 6},
+        {MAP_GROUP(ROUTE19_GATEHOUSE), MAP_NUM(ROUTE19_GATEHOUSE), 12, 13},
         {MAP_GROUP(UNDEFINED), MAP_NUM(UNDEFINED), 0, 0},
     };
 
     int i;
 
-    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(NONE)
-        && (gSaveBlock1Ptr->location.mapNum == MAP_NUM(NONE)
-            || gSaveBlock1Ptr->location.mapNum == MAP_NUM(NONE)
-            || gSaveBlock1Ptr->location.mapNum == MAP_NUM(NONE)))
+    if (gMapHeader.regionMapSectionId == MAPSEC_UNDERGROUND_PATH)
     {
-        RegionMap_InitializeStateBasedOnSSTidalLocation();
+        gRegionMap->cursorPosX = 14;
+        gRegionMap->cursorPosY = 7;
+        if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE5_UNDERGROUND_PATH_ENTRANCE))
+        {
+            gRegionMap->cursorPosY = 5;
+        }
     }
     else
     {
@@ -1066,6 +1077,21 @@ static void InitMapBasedOnPlayerLocation(void)
 
     gRegionMap->primaryMapSecId = GetMapSecIdAt(gRegionMap->cursorPosX, gRegionMap->cursorPosY, gRegionMap->currentRegion, FALSE);
     gRegionMap->secondaryMapSecId = GetMapSecIdAt(gRegionMap->cursorPosX, gRegionMap->cursorPosY, gRegionMap->currentRegion, TRUE);
+}
+
+static bool32 IsOverriddenRegionMapLocation(void)
+{
+    switch(gMapHeader.regionMapSectionId)
+    {
+        case MAPSEC_MT_MORTAR:
+        case MAPSEC_ICE_PATH:
+        case MAPSEC_KANTO_VICTORY_ROAD:
+        case MAPSEC_ROCK_TUNNEL:
+        case MAPSEC_MT_MOON:
+            return TRUE;
+        default:
+            return FALSE;
+    }
 }
 
 static void InitMapBasedOnPlayerLocation_(void)
@@ -1100,8 +1126,8 @@ static void InitMapBasedOnPlayerLocation_(void)
             break;
         case MAP_TYPE_UNDERGROUND:
         case MAP_TYPE_UNKNOWN:
-            if (gMapHeader.allowEscaping && gMapHeader.regionMapSectionId != MAPSEC_MT_MORTAR && gMapHeader.regionMapSectionId != MAPSEC_ICE_PATH)
-            {   //exception for Mt. Mortar because it's on such a long route & has three exits and Ice Path because entering from Blackthorn places the player on Blackthorn instead of Ice Path.
+            if (gMapHeader.allowEscaping && !IsOverriddenRegionMapLocation())
+            {
                 mapHeader = Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->escapeWarp.mapGroup, gSaveBlock1Ptr->escapeWarp.mapNum);
                 gRegionMap->primaryMapSecId = mapHeader->regionMapSectionId;
                 gRegionMap->playerIsInCave = TRUE;
