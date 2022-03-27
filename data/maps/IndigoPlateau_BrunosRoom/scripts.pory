@@ -1,5 +1,5 @@
 mapscripts IndigoPlateau_BrunosRoom_MapScripts {
-    MAP_SCRIPT_ON_RESUME: PokemonLeague_EventScript_DoLightingEffect
+    MAP_SCRIPT_ON_RESUME: PokemonLeague_EventScript_DoLightingEffectBruno
     MAP_SCRIPT_ON_LOAD{
         if(defeated(TRAINER_BRUNO))
         {
@@ -18,6 +18,12 @@ mapscripts IndigoPlateau_BrunosRoom_MapScripts {
     ]
 } //^ All map scripts in Will's Room's poryscript
 
+script PokemonLeague_EventScript_DoLightingEffectBruno{
+    setvar(VAR_0x8004, 2)
+	special(DoPokemonLeagueLightingEffect)
+	return
+}
+
 script IndigoPlateau_BrunosRoom_EventScript_Bruno {
     lock
     faceplayer
@@ -28,7 +34,10 @@ script IndigoPlateau_BrunosRoom_EventScript_Bruno {
     }
     msgbox("I am BRUNO of the ELITE FOUR.\pI always train to the extreme\nbecause I believe in our potential.\pThat is how we became strong.\nCan you withstand our power?\pHm? I see no fear in you. You look\ndetermined. Perfect for battle!\pReady, {PLAYER}? You will bow down\nto our overwhelming power!\pHoo hah!", MSGBOX_DEFAULT)
     closemessage
+    setflag(FLAG_TEMP_8)
+    setflag(FLAG_TEMP_9)
     trainerbattle_no_intro(TRAINER_BRUNO, "Why?\nHow could we lose?")
+    clearflag(FLAG_TEMP_9)
     setflag(FLAG_TEMP_4)
     msgbox(IndigoPlateau_BrunosRoom_Text_BrunoAfterBattle, MSGBOX_DEFAULT)
     closemessage

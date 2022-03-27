@@ -1,5 +1,5 @@
 mapscripts IndigoPlateau_KogasRoom_MapScripts {
-    MAP_SCRIPT_ON_RESUME: PokemonLeague_EventScript_DoLightingEffect
+    MAP_SCRIPT_ON_RESUME: PokemonLeague_EventScript_DoLightingEffectKoga
     MAP_SCRIPT_ON_LOAD{
         if(defeated(TRAINER_KOGA))
         {
@@ -18,6 +18,12 @@ mapscripts IndigoPlateau_KogasRoom_MapScripts {
     ]
 } //^ All map scripts in Will's Room's poryscript
 
+script PokemonLeague_EventScript_DoLightingEffectKoga{
+    setvar(VAR_0x8004, 1)
+	special(DoPokemonLeagueLightingEffect)
+	return
+}
+
 script IndigoPlateau_KogasRoom_EventScript_Koga {
     lock
     faceplayer
@@ -28,7 +34,10 @@ script IndigoPlateau_KogasRoom_EventScript_Koga {
     }
     msgbox("Fwahahahaha!\pI am KOGA of the ELITE FOUR.\nI live in shadows, a ninja!\pMy intricate style will confound\nand destroy you!\pConfusion, sleep, poison…\pPrepare to be the victim of my\nsinister technique!\pFwahahahaha!\p{POKEMON} is not merely about brute\nforce--you shall see soon enough!", MSGBOX_DEFAULT)
     closemessage
+    setflag(FLAG_TEMP_8)
+    setflag(FLAG_TEMP_9)
     trainerbattle_no_intro(TRAINER_KOGA, "Ah!\nYou have proven your worth!")
+    clearflag(FLAG_TEMP_9)
     setflag(FLAG_TEMP_3)
     msgbox(IndigoPlateau_KogasRoom_Text_KogaAfterBattle, MSGBOX_DEFAULT)
     closemessage

@@ -1,5 +1,5 @@
 mapscripts IndigoPlateau_WillsRoom_MapScripts {
-    MAP_SCRIPT_ON_RESUME: PokemonLeague_EventScript_DoLightingEffect
+    MAP_SCRIPT_ON_RESUME: PokemonLeague_EventScript_DoLightingEffectWill
     MAP_SCRIPT_ON_LOAD{
         if(defeated(TRAINER_WILL))
         {
@@ -20,9 +20,9 @@ mapscripts IndigoPlateau_WillsRoom_MapScripts {
     walk_up * 5
 }
 
-script PokemonLeague_EventScript_DoLightingEffect{
+script PokemonLeague_EventScript_DoLightingEffectWill{
     setvar(VAR_0x8004, 0)
-	//special(DoPokemonLeagueLightingEffect)
+	special(DoPokemonLeagueLightingEffect)
 	return
 }
 
@@ -107,6 +107,7 @@ script PokemonLeague_EventScript_EnterEliteFourRoom {
     waitstate
     special(DoSealedChamberShakingEffect2)
     waitstate
+    setflag(FLAG_TEMP_A)
     call(PokemonLeague_EventScript_CloseEntry)
     playse(SE_DOOR)
     special(DrawWholeMapView)
@@ -126,7 +127,10 @@ script IndigoPlateau_WillsRoom_EventScript_Will {
     }
     msgbox("Welcome to the {POKEMON} LEAGUE,\n{PLAYER}.\pAllow me to introduce myself.\nI am WILL.\pI have trained all around the\nworld, making my psychic {POKEMON}\lmore powerful.\pAnd, at last, I've been accepted\ninto the ELITE FOUR.\pI can only keep getting better!\nLosing is not an option!", MSGBOX_DEFAULT)
     closemessage
+    setflag(FLAG_TEMP_8)
+    setflag(FLAG_TEMP_9)
     trainerbattle_no_intro(TRAINER_WILL, "I…\nI can't… believe it…")
+    clearflag(FLAG_TEMP_9)
     setflag(FLAG_TEMP_2)
     msgbox(IndigoPlateau_WillsRoom_Text_WillAfterBattle, MSGBOX_DEFAULT)
     closemessage

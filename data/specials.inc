@@ -301,7 +301,7 @@ gSpecials::
 	def_special PokeSeerGetMoveToTeachLeadPokemon
 	def_special HasLearnedAllMovesFromPokeSeerTutor
 	def_special UpdateTrainerCardPhotoIcons
-	def_special FoundSproutTowerRoom6Key        // function now always returns true
+	def_special DoPokemonLeagueLightingEffect
 	def_special LeadMonHasEffortRibbon
 	def_special GiveLeadMonEffortRibbon
 	def_special Special_AreLeadMonEVsMaxedOut

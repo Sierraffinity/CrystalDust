@@ -2,7 +2,7 @@ mapscripts IndigoPlateau_LancesRoom_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_TEMP_1)
     }
-    MAP_SCRIPT_ON_RESUME: PokemonLeague_EventScript_DoLightingEffect
+    MAP_SCRIPT_ON_RESUME: PokemonLeague_EventScript_DoLightingEffectLance
     MAP_SCRIPT_ON_LOAD{
         if(var(VAR_TEMP_0) == 1)
         {
@@ -16,6 +16,12 @@ mapscripts IndigoPlateau_LancesRoom_MapScripts {
         VAR_TEMP_0, 0: PokemonLeague_EventScript_EnterEliteFourRoom
     ]
 } //^ All map scripts in Will's Room's poryscript
+
+script PokemonLeague_EventScript_DoLightingEffectLance{
+    setvar(VAR_0x8004, 4)
+	special(DoPokemonLeagueLightingEffect)
+	return
+}
 
 script IndigoPlateau_LancesRoom_EventScript_StairTriggers{
     lockall
@@ -40,7 +46,10 @@ script IndigoPlateau_LancesRoom_EventScript_StairTriggers{
     textcolor(0)
     msgbox("LANCE: I've been waiting for you.\p{PLAYER}!\pI knew that you, with your skills,\nwould eventually reach me here.\pThere's no need for words now.\pWe will battle to determine who is\nthe stronger of the two of us.\pAs the most powerful trainer and as\nthe {POKEMON} LEAGUE CHAMPION…\pI, LANCE, the dragon master,\naccept your challenge!")
     closemessage
+    setflag(FLAG_TEMP_8)
+    setflag(FLAG_TEMP_9)
     trainerbattle_no_intro(TRAINER_LANCE, "…It's over.\nBut it's an odd feeling.\pI'm not angry that I lost.\nIn fact, I feel happy.\pHappy that I witnessed the rise\nof a great new CHAMPION!")
+    clearflag(FLAG_TEMP_9)
     applymovement(OBJ_EVENT_ID_PLAYER, IndigoPlateau_LancesRoom_Movement_PlayerToLanceAfterBattle)
     waitmovement(0)
     msgbox("…Whew.\pYou have become truly powerful,\n{PLAYER}.\pYour {POKEMON} have responded to your\nstrong and upstanding nature.\pAs a trainer, you will continue to\ngrow strong with your {POKEMON}.")
