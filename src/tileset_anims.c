@@ -28,7 +28,8 @@ static void TilesetAnim_Building(u16);
 static void TilesetAnim_Rustboro(u16);
 static void TilesetAnim_Slateport(u16);
 static void TilesetAnim_Mauville(u16);
-static void TilesetAnim_Lavaridge(u16);
+static void TilesetAnim_BlackthornGym(u16);
+static void TilesetAnim_PokemonLeague(u16);
 static void TilesetAnim_EverGrande(u16);
 static void TilesetAnim_Pacifidlog(u16);
 static void TilesetAnim_Sootopolis(u16);
@@ -63,7 +64,8 @@ static void QueueAnimTiles_BattlePyramid_StatueShadow(u16);
 static void BlendAnimPalette_BattleDome_FloorLights(u16);
 static void BlendAnimPalette_BattleDome_FloorLightsNoBlend(u16);
 static void QueueAnimTiles_Lavaridge_Steam(u8);
-static void QueueAnimTiles_Lavaridge_Lava(u16);
+static void QueueAnimTiles_BlackthornGym_Lava(u16);
+static void QueueAnimTiles_PokemonLeague_Lava(u16);
 static void QueueAnimTiles_EverGrande_Flowers(u16, u8);
 static void QueueAnimTiles_Pacifidlog_LogBridges(u8);
 static void QueueAnimTiles_Pacifidlog_WaterCurrents(u8);
@@ -322,21 +324,28 @@ const u16 *const gTilesetAnims_Rustboro_Fountain[] = {
     gTilesetAnims_Rustboro_Fountain_Frame1
 };
 
-const u16 gTilesetAnims_Lavaridge_Cave_Lava_Frame0[] = INCBIN_U16("data/tilesets/secondary/cave/anim/lava/0.4bpp");
-const u16 gTilesetAnims_Lavaridge_Cave_Lava_Frame1[] = INCBIN_U16("data/tilesets/secondary/cave/anim/lava/1.4bpp");
-const u16 gTilesetAnims_Lavaridge_Cave_Lava_Frame2[] = INCBIN_U16("data/tilesets/secondary/cave/anim/lava/2.4bpp");
-const u16 gTilesetAnims_Lavaridge_Cave_Lava_Frame3[] = INCBIN_U16("data/tilesets/secondary/cave/anim/lava/3.4bpp");
-const u16 gTilesetAnims_Lavaridge_Cave_Lava_Frame4[] = INCBIN_U16("data/tilesets/secondary/cave/anim/lava/4.4bpp");
-const u16 gTilesetAnims_Lavaridge_Cave_Lava_Frame5[] = INCBIN_U16("data/tilesets/secondary/cave/anim/lava/5.4bpp");
-const u16 gTilesetAnims_Lavaridge_Cave_Lava_Frame6[] = INCBIN_U16("data/tilesets/secondary/cave/anim/lava/6.4bpp");
-const u16 gTilesetAnims_Lavaridge_Cave_Lava_Frame7[] = INCBIN_U16("data/tilesets/secondary/cave/anim/lava/7.4bpp");
-const u16 tileset_anims_space_3[16] = {};
+const u16 gTilesetAnims_BlackthornCity_Gym_Lava_Frame0[] = INCBIN_U16("data/tilesets/secondary/blackthorngym/anim/lava/0.4bpp");
+const u16 gTilesetAnims_BlackthornCity_Gym_Lava_Frame1[] = INCBIN_U16("data/tilesets/secondary/blackthorngym/anim/lava/1.4bpp");
+const u16 gTilesetAnims_BlackthornCity_Gym_Lava_Frame2[] = INCBIN_U16("data/tilesets/secondary/blackthorngym/anim/lava/2.4bpp");
+const u16 gTilesetAnims_BlackthornCity_Gym_Lava_Frame3[] = INCBIN_U16("data/tilesets/secondary/blackthorngym/anim/lava/3.4bpp");
 
-const u16 *const gTilesetAnims_Lavaridge_Cave_Lava[] = {
-    gTilesetAnims_Lavaridge_Cave_Lava_Frame0,
-    gTilesetAnims_Lavaridge_Cave_Lava_Frame1,
-    gTilesetAnims_Lavaridge_Cave_Lava_Frame2,
-    gTilesetAnims_Lavaridge_Cave_Lava_Frame3
+const u16 *const gTilesetAnims_BlackthornCity_Gym_Lava[] = {
+    gTilesetAnims_BlackthornCity_Gym_Lava_Frame0,
+    gTilesetAnims_BlackthornCity_Gym_Lava_Frame1,
+    gTilesetAnims_BlackthornCity_Gym_Lava_Frame2,
+    gTilesetAnims_BlackthornCity_Gym_Lava_Frame3
+};
+
+const u16 gTilesetAnims_PokemonLeague_Lava_Frame0[] = INCBIN_U16("data/tilesets/secondary/pokemonleague/anim/lava/0.4bpp");
+const u16 gTilesetAnims_PokemonLeague_Lava_Frame1[] = INCBIN_U16("data/tilesets/secondary/pokemonleague/anim/lava/1.4bpp");
+const u16 gTilesetAnims_PokemonLeague_Lava_Frame2[] = INCBIN_U16("data/tilesets/secondary/pokemonleague/anim/lava/2.4bpp");
+const u16 gTilesetAnims_PokemonLeague_Lava_Frame3[] = INCBIN_U16("data/tilesets/secondary/pokemonleague/anim/lava/3.4bpp");
+
+const u16 *const gTilesetAnims_PokemonLeague_Lava[] = {
+    gTilesetAnims_PokemonLeague_Lava_Frame0,
+    gTilesetAnims_PokemonLeague_Lava_Frame1,
+    gTilesetAnims_PokemonLeague_Lava_Frame2,
+    gTilesetAnims_PokemonLeague_Lava_Frame3
 };
 
 const u16 gTilesetAnims_EverGrande_Flowers_Frame0[] = INCBIN_U16("data/tilesets/secondary/ever_grande/anim/flowers/0.4bpp");
@@ -845,7 +854,7 @@ void InitTilesetAnim_Azalea(void)
 {
     sSecondaryTilesetAnimCounter = 0;
     sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
-    sSecondaryTilesetAnimCallback = TilesetAnim_Lavaridge;
+    sSecondaryTilesetAnimCallback = NULL;
 }
 
 void InitTilesetAnim_Fallarbor(void)
@@ -988,6 +997,20 @@ void InitTilesetAnim_NationalPark(void)
     sSecondaryTilesetAnimCallback = TilesetAnim_NationalPark;
 }
 
+void InitTilesetAnim_BlackthornGym(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
+    sSecondaryTilesetAnimCallback = TilesetAnim_BlackthornGym;
+}
+
+void InitTilesetAnim_PokemonLeague(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
+    sSecondaryTilesetAnimCallback = TilesetAnim_PokemonLeague;
+}
+
 static void TilesetAnim_Rustboro(u16 timer)
 {
     /*if (timer % 8 == 0)
@@ -1037,12 +1060,16 @@ static void TilesetAnim_Mauville(u16 timer)
         QueueAnimTiles_Mauville_Flowers(timer >> 3, 7);
 }
 
-static void TilesetAnim_Lavaridge(u16 timer)
+static void TilesetAnim_BlackthornGym(u16 timer)
 {
-    if (timer % 16 == 0)
-        QueueAnimTiles_Lavaridge_Steam(timer >> 4);
     if (timer % 16 == 1)
-        QueueAnimTiles_Lavaridge_Lava(timer >> 4);
+        QueueAnimTiles_BlackthornGym_Lava(timer >> 4);
+}
+
+static void TilesetAnim_PokemonLeague(u16 timer)
+{
+    if (timer % 16 == 1)
+        QueueAnimTiles_PokemonLeague_Lava(timer >> 4);
 }
 
 static void TilesetAnim_EverGrande(u16 timer)
@@ -1159,10 +1186,16 @@ static void QueueAnimTiles_Rustboro_Fountain(u16 timer)
     AppendTilesetAnimToBuffer(gTilesetAnims_Rustboro_Fountain[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 448)), 0x80);
 }
 
-static void QueueAnimTiles_Lavaridge_Lava(u16 timer)
+static void QueueAnimTiles_BlackthornGym_Lava(u16 timer)
 {
     u16 i = timer % 4;
-    AppendTilesetAnimToBuffer(gTilesetAnims_Lavaridge_Cave_Lava[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 160)), 0x80);
+    AppendTilesetAnimToBuffer(gTilesetAnims_BlackthornCity_Gym_Lava[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 16)), 0x80);
+}
+
+static void QueueAnimTiles_PokemonLeague_Lava(u16 timer)
+{
+    u16 i = timer % 4;
+    AppendTilesetAnimToBuffer(gTilesetAnims_PokemonLeague_Lava[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 352)), 0x80);
 }
 
 static void QueueAnimTiles_EverGrande_Flowers(u16 timer_div, u8 timer_mod)

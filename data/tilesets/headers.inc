@@ -1336,7 +1336,7 @@ gTileset_PokemonLeague::
 	.4byte gTilesetPalettes_PokemonLeague
 	.4byte gMetatiles_PokemonLeague
 	.4byte gMetatileAttributes_PokemonLeague
-	.4byte NULL
+	.4byte InitTilesetAnim_PokemonLeague
 	.4byte NULL @ palette overrides
 
 	.align 2
@@ -1360,7 +1360,7 @@ gTileset_BlackthornGym::
 	.4byte gTilesetPalettes_BlackthornGym
 	.4byte gMetatiles_BlackthornGym
 	.4byte gMetatileAttributes_BlackthornGym
-	.4byte NULL
+	.4byte InitTilesetAnim_BlackthornGym
 	.4byte NULL @ palette overrides
 
 	.align 2
