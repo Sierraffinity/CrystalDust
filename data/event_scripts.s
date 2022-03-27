@@ -733,7 +733,6 @@ EventScript_ElevatorButton::
 
 	.include "data/scripts/pc_transfer.inc"
 	.include "data/scripts/mevent.inc"
-	.include "data/scripts/abnormal_weather.inc"
 	.include "data/scripts/trainer_script.inc"
 	.include "data/scripts/berry_tree.inc"
 	.include "data/scripts/secret_base.inc"
@@ -746,7 +745,6 @@ EventScript_ElevatorButton::
 	.include "data/text/trick_house_mechadolls.inc"
 	.include "data/text/tv.inc"
 	.include "data/scripts/interview.inc"
-	.include "data/scripts/gabby_and_ty.inc"
 	.include "data/text/pokemon_news.inc"
 	.include "data/scripts/mauville_man.inc"
 	.include "data/scripts/field_move_scripts.inc"
@@ -768,8 +766,6 @@ Common_EventScript_FindItem::
 	.include "data/text/pokedex_rating.inc"
 	.include "data/text/lottery_corner.inc"
 	.include "data/text/event_ticket_1.inc"
-	.include "data/text/braille.inc"
-	.include "data/text/berries.inc"
 	.include "data/text/shoal_cave.inc"
 	.include "data/text/check_furniture.inc"
 	.include "data/scripts/cave_hole.inc"
@@ -788,7 +784,7 @@ Common_EventScript_FindItem::
 	.include "data/scripts/test_signpost.inc"
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
-	.include "data/text/birch_speech.inc"
+	.include "data/text/oak_speech.inc"
 
 	.include "data/maps/GoldenrodCity_DeptStore_3F/scripts.inc"
 	.include "data/maps/GoldenrodCity_DeptStore_4F/scripts.inc"
