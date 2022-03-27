@@ -328,7 +328,7 @@ gFieldEffectScript_SecretBaseBootPC::
 
 gFieldEffectScript_HallOfFameRecord::
 	field_eff_loadfadedpal gSpritePalette_PokeballGlow
-	field_eff_loadfadedpal_callnative gSpritePalette_HofMonitor, FldEff_HallOfFameRecord
+	field_eff_loadfadedpal_callnative gSpritePalette_HofMonitorFRLG, FldEff_HallOfFameRecord
 	field_eff_end
 
 gFieldEffectScript_UseTeleport::

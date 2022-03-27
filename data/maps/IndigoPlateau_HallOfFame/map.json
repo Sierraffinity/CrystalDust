@@ -22,7 +22,7 @@
       "in_connection": false,
       "x": 5,
       "y": 11,
-      "elevation": 3,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
       "movement_range_y": 0,
@@ -36,7 +36,7 @@
     {
       "x": 5,
       "y": 12,
-      "elevation": 0,
+      "elevation": 4,
       "dest_map": "MAP_INDIGO_PLATEAU_LANCES_ROOM",
       "dest_warp_id": 1
     }
