@@ -909,7 +909,10 @@ script NewBarkTown_ProfessorElmsLab_EventScript_HealingMachine {
         if (var(VAR_RESULT) == YES)
         {
             closemessage
-            call(Common_EventScript_OutOfCenterPartyHeal)
+            delay(24)
+            dofieldeffect(FLDEFF_POKECENTER_HEAL)
+            waitfieldeffect(FLDEFF_POKECENTER_HEAL)
+            special(HealPlayerParty)
         }
     }
     releaseall

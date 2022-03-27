@@ -29,6 +29,7 @@
 #include "util.h"
 #include "constants/field_effects.h"
 #include "constants/event_object_movement.h"
+#include "constants/layouts.h"
 #include "constants/metatile_behaviors.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -1028,6 +1029,12 @@ bool8 FldEff_PokecenterHeal(void)
     task->tFirstBallY = 36;
     task->tMonitorX = 128;
     task->tMonitorY = 24;
+    if(gMapHeader.mapLayoutId == LAYOUT_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB)
+    {
+        task->tFirstBallY = 68;
+        task->tMonitorX = 0xFF;
+        task->tMonitorY = 0xFF;
+    }
     return FALSE;
 }
 
