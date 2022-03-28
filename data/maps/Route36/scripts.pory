@@ -245,6 +245,8 @@ script Route36_EventScript_UseSquirtbottleOnSudowoodo {
     waitse
     waitmovement(0)
     setflag(FLAG_DEFEATED_SUDOWOODO)
+    setflag(FLAG_HIDE_ROUTE_36_SUDOWOODO)
+    removeobject(OBJ_EVENT_ID_SUDOWOODO)
     setmetatile(33, 11, 0x12, 1) // Changed back
     setmetatile(33, 10, 0x12, 1)
     setmetatile(33, 9, 0x1B, 1)
