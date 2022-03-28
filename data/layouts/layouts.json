@@ -200,8 +200,8 @@
       "height": 9,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_PlayersHouse",
+      "primary_tileset": "gTileset_PlayersRoom",
+      "secondary_tileset": "gTileset_PlayersRoom2",
       "border_filepath": "data/layouts/NewBarkTown_PlayersHouse_2F/border.bin",
       "blockdata_filepath": "data/layouts/NewBarkTown_PlayersHouse_2F/map.bin"
     },

@@ -847,3 +847,17 @@ gMetatiles_SaffronGeneral::
 	.align 1
 gMetatileAttributes_SaffronGeneral::
 	.incbin "data/tilesets/primary/saffrongeneral/metatile_attributes.bin"
+	.align 1
+gMetatiles_PlayersRoom::
+	.incbin "data/tilesets/primary/playersroom/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_PlayersRoom::
+	.incbin "data/tilesets/primary/playersroom/metatile_attributes.bin"
+	.align 1
+gMetatiles_PlayersRoom2::
+	.incbin "data/tilesets/secondary/playersroom2/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_PlayersRoom2::
+	.incbin "data/tilesets/secondary/playersroom2/metatile_attributes.bin"

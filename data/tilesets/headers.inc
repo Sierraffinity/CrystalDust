@@ -1398,3 +1398,27 @@ gTileset_SaffronGeneral::
 	.4byte gMetatileAttributes_SaffronGeneral
 	.4byte InitTilesetAnim_General
 	.4byte gTilesetPalOverrides_General @ palette overrides
+
+	.align 2
+gTileset_PlayersRoom::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PlayersRoom
+	.4byte gTilesetPalettes_PlayersRoom
+	.4byte gMetatiles_PlayersRoom
+	.4byte gMetatileAttributes_PlayersRoom
+	.4byte NULL
+	.4byte NULL @ palette overrides
+
+	.align 2
+gTileset_PlayersRoom2::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PlayersRoom2
+	.4byte gTilesetPalettes_PlayersRoom2
+	.4byte gMetatiles_PlayersRoom2
+	.4byte gMetatileAttributes_PlayersRoom2
+	.4byte NULL
+	.4byte NULL @ palette overrides
