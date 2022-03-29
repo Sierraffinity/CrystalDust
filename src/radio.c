@@ -473,16 +473,145 @@ void Task_PlayRadioShow(u8 taskId)
         NextRadioLine(taskId, LUCKY_CHANNEL, gText_LuckyChannel13, TRUE);
         break;
     case PLACES_AND_PEOPLE_2:
+        NextRadioLine(taskId, tCurrentLine + 1, gText_PlacesAndPeople2, TRUE);
         break;
     case PLACES_AND_PEOPLE_3:
+        NextRadioLine(taskId, tCurrentLine + 1, gText_PlacesAndPeople3, TRUE);
         break;
     case PLACES_AND_PEOPLE_4:
+        {
+            if(Random() % 100 < 50) //place
+            {
+                static const u16 validMapSecs[] = 
+                {
+                    MAPSEC_PALLET_TOWN,
+                    MAPSEC_ROUTE_22,
+                    MAPSEC_PEWTER_CITY,
+                    MAPSEC_CERULEAN_CITY,
+                    MAPSEC_ROUTE_12,
+                    MAPSEC_ROUTE_11,
+                    MAPSEC_ROUTE_16,
+                    MAPSEC_ROUTE_14,
+                    MAPSEC_CINNABAR_ISLAND,
+                };
+                GetMapName(gStringVar2, validMapSecs[Random() % ARRAY_COUNT(validMapSecs)], 0);
+                StringExpandPlaceholders(gStringVar4, gText_PlacesAndPeople4Place);
+            }
+            else //person
+            {
+                static const u16 validTrainers[] = 
+                {
+                    TRAINER_FALKNER,
+                    TRAINER_WHITNEY,
+                    TRAINER_BUGSY,
+                    TRAINER_MORTY,
+                    TRAINER_PRYCE,
+                    TRAINER_JASMINE,
+                    TRAINER_CHUCK,
+                    TRAINER_CLAIR,
+                    TRAINER_ROSS,
+                    TRAINER_JOEY_1,
+                    TRAINER_JACK_1,
+                    TRAINER_ROD,
+                    TRAINER_CARRIE,
+                    TRAINER_NICK,
+                    TRAINER_GWEN,
+                    TRAINER_VICTORIA,
+                    TRAINER_LARRY,
+                    TRAINER_ROCKET_SLOWPOKE_WELL_1, // GruntM
+                    TRAINER_PRESTON,
+                    TRAINER_ROXANNE,
+                    TRAINER_COLETTE,
+                    TRAINER_DON,
+                    TRAINER_JUSTIN,
+                    TRAINER_HAROLD,
+                    TRAINER_ELAINE,
+                    TRAINER_EUGENE,
+                    TRAINER_ERIC, // is unused Super Nerd Stan in Crystal
+                    TRAINER_CLYDE,
+                    TRAINER_ANTHONY_1,
+                    TRAINER_DWAYNE, // is unused Biker Benny in Crystal
+                    TRAINER_DUNCAN,
+                    TRAINER_OTIS,
+                    TRAINER_IRWIN,
+                    TRAINER_YOSHI, // is unused Black Belt Kenji in Crystal
+                    TRAINER_MAHOGANY_EXECUTIVE_M,
+                    TRAINER_NATHAN,
+                    TRAINER_LIZ_1,
+                    TRAINER_ROLAND,
+                    TRAINER_CHOW,
+                    TRAINER_MARTHA,
+                    TRAINER_RONALD,
+                    TRAINER_WILLIAM,
+                    TRAINER_NAOKO,
+                    TRAINER_AMY_AND_MAY,
+                    TRAINER_BEVERLY,
+                    TRAINER_KEITH,
+                    TRAINER_ROCKET_SLOWPOKE_WELL_2, // GruntF
+                    // Below here are hidden if not Champion
+                    TRAINER_WILL,
+                    TRAINER_BRUNO,
+                    TRAINER_KAREN,
+                    TRAINER_KOGA,
+                    TRAINER_LANCE, // 52
+                    // Below here are hidden until have 8 Kanto Badges
+                    TRAINER_BROCK,
+                    TRAINER_MISTY,
+                    TRAINER_LT_SURGE,
+                    TRAINER_ERIKA,
+                    TRAINER_JANINE,
+                    TRAINER_SABRINA,
+                    TRAINER_BLAINE,
+                    TRAINER_BLUE, // 60
+                };
+                u32 numTrainers;
+                if(!FlagGet(FLAG_SYS_GAME_CLEAR))
+                    numTrainers = 47;
+                else
+                {
+                    CountBadges();
+                    if(gSpecialVar_Result == 16)
+                        numTrainers = 60;
+                    else
+                        numTrainers = 52;
+                }
+                u32 rand = Random() % numTrainers;
+                StringCopy(gStringVar1, GetTrainerClassNameFromId(validTrainers[rand]));
+                StringCopy(gStringVar2, gTrainers[validTrainers[rand]].trainerName);
+                StringExpandPlaceholders(gStringVar4, gText_PlacesAndPeople4Person);
+            }
+            NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
+        }
         break;
     case PLACES_AND_PEOPLE_5:
-        break;
-    case PLACES_AND_PEOPLE_6:
-        break;
-    case PLACES_AND_PEOPLE_7:
+        {
+            static const u8 *const descriptions[] = {
+                gText_PNPDescriptionCute,
+                gText_PNPDescriptionLazy,
+                gText_PNPDescriptionHappy,
+                gText_PNPDescriptionNoisy,
+                gText_PNPDescriptionPrecocious,
+                gText_PNPDescriptionBold,
+                gText_PNPDescriptionPicky,
+                gText_PNPDescriptionSortOfOK,
+                gText_PNPDescriptionSoSo,
+                gText_PNPDescriptionGreat,
+                gText_PNPDescriptionMyType,
+                gText_PNPDescriptionCool,
+                gText_PNPDescriptionInspiring,
+                gText_PNPDescriptionWeird,
+                gText_PNPDescriptionRightForMe,
+                gText_PNPDescriptionOdd
+            };
+            if (Random() % 100 >= 4) // 4% chance of redoing the radio intro
+            {
+                NextRadioLine(taskId, PLACES_AND_PEOPLE_4, descriptions[Random() % ARRAY_COUNT(descriptions)], TRUE);
+            }
+            else
+            {
+                NextRadioLine(taskId, PLACES_AND_PEOPLE, descriptions[Random() % ARRAY_COUNT(descriptions)], TRUE);
+            }
+        }
         break;
     case ROCKET_RADIO_2:
         NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio2, TRUE);

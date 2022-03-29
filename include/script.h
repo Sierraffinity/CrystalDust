@@ -72,6 +72,7 @@ void TextboxUseSignBorder(void);
 void TextboxUseStandardBorder(void);
 bool8 DoesTextboxUseSignBorder(void);
 void SwitchToPhoneScript(const u8 *script, u32 phoneContext);
+void CountBadges(void);
 
 // srccmd.h
 void SetMovingNpcId(u16 npcId);

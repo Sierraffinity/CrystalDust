@@ -1931,6 +1931,23 @@ const u8 gText_OPTAdjectiveGuarded[] = _("guarded.");
 const u8 gText_OPTAdjectiveLovely[] = _("lovely.");
 const u8 gText_OPTAdjectiveSpeedy[] = _("speedy.");
 
+const u8 gText_PNPDescriptionCute[] = _("is cute.");
+const u8 gText_PNPDescriptionLazy[] = _("is sort of lazy.");
+const u8 gText_PNPDescriptionHappy[] = _("is always happy.");
+const u8 gText_PNPDescriptionNoisy[] = _("is quite noisy.");
+const u8 gText_PNPDescriptionPrecocious[] = _("is precocious.");
+const u8 gText_PNPDescriptionBold[] = _("is somewhat bold.");
+const u8 gText_PNPDescriptionPicky[] = _("is too picky!");
+const u8 gText_PNPDescriptionSortOfOK[] = _("is sort of OK.");
+const u8 gText_PNPDescriptionSoSo[] = _("is just so-so.");
+const u8 gText_PNPDescriptionGreat[] = _("is actually great.");
+const u8 gText_PNPDescriptionMyType[] = _("is just my type.");
+const u8 gText_PNPDescriptionCool[] = _("is so cool, no?");
+const u8 gText_PNPDescriptionInspiring[] = _("is inspiring!");
+const u8 gText_PNPDescriptionWeird[] = _("is kind of weird.");
+const u8 gText_PNPDescriptionRightForMe[] = _("is right for me?");
+const u8 gText_PNPDescriptionOdd[] = _("is definitely odd!");
+
 const u8 gText_PokemonChannel1[] = _("{PAUSE 16}POKéMON{PAUSE 90} POKéMON\n{PAUSE 90}POKéMON CHANNEL");
 
 const u8 gText_PkmnMusicBen1[] = _("BEN: POKéMON MUSIC");
@@ -1979,6 +1996,10 @@ const u8 gText_BuenasPassword16[] = _("I'm outta here!");
 const u8 gText_BuenasPassword17[] = _("…");
 
 const u8 gText_PlacesAndPeople1[] = _("PLACES AND PEOPLE!");
+const u8 gText_PlacesAndPeople2[] = _("Brought to you by");
+const u8 gText_PlacesAndPeople3[] = _("me, DJ LILY!");
+const u8 gText_PlacesAndPeople4Place[] = _("{STR_VAR_2}");
+const u8 gText_PlacesAndPeople4Person[] = _("{STR_VAR_1} {STR_VAR_2}");
 
 const u8 gText_RocketRadio1[] = _("… …Ahem, we are");
 const u8 gText_RocketRadio2[] = _("TEAM ROCKET!");
