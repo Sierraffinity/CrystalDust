@@ -55,24 +55,3 @@ script ViridianCity_EventScript_Youngster{
     msgbox("I heard that there are many items\non the ground in VIRIDIAN FOREST.", MSGBOX_NPC)
     end
 }
-
-script ViridianCity_EventScript_FatMan{
-    if(flag(FLAG_GOT_TM49))
-    {
-        msgbox("TM49 contains SNATCH…\n…Zzzzz…", MSGBOX_NPC)
-        end
-    }
-    lock
-    faceplayer
-    msgbox("Yawn!\nI must have dozed off in the sun.\p…I had this dream about a DROWZEE\nsnatching my moves. Weird huh?\pHuh? What's this?\nWhere did this TM come from?\pThis is spooky!\nHere, you can have this TM.", MSGBOX_DEFAULT)
-    checkitemspace(ITEM_TM49_SNATCH, 1)
-    if(!var(VAR_RESULT))
-    {
-        call(Common_EventScript_BagIsFull)
-        release
-        end
-    }
-    giveitem(ITEM_TM49_SNATCH, 1)
-    setflag(FLAG_GOT_TM49)
-    goto(ViridianCity_EventScript_FatMan)
-}

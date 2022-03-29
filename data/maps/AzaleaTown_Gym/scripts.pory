@@ -2,13 +2,11 @@ mapscripts AzaleaTown_Gym_MapScripts { }
 
 script AzaleaTown_Gym_EventScript_Bugsy {
     trainerbattle_single(TRAINER_BUGSY, AzaleaTown_Gym_Text_BugsyPreBattle, AzaleaTown_Gym_Text_BugsyDefeat, AzaleaTown_Gym_EventScript_BugsyDefeated, NO_MUSIC)
-    if (!flag(FLAG_GOT_TM47_FROM_BUGSY))
+    if (!flag(FLAG_MOVE_TUTOR_TAUGHT_FURY_CUTTER))
     {
         goto(AzaleaTown_Gym_EventScript_GiveSteelWing)
     }
-    msgbox("BUG {POKEMON} are deep. There are\n"
-	       "many mysteries to be explored.\p"
-		   "Study your favorites thoroughly.")
+    msgbox(AzaleaTown_Gym_Text_BugsyOutro)
 	release
 }
 
@@ -49,23 +47,35 @@ script AzaleaTown_Gym_EventScript_GiveSteelWing {
 		   "30 will obey, even traded ones.\p"
 		   "{POKEMON} that know CUT will be able\n"
 		   "to use it outside of battle, too.\p"
-		   "Here, I also want you to have this.")
-    checkitemspace(ITEM_TM47, 1)
-    if (!var(VAR_RESULT))
-	{
-        goto(Common_EventScript_ShowBagIsFull)
-	}
-	else
-	{
-		givetmhm_msg("{PLAYER} received TM47\n"
-					 "from BUGSY.", ITEM_TM47)
-		setflag(FLAG_GOT_TM47_FROM_BUGSY)
-		msgbox("TM47 contains STEEL WING.\p"
-			   "After attacking, it has a one-in-ten\n"
-			   "chance of raising your DEFENSE.\l"
-			   "Isn't that great?")
-	}
-	release
+		   "Here, I also want you to have this.\p"
+           "…Huh? I thought I had a TM here…\n"
+           "Nevermind, I'll teach it myself!\p"
+           "Do you want me to teach one of your\n"
+           "{POKEMON} FURY CUTTER?\p"
+           "It's a move that, if you don't miss,\n"
+           "It gets stronger every turn.\p"
+           "Isn't that great?\n"
+           "I discovered it!\p"
+           "So, do you want me to show your\n"
+           "{POKEMON} how to use it?", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_FuryCutterDeclined)
+    }
+    msgbox("Okay, which {POKEMON} should I tutor?", MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, TUTOR_MOVE_FURY_CUTTER)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+    if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_FuryCutterDeclined)
+    }
+    setflag(FLAG_MOVE_TUTOR_TAUGHT_FURY_CUTTER)
+    goto(AzaleaTown_Gym_EventScript_Bugsy)
+}script(local) MoveTutor_EventScript_FuryCutterDeclined{
+    msgbox(AzaleaTown_Gym_Text_BugsyOutro)
+    release
+}text(local) AzaleaTown_Gym_Text_BugsyOutro{
+    "BUG {POKEMON} are deep. There are\nmany mysteries to be explored.\pStudy your favorites thoroughly."
 }
 
 script AzaleaTown_Gym_EventScript_GymGuide {

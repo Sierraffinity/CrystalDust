@@ -21,7 +21,7 @@ script Route31_EventScript_Explorer {
 script Route31_EventScript_SleepyMan {
     lock
     faceplayer
-    if (flag(FLAG_RECEIVED_TM44_REST))
+    if (flag(FLAG_MOVE_TUTOR_TAUGHT_NIGHTMARE))
     {
         msgbox(Route31_Text_SleepyMan_TMDescription)
     }
@@ -35,9 +35,17 @@ script Route31_EventScript_SleepyMan {
                "swell too!\p"
                "I'd like to do something good in\n"
                "return for your help!\p"
-               "I know!\n"
-               "I want you to have this!")
-        call(Route31_EventScript_SleepyMan_TryGiveTM)
+               "I know!\p"
+               "How about I teach your {POKEMON}\n"
+               "NIGHTMARE for helping me?", MSGBOX_YESNO)
+        if(var(VAR_RESULT))
+        {
+            call(Route31_EventScript_SleepyMan_TryGiveTM)
+        }
+        else
+        {
+            msgbox(Route31_Text_SleepyMan_Declined)
+        }
     }
     elif (flag(FLAG_GOT_KENYA_FROM_RANDY))
     {
@@ -98,15 +106,22 @@ script Route31_EventScript_SleepyMan {
                            "swell too!\p"
                            "I'd like to do something good in\n"
                            "return for your help!\p"
-                           "I know!\n"
-                           "I want you to have this!")
-                    call(Route31_EventScript_SleepyMan_TryGiveTM)
+                           "I know!\p"
+                           "How about I teach your {POKEMON}\n"
+                           "NIGHTMARE for helping me?", MSGBOX_YESNO)
+                    if(var(VAR_RESULT))
+                    {
+                        call(Route31_EventScript_SleepyMan_TryGiveTM)
+                    }
+                    else
+                    {
+                        msgbox(Route31_Text_SleepyMan_Declined)
+                    }
             }
         }
         else
         {
-            msgbox("What?\n"
-                   "You don't want anything?")
+            msgbox(Route31_Text_SleepyMan_Declined)
         }
     }
     else
@@ -122,24 +137,41 @@ script Route31_EventScript_SleepyMan {
     release
 }
 
+text Route31_Text_SleepyMan_Declined {
+    "What?\nYou don't want anything?"
+}
+
 text Route31_Text_SleepyMan_TMDescription {
-    "TM44 is REST.\p"
-    "It's a wonderful move that lets a\n"
-    "{POKEMON} sleep to recover HP.\p"
+    "That's NIGHTMARE.\p"
+    "It's a wicked move that steadily cuts\n"
+    "the HP of a sleeping enemy.\p"
     "Ooooh…\n"
-    "That's tempting…\p"
-    "Hopefully I won't have any bad\n"
-    "dreams…"
+    "That's scary…\l"
+    "I don't want to have bad dreams."
 }
 
 script Route31_EventScript_SleepyMan_TryGiveTM {
-    giveitem(ITEM_TM44)
-    if (!var(VAR_RESULT))
+    call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+    if(!var(VAR_RESULT))
     {
-        goto(Common_EventScript_ShowBagIsFull)
+        goto(MoveTutor_EventScript_NightmareDeclined)
     }
-    setflag(FLAG_RECEIVED_TM44_REST)
-    msgbox(Route31_Text_SleepyMan_TMDescription)
+    msgbox("Which {POKEMON} should learn\nNIGHTMARE?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_NIGHTMARE)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_NightmareDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_NIGHTMARE)
+	goto(Route31_EventScript_SleepyMan)
+	end
+}
+
+script MoveTutor_EventScript_NightmareDeclined{
+    msgbox(Route31_Text_SleepyMan_Declined)
+    release
+    end
 }
 
 script Route31_EventScript_Youngster {

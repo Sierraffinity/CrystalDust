@@ -1,0 +1,563 @@
+// Fury Cutter tutor is in Bugsy's script.
+// Nightmare Tutor in in Route 31's Sleepy Guy script.
+
+script MoveTutor_EventScript_OpenPartyMenu{
+	special(ChooseMonForMoveTutor)
+	waitstate
+	lock
+	faceplayer
+	return
+}
+
+script MoveTutor_EventScript_CanOnlyBeLearnedOnce{
+	textcolor(MSG_COLOR_SYS)
+	signmsg
+	msgbox("This move can be learned only\nonce. Is that okay?", MSGBOX_YESNO)
+	normalmsg
+	textcolor(MSG_COLOR_PREV)
+	return
+}
+
+// Headbutt can be learned multiple times, as in Crystal you could buy more Headbutt
+// TMs at the Goldenrod Dept. Store. This is also what HGSS does.
+script IlexForest_EventScript_HeadbuttTutor{
+	lock
+	faceplayer
+	msgbox("What am I doing?\nI'm shaking trees using HEADBUTT.\pIt's fun.\nHere, want to try it too?", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_HeadbuttDeclined)
+    }
+	msgbox("Great! Which {POKEMON} of yours has\nthe strongest head?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_HEADBUTT)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+    if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_HeadbuttDeclined)
+    }
+	msgbox("Rattle trees with HEADBUTT.\nSometimes, sleeping {POKEMON} fall out.", MSGBOX_DEFAULT)
+	release
+	end
+}script(local) MoveTutor_EventScript_HeadbuttDeclined{
+	msgbox("I guess you're just not as hard-\nheaded as I am!", MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script Route39_EventScript_RolloutTutor{
+    if(flag(FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT))
+    {
+        msgbox("Rolling around in the grass makes me\nhappy. Come on, let's roll!", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("Did you know that you can go from\nhere a long way in that direction\lwithout changing direction?\pI might even be able to roll\nthat way.\pDo you think your {POKEMON} will\nwant to roll, too?\pI can teach one the move ROLLOUT\nif you'd like.", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_RolloutDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_RolloutDeclined)
+    }
+	msgbox("Ehehe, sure thing! It'd be great if\nthe {POKEMON} looked like me.", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_ROLLOUT)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+    if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_RolloutDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT)
+	goto(Route39_EventScript_RolloutTutor)
+	end
+}script(local) MoveTutor_EventScript_RolloutDeclined{
+	msgbox("You don't need to be shy about it.\nLet's roll!", MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script Route39_EventScript_DefenseCurlTutor{
+    if(flag(FLAG_MOVE_TUTOR_TAUGHT_DEFENSE_CURL))
+    {
+        msgbox("I wonder if DEFENSE CURL makes\nROLLOUT more effective…", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("Sometimes, when the MILTANK here\nget spooked, they curl up into a\lball until they feel safe again.\pSometimes I wish I could do the\nsame thing when I'm scared.\pI can teach your {POKEMON}\nDEFENSE CURL if you want.", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_DefenseCurlDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_DefenseCurlDeclined)
+    }
+    msgbox("Okay! What {POKEMON} should learn\nDEFENSE CURL?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_DEFENSE_CURL)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_DefenseCurlDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_DEFENSE_CURL)
+	goto(Route39_EventScript_DefenseCurlTutor)
+	end
+}script(local) MoveTutor_EventScript_DefenseCurlDeclined{
+    msgbox("Your {POKEMON} don't want to curl up?", MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script CianwoodCity_EventScript_DynamicPunchTutor{
+	if(flag(FLAG_MOVE_TUTOR_TAUGHT_DYNAMICPUNCH))
+    {
+        msgbox("Show the whole world DYNAMICPUNCH\nis the best of the best!", MSGBOX_NPC)
+        turnobject(VAR_LAST_TALKED, DIR_EAST)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("There's only one truly-effective\npunching attack!\pOne that hits so hard that it knocks\na {POKEMON} silly!\pThe other punching techniques are\njust cheap imitations!\pOf course, I'm talking about none\nother than DYNAMICPUNCH!\pLet me teach you {POKEMON} how\nto really throw a punch!", MSGBOX_YESNO)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_DynamicPunchDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_DynamicPunchDeclined)
+    }
+	msgbox("Which {POKEMON} can handle such\na perfect punching technique?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_DYNAMIC_PUNCH)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_DynamicPunchDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_DYNAMICPUNCH)
+	goto(CianwoodCity_EventScript_DynamicPunchTutor)
+	end
+}script(local) MoveTutor_EventScript_DynamicPunchDeclined{
+	msgbox("You don't want DYNAMICPUNCH?\pThat hit me so hard that now\nI'm confused!", MSGBOX_DEFAULT)
+	release
+    turnobject(VAR_LAST_TALKED, DIR_EAST)
+	end
+}
+
+script CianwoodCity_EventScript_IcePunchTutor{
+	if(flag(FLAG_MOVE_TUTOR_TAUGHT_ICE_PUNCH))
+    {
+        msgbox("Show the whole world ICE PUNCH\nis the best of the best!", MSGBOX_NPC)
+        turnobject(VAR_LAST_TALKED, DIR_EAST)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("There's only one truly-effective\npunching attack!\pOne that's so cold-blooded that\nit freezes {POKEMON} in place!\pThe other punching techniques are\njust cheap imitations!\pOf course, I'm talking about none\nother than ICE PUNCH!\pLet me teach you {POKEMON} how\nto really throw a punch!", MSGBOX_YESNO)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_IcePunchDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_IcePunchDeclined)
+    }
+	msgbox("Which {POKEMON} can handle such\na perfect punching technique?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_ICE_PUNCH)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_IcePunchDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_ICE_PUNCH)
+	goto(CianwoodCity_EventScript_IcePunchTutor)
+	end
+}script(local) MoveTutor_EventScript_IcePunchDeclined{
+	msgbox("You don't want ICE PUNCH?\pThat's so stone-cold that it\nfroze me solid!", MSGBOX_DEFAULT)
+	release
+    turnobject(VAR_LAST_TALKED, DIR_EAST)
+	end
+}
+
+script CianwoodCity_EventScript_FirePunchTutor{
+	if(flag(FLAG_MOVE_TUTOR_TAUGHT_FIRE_PUNCH))
+    {
+        msgbox("Show the whole world FIRE PUNCH\nis the best of the best!", MSGBOX_NPC)
+        turnobject(VAR_LAST_TALKED, DIR_WEST)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("There's only one truly-effective\npunching attack!\pOne that's so hot, hot, hot that\nit burns the {POKEMON} it hits!\pThe other punching techniques are\njust cheap imitations!\pOf course, I'm talking about none\nother than FIRE PUNCH!\pLet me teach you {POKEMON} how\nto really throw a punch!", MSGBOX_YESNO)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_FirePunchDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_FirePunchDeclined)
+    }
+	msgbox("Which {POKEMON} can handle such\na perfect punching technique?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_FIRE_PUNCH)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_FirePunchDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_FIRE_PUNCH)
+	goto(CianwoodCity_EventScript_FirePunchTutor)
+	end
+}script(local) MoveTutor_EventScript_FirePunchDeclined{
+	msgbox("You don't want FIRE PUNCH?\pYour answer was so fiery that\nI feel burned!", MSGBOX_DEFAULT)
+    turnobject(VAR_LAST_TALKED, DIR_WEST)
+	release
+	end
+}
+
+script CianwoodCity_EventScript_ThunderPunchTutor{
+	if(flag(FLAG_MOVE_TUTOR_TAUGHT_THUNDER_PUNCH))
+    {
+        msgbox("Show the whole world THUNDERPUNCH\nis the best of the best!", MSGBOX_NPC)
+        turnobject(VAR_LAST_TALKED, DIR_WEST)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("There's only one truly-effective\npunching attack!\pOne that's so shocking that {POKEMON}\nare paralyzed on contact!\pThe other punching techniques are\njust cheap imitations!\pOf course, I'm talking about none\nother than THUNDERPUNCH!\pLet me teach you {POKEMON} how\nto really throw a punch!", MSGBOX_YESNO)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_ThunderPunchDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_ThunderPunchDeclined)
+    }
+	msgbox("Which {POKEMON} can handle such\na perfect punching technique?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_THUNDER_PUNCH)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_ThunderPunchDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_THUNDER_PUNCH)
+	goto(CianwoodCity_EventScript_ThunderPunchTutor)
+	end
+}script(local) MoveTutor_EventScript_ThunderPunchDeclined{
+	msgbox("You don't want THUNDERPUNCH?\pThat's so shocking that I'm\ncompletely paralyzed!", MSGBOX_DEFAULT)
+	release
+    turnobject(VAR_LAST_TALKED, DIR_WEST)
+	end
+}
+
+script OlivineCity_Cafe_EventScript_SwaggerTutor{
+    if(flag(FLAG_MOVE_TUTOR_TAUGHT_SWAGGER))
+    {
+        msgbox("I'll just praise my {POKEMON} from now\non without the swagger.", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("Heh! My {POKEMON} totally rules!\nIt's cooler than any {POKEMON}!\pI was lipping off with a swagger in\nmy step like that when I walked\lright off the deck of my ship!\pThat sure took the swagger\nout of my step.\pIf you'd like, I'll teach the move\nSWAGGER to a {POKEMON} of yours.", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_SwaggerDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_SwaggerDeclined)
+    }
+	msgbox("All right, which {POKEMON} wants to\nlearn how to SWAGGER?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_SWAGGER)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_SwaggerDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_SWAGGER)
+	goto(OlivineCity_Cafe_EventScript_SwaggerTutor)
+	end
+}script(local) MoveTutor_EventScript_SwaggerDeclined{
+	msgbox("What, no? Can't you get into\nthe spirit of things?", MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script RadioTower_4F_EventScript_SleepTalkTutor{
+    if(flag(FLAG_MOVE_TUTOR_TAUGHT_SLEEP_TALK))
+    {
+        msgbox("I talk so loudly in my sleep that\nI wake myself up every night now.\pTEAM ROCKET couldn't take the RADIO\nTOWER, but they took my quiet nights!", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("Ever since TEAM ROCKET took over\nthe RADIO TOWER, I've been talking\lin my sleep about it!\pSometimes I'm the hero telling them\nto leave and never return.\pSometimes I'm begging them to leave\nme alone.\p{POKEMON} can use SLEEP TALK to\nattack even while they're asleep!\pDo you want me to teach your\n{POKEMON} how to use SLEEP TALK?", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_SleepTalkDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_SleepTalkDeclined)
+    }
+	msgbox("Which {POKEMON} should learn how to\nuse SLEEP TALK?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_SLEEP_TALK)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_SleepTalkDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_SLEEP_TALK)
+	goto(RadioTower_4F_EventScript_SleepTalkTutor)
+	end
+}script(local) MoveTutor_EventScript_SleepTalkDeclined{
+	msgbox("I get it.\pYou want a good night's sleep without\nyour {POKEMON} waking you up!", MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script VioletCity_EarlsAcademy_EventScript_MudSlapTutor{
+    if(flag(FLAG_MOVE_TUTOR_TAUGHT_MUD_SLAP))
+    {
+        msgbox("MUD-SLAP isn't the only move that\nuses mud to attack, you know!\lI asked the teacher about it!", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("I love mud! It's so fun to splash in\nand get everything all muddy!\pWhat can be better than the feeling\nof mud between your fingers?\pYou can even get a fistful of mud\nand slap stuff with it!\pDoes your {POKEMON} like mud?\nI can teach it MUD-SLAP!", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_MudSlapDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_MudSlapDeclined)
+    }
+	msgbox("Which of your {POKEMON} wants to\nknow MUD-SLAP?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_MUD_SLAP)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_MudSlapDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_MUD_SLAP)
+	goto(VioletCity_EarlsAcademy_EventScript_MudSlapTutor)
+	end
+}script(local) MoveTutor_EventScript_MudSlapDeclined{
+	msgbox("…Will I ever find someone who loves\nmud as much as me?", MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script DiglettsCave_EventScript_SnoreTutor{
+    if(flag(FLAG_MOVE_TUTOR_TAUGHT_SNORE))
+    {
+        msgbox("SNORE lets sleeping {POKEMON} attack.\nI certainly felt under attack by it.", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("…I was trapped behind that SNORLAX\nfor so long.\pPinned between it and the DIGLETT\nhere in the tunnel…\pThe snores echoed through the cave…\nOff the walls… Everywhere!\pIt was too much to bear!\nIt never stopped!\pLet me teach SNORE to your {POKEMON}\nso I can put this behind me!", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_SnoreDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_SnoreDeclined)
+    }
+	msgbox("What {POKEMON} should learn SNORE?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_SNORE)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_SnoreDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_SNORE)
+	goto(DiglettsCave_EventScript_SnoreTutor)
+	end
+}script(local) MoveTutor_EventScript_SnoreDeclined{
+	msgbox("…Hrrrrngh… Over and over…\nThe echoes… The snoring…", MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script MahoganyTown_House_EventScript_SwiftTutor{
+    if(flag(FLAG_MOVE_TUTOR_TAUGHT_SWIFT))
+    {
+        msgbox("As swift and accurate as a ninja…\nThat'll be me someday…", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("Everyone here descends from ninja!\nNinjas are swift and accurate!\lThey never miss their mark!\pI'm not swift enough to be a ninja\nyet, but I can teach a {POKEMON}\lthe move SWIFT!\pShould I teach one of your {POKEMON}\nhow to use SWIFT like a ninja?", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_SwiftDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_SwiftDeclined)
+    }
+	msgbox("What {POKEMON} should swiftly pick\nup SWIFT?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_SWIFT)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_SwiftDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_SWIFT)
+	goto(MahoganyTown_House_EventScript_SwiftTutor)
+	end
+}script(local) MoveTutor_EventScript_SwiftDeclined{
+	msgbox("A swift decline of my offer.\nI swiftly return to my training.", MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script IcePath_1F_EventScript_IcyWindTutor{
+    if(flag(FLAG_MOVE_TUTOR_TAUGHT_ICY_WIND))
+    {
+        msgbox("I simply adore the cold.\nI feel invigorated!", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("Whoooooosh!\nWhoooooosh!\pSalutations. Do you feel the chilly\nwind blowing through this cave?\pQuite bracing, yes? The way it blows\nyou back and slows you down?\p{POKEMON} can use a move like that\ntoo to slow their foes.\pShall I teach one of your {POKEMON}\nthe move ICY WIND?", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_IcyWindDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_IcyWindDeclined)
+    }
+	msgbox("To whom should I teach ICY WIND?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_ICY_WIND)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_IcyWindDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_ICY_WIND)
+	goto(IcePath_1F_EventScript_IcyWindTutor)
+	end
+}script(local) MoveTutor_EventScript_IcyWindDeclined{
+	msgbox("How cold of you to decline.", MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script GoldenrodCity_DeptStore_B1F_EventScript_EndureTutor{
+    if(flag(FLAG_MOVE_TUTOR_TAUGHT_ENDURE))
+    {
+        msgbox("I can't endure these working\nconditions any longer!\pNone of us can work with people\nwatching us!", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("Hey, kid!\nWe're tryin' to work here!\pMoving boxes back and forth\nendlessly isn't easy at all!\pAnd we lose all drive to work when\nother people are down here!\pI can't endure this any longer!\pI can teach your {POKEMON} ENDURE\nif you promise to scram after!", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_EndureDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_EndureDeclined)
+    }
+	msgbox("Who wants to learn ENDURE?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_ENDURE)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_EndureDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_ENDURE)
+	goto(GoldenrodCity_DeptStore_B1F_EventScript_EndureTutor)
+	end
+}script(local) MoveTutor_EventScript_EndureDeclined{
+	msgbox("If you don't want to learn ENDURE,\nthen scram so we can work!", MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script EcruteakCity_DanceTheater_EventScript_PsychUpTutor{
+    if(flag(FLAG_MOVE_TUTOR_TAUGHT_PSYCH_UP))
+    {
+        msgbox("…I'll never be a KIMONO GIRL if I\ncan't psych myself up…", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("I want nothing more than to become\na KIMONO GIRL.\pI even got myself an EEVEE and\nbought the outfit!\pBut…\nI'm just too nervous to ask them.\pI wish I could psych myself up and\ncopy their confidence and grace.\pA {POKEMON} move can copy stat\nchanges from another {POKEMON}.\pI can teach one of your {POKEMON}\nPSYCH UP if you'd like.", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_PsychUpDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_PsychUpDeclined)
+    }
+	msgbox("Which {POKEMON} wants to learn\nPSYCH UP?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_PSYCH_UP)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_PsychUpDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_PSYCH_UP)
+	goto(EcruteakCity_DanceTheater_EventScript_PsychUpTutor)
+	end
+}script(local) MoveTutor_EventScript_PsychUpDeclined{
+	msgbox("…If I can't psych your {POKEMON} up,\nhow will I ever psych myself up?", MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script ViridianCity_EventScript_DreamEaterTutor{
+    if(flag(FLAG_MOVE_TUTOR_TAUGHT_DREAM_EATER))
+    {
+        msgbox("…ZZZ…\nI…can't eat…anymore…", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+	msgbox("Yawn!\nI must have dozed off in the sun.\p…I had this dream about a DROWZEE\neating my dream. Weird huh?\pHuh?\nWhat's this?\pI learned how to eat dreams…\nThis is spooky!\pLet me teach it to a {POKEMON} so\nI can forget about it!", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_DreamEaterDeclined)
+    }
+	call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+	if(!var(VAR_RESULT))
+    {
+        goto(MoveTutor_EventScript_DreamEaterDeclined)
+    }
+	msgbox("Which {POKEMON} wants to learn\nDREAM EATER?", MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, TUTOR_MOVE_DREAM_EATER)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	if(var(VAR_RESULT) == 0)
+    {
+        goto(MoveTutor_EventScript_DreamEaterDeclined)
+    }
+	setflag(FLAG_MOVE_TUTOR_TAUGHT_DREAM_EATER)
+	goto(ViridianCity_EventScript_DreamEaterTutor)
+	end
+}script(local) MoveTutor_EventScript_DreamEaterDeclined{
+	msgbox("…Snore…", MSGBOX_DEFAULT)
+	release
+	end
+}

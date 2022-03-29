@@ -177,7 +177,7 @@
 #define FLAG_GOT_EEVEE_FROM_BILL             0xA3
 #define FLAG_GOT_SQUIRTBOTTLE                0xA4
 #define FLAG_GOT_TM40_FROM_FALKNER           0xA5
-#define FLAG_GOT_TM47_FROM_BUGSY             0xA6
+#define FLAG_MOVE_TUTOR_TAUGHT_FURY_CUTTER   0xA6
 #define FLAG_GOT_TM45_FROM_WHITNEY           0xA7
 #define FLAG_RECEIVED_TM50                   0xA8
 #define FLAG_RECEIVED_TM42                   0xA9
@@ -211,7 +211,7 @@
 #define FLAG_GOT_QUICK_CLAW                  0xC5
 #define FLAG_LEFT_MONS_WITH_CONTEST_OFFICER  0xC6
 #define FLAG_IN_BUG_CATCHING_CONTEST         0xC7
-#define FLAG_RECEIVED_TM44_REST              0xC8
+#define FLAG_MOVE_TUTOR_TAUGHT_NIGHTMARE     0xC8
 #define FLAG_FLORIA_WENT_TO_ROUTE_36         0xC9
 #define FLAG_GOT_ODD_EGG                     0xCA
 #define FLAG_GOT_TM30_FROM_MORTY             0xCB
@@ -459,14 +459,14 @@
 #define FLAG_SHOWN_OLD_SEA_MAP               0x1B0
 #define FLAG_MOVE_TUTOR_TAUGHT_SWAGGER       0x1B1
 #define FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT       0x1B2
-#define FLAG_MOVE_TUTOR_TAUGHT_FURY_CUTTER   0x1B3
-#define FLAG_MOVE_TUTOR_TAUGHT_MIMIC         0x1B4
-#define FLAG_MOVE_TUTOR_TAUGHT_METRONOME     0x1B5
+#define FLAG_MOVE_TUTOR_TAUGHT_PSYCH_UP      0x1B3
+#define FLAG_MOVE_TUTOR_TAUGHT_FIRE_PUNCH    0x1B4
+#define FLAG_MOVE_TUTOR_TAUGHT_ICE_PUNCH     0x1B5
 #define FLAG_MOVE_TUTOR_TAUGHT_SLEEP_TALK    0x1B6
-#define FLAG_MOVE_TUTOR_TAUGHT_SUBSTITUTE    0x1B7
+#define FLAG_MOVE_TUTOR_TAUGHT_THUNDER_PUNCH 0x1B7
 #define FLAG_MOVE_TUTOR_TAUGHT_DYNAMICPUNCH  0x1B8
-#define FLAG_MOVE_TUTOR_TAUGHT_DOUBLE_EDGE   0x1B9
-#define FLAG_MOVE_TUTOR_TAUGHT_EXPLOSION     0x1BA
+#define FLAG_MOVE_TUTOR_TAUGHT_DEFENSE_CURL  0x1B9
+#define FLAG_MOVE_TUTOR_TAUGHT_MUD_SLAP      0x1BA
 
 #define FLAG_GOT_DRATINI_FROM_DRAGON_SHRINE  0x1BB
 #define FLAG_FORCED_CALL_MASTER_BALL         0x1BC
@@ -867,19 +867,20 @@
 #define FLAG_GOT_TM19_FROM_ERIKA                                    0x330
 #define FLAG_GOT_COINS_FROM_GAMBLER_AT_CELADON                      0x331
 #define FLAG_EUSINE_LEFT_CELADON                                    0x332
-#define FLAG_GOT_TM49                                               0x333
+#define FLAG_MOVE_TUTOR_TAUGHT_DREAM_EATER                                               0x333
 #define FLAG_MET_ROCKET_GRUNT_AT_CERULEAN_GYM                       0x334
 #define FLAG_MET_MISTY_AT_CERULEAN_CAPE                             0x335
 #define FLAG_FOUGHT_SNORLAX                                         0x336 // need this to remove guard in Victory Road Gate
 #define FLAG_MT_MOON_ROCKS_CLEARED                                  0x337
 #define FLAG_GOT_FACADE_FROM_MOOMOO_FARM                            0x338
 #define FLAG_GOT_TM50_FROM_BLAINE                                   0x339
+// MOVE TUTORS CONTINUED
+#define FLAG_MOVE_TUTOR_TAUGHT_SNORE                                0x33A
+#define FLAG_MOVE_TUTOR_TAUGHT_SWIFT                                0x33B
+#define FLAG_MOVE_TUTOR_TAUGHT_ICY_WIND                             0x33C
+#define FLAG_MOVE_TUTOR_TAUGHT_ENDURE                               0x33D
 // STOPPED HERE
-#define FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE                            0x33A
-#define FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE                             0x33B
-#define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_ARCHIE                     0x33C
-#define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAXIE                      0x33D
-#define FLAG_HIDE_VIOLET_CITY_WALLYS_DAD                            0x33E
+#define FLAG_UNUSED_0x33E                                           0x33E
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAGMA_GRUNTS               0x33F
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER                0x340
 #define FLAG_HIDE_DARK_CAVE_STEVEN                                  0x341
@@ -1239,10 +1240,10 @@
 #define FLAG_ITEM_MT_MOON_B3F_PP_MAX                                0x49D
 #define FLAG_ITEM_MT_MOON_B3F_MOON_STONE                            0x49E
 #define FLAG_ITEM_MT_MOON_B3F_NUGGET                                0x49F
-#define FLAG_ITEM_ARTISAN_CAVE_B1F_HP_UP                            0x4A0
-#define FLAG_ITEM_ARTISAN_CAVE_1F_CARBOS                            0x4A1
+#define FLAG_ITEM_MT_MOON_B3F_TM49_SNATCH                           0x4A0
+#define FLAG_ITEM_ARTISAN_CAVE_B1F_HP_UP                            0x4A1
+#define FLAG_ITEM_ARTISAN_CAVE_1F_CARBOS                            0x4A2
 
-#define FLAG_UNUSED_0x4A2                                           0x4A2 // Unused Flag
 #define FLAG_UNUSED_0x4A3                                           0x4A3 // Unused Flag
 #define FLAG_UNUSED_0x4A4                                           0x4A4 // Unused Flag
 #define FLAG_UNUSED_0x4A5                                           0x4A5 // Unused Flag

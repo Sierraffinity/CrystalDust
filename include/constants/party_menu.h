@@ -44,7 +44,10 @@
 #define TUTOR_MOVE_FRENZY_PLANT    31
 #define TUTOR_MOVE_BLAST_BURN      32
 #define TUTOR_MOVE_HYDRO_CANNON    33
-#define TUTOR_MOVE_COUNT           34
+#define TUTOR_MOVE_NIGHTMARE       34
+#define TUTOR_MOVE_SELF_DESTRUCT   35
+#define TUTOR_MOVE_SKY_ATTACK      36
+#define TUTOR_MOVE_COUNT           37
 
 #define PARTY_LAYOUT_SINGLE          0
 #define PARTY_LAYOUT_DOUBLE          1

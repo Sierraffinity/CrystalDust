@@ -168,6 +168,36 @@
       "y": 11,
       "source_id": 4,
       "source_map": "MAP_ROUTE38"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "in_connection": false,
+      "x": 3,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route39_EventScript_RolloutTutor",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "in_connection": false,
+      "x": 16,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route39_EventScript_DefenseCurlTutor",
+      "flag": "0"
     }
   ],
   "warp_events": [

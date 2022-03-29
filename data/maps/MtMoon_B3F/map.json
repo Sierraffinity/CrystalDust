@@ -120,6 +120,21 @@
       "trainer_sight_or_berry_tree_id": "ITEM_NUGGET",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_MT_MOON_B3F_NUGGET"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 24,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_TM49_SNATCH",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_MT_MOON_B3F_TM49_SNATCH"
     }
   ],
   "warp_events": [

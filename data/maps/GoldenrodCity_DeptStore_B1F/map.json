@@ -135,6 +135,21 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_DeptStore_B1F_EventScript_Machoke",
       "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "in_connection": false,
+      "x": 7,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_LEFT_AND_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodCity_DeptStore_B1F_EventScript_EndureTutor",
+      "flag": "0"
     }
   ],
   "warp_events": [
