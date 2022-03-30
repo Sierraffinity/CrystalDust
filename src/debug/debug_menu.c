@@ -419,7 +419,7 @@ void ShowDebugMenu(void)
     if (!IsUpdateLinkStateCBActive())
     {
         FreezeObjectEvents();
-        sub_808B864();
+        PlayerFreeze();
         sub_808BCF4();
     }
     LoadMessageBoxAndBorderGfx();
