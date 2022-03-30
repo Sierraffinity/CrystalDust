@@ -159,6 +159,7 @@ script FastShip_1F_EventScript_DoorSailor{
         }
         else
         {
+            clearflag(FLAG_FAST_SHIP_DESTINATION_OLIVINE)
             warp(MAP_VERMILION_CITY_PORT, 1, 0, 0)
             waitstate
         }

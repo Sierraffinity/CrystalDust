@@ -106,7 +106,7 @@ static bool8 RegionMap_IsMapSecIdInNextRow(u16 y);
 static void SpriteCB_CursorMapFull(struct Sprite *sprite);
 static void HideRegionMapPlayerIcon(void);
 static void UnhideRegionMapPlayerIcon(void);
-static void SpriteCB_PlayerIcon(struct Sprite *sprite);
+static void SpriteCB_ShipIcon(struct Sprite *sprite);
 static void VBlankCB_FlyMap(void);
 static void CB2_FlyMap(void);
 static void SetFlyMapCallback(void callback(void));
@@ -137,6 +137,8 @@ static const u16 sRegionMapPlayerIcon_GoldPal[] = INCBIN_U16("graphics/region_ma
 static const u32 sRegionMapPlayerIcon_GoldGfx[] = INCBIN_U32("graphics/region_map/gold_icon.4bpp");
 static const u16 sRegionMapPlayerIcon_KrisPal[] = INCBIN_U16("graphics/region_map/kris_icon.gbapal");
 static const u32 sRegionMapPlayerIcon_KrisGfx[] = INCBIN_U32("graphics/region_map/kris_icon.4bpp");
+static const u16 sRegionMapPlayerIcon_ShipPal[] = INCBIN_U16("graphics/region_map/ship_icon.gbapal");
+static const u32 sRegionMapPlayerIcon_ShipGfx[] = INCBIN_U32("graphics/region_map/ship_icon.4bpp");
 static const u32 sRegionMapDots_Gfx[] = INCBIN_U32("graphics/region_map/dots.4bpp");
 static const u16 sRegionMapDots_Pal[] = INCBIN_U16("graphics/region_map/dots.gbapal");
 static const u32 sRegionMapNames_Gfx[] = INCBIN_U32("graphics/region_map/region_names.4bpp");
@@ -242,6 +244,13 @@ static const struct OamData sRegionMapPlayerIconOam =
 {
     .shape = SPRITE_SHAPE(16x16),
     .size = SPRITE_SIZE(16x16),
+    .priority = 2
+};
+
+static const struct OamData sRegionMapShipIconOam =
+{
+    .shape = SPRITE_SHAPE(32x32),
+    .size = SPRITE_SIZE(32x32),
     .priority = 2
 };
 
@@ -677,8 +686,16 @@ bool8 LoadRegionMapGfx_Pt2(void)
             if (gRegionMap->secondaryMapSecId != MAPSEC_NONE)
                 SetShadowBoxState(1, FALSE);
             
-            gRegionMap->playerIconSpritePosX = gRegionMap->cursorPosX;
-            gRegionMap->playerIconSpritePosY = gRegionMap->cursorPosY;
+            if(gMapHeader.regionMapSectionId == MAPSEC_FAST_SHIP)
+            {
+                gRegionMap->playerIconSpritePosX = 21;
+                gRegionMap->playerIconSpritePosY = 12;
+            }
+            else
+            {
+                gRegionMap->playerIconSpritePosX = gRegionMap->cursorPosX;
+                gRegionMap->playerIconSpritePosY = gRegionMap->cursorPosY;
+            }
             gRegionMap->primaryMapSecId = CorrectSpecialMapSecId_Internal(gRegionMap->primaryMapSecId);
             gRegionMap->primaryMapSecStatus = GetMapsecType(gRegionMap->primaryMapSecId);
             gRegionMap->secondaryMapSecId = CorrectSpecialMapSecId_Internal(gRegionMap->secondaryMapSecId);
@@ -1213,8 +1230,16 @@ static void InitMapBasedOnPlayerLocation_(void)
                 x = 1;
             break;
     }
-    gRegionMap->cursorPosX = gRegionMapEntries[gRegionMap->primaryMapSecId].x + x;
-    gRegionMap->cursorPosY = gRegionMapEntries[gRegionMap->primaryMapSecId].y + y;
+    if(gMapHeader.regionMapSectionId == MAPSEC_FAST_SHIP)
+    {   // init cursor on New Bark Town if on Fast Ship
+        gRegionMap->cursorPosX = 21;
+        gRegionMap->cursorPosY = 10;
+    }
+    else
+    {
+        gRegionMap->cursorPosX = gRegionMapEntries[gRegionMap->primaryMapSecId].x + x;
+        gRegionMap->cursorPosY = gRegionMapEntries[gRegionMap->primaryMapSecId].y + y;
+    }
 }
 
 static void RegionMap_InitializeStateBasedOnSSTidalLocation(void)
@@ -1535,13 +1560,23 @@ void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag)
         sheet.data = sRegionMapPlayerIcon_KrisGfx;
         palette.data = sRegionMapPlayerIcon_KrisPal;
     }
+    if (gMapHeader.regionMapSectionId == MAPSEC_FAST_SHIP)
+    {
+        sheet.data = sRegionMapPlayerIcon_ShipGfx;
+        sheet.size = 0x200;
+        palette.data = sRegionMapPlayerIcon_ShipPal;
+        template.oam = &sRegionMapShipIconOam;
+    }
     LoadSpriteSheet(&sheet);
     LoadSpritePalette(&palette);
     gRegionMap->spriteIds[1] = CreateSprite(&template, 0, 0, 2);
     sprite = &gSprites[gRegionMap->spriteIds[1]];
     sprite->x = (gRegionMap->playerIconSpritePosX + gRegionMap->xOffset + MAPCURSOR_X_MIN) * 8 + 4;
     sprite->y = (gRegionMap->playerIconSpritePosY + MAPCURSOR_Y_MIN) * 8 + 4;
-    //sprite->callback = SpriteCB_PlayerIcon;
+    if(FlagGet(FLAG_FAST_SHIP_DESTINATION_OLIVINE) && gMapHeader.regionMapSectionId == MAPSEC_FAST_SHIP)
+        sprite->oam.matrixNum |= ST_OAM_HFLIP;
+    if(gMapHeader.regionMapSectionId == MAPSEC_FAST_SHIP)
+        sprite->callback = SpriteCB_ShipIcon;
 }
 
 static void HideRegionMapPlayerIcon(void)
@@ -1565,25 +1600,24 @@ static void UnhideRegionMapPlayerIcon(void)
         sprite->y = (gRegionMap->playerIconSpritePosY + MAPCURSOR_Y_MIN) * 8 + 4;
         sprite->x2 = 0;
         sprite->y2 = 0;
-        //sprite->callback = SpriteCB_PlayerIcon;
         sprite->invisible = FALSE;
     }
 }
 
-static void SpriteCB_PlayerIcon(struct Sprite *sprite)
+static void SpriteCB_ShipIcon(struct Sprite *sprite)
 {
-    if (gRegionMap->blinkPlayerIcon)
+    ++sprite->data[7];
+    if (sprite->data[7] % 8 == 0)
     {
-        if (++sprite->data[7] > 16)
+        if(sprite->data[7] == 16)
         {
+            sprite->y++;
             sprite->data[7] = 0;
-            sprite->invisible = sprite->invisible ? FALSE : TRUE;
         }
+        else
+            sprite->y--;
     }
-    else
-    {
-        sprite->invisible = FALSE;
-    }
+
 }
 
 void TrySetPlayerIconBlink(void)
