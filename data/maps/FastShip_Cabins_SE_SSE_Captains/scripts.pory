@@ -1,4 +1,11 @@
 mapscripts FastShip_Cabins_SE_SSE_Captains_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if(flag(FLAG_FAST_SHIP_DESTINATION_OLIVINE))
+        {
+            setmetatile(37, 1, 0x2CA, 1)
+            setmetatile(38, 1, 0x2CB, 1)
+        }
+    }
     MAP_SCRIPT_ON_TRANSITION {
         if(flag(FLAG_VISITED_VERMILION_CITY))
         {
