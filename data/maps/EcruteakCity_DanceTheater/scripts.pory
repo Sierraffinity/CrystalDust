@@ -7,8 +7,11 @@ mapscripts EcruteakCity_DanceTheater_MapScripts {
     ]
     MAP_SCRIPT_ON_RETURN_TO_FIELD
     {
-        callnative(OverrideKimonoGirlsPaletteSlots)
-        callnative(PatchKimonoGirlPalettesToSlots)
+        if(flag(FLAG_TEMP_1))
+        {
+            callnative(OverrideKimonoGirlsPaletteSlots)
+            callnative(PatchKimonoGirlPalettesToSlots)
+        }
     }
 }
 
@@ -17,7 +20,9 @@ mapscripts EcruteakCity_DanceTheater_MapScripts {
 // This way, we don't have to waste 4 EVENT_OBJ_GFX_IDs on their different colors.
 // The Dance Theater never has its event objects culled when offscreen to faciliate this.
 script EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots{
+    setflag(FLAG_TEMP_1)
     callnative(OverrideKimonoGirlsPaletteSlots)
+    callnative(PatchKimonoGirlPalettesToSlots)
     setvar(VAR_TEMP_1, 0)
     release
 }
