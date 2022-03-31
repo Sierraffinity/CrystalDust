@@ -539,14 +539,14 @@ gTileset_Underwater::
 	.4byte NULL @ palette overrides
 
 	.align 2
-gTileset_VioletGym::
+gTileset_BurnedTower::
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_VioletGym
-	.4byte gTilesetPalettes_VioletGym
-	.4byte gMetatiles_VioletGym
-	.4byte gMetatilesAttributes_VioletGym
+	.4byte gTilesetTiles_BurnedTower
+	.4byte gTilesetPalettes_BurnedTower
+	.4byte gMetatiles_BurnedTower
+	.4byte gMetatilesAttributes_BurnedTower
 	.4byte NULL @ animation callback
 	.4byte NULL @ palette overrides
 
@@ -1420,5 +1420,17 @@ gTileset_PlayersRoom2::
 	.4byte gTilesetPalettes_PlayersRoom2
 	.4byte gMetatiles_PlayersRoom2
 	.4byte gMetatileAttributes_PlayersRoom2
+	.4byte NULL
+	.4byte NULL @ palette overrides
+
+	.align 2
+gTileset_VioletGym::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_VioletGym
+	.4byte gTilesetPalettes_VioletGym
+	.4byte gMetatiles_VioletGym
+	.4byte gMetatileAttributes_VioletGym
 	.4byte NULL
 	.4byte NULL @ palette overrides

@@ -367,12 +367,12 @@ gMetatileAttributes_LavaridgeGym::
 	.incbin "data/tilesets/secondary/lavaridge_gym/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_VioletGym::
-	.incbin "data/tilesets/secondary/violet_gym/metatiles.bin"
+gMetatiles_BurnedTower::
+	.incbin "data/tilesets/secondary/burned_tower/metatiles.bin"
 
 	.align 1
-gMetatilesAttributes_VioletGym::
-	.incbin "data/tilesets/secondary/violet_gym/metatile_attributes.bin"
+gMetatilesAttributes_BurnedTower::
+	.incbin "data/tilesets/secondary/burned_tower/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_FortreeGym::
@@ -861,3 +861,10 @@ gMetatiles_PlayersRoom2::
 	.align 1
 gMetatileAttributes_PlayersRoom2::
 	.incbin "data/tilesets/secondary/playersroom2/metatile_attributes.bin"
+	.align 1
+gMetatiles_VioletGym::
+	.incbin "data/tilesets/secondary/violetgym/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_VioletGym::
+	.incbin "data/tilesets/secondary/violetgym/metatile_attributes.bin"

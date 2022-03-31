@@ -353,7 +353,7 @@
       "id": "LAYOUT_VIOLET_CITY_GYM",
       "name": "VioletCity_Gym_Layout",
       "width": 13,
-      "height": 17,
+      "height": 21,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
@@ -3441,7 +3441,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_VioletGym",
+      "secondary_tileset": "gTileset_BurnedTower",
       "border_filepath": "data/layouts/Route39_MooMooFarmBarn/border.bin",
       "blockdata_filepath": "data/layouts/Route39_MooMooFarmBarn/map.bin"
     },
@@ -3465,7 +3465,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_VioletGym",
+      "secondary_tileset": "gTileset_BurnedTower",
       "border_filepath": "data/layouts/BurnedTower_1F/border.bin",
       "blockdata_filepath": "data/layouts/BurnedTower_1F/map.bin"
     },

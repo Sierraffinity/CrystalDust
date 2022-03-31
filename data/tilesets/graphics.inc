@@ -1176,27 +1176,27 @@ gTilesetPalettes_LavaridgeGym::
 	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_VioletGym::
-	.incbin "data/tilesets/secondary/violet_gym/tiles.4bpp.lz"
+gTilesetTiles_BurnedTower::
+	.incbin "data/tilesets/secondary/burned_tower/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_VioletGym::
-	.incbin "data/tilesets/secondary/violet_gym/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/15.gbapal"
+gTilesetPalettes_BurnedTower::
+	.incbin "data/tilesets/secondary/burned_tower/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/burned_tower/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_FortreeGym::
@@ -2686,3 +2686,23 @@ gTilesetPalettes_PlayersRoom2::
 	.align 2
 gTilesetTiles_PlayersRoom2::
 	.incbin "data/tilesets/secondary/playersroom2/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_VioletGym::
+	.incbin "data/tilesets/secondary/violetgym/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/violetgym/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/violetgym/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/violetgym/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/violetgym/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/violetgym/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/violetgym/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/violetgym/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/violetgym/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/violetgym/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/violetgym/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/violetgym/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/violetgym/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_VioletGym::
+	.incbin "data/tilesets/secondary/violetgym/tiles.4bpp.lz"
