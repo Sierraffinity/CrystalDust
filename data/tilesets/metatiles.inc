@@ -868,3 +868,10 @@ gMetatiles_VioletGym::
 	.align 1
 gMetatileAttributes_VioletGym::
 	.incbin "data/tilesets/secondary/violetgym/metatile_attributes.bin"
+	.align 1
+gMetatiles_DragonsDen_Shrine::
+	.incbin "data/tilesets/secondary/dragonsden_shrine/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_DragonsDen_Shrine::
+	.incbin "data/tilesets/secondary/dragonsden_shrine/metatile_attributes.bin"
