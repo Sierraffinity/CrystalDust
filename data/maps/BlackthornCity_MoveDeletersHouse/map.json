@@ -2,7 +2,7 @@
   "id": "MAP_BLACKTHORN_CITY_MOVE_DELETERS_HOUSE",
   "name": "BlackthornCity_MoveDeletersHouse",
   "layout": "LAYOUT_HOUSE1",
-  "music": "MUS_AZALEA",
+  "music": "MUS_RG_SEVII_45",
   "region_map_section": "MAPSEC_BLACKTHORN_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

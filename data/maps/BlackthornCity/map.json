@@ -2,7 +2,7 @@
   "id": "MAP_BLACKTHORN_CITY",
   "name": "BlackthornCity",
   "layout": "LAYOUT_BLACKTHORN_CITY",
-  "music": "MUS_AZALEA",
+  "music": "MUS_RG_SEVII_45",
   "region_map_section": "MAPSEC_BLACKTHORN_CITY",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
