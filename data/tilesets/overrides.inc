@@ -302,3 +302,20 @@ gTilesetPalOverrides_CeladonMansion::
 	.byte 0
 	.byte 0 @ padding
 	.4byte NULL
+
+gTilesetPalOverrides_DragonsDen_Shrine::
+	.byte 8
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_DragonsDen_Shrine08
+	.byte 9
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_DragonsDen_Shrine09
+	.byte 0xFF
+	.byte 0
+	.byte 0
+	.byte 0 @ padding
+	.4byte NULL

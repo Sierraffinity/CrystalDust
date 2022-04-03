@@ -1444,5 +1444,5 @@ gTileset_DragonsDen_Shrine::
 	.4byte gTilesetPalettes_DragonsDen_Shrine
 	.4byte gMetatiles_DragonsDen_Shrine
 	.4byte gMetatileAttributes_DragonsDen_Shrine
-	.4byte NULL
-	.4byte NULL @ palette overrides
+	.4byte InitTilesetAnim_DragonsDen_Shrine
+	.4byte gTilesetPalOverrides_DragonsDen_Shrine @ palette overrides

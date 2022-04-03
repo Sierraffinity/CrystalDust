@@ -30,6 +30,7 @@ static void TilesetAnim_Slateport(u16);
 static void TilesetAnim_Mauville(u16);
 static void TilesetAnim_BlackthornGym(u16);
 static void TilesetAnim_PokemonLeague(u16);
+static void TilesetAnim_DragonsDen_Shrine(u16);
 static void TilesetAnim_EverGrande(u16);
 static void TilesetAnim_Pacifidlog(u16);
 static void TilesetAnim_Sootopolis(u16);
@@ -60,6 +61,8 @@ static void QueueAnimTiles_PagodaTower_SproutTowerPillar(u16);
 static void QueueAnimTiles_PokemonDayCare_RedFlower(u16);
 static void QueueAnimTiles_PokemonDayCare_YellowFlower(u16);
 static void QueueAnimTiles_BattlePyramid_Torch(u16);
+static void QueueAnimTiles_DragonsDen_Shrine_Torch(u16 timer);
+static void QueueAnimTiles_DragonsDen_Shrine_TorchShadow(u16 timer);
 static void QueueAnimTiles_BattlePyramid_StatueShadow(u16);
 static void BlendAnimPalette_BattleDome_FloorLights(u16);
 static void BlendAnimPalette_BattleDome_FloorLightsNoBlend(u16);
@@ -586,6 +589,26 @@ const u16 *const gTilesetAnims_Sootopolis_StormyWater[] = {
     gTilesetAnims_Sootopolis_StormyWater_Frame7
 };
 
+const u16 gTilesetAnims_DragonsDen_Shrine_Torch_Frame0[] = INCBIN_U16("data/tilesets/secondary/dragonsden_shrine/anim/torch/0.4bpp");
+const u16 gTilesetAnims_DragonsDen_Shrine_Torch_Frame1[] = INCBIN_U16("data/tilesets/secondary/dragonsden_shrine/anim/torch/1.4bpp");
+const u16 gTilesetAnims_DragonsDen_Shrine_Torch_Frame2[] = INCBIN_U16("data/tilesets/secondary/dragonsden_shrine/anim/torch/2.4bpp");
+
+const u16 *const gTilesetAnims_DragonsDen_Shrine_Torch[] = {
+    gTilesetAnims_DragonsDen_Shrine_Torch_Frame0,
+    gTilesetAnims_DragonsDen_Shrine_Torch_Frame1,
+    gTilesetAnims_DragonsDen_Shrine_Torch_Frame2
+};
+
+const u16 gTilesetAnims_DragonsDen_Shrine_TorchShadow_Frame0[] = INCBIN_U16("data/tilesets/secondary/dragonsden_shrine/anim/torch_shadow/0.4bpp");
+const u16 gTilesetAnims_DragonsDen_Shrine_TorchShadow_Frame1[] = INCBIN_U16("data/tilesets/secondary/dragonsden_shrine/anim/torch_shadow/1.4bpp");
+const u16 gTilesetAnims_DragonsDen_Shrine_TorchShadow_Frame2[] = INCBIN_U16("data/tilesets/secondary/dragonsden_shrine/anim/torch_shadow/2.4bpp");
+
+const u16 *const gTilesetAnims_DragonsDen_Shrine_TorchShadow[] = {
+    gTilesetAnims_DragonsDen_Shrine_TorchShadow_Frame0,
+    gTilesetAnims_DragonsDen_Shrine_TorchShadow_Frame1,
+    gTilesetAnims_DragonsDen_Shrine_TorchShadow_Frame2
+};
+
 const u16 gTilesetAnims_BattlePyramid_Torch_Frame0[] = INCBIN_U16("data/tilesets/secondary/battle_pyramid/anim/torch/0.4bpp");
 const u16 gTilesetAnims_BattlePyramid_Torch_Frame1[] = INCBIN_U16("data/tilesets/secondary/battle_pyramid/anim/torch/1.4bpp");
 const u16 gTilesetAnims_BattlePyramid_Torch_Frame2[] = INCBIN_U16("data/tilesets/secondary/battle_pyramid/anim/torch/2.4bpp");
@@ -1011,6 +1034,13 @@ void InitTilesetAnim_PokemonLeague(void)
     sSecondaryTilesetAnimCallback = TilesetAnim_PokemonLeague;
 }
 
+void InitTilesetAnim_DragonsDen_Shrine(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
+    sSecondaryTilesetAnimCallback = TilesetAnim_DragonsDen_Shrine;
+}
+
 static void TilesetAnim_Rustboro(u16 timer)
 {
     /*if (timer % 8 == 0)
@@ -1297,6 +1327,15 @@ static void TilesetAnim_BattlePyramid(u16 timer)
     }
 }
 
+static void TilesetAnim_DragonsDen_Shrine(u16 timer)
+{
+    if (timer % 8 == 0)
+    {
+        QueueAnimTiles_DragonsDen_Shrine_Torch(timer >> 3);
+        QueueAnimTiles_DragonsDen_Shrine_TorchShadow(timer >> 3);
+    }
+}
+
 static void TilesetAnim_BattleDome(u16 timer)
 {
     if (timer % 4 == 0)
@@ -1428,6 +1467,18 @@ static void QueueAnimTiles_BattlePyramid_Torch(u16 timer)
 {
     u16 i = timer % 3;
     AppendTilesetAnimToBuffer(gTilesetAnims_BattlePyramid_Torch[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 151)), 0x100);
+}
+
+static void QueueAnimTiles_DragonsDen_Shrine_Torch(u16 timer)
+{
+    u16 i = timer % 3;
+    AppendTilesetAnimToBuffer(gTilesetAnims_DragonsDen_Shrine_Torch[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 74)), 0xC0);
+}
+
+static void QueueAnimTiles_DragonsDen_Shrine_TorchShadow(u16 timer)
+{
+    u16 i = timer % 3;
+    AppendTilesetAnimToBuffer(gTilesetAnims_DragonsDen_Shrine_TorchShadow[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 128)), 0x200);
 }
 
 static void QueueAnimTiles_BattlePyramid_StatueShadow(u16 timer)

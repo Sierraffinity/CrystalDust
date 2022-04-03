@@ -1846,6 +1846,12 @@ gTilesetPalOverride_Lavender11::
 gTilesetPalOverride_CeladonMansion07::
 	.incbin "data/tilesets/secondary/celadonmansion/palettes/07_over.gbapal"
 
+gTilesetPalOverride_DragonsDen_Shrine08::
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/08_over.gbapal"
+
+gTilesetPalOverride_DragonsDen_Shrine09::
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/09_over.gbapal"
+
 	.align 2
 gTilesetPalettes_PalletTown::
 	.incbin "data/tilesets/secondary/pallettown/palettes/00.gbapal"

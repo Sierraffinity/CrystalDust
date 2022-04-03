@@ -118,6 +118,22 @@ void CopyCurrentDayOfWeekStringToVar1(void)
         StringCopy(gStringVar1, gText_None);
 }
 
+bool32 ShouldSetTintToNight(void)
+{
+    switch(gMapHeader.mapLayoutId)
+    {
+        case LAYOUT_ILEX_FOREST:
+        case LAYOUT_DRAGONS_DEN_ENTRANCE:
+        case LAYOUT_DRAGONS_DEN:
+        case LAYOUT_DRAGONS_DEN_SHRINE:
+        case LAYOUT_FUCHSIA_CITY_SAFARI_ZONE_OFFICE:
+            return TRUE;
+    }
+    if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LIGHTHOUSE_6F) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(LIGHTHOUSE_6F) && !FlagGet(FLAG_CURED_AMPHY))
+        return TRUE;
+    return FALSE;
+}
+
 static void LoadPaletteOverrides(void)
 {
     u8 i, j;
@@ -130,15 +146,7 @@ static void LoadPaletteOverrides(void)
         return;
 #endif
 
-    if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST || gMapHeader.mapLayoutId == LAYOUT_DRAGONS_DEN)
-    {
-        hour = 0;
-    }
-    if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LIGHTHOUSE_6F) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(LIGHTHOUSE_6F) && !FlagGet(FLAG_CURED_AMPHY))
-    {
-        hour = 0;
-    }
-    if(gMapHeader.mapLayoutId == LAYOUT_FUCHSIA_CITY_SAFARI_ZONE_OFFICE)
+    if (ShouldSetTintToNight())
     {
         hour = 0;
     }
@@ -176,13 +184,9 @@ static void LoadPaletteOverrides(void)
 
 static bool8 ShouldTintOverworld(void)
 {
-    if (IsMapTypeOutdoors(gMapHeader.mapType) || gMapHeader.mapLayoutId == LAYOUT_DRAGONS_DEN)
+    if (IsMapTypeOutdoors(gMapHeader.mapType))
         return TRUE;
-    if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LIGHTHOUSE_6F) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(LIGHTHOUSE_6F) && !FlagGet(FLAG_CURED_AMPHY))
-        return TRUE;
-    if(gMapHeader.mapLayoutId == LAYOUT_FUCHSIA_CITY_SAFARI_ZONE_OFFICE)
-        return TRUE;
-    return FALSE;
+    return ShouldSetTintToNight();
 }
 
 bool32 LerpColors(u16 *rgbDest, const u16 *rgb1, const u16 *rgb2, u8 coeff)
@@ -222,7 +226,7 @@ static void TintPaletteForDayNight(u16 offset, u16 size)
     {
         RtcCalcLocalTimeFast();
 
-        if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
+        if (ShouldSetTintToNight())
         {
             hour = 0;
             hourPhase = 0;
@@ -291,7 +295,7 @@ void ProcessImmediateTimeEvents(void)
     {
         if (sDNSystemControl.retintPhase == 0)
         {
-            if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
+            if (ShouldSetTintToNight())
             {
                 hour = 0;
                 hourPhase = 0;
