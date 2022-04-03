@@ -454,7 +454,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER       0x1115 // Brendan & May underwater
 #define OBJ_EVENT_PAL_TAG_SS_AQUA                 0x1116
 #define OBJ_EVENT_PAL_TAG_MURKROW                 0x1117
-#define OBJ_EVENT_PAL_TAG_UNUSED_4                0x1118
+#define OBJ_EVENT_PAL_TAG_RED_GYARADOS_REFLECTION 0x1118
 #define OBJ_EVENT_PAL_TAG_UNUSED_3                0x1119
 #define OBJ_EVENT_PAL_TAG_UNUSED                  0x111A
 #define OBJ_EVENT_PAL_TAG_EUSINE                  0x111B
@@ -498,7 +498,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_RedGyarados,           OBJ_EVENT_PAL_TAG_RED_GYARADOS},
     {gObjectEventPal_Kris,                  OBJ_EVENT_PAL_TAG_KRIS},
     {gObjectEventPal_KrisReflection,        OBJ_EVENT_PAL_TAG_KRIS_REFLECTION},
-    //{gObjectEventPal_MovingBox,             OBJ_EVENT_PAL_TAG_MOVING_BOX},
+    {gObjectEventPal_RedGyaradosReflection, OBJ_EVENT_PAL_TAG_RED_GYARADOS_REFLECTION},
     //{gObjectEventPal_CableCar,              OBJ_EVENT_PAL_TAG_CABLE_CAR},
     {gObjectEventPal_SSTidal,               OBJ_EVENT_PAL_TAG_SSTIDAL},
     {gObjectEventPal_Murkrow,               OBJ_EVENT_PAL_TAG_MURKROW},
@@ -608,11 +608,11 @@ static const u16 sReflectionPaletteTags_Kyogre[] = {
     OBJ_EVENT_PAL_TAG_MURKROW,
 };
 
-static const u16 sReflectionPaletteTags_Groudon[] = {
-    OBJ_EVENT_PAL_TAG_UNUSED_3,
-    OBJ_EVENT_PAL_TAG_UNUSED_3,
-    OBJ_EVENT_PAL_TAG_UNUSED_3,
-    OBJ_EVENT_PAL_TAG_UNUSED_3,
+static const u16 sReflectionPaletteTags_RedGyarados[] = {
+    OBJ_EVENT_PAL_TAG_RED_GYARADOS_REFLECTION,
+    OBJ_EVENT_PAL_TAG_RED_GYARADOS_REFLECTION,
+    OBJ_EVENT_PAL_TAG_RED_GYARADOS_REFLECTION,
+    OBJ_EVENT_PAL_TAG_RED_GYARADOS_REFLECTION,
 };
 
 static const u16 sReflectionPaletteTags_Npc3[] = { // Only used by the Route 120 bridge Kecleon
@@ -640,7 +640,7 @@ static const struct PairedPalettes sSpecialObjectReflectionPaletteSets[] = {
     {OBJ_EVENT_PAL_TAG_CABLE_CAR,        sReflectionPaletteTags_CableCar},
     {OBJ_EVENT_PAL_TAG_SSTIDAL,          sReflectionPaletteTags_SSTidal},
     {OBJ_EVENT_PAL_TAG_SS_AQUA,           sReflectionPaletteTags_Kyogre},
-    {OBJ_EVENT_PAL_TAG_UNUSED_4,          sReflectionPaletteTags_Groudon},
+    {OBJ_EVENT_PAL_TAG_RED_GYARADOS,     sReflectionPaletteTags_RedGyarados},
     {OBJ_EVENT_PAL_TAG_NPC_3,            sReflectionPaletteTags_Npc3},
     {OBJ_EVENT_PAL_TAG_EUSINE, sReflectionPaletteTags_SubmarineShadow},
     {OBJ_EVENT_PAL_TAG_RED_LEAF,         sReflectionPaletteTags_RedLeaf},

@@ -221,6 +221,7 @@ const u32 gObjectEventPic_NidoranF[] = INCBIN_U32("graphics/object_events/pics/p
 const u32 gObjectEventPic_NidoranM[] = INCBIN_U32("graphics/object_events/pics/pokemon/nidoran_m.4bpp");
 const u32 gObjectEventPic_Poliwrath[] = INCBIN_U32("graphics/object_events/pics/pokemon/poliwrath.4bpp");
 const u16 gObjectEventPal_RedGyarados[] = INCBIN_U16("graphics/object_events/palettes/red_gyarados.gbapal");
+const u16 gObjectEventPal_RedGyaradosReflection[] = INCBIN_U16("graphics/object_events/palettes/red_gyarados_reflection.gbapal");
 const u32 gObjectEventPic_Marill[] = INCBIN_U32("graphics/object_events/pics/pokemon/marill.4bpp");
 const u16 gObjectEventPal_Dragonite[] = INCBIN_U16("graphics/object_events/palettes/dragonite.gbapal");
 const u32 gObjectEventPic_Dodrio[] = INCBIN_U32("graphics/object_events/pics/pokemon/dodrio.4bpp");
