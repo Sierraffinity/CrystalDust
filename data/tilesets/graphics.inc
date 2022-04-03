@@ -2706,3 +2706,23 @@ gTilesetPalettes_VioletGym::
 	.align 2
 gTilesetTiles_VioletGym::
 	.incbin "data/tilesets/secondary/violetgym/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_DragonsDen_Shrine::
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/dragonsden_shrine/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_DragonsDen_Shrine::
+	.incbin "data/tilesets/secondary/dragonsden_shrine/tiles.4bpp.lz"
