@@ -177,10 +177,10 @@ void Task_PlayRadioShow(u8 taskId)
             
             if (*caughtMons == NULL)
             {
-                *caughtMons = AllocZeroed(sizeof(u16) * NATIONAL_DEX_COUNT);
+                *caughtMons = AllocZeroed(sizeof(u16) * JOHTO_DEX_COUNT);
                 if (*caughtMons)
                 {
-                    for (species = NATIONAL_DEX_BULBASAUR, i = 0; species <= NATIONAL_DEX_COUNT; species++)
+                    for (species = NATIONAL_DEX_BULBASAUR, i = 0; species <= JOHTO_DEX_COUNT; species++)
                     {
                         if (GetSetPokedexFlag(species, FLAG_GET_CAUGHT))
                         {
@@ -368,7 +368,7 @@ void Task_PlayRadioShow(u8 taskId)
         NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
         break;
     case POKEDEX_SHOW_3:
-        StringCopy(gStringVar4, gPokedexEntries[tMiscValue].description);
+        StringCopy(gStringVar4, gPokedexEntries[tMiscValue].pokedexShowEntry);
         tMiscValue = 0;
     case POKEDEX_SHOW_4:
         {
