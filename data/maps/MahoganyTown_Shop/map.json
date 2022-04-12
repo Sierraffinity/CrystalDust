@@ -29,7 +29,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MahoganyTown_Shop_RocketClerk",
-      "flag": "TRAINER_MAHOGANY_EXECUTIVE_F"
+      "flag": "FLAG_TRAINER_MAHOGANY_EXECUTIVE_F"
     },
     {
       "type": "original",
@@ -44,7 +44,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MahoganyTown_Shop_BlackBelt",
-      "flag": "TRAINER_MAHOGANY_EXECUTIVE_F"
+      "flag": "FLAG_TRAINER_MAHOGANY_EXECUTIVE_F"
     },
     {
       "type": "original",

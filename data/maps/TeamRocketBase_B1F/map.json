@@ -89,7 +89,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "TeamRocketBase_B1F_Eventscript_ScientistJed",
-      "flag": "TRAINER_MAHOGANY_EXECUTIVE_F"
+      "flag": "FLAG_TRAINER_MAHOGANY_EXECUTIVE_F"
     },
     {
       "type": "original",
@@ -104,7 +104,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "TeamRocketBase_B1F_Eventscript_RocketGrunt",
-      "flag": "TRAINER_MAHOGANY_EXECUTIVE_F"
+      "flag": "FLAG_TRAINER_MAHOGANY_EXECUTIVE_F"
     },
     {
       "type": "original",

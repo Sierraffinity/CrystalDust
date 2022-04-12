@@ -29,7 +29,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "TRAINER_RIVAL_MT_MOON_CHIKORITA"
+      "flag": "FLAG_TRAINER_RIVAL_MT_MOON_CHIKORITA"
     },
     {
       "type": "original",

@@ -29,7 +29,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "TeamRocketBase_B3F_EventScript_DefeatedRocket",
-      "flag": "TRAINER_MAHOGANY_EXECUTIVE_F"
+      "flag": "FLAG_TRAINER_MAHOGANY_EXECUTIVE_F"
     },
     {
       "type": "original",
@@ -59,7 +59,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "TeamRocketBase_B3F_EventScript_ScientistRoss",
-      "flag": "TRAINER_MAHOGANY_EXECUTIVE_F"
+      "flag": "FLAG_TRAINER_MAHOGANY_EXECUTIVE_F"
     },
     {
       "type": "original",
@@ -74,7 +74,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "TeamRocketBase_B3F_EventScript_GruntF",
-      "flag": "TRAINER_MAHOGANY_EXECUTIVE_F"
+      "flag": "FLAG_TRAINER_MAHOGANY_EXECUTIVE_F"
     },
     {
       "type": "original",
@@ -89,7 +89,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "TeamRocketBase_B3F_EventScript_ScientistMitch",
-      "flag": "TRAINER_MAHOGANY_EXECUTIVE_F"
+      "flag": "FLAG_TRAINER_MAHOGANY_EXECUTIVE_F"
     },
     {
       "type": "original",
@@ -104,7 +104,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "TeamRocketBase_B3F_EventScript_GruntM",
-      "flag": "TRAINER_MAHOGANY_EXECUTIVE_F"
+      "flag": "FLAG_TRAINER_MAHOGANY_EXECUTIVE_F"
     },
     {
       "type": "original",
@@ -209,7 +209,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "TeamRocketBase_B3F_EventScript_Murkrow",
-      "flag": "TRAINER_MAHOGANY_EXECUTIVE_F"
+      "flag": "FLAG_TRAINER_MAHOGANY_EXECUTIVE_F"
     },
     {
       "type": "original",
@@ -224,7 +224,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "TRAINER_MAHOGANY_EXECUTIVE_M"
+      "flag": "FLAG_TRAINER_MAHOGANY_EXECUTIVE_M"
     }
   ],
   "warp_events": [

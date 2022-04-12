@@ -1347,6 +1347,9 @@
 // See constants/opponents.h. The values there + FLAG_TRAINER_FLAG_START are the flag IDs
 
 #define TRAINER_FLAGS_START                                         0x500
+#define FLAG_TRAINER_MAHOGANY_EXECUTIVE_F                           (TRAINER_FLAGS_START + TRAINER_MAHOGANY_EXECUTIVE_F) // used as a hide flag for many objects, same as TRAINER_MAHOGANY_EXECUTIVE_F
+#define FLAG_TRAINER_MAHOGANY_EXECUTIVE_M                           (TRAINER_FLAGS_START + TRAINER_MAHOGANY_EXECUTIVE_M) // used as a hide flag, same as TRAINER_MAHOGANY_EXECUTIVE_M
+#define FLAG_TRAINER_RIVAL_MT_MOON_CHIKORITA                        (TRAINER_FLAGS_START + TRAINER_RIVAL_MT_MOON_CHIKORITA) // used as a hide flag, same as TRAINER_RIVAL_MT_MOON_CHIKORITA
 #define TRAINER_FLAGS_END                                           (TRAINER_FLAGS_START + MAX_TRAINERS_COUNT - 1) // 0x85F
 
 // System Flags
