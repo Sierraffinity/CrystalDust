@@ -281,11 +281,14 @@ u8 ToneTrack_ExecuteCommands(u8 commandID, struct MusicPlayerInfo *info, struct 
                 byte2 = track->nextInstruction[2];
                 if (byte2 != 0)
                 {
-                    track->modulationDelay = track->nextInstruction[1] & 0x3F;
-                    track->modulationMode = (track->nextInstruction[1] & 0xC0) >> 6;
+                    track->statusFlags[ModulationActivation] = TRUE;
+                    track->statusFlags[ModulationStatus] = FALSE;
+                    //track->modulationDelay = track->nextInstruction[1] & 0x3F;
+                    //track->modulationMode = (track->nextInstruction[1] & 0xC0) >> 6;
+                    track->modulationDelay = track->nextInstruction[1];
+                    track->modulationMode = 0;
                     track->modulationDepth = (byte2 & 0xF0) >> 4;
                     track->modulationSpeed = byte2 & 0xF;
-                    track->statusFlags[ModulationActivation] = TRUE;
                 }
                 else
                 {
@@ -509,7 +512,7 @@ void ToneTrack_ModulateTrack(struct ToneTrack *track)
 void ToneTrack_ResetModulationArpeggiationCounters(struct ToneTrack *track)
 {
     track->modulationCountdown = track->modulationDelay;
-    track->statusFlags[ModulationStatus] = FALSE;
+    //track->statusFlags[ModulationStatus] = FALSE;
     track->modulationSpeedDelay = track->modulationSpeed;
     if (track->modulationCountdown == 0)
     {
@@ -691,6 +694,7 @@ void WaveTrack_ModulateTrack(struct WaveTrack *track)
         {
             if (track->modulationSpeedDelay == 0 && track->pitch != 0)
             {
+                // TODO: Merge with ToneTrack_GetModulationPitch
                 u16 outPitch = track->pitch;
                 bool8 flagCheck = track->statusFlags[ModulationStatus];
                 track->modulationSpeedDelay = track->modulationSpeed;
@@ -811,11 +815,14 @@ bool16 WaveTrack_ExecuteCommands(u8 commandID, struct WaveTrack *track)
                 u8 theByte = track->nextInstruction[2];
                 if (theByte != 0)
                 {
-                    track->modulationDelay = track->nextInstruction[1] & 0x3F;
-                    track->modulationMode = (track->nextInstruction[1] & 0xC0) >> 6;
+                    track->statusFlags[ModulationActivation] = TRUE;
+                    track->statusFlags[ModulationStatus] = FALSE;
+                    //track->modulationDelay = track->nextInstruction[1] & 0x3F;
+                    //track->modulationMode = (track->nextInstruction[1] & 0xC0) >> 6;
+                    track->modulationDelay = track->nextInstruction[1];
+                    track->modulationMode = 0;
                     track->modulationDepth = (theByte & 0xF0) >> 4;
                     track->modulationSpeed = theByte & 0xF;
-                    track->statusFlags[ModulationActivation] = TRUE;
                 }
                 else
                 {
@@ -940,7 +947,7 @@ bool16 WaveTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
             WaveTrack_ExecuteModifications(commandID, info->gbsTempo, waveTrack);
             waveTrack->nextInstruction++;
             waveTrack->modulationCountdown = waveTrack->modulationDelay;
-            waveTrack->statusFlags[ModulationStatus] = FALSE;
+            //waveTrack->statusFlags[ModulationStatus] = FALSE;
             waveTrack->modulationSpeedDelay = waveTrack->modulationSpeed;
             if (waveTrack->modulationCountdown == 0)
             {

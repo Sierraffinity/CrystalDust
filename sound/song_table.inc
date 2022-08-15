@@ -653,7 +653,7 @@ gGBSSongTable::
 	song_gbs MUS_AZALEA,				gbs_azalea_town_Header,			0, 0	@ Azalea Town
 	song_gbs MUS_ENCOUNTER_ROCKET,		gbs_enc_rocket_Header,			0, 0	@ Trainers' Eyes Meet (Team Rocket)
 	song_gbs MUS_VS_ROCKET,				gbs_btl_rocket_Header,			0, 0	@ Battle! (Team Rocket)
-	song_gbs MUS_ROUTE34,				gbs_route34_Header,				0, 0	@ Route 34
+	song_gbs MUS_ROUTE34,				gbs_rocket_signal_Header,				0, 0	@ Route 34
 	song_gbs MUS_GOLDENROD,				gbs_goldenrod_city_Header,		0, 0	@ Goldenrod City
 	song_gbs MUS_POKECOM_CENTER,		gbs_pokecom_center_Header,		0, 0	@ Pokécom Center
 	song_gbs MUS_CYCLING,				gbs_bike_Header,				0, 0	@ Cycling Theme
