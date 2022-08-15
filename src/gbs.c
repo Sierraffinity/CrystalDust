@@ -14,59 +14,59 @@
 
 bool8 gWaveTrackShouldReloadPattern;
 
-inline u32 LoadUInt(u8 *source, u32 offset)
+static inline u32 LoadUInt(u8 *source, u32 offset)
 {
     return *(source + offset) | (*(source + offset + 1) << 8) | (*(source + offset + 2) << 16) | (*(source + offset + 3) << 24);
 }
 
-inline u8 *LoadUIntPointer(u8 *source, u32 offset)
+static inline u8 *LoadUIntPointer(u8 *source, u32 offset)
 {
     return (u8 *)LoadUInt(source, offset);
 }
 
-inline u16 LoadUShortNumber(u8 *source, u32 offset)
+static inline u16 LoadUShortNumber(u8 *source, u32 offset)
 {
     return *(source + offset) | (*(source + offset + 1) << 8);
 }
 
-inline u16 UShortEndianSwap(u16 input)
+static inline u16 UShortEndianSwap(u16 input)
 {
     u16 temp = (input & 0xFF) << 8;
     return (input >> 8) | temp;
 }
 
-inline vu16 *ToneTrackControl()
+static inline vu16 *ToneTrackControl()
 {
     return (vu16 *)(REG_ADDR_NR10);
 }
 
-inline vu16 *WaveTrackControl()
+static inline vu16 *WaveTrackControl()
 {
     return (vu16 *)(REG_ADDR_NR30);
 }
 
-inline vu16 *NoiseTrackControl()
+static inline vu16 *NoiseTrackControl()
 {
     return (vu16 *)(REG_ADDR_NR41);
 }
 
-inline vu8 *SoundControl()
+static inline vu8 *SoundControl()
 {
     return (vu8 *)(REG_ADDR_NR50);
 }
 
 // Is m4a engine using GB channel? If so, don't render
-inline bool32 ShouldRenderSound(int trackID)
+static inline bool32 ShouldRenderSound(int trackID)
 {
     return gUsedGBChannels[trackID] == FALSE;
 }
 
-inline bool32 ShouldRenderWaveChannel()
+static inline bool32 ShouldRenderWaveChannel()
 {
     return ShouldRenderSound(2);
 }
 
-inline bool32 ShouldRenderNoiseChannel()
+static inline bool32 ShouldRenderNoiseChannel()
 {
     return ShouldRenderSound(3);
 }
@@ -389,14 +389,14 @@ u8 ToneTrack_ExecuteCommands(u8 commandID, struct MusicPlayerInfo *info, struct 
                 break;
             case End:
                 commandLength = 0;
-                if (track->returnLocation == 0)
+                if (track->returnLocation == NULL)
                 {
                     return 0xFF;
                 }
                 else
                 {
                     track->nextInstruction = track->returnLocation;
-                    track->returnLocation = 0;
+                    track->returnLocation = NULL;
                 }
                 break;
         }
@@ -512,7 +512,7 @@ void ToneTrack_ModulateTrack(struct ToneTrack *track)
 void ToneTrack_ResetModulationArpeggiationCounters(struct ToneTrack *track)
 {
     track->modulationCountdown = track->modulationDelay;
-    //track->statusFlags[ModulationStatus] = FALSE;
+    track->statusFlags[ModulationStatus] = FALSE;
     track->modulationSpeedDelay = track->modulationSpeed;
     if (track->modulationCountdown == 0)
     {
@@ -574,6 +574,8 @@ bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
     else
     {
         toneTrack->noteLength1--;
+        // Modulation and arpeggiation may need to run regardless
+        // of note over
         ToneTrack_ModulateTrack(toneTrack);
         ToneTrack_ArpeggiateTrack(toneTrack);
     }
@@ -696,14 +698,14 @@ void WaveTrack_ModulateTrack(struct WaveTrack *track)
             {
                 // TODO: Merge with ToneTrack_GetModulationPitch
                 u16 outPitch = track->pitch;
-                bool8 flagCheck = track->statusFlags[ModulationStatus];
+                track->statusFlags[ModulationStatus] = !track->statusFlags[ModulationStatus];
                 track->modulationSpeedDelay = track->modulationSpeed;
                 switch (track->modulationMode)
                 {
                     case 0:
                     {
                         u8 halfValue = track->modulationDepth >> 1;
-                        if (flagCheck)
+                        if (track->statusFlags[ModulationStatus])
                         {
                             outPitch += (track->modulationDepth - halfValue);
                         }
@@ -714,19 +716,18 @@ void WaveTrack_ModulateTrack(struct WaveTrack *track)
                         break;
                     }
                     case 1:
-                        if (flagCheck)
+                        if (track->statusFlags[ModulationStatus])
                         {
                             outPitch -= track->modulationDepth;
                         }
                         break;
                     case 2:
-                        if (flagCheck)
+                        if (track->statusFlags[ModulationStatus])
                         {
                             outPitch += track->modulationDepth;
                         }
                         break;
                 }
-                track->statusFlags[ModulationStatus] = !track->statusFlags[ModulationStatus];
                 if (ShouldRenderWaveChannel())
                 {
                     vu16 *control = WaveTrackControl();
@@ -754,7 +755,7 @@ bool16 WaveTrack_ExecuteCommands(u8 commandID, struct WaveTrack *track)
         commandID -= 0xD8;
         switch (commandID)
         {
-            case 0:
+            case SetNoteAttributesAndLength:
             {
                 u8 theValue = track->nextInstruction[1];
                 u8 byte2 = track->nextInstruction[2];
@@ -774,17 +775,18 @@ bool16 WaveTrack_ExecuteCommands(u8 commandID, struct WaveTrack *track)
                 commandLength = 3;
                 break;
             }
-            case 1:
+            case SetKeyShift:
             {
                 track->keyShift = track->nextInstruction[1];
                 commandLength = 2;
                 break;
             }
-            case 3: case 6:
+            case SetDutyCycle:
+            case SetDutyCycle2:
                 track->currentVoice = track->nextInstruction[1];
                 commandLength = 2;
                 break;
-            case 4:
+            case SetNoteAttributes:
             {
                 u8 byte2 = track->nextInstruction[1];
                 u8 newVelocity = (byte2 & 0x70) >> 4;
@@ -807,10 +809,10 @@ bool16 WaveTrack_ExecuteCommands(u8 commandID, struct WaveTrack *track)
                 commandLength = 2;
                 break;
             }
-            case 8:
+            case PitchBend:
                 commandLength = 3;
                 break;
-            case 9:
+            case SetModulation:
             {
                 u8 theByte = track->nextInstruction[2];
                 if (theByte != 0)
@@ -831,25 +833,25 @@ bool16 WaveTrack_ExecuteCommands(u8 commandID, struct WaveTrack *track)
                 commandLength = 3;
                 break;
             }
-            case 14:
+            case SetTone:
                 track->tone = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 1));
                 commandLength = 3;
                 break;
-            case 23:
+            case Pan:
             {
                 u8 byte = track->nextInstruction[1];
                 track->pan = (byte == 0) ? 0xFF : byte;
                 commandLength = 2;
                 break;
             }
-            case 35:
+            case JumpIf:
                 commandLength = 6;
                 break;
-            case 36:
+            case Jump:
                 track->nextInstruction = LoadUIntPointer(track->nextInstruction, 1);
                 commandLength = 0;
                 break;
-            case 37:
+            case Goto:
                 if (track->returnLocation == 0)
                 {
                     if (track->nextInstruction[1] == 0 || track->nextInstruction[1] - 1 > track->loopCounter)
@@ -885,7 +887,7 @@ bool16 WaveTrack_ExecuteCommands(u8 commandID, struct WaveTrack *track)
                     }
                 }
                 break;
-            case 38:
+            case Call:
                 if (track->returnLocation == 0)
                 {
                     track->returnLocation = track->nextInstruction + 5;
@@ -893,7 +895,7 @@ bool16 WaveTrack_ExecuteCommands(u8 commandID, struct WaveTrack *track)
                 }
                 commandLength = 0;
                 break;
-            case 39:
+            case End:
                 commandLength = 0;
                 if (track->returnLocation == 0)
                 {
@@ -947,12 +949,9 @@ bool16 WaveTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
             WaveTrack_ExecuteModifications(commandID, info->gbsTempo, waveTrack);
             waveTrack->nextInstruction++;
             waveTrack->modulationCountdown = waveTrack->modulationDelay;
-            //waveTrack->statusFlags[ModulationStatus] = FALSE;
+            waveTrack->statusFlags[ModulationStatus] = FALSE;
             waveTrack->modulationSpeedDelay = waveTrack->modulationSpeed;
-            if (waveTrack->modulationCountdown == 0)
-            {
-                WaveTrack_ModulateTrack(waveTrack);
-            }
+            WaveTrack_ModulateTrack(waveTrack);
         }
     }
     else
@@ -1310,6 +1309,7 @@ bool16 GBSTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
     
     // Set bias level to 0 for less crunch
     // Always set here since m4a engine may have changed it
+    // TODO: Use SWI instead
     REG_SOUNDBIAS = REG_SOUNDBIAS & 0xFC00;
 
     switch (track->gbsIdentifier - 1)
