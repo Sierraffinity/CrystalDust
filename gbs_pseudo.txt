@@ -1,34 +1,34 @@
 _UpdateSound:
-Return if no audio playing (wMusicPlaying is zero)
-Loop from 1-8 (0-7):
-    If channel active (SOUND_CHANNEL_ON bit set in CHANNEL_FLAGS1):
-        If time left in current note < 2, note over:
-            Reset vibrato delay (store CHANNEL_VIBRATO_DELAY in CHANNEL_VIBRATO_DELAY_COUNT)
-            Turn vibrato off (clear SOUND_PITCH_SLIDE in CHANNEL_FLAGS_2)
-            Get next note (call ParseMusic)
-        Else:
-            Decrement note length (dec CHANNEL_NOTE_DURATION)
-        Call ApplyPitchSlide
-        Store CHANNEL_DUTY_CYCLE into wCurTrackDuty (and increment HL)
-        Store CHANNEL_VOLUME_ENVELOPE into wCurTrackVolumeEnvelope (and hli)
-        Store CHANNEL_FREQUENCY into wCurTrackFrequency (and hli)
-        Call HandleTrackVibrato
-        Call HandleNoise
-        If wSFXPriority, then:
+    Return if no audio playing (wMusicPlaying is zero)
+    Loop from 1-8 (0-7):
+        If channel active (SOUND_CHANNEL_ON bit set in CHANNEL_FLAGS1):
+            If time left in current note < 2, note over:
+                Reset vibrato delay (store CHANNEL_VIBRATO_DELAY in CHANNEL_VIBRATO_DELAY_COUNT)
+                Turn pitch slide off (clear SOUND_PITCH_SLIDE in CHANNEL_FLAGS_2)
+                Get next note (call ParseMusic)
+            Else:
+                Decrement note length (dec CHANNEL_NOTE_DURATION)
+            Call ApplyPitchSlide
+            Store CHANNEL_DUTY_CYCLE into wCurTrackDuty (and increment HL)
+            Store CHANNEL_VOLUME_ENVELOPE into wCurTrackVolumeEnvelope (and hli)
+            Store CHANNEL_FREQUENCY into wCurTrackFrequency (and hli)
+            Call HandleTrackVibrato
+            Call HandleNoise
+            If wSFXPriority, then:
+                If in music channel (wCurChannel < NUM_MUSIC_CHANS):
+                    Mute self if channels 5-8 (SFX) are playing anything (set NOTE_REST in CHANNEL_NOTE_FLAGS)
             If in music channel (wCurChannel < NUM_MUSIC_CHANS):
-                Mute self if channels 5-8 (SFX) are playing anything (set NOTE_REST in CHANNEL_NOTE_FLAGS)
-        If in music channel (wCurChannel < NUM_MUSIC_CHANS):
-            If equivalent SFX channel (current + 4) is off:
+                If equivalent SFX channel (current + 4) is off:
+                    Call UpdateChannels
+                    Enable corresponding channel track (wSoundOutput | CHANNEL_TRACKS)
+            Else:
                 Call UpdateChannels
                 Enable corresponding channel track (wSoundOutput | CHANNEL_TRACKS)
-        Else:
-            Call UpdateChannels
-            Enable corresponding channel track (wSoundOutput | CHANNEL_TRACKS)
-        Clear CHANNEL_NOTE_FLAGS
-Call PlayDanger
-Call FadeMusic
-Write volume to hardware (store wVolume in rNR50)
-Write sound on/off to hardware (store wSoundOutput in rNR51)
+            Clear CHANNEL_NOTE_FLAGS
+    Call PlayDanger
+    Call FadeMusic
+    Write volume to hardware (store wVolume in rNR50)
+    Write sound on/off to hardware (store wSoundOutput in rNR51)
 
 ParseMusic:
     Call GetMusicByte
@@ -37,18 +37,19 @@ ParseMusic:
             If equivalent SFX channel (current + 4) is off:
                 If SOUND_CRY set:
                     Call RestoreVolume
-                    If in music channel (wCurChannel < 4):
+                If in channel 5 (first SFX tone channel):
                         Store 0 in rNR10 (disable sweep?)
         Else:
             If SOUND_CRY set:
                 Call RestoreVolume
-                If in music channel (wCurChannel < 4):
+            If in channel 5 (first SFX tone channel):
                     Store 0 in rNR10 (disable sweep?)
         Turn channel off (reset SOUND_CHANNEL_ON)
         Set rest (set NOTE_REST)
         Clear music ID and bank (store 0 in CHANNEL_MUSIC_ID and CHANNEL_MUSIC_BANK)
     Else if >= 0xD0:
         Call ParseMusicCommand
+        Goto ParseMusic
     Else:
         If SOUND_SFX or SOUND_CRY set:
             Goto ParseSFXOrCry
@@ -64,3 +65,26 @@ ParseMusic:
                 If SOUND_PITCH_SLIDE set, return
             Else:
                 Rest (set NOTE_REST)
+
+HandleTrackVibrato:
+    If SOUND_DUTY_LOOP set:
+        Shift CHANNEL_DUTY_CYCLE_PATTERN left twice
+        Store value & 0xC0 in wCurTrackDuty
+        Set NOTE_DUTY_OVERRIDE flagResult
+    If SOUND_PITCH_OFFSET set:
+        Add CHANNEL_PITCH_OFFSET to wCurTrackFrequency
+    If SOUND_VIBRATO set:
+        If CHANNEL_VIBRATO_DELAY_COUNT > 0:
+            Decrement CHANNEL_VIBRATO_DELAY_COUNT
+        Else if CHANNEL_VIBRATO_EXTENT != 0:
+            If CHANNEL_VIBRATO_RATE lower nybble > 0:
+                Decrement CHANNEL_VIBRATO_RATE
+            Else:
+                Store CHANNEL_VIBRATO_RATE upper nybble in lower nybble
+                If SOUND_VIBRATO_DIR set:
+                    Clear SOUND_VIBRATO_DIR
+                    Subtract CHANNEL_VIBRATO_EXTENT from wCurTrackFrequency
+                Else:
+                    Set SOUND_VIBRATO_DIR
+                    Add CHANNEL_VIBRATO_EXTENT to wCurTrackFrequency
+                Set NOTE_VIBRATO_OVERRIDE

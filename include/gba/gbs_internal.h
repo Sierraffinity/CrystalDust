@@ -10,11 +10,16 @@
 
 #include "gba/gba.h"
 
-#define SetOctave0 0xD8
-#define SetOctave7 0xD0
-
 enum SoundEngineCommands
 {
+	SetOctave7 = 0xD0,
+	SetOctave6,
+	SetOctave5,
+	SetOctave4,
+	SetOctave3,
+	SetOctave2,
+	SetOctave1,
+	SetOctave0,
 	SetNoteAttributesAndLength,
 	SetKeyShift,
 	SetTempo,
