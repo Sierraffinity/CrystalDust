@@ -59,7 +59,7 @@ enum SoundEngineCommands
 
 enum GBPStatusFlags {
 	ModulationActivation,
-	ModulationStatus,
+	ModulationDir,
 	PortamentoActivation,
 	PitchBendActivation,
 	ArpeggiationActivation,
@@ -89,11 +89,11 @@ struct ToneTrack
 	u8 vol;
 	u8 volX;
 	u8 pan;
-	u8 modulationCountdown;
+	u8 modulationDelayCount;
 	u8 modulationDelay;
 	u8 modulationMode;
 	u8 modulationDepth;
-	u8 modulationSpeedDelay;
+	u8 modulationSpeedCount;
 	u8 modulationSpeed;
 	u8 arpeggiationDelayCount;
 	u8 arpeggiationCountdown;
@@ -137,11 +137,11 @@ struct WaveTrack
 	u8 vol;
 	u8 volX;
 	u8 pan; // 0x14
-	u8 modulationCountdown;
+	u8 modulationDelayCount;
 	u8 modulationDelay;
 	u8 modulationMode;
 	u8 modulationDepth; // 0x18
-	u8 modulationSpeedDelay;
+	u8 modulationSpeedCount;
 	u8 modulationSpeed;
 	u8 secondaryPadding[2];
 	u8 portamentoCountdown; // 0x1D

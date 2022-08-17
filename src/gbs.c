@@ -56,19 +56,19 @@ static inline vu8 *SoundControl()
 }
 
 // Is m4a engine using GB channel? If so, don't render
-static inline bool32 ShouldRenderSound(int trackID)
+static inline bool32 DoesGBSDriveChannel(int trackID)
 {
     return gUsedGBChannels[trackID] == FALSE;
 }
 
-static inline bool32 ShouldRenderWaveChannel()
+static inline bool32 DoesGBSDriveWaveChannel()
 {
-    return ShouldRenderSound(2);
+    return DoesGBSDriveChannel(2);
 }
 
-static inline bool32 ShouldRenderNoiseChannel()
+static inline bool32 DoesGBSDriveNoiseChannel()
 {
-    return ShouldRenderSound(3);
+    return DoesGBSDriveChannel(3);
 }
 
 void SetMasterVolumeFromFade(u32 volX)
@@ -167,7 +167,7 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct ToneTrack *t
         thisVoiceVolVelocity = (track->currentVoice << 6) | (track->fadeSpeed << 8) | (((track->fadeSpeed == 0) ? 0 : track->fadeDirection) << 11) | (track->velocity << 12) | 0x3F;
         thisPitch = track->pitch | 0x8000;
         
-        if (ShouldRenderSound(track->trackID - 1))
+        if (DoesGBSDriveChannel(track->trackID - 1))
         {
             vu16 *control = ToneTrackControl() + ((track->trackID - 1) * 4);
             vu8 *soundControl = SoundControl();
@@ -185,7 +185,7 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct ToneTrack *t
             control[2] = thisPitch;
         }
     }
-    else if (ShouldRenderSound(track->trackID - 1))
+    else if (DoesGBSDriveChannel(track->trackID - 1))
     {
         ToneTrack_Reset(track->trackID - 1);
     }
@@ -282,7 +282,7 @@ u8 ToneTrack_ExecuteCommands(u8 commandID, struct MusicPlayerInfo *info, struct 
                 if (byte2 != 0)
                 {
                     track->statusFlags[ModulationActivation] = TRUE;
-                    track->statusFlags[ModulationStatus] = FALSE;
+                    track->statusFlags[ModulationDir] = FALSE;
                     //track->modulationDelay = track->nextInstruction[1] & 0x3F;
                     //track->modulationMode = (track->nextInstruction[1] & 0xC0) >> 6;
                     track->modulationDelay = track->nextInstruction[1];
@@ -301,7 +301,7 @@ u8 ToneTrack_ExecuteCommands(u8 commandID, struct MusicPlayerInfo *info, struct 
                 if (track->channelVolume != track->nextInstruction[1])
                 {
                     track->channelVolume = track->nextInstruction[1];
-                    if (ShouldRenderSound(track->trackID - 1))
+                    if (DoesGBSDriveChannel(track->trackID - 1))
                     {
                         vu8 *control = SoundControl();
                         control[0] = track->channelVolume;
@@ -409,8 +409,8 @@ u16 ToneTrack_GetModulationPitch(struct ToneTrack *track)
 {
     u8 theValue = 0;
     u16 newPitch = track->pitch;
-    bool8 flagResult = track->statusFlags[ModulationStatus];
-    track->modulationSpeedDelay = track->modulationSpeed;
+    bool8 flagResult = track->statusFlags[ModulationDir];
+    track->modulationSpeedCount = track->modulationSpeed;
     switch (track->modulationMode)
     {
         case 0:
@@ -448,7 +448,7 @@ u16 ToneTrack_GetModulationPitch(struct ToneTrack *track)
             }
             break;
     }
-    track->statusFlags[ModulationStatus] = !track->statusFlags[ModulationStatus];
+    track->statusFlags[ModulationDir] = !track->statusFlags[ModulationDir];
     return newPitch;
 }
 
@@ -483,18 +483,18 @@ void ToneTrack_ModulateTrack(struct ToneTrack *track)
             track->portamentoCountdown--;
         }
     }
-    if (track->modulationCountdown > 0)
+    if (track->modulationDelayCount > 0)
     {
-        track->modulationCountdown--;
+        track->modulationDelayCount--;
     }
     if (track->statusFlags[ModulationActivation])
     {
-        if (track->modulationCountdown == 0)
+        if (track->modulationDelayCount == 0)
         {
-            if (track->modulationSpeedDelay == 0 && track->pitch != 0)
+            if (track->modulationSpeedCount == 0 && track->pitch != 0)
             {
                 u16 modulatedPitch = ToneTrack_GetModulationPitch(track);
-                if (ShouldRenderSound(track->trackID - 1))
+                if (DoesGBSDriveChannel(track->trackID - 1))
                 {
                     vu16 *control = ToneTrackControl();
                     u16 location = ((track->trackID - 1) * 4) + 2;
@@ -503,7 +503,7 @@ void ToneTrack_ModulateTrack(struct ToneTrack *track)
             }
             else
             {
-                track->modulationSpeedDelay--;
+                track->modulationSpeedCount--;
             }
         }
     }
@@ -511,10 +511,10 @@ void ToneTrack_ModulateTrack(struct ToneTrack *track)
 
 void ToneTrack_ResetModulationArpeggiationCounters(struct ToneTrack *track)
 {
-    track->modulationCountdown = track->modulationDelay;
-    track->statusFlags[ModulationStatus] = FALSE;
-    track->modulationSpeedDelay = track->modulationSpeed;
-    if (track->modulationCountdown == 0)
+    track->modulationDelayCount = track->modulationDelay;
+    track->statusFlags[ModulationDir] = FALSE;
+    track->modulationSpeedCount = track->modulationSpeed;
+    if (track->modulationDelayCount == 0)
     {
         ToneTrack_ModulateTrack(track);
     }
@@ -536,7 +536,7 @@ void ToneTrack_ArpeggiateTrack(struct ToneTrack *track)
         {
             u16 location = (track->trackID == 1) ? 1 : 4;
             track->arpeggiationCountdown = track->arpeggiationDelayCount;
-            if (ShouldRenderSound(track->trackID - 1))
+            if (DoesGBSDriveChannel(track->trackID - 1))
             {
                 vu16 *control = ToneTrackControl();
                 control[location] = (control[location] & 0xFF00) | (((track->statusFlags[ArpeggiationStatus]) ? track->currentVoice : track->arpeggiationVoice) << 6);
@@ -582,7 +582,7 @@ bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
 
     if (toneTrack->trackID == 1)
     {
-        if (ShouldRenderSound(toneTrack->trackID - 1))
+        if (DoesGBSDriveChannel(toneTrack->trackID - 1))
         {
             // TODO: This should be removed when pitch bend is implemented.
             // This code is ensuring no pitch slide values are set, since no
@@ -659,7 +659,7 @@ void WaveTrack_ExecuteModifications(u8 commandID, u16 tempo, struct WaveTrack *t
         thisPitch = track->pitch | 0x8000;
         activationValue = 0x80;
         
-        if (ShouldRenderWaveChannel())
+        if (DoesGBSDriveWaveChannel())
         {
             vu8 *soundControl = SoundControl();
             u8 thisPan = gCgbChans[track->gbsIdentifier - 1].panMask;
@@ -674,7 +674,7 @@ void WaveTrack_ExecuteModifications(u8 commandID, u16 tempo, struct WaveTrack *t
             control[2] = thisPitch;
         }
     }
-    else if (ShouldRenderWaveChannel())
+    else if (DoesGBSDriveWaveChannel())
     {
         WaveTrack_Reset();
     }
@@ -686,26 +686,31 @@ void WaveTrack_ModulateTrack(struct WaveTrack *track)
     {
         track->pitch += track->pitchBendRate;
     }
-    if (track->modulationCountdown > 0)
-    {
-        track->modulationCountdown--;
-    }
+
     if (track->statusFlags[ModulationActivation])
     {
-        if (track->modulationCountdown == 0)
+        if (track->modulationDelayCount > 0)
         {
-            if (track->modulationSpeedDelay == 0 && track->pitch != 0)
+            track->modulationDelayCount--;
+        }
+        else if (track->modulationDepth != 0)
+        {
+            if (track->modulationSpeedCount > 0)
+            {
+                track->modulationSpeedCount--;
+            }
+            else
             {
                 // TODO: Merge with ToneTrack_GetModulationPitch
                 u16 outPitch = track->pitch;
-                track->statusFlags[ModulationStatus] = !track->statusFlags[ModulationStatus];
-                track->modulationSpeedDelay = track->modulationSpeed;
+                track->statusFlags[ModulationDir] = !track->statusFlags[ModulationDir];
+                track->modulationSpeedCount = track->modulationSpeed;
                 switch (track->modulationMode)
                 {
                     case 0:
                     {
                         u8 halfValue = track->modulationDepth >> 1;
-                        if (track->statusFlags[ModulationStatus])
+                        if (track->statusFlags[ModulationDir])
                         {
                             outPitch += (track->modulationDepth - halfValue);
                         }
@@ -716,27 +721,23 @@ void WaveTrack_ModulateTrack(struct WaveTrack *track)
                         break;
                     }
                     case 1:
-                        if (track->statusFlags[ModulationStatus])
+                        if (track->statusFlags[ModulationDir])
                         {
                             outPitch -= track->modulationDepth;
                         }
                         break;
                     case 2:
-                        if (track->statusFlags[ModulationStatus])
+                        if (track->statusFlags[ModulationDir])
                         {
                             outPitch += track->modulationDepth;
                         }
                         break;
                 }
-                if (ShouldRenderWaveChannel())
+                if (DoesGBSDriveWaveChannel())
                 {
                     vu16 *control = WaveTrackControl();
                     control[2] = (control[2] & 0x8000) | outPitch;
                 }
-            }
-            else
-            {
-                track->modulationSpeedDelay--;
             }
         }
     }
@@ -767,7 +768,7 @@ bool16 WaveTrack_ExecuteCommands(u8 commandID, struct WaveTrack *track)
                 }
                 track->velocity = newVelocity;
                 newVoice = byte2 & 0xF;
-                if (track->currentVoice != newVoice && ShouldRenderWaveChannel())
+                if (track->currentVoice != newVoice && DoesGBSDriveWaveChannel())
                 {
                     WaveTrack_SwitchWavePattern(newVoice);
                 }
@@ -796,7 +797,7 @@ bool16 WaveTrack_ExecuteCommands(u8 commandID, struct WaveTrack *track)
                 }
                 track->velocity = newVelocity;
                 newVoice = byte2 & 0xF;
-                if (track->currentVoice != newVoice && ShouldRenderWaveChannel())
+                if (track->currentVoice != newVoice && DoesGBSDriveWaveChannel())
                 {
                     WaveTrack_SwitchWavePattern(newVoice);
                 }
@@ -818,13 +819,13 @@ bool16 WaveTrack_ExecuteCommands(u8 commandID, struct WaveTrack *track)
                 if (theByte != 0)
                 {
                     track->statusFlags[ModulationActivation] = TRUE;
-                    track->statusFlags[ModulationStatus] = FALSE;
-                    //track->modulationDelay = track->nextInstruction[1] & 0x3F;
-                    //track->modulationMode = (track->nextInstruction[1] & 0xC0) >> 6;
+                    track->statusFlags[ModulationDir] = FALSE;
                     track->modulationDelay = track->nextInstruction[1];
+                    track->modulationDelayCount = track->modulationDelay;
                     track->modulationMode = 0;
                     track->modulationDepth = (theByte & 0xF0) >> 4;
                     track->modulationSpeed = theByte & 0xF;
+                    track->modulationSpeedCount = track->modulationSpeed;
                 }
                 else
                 {
@@ -921,7 +922,7 @@ bool16 WaveTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
     // The M4A sound effects can change the wave pattern.
     // We want to reload the correct wave pattern for this track when
     // control is returned to GBS from M4A.
-    if (!ShouldRenderWaveChannel())
+    if (!DoesGBSDriveWaveChannel())
     {
         gWaveTrackShouldReloadPattern = TRUE;
     }
@@ -948,9 +949,7 @@ bool16 WaveTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
         {
             WaveTrack_ExecuteModifications(commandID, info->gbsTempo, waveTrack);
             waveTrack->nextInstruction++;
-            waveTrack->modulationCountdown = waveTrack->modulationDelay;
-            waveTrack->statusFlags[ModulationStatus] = FALSE;
-            waveTrack->modulationSpeedDelay = waveTrack->modulationSpeed;
+            waveTrack->modulationDelayCount = waveTrack->modulationDelay;
             WaveTrack_ModulateTrack(waveTrack);
         }
     }
@@ -1193,7 +1192,7 @@ void NoiseTrack_WritePattern(struct NoiseTrack *track)
         track->noiseActive = TRUE;
         track->noiseFrameDelay = value1;
         track->samplePointer += 3;
-        if (ShouldRenderNoiseChannel())
+        if (DoesGBSDriveNoiseChannel())
         {
             vu16 *control = NoiseTrackControl();
             control[0] = value2;
@@ -1236,7 +1235,7 @@ void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct NoiseTrack 
         noiseData = noiseGroup[(commandID & 0xF0) >> 4];
         track->samplePointer = noiseData;
 
-        if (ShouldRenderNoiseChannel())
+        if (DoesGBSDriveNoiseChannel())
         {
             vu8 *soundControl = SoundControl();
             
@@ -1245,10 +1244,10 @@ void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct NoiseTrack 
             soundControl[1] = (soundControl[1] & ~gCgbChans[track->gbsIdentifier - 1].panMask) | thisPan;
         }
         
-        // NoiseTrack_WritePattern has its own check for ShouldRenderNoiseChannel, but also updates other stuff, so run it
+        // NoiseTrack_WritePattern has its own check for DoesGBSDriveNoiseChannel, but also updates other stuff, so run it
         NoiseTrack_WritePattern(track);
     }
-    else if (ShouldRenderNoiseChannel())
+    else if (DoesGBSDriveNoiseChannel())
     {
         // If resting but we have control, clear the track
         NoiseTrack_Reset();
