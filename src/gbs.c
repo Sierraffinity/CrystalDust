@@ -191,11 +191,10 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct ToneTrack *t
     }
 }
 
-u8 ToneTrack_ProcessCommands(u8 commandID, struct MusicPlayerInfo *info, struct ToneTrack *track)
+u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct ToneTrack *track)
 {
-    u8 commandLength = 1;
-    u8 byte2 = 0;
-    
+    u8 commandID = *track->nextInstruction++; // grab next byte and increment pointer
+
     switch (commandID)
     {
         case SetOctave7 ... SetOctave0:
@@ -203,45 +202,39 @@ u8 ToneTrack_ProcessCommands(u8 commandID, struct MusicPlayerInfo *info, struct 
             break;
         case SetNoteAttributesAndLength:
         {
-            byte2 = track->nextInstruction[1];
-            track->frameDelay = ((byte2 == 0 || byte2 > 0xF) ? 0xC : byte2);
-            byte2 = track->nextInstruction[2];
+            u8 byte2 = *track->nextInstruction++;
+            track->frameDelay = byte2;
+            byte2 = *track->nextInstruction++;
             track->velocity = (byte2 & 0xF0) >> 4;
             track->fadeSpeed = byte2 & 0x7;
             track->fadeDirection = (byte2 & 0x8) >> 3;
-            commandLength = 3;
+            break;
+        }
+        case SetNoteAttributes:
+        {
+            u8 byte2 = *track->nextInstruction++;
+            track->velocity = (byte2 & 0xF0) >> 4;
+            track->fadeSpeed = byte2 & 0x7;
+            track->fadeDirection = (byte2 & 0x8) >> 3;
             break;
         }
         case SetKeyShift:
         {
-            track->keyShift = track->nextInstruction[1];
-            commandLength = 2;
+            track->keyShift = *track->nextInstruction++;
             break;
         }
         case SetTempo:
-            if (track->trackID == 1)
-            {
-                info->gbsTempo = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 1));
-            }
-            commandLength = 3;
+            // TODO: Should be settable from others
+            info->gbsTempo = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 0));
+            track->nextInstruction += 2;
             break;
         case SetDutyCycle:
         case SetDutyCycle2:
-            track->currentVoice = track->nextInstruction[1];
-            commandLength = 2;
+            track->currentVoice = *track->nextInstruction++;
             break;
-        case SetNoteAttributes:
-        {
-            byte2 = track->nextInstruction[1];
-            track->velocity = (byte2 & 0xF0) >> 4;
-            track->fadeSpeed = byte2 & 0x7;
-            track->fadeDirection = (byte2 & 0x8) >> 3;
-            commandLength = 2;
-            break;
-        }
         case Arpeggiate:
         {
-            byte2 = track->nextInstruction[1];
+            u8 byte2 = *track->nextInstruction++;
             if (byte2 != 0)
             {
                 track->statusFlags[ArpeggiationActivation] = TRUE;
@@ -254,68 +247,67 @@ u8 ToneTrack_ProcessCommands(u8 commandID, struct MusicPlayerInfo *info, struct 
             {
                 track->statusFlags[ArpeggiationActivation] = FALSE;
             }
-            commandLength = 2;
             break;
         }
         case PitchBend:
             track->statusFlags[PitchBendActivation] = TRUE;
             // Note that this is incomplete and requires research into how pitch
             // bends are handled in the original engine
-            //u8 byte = nextInstruction[2];
-            commandLength = 3;
+            track->nextInstruction += 2;
             break;
         case Portamento:
             // No data for this as yet as it is a completely custom effect
             // At least it is in terms of this engine, since the
             // portamento effect is not present in RBY or GSC
             track->statusFlags[PortamentoActivation] = TRUE;
-            track->portamentoDelay = track->nextInstruction[1];
-            track->portamentoSpeed = track->nextInstruction[2];
-            track->portamentoTarget = CalculatePitch((track->nextInstruction[3] & 0xF0) >> 4, track->keyShift, track->currentOctave, track->tone);
-            commandLength = 4;
+            track->portamentoDelay = *track->nextInstruction++;
+            track->portamentoSpeed = *track->nextInstruction++;
+            track->portamentoTarget = CalculatePitch((*track->nextInstruction++ & 0xF0) >> 4, track->keyShift, track->currentOctave, track->tone);
             break;
         case SetModulation:
         {
-            byte2 = track->nextInstruction[2];
+            u8 modulationDelay = *track->nextInstruction++;
+            u8 byte2 = *track->nextInstruction++;
             if (byte2 != 0)
             {
                 track->statusFlags[ModulationActivation] = TRUE;
                 track->statusFlags[ModulationDir] = FALSE;
-                //track->modulationDelay = track->nextInstruction[1] & 0x3F;
-                //track->modulationMode = (track->nextInstruction[1] & 0xC0) >> 6;
-                track->modulationDelay = track->nextInstruction[1];
+                track->modulationDelay = modulationDelay;
+                track->modulationDelayCount = track->modulationDelay;
                 track->modulationMode = 0;
                 track->modulationDepth = (byte2 & 0xF0) >> 4;
                 track->modulationSpeed = byte2 & 0xF;
+                track->modulationSpeedCount = track->modulationSpeed;
             }
             else
             {
                 track->statusFlags[ModulationActivation] = FALSE;
             }
-            commandLength = 3;
             break;
         }
         case SetChannelVolume:
-            if (track->channelVolume != track->nextInstruction[1])
+        {
+            // TODO: Should be global, not channel volume
+            u8 volume = *track->nextInstruction++;
+            if (track->channelVolume != volume)
             {
-                track->channelVolume = track->nextInstruction[1];
+                track->channelVolume = volume;
                 if (DoesGBSDriveChannel(track->trackID - 1))
                 {
                     vu8 *control = SoundControl();
                     control[0] = track->channelVolume;
                 }
             }
-            commandLength = 2;
             break;
+        }
         case SetTone:
-            track->tone = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 1));
-            commandLength = 3;
+            track->tone = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 0));
+            track->nextInstruction += 2;
             break;
         case Pan:
         {
-            u8 byte = track->nextInstruction[1];
+            u8 byte = *track->nextInstruction++;
             track->pan = (byte == 0) ? 0xFF : byte;
-            commandLength = 2;
             break;
         }
         case SetHostTempo:
@@ -323,73 +315,71 @@ u8 ToneTrack_ProcessCommands(u8 commandID, struct MusicPlayerInfo *info, struct 
             // It is advised that this function not be used since it could mess with
             // playback in unexpected ways, however, I felt it would be fun
             // to include it all the same. The GBS Tempo should always be 150
+            u32 tempo = *track->nextInstruction++ << 1;
             if (track->trackID == 1)
             {
-                u32 tempo = track->nextInstruction[1] << 1;
                 info->tempoD = tempo;
                 tempo *= info->tempoU;
                 tempo >>= 8;
                 info->tempoI = tempo;
             }
-            commandLength = 2;
             break;
         }
         case JumpIf:
-            commandLength = 6;
+            // Not implemented
+            track->nextInstruction += 5;
             break;
         case Jump:
-            track->nextInstruction = LoadUIntPointer(track->nextInstruction, 1);
-            commandLength = 0;
+            track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
             break;
-        case Goto:
+        case Loop:
+        {
+            u8 loopCount = *track->nextInstruction++;
             if (track->returnLocation == NULL)
             {
-                if (track->nextInstruction[1] == 0 || track->nextInstruction[1] - 1 > track->loopCounter)
+                if (loopCount == 0 || (loopCount - 1) > track->loopCounter)
                 {
-                    if (track->nextInstruction[1] != 0)
+                    if (loopCount != 0)
                     {
                         track->loopCounter++;
                     }
-                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 2);
-                    commandLength = 0;
+                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
                 }
-                else if (track->nextInstruction[1] != 0 && track->loopCounter != 0)
+                else if (loopCount != 0 && track->loopCounter != 0)
                 {
                     track->loopCounter = 0;
-                    commandLength = 6;
+                    track->nextInstruction += 4;
                 }
             }
             else
             {
-                if (track->nextInstruction[1] == 0 || track->nextInstruction[1] - 1 > track->loopCounter2)
+                if (loopCount == 0 || (loopCount - 1) > track->loopCounter2)
                 {
-                    if (track->nextInstruction[1] != 0)
+                    if (loopCount != 0)
                     {
                         track->loopCounter2++;
                     }
-                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 2);
-                    commandLength = 0;
+                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
                 }
-                else if (track->nextInstruction[1] != 0 && track->loopCounter2 != 0)
+                else if (loopCount != 0 && track->loopCounter2 != 0)
                 {
                     track->loopCounter2 = 0;
-                    commandLength = 6;
+                    track->nextInstruction += 4;
                 }
             }
             break;
+        }
         case Call:
             if (track->returnLocation == NULL)
             {
-                track->returnLocation = track->nextInstruction + 5;
-                track->nextInstruction = LoadUIntPointer(track->nextInstruction, 1);
+                track->returnLocation = track->nextInstruction + 4;
+                track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
             }
-            commandLength = 0;
             break;
         case End:
-            commandLength = 0;
             if (track->returnLocation == NULL)
             {
-                return 0xFF;
+                return End;
             }
             else
             {
@@ -398,24 +388,21 @@ u8 ToneTrack_ProcessCommands(u8 commandID, struct MusicPlayerInfo *info, struct 
             }
             break;
     }
-    track->nextInstruction += commandLength;
     return *track->nextInstruction;
 }
 
 u16 ToneTrack_GetModulationPitch(struct ToneTrack *track)
 {
-    u8 theValue = 0;
     u16 newPitch = track->pitch;
-    bool8 flagResult = track->statusFlags[ModulationDir];
+    track->statusFlags[ModulationDir] = !track->statusFlags[ModulationDir];
     track->modulationSpeedCount = track->modulationSpeed;
     switch (track->modulationMode)
     {
         case 0:
         {
             u8 halfValue = track->modulationDepth >> 1;
-            if (!flagResult)
+            if (track->statusFlags[ModulationDir])
             {
-                theValue = 1;
                 newPitch += (track->modulationDepth - halfValue);
             }
             else
@@ -425,27 +412,18 @@ u16 ToneTrack_GetModulationPitch(struct ToneTrack *track)
             break;
         }
         case 1:
-            if (!flagResult)
-            {
-                theValue = 1;
-            }
-            else
+            if (track->statusFlags[ModulationDir])
             {
                 newPitch -= track->modulationDepth;
             }
             break;
         case 2:
-            if (!flagResult)
-            {
-                theValue = 1;
-            }
-            else
+            if (track->statusFlags[ModulationDir])
             {
                 newPitch += track->modulationDepth;
             }
             break;
     }
-    track->statusFlags[ModulationDir] = !track->statusFlags[ModulationDir];
     return newPitch;
 }
 
@@ -455,9 +433,14 @@ void ToneTrack_ModulateTrack(struct ToneTrack *track)
     {
         track->pitch += track->pitchBendRate;
     }
+
     if (track->statusFlags[PortamentoActivation])
     {
-        if (track->portamentoCountdown == 0)
+        if (track->portamentoCountdown > 0)
+        {
+            track->portamentoCountdown--;
+        }
+        else
         {
             if (track->portamentoTarget != track->pitch)
             {
@@ -475,20 +458,21 @@ void ToneTrack_ModulateTrack(struct ToneTrack *track)
                 track->statusFlags[PortamentoActivation] = FALSE;
             }
         }
-        else
-        {
-            track->portamentoCountdown--;
-        }
     }
-    if (track->modulationDelayCount > 0)
-    {
-        track->modulationDelayCount--;
-    }
+    
     if (track->statusFlags[ModulationActivation])
     {
-        if (track->modulationDelayCount == 0)
+        if (track->modulationDelayCount > 0)
         {
-            if (track->modulationSpeedCount == 0 && track->pitch != 0)
+            track->modulationDelayCount--;
+        }
+        else if (track->modulationDepth != 0)
+        {
+            if (track->modulationSpeedCount > 0)
+            {
+                track->modulationSpeedCount--;
+            }
+            else if (track->pitch != 0)
             {
                 u16 modulatedPitch = ToneTrack_GetModulationPitch(track);
                 if (DoesGBSDriveChannel(track->trackID - 1))
@@ -498,27 +482,8 @@ void ToneTrack_ModulateTrack(struct ToneTrack *track)
                     control[location] = (control[location] & 0x8000) | modulatedPitch;
                 }
             }
-            else
-            {
-                track->modulationSpeedCount--;
-            }
         }
     }
-}
-
-void ToneTrack_ResetModulationArpeggiationCounters(struct ToneTrack *track)
-{
-    track->modulationDelayCount = track->modulationDelay;
-    track->statusFlags[ModulationDir] = FALSE;
-    track->modulationSpeedCount = track->modulationSpeed;
-    if (track->modulationDelayCount == 0)
-    {
-        ToneTrack_ModulateTrack(track);
-    }
-    track->arpeggiationCountdown = (track->statusFlags[ArpeggiationActivation]) ? track->arpeggiationDelayCount : 0;
-    track->statusFlags[ArpeggiationStatus] = FALSE;
-    track->statusFlags[PortamentoActivation] = FALSE;
-    track->statusFlags[PitchBendActivation] = FALSE;
 }
 
 void ToneTrack_ArpeggiateTrack(struct ToneTrack *track)
@@ -553,7 +518,7 @@ bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
         u32 commandID = *toneTrack->nextInstruction;
         while (commandID >= SetOctave7)
         {
-            commandID = ToneTrack_ProcessCommands(commandID, info, toneTrack);
+            commandID = ToneTrack_ProcessCommands(info, toneTrack);
             if (commandID == End && toneTrack->returnLocation == NULL)
             {
                 ToneTrack_ExecuteModifications(0, info->gbsTempo, toneTrack);
@@ -566,14 +531,18 @@ bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
         {
             ToneTrack_ExecuteModifications(commandID, info->gbsTempo, toneTrack);
             toneTrack->nextInstruction++;
-            ToneTrack_ResetModulationArpeggiationCounters(toneTrack);
+            toneTrack->modulationDelayCount = toneTrack->modulationDelay;
+            ToneTrack_ModulateTrack(toneTrack);
+
+            toneTrack->arpeggiationCountdown = (toneTrack->statusFlags[ArpeggiationActivation]) ? toneTrack->arpeggiationDelayCount : 0;
+            toneTrack->statusFlags[ArpeggiationStatus] = FALSE;
+            toneTrack->statusFlags[PortamentoActivation] = FALSE;
+            toneTrack->statusFlags[PitchBendActivation] = FALSE;
         }
     }
     else
     {
         toneTrack->noteLength1--;
-        // Modulation and arpeggiation may need to run regardless
-        // of note over
         ToneTrack_ModulateTrack(toneTrack);
         ToneTrack_ArpeggiateTrack(toneTrack);
     }
@@ -697,7 +666,7 @@ void WaveTrack_ModulateTrack(struct WaveTrack *track)
             {
                 track->modulationSpeedCount--;
             }
-            else
+            else if (track->pitch != 0)
             {
                 // TODO: Merge with ToneTrack_GetModulationPitch
                 u16 outPitch = track->pitch;
@@ -741,10 +710,9 @@ void WaveTrack_ModulateTrack(struct WaveTrack *track)
     }
 }
 
-bool16 WaveTrack_ProcessCommands(u8 commandID, struct WaveTrack *track)
+bool16 WaveTrack_ProcessCommands(struct WaveTrack *track)
 {
-    u8 newVoice;
-    u8 commandLength = 1;
+    u8 commandID = *track->nextInstruction++; // grab next byte and increment pointer
 
     switch (commandID)
     {
@@ -753,69 +721,58 @@ bool16 WaveTrack_ProcessCommands(u8 commandID, struct WaveTrack *track)
             break;
         case SetNoteAttributesAndLength:
         {
-            u8 theValue = track->nextInstruction[1];
-            u8 byte2 = track->nextInstruction[2];
-            u8 newVelocity = (byte2 & 0x70) >> 4;
-            track->frameDelay = ((theValue == 0 || theValue > 0xF) ? 0xC : theValue);
-            if (newVelocity > 4)
-            {
-                newVelocity = 1;
-            }
-            track->velocity = newVelocity;
-            newVoice = byte2 & 0xF;
+            u8 byte2 = *track->nextInstruction++;
+            track->frameDelay = byte2;
+            byte2 = *track->nextInstruction++;
+            track->velocity = (byte2 & 0x70) >> 4;
+            u8 newVoice = byte2 & 0xF;
             if (track->currentVoice != newVoice && DoesGBSDriveWaveChannel())
             {
                 WaveTrack_SwitchWavePattern(newVoice);
             }
             track->currentVoice = newVoice;
-            commandLength = 3;
+            break;
+        }
+        case SetNoteAttributes:
+        {
+            u8 byte2 = *track->nextInstruction++;
+            track->velocity = (byte2 & 0x70) >> 4;
+            u8 newVoice = byte2 & 0xF;
+            if (track->currentVoice != newVoice && DoesGBSDriveWaveChannel())
+            {
+                WaveTrack_SwitchWavePattern(newVoice);
+            }
+            track->currentVoice = newVoice;
             break;
         }
         case SetKeyShift:
         {
-            track->keyShift = track->nextInstruction[1];
-            commandLength = 2;
+            track->keyShift = *track->nextInstruction++;
             break;
         }
         case SetDutyCycle:
         case SetDutyCycle2:
-            track->currentVoice = track->nextInstruction[1];
-            commandLength = 2;
+            track->currentVoice = *track->nextInstruction++;
             break;
-        case SetNoteAttributes:
-        {
-            u8 byte2 = track->nextInstruction[1];
-            u8 newVelocity = (byte2 & 0x70) >> 4;
-            if (newVelocity > 4)
-            {
-                newVelocity = 1;
-            }
-            track->velocity = newVelocity;
-            newVoice = byte2 & 0xF;
-            if (track->currentVoice != newVoice && DoesGBSDriveWaveChannel())
-            {
-                WaveTrack_SwitchWavePattern(newVoice);
-            }
-            track->currentVoice = newVoice;
-            commandLength = 2;
-            break;
-        }
         case Arpeggiate:
         {
-            commandLength = 2;
+            // Not implemented
+            track->nextInstruction++;
             break;
         }
         case PitchBend:
-            commandLength = 3;
+            // Not implemented
+            track->nextInstruction += 2;
             break;
         case SetModulation:
         {
-            u8 theByte = track->nextInstruction[2];
+            u8 modulationDelay = *track->nextInstruction++;
+            u8 theByte = *track->nextInstruction++;
             if (theByte != 0)
             {
                 track->statusFlags[ModulationActivation] = TRUE;
                 track->statusFlags[ModulationDir] = FALSE;
-                track->modulationDelay = track->nextInstruction[1];
+                track->modulationDelay = modulationDelay;
                 track->modulationDelayCount = track->modulationDelay;
                 track->modulationMode = 0;
                 track->modulationDepth = (theByte & 0xF0) >> 4;
@@ -826,73 +783,70 @@ bool16 WaveTrack_ProcessCommands(u8 commandID, struct WaveTrack *track)
             {
                 track->statusFlags[ModulationActivation] = FALSE;
             }
-            commandLength = 3;
             break;
         }
         case SetTone:
-            track->tone = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 1));
-            commandLength = 3;
+            track->tone = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 0));
+            track->nextInstruction += 2;
             break;
         case Pan:
         {
-            u8 byte = track->nextInstruction[1];
+            u8 byte = *track->nextInstruction++;
             track->pan = (byte == 0) ? 0xFF : byte;
-            commandLength = 2;
             break;
         }
         case JumpIf:
-            commandLength = 6;
+            // Not implemented
+            track->nextInstruction += 5;
             break;
         case Jump:
-            track->nextInstruction = LoadUIntPointer(track->nextInstruction, 1);
-            commandLength = 0;
+            track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
             break;
-        case Goto:
+        case Loop:
+        {
+            u8 loopCount = *track->nextInstruction++;
             if (track->returnLocation == NULL)
             {
-                if (track->nextInstruction[1] == 0 || track->nextInstruction[1] - 1 > track->loopCounter)
+                if (loopCount == 0 || (loopCount - 1) > track->loopCounter)
                 {
-                    if (track->nextInstruction[1] != 0)
+                    if (loopCount != 0)
                     {
                         track->loopCounter++;
                     }
-                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 2);
-                    commandLength = 0;
+                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
                 }
-                else if (track->nextInstruction[1] != 0 && track->loopCounter != 0)
+                else if (loopCount != 0 && track->loopCounter != 0)
                 {
                     track->loopCounter = 0;
-                    commandLength = 6;
+                    track->nextInstruction += 4;
                 }
             }
             else
             {
-                if (track->nextInstruction[1] == 0 || track->nextInstruction[1] - 1 > track->loopCounter2)
+                if (loopCount == 0 || (loopCount - 1) > track->loopCounter2)
                 {
-                    if (track->nextInstruction[1] != 0)
+                    if (loopCount != 0)
                     {
                         track->loopCounter2++;
                     }
-                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 2);
-                    commandLength = 0;
+                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
                 }
-                else if (track->nextInstruction[1] != 0 && track->loopCounter2 != 0)
+                else if (loopCount != 0 && track->loopCounter2 != 0)
                 {
                     track->loopCounter2 = 0;
-                    commandLength = 6;
+                    track->nextInstruction += 4;
                 }
             }
             break;
+        }
         case Call:
             if (track->returnLocation == NULL)
             {
-                track->returnLocation = track->nextInstruction + 5;
-                track->nextInstruction = LoadUIntPointer(track->nextInstruction, 1);
+                track->returnLocation = track->nextInstruction + 4;
+                track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
             }
-            commandLength = 0;
             break;
         case End:
-            commandLength = 0;
             if (track->returnLocation == NULL)
             {
                 return End;
@@ -903,8 +857,9 @@ bool16 WaveTrack_ProcessCommands(u8 commandID, struct WaveTrack *track)
                 track->returnLocation = NULL;
             }
             break;
+        default:
+            break;
     }
-    track->nextInstruction += commandLength;
     return *track->nextInstruction;
 }
 
@@ -931,15 +886,15 @@ bool16 WaveTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
         u32 commandID = *waveTrack->nextInstruction;
         while (commandID >= SetOctave7)
         {
-            commandID = WaveTrack_ProcessCommands(commandID, waveTrack);
-            if (commandID == 0xFF && waveTrack->returnLocation == NULL)
+            commandID = WaveTrack_ProcessCommands(waveTrack);
+            if (commandID == End && waveTrack->returnLocation == NULL)
             {
                 WaveTrack_ExecuteModifications(0, info->gbsTempo, waveTrack);
                 result = FALSE;
                 break;
             }
         }
-        if (commandID != 0xFF)
+        if (commandID != End)
         {
             WaveTrack_ExecuteModifications(commandID, info->gbsTempo, waveTrack);
             waveTrack->nextInstruction++;
@@ -1111,67 +1066,92 @@ static const u8 *const *const sNoiseDataGroupTable[] =
     sNoiseDataGroup5
 };
 
-u8 NoiseTrack_ProcessCommands(u8 commandID, struct NoiseTrack *track)
+u8 NoiseTrack_ProcessCommands(struct NoiseTrack *track)
 {
-    u8 commandLength = 2;
-    if (commandID == SetNoteAttributesAndLength)
+    u8 commandID = *track->nextInstruction++;
+
+    switch (commandID)
     {
-        u8 theValue = track->nextInstruction[1];
-        track->frameDelay = ((theValue == 0 || theValue > 0xF) ? 0xC : theValue);
-    }
-    else if (commandID == E3)
-    {
-        track->noiseSet = track->nextInstruction[1];
-    }
-    else if (commandID == Pan)
-    {
-        u8 byte = track->nextInstruction[1];
-        track->pan = (byte == 0) ? 0xFF : byte;
-    }
-    else if (commandID == Goto)
-    {
-        if (track->nextInstruction[1] == 0 || track->nextInstruction[1] - 1 > track->loopCounter)
+        case SetNoteAttributesAndLength:
         {
-            if (track->nextInstruction[1] != 0)
+            track->frameDelay = *track->nextInstruction++;
+            break;
+        }
+        case NoiseSet:
+        {
+            track->noiseSet = *track->nextInstruction++;
+            break;
+        }
+        case Pan:
+        {
+            u8 byte = *track->nextInstruction++;
+            track->pan = (byte == 0) ? 0xFF : byte;
+            break;
+        }
+        case Loop:
+        {
+            u8 loopCount = *track->nextInstruction++;
+            if (track->returnLocation == NULL)
             {
-                track->loopCounter++;
+                if (loopCount == 0 || (loopCount - 1) > track->loopCounter)
+                {
+                    if (loopCount != 0)
+                    {
+                        track->loopCounter++;
+                    }
+                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+                }
+                else if (loopCount != 0 && track->loopCounter != 0)
+                {
+                    track->loopCounter = 0;
+                    track->nextInstruction += 4;
+                }
             }
-            track->nextInstruction = LoadUIntPointer(track->nextInstruction, 2);
-            commandLength = 0;
+            else
+            {
+                if (loopCount == 0 || (loopCount - 1) > track->loopCounter2)
+                {
+                    if (loopCount != 0)
+                    {
+                        track->loopCounter2++;
+                    }
+                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+                }
+                else if (loopCount != 0 && track->loopCounter2 != 0)
+                {
+                    track->loopCounter2 = 0;
+                    track->nextInstruction += 4;
+                }
+            }
+            break;
         }
-        else if (track->nextInstruction[1] != 0 && track->loopCounter != 0)
+        case Call:
         {
-            track->loopCounter = 0;
-            commandLength = 6;
+            if (track->returnLocation == NULL)
+            {
+                track->returnLocation = track->nextInstruction + 4;
+                track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+            }
+            break;
+        }
+        case End:
+        {
+            if (track->returnLocation == NULL)
+            {
+                return End;
+            }
+            else
+            {
+                track->nextInstruction = track->returnLocation;
+                track->returnLocation = NULL;
+            }
+            break;
+        }
+        default:
+        {
+            break;
         }
     }
-    else if (commandID == Call)
-    {
-        if (track->returnLocation == NULL)
-        {
-            track->returnLocation = track->nextInstruction + 5;
-            track->nextInstruction = LoadUIntPointer(track->nextInstruction, 1);
-        }
-        commandLength = 0;
-    }
-    else if (commandID == End)
-    {
-        commandLength = 0;
-        if (track->returnLocation == NULL)
-        {
-            return End;
-        }
-        else
-        {
-            track->nextInstruction = track->returnLocation;
-            track->returnLocation = NULL;
-        }
-    }
-    else
-    {
-        commandLength = 1;
-    }
-    track->nextInstruction += commandLength;
     return *track->nextInstruction;
 }
 
@@ -1257,7 +1237,7 @@ bool16 NoiseTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *
         u32 commandID = *noiseTrack->nextInstruction;
         while (commandID >= SetOctave7)
         {
-            commandID = NoiseTrack_ProcessCommands(commandID, noiseTrack);
+            commandID = NoiseTrack_ProcessCommands(noiseTrack);
             if (commandID == 0xFF && noiseTrack->returnLocation == NULL)
             {
                 NoiseTrack_ExecuteModifications(0, info->gbsTempo, noiseTrack);

@@ -31,7 +31,7 @@ enum SoundEngineCommands
 	PitchBend,
 	SetModulation,
 	E2,
-	E3,
+	NoiseSet,
 	E4,
 	SetChannelVolume,
 	SetTone,
@@ -57,7 +57,7 @@ enum SoundEngineCommands
 	SetHostTempo,
 	JumpIf,
 	Jump,
-	Goto,
+	Loop,
 	Call,
 	End
 };
