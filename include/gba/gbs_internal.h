@@ -26,7 +26,7 @@ enum SoundEngineCommands
 	SetDutyCycle,
 	SetNoteAttributes,
 	Arpeggiate,
-	SetDutyCycle2,
+	SetDutyCyclePattern,
 	Portamento,
 	PitchBend,
 	SetModulation,
@@ -62,7 +62,8 @@ enum SoundEngineCommands
 	End
 };
 
-enum GBPStatusFlags {
+enum GBPStatusFlags
+{
 	ModulationActivation,
 	ModulationDir,
 	PortamentoActivation,
@@ -70,6 +71,15 @@ enum GBPStatusFlags {
 	ArpeggiationActivation,
 	ArpeggiationStatus,
 	NumGBPEngineFlags
+};
+
+enum CGBChannels
+{
+	CGBCHANNEL_TONE1,
+	CGBCHANNEL_TONE2,
+	CGBCHANNEL_WAVE,
+	CGBCHANNEL_NOISE,
+	NUM_CGBCHANNELS
 };
 
 struct ToneTrack

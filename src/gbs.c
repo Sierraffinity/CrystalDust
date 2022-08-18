@@ -5,6 +5,8 @@
  *      Author: Jambo51
  *  Revised for M4A integration in: February 2020
  *      Author: huderlem
+ *  Integration finalized in: 2022
+ *      Author: Sierraffinity
  */
 
 #include "global.h"
@@ -13,21 +15,6 @@
 #include "m4a.h"
 
 bool8 gWaveTrackShouldReloadPattern;
-
-static inline u32 LoadUInt(u8 *source, u32 offset)
-{
-    return *(source + offset) | (*(source + offset + 1) << 8) | (*(source + offset + 2) << 16) | (*(source + offset + 3) << 24);
-}
-
-static inline u8 *LoadUIntPointer(u8 *source, u32 offset)
-{
-    return (u8 *)LoadUInt(source, offset);
-}
-
-static inline u16 LoadUShortNumber(u8 *source, u32 offset)
-{
-    return *(source + offset) | (*(source + offset + 1) << 8);
-}
 
 static inline u16 UShortEndianSwap(u16 input)
 {
@@ -55,20 +42,9 @@ static inline vu8 *SoundControl()
     return (vu8 *)(REG_ADDR_NR50);
 }
 
-// Is m4a engine using GB channel? If so, don't render
-static inline bool32 DoesGBSDriveChannel(int trackID)
+static inline bool32 IsM4AUsingCGBChannel(int channel)
 {
-    return gUsedGBChannels[trackID] == FALSE;
-}
-
-static inline bool32 DoesGBSDriveWaveChannel()
-{
-    return DoesGBSDriveChannel(2);
-}
-
-static inline bool32 DoesGBSDriveNoiseChannel()
-{
-    return DoesGBSDriveChannel(3);
+    return gUsedCGBChannels[channel];
 }
 
 void SetMasterVolumeFromFade(u32 volX)
@@ -167,7 +143,7 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct ToneTrack *t
         thisVoiceVolVelocity = (track->currentVoice << 6) | (track->fadeSpeed << 8) | (((track->fadeSpeed == 0) ? 0 : track->fadeDirection) << 11) | (track->velocity << 12) | 0x3F;
         thisPitch = track->pitch | 0x8000;
         
-        if (DoesGBSDriveChannel(track->trackID - 1))
+        if (!IsM4AUsingCGBChannel(track->trackID - 1))
         {
             vu16 *control = ToneTrackControl() + ((track->trackID - 1) * 4);
             vu8 *soundControl = SoundControl();
@@ -185,7 +161,7 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct ToneTrack *t
             control[2] = thisPitch;
         }
     }
-    else if (DoesGBSDriveChannel(track->trackID - 1))
+    else if (!IsM4AUsingCGBChannel(track->trackID - 1))
     {
         ToneTrack_Reset(track->trackID - 1);
     }
@@ -225,12 +201,15 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct ToneTrack *tra
         }
         case SetTempo:
             // TODO: Should be settable from others
-            info->gbsTempo = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 0));
+            info->gbsTempo = UShortEndianSwap(T1_READ_16(track->nextInstruction));
             track->nextInstruction += 2;
             break;
         case SetDutyCycle:
-        case SetDutyCycle2:
             track->currentVoice = *track->nextInstruction++;
+            break;
+        case SetDutyCyclePattern:
+            // Not implemented
+            track->nextInstruction++;
             break;
         case Arpeggiate:
         {
@@ -292,7 +271,7 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct ToneTrack *tra
             if (track->channelVolume != volume)
             {
                 track->channelVolume = volume;
-                if (DoesGBSDriveChannel(track->trackID - 1))
+                if (!IsM4AUsingCGBChannel(track->trackID - 1))
                 {
                     vu8 *control = SoundControl();
                     control[0] = track->channelVolume;
@@ -301,15 +280,12 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct ToneTrack *tra
             break;
         }
         case SetTone:
-            track->tone = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 0));
+            track->tone = UShortEndianSwap(T1_READ_16(track->nextInstruction));
             track->nextInstruction += 2;
             break;
         case Pan:
-        {
-            u8 byte = *track->nextInstruction++;
-            track->pan = (byte == 0) ? 0xFF : byte;
+            track->pan = *track->nextInstruction++;
             break;
-        }
         case SetHostTempo:
         {
             // It is advised that this function not be used since it could mess with
@@ -330,7 +306,7 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct ToneTrack *tra
             track->nextInstruction += 5;
             break;
         case Jump:
-            track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+            track->nextInstruction = T1_READ_PTR(track->nextInstruction);
             break;
         case Loop:
         {
@@ -343,7 +319,7 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct ToneTrack *tra
                     {
                         track->loopCounter++;
                     }
-                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
                 }
                 else if (loopCount != 0 && track->loopCounter != 0)
                 {
@@ -359,7 +335,7 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct ToneTrack *tra
                     {
                         track->loopCounter2++;
                     }
-                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
                 }
                 else if (loopCount != 0 && track->loopCounter2 != 0)
                 {
@@ -373,7 +349,7 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct ToneTrack *tra
             if (track->returnLocation == NULL)
             {
                 track->returnLocation = track->nextInstruction + 4;
-                track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+                track->nextInstruction = T1_READ_PTR(track->nextInstruction);
             }
             break;
         case End:
@@ -475,7 +451,7 @@ void ToneTrack_ModulateTrack(struct ToneTrack *track)
             else if (track->pitch != 0)
             {
                 u16 modulatedPitch = ToneTrack_GetModulationPitch(track);
-                if (DoesGBSDriveChannel(track->trackID - 1))
+                if (!IsM4AUsingCGBChannel(track->trackID - 1))
                 {
                     vu16 *control = ToneTrackControl();
                     u16 location = ((track->trackID - 1) * 4) + 2;
@@ -498,7 +474,7 @@ void ToneTrack_ArpeggiateTrack(struct ToneTrack *track)
         {
             u16 location = (track->trackID == 1) ? 1 : 4;
             track->arpeggiationCountdown = track->arpeggiationDelayCount;
-            if (DoesGBSDriveChannel(track->trackID - 1))
+            if (!IsM4AUsingCGBChannel(track->trackID - 1))
             {
                 vu16 *control = ToneTrackControl();
                 control[location] = (control[location] & 0xFF00) | (((track->statusFlags[ArpeggiationStatus]) ? track->currentVoice : track->arpeggiationVoice) << 6);
@@ -549,7 +525,7 @@ bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
 
     if (toneTrack->trackID == 1)
     {
-        if (DoesGBSDriveChannel(toneTrack->trackID - 1))
+        if (!IsM4AUsingCGBChannel(toneTrack->trackID - 1))
         {
             // TODO: This should be removed when pitch bend is implemented.
             // This code is ensuring no pitch slide values are set, since no
@@ -586,13 +562,13 @@ void WaveTrack_SwitchWavePattern(int patternID)
 {
     int i;
     vu16* control = WaveTrackControl();
-    if (patternID < ARRAY_COUNT(sWaveTrackPatterns) && gCgbChans[2].cp != (u32)sWaveTrackPatterns[patternID])
+    if (patternID < ARRAY_COUNT(sWaveTrackPatterns) && gCgbChans[CGBCHANNEL_WAVE].cp != (u32)sWaveTrackPatterns[patternID])
     {
         u32* mainPattern = (u32 *)(REG_ADDR_WAVE_RAM0);
         control[0] = 0x40;
         for (i = 0; i < 4; i++)
             mainPattern[i] = sWaveTrackPatterns[patternID][i];
-        gCgbChans[2].cp = (u32)sWaveTrackPatterns[patternID];
+        gCgbChans[CGBCHANNEL_WAVE].cp = (u32)sWaveTrackPatterns[patternID];
         control[0] = 0x0;
     }
 }
@@ -602,7 +578,7 @@ void WaveTrack_Reset()
     vu16 *control = WaveTrackControl();
     vu8 *soundControl = SoundControl();
 
-    soundControl[1] &= ~gCgbChans[2].panMask;
+    soundControl[1] &= ~gCgbChans[CGBCHANNEL_WAVE].panMask;
 
     control[0] = 0;
     control[1] = 0x800;
@@ -626,7 +602,7 @@ void WaveTrack_ExecuteModifications(u8 commandID, u16 tempo, struct WaveTrack *t
         thisPitch = track->pitch | 0x8000;
         activationValue = 0x80;
         
-        if (DoesGBSDriveWaveChannel())
+        if (!IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
         {
             vu8 *soundControl = SoundControl();
             u8 thisPan = gCgbChans[track->gbsIdentifier - 1].panMask;
@@ -641,7 +617,7 @@ void WaveTrack_ExecuteModifications(u8 commandID, u16 tempo, struct WaveTrack *t
             control[2] = thisPitch;
         }
     }
-    else if (DoesGBSDriveWaveChannel())
+    else if (!IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
     {
         WaveTrack_Reset();
     }
@@ -700,7 +676,7 @@ void WaveTrack_ModulateTrack(struct WaveTrack *track)
                         }
                         break;
                 }
-                if (DoesGBSDriveWaveChannel())
+                if (!IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
                 {
                     vu16 *control = WaveTrackControl();
                     control[2] = (control[2] & 0x8000) | outPitch;
@@ -726,7 +702,7 @@ bool16 WaveTrack_ProcessCommands(struct WaveTrack *track)
             byte2 = *track->nextInstruction++;
             track->velocity = (byte2 & 0x70) >> 4;
             u8 newVoice = byte2 & 0xF;
-            if (track->currentVoice != newVoice && DoesGBSDriveWaveChannel())
+            if (track->currentVoice != newVoice && !IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
             {
                 WaveTrack_SwitchWavePattern(newVoice);
             }
@@ -736,9 +712,9 @@ bool16 WaveTrack_ProcessCommands(struct WaveTrack *track)
         case SetNoteAttributes:
         {
             u8 byte2 = *track->nextInstruction++;
-            track->velocity = (byte2 & 0x70) >> 4;
             u8 newVoice = byte2 & 0xF;
-            if (track->currentVoice != newVoice && DoesGBSDriveWaveChannel())
+            track->velocity = (byte2 & 0x70) >> 4;
+            if (track->currentVoice != newVoice && !IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
             {
                 WaveTrack_SwitchWavePattern(newVoice);
             }
@@ -746,20 +722,19 @@ bool16 WaveTrack_ProcessCommands(struct WaveTrack *track)
             break;
         }
         case SetKeyShift:
-        {
             track->keyShift = *track->nextInstruction++;
             break;
-        }
         case SetDutyCycle:
-        case SetDutyCycle2:
-            track->currentVoice = *track->nextInstruction++;
+            // Not used in wave track
+            track->nextInstruction++;
+        case SetDutyCyclePattern:
+            // Not used in wave track
+            track->nextInstruction++;
             break;
         case Arpeggiate:
-        {
             // Not implemented
             track->nextInstruction++;
             break;
-        }
         case PitchBend:
             // Not implemented
             track->nextInstruction += 2;
@@ -786,21 +761,18 @@ bool16 WaveTrack_ProcessCommands(struct WaveTrack *track)
             break;
         }
         case SetTone:
-            track->tone = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 0));
+            track->tone = UShortEndianSwap(T1_READ_16(track->nextInstruction));
             track->nextInstruction += 2;
             break;
         case Pan:
-        {
-            u8 byte = *track->nextInstruction++;
-            track->pan = (byte == 0) ? 0xFF : byte;
+            track->pan = *track->nextInstruction++;
             break;
-        }
         case JumpIf:
             // Not implemented
             track->nextInstruction += 5;
             break;
         case Jump:
-            track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+            track->nextInstruction = T1_READ_PTR(track->nextInstruction);
             break;
         case Loop:
         {
@@ -813,7 +785,7 @@ bool16 WaveTrack_ProcessCommands(struct WaveTrack *track)
                     {
                         track->loopCounter++;
                     }
-                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
                 }
                 else if (loopCount != 0 && track->loopCounter != 0)
                 {
@@ -829,7 +801,7 @@ bool16 WaveTrack_ProcessCommands(struct WaveTrack *track)
                     {
                         track->loopCounter2++;
                     }
-                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
                 }
                 else if (loopCount != 0 && track->loopCounter2 != 0)
                 {
@@ -843,7 +815,7 @@ bool16 WaveTrack_ProcessCommands(struct WaveTrack *track)
             if (track->returnLocation == NULL)
             {
                 track->returnLocation = track->nextInstruction + 4;
-                track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+                track->nextInstruction = T1_READ_PTR(track->nextInstruction);
             }
             break;
         case End:
@@ -871,7 +843,7 @@ bool16 WaveTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
     // The M4A sound effects can change the wave pattern.
     // We want to reload the correct wave pattern for this track when
     // control is returned to GBS from M4A.
-    if (!DoesGBSDriveWaveChannel())
+    if (!IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
     {
         gWaveTrackShouldReloadPattern = TRUE;
     }
@@ -1073,21 +1045,14 @@ u8 NoiseTrack_ProcessCommands(struct NoiseTrack *track)
     switch (commandID)
     {
         case SetNoteAttributesAndLength:
-        {
             track->frameDelay = *track->nextInstruction++;
             break;
-        }
         case NoiseSet:
-        {
             track->noiseSet = *track->nextInstruction++;
             break;
-        }
         case Pan:
-        {
-            u8 byte = *track->nextInstruction++;
-            track->pan = (byte == 0) ? 0xFF : byte;
+            track->pan = *track->nextInstruction++;
             break;
-        }
         case Loop:
         {
             u8 loopCount = *track->nextInstruction++;
@@ -1099,7 +1064,7 @@ u8 NoiseTrack_ProcessCommands(struct NoiseTrack *track)
                     {
                         track->loopCounter++;
                     }
-                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
                 }
                 else if (loopCount != 0 && track->loopCounter != 0)
                 {
@@ -1115,7 +1080,7 @@ u8 NoiseTrack_ProcessCommands(struct NoiseTrack *track)
                     {
                         track->loopCounter2++;
                     }
-                    track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
                 }
                 else if (loopCount != 0 && track->loopCounter2 != 0)
                 {
@@ -1126,16 +1091,13 @@ u8 NoiseTrack_ProcessCommands(struct NoiseTrack *track)
             break;
         }
         case Call:
-        {
             if (track->returnLocation == NULL)
             {
                 track->returnLocation = track->nextInstruction + 4;
-                track->nextInstruction = LoadUIntPointer(track->nextInstruction, 0);
+                track->nextInstruction = T1_READ_PTR(track->nextInstruction);
             }
             break;
-        }
         case End:
-        {
             if (track->returnLocation == NULL)
             {
                 return End;
@@ -1146,11 +1108,8 @@ u8 NoiseTrack_ProcessCommands(struct NoiseTrack *track)
                 track->returnLocation = NULL;
             }
             break;
-        }
         default:
-        {
             break;
-        }
     }
     return *track->nextInstruction;
 }
@@ -1165,7 +1124,7 @@ void NoiseTrack_WritePattern(struct NoiseTrack *track)
         track->noiseActive = TRUE;
         track->noiseFrameDelay = value1;
         track->samplePointer += 3;
-        if (DoesGBSDriveNoiseChannel())
+        if (!IsM4AUsingCGBChannel(CGBCHANNEL_NOISE))
         {
             vu16 *control = NoiseTrackControl();
             control[0] = value2;
@@ -1184,7 +1143,7 @@ void NoiseTrack_Reset()
     vu16 *control = NoiseTrackControl();
     vu8 *soundControl = SoundControl();
 
-    soundControl[1] &= ~gCgbChans[3].panMask;
+    soundControl[1] &= ~gCgbChans[CGBCHANNEL_NOISE].panMask;
 
     control[0] = 0x800;
     control[2] = 0x8000;
@@ -1208,7 +1167,7 @@ void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct NoiseTrack 
         noiseData = noiseGroup[(commandID & 0xF0) >> 4];
         track->samplePointer = noiseData;
 
-        if (DoesGBSDriveNoiseChannel())
+        if (!IsM4AUsingCGBChannel(CGBCHANNEL_NOISE))
         {
             vu8 *soundControl = SoundControl();
             
@@ -1217,10 +1176,9 @@ void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct NoiseTrack 
             soundControl[1] = (soundControl[1] & ~gCgbChans[track->gbsIdentifier - 1].panMask) | thisPan;
         }
         
-        // NoiseTrack_WritePattern has its own check for DoesGBSDriveNoiseChannel, but also updates other stuff, so run it
         NoiseTrack_WritePattern(track);
     }
-    else if (DoesGBSDriveNoiseChannel())
+    else if (!IsM4AUsingCGBChannel(CGBCHANNEL_NOISE))
     {
         // If resting but we have control, clear the track
         NoiseTrack_Reset();
@@ -1317,7 +1275,7 @@ void ply_gbs_switch(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *
         track->flags = MPT_FLG_EXIST;
 
         // Clear used bit from previous song.
-        gUsedGBChannels[gbChannel] = FALSE;
+        gUsedCGBChannels[gbChannel] = FALSE;
         
         switch (gbChannel)
         {

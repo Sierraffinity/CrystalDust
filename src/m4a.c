@@ -19,7 +19,7 @@ struct MusicPlayerInfo gMPlayInfo_BGM;
 struct MusicPlayerInfo gMPlayInfo_SE1;
 struct MusicPlayerInfo gMPlayInfo_SE2;
 struct MusicPlayerInfo gMPlayInfo_SE3;
-u8 gUsedGBChannels[4];
+bool8 gUsedCGBChannels[4];
 u8 gMPlayMemAccArea[0x10];
 
 u32 MidiKeyToFreq(struct WaveData *wav, u8 key, u8 fineAdjust)
@@ -925,7 +925,7 @@ void CgbSound(void)
     int mask = 0xff;
 
     for (i = 0; i < 4; i++)
-        gUsedGBChannels[i] = 0;
+        gUsedCGBChannels[i] = 0;
 
     if (soundInfo->c15)
         soundInfo->c15--;
@@ -937,7 +937,7 @@ void CgbSound(void)
         if (!(channels->sf & 0xc7))
             continue;
 
-        gUsedGBChannels[ch - 1] = 1;
+        gUsedCGBChannels[ch - 1] = 1;
         switch (ch)
         {
         case 1:
