@@ -248,6 +248,11 @@ RadioTower_1F_EventScript_BenLoverGirl::
 	return
 
 
+RadioTower_1F_EventScript_GBPlayerMan::
+	msgbox RadioTower_1F_EventScript_GBPlayerMan_Text_0, MSGBOX_NPC
+	return
+
+
 RadioTower_1F_EventScript_DirectorySign::
 	msgbox RadioTower_1F_EventScript_DirectorySign_Text_0, MSGBOX_SIGN
 	return
@@ -410,6 +415,17 @@ RadioTower_1F_EventScript_MaryLoverBoy_Text_0:
 RadioTower_1F_EventScript_BenLoverGirl_Text_0:
 	.string "BEN is a fabulous DJ.\n"
 	.string "His sweet voice makes me melt!$"
+
+RadioTower_1F_EventScript_GBPlayerMan_Text_0:
+	.string "The music here is fine, but I wish\n"
+	.string "they played songs from the '90s.\p"
+	.string "You know, they're giving away retro\n"
+	.string "music players at POKéMON MARTS if\l"
+	.string "you know the right password.\p"
+	.string "Uh… I think it was something like\n"
+	.string "“GAME BOY WAS BETTER”.\p"
+	.string "Because it was!\n"
+	.string "Get'n sync with me!$"
 
 RadioTower_1F_EventScript_DirectorySign_Text_0:
 	.string "1F RECEPTION\n"
