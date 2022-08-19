@@ -36,3 +36,5 @@ porymap.project.cfg
 data/text/trainers.inc
 src/*.s
 alphas/
+src/data/items.h
+src/data/wild_encounters.h
