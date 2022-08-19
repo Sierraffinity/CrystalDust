@@ -925,7 +925,7 @@ void CgbSound(void)
     int mask = 0xff;
 
     for (i = 0; i < 4; i++)
-        gUsedCGBChannels[i] = 0;
+        gUsedCGBChannels[i] = FALSE;
 
     if (soundInfo->c15)
         soundInfo->c15--;
@@ -937,7 +937,7 @@ void CgbSound(void)
         if (!(channels->sf & 0xc7))
             continue;
 
-        gUsedCGBChannels[ch - 1] = 1;
+        gUsedCGBChannels[ch - 1] = TRUE;
         switch (ch)
         {
         case 1:

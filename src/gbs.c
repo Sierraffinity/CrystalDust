@@ -110,10 +110,11 @@ u16 CalculatePitch(u8 note, s8 keyShift, u8 octave, u16 tone)
 
 void ToneTrack_Reset(int trackID)
 {
+    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     vu16 *control = ToneTrackControl() + (trackID * 4);
     vu8 *soundControl = SoundControl();
 
-    soundControl[1] &= ~gCgbChans[trackID].panMask;
+    soundControl[1] &= ~soundInfo->cgbChans[trackID].panMask;
 
     if (trackID == 1)
     {
@@ -130,6 +131,7 @@ void ToneTrack_Reset(int trackID)
 
 void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct ToneTrack *track)
 {
+    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     u16 thisVoiceVolVelocity = 0;
     u16 thisPitch = 0;
     u16 noteLength = CalculateLength(track->frameDelay, tempo, (commandID & 0xF), track->noteLength2);
@@ -147,11 +149,11 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct ToneTrack *t
         {
             vu16 *control = ToneTrackControl() + ((track->trackID - 1) * 4);
             vu8 *soundControl = SoundControl();
-            u8 thisPan = gCgbChans[track->trackID - 1].panMask;
+            u8 thisPan = soundInfo->cgbChans[track->trackID - 1].panMask;
 
             if (gSaveBlock2Ptr->optionsSound == OPTIONS_SOUND_STEREO)
                 thisPan &= track->pan;
-            soundControl[1] = (soundControl[1] & ~gCgbChans[track->trackID - 1].panMask) | thisPan;
+            soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->trackID - 1].panMask) | thisPan;
 
             if (track->trackID == 2)
                 control[0] = thisVoiceVolVelocity;
@@ -561,24 +563,26 @@ static const u32 sWaveTrackPatterns[][4] = {
 void WaveTrack_SwitchWavePattern(int patternID)
 {
     int i;
+    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     vu16* control = WaveTrackControl();
-    if (patternID < ARRAY_COUNT(sWaveTrackPatterns) && gCgbChans[CGBCHANNEL_WAVE].cp != (u32)sWaveTrackPatterns[patternID])
+    if (patternID < ARRAY_COUNT(sWaveTrackPatterns) && soundInfo->cgbChans[CGBCHANNEL_WAVE].cp != (u32)sWaveTrackPatterns[patternID])
     {
         u32* mainPattern = (u32 *)(REG_ADDR_WAVE_RAM0);
         control[0] = 0x40;
         for (i = 0; i < 4; i++)
             mainPattern[i] = sWaveTrackPatterns[patternID][i];
-        gCgbChans[CGBCHANNEL_WAVE].cp = (u32)sWaveTrackPatterns[patternID];
+        soundInfo->cgbChans[CGBCHANNEL_WAVE].cp = (u32)sWaveTrackPatterns[patternID];
         control[0] = 0x0;
     }
 }
 
 void WaveTrack_Reset()
 {
+    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     vu16 *control = WaveTrackControl();
     vu8 *soundControl = SoundControl();
 
-    soundControl[1] &= ~gCgbChans[CGBCHANNEL_WAVE].panMask;
+    soundControl[1] &= ~soundInfo->cgbChans[CGBCHANNEL_WAVE].panMask;
 
     control[0] = 0;
     control[1] = 0x800;
@@ -587,6 +591,7 @@ void WaveTrack_Reset()
 
 void WaveTrack_ExecuteModifications(u8 commandID, u16 tempo, struct WaveTrack *track)
 {
+    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     u16 thisVelocity = 0;
     u16 thisPitch = 0;
     u16 activationValue = 0;
@@ -605,11 +610,11 @@ void WaveTrack_ExecuteModifications(u8 commandID, u16 tempo, struct WaveTrack *t
         if (!IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
         {
             vu8 *soundControl = SoundControl();
-            u8 thisPan = gCgbChans[track->gbsIdentifier - 1].panMask;
+            u8 thisPan = soundInfo->cgbChans[track->gbsIdentifier - 1].panMask;
 
             if (gSaveBlock2Ptr->optionsSound == OPTIONS_SOUND_STEREO)
                 thisPan &= track->pan;
-            soundControl[1] = (soundControl[1] & ~gCgbChans[track->gbsIdentifier - 1].panMask) | thisPan;
+            soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->gbsIdentifier - 1].panMask) | thisPan;
 
             vu16 *control = WaveTrackControl();
             control[0] = activationValue;
@@ -1140,10 +1145,11 @@ void NoiseTrack_WritePattern(struct NoiseTrack *track)
 
 void NoiseTrack_Reset()
 {
+    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     vu16 *control = NoiseTrackControl();
     vu8 *soundControl = SoundControl();
 
-    soundControl[1] &= ~gCgbChans[CGBCHANNEL_NOISE].panMask;
+    soundControl[1] &= ~soundInfo->cgbChans[CGBCHANNEL_NOISE].panMask;
 
     control[0] = 0x800;
     control[2] = 0x8000;
@@ -1151,8 +1157,9 @@ void NoiseTrack_Reset()
 
 void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct NoiseTrack *track)
 {
+    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     u16 noteLength = CalculateLength(track->frameDelay, tempo, (commandID & 0xF), track->noteLength2);
-    u8 thisPan = gCgbChans[track->gbsIdentifier - 1].panMask;
+    u8 thisPan = soundInfo->cgbChans[track->gbsIdentifier - 1].panMask;
     
     track->noteLength1 = (noteLength & 0xFF00) >> 8;
     track->noteLength2 = noteLength & 0xFF;
@@ -1173,7 +1180,7 @@ void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct NoiseTrack 
             
             if (gSaveBlock2Ptr->optionsSound == OPTIONS_SOUND_STEREO)
                 thisPan &= track->pan;
-            soundControl[1] = (soundControl[1] & ~gCgbChans[track->gbsIdentifier - 1].panMask) | thisPan;
+            soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->gbsIdentifier - 1].panMask) | thisPan;
         }
         
         NoiseTrack_WritePattern(track);
@@ -1263,6 +1270,7 @@ bool16 GBSTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
 
 void ply_gbs_switch(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track)
 {
+    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     u8 *cmdPtrBackup = track->cmdPtr;
     u8 gbChannel = *cmdPtrBackup++;
 
@@ -1274,7 +1282,9 @@ void ply_gbs_switch(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *
         track->pan = 0xFF;
         track->flags = MPT_FLG_EXIST;
 
-        // Clear used bit from previous song.
+        // Disable m4a control of CGB channel.
+        soundInfo->cgbChans[gbChannel].sf = 0;
+        // Clear used bit.
         gUsedCGBChannels[gbChannel] = FALSE;
         
         switch (gbChannel)
