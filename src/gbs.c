@@ -129,7 +129,7 @@ void ToneTrack_Reset(int trackID)
     control[2] = 0x8000;
 }
 
-void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct ToneTrack *track)
+void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct GBSTrack *track)
 {
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     u16 thisVoiceVolVelocity = 0;
@@ -169,7 +169,7 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct ToneTrack *t
     }
 }
 
-u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct ToneTrack *track)
+u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
 {
     u8 commandID = *track->nextInstruction++; // grab next byte and increment pointer
 
@@ -370,7 +370,7 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct ToneTrack *tra
     return *track->nextInstruction;
 }
 
-u16 ToneTrack_GetModulationPitch(struct ToneTrack *track)
+u16 ToneTrack_GetModulationPitch(struct GBSTrack *track)
 {
     u16 newPitch = track->pitch;
     track->statusFlags[ModulationDir] = !track->statusFlags[ModulationDir];
@@ -406,7 +406,7 @@ u16 ToneTrack_GetModulationPitch(struct ToneTrack *track)
     return newPitch;
 }
 
-void ToneTrack_ModulateTrack(struct ToneTrack *track)
+void ToneTrack_ModulateTrack(struct GBSTrack *track)
 {
     if (track->statusFlags[PitchBendActivation])
     {
@@ -465,7 +465,7 @@ void ToneTrack_ModulateTrack(struct ToneTrack *track)
     }
 }
 
-void ToneTrack_ArpeggiateTrack(struct ToneTrack *track)
+void ToneTrack_ArpeggiateTrack(struct GBSTrack *track)
 {
     if (track->statusFlags[ArpeggiationActivation])
     {
@@ -487,20 +487,19 @@ void ToneTrack_ArpeggiateTrack(struct ToneTrack *track)
     }
 }
 
-bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
+bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
 {
-    struct ToneTrack *toneTrack = (struct ToneTrack *)track;
     bool16 result = TRUE;
 
-    if (toneTrack->noteLength1 < 2)
+    if (track->noteLength1 < 2)
     {
-        u32 commandID = *toneTrack->nextInstruction;
+        u32 commandID = *track->nextInstruction;
         while (commandID >= SetOctave7)
         {
-            commandID = ToneTrack_ProcessCommands(info, toneTrack);
-            if (commandID == End && toneTrack->returnLocation == NULL)
+            commandID = ToneTrack_ProcessCommands(info, track);
+            if (commandID == End && track->returnLocation == NULL)
             {
-                ToneTrack_ExecuteModifications(0, info->gbsTempo, toneTrack);
+                ToneTrack_ExecuteModifications(0, info->gbsTempo, track);
                 result = FALSE;
                 break;
             }
@@ -508,27 +507,27 @@ bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
 
         if (commandID != End)
         {
-            ToneTrack_ExecuteModifications(commandID, info->gbsTempo, toneTrack);
-            toneTrack->nextInstruction++;
-            toneTrack->modulationDelayCount = toneTrack->modulationDelay;
-            ToneTrack_ModulateTrack(toneTrack);
+            ToneTrack_ExecuteModifications(commandID, info->gbsTempo, track);
+            track->nextInstruction++;
+            track->modulationDelayCount = track->modulationDelay;
+            ToneTrack_ModulateTrack(track);
 
-            toneTrack->arpeggiationCountdown = (toneTrack->statusFlags[ArpeggiationActivation]) ? toneTrack->arpeggiationDelayCount : 0;
-            toneTrack->statusFlags[ArpeggiationStatus] = FALSE;
-            toneTrack->statusFlags[PortamentoActivation] = FALSE;
-            toneTrack->statusFlags[PitchBendActivation] = FALSE;
+            track->arpeggiationCountdown = (track->statusFlags[ArpeggiationActivation]) ? track->arpeggiationDelayCount : 0;
+            track->statusFlags[ArpeggiationStatus] = FALSE;
+            track->statusFlags[PortamentoActivation] = FALSE;
+            track->statusFlags[PitchBendActivation] = FALSE;
         }
     }
     else
     {
-        toneTrack->noteLength1--;
-        ToneTrack_ModulateTrack(toneTrack);
-        ToneTrack_ArpeggiateTrack(toneTrack);
+        track->noteLength1--;
+        ToneTrack_ModulateTrack(track);
+        ToneTrack_ArpeggiateTrack(track);
     }
 
-    if (toneTrack->trackID == 1)
+    if (track->trackID == 1)
     {
-        if (!IsM4AUsingCGBChannel(toneTrack->trackID - 1))
+        if (!IsM4AUsingCGBChannel(track->trackID - 1))
         {
             // TODO: This should be removed when pitch bend is implemented.
             // This code is ensuring no pitch slide values are set, since no
@@ -537,7 +536,7 @@ bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
             control[0] = 0;
         }
 
-        SetMasterVolumeFromFade(toneTrack->volX);
+        SetMasterVolumeFromFade(track->volX);
     }
 
     return result;
@@ -590,7 +589,7 @@ void WaveTrack_Reset()
     control[2] = 0x8000;
 }
 
-void WaveTrack_ExecuteModifications(u8 commandID, u16 tempo, struct WaveTrack *track)
+void WaveTrack_ExecuteModifications(u8 commandID, u16 tempo, struct GBSTrack *track)
 {
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     u16 thisVelocity = 0;
@@ -611,11 +610,11 @@ void WaveTrack_ExecuteModifications(u8 commandID, u16 tempo, struct WaveTrack *t
         if (!IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
         {
             vu8 *soundControl = SoundControl();
-            u8 thisPan = soundInfo->cgbChans[track->gbsIdentifier - 1].panMask;
+            u8 thisPan = soundInfo->cgbChans[track->trackID - 1].panMask;
 
             if (gSaveBlock2Ptr->optionsSound == OPTIONS_SOUND_STEREO)
                 thisPan &= track->pan;
-            soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->gbsIdentifier - 1].panMask) | thisPan;
+            soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->trackID - 1].panMask) | thisPan;
 
             vu16 *control = WaveTrackControl();
             control[0] = activationValue;
@@ -629,7 +628,7 @@ void WaveTrack_ExecuteModifications(u8 commandID, u16 tempo, struct WaveTrack *t
     }
 }
 
-void WaveTrack_ModulateTrack(struct WaveTrack *track)
+void WaveTrack_ModulateTrack(struct GBSTrack *track)
 {
     if (track->statusFlags[PitchBendActivation])
     {
@@ -692,7 +691,7 @@ void WaveTrack_ModulateTrack(struct WaveTrack *track)
     }
 }
 
-bool16 WaveTrack_ProcessCommands(struct WaveTrack *track)
+bool16 WaveTrack_ProcessCommands(struct GBSTrack *track)
 {
     u8 commandID = *track->nextInstruction++; // grab next byte and increment pointer
 
@@ -841,9 +840,8 @@ bool16 WaveTrack_ProcessCommands(struct WaveTrack *track)
     return *track->nextInstruction;
 }
 
-bool16 WaveTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
+bool16 WaveTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
 {
-    struct WaveTrack *waveTrack = (struct WaveTrack *)track;
     bool16 result = TRUE;
 
     // The M4A sound effects can change the wave pattern.
@@ -855,35 +853,35 @@ bool16 WaveTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
     }
     else if (gWaveTrackShouldReloadPattern)
     {
-        WaveTrack_SwitchWavePattern(waveTrack->currentVoice);
+        WaveTrack_SwitchWavePattern(track->currentVoice);
         gWaveTrackShouldReloadPattern = FALSE;
     }
 
-    if (waveTrack->noteLength1 < 2)
+    if (track->noteLength1 < 2)
     {
-        u32 commandID = *waveTrack->nextInstruction;
+        u32 commandID = *track->nextInstruction;
         while (commandID >= SetOctave7)
         {
-            commandID = WaveTrack_ProcessCommands(waveTrack);
-            if (commandID == End && waveTrack->returnLocation == NULL)
+            commandID = WaveTrack_ProcessCommands(track);
+            if (commandID == End && track->returnLocation == NULL)
             {
-                WaveTrack_ExecuteModifications(0, info->gbsTempo, waveTrack);
+                WaveTrack_ExecuteModifications(0, info->gbsTempo, track);
                 result = FALSE;
                 break;
             }
         }
         if (commandID != End)
         {
-            WaveTrack_ExecuteModifications(commandID, info->gbsTempo, waveTrack);
-            waveTrack->nextInstruction++;
-            waveTrack->modulationDelayCount = waveTrack->modulationDelay;
-            WaveTrack_ModulateTrack(waveTrack);
+            WaveTrack_ExecuteModifications(commandID, info->gbsTempo, track);
+            track->nextInstruction++;
+            track->modulationDelayCount = track->modulationDelay;
+            WaveTrack_ModulateTrack(track);
         }
     }
     else
     {
-        waveTrack->noteLength1--;
-        WaveTrack_ModulateTrack(waveTrack);
+        track->noteLength1--;
+        WaveTrack_ModulateTrack(track);
     }
 
     return result;
@@ -1044,7 +1042,7 @@ static const u8 *const *const sNoiseDataGroupTable[] =
     sNoiseDataGroup5
 };
 
-u8 NoiseTrack_ProcessCommands(struct NoiseTrack *track)
+u8 NoiseTrack_ProcessCommands(struct GBSTrack *track)
 {
     u8 commandID = *track->nextInstruction++;
 
@@ -1054,7 +1052,7 @@ u8 NoiseTrack_ProcessCommands(struct NoiseTrack *track)
             track->frameDelay = *track->nextInstruction++;
             break;
         case NoiseSet:
-            track->noiseSet = *track->nextInstruction++;
+            track->currentVoice = *track->nextInstruction++;
             break;
         case Pan:
             track->pan = *track->nextInstruction++;
@@ -1120,7 +1118,7 @@ u8 NoiseTrack_ProcessCommands(struct NoiseTrack *track)
     return *track->nextInstruction;
 }
 
-void NoiseTrack_WritePattern(struct NoiseTrack *track)
+void NoiseTrack_WritePattern(struct GBSTrack *track)
 {
     if (track->samplePointer[0] != 0xFF)
     {
@@ -1156,11 +1154,11 @@ void NoiseTrack_Reset()
     control[2] = 0x8000;
 }
 
-void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct NoiseTrack *track)
+void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct GBSTrack *track)
 {
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     u16 noteLength = CalculateLength(track->frameDelay, tempo, (commandID & 0xF), track->noteLength2);
-    u8 thisPan = soundInfo->cgbChans[track->gbsIdentifier - 1].panMask;
+    u8 thisPan = soundInfo->cgbChans[track->trackID - 1].panMask;
     
     track->noteLength1 = (noteLength & 0xFF00) >> 8;
     track->noteLength2 = noteLength & 0xFF;
@@ -1168,7 +1166,7 @@ void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct NoiseTrack 
     // Check if command is rest
     if (commandID & 0xF0)
     {
-        u32 engineSet = track->noiseSet;
+        u32 engineSet = track->currentVoice;
         const u8 *const *noiseGroup = sNoiseDataGroupTable[engineSet];
         const u8 *noiseData = NULL;
         
@@ -1181,7 +1179,7 @@ void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct NoiseTrack 
             
             if (gSaveBlock2Ptr->optionsSound == OPTIONS_SOUND_STEREO)
                 thisPan &= track->pan;
-            soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->gbsIdentifier - 1].panMask) | thisPan;
+            soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->trackID - 1].panMask) | thisPan;
         }
         
         NoiseTrack_WritePattern(track);
@@ -1193,47 +1191,46 @@ void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct NoiseTrack 
     }
 }
 
-bool16 NoiseTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
+bool16 NoiseTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
 {
-    struct NoiseTrack *noiseTrack = (struct NoiseTrack *)track;
     bool16 result = TRUE;
 
-    if (noiseTrack->noteLength1 < 2)
+    if (track->noteLength1 < 2)
     {
-        u32 commandID = *noiseTrack->nextInstruction;
+        u32 commandID = *track->nextInstruction;
         while (commandID >= SetOctave7)
         {
-            commandID = NoiseTrack_ProcessCommands(noiseTrack);
-            if (commandID == 0xFF && noiseTrack->returnLocation == NULL)
+            commandID = NoiseTrack_ProcessCommands(track);
+            if (commandID == End && track->returnLocation == NULL)
             {
-                NoiseTrack_ExecuteModifications(0, info->gbsTempo, noiseTrack);
+                NoiseTrack_ExecuteModifications(0, info->gbsTempo, track);
                 result = FALSE;
                 break;
             }
         }
-        if (commandID != 0xFF)
+        if (commandID != End)
         {
-            NoiseTrack_ExecuteModifications(commandID, info->gbsTempo, noiseTrack);
-            noiseTrack->nextInstruction++;
+            NoiseTrack_ExecuteModifications(commandID, info->gbsTempo, track);
+            track->nextInstruction++;
         }
         else
         {
-            noiseTrack->noiseActive = 0;
-            noiseTrack->noiseFrameDelay = 0;
+            track->noiseActive = 0;
+            track->noiseFrameDelay = 0;
         }
     }
     else
     {
-        noiseTrack->noteLength1--;
-        if (noiseTrack->noiseActive == 1)
+        track->noteLength1--;
+        if (track->noiseActive == 1)
         {
-            if (noiseTrack->noiseFrameDelay == 0)
+            if (track->noiseFrameDelay == 0)
             {
-                NoiseTrack_WritePattern(noiseTrack);
+                NoiseTrack_WritePattern(track);
             }
             else
             {
-                noiseTrack->noiseFrameDelay--;
+                track->noiseFrameDelay--;
             }
         }
     }
@@ -1243,6 +1240,7 @@ bool16 NoiseTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *
 
 bool16 GBSTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
 {
+    struct GBSTrack *gbsTrack = (struct GBSTrack *)track;
     bool16 success = FALSE;
     
     // Set bias level to 0 for less crunch
@@ -1254,15 +1252,15 @@ bool16 GBSTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
     {
         case 2:
             // Wave Track Update
-            success = WaveTrack_Update(info, track);
+            success = WaveTrack_Update(info, gbsTrack);
             break;
         case 3:
             // Noise Track Update
-            success = NoiseTrack_Update(info, track);
+            success = NoiseTrack_Update(info, gbsTrack);
             break;
         default:
             // Tone Track Update
-            success = ToneTrack_Update(info, track);
+            success = ToneTrack_Update(info, gbsTrack);
             break;
     }
 
