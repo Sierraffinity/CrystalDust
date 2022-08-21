@@ -215,6 +215,7 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct ToneTrack *tra
             break;
         case Arpeggiate:
         {
+            // TODO: This is nothing like the command in the Crystal engine, investigate
             u8 byte2 = *track->nextInstruction++;
             if (byte2 != 0)
             {

@@ -1,3 +1,13 @@
+SOUND_VIBRATO bit == track->statusFlags[ModulationActivation]
+CHANNEL_VIBRATO_DELAY_COUNT == track->modulationCountdown
+CHANNEL_VIBRATO_EXTENT == track->modulationDepth
+CHANNEL_VIBRATO_RATE lower nybble == track->modulationSpeedDelay
+CHANNEL_VIBRATO_RATE upper nybble == track->modulationSpeed
+CHANNEL_NOTE_DURATION == track->noteLength1
+CHANNEL_FIELD16 == track->noteLength2 (duration remainder)
+CHANNEL_NOTE_LENGTH == track->baseNoteLength (length of 16th note)
+
+
 _UpdateSound:
     Return if no audio playing (wMusicPlaying is zero)
     Loop from 1-8 (0-7):
