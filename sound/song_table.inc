@@ -620,53 +620,67 @@ dummy_song_header: @ 86B5D00
 
 	.align 2
 gGBSSongTable::
-	song_gbs MUS_INTRO,					gbs_crystal_intro_Header,		0, 0	@ Opening Movie
-	song_gbs MUS_TITLE,					gbs_crystal_title_Header,		0, 0	@ Title Screen
-	song_gbs MUS_MAIN_MENU,				gbs_main_menu_Header,			0, 0	@ An Adventure Begins!
-	song_gbs MUS_ROUTE30,				gbs_route30_Header,				0, 0	@ Route 30
-	song_gbs MUS_NEW_BARK,				gbs_new_bark_town_Header,		0, 0	@ New Bark Town
-	song_gbs MUS_MOMS_THEME,			gbs_moms_theme_Header,			0, 0	@ Mom's Theme
-	song_gbs MUS_ELMS_LAB,				gbs_elms_lab_Header,			0, 0	@ Elm's Lab
-	song_gbs MUS_ROUTE29,				gbs_route29_Header,				0, 0	@ Route 29
-	song_gbs MUS_VS_JOHTO_WILD,			gbs_btl_wild_johto_Header,		0, 0	@ Battle! (Wild Pokémon - Johto)
-	song_gbs MUS_VICTORY_WILD,			gbs_victory_wild_Header,		0, 0	@ Victory! (Wild Pokémon)
-	song_gbs MUS_CHERRYGROVE,			gbs_cherrygrove_city_Header,	0, 0	@ Cherrygrove City
-	song_gbs MUS_FOLLOW_ME,				gbs_follow_me_Header,			0, 0	@ Follow Me!
-	song_gbs MUS_POKE_CENTER,			gbs_pokecenter_Header,			0, 0	@ Pokémon Center
-	song_gbs MUS_OAKS_THEME,			gbs_oaks_theme_Header,			0, 0	@ Oak's Theme
-	song_gbs MUS_ENCOUNTER_RIVAL,		gbs_silvers_theme_Header,		0, 0	@ Rival's Theme
-	song_gbs MUS_VS_RIVAL,				gbs_btl_silver_Header,			0, 0	@ Battle! (Rival)
-	song_gbs MUS_RIVAL_EXIT,			gbs_silvers_reprise_Header,		0, 0	@ Rival Exit
 	song_gbs MUS_CAUGHT,				gbs_caught_mon_Header,			0, 0	@ You Caught a Pokémon!
-	song_gbs MUS_ENCOUNTER_MALE,		gbs_enc_youngster_Header,		0, 0	@ Trainers' Eyes Meet (Male)
-	song_gbs MUS_VS_JOHTO_TRAINER,		gbs_btl_trainer_johto_Header,	0, 0	@ Battle! (Trainer - Johto)
-	song_gbs MUS_DARK_CAVE,				gbs_dark_cave_Header,			0, 0	@ Dark Cave
-	song_gbs MUS_VIOLET,				gbs_violet_city_Header,			0, 0	@ Violet City
-	song_gbs MUS_SPROUT_TOWER,			gbs_sprout_tower_Header,		0, 0	@ Sprout Tower
-	song_gbs MUS_ENCOUNTER_SAGE,		gbs_enc_sage_Header,			0, 0	@ Trainers' Eyes Meet (Sage)
-	song_gbs MUS_GYM,					gbs_gym_Header,					0, 0	@ Gym Theme
-	song_gbs MUS_VS_JOHTO_LEADER,		gbs_btl_leader_johto_Header,	0, 0	@ Battle! (Gym Leader - Johto)
-	song_gbs MUS_ILEX_FOREST,			gbs_union_cave_Header,			0, 0	@ Union Cave
-	song_gbs MUS_RUINS_OF_ALPH,			gbs_ruins_of_alph_Header,		0, 0	@ Ruins of Alph
-	song_gbs MUS_ENCOUNTER_LASS,		gbs_enc_lass_Header,			0, 0	@ Trainers' Eyes Meet (Lass)
-	song_gbs MUS_ENCOUNTER_SUSPICIOUS,	gbs_enc_pokemaniac_Header,		0, 0	@ Trainers' Eyes Meet (Suspicious)
-	song_gbs MUS_AZALEA,				gbs_azalea_town_Header,			0, 0	@ Azalea Town
-	song_gbs MUS_ENCOUNTER_ROCKET,		gbs_enc_rocket_Header,			0, 0	@ Trainers' Eyes Meet (Team Rocket)
-	song_gbs MUS_VS_ROCKET,				gbs_btl_rocket_Header,			0, 0	@ Battle! (Team Rocket)
-	song_gbs MUS_ROUTE34,				gbs_route34_Header,				0, 0	@ Route 34
-	song_gbs MUS_GOLDENROD,				gbs_goldenrod_city_Header,		0, 0	@ Goldenrod City
+	song_gbs MUS_VICTORY_WILD,			gbs_victory_wild_Header,		0, 0	@ Victory! (Wild Pokémon)
+	song_gbs MUS_VICTORY_GYM_LEADER,	gbs_victory_leader_Header,		0, 0	@ Victory! (Gym Leader)
 	song_gbs MUS_POKECOM_CENTER,		gbs_pokecom_center_Header,		0, 0	@ Pokécom Center
-	song_gbs MUS_CYCLING,				gbs_bike_Header,				0, 0	@ Cycling Theme
-	song_gbs MUS_GAME_CORNER,			gbs_game_corner_Header,			0, 0	@ Game Corner
-	song_gbs MUS_ENCOUNTER_FEMALE,		gbs_enc_beauty_Header,			0, 0	@ Trainers' Eyes Meet (Female)
-	song_gbs MUS_OAKS_LAB,				gbs_oaks_lab_Header,			0, 0	@ Oak's Lab
-	song_gbs MUS_POKEMON_LULLABY,		gbs_pkmn_lullaby_Header,		0, 0	@ Pokémon Lullaby
-	song_gbs MUS_POKEMON_MARCH,			gbs_pkmn_march_Header,			0, 0	@ Pokémon March
+	song_gbs MUS_ROUTE29,				gbs_route29_Header,				0, 0	@ Route 29
+	song_gbs MUS_ROUTE34,				gbs_route34_Header,				0, 0	@ Route 34
+	song_gbs MUS_VIOLET,				gbs_violet_city_Header,			0, 0	@ Violet City
+	song_gbs MUS_CHERRYGROVE,			gbs_cherrygrove_city_Header,	0, 0	@ Cherrygrove City
+	song_gbs MUS_GYM,					gbs_gym_Header,					0, 0	@ Gym Theme
+	song_gbs MUS_SURF,					gbs_surfing_Header,				0, 0	@ Surfing
+	song_gbs MUS_ILEX_FOREST,			gbs_union_cave_Header,			0, 0	@ Union Cave
+	@song_gbs MUS_LEVEL_UP,				gbs_fnf_healing_Header,			2, 2	@ Level Up!
+	song_gbs MUS_HEAL,					gbs_fnf_healing_Header,			2, 2	@ Healing
+	@song_gbs MUS_OBTAIN_BADGE,			gbs_fnf_healing_Header,			2, 2	@ Got a Badge!
+	@song_gbs MUS_OBTAIN_ITEM,			gbs_fnf_healing_Header,			2, 2	@ Got an Item!
+	@song_gbs MUS_EVOLVED,				gbs_fnf_healing_Header,			2, 2	@ Your Pokémon Evolved!
+	@song_gbs MUS_OBTAIN_TMHM,			gbs_fnf_healing_Header,			2, 2	@ Got a TM/HM!
+	song_gbs MUS_RUINS_OF_ALPH,			gbs_ruins_of_alph_Header,		0, 0	@ Ruins of Alph
+	song_gbs MUS_ROUTE30,				gbs_route30_Header,				0, 0	@ Route 30
 	song_gbs MUS_BUENAS_THEME,			gbs_buenas_password_Header,		0, 0	@ Buena's Password
-	song_gbs MUS_UNOWN_RADIO,			gbs_radio_unown_Header,			0, 0	@ Unown Signal
-	song_gbs MUS_NATIONAL_PARK,			gbs_national_park_Header,		0, 0	@ National Park
-	song_gbs MUS_BUG_CONTEST_PREP,		gbs_bug_catching_prep_Header,	0, 0	@ Preparing for the Bug-Catching Contest
-	song_gbs MUS_BUG_CATCHING_CONTEST,	gbs_bug_catching_Header,		0, 0	@ Bug-Catching Contest
+	@song_gbs MUS_EVOLUTION_INTRO,		gbs_evolution_Header,			2, 2	@ Evolution Start!
+	song_gbs MUS_EVOLUTION,				gbs_evolution_Header,			0, 0	@ Evolution
+	song_gbs MUS_ENCOUNTER_LASS,		gbs_enc_lass_Header,			0, 0	@ Trainers' Eyes Meet (Lass)
+	song_gbs MUS_ENCOUNTER_MALE,		gbs_enc_youngster_Header,		0, 0	@ Trainers' Eyes Meet (Male)
+	song_gbs MUS_DARK_CAVE,				gbs_dark_cave_Header,			0, 0	@ Dark Cave
+	song_gbs MUS_ELMS_LAB,				gbs_elms_lab_Header,			0, 0	@ Elm's Lab
+	@song_gbs MUS_OBTAIN_EGG,			gbs_evolution_Header,			0, 0	@ Mysterious Egg
 	song_gbs MUS_PKMNCHANNEL_INTERLUDE,	gbs_pkmn_channel_Header,		2, 2	@ Pokémon Channel Interlude
-	song_gbs MUS_HEAL,					gbs_fnf_healing_Header,			2, 2	@ Healing (needs pitch bend)
+	song_gbs MUS_POKEMON_MARCH,			gbs_pkmn_march_Header,			0, 0	@ Pokémon March
+	song_gbs MUS_GOLDENROD,				gbs_goldenrod_city_Header,		0, 0	@ Goldenrod City
+	song_gbs MUS_POKE_CENTER,			gbs_pokecenter_Header,			0, 0	@ Pokémon Center
+	song_gbs MUS_CYCLING,				gbs_bike_Header,				0, 0	@ Cycling Theme
+	song_gbs MUS_POKEMON_LULLABY,		gbs_pkmn_lullaby_Header,		0, 0	@ Pokémon Lullaby
+	song_gbs MUS_NEW_BARK,				gbs_new_bark_town_Header,		0, 0	@ New Bark Town
+	song_gbs MUS_ENCOUNTER_FEMALE,		gbs_enc_beauty_Header,			0, 0	@ Trainers' Eyes Meet (Female)
+	song_gbs MUS_VICTORY_TRAINER,		gbs_victory_trainer_Header,		0, 0	@ Victory! (Trainer)
+	song_gbs MUS_TITLE,					gbs_crystal_title_Header,		0, 0	@ Title Screen
+	song_gbs MUS_INTRO,					gbs_crystal_intro_Header,		0, 0	@ Opening Movie
+	song_gbs MUS_ENCOUNTER_RIVAL,		gbs_silvers_theme_Header,		0, 0	@ Rival's Theme
+	song_gbs MUS_ENCOUNTER_SAGE,		gbs_enc_sage_Header,			0, 0	@ Trainers' Eyes Meet (Sage)
+	song_gbs MUS_ENCOUNTER_OFFICER,		gbs_enc_officer_Header,			0, 0	@ Trainers' Eyes Meet (Officer)
+	song_gbs MUS_MAIN_MENU,				gbs_main_menu_Header,			0, 0	@ An Adventure Begins!
+	song_gbs MUS_ENCOUNTER_ROCKET,		gbs_enc_rocket_Header,			0, 0	@ Trainers' Eyes Meet (Team Rocket)
+	song_gbs MUS_FOLLOW_ME,				gbs_follow_me_Header,			0, 0	@ Follow Me!
+	song_gbs MUS_RIVAL_EXIT,			gbs_silvers_reprise_Header,		0, 0	@ Rival Exit
+	song_gbs MUS_ENCOUNTER_SUSPICIOUS,	gbs_enc_pokemaniac_Header,		0, 0	@ Trainers' Eyes Meet (Suspicious)
+	song_gbs MUS_GAME_CORNER,			gbs_game_corner_Header,			0, 0	@ Game Corner
+	song_gbs MUS_AZALEA,				gbs_azalea_town_Header,			0, 0	@ Azalea Town
+	song_gbs MUS_BUG_CATCHING_CONTEST,	gbs_bug_catching_Header,		0, 0	@ Bug-Catching Contest
+	song_gbs MUS_SPROUT_TOWER,			gbs_sprout_tower_Header,		0, 0	@ Sprout Tower
+	song_gbs MUS_NATIONAL_PARK,			gbs_national_park_Header,		0, 0	@ National Park
+	song_gbs MUS_OAKS_THEME,			gbs_oaks_theme_Header,			0, 0	@ Oak's Theme
+	song_gbs MUS_OAKS_LAB,				gbs_oaks_lab_Header,			0, 0	@ Oak's Lab
+	song_gbs MUS_ROCKET_TAKEOVER,		gbs_rocket_takeover_Header,		0, 0	@ Rocket Takeover
+	song_gbs MUS_UNOWN_RADIO,			gbs_radio_unown_Header,			0, 0	@ Unown Signal
+	song_gbs MUS_BUG_CONTEST_PREP,		gbs_bug_catching_prep_Header,	0, 0	@ Preparing for the Bug-Catching Contest
+	song_gbs MUS_ENCOUNTER_KIMONO,		gbs_enc_kimono_Header,			0, 0	@ Trainers' Eyes Meet (Kimono Girl)
+	@song_gbs MUS_REGISTER_PHONE,		gbs_enc_kimono_Header,			0, 0	@ Phone Number Registered!
+	song_gbs MUS_VS_JOHTO_WILD,			gbs_btl_wild_johto_Header,		0, 0	@ Battle! (Wild Pokémon - Johto)
+	song_gbs MUS_VS_ROCKET,				gbs_btl_rocket_Header,			0, 0	@ Battle! (Team Rocket)
+	song_gbs MUS_VS_JOHTO_TRAINER,		gbs_btl_trainer_johto_Header,	0, 0	@ Battle! (Trainer - Johto)
+	song_gbs MUS_VS_JOHTO_LEADER,		gbs_btl_leader_johto_Header,	0, 0	@ Battle! (Gym Leader - Johto)
+	song_gbs MUS_VS_RIVAL,				gbs_btl_silver_Header,			0, 0	@ Battle! (Rival)
 	.4byte 0xFFFFFFFF

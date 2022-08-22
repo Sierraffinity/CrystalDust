@@ -68,6 +68,7 @@ enum GBPStatusFlags
 	ModulationDir,
 	PortamentoActivation,
 	PitchBendActivation,
+	PitchBendDir,
 	ArpeggiationActivation,
 	ArpeggiationStatus,
 	NumGBPEngineFlags
@@ -104,13 +105,13 @@ struct GBSTrack
 	u8 vol;
 	u8 volX;
 	u8 pan;
-	u8 modulationDelayCount;
+	u8 modulationDelayCountdown;
 	u8 modulationDelay;
 	u8 modulationMode;
 	u8 modulationDepth;
-	u8 modulationSpeedCount;
+	u8 modulationCountdown;
 	u8 modulationSpeed;
-	u8 arpeggiationDelayCount;
+	u8 arpeggiationDelayCountdown;
 	u8 arpeggiationCountdown;
 	u8 portamentoCountdown;
 	u8 portamentoDelay;
@@ -122,7 +123,6 @@ struct GBSTrack
 	u8 fadeDirection;
 	u8 channelVolume;
 	u8 fadeSpeed;
-	u8 arpeggiationVoice;
 	const u8 *samplePointer;
 	bool8 noiseActive; // 0x1C
 	u8 noiseFrameDelay;
@@ -130,8 +130,8 @@ struct GBSTrack
 	u8 pitchBendDuration;
 	u8 pitchBendAmount;
 	u8 pitchBendFraction;
-	u8 pitchBendUnk;
-	bool8 pitchBendDir;
+	u8 pitchBendFractionAccumulator;
+	u8 arpeggiationVoice;
 	u8 padding[3];
 	u8* nextInstruction;
 	u8* returnLocation;

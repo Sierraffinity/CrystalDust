@@ -177,18 +177,18 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct GBSTrack *tr
 
             if (track->pitch < track->pitchBendTarget)
             {
-                track->pitchBendDir = TRUE;
+                track->statusFlags[PitchBendDir] = TRUE;
                 distance = track->pitchBendTarget - track->pitch;
             }
             else
             {
-                track->pitchBendDir = FALSE;
+                track->statusFlags[PitchBendDir] = FALSE;
                 distance = track->pitch - track->pitchBendTarget;
             }
 
             track->pitchBendAmount = distance / track->pitchBendDuration;
             track->pitchBendFraction = distance % track->pitchBendDuration;
-            track->pitchBendUnk = 0;
+            track->pitchBendFractionAccumulator = 0;
         }
     }
     else if (!IsM4AUsingCGBChannel(track->trackID - 1))
@@ -248,8 +248,8 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
             if (byte2 != 0)
             {
                 track->statusFlags[ArpeggiationActivation] = TRUE;
-                track->arpeggiationDelayCount = (byte2 & 0xF0) >> 4;
-                track->arpeggiationCountdown = track->arpeggiationDelayCount;
+                track->arpeggiationDelayCountdown = (byte2 & 0xF0) >> 4;
+                track->arpeggiationCountdown = track->arpeggiationDelayCountdown;
                 track->statusFlags[ArpeggiationStatus] = FALSE;
                 track->arpeggiationVoice = byte2 & 0x3;
             }
@@ -286,11 +286,11 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
                 track->statusFlags[ModulationActivation] = TRUE;
                 track->statusFlags[ModulationDir] = FALSE;
                 track->modulationDelay = modulationDelay;
-                track->modulationDelayCount = track->modulationDelay;
+                track->modulationDelayCountdown = track->modulationDelay;
                 track->modulationMode = 0;
                 track->modulationDepth = (byte2 & 0xF0) >> 4;
                 track->modulationSpeed = byte2 & 0xF;
-                track->modulationSpeedCount = track->modulationSpeed;
+                track->modulationCountdown = track->modulationSpeed;
             }
             else
             {
@@ -405,7 +405,7 @@ u16 GetModulationPitch(struct GBSTrack *track)
 {
     u16 newPitch = track->pitch;
     track->statusFlags[ModulationDir] = !track->statusFlags[ModulationDir];
-    track->modulationSpeedCount = track->modulationSpeed;
+    track->modulationCountdown = track->modulationSpeed;
     switch (track->modulationMode)
     {
         case 0:
@@ -441,38 +441,39 @@ void ToneTrack_ModulateTrack(struct GBSTrack *track)
 {
     if (track->statusFlags[PitchBendActivation])
     {
-        if (track->pitchBendDir)
+        if (track->statusFlags[PitchBendDir])
         {
-            u32 unk = track->pitchBendUnk;
+            u32 fractionAccumulator = track->pitchBendFractionAccumulator;
             track->pitch += track->pitchBendAmount;
-            unk += track->pitchBendFraction;
-            if (unk >= 0x100)
+            fractionAccumulator += track->pitchBendFraction;
+            if (fractionAccumulator >= 0x100)
             {
                 // rollover
                 track->pitch++;
             }
-            track->pitchBendUnk = unk & 0xFF;
-            if (track->pitch > track->pitchBendTarget)
+            track->pitchBendFractionAccumulator = fractionAccumulator & 0xFF;
+            if (track->pitch >= track->pitchBendTarget)
             {
                 track->statusFlags[PitchBendActivation] = FALSE;
-                track->pitchBendDir = FALSE;
+                track->statusFlags[PitchBendDir] = FALSE;
             }
         }
         else
         {
-            u32 unk = track->pitchBendFraction;
+            // TODO: Why does it calculate the fractional part like this?
+            u32 fractionAccumulator = track->pitchBendFraction;
             track->pitch -= track->pitchBendAmount;
-            unk *= 2;
-            if (unk >= 0x100)
+            fractionAccumulator *= 2;
+            if (fractionAccumulator >= 0x100)
             {
                 // rollover
                 track->pitch--;
             }
-            track->pitchBendFraction = unk & 0xFF;
-            if (track->pitch < track->pitchBendTarget)
+            track->pitchBendFraction = fractionAccumulator & 0xFF;
+            if (track->pitch <= track->pitchBendTarget)
             {
                 track->statusFlags[PitchBendActivation] = FALSE;
-                track->pitchBendDir = FALSE;
+                track->statusFlags[PitchBendDir] = FALSE;
             }
         }
         if (!IsM4AUsingCGBChannel(track->trackID - 1))
@@ -511,15 +512,15 @@ void ToneTrack_ModulateTrack(struct GBSTrack *track)
     
     if (track->statusFlags[ModulationActivation])
     {
-        if (track->modulationDelayCount > 0)
+        if (track->modulationDelayCountdown > 0)
         {
-            track->modulationDelayCount--;
+            track->modulationDelayCountdown--;
         }
         else if (track->modulationDepth != 0)
         {
-            if (track->modulationSpeedCount > 0)
+            if (track->modulationCountdown > 0)
             {
-                track->modulationSpeedCount--;
+                track->modulationCountdown--;
             }
             else if (track->pitch != 0)
             {
@@ -546,7 +547,7 @@ void ToneTrack_ArpeggiateTrack(struct GBSTrack *track)
         else
         {
             u16 location = (track->trackID == 1) ? 1 : 4;
-            track->arpeggiationCountdown = track->arpeggiationDelayCount;
+            track->arpeggiationCountdown = track->arpeggiationDelayCountdown;
             if (!IsM4AUsingCGBChannel(track->trackID - 1))
             {
                 vu16 *control = ToneTrackControl();
@@ -579,10 +580,10 @@ bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
         {
             ToneTrack_ExecuteModifications(commandID, info->gbsTempo, track);
             track->nextInstruction++;
-            track->modulationDelayCount = track->modulationDelay;
+            track->modulationDelayCountdown = track->modulationDelay;
             ToneTrack_ModulateTrack(track);
 
-            track->arpeggiationCountdown = (track->statusFlags[ArpeggiationActivation]) ? track->arpeggiationDelayCount : 0;
+            track->arpeggiationCountdown = (track->statusFlags[ArpeggiationActivation]) ? track->arpeggiationDelayCountdown : 0;
             track->statusFlags[ArpeggiationStatus] = FALSE;
             track->statusFlags[PortamentoActivation] = FALSE;
         }
@@ -706,15 +707,15 @@ void WaveTrack_ModulateTrack(struct GBSTrack *track)
 
     if (track->statusFlags[ModulationActivation])
     {
-        if (track->modulationDelayCount > 0)
+        if (track->modulationDelayCountdown > 0)
         {
-            track->modulationDelayCount--;
+            track->modulationDelayCountdown--;
         }
         else if (track->modulationDepth != 0)
         {
-            if (track->modulationSpeedCount > 0)
+            if (track->modulationCountdown > 0)
             {
-                track->modulationSpeedCount--;
+                track->modulationCountdown--;
             }
             else if (track->pitch != 0)
             {
@@ -791,11 +792,11 @@ bool16 WaveTrack_ProcessCommands(struct GBSTrack *track)
                 track->statusFlags[ModulationActivation] = TRUE;
                 track->statusFlags[ModulationDir] = FALSE;
                 track->modulationDelay = modulationDelay;
-                track->modulationDelayCount = track->modulationDelay;
+                track->modulationDelayCountdown = track->modulationDelay;
                 track->modulationMode = 0;
                 track->modulationDepth = (theByte & 0xF0) >> 4;
                 track->modulationSpeed = theByte & 0xF;
-                track->modulationSpeedCount = track->modulationSpeed;
+                track->modulationCountdown = track->modulationSpeed;
             }
             else
             {
@@ -912,7 +913,7 @@ bool16 WaveTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
         {
             WaveTrack_ExecuteModifications(commandID, info->gbsTempo, track);
             track->nextInstruction++;
-            track->modulationDelayCount = track->modulationDelay;
+            track->modulationDelayCountdown = track->modulationDelay;
             WaveTrack_ModulateTrack(track);
         }
     }
