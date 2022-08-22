@@ -668,5 +668,5 @@ gGBSSongTable::
 	song_gbs MUS_BUG_CONTEST_PREP,		gbs_bug_catching_prep_Header,	0, 0	@ Preparing for the Bug-Catching Contest
 	song_gbs MUS_BUG_CATCHING_CONTEST,	gbs_bug_catching_Header,		0, 0	@ Bug-Catching Contest
 	song_gbs MUS_PKMNCHANNEL_INTERLUDE,	gbs_pkmn_channel_Header,		2, 2	@ Pokémon Channel Interlude
-	@song_gbs MUS_HEAL,					gbs_fnf_healing_Header,			2, 2	@ Healing (needs pitch bend)
+	song_gbs MUS_HEAL,					gbs_fnf_healing_Header,			2, 2	@ Healing (needs pitch bend)
 	.4byte 0xFFFFFFFF

@@ -126,7 +126,13 @@ struct GBSTrack
 	const u8 *samplePointer;
 	bool8 noiseActive; // 0x1C
 	u8 noiseFrameDelay;
-	u8 padding[10];
+	u16 pitchBendTarget;
+	u8 pitchBendDuration;
+	u8 pitchBendAmount;
+	u8 pitchBendFraction;
+	u8 pitchBendUnk;
+	bool8 pitchBendDir;
+	u8 padding[3];
 	u8* nextInstruction;
 	u8* returnLocation;
 	u8 secondaryPadding[8];

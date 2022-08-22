@@ -34,7 +34,6 @@ porymap.project.cfg
 *.a
 .fuse_hidden*
 data/text/trainers.inc
-src/*.s
 alphas/
 src/data/items.h
 src/data/wild_encounters.h

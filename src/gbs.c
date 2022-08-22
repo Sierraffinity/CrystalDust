@@ -162,6 +162,34 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct GBSTrack *tr
 
             control[2] = thisPitch;
         }
+        
+        if (track->statusFlags[PitchBendActivation])
+        {
+            u32 distance = 0;
+            if (track->noteLength1 <= track->pitchBendDuration)
+            {
+                track->pitchBendDuration = 1;
+            }
+            else
+            {
+                track->pitchBendDuration = track->noteLength1 - track->pitchBendDuration;
+            }
+
+            if (track->pitch < track->pitchBendTarget)
+            {
+                track->pitchBendDir = TRUE;
+                distance = track->pitchBendTarget - track->pitch;
+            }
+            else
+            {
+                track->pitchBendDir = FALSE;
+                distance = track->pitch - track->pitchBendTarget;
+            }
+
+            track->pitchBendAmount = distance / track->pitchBendDuration;
+            track->pitchBendFraction = distance % track->pitchBendDuration;
+            track->pitchBendUnk = 0;
+        }
     }
     else if (!IsM4AUsingCGBChannel(track->trackID - 1))
     {
@@ -232,11 +260,14 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
             break;
         }
         case PitchBend:
+        {
+            u8 byte2 = 0;
+            track->pitchBendDuration = *track->nextInstruction++;
+            byte2 = *track->nextInstruction++;
+            track->pitchBendTarget = CalculatePitch(byte2 & 0xF, track->keyShift, 7 - ((byte2 & 0xF0) >> 4) & 7, 0);
             track->statusFlags[PitchBendActivation] = TRUE;
-            // Note that this is incomplete and requires research into how pitch
-            // bends are handled in the original engine
-            track->nextInstruction += 2;
             break;
+        }
         case Portamento:
             // No data for this as yet as it is a completely custom effect
             // At least it is in terms of this engine, since the
@@ -370,7 +401,7 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
     return *track->nextInstruction;
 }
 
-u16 ToneTrack_GetModulationPitch(struct GBSTrack *track)
+u16 GetModulationPitch(struct GBSTrack *track)
 {
     u16 newPitch = track->pitch;
     track->statusFlags[ModulationDir] = !track->statusFlags[ModulationDir];
@@ -410,7 +441,45 @@ void ToneTrack_ModulateTrack(struct GBSTrack *track)
 {
     if (track->statusFlags[PitchBendActivation])
     {
-        track->pitch += track->pitchBendRate;
+        if (track->pitchBendDir)
+        {
+            u32 unk = track->pitchBendUnk;
+            track->pitch =+ track->pitchBendAmount;
+            unk =+ track->pitchBendFraction;
+            if (unk >= 0x100)
+            {
+                // rollover
+                track->pitch++;
+            }
+            track->pitchBendUnk = unk & 0xFF;
+            if (track->pitch > track->pitchBendTarget)
+            {
+                track->statusFlags[PitchBendActivation] = FALSE;
+                track->pitchBendDir = FALSE;
+            }
+        }
+        else
+        {
+            u32 unk = track->pitchBendFraction * 2;
+            track->pitch =- track->pitchBendAmount;
+            if (unk >= 0x100)
+            {
+                // rollover
+                track->pitch--;
+            }
+            track->pitchBendFraction = unk & 0xFF;
+            if (track->pitch < track->pitchBendTarget)
+            {
+                track->statusFlags[PitchBendActivation] = FALSE;
+                track->pitchBendDir = FALSE;
+            }
+        }
+        if (!IsM4AUsingCGBChannel(track->trackID - 1))
+        {
+            vu16 *control = ToneTrackControl();
+            u16 location = ((track->trackID - 1) * 4) + 2;
+            control[location] = (control[location] & 0x8000) | track->pitch;
+        }
     }
 
     if (track->statusFlags[PortamentoActivation])
@@ -453,7 +522,7 @@ void ToneTrack_ModulateTrack(struct GBSTrack *track)
             }
             else if (track->pitch != 0)
             {
-                u16 modulatedPitch = ToneTrack_GetModulationPitch(track);
+                u16 modulatedPitch = GetModulationPitch(track);
                 if (!IsM4AUsingCGBChannel(track->trackID - 1))
                 {
                     vu16 *control = ToneTrackControl();
@@ -515,7 +584,6 @@ bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
             track->arpeggiationCountdown = (track->statusFlags[ArpeggiationActivation]) ? track->arpeggiationDelayCount : 0;
             track->statusFlags[ArpeggiationStatus] = FALSE;
             track->statusFlags[PortamentoActivation] = FALSE;
-            track->statusFlags[PitchBendActivation] = FALSE;
         }
     }
     else
@@ -649,42 +717,11 @@ void WaveTrack_ModulateTrack(struct GBSTrack *track)
             }
             else if (track->pitch != 0)
             {
-                // TODO: Merge with ToneTrack_GetModulationPitch
-                u16 outPitch = track->pitch;
-                track->statusFlags[ModulationDir] = !track->statusFlags[ModulationDir];
-                track->modulationSpeedCount = track->modulationSpeed;
-                switch (track->modulationMode)
-                {
-                    case 0:
-                    {
-                        u8 halfValue = track->modulationDepth >> 1;
-                        if (track->statusFlags[ModulationDir])
-                        {
-                            outPitch += (track->modulationDepth - halfValue);
-                        }
-                        else
-                        {
-                            outPitch -= halfValue;
-                        }
-                        break;
-                    }
-                    case 1:
-                        if (track->statusFlags[ModulationDir])
-                        {
-                            outPitch -= track->modulationDepth;
-                        }
-                        break;
-                    case 2:
-                        if (track->statusFlags[ModulationDir])
-                        {
-                            outPitch += track->modulationDepth;
-                        }
-                        break;
-                }
+                u16 modulatedPitch = GetModulationPitch(track);
                 if (!IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
                 {
                     vu16 *control = WaveTrackControl();
-                    control[2] = (control[2] & 0x8000) | outPitch;
+                    control[2] = (control[2] & 0x8000) | modulatedPitch;
                 }
             }
         }
