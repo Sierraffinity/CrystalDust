@@ -98,3 +98,64 @@ HandleTrackVibrato:
                     Set SOUND_VIBRATO_DIR
                     Add CHANNEL_VIBRATO_EXTENT to wCurTrackFrequency
                 Set NOTE_VIBRATO_OVERRIDE
+
+ApplyPitchSlide:
+    if SOUND_PITCH_SLIDE:
+        if SOUND_PITCH_SLIDE_DIR:
+            CHANNEL_FREQUENCY += CHANNEL_PITCH_SLIDE_AMOUNT
+            CHANNEL_FIELD25 += CHANNEL_PITCH_SLIDE_AMOUNT_FRACTION
+            if rollover, CHANNEL_FREQUENCY++
+            if CHANNEL_PITCH_SLIDE_TARGET < CHANNEL_FREQUENCY, goto .finished_pitch_slide
+            else goto .continue_pitch_slide
+        else:
+            CHANNEL_FREQUENCY -= CHANNEL_PITCH_SLIDE_AMOUNT
+            CHANNEL_PITCH_SLIDE_AMOUNT_FRACTION *= 2
+            if rollover, CHANNEL_FREQUENCY--
+            if CHANNEL_PITCH_SLIDE_TARGET > CHANNEL_FREQUENCY, goto .finished_pitch_slide
+            else goto .continue_pitch_slide
+
+.finished_pitch_slide:
+    reset SOUND_PITCH_SLIDE and SOUND_PITCH_SLIDE_DIR
+
+.continue_pitch_slide:
+    set NOTE_FREQ_OVERRIDE and NOTE_DUTY_OVERRIDE
+
+LoadNote:
+de = CHANNEL_FREQUENCY lo
+d = CHANNEL_FREQUENCY hi
+a = e
+a -= PITCH_SLIDE_TARGET lo
+e = a
+a = d
+a -= carry
+d = a
+a -= PITCH_SLIDE_TARGET hi
+if no carry, .greater_than
+
+de = CHANNEL_FREQUENCY - PITCH_SLIDE_TARGET
+if (CHANNEL_FREQUENCY >= PITCH_SLIDE_TARGET), .greater_than
+set SOUND_PITCH_SLIDE_DIR
+de = PITCH_SLIDE_TARGET - CHANNEL_FREQUENCY
+goto .resume
+
+.greater_than:
+reset SOUND_PITCH_SLIDE_DIR
+de = CHANNEL_FREQUENCY - PITCH_SLIDE_TARGET
+
+.resume:
+b = 0
+.loop:
+b++
+e -= [wCurNoteDuration]
+if e >= 0 goto .loop
+if d == 0 goto .quit
+d--
+goto .loop
+
+.quit
+a = e
+a += wCurNoteDuration
+d = b
+[CHANNEL_PITCH_SLIDE_AMOUNT] = d
+[CHANNEL_PITCH_SLIDE_AMOUNT_FRACTION] = a
+[CHANNEL_FIELD25] = 0
