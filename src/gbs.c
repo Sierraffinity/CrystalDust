@@ -104,7 +104,7 @@ u16 CalculatePitch(u8 note, s8 keyShift, u8 octave, u16 tone)
 {
     s16 octaveShifted = octave + ((keyShift & 0xF0) >> 4);
     s16 noteShifted = note + (keyShift & 0xF);
-    s16 freq = (sFrequencyTable[noteShifted] >> (octaveShifted)) & 0x7FF;
+    s16 freq = (sFrequencyTable[noteShifted] >> (7 - octaveShifted)) & 0x7FF;
     return freq + tone;
 }
 
@@ -204,7 +204,7 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
     switch (commandID)
     {
         case SetOctave7 ... SetOctave0:
-            track->currentOctave = 7 - (commandID & 7);
+            track->currentOctave = commandID & 7;
             break;
         case SetNoteAttributesAndLength:
         {
@@ -264,7 +264,7 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
             u8 byte2 = 0;
             track->pitchBendDuration = *track->nextInstruction++;
             byte2 = *track->nextInstruction++;
-            track->pitchBendTarget = CalculatePitch(byte2 & 0xF, track->keyShift, 7 - ((byte2 & 0xF0) >> 4) & 7, 0);
+            track->pitchBendTarget = CalculatePitch(byte2 & 0xF, track->keyShift, (byte2 & 0xF0) >> 4, 0);
             track->statusFlags[PitchBendActivation] = TRUE;
             break;
         }
@@ -444,8 +444,8 @@ void ToneTrack_ModulateTrack(struct GBSTrack *track)
         if (track->pitchBendDir)
         {
             u32 unk = track->pitchBendUnk;
-            track->pitch =+ track->pitchBendAmount;
-            unk =+ track->pitchBendFraction;
+            track->pitch += track->pitchBendAmount;
+            unk += track->pitchBendFraction;
             if (unk >= 0x100)
             {
                 // rollover
@@ -460,8 +460,9 @@ void ToneTrack_ModulateTrack(struct GBSTrack *track)
         }
         else
         {
-            u32 unk = track->pitchBendFraction * 2;
-            track->pitch =- track->pitchBendAmount;
+            u32 unk = track->pitchBendFraction;
+            track->pitch -= track->pitchBendAmount;
+            unk *= 2;
             if (unk >= 0x100)
             {
                 // rollover
@@ -735,7 +736,7 @@ bool16 WaveTrack_ProcessCommands(struct GBSTrack *track)
     switch (commandID)
     {
         case SetOctave7 ... SetOctave0:
-            track->currentOctave = 7 - (commandID & 7);
+            track->currentOctave = commandID & 7;
             break;
         case SetNoteAttributesAndLength:
         {
