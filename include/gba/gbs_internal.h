@@ -25,7 +25,7 @@ enum SoundEngineCommands
 	SetTempo,
 	SetDutyCycle,
 	SetNoteAttributes,
-	Arpeggiate,
+	PitchSweep,
 	SetDutyCyclePattern,
 	Portamento,
 	PitchBend,
@@ -62,18 +62,6 @@ enum SoundEngineCommands
 	End
 };
 
-enum GBPStatusFlags
-{
-	ModulationActivation,
-	ModulationDir,
-	PortamentoActivation,
-	PitchBendActivation,
-	PitchBendDir,
-	ArpeggiationActivation,
-	ArpeggiationStatus,
-	NumGBPEngineFlags
-};
-
 enum CGBChannels
 {
 	CGBCHANNEL_TONE1,
@@ -85,57 +73,78 @@ enum CGBChannels
 
 struct GBSTrack
 {
-	u8 flags;
+	u8 flags; // 0x0
 	u8 noteLength1;
 	u8 patternLevel:4;
 	u8 trackID:4;
 	u8 loopCounter;
-	u8 noteLength2;
+	u8 noteLength2; // 0x4
 	u8 currentOctave;
 	u8 velocity;
 	u8 loopCounter2;
-	u16 pitch;
+	u16 pitch; // 0x8
 	s8 keyShift;
 	u8 frameDelay;
-	u16 tone;
+	u16 tone; // 0xC
 	s8 pitchBendRate;
 	u8 currentVoice;
-	u8 volMR;
+	u8 volMR; // 0x10
 	u8 volML;
 	u8 vol;
 	u8 volX;
-	u8 pan;
+	u8 pan; // 0x14
 	u8 modulationDelayCountdown;
 	u8 modulationDelay;
 	u8 modulationMode;
-	u8 modulationDepth;
+	u8 modulationDepth; // 0x18
 	u8 modulationCountdown;
 	u8 modulationSpeed;
-	u8 arpeggiationDelayCountdown;
-	u8 arpeggiationCountdown;
 	u8 portamentoCountdown;
-	u8 portamentoDelay;
+	u8 portamentoDelay; // 0x1C
 	u8 portamentoTarget;
-    struct SoundChannel *chan;
 	u8 portamentoSpeedDelay;
 	u8 portamentoSpeed;
-	bool8 statusFlags[NumGBPEngineFlags];
-	u8 fadeDirection;
+    struct SoundChannel *chan; // 0x20
+	u8 arpeggiationDelayCountdown; // 0x24
+	u8 arpeggiationCountdown;
+	u8 arpeggiationVoice;
 	u8 channelVolume;
-	u8 fadeSpeed;
-	const u8 *samplePointer;
-	bool8 noiseActive; // 0x1C
+	const u8 *samplePointer; // 0x28
 	u8 noiseFrameDelay;
 	u16 pitchBendTarget;
-	u8 pitchBendDuration;
+	u8 pitchBendDuration; // 0x30
 	u8 pitchBendAmount;
 	u8 pitchBendFraction;
 	u8 pitchBendFractionAccumulator;
-	u8 arpeggiationVoice;
-	u8 padding[3];
-	u8* nextInstruction;
-	u8* returnLocation;
-	u8 secondaryPadding[8];
+
+	bool8 pitchBendActivation:1; // 0x34
+	bool8 pitchBendDir:1;
+	bool8 portamentoActivation:1;
+	bool8 modulationActivation:1;
+	bool8 modulationDir:1;
+	bool8 arpeggiationActivation:1;
+	bool8 arpeggiationStatus:1;
+	bool8 dutyCycleLoop:1;
+
+	bool8 pitchOffset:1;
+	bool8 noteDutyOverride:1;
+	bool8 noteFreqOverride:1;
+	bool8 notePitchSweep:1;
+	bool8 noteNoiseSampling:1;
+	bool8 noteRest:1;
+	bool8 noteVibratoOverride:1;
+	bool8 noiseActive:1;
+
+	bool8 fadeDirection:1;
+	bool8 shouldReload:1;
+
+	u8 fadeSpeed;
+	u8 dutyCyclePattern; // 0x38
+	u8 pitchSweep;
+	u8 padding[6];
+	const u8 *nextInstruction; // 0x40
+	const u8 *returnLocation; // 0x44
+	u8 secondaryPadding[8]; // 0x48
 };
 
 #endif /* INCLUDE_GBA_GBS_INTERNAL_H_ */

@@ -131,9 +131,6 @@ void ToneTrack_Reset(int trackID)
 
 void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct GBSTrack *track)
 {
-    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
-    u16 thisVoiceVolVelocity = 0;
-    u16 thisPitch = 0;
     u16 noteLength = CalculateLength(track->frameDelay, tempo, (commandID & 0xF), track->noteLength2);
 
     track->noteLength1 = (noteLength & 0xFF00) >> 8;
@@ -141,29 +138,11 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct GBSTrack *tr
 
     if (commandID & 0xF0)
     {
-        track->pitch = CalculatePitch((commandID & 0xF0) >> 4, track->keyShift, track->currentOctave, track->tone);
-        thisVoiceVolVelocity = (track->currentVoice << 6) | (track->fadeSpeed << 8) | (((track->fadeSpeed == 0) ? 0 : track->fadeDirection) << 11) | (track->velocity << 12) | 0x3F;
-        thisPitch = track->pitch | 0x8000;
+        track->pitch = CalculatePitch((commandID & 0xF0) >> 4, track->keyShift, track->currentOctave, 0);
+        track->noteNoiseSampling = TRUE;
         
-        if (!IsM4AUsingCGBChannel(track->trackID - 1))
-        {
-            vu16 *control = ToneTrackControl() + ((track->trackID - 1) * 4);
-            vu8 *soundControl = SoundControl();
-            u8 thisPan = soundInfo->cgbChans[track->trackID - 1].panMask;
-
-            if (gSaveBlock2Ptr->optionsSound == OPTIONS_SOUND_STEREO)
-                thisPan &= track->pan;
-            soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->trackID - 1].panMask) | thisPan;
-
-            if (track->trackID == 2)
-                control[0] = thisVoiceVolVelocity;
-            else
-                control[1] = thisVoiceVolVelocity;
-
-            control[2] = thisPitch;
-        }
-        
-        if (track->statusFlags[PitchBendActivation])
+        // Initialize pitch bend data from target and duration
+        if (track->pitchBendActivation)
         {
             u32 distance = 0;
             if (track->noteLength1 <= track->pitchBendDuration)
@@ -177,12 +156,12 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct GBSTrack *tr
 
             if (track->pitch < track->pitchBendTarget)
             {
-                track->statusFlags[PitchBendDir] = TRUE;
+                track->pitchBendDir = TRUE;
                 distance = track->pitchBendTarget - track->pitch;
             }
             else
             {
-                track->statusFlags[PitchBendDir] = FALSE;
+                track->pitchBendDir = FALSE;
                 distance = track->pitch - track->pitchBendTarget;
             }
 
@@ -193,7 +172,7 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct GBSTrack *tr
     }
     else if (!IsM4AUsingCGBChannel(track->trackID - 1))
     {
-        ToneTrack_Reset(track->trackID - 1);
+        track->noteRest = TRUE;
     }
 }
 
@@ -238,44 +217,31 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
             track->currentVoice = *track->nextInstruction++;
             break;
         case SetDutyCyclePattern:
-            // Not implemented
-            track->nextInstruction++;
+            track->dutyCycleLoop = TRUE;
+            track->dutyCyclePattern = *track->nextInstruction++;
+            track->currentVoice = track->dutyCyclePattern & 3;
             break;
-        case Arpeggiate:
-        {
-            // TODO: This is nothing like the command in the Crystal engine, investigate
-            u8 byte2 = *track->nextInstruction++;
-            if (byte2 != 0)
-            {
-                track->statusFlags[ArpeggiationActivation] = TRUE;
-                track->arpeggiationDelayCountdown = (byte2 & 0xF0) >> 4;
-                track->arpeggiationCountdown = track->arpeggiationDelayCountdown;
-                track->statusFlags[ArpeggiationStatus] = FALSE;
-                track->arpeggiationVoice = byte2 & 0x3;
-            }
-            else
-            {
-                track->statusFlags[ArpeggiationActivation] = FALSE;
-            }
+        case PitchSweep:
+            track->pitchSweep = *track->nextInstruction++;
+            track->notePitchSweep = TRUE;
             break;
-        }
         case PitchBend:
         {
             u8 byte2 = 0;
             track->pitchBendDuration = *track->nextInstruction++;
             byte2 = *track->nextInstruction++;
             track->pitchBendTarget = CalculatePitch(byte2 & 0xF, track->keyShift, (byte2 & 0xF0) >> 4, 0);
-            track->statusFlags[PitchBendActivation] = TRUE;
+            track->pitchBendActivation = TRUE;
             break;
         }
         case Portamento:
             // No data for this as yet as it is a completely custom effect
             // At least it is in terms of this engine, since the
             // portamento effect is not present in RBY or GSC
-            track->statusFlags[PortamentoActivation] = TRUE;
+            track->portamentoActivation = TRUE;
             track->portamentoDelay = *track->nextInstruction++;
             track->portamentoSpeed = *track->nextInstruction++;
-            track->portamentoTarget = CalculatePitch((*track->nextInstruction++ & 0xF0) >> 4, track->keyShift, track->currentOctave, track->tone);
+            track->portamentoTarget = CalculatePitch((*track->nextInstruction++ & 0xF0) >> 4, track->keyShift, track->currentOctave, 0);
             break;
         case SetModulation:
         {
@@ -283,8 +249,8 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
             u8 byte2 = *track->nextInstruction++;
             if (byte2 != 0)
             {
-                track->statusFlags[ModulationActivation] = TRUE;
-                track->statusFlags[ModulationDir] = FALSE;
+                track->modulationActivation = TRUE;
+                track->modulationDir = FALSE;
                 track->modulationDelay = modulationDelay;
                 track->modulationDelayCountdown = track->modulationDelay;
                 track->modulationMode = 0;
@@ -294,7 +260,7 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
             }
             else
             {
-                track->statusFlags[ModulationActivation] = FALSE;
+                track->modulationActivation = FALSE;
             }
             break;
         }
@@ -316,6 +282,7 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
         case SetTone:
             track->tone = UShortEndianSwap(T1_READ_16(track->nextInstruction));
             track->nextInstruction += 2;
+            track->pitchOffset = TRUE;
             break;
         case Pan:
             track->pan = *track->nextInstruction++;
@@ -401,47 +368,11 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
     return *track->nextInstruction;
 }
 
-u16 GetModulationPitch(struct GBSTrack *track)
+void ApplyPitchBend(struct GBSTrack *track)
 {
-    u16 newPitch = track->pitch;
-    track->statusFlags[ModulationDir] = !track->statusFlags[ModulationDir];
-    track->modulationCountdown = track->modulationSpeed;
-    switch (track->modulationMode)
+    if (track->pitchBendActivation)
     {
-        case 0:
-        {
-            u8 halfValue = track->modulationDepth >> 1;
-            if (track->statusFlags[ModulationDir])
-            {
-                newPitch += (track->modulationDepth - halfValue);
-            }
-            else
-            {
-                newPitch -= halfValue;
-            }
-            break;
-        }
-        case 1:
-            if (track->statusFlags[ModulationDir])
-            {
-                newPitch -= track->modulationDepth;
-            }
-            break;
-        case 2:
-            if (track->statusFlags[ModulationDir])
-            {
-                newPitch += track->modulationDepth;
-            }
-            break;
-    }
-    return newPitch;
-}
-
-void ToneTrack_ModulateTrack(struct GBSTrack *track)
-{
-    if (track->statusFlags[PitchBendActivation])
-    {
-        if (track->statusFlags[PitchBendDir])
+        if (track->pitchBendDir)
         {
             u32 fractionAccumulator = track->pitchBendFractionAccumulator;
             track->pitch += track->pitchBendAmount;
@@ -452,10 +383,15 @@ void ToneTrack_ModulateTrack(struct GBSTrack *track)
                 track->pitch++;
             }
             track->pitchBendFractionAccumulator = fractionAccumulator & 0xFF;
-            if (track->pitch >= track->pitchBendTarget)
+            if (track->pitch < track->pitchBendTarget)
             {
-                track->statusFlags[PitchBendActivation] = FALSE;
-                track->statusFlags[PitchBendDir] = FALSE;
+                track->noteFreqOverride = TRUE;
+                track->noteDutyOverride = TRUE;
+            }
+            else
+            {
+                track->pitchBendActivation = FALSE;
+                track->pitchBendDir = FALSE;
             }
         }
         else
@@ -470,47 +406,25 @@ void ToneTrack_ModulateTrack(struct GBSTrack *track)
                 track->pitch--;
             }
             track->pitchBendFraction = fractionAccumulator & 0xFF;
-            if (track->pitch <= track->pitchBendTarget)
+            if (track->pitch > track->pitchBendTarget)
             {
-                track->statusFlags[PitchBendActivation] = FALSE;
-                track->statusFlags[PitchBendDir] = FALSE;
-            }
-        }
-        if (!IsM4AUsingCGBChannel(track->trackID - 1))
-        {
-            vu16 *control = ToneTrackControl();
-            u16 location = ((track->trackID - 1) * 4) + 2;
-            control[location] = (control[location] & 0x8000) | track->pitch;
-        }
-    }
-
-    if (track->statusFlags[PortamentoActivation])
-    {
-        if (track->portamentoCountdown > 0)
-        {
-            track->portamentoCountdown--;
-        }
-        else
-        {
-            if (track->portamentoTarget != track->pitch)
-            {
-                if (track->portamentoTarget > track->pitch)
-                {
-                    track->pitch++;
-                }
-                else
-                {
-                    track->pitch--;
-                }
+                track->noteFreqOverride = TRUE;
+                track->noteDutyOverride = TRUE;
             }
             else
             {
-                track->statusFlags[PortamentoActivation] = FALSE;
+                track->pitchBendActivation = FALSE;
+                track->pitchBendDir = FALSE;
             }
         }
     }
+}
+
+u16 ApplyModulation(struct GBSTrack *track)
+{
+    u16 newPitch = track->pitch;
     
-    if (track->statusFlags[ModulationActivation])
+    if (track->modulationActivation)
     {
         if (track->modulationDelayCountdown > 0)
         {
@@ -524,43 +438,172 @@ void ToneTrack_ModulateTrack(struct GBSTrack *track)
             }
             else if (track->pitch != 0)
             {
-                u16 modulatedPitch = GetModulationPitch(track);
-                if (!IsM4AUsingCGBChannel(track->trackID - 1))
+                track->modulationDir = !track->modulationDir;
+                track->modulationCountdown = track->modulationSpeed;
+                switch (track->modulationMode)
                 {
-                    vu16 *control = ToneTrackControl();
-                    u16 location = ((track->trackID - 1) * 4) + 2;
-                    control[location] = (control[location] & 0x8000) | modulatedPitch;
+                    case 0:
+                    {
+                        u8 halfValue = track->modulationDepth >> 1;
+                        if (track->modulationDir)
+                        {
+                            newPitch += (track->modulationDepth - halfValue);
+                        }
+                        else
+                        {
+                            newPitch -= halfValue;
+                        }
+                        break;
+                    }
+                    case 1:
+                        if (track->modulationDir)
+                        {
+                            newPitch -= track->modulationDepth;
+                        }
+                        break;
+                    case 2:
+                        if (track->modulationDir)
+                        {
+                            newPitch += track->modulationDepth;
+                        }
+                        break;
                 }
+                track->noteVibratoOverride = TRUE;
             }
         }
     }
+    return newPitch;
 }
 
-void ToneTrack_ArpeggiateTrack(struct GBSTrack *track)
+u16 GetModulationPitch(struct GBSTrack *track)
 {
-    if (track->statusFlags[ArpeggiationActivation])
+    u16 newPitch = track->pitch;
+    track->modulationDir = !track->modulationDir;
+    track->modulationCountdown = track->modulationSpeed;
+    switch (track->modulationMode)
     {
-        if (track->arpeggiationCountdown > 0)
+        case 0:
         {
-            track->arpeggiationCountdown--;
-        }
-        else
-        {
-            u16 location = (track->trackID == 1) ? 1 : 4;
-            track->arpeggiationCountdown = track->arpeggiationDelayCountdown;
-            if (!IsM4AUsingCGBChannel(track->trackID - 1))
+            u8 halfValue = track->modulationDepth >> 1;
+            if (track->modulationDir)
             {
-                vu16 *control = ToneTrackControl();
-                control[location] = (control[location] & 0xFF00) | (((track->statusFlags[ArpeggiationStatus]) ? track->currentVoice : track->arpeggiationVoice) << 6);
+                newPitch += (track->modulationDepth - halfValue);
             }
-            track->statusFlags[ArpeggiationStatus] = !track->statusFlags[ArpeggiationStatus];
+            else
+            {
+                newPitch -= halfValue;
+            }
+            break;
+        }
+        case 1:
+            if (track->modulationDir)
+            {
+                newPitch -= track->modulationDepth;
+            }
+            break;
+        case 2:
+            if (track->modulationDir)
+            {
+                newPitch += track->modulationDepth;
+            }
+            break;
+    }
+    return newPitch;
+}
+
+u16 HandleTrackDutyAndModulation(struct GBSTrack *track)
+{
+    u16 finalPitch = 0;
+
+    if (track->trackID == 1)
+    {
+        ApplyPitchBend(track);
+    }
+
+    finalPitch = track->pitch;
+
+    if (track->dutyCycleLoop)
+    {
+        track->currentVoice = (track->dutyCyclePattern & 0xC0) >> 6;
+        track->dutyCyclePattern = (track->dutyCyclePattern << 2) | track->currentVoice;
+        track->noteDutyOverride = TRUE;
+    }
+
+    if (track->pitchOffset)
+    {
+        // TODO: Should tone be signed?
+        finalPitch += track->tone;
+    }
+    
+    if (track->modulationActivation)
+    {
+        if (track->modulationDelayCountdown > 0)
+        {
+            track->modulationDelayCountdown--;
+        }
+        else if (track->modulationDepth != 0)
+        {
+            if (track->modulationCountdown > 0)
+            {
+                track->modulationCountdown--;
+            }
+            else if (track->pitch != 0)
+            {
+                track->modulationDir = !track->modulationDir;
+                track->modulationCountdown = track->modulationSpeed;
+                switch (track->modulationMode)
+                {
+                    case 0:
+                    {
+                        u8 halfValue = track->modulationDepth >> 1;
+                        if (track->modulationDir)
+                        {
+                            finalPitch += (track->modulationDepth - halfValue);
+                        }
+                        else
+                        {
+                            finalPitch -= halfValue;
+                        }
+                        break;
+                    }
+                    case 1:
+                        if (track->modulationDir)
+                        {
+                            finalPitch -= track->modulationDepth;
+                        }
+                        break;
+                    case 2:
+                        if (track->modulationDir)
+                        {
+                            finalPitch += track->modulationDepth;
+                        }
+                        break;
+                }
+                track->noteVibratoOverride = TRUE;
+            }
         }
     }
+
+    return finalPitch;
 }
 
 bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
 {
     bool16 result = TRUE;
+    u16 thisPitch = track->pitch;
+
+    if (IsM4AUsingCGBChannel(track->trackID - 1))
+    {
+        track->shouldReload = TRUE;
+    }
+    else if (track->shouldReload)
+    {
+        // Reload instrument data after m4a may have messed with it
+        track->notePitchSweep = TRUE;
+        track->pitchSweep = 0;
+        track->noteDutyOverride = TRUE;
+        track->shouldReload = FALSE;
+    }
 
     if (track->noteLength1 < 2)
     {
@@ -572,6 +615,7 @@ bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
             {
                 ToneTrack_ExecuteModifications(0, info->gbsTempo, track);
                 result = FALSE;
+                track->noteRest = TRUE;
                 break;
             }
         }
@@ -581,32 +625,80 @@ bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
             ToneTrack_ExecuteModifications(commandID, info->gbsTempo, track);
             track->nextInstruction++;
             track->modulationDelayCountdown = track->modulationDelay;
-            ToneTrack_ModulateTrack(track);
-
-            track->arpeggiationCountdown = (track->statusFlags[ArpeggiationActivation]) ? track->arpeggiationDelayCountdown : 0;
-            track->statusFlags[ArpeggiationStatus] = FALSE;
-            track->statusFlags[PortamentoActivation] = FALSE;
+            thisPitch = HandleTrackDutyAndModulation(track);
         }
     }
     else
     {
         track->noteLength1--;
-        ToneTrack_ModulateTrack(track);
-        ToneTrack_ArpeggiateTrack(track);
+        thisPitch = HandleTrackDutyAndModulation(track);
     }
 
     if (track->trackID == 1)
     {
-        if (!IsM4AUsingCGBChannel(track->trackID - 1))
+        if (track->notePitchSweep)
         {
-            // TODO: This should be removed when pitch bend is implemented.
-            // This code is ensuring no pitch slide values are set, since no
-            // pokecrystal engine feature uses pitch slide except pitch bend.
-            vu16 *control = ToneTrackControl();
-            control[0] = 0;
+            if (!IsM4AUsingCGBChannel(track->trackID - 1))
+            {
+                vu16 *control = ToneTrackControl();
+                control[0] = (control[0] & 0xFF00) | track->pitchSweep;
+            }
         }
 
         SetMasterVolumeFromFade(track->volX);
+    }
+
+    if (!IsM4AUsingCGBChannel(track->trackID - 1))
+    {
+        struct SoundInfo *soundInfo = SOUND_INFO_PTR;
+        vu8 *soundControl = SoundControl();
+        vu16 *control = ToneTrackControl() + ((track->trackID - 1) * 4);
+
+        if (track->noteRest)
+        {
+            ToneTrack_Reset(track->trackID - 1);
+        }
+        else if (track->noteNoiseSampling)
+        {
+            u16 thisVoiceVolVelocity = (track->currentVoice << 6) | (track->fadeSpeed << 8) | (((track->fadeSpeed == 0) ? 0 : track->fadeDirection) << 11) | (track->velocity << 12);
+            u8 thisPan = soundInfo->cgbChans[track->trackID - 1].panMask;
+
+            if (gSaveBlock2Ptr->optionsSound == OPTIONS_SOUND_STEREO)
+            {
+                thisPan &= track->pan;
+            }
+            soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->trackID - 1].panMask) | thisPan;
+
+            if (track->trackID == 2)
+                control[0] = thisVoiceVolVelocity | 0x3F;
+            else
+                control[1] = thisVoiceVolVelocity | 0x3F;
+
+            control[2] = thisPitch | 0x8000;
+        }
+        else
+        {
+            if (track->trackID == 1 && track->noteFreqOverride)
+            {
+                control[2] = thisPitch;
+            }
+            else if (track->noteVibratoOverride)
+            {
+                control[2] = (control[2] & 0xFF00) | (thisPitch & 0xFF);
+            }
+
+            if (track->noteDutyOverride || track->noteVibratoOverride)
+            {
+                if (track->trackID == 2)
+                {
+                    control[0] = (control[0] & 0xFF3F) | (track->currentVoice << 6);
+                }
+                else
+                {
+                    control[1] = (control[1] & 0xFF3F) | (track->currentVoice << 6);
+                }
+            }
+        }
     }
 
     return result;
@@ -630,7 +722,7 @@ static const u32 sWaveTrackPatterns[][4] = {
     { 0xFFFFFFFF, 0x0000FFFF, 0xFFFFFFFF, 0x0000FFFF }
 };
 
-void WaveTrack_SwitchWavePattern(int patternID)
+void WaveTrack_SwitchWavePattern(struct GBSTrack *track, int patternID)
 {
     int i;
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
@@ -644,6 +736,8 @@ void WaveTrack_SwitchWavePattern(int patternID)
         soundInfo->cgbChans[CGBCHANNEL_WAVE].cp = (u32)sWaveTrackPatterns[patternID];
         control[0] = 0x0;
     }
+    track->currentVoice = patternID;
+    track->shouldReload = FALSE;
 }
 
 void WaveTrack_Reset()
@@ -700,32 +794,17 @@ void WaveTrack_ExecuteModifications(u8 commandID, u16 tempo, struct GBSTrack *tr
 
 void WaveTrack_ModulateTrack(struct GBSTrack *track)
 {
-    if (track->statusFlags[PitchBendActivation])
-    {
-        track->pitch += track->pitchBendRate;
-    }
+    // TODO: Pitch bend only for channel 1
+    ApplyPitchBend(track);
+    u16 finalPitch = ApplyModulation(track);
 
-    if (track->statusFlags[ModulationActivation])
+    // TODO: Only write when necessary to write
+    if (!IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
     {
-        if (track->modulationDelayCountdown > 0)
+        vu16 *control = WaveTrackControl();
+        if ((control[2] & 0xFF) != (finalPitch & 0xFF))
         {
-            track->modulationDelayCountdown--;
-        }
-        else if (track->modulationDepth != 0)
-        {
-            if (track->modulationCountdown > 0)
-            {
-                track->modulationCountdown--;
-            }
-            else if (track->pitch != 0)
-            {
-                u16 modulatedPitch = GetModulationPitch(track);
-                if (!IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
-                {
-                    vu16 *control = WaveTrackControl();
-                    control[2] = (control[2] & 0x8000) | modulatedPitch;
-                }
-            }
+            control[2] = (control[2] & 0xFF00) | (finalPitch & 0xFF);
         }
     }
 }
@@ -748,9 +827,8 @@ bool16 WaveTrack_ProcessCommands(struct GBSTrack *track)
             u8 newVoice = byte2 & 0xF;
             if (track->currentVoice != newVoice && !IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
             {
-                WaveTrack_SwitchWavePattern(newVoice);
+                WaveTrack_SwitchWavePattern(track, newVoice);
             }
-            track->currentVoice = newVoice;
             break;
         }
         case SetNoteAttributes:
@@ -760,9 +838,8 @@ bool16 WaveTrack_ProcessCommands(struct GBSTrack *track)
             track->velocity = (byte2 & 0x70) >> 4;
             if (track->currentVoice != newVoice && !IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
             {
-                WaveTrack_SwitchWavePattern(newVoice);
+                WaveTrack_SwitchWavePattern(track, newVoice);
             }
-            track->currentVoice = newVoice;
             break;
         }
         case SetKeyShift:
@@ -775,7 +852,7 @@ bool16 WaveTrack_ProcessCommands(struct GBSTrack *track)
             // Not used in wave track
             track->nextInstruction++;
             break;
-        case Arpeggiate:
+        case PitchSweep:
             // Not implemented
             track->nextInstruction++;
             break;
@@ -789,8 +866,8 @@ bool16 WaveTrack_ProcessCommands(struct GBSTrack *track)
             u8 theByte = *track->nextInstruction++;
             if (theByte != 0)
             {
-                track->statusFlags[ModulationActivation] = TRUE;
-                track->statusFlags[ModulationDir] = FALSE;
+                track->modulationActivation = TRUE;
+                track->modulationDir = FALSE;
                 track->modulationDelay = modulationDelay;
                 track->modulationDelayCountdown = track->modulationDelay;
                 track->modulationMode = 0;
@@ -800,7 +877,7 @@ bool16 WaveTrack_ProcessCommands(struct GBSTrack *track)
             }
             else
             {
-                track->statusFlags[ModulationActivation] = FALSE;
+                track->modulationActivation = FALSE;
             }
             break;
         }
@@ -886,14 +963,14 @@ bool16 WaveTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
     // The M4A sound effects can change the wave pattern.
     // We want to reload the correct wave pattern for this track when
     // control is returned to GBS from M4A.
-    if (!IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
+    if (IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
     {
-        gWaveTrackShouldReloadPattern = TRUE;
+        track->shouldReload = TRUE;
     }
-    else if (gWaveTrackShouldReloadPattern)
+    else if (track->shouldReload)
     {
-        WaveTrack_SwitchWavePattern(track->currentVoice);
-        gWaveTrackShouldReloadPattern = FALSE;
+        WaveTrack_SwitchWavePattern(track, track->currentVoice);
+        track->shouldReload = FALSE;
     }
 
     if (track->noteLength1 < 2)
@@ -1091,7 +1168,15 @@ u8 NoiseTrack_ProcessCommands(struct GBSTrack *track)
             track->frameDelay = *track->nextInstruction++;
             break;
         case NoiseSet:
-            track->currentVoice = *track->nextInstruction++;
+            if (track->noiseActive)
+            {
+                track->noiseActive = FALSE;
+            }
+            else
+            {
+                track->noiseActive = TRUE;
+                track->currentVoice = *track->nextInstruction++;
+            }
             break;
         case Pan:
             track->pan = *track->nextInstruction++;
@@ -1176,7 +1261,7 @@ void NoiseTrack_WritePattern(struct GBSTrack *track)
     }
     else
     {
-        track->noiseActive = 0;
+        track->noiseActive = FALSE;
         track->noiseFrameDelay = 0;
     }
 }
@@ -1254,14 +1339,14 @@ bool16 NoiseTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
         }
         else
         {
-            track->noiseActive = 0;
+            track->noiseActive = FALSE;
             track->noiseFrameDelay = 0;
         }
     }
     else
     {
         track->noteLength1--;
-        if (track->noiseActive == 1)
+        if (track->noiseActive)
         {
             if (track->noiseFrameDelay == 0)
             {
@@ -1286,6 +1371,14 @@ bool16 GBSTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
     // Always set here since m4a engine may have changed it
     // TODO: Use SWI instead
     REG_SOUNDBIAS = REG_SOUNDBIAS & 0xFC00;
+
+    // Reset all note flags
+    gbsTrack->noteDutyOverride = FALSE;
+	gbsTrack->noteFreqOverride = FALSE;
+	gbsTrack->notePitchSweep = FALSE;
+	gbsTrack->noteNoiseSampling = FALSE;
+	gbsTrack->noteRest = FALSE;
+	gbsTrack->noteVibratoOverride = FALSE;
 
     switch (track->gbsIdentifier - 1)
     {
@@ -1333,8 +1426,7 @@ void ply_gbs_switch(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *
                 break;
             case 2:
                 WaveTrack_Reset();
-                WaveTrack_SwitchWavePattern(0);
-                gWaveTrackShouldReloadPattern = FALSE;
+                WaveTrack_SwitchWavePattern((struct GBSTrack *)track, 0);
                 break;
             case 3:
                 NoiseTrack_Reset();
