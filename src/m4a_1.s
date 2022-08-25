@@ -1534,7 +1534,7 @@ TrackStop_3:
 	b TrackStop_Done
 TrackStop_GBSReset:
 	movs r0, r5
-	bl GBSTrackStop
+	bl GBSTrack_Stop
 TrackStop_Done:
 	pop {r4-r6}
 	pop {r0}

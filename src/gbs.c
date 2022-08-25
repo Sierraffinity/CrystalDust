@@ -45,7 +45,7 @@ static inline bool32 IsM4AUsingCGBChannel(int channel)
     return gUsedCGBChannels & (1 << channel);
 }
 
-u32 GetMasterVolumeFromFade(u32 volX)
+static u32 GetMasterVolumeFromFade(u32 volX)
 {
     // Respect the master M4A fade control.
     u32 masterVolume = 0;
@@ -66,7 +66,7 @@ u32 GetMasterVolumeFromFade(u32 volX)
     return (masterVolume << 4) | masterVolume;
 }
 
-u16 CalculateLength(u8 frameDelay, u16 tempo, u8 bitLength, u16 previousLeftover)
+static u16 CalculateLength(u8 frameDelay, u16 tempo, u8 bitLength, u16 previousLeftover)
 {
     return ((frameDelay * (bitLength + 1)) * tempo) + previousLeftover;
 }
@@ -100,14 +100,14 @@ static const s16 sFrequencyTable[] =
     0xFDED
 };
 
-u16 CalculatePitch(u8 note, s8 keyShift, u8 octave)
+static u16 CalculatePitch(u8 note, s8 keyShift, u8 octave)
 {
     u8 octaveShifted = octave + ((keyShift & 0xF0) >> 4);
     u8 noteShifted = note + (keyShift & 0xF);
     return (sFrequencyTable[noteShifted] >> (7 - octaveShifted)) & 0x7FF;
 }
 
-void ResetCGBChannel(struct GBSTrack *track)
+static void ResetCGBChannel(struct GBSTrack *track)
 {
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     vu16 *control = ToneTrackControl() + ((track->trackID - 1) * 4);
@@ -120,46 +120,253 @@ void ResetCGBChannel(struct GBSTrack *track)
     control[2] = 0x8000;
 }
 
-// Individual noise samples. Arranged into groups of 3 bytes, with 0xFF terminating the array when in the 1st of 3 slots
+#define NOISE_DATA_END 0xFF
 
-static const u8 sNoiseData00[] = { 0x20, 0x11, 0x00, 0xFF };
-static const u8 sNoiseData01[] = { 0x20, 0xC1, 0x33, 0xFF };
-static const u8 sNoiseData02[] = { 0x20, 0xB1, 0x33, 0xFF };
-static const u8 sNoiseData03[] = { 0x20, 0xA1, 0x33, 0xFF };
-static const u8 sNoiseData04[] = { 0x20, 0x81, 0x33, 0xFF };
-static const u8 sNoiseData05[] = { 0x27, 0x84, 0x37, 0x26, 0x84, 0x36, 0x25, 0x83, 0x35, 0x24, 0x83, 0x34, 0x23, 0x82, 0x33, 0x22, 0x81, 0x32, 0xFF };
-static const u8 sNoiseData06[] = { 0x20, 0x51, 0x2A, 0xFF };
-static const u8 sNoiseData07[] = { 0x21, 0x41, 0x2B, 0x20, 0x61, 0x2A, 0xFF };
-static const u8 sNoiseData08[] = { 0x20, 0x81, 0x10, 0xFF };
-static const u8 sNoiseData09[] = { 0x20, 0x82, 0x23, 0xFF };
-static const u8 sNoiseData010[] = { 0x20, 0x82, 0x25, 0xFF };
-static const u8 sNoiseData011[] = { 0x20, 0x82, 0x26, 0xFF };
-static const u8 sNoiseData012[] = { 0x20, 0xA1, 0x10, 0xFF };
-static const u8 sNoiseData16[] = { 0x20, 0xA2, 0x11, 0xFF };
-static const u8 sNoiseData17[] = { 0x20, 0xA2, 0x50, 0xFF };
-static const u8 sNoiseData18[] = { 0x20, 0xA1, 0x18, 0x20, 0x31, 0x33, 0xFF };
-static const u8 sNoiseData19[] = { 0x22, 0x91, 0x28, 0x20, 0x71, 0x18, 0xFF };
-static const u8 sNoiseData110[] = { 0x20, 0x91, 0x22, 0xFF };
-static const u8 sNoiseData111[] = { 0x20, 0x71, 0x22, 0xFF };
-static const u8 sNoiseData112[] = { 0x20, 0x61, 0x22, 0xFF };
-static const u8 sNoiseData30[] = { 0xFF };
-static const u8 sNoiseData31[] = { 0x20, 0x91, 0x33, 0xFF };
-static const u8 sNoiseData32[] = { 0x20, 0x51, 0x32, 0xFF };
-static const u8 sNoiseData33[] = { 0x20, 0x81, 0x31, 0xFF };
-static const u8 sNoiseData34[] = { 0x20, 0x88, 0x6B, 0x20, 0x71, 0x00, 0xFF };
-static const u8 sNoiseData35[] = { 0x30, 0x91, 0x18, 0xFF };
-static const u8 sNoiseData36[] = { 0x20, 0x11, 0x11, 0xFF };
-static const u8 sNoiseData37[] = { 0x27, 0x92, 0x10, 0xFF };
-static const u8 sNoiseData38[] = { 0x33, 0x91, 0x00, 0x33, 0x11, 0x00, 0xFF };
-static const u8 sNoiseData39[] = { 0x33, 0x91, 0x11, 0x33, 0x11, 0x00, 0xFF };
-static const u8 sNoiseData311[] = { 0x20, 0xA8, 0x6B, 0x20, 0x71, 0x00, 0xFF };
-static const u8 sNoiseData312[] = { 0x20, 0x84, 0x12, 0xFF };
-static const u8 sNoiseData45[] = { 0x20, 0xA1, 0x31, 0xFF };
-static const u8 sNoiseData47[] = { 0x33, 0x81, 0x00, 0x33, 0x11, 0x00, 0xFF };
-static const u8 sNoiseData48[] = { 0x33, 0x51, 0x21, 0x33, 0x11, 0x11, 0xFF };
-static const u8 sNoiseData49[] = { 0x33, 0x51, 0x50, 0x33, 0x11, 0x11, 0xFF };
-static const u8 sNoiseData410[] = { 0x33, 0x81, 0x21, 0x33, 0x11, 0x11, 0xFF };
-static const u8 sNoiseData412[] = { 0x33, 0x88, 0x15, 0x20, 0x65, 0x12, 0xFF };
+// Individual noise samples, arranged into groups of 3 bytes, with NOISE_DATA_END
+// terminating the array when in the first slot.
+static const u8 sNoiseData00[] =
+{
+    0x20, 0x11, 0x00,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData01[] =
+{
+    0x20, 0xC1, 0x33,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData02[] =
+{
+    0x20, 0xB1, 0x33,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData03[] =
+{
+    0x20, 0xA1, 0x33,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData04[] =
+{
+    0x20, 0x81, 0x33,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData05[] =
+{
+    0x27, 0x84, 0x37, 
+    0x26, 0x84, 0x36, 
+    0x25, 0x83, 0x35, 
+    0x24, 0x83, 0x34, 
+    0x23, 0x82, 0x33, 
+    0x22, 0x81, 0x32,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData06[] =
+{
+    0x20, 0x51, 0x2A,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData07[] =
+{
+    0x21, 0x41, 0x2B, 
+    0x20, 0x61, 0x2A,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData08[] =
+{
+    0x20, 0x81, 0x10,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData09[] =
+{
+    0x20, 0x82, 0x23,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData010[] =
+{
+    0x20, 0x82, 0x25,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData011[] =
+{
+    0x20, 0x82, 0x26,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData012[] =
+{
+    0x20, 0xA1, 0x10,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData16[] =
+{
+    0x20, 0xA2, 0x11,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData17[] =
+{
+    0x20, 0xA2, 0x50,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData18[] =
+{
+    0x20, 0xA1, 0x18, 
+    0x20, 0x31, 0x33,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData19[] =
+{
+    0x22, 0x91, 0x28, 
+    0x20, 0x71, 0x18,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData110[] =
+{
+    0x20, 0x91, 0x22,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData111[] =
+{
+    0x20, 0x71, 0x22,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData112[] =
+{
+    0x20, 0x61, 0x22,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData30[] =
+{
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData31[] =
+{
+    0x20, 0x91, 0x33,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData32[] =
+{
+    0x20, 0x51, 0x32,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData33[] =
+{
+    0x20, 0x81, 0x31,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData34[] =
+{
+    0x20, 0x88, 0x6B, 
+    0x20, 0x71, 0x00,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData35[] =
+{
+    0x30, 0x91, 0x18,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData36[] =
+{
+    0x20, 0x11, 0x11,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData37[] =
+{
+    0x27, 0x92, 0x10,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData38[] =
+{
+    0x33, 0x91, 0x00, 
+    0x33, 0x11, 0x00,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData39[] =
+{
+    0x33, 0x91, 0x11, 
+    0x33, 0x11, 0x00,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData311[] =
+{
+    0x20, 0xA8, 0x6B, 
+    0x20, 0x71, 0x00,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData312[] =
+{
+    0x20, 0x84, 0x12,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData45[] =
+{
+    0x20, 0xA1, 0x31,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData47[] =
+{
+    0x33, 0x81, 0x00, 
+    0x33, 0x11, 0x00,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData48[] =
+{
+    0x33, 0x51, 0x21, 
+    0x33, 0x11, 0x11,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData49[] =
+{
+    0x33, 0x51, 0x50, 
+    0x33, 0x11, 0x11,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData410[] =
+{
+    0x33, 0x81, 0x21, 
+    0x33, 0x11, 0x11,
+    NOISE_DATA_END
+};
+
+static const u8 sNoiseData412[] =
+{
+    0x33, 0x88, 0x15, 
+    0x20, 0x65, 0x12,
+    NOISE_DATA_END
+};
 
 // Groups the separate samples into sample groups
 static const u8 *const sNoiseDataGroup0[] =
@@ -275,7 +482,7 @@ static const u8 *const *const sNoiseDataGroupTable[] =
     sNoiseDataGroup5
 };
 
-void ProcessNoteCommand(u8 commandID, u16 tempo, struct GBSTrack *track)
+static void ProcessNoteCommand(u8 commandID, u16 tempo, struct GBSTrack *track)
 {
     u16 noteLength = CalculateLength(track->frameDelay, tempo, (commandID & 0xF), track->noteLength2);
 
@@ -338,185 +545,191 @@ void ProcessNoteCommand(u8 commandID, u16 tempo, struct GBSTrack *track)
     }
 }
 
-u8 ParseCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
+static u8 ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
 {
     u8 commandID = *track->nextInstruction++; // grab next byte and increment pointer
+    bool32 trackActive = TRUE;
 
-    switch (commandID)
+    while (commandID >= SetOctave7)
     {
-        case SetOctave7 ... SetOctave0:
-            track->currentOctave = commandID & 7;
-            break;
-        case SetNoteAttributesAndLength:
-            track->frameDelay = *track->nextInstruction++;
-            if ((track->trackID - 1) == CGBCHANNEL_NOISE)
+        switch (commandID)
+        {
+            case SetOctave7 ... SetOctave0:
+                track->currentOctave = commandID & 7;
+                break;
+            case SetNoteAttributesAndLength:
+                track->frameDelay = *track->nextInstruction++;
+                if ((track->trackID - 1) == CGBCHANNEL_NOISE)
+                {
+                    break;
+                }
+                // fallthrough
+            case SetNoteAttributes:
             {
+                u8 velocityEnvelope = *track->nextInstruction++;
+                track->velocity = (velocityEnvelope & 0xF0) >> 4;
+                track->envelope = velocityEnvelope & 0xF;
                 break;
             }
-            // fallthrough
-        case SetNoteAttributes:
-        {
-            u8 velocityEnvelope = *track->nextInstruction++;
-            track->velocity = (velocityEnvelope & 0xF0) >> 4;
-            track->envelope = velocityEnvelope & 0xF;
-            break;
-        }
-        case SetKeyShift:
-            track->keyShift = *track->nextInstruction++;
-            break;
-        case SetTempo:
-            info->gbsTempo = UShortEndianSwap(T1_READ_16(track->nextInstruction));
-            track->nextInstruction += 2;
-            break;
-        case SetDutyCycle:
-            track->dutyCycle = *track->nextInstruction++;
-            break;
-        case SetDutyCyclePattern:
-            track->dutyCycleLoop = TRUE;
-            track->dutyCyclePattern = *track->nextInstruction++;
-            track->dutyCycle = track->dutyCyclePattern & 3;
-            break;
-        case PitchSweep:
-            track->pitchSweep = *track->nextInstruction++;
-            track->notePitchSweep = TRUE;
-            break;
-        case PitchBend:
-        {
-            u8 byte2 = 0;
-            track->pitchBendDuration = *track->nextInstruction++;
-            byte2 = *track->nextInstruction++;
-            track->pitchBendTarget = CalculatePitch(byte2 & 0xF, track->keyShift, (byte2 & 0xF0) >> 4);
-            track->pitchBendActivation = TRUE;
-            break;
-        }
-        case SetModulation:
-        {
-            u8 modulationDelay = *track->nextInstruction++;
-            u8 byte2 = *track->nextInstruction++;
-            if (byte2 != 0)
-            {
-                track->modulationActivation = TRUE;
-                track->modulationDir = FALSE;
-                track->modulationDelay = modulationDelay;
-                track->modulationDelayCountdown = track->modulationDelay;
-                track->modulationMode = 0;
-                track->modulationDepth = (byte2 & 0xF0) >> 4;
-                track->modulationSpeed = byte2 & 0xF;
-                track->modulationCountdown = track->modulationSpeed;
-            }
-            else
-            {
-                track->modulationActivation = FALSE;
-            }
-            break;
-        }
-        case NoiseSet:
-            if (track->noiseActive)
-            {
-                track->noiseActive = FALSE;
-            }
-            else
-            {
-                track->noiseActive = TRUE;
+            case SetKeyShift:
+                track->keyShift = *track->nextInstruction++;
+                break;
+            case SetTempo:
+                info->gbsTempo = UShortEndianSwap(T1_READ_16(track->nextInstruction));
+                track->nextInstruction += 2;
+                break;
+            case SetDutyCycle:
                 track->dutyCycle = *track->nextInstruction++;
-            }
-            break;
-        case SetChannelVolume:
-            track->channelVolume = *track->nextInstruction++;
-            track->volumeChange = TRUE;
-            break;
-        case SetTone:
-            track->tone = UShortEndianSwap(T1_READ_16(track->nextInstruction));
-            track->nextInstruction += 2;
-            track->pitchOffset = TRUE;
-            break;
-        case Pan:
-            track->pan = *track->nextInstruction++;
-            break;
-        case SetHostTempo:
-        {
-            // It is advised that this function not be used since it could mess with
-            // playback in unexpected ways, however, I felt it would be fun
-            // to include it all the same. The GBS Tempo should always be 150
-            u32 tempo = *track->nextInstruction++ << 1;
-            if (track->trackID == 1)
+                break;
+            case SetDutyCyclePattern:
+                track->dutyCycleLoop = TRUE;
+                track->dutyCyclePattern = *track->nextInstruction++;
+                track->dutyCycle = track->dutyCyclePattern & 3;
+                break;
+            case PitchSweep:
+                track->pitchSweep = *track->nextInstruction++;
+                track->notePitchSweep = TRUE;
+                break;
+            case PitchBend:
             {
+                u8 byte2 = 0;
+                track->pitchBendDuration = *track->nextInstruction++;
+                byte2 = *track->nextInstruction++;
+                track->pitchBendTarget = CalculatePitch(byte2 & 0xF, track->keyShift, (byte2 & 0xF0) >> 4);
+                track->pitchBendActivation = TRUE;
+                break;
+            }
+            case SetModulation:
+            {
+                u8 modulationDelay = *track->nextInstruction++;
+                u8 byte2 = *track->nextInstruction++;
+                if (byte2 != 0)
+                {
+                    track->modulationActivation = TRUE;
+                    track->modulationDir = FALSE;
+                    track->modulationDelay = modulationDelay;
+                    track->modulationDelayCountdown = track->modulationDelay;
+                    track->modulationMode = 0;
+                    track->modulationDepth = (byte2 & 0xF0) >> 4;
+                    track->modulationSpeed = byte2 & 0xF;
+                    track->modulationCountdown = track->modulationSpeed;
+                }
+                else
+                {
+                    track->modulationActivation = FALSE;
+                }
+                break;
+            }
+            case NoiseSet:
+                if (track->noiseActive)
+                {
+                    track->noiseActive = FALSE;
+                }
+                else
+                {
+                    track->noiseActive = TRUE;
+                    track->dutyCycle = *track->nextInstruction++;
+                }
+                break;
+            case SetChannelVolume:
+                track->channelVolume = *track->nextInstruction++;
+                track->volumeChange = TRUE;
+                break;
+            case SetTone:
+                track->tone = UShortEndianSwap(T1_READ_16(track->nextInstruction));
+                track->nextInstruction += 2;
+                track->pitchOffset = TRUE;
+                break;
+            case Pan:
+                track->pan = *track->nextInstruction++;
+                break;
+            case SetHostTempo:
+            {
+                // It is advised that this function not be used since it could mess with
+                // playback in unexpected ways, however, I felt it would be fun
+                // to include it all the same. The GBS Tempo should always be 150
+                u32 tempo = *track->nextInstruction++ << 1;
                 info->tempoD = tempo;
                 tempo *= info->tempoU;
                 tempo >>= 8;
                 info->tempoI = tempo;
+                break;
             }
-            break;
-        }
-        case JumpIf:
-            // Not implemented
-            track->nextInstruction += 5;
-            break;
-        case Jump:
-            track->nextInstruction = T1_READ_PTR(track->nextInstruction);
-            break;
-        case Loop:
-        {
-            u8 loopCount = *track->nextInstruction++;
-            if (track->returnLocation == NULL)
-            {
-                if (loopCount == 0 || (loopCount - 1) > track->loopCounter)
-                {
-                    if (loopCount != 0)
-                    {
-                        track->loopCounter++;
-                    }
-                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
-                }
-                else if (loopCount != 0 && track->loopCounter != 0)
-                {
-                    track->loopCounter = 0;
-                    track->nextInstruction += 4;
-                }
-            }
-            else
-            {
-                if (loopCount == 0 || (loopCount - 1) > track->loopCounter2)
-                {
-                    if (loopCount != 0)
-                    {
-                        track->loopCounter2++;
-                    }
-                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
-                }
-                else if (loopCount != 0 && track->loopCounter2 != 0)
-                {
-                    track->loopCounter2 = 0;
-                    track->nextInstruction += 4;
-                }
-            }
-            break;
-        }
-        case Call:
-            if (track->returnLocation == NULL)
-            {
-                track->returnLocation = track->nextInstruction + 4;
+            case JumpIf:
+                // Not implemented
+                track->nextInstruction += 5;
+                break;
+            case Jump:
                 track->nextInstruction = T1_READ_PTR(track->nextInstruction);
-            }
-            break;
-        case End:
-            if (track->returnLocation == NULL)
+                break;
+            case Loop:
             {
-                return End;
+                u8 loopCount = *track->nextInstruction++;
+                if (track->returnLocation == NULL)
+                {
+                    if (loopCount == 0 || (loopCount - 1) > track->loopCounter)
+                    {
+                        if (loopCount != 0)
+                        {
+                            track->loopCounter++;
+                        }
+                        track->nextInstruction = T1_READ_PTR(track->nextInstruction);
+                    }
+                    else if (loopCount != 0 && track->loopCounter != 0)
+                    {
+                        track->loopCounter = 0;
+                        track->nextInstruction += 4;
+                    }
+                }
+                else
+                {
+                    if (loopCount == 0 || (loopCount - 1) > track->loopCounter2)
+                    {
+                        if (loopCount != 0)
+                        {
+                            track->loopCounter2++;
+                        }
+                        track->nextInstruction = T1_READ_PTR(track->nextInstruction);
+                    }
+                    else if (loopCount != 0 && track->loopCounter2 != 0)
+                    {
+                        track->loopCounter2 = 0;
+                        track->nextInstruction += 4;
+                    }
+                }
+                break;
             }
-            else
-            {
-                track->nextInstruction = track->returnLocation;
-                track->returnLocation = NULL;
-            }
-            break;
-        default:
-            break;
+            case Call:
+                if (track->returnLocation == NULL)
+                {
+                    track->returnLocation = track->nextInstruction + 4;
+                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
+                }
+                break;
+            case End:
+                if (track->returnLocation == NULL)
+                {
+                    trackActive = FALSE;
+                    track->noteRest = TRUE;
+                }
+                else
+                {
+                    track->nextInstruction = track->returnLocation;
+                    track->returnLocation = NULL;
+                }
+                break;
+            default:
+                break;
+        }
+        commandID = *track->nextInstruction++; 
     }
-    return *track->nextInstruction;
+
+    ProcessNoteCommand(commandID, info->gbsTempo, track);
+    track->modulationDelayCountdown = track->modulationDelay;
+    return trackActive;
 }
 
-void ApplyPitchBend(struct GBSTrack *track)
+static void ApplyPitchBend(struct GBSTrack *track)
 {
     if (track->pitchBendActivation)
     {
@@ -566,7 +779,7 @@ void ApplyPitchBend(struct GBSTrack *track)
     }
 }
 
-u16 GetModulationPitch(struct GBSTrack *track)
+static u16 GetModulationPitch(struct GBSTrack *track)
 {
     u16 newPitch = track->pitch;
     track->modulationDir = !track->modulationDir;
@@ -602,16 +815,9 @@ u16 GetModulationPitch(struct GBSTrack *track)
     return newPitch;
 }
 
-u16 HandleTrackDutyAndModulation(struct GBSTrack *track)
+static u16 HandleTrackDutyAndModulation(struct GBSTrack *track)
 {
-    u16 finalPitch = 0;
-
-    if (track->trackID == 1)
-    {
-        ApplyPitchBend(track);
-    }
-
-    finalPitch = track->pitch;
+    u16 finalPitch = track->pitch;
 
     if (track->dutyCycleLoop)
     {
@@ -681,7 +887,7 @@ u16 HandleTrackDutyAndModulation(struct GBSTrack *track)
     return finalPitch;
 }
 
-void HandleNoise(struct GBSTrack *track)
+static void HandleNoise(struct GBSTrack *track)
 {
     if (track->noiseActive)
     {
@@ -699,7 +905,7 @@ void HandleNoise(struct GBSTrack *track)
     }
 }
 
-void UpdateStereoPan(struct GBSTrack *track)
+static void UpdateStereoPan(struct GBSTrack *track)
 {
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     vu8 *soundControl = SoundControl();
@@ -712,12 +918,12 @@ void UpdateStereoPan(struct GBSTrack *track)
     soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->trackID - 1].panMask) | thisPan;
 }
 
-void UpdateDutyEnvelopeVelocity(struct GBSTrack *track, vu16 *control)
+static void UpdateDutyEnvelopeVelocity(struct GBSTrack *track, vu16 *control)
 {
     *control = 0x3F | (track->dutyCycle << 6) | (track->envelope << 8) | (track->velocity << 12);
 }
 
-void UpdateCGBTone1(struct GBSTrack *track, u16 pitch)
+static void UpdateCGBTone1(struct GBSTrack *track, u16 pitch)
 {
     vu16 *control = ToneTrackControl();
 
@@ -760,7 +966,7 @@ void UpdateCGBTone1(struct GBSTrack *track, u16 pitch)
     }
 }
 
-void UpdateCGBTone2(struct GBSTrack *track, u16 pitch)
+static void UpdateCGBTone2(struct GBSTrack *track, u16 pitch)
 {
     vu16 *control = ToneTrackControl() + 4;
     
@@ -793,25 +999,25 @@ void UpdateCGBTone2(struct GBSTrack *track, u16 pitch)
     }
 }
 
-static const u32 sWaveTrackPatterns[][4] = {
-    { 0xCE8A4602, 0xDCEDFEFF, 0x6587A9CB, 0x11223344 },
-    { 0xCE8A4602, 0xEEFEFFEF, 0x87A9CBDD, 0x11224365 },
-    { 0xEEBD6913, 0xEDFFFFEE, 0xEEFFFFDE, 0x3196DBEE },
-    { 0xCD8A4602, 0xFFDEFEEF, 0x98BADCEE, 0x10325476 },
-    { 0x67452301, 0xF7EECD8A, 0xA8DCEE7F, 0x10325476 },
-    { 0x33221100, 0x11223344, 0xAACCEEFF, 0xEECCAA88 },
-    { 0xCE8A4602, 0x6587A9CB, 0xDCEDFEFF, 0x11223344 },
-    { 0xF587A9C0, 0xDCEDFEFF, 0xF1223344, 0xCE8A4602 },
-    { 0x1F223344, 0xCE8A4600, 0xDCEDFEF8, 0x6587A9CB },
-    { 0x08000011, 0x9A571300, 0x98A9BAB4, 0x21436587 },
-    { 0x2833E221, 0xEAFF22E1, 0x10DC1410, 0x735141E3 },
-    { 0x000000FF, 0x00000000, 0x000000FF, 0x00000000 },
-    { 0x0000FFFF, 0x00000000, 0x0000FFFF, 0x00000000 },
-    { 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, 0x00000000 },
-    { 0xFFFFFFFF, 0x0000FFFF, 0xFFFFFFFF, 0x0000FFFF }
+static const u8 sWaveTrackPatterns[][16] = {
+    { 0x02, 0x46, 0x8A, 0xCE, 0xFF, 0xFE, 0xED, 0xDC, 0xCB, 0xA9, 0x87, 0x65, 0x44, 0x33, 0x22, 0x11 },
+    { 0x02, 0x46, 0x8A, 0xCE, 0xEF, 0xFF, 0xFE, 0xEE, 0xDD, 0xCB, 0xA9, 0x87, 0x65, 0x43, 0x22, 0x11 },
+    { 0x13, 0x69, 0xBD, 0xEE, 0xEE, 0xFF, 0xFF, 0xED, 0xDE, 0xFF, 0xFF, 0xEE, 0xEE, 0xDB, 0x96, 0x31 },
+    { 0x02, 0x46, 0x8A, 0xCD, 0xEF, 0xFE, 0xDE, 0xFF, 0xEE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10 },
+    { 0x01, 0x23, 0x45, 0x67, 0x8A, 0xCD, 0xEE, 0xF7, 0x7F, 0xEE, 0xDC, 0xA8, 0x76, 0x54, 0x32, 0x10 },
+    { 0x00, 0x11, 0x22, 0x33, 0x44, 0x33, 0x22, 0x11, 0xFF, 0xEE, 0xCC, 0xAA, 0x88, 0xAA, 0xCC, 0xEE },
+    { 0x02, 0x46, 0x8A, 0xCE, 0xCB, 0xA9, 0x87, 0x65, 0xFF, 0xFE, 0xED, 0xDC, 0x44, 0x33, 0x22, 0x11 },
+    { 0xC0, 0xA9, 0x87, 0xF5, 0xFF, 0xFE, 0xED, 0xDC, 0x44, 0x33, 0x22, 0xF1, 0x02, 0x46, 0x8A, 0xCE },
+    { 0x44, 0x33, 0x22, 0x1F, 0x00, 0x46, 0x8A, 0xCE, 0xF8, 0xFE, 0xED, 0xDC, 0xCB, 0xA9, 0x87, 0x65 },
+    { 0x11, 0x00, 0x00, 0x08, 0x00, 0x13, 0x57, 0x9A, 0xB4, 0xBA, 0xA9, 0x98, 0x87, 0x65, 0x43, 0x21 },
+    { 0x21, 0xE2, 0x33, 0x28, 0xE1, 0x22, 0xFF, 0xEA, 0x10, 0x14, 0xDC, 0x10, 0xE3, 0x41, 0x51, 0x73 },
+    { 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },
+    { 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },
+    { 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00 },
+    { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00 }
 };
 
-void LoadWavePattern(struct GBSTrack *track, int patternID)
+static void LoadWavePattern(struct GBSTrack *track, int patternID)
 {
     if (!IsM4AUsingCGBChannel(CGBCHANNEL_WAVE))
     {
@@ -823,8 +1029,7 @@ void LoadWavePattern(struct GBSTrack *track, int patternID)
         if (patternID < ARRAY_COUNT(sWaveTrackPatterns) && soundInfo->cgbChans[CGBCHANNEL_WAVE].cp != (u32)sWaveTrackPatterns[patternID])
         {
             u32* mainPattern = (u32 *)(REG_ADDR_WAVE_RAM0);
-            for (i = 0; i < 4; i++)
-                mainPattern[i] = sWaveTrackPatterns[patternID][i];
+            memcpy(mainPattern, sWaveTrackPatterns[patternID], sizeof(sWaveTrackPatterns[patternID]));
             soundInfo->cgbChans[CGBCHANNEL_WAVE].cp = (u32)sWaveTrackPatterns[patternID];
         }
         control[1] = (control[1] & 0x00FF) | track->velocity << 13;
@@ -834,7 +1039,7 @@ void LoadWavePattern(struct GBSTrack *track, int patternID)
     track->shouldReload = FALSE;
 }
 
-void UpdateCGBWave(struct GBSTrack *track, u16 pitch)
+static void UpdateCGBWave(struct GBSTrack *track, u16 pitch)
 {
     vu16 *control = WaveTrackControl();
     
@@ -858,7 +1063,7 @@ void UpdateCGBWave(struct GBSTrack *track, u16 pitch)
     }
 }
 
-void UpdateCGBNoise(struct GBSTrack *track)
+static void UpdateCGBNoise(struct GBSTrack *track)
 {
     vu16 *control = NoiseTrackControl();
 
@@ -874,7 +1079,7 @@ void UpdateCGBNoise(struct GBSTrack *track)
     }
 }
 
-void UpdateCGBChannel(struct GBSTrack *track, u16 pitch)
+static void UpdateCGBChannel(struct GBSTrack *track, u16 pitch)
 {
     if (!IsM4AUsingCGBChannel(track->trackID - 1))
     {
@@ -896,7 +1101,7 @@ void UpdateCGBChannel(struct GBSTrack *track, u16 pitch)
     }
 }
 
-bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
+static bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
 {
     bool32 trackActive = TRUE;
     u16 thisPitch = track->pitch;
@@ -927,29 +1132,16 @@ bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
 
     if (track->noteLength1 < 2)
     {
-        u32 commandID = *track->nextInstruction;
-        while (commandID >= SetOctave7)
-        {
-            commandID = ParseCommands(info, track);
-            if (commandID == End && track->returnLocation == NULL)
-            {
-                ProcessNoteCommand(0, info->gbsTempo, track);
-                track->noteRest = TRUE;
-                trackActive = FALSE;
-                break;
-            }
-        }
-
-        if (commandID != End)
-        {
-            ProcessNoteCommand(commandID, info->gbsTempo, track);
-            track->nextInstruction++;
-            track->modulationDelayCountdown = track->modulationDelay;
-        }
+        trackActive = ProcessCommands(info, track);
     }
     else
     {
         track->noteLength1--;
+    }
+
+    if ((track->trackID - 1) == CGBCHANNEL_TONE1)
+    {
+        ApplyPitchBend(track);
     }
 
     thisPitch = HandleTrackDutyAndModulation(track);
@@ -958,6 +1150,10 @@ bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
 
     return trackActive;
 }
+
+//
+// Functions called from m4a engine
+//
 
 bool32 GBSMain(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
 {
@@ -1002,7 +1198,10 @@ void ply_gbs_switch(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *
 
     if (gbChannel < 4)
     {
+        // Clear out all m4a data.
         memset(track, 0, sizeof(*track));
+
+        // Set up track with new GBS data (and restore some important info).
         track->gbsIdentifier = gbChannel + 1;
         track->cmdPtr = cmdPtrBackup;
         track->pan = 0xFF;
@@ -1010,6 +1209,7 @@ void ply_gbs_switch(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *
 
         // Disable m4a control of CGB channel.
         soundInfo->cgbChans[gbChannel].sf = 0;
+
         // Clear used bit.
         gUsedCGBChannels &= ~(1 << gbChannel);
         ResetCGBChannel((struct GBSTrack *)track);
@@ -1018,7 +1218,7 @@ void ply_gbs_switch(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *
     }
 }
 
-void GBSTrackStop(struct MusicPlayerTrack *track)
+void GBSTrack_Stop(struct MusicPlayerTrack *track)
 {
     if (track->gbsIdentifier != 0)
     {
