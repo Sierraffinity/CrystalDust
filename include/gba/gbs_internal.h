@@ -87,7 +87,7 @@ struct GBSTrack
 	u8 frameDelay;
 	u16 tone; // 0xC
 	s8 pitchBendRate;
-	u8 currentVoice;
+	u8 dutyCycle;
 	u8 volMR; // 0x10
 	u8 volML;
 	u8 vol;
@@ -137,8 +137,9 @@ struct GBSTrack
 
 	bool8 fadeDirection:1;
 	bool8 shouldReload:1;
+	bool8 volumeChange:1;
 
-	u8 fadeSpeed;
+	u8 envelope;
 	u8 dutyCyclePattern; // 0x38
 	u8 pitchSweep;
 	u8 padding[6];

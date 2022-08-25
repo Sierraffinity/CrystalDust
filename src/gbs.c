@@ -44,26 +44,28 @@ static inline vu8 *SoundControl()
 
 static inline bool32 IsM4AUsingCGBChannel(int channel)
 {
-    return gUsedCGBChannels[channel];
+    return gUsedCGBChannels & (1 << channel);
 }
 
-void SetMasterVolumeFromFade(u32 volX)
+u32 GetMasterVolumeFromFade(u32 volX)
 {
     // Respect the master M4A fade control.
-    u32 masterVolume;
-    vu8 *soundControl = SoundControl();
+    u32 masterVolume = 0;
     if (volX != 0)
+    {
         masterVolume = volX / 8;
+    }
     else
+    {
         masterVolume = 7;
+    }
 
     if (masterVolume > 7)
-        masterVolume = 7;
-
-    if ((soundControl[0] & 0x7) != masterVolume)
     {
-        soundControl[0] = (masterVolume << 4) | masterVolume;
+        masterVolume = 7;
     }
+
+    return (masterVolume << 4) | masterVolume;
 }
 
 u16 CalculateLength(u8 frameDelay, u16 tempo, u8 bitLength, u16 previousLeftover)
@@ -129,6 +131,161 @@ void ToneTrack_Reset(int trackID)
     control[2] = 0x8000;
 }
 
+// Individual noise samples. Arranged into groups of 3 bytes, with 0xFF terminating the array when in the 1st of 3 slots
+
+static const u8 sNoiseData00[] = { 0x20, 0x11, 0x00, 0xFF };
+static const u8 sNoiseData01[] = { 0x20, 0xC1, 0x33, 0xFF };
+static const u8 sNoiseData02[] = { 0x20, 0xB1, 0x33, 0xFF };
+static const u8 sNoiseData03[] = { 0x20, 0xA1, 0x33, 0xFF };
+static const u8 sNoiseData04[] = { 0x20, 0x81, 0x33, 0xFF };
+static const u8 sNoiseData05[] = { 0x27, 0x84, 0x37, 0x26, 0x84, 0x36, 0x25, 0x83, 0x35, 0x24, 0x83, 0x34, 0x23, 0x82, 0x33, 0x22, 0x81, 0x32, 0xFF };
+static const u8 sNoiseData06[] = { 0x20, 0x51, 0x2A, 0xFF };
+static const u8 sNoiseData07[] = { 0x21, 0x41, 0x2B, 0x20, 0x61, 0x2A, 0xFF };
+static const u8 sNoiseData08[] = { 0x20, 0x81, 0x10, 0xFF };
+static const u8 sNoiseData09[] = { 0x20, 0x82, 0x23, 0xFF };
+static const u8 sNoiseData010[] = { 0x20, 0x82, 0x25, 0xFF };
+static const u8 sNoiseData011[] = { 0x20, 0x82, 0x26, 0xFF };
+static const u8 sNoiseData012[] = { 0x20, 0xA1, 0x10, 0xFF };
+static const u8 sNoiseData16[] = { 0x20, 0xA2, 0x11, 0xFF };
+static const u8 sNoiseData17[] = { 0x20, 0xA2, 0x50, 0xFF };
+static const u8 sNoiseData18[] = { 0x20, 0xA1, 0x18, 0x20, 0x31, 0x33, 0xFF };
+static const u8 sNoiseData19[] = { 0x22, 0x91, 0x28, 0x20, 0x71, 0x18, 0xFF };
+static const u8 sNoiseData110[] = { 0x20, 0x91, 0x22, 0xFF };
+static const u8 sNoiseData111[] = { 0x20, 0x71, 0x22, 0xFF };
+static const u8 sNoiseData112[] = { 0x20, 0x61, 0x22, 0xFF };
+static const u8 sNoiseData30[] = { 0xFF };
+static const u8 sNoiseData31[] = { 0x20, 0x91, 0x33, 0xFF };
+static const u8 sNoiseData32[] = { 0x20, 0x51, 0x32, 0xFF };
+static const u8 sNoiseData33[] = { 0x20, 0x81, 0x31, 0xFF };
+static const u8 sNoiseData34[] = { 0x20, 0x88, 0x6B, 0x20, 0x71, 0x00, 0xFF };
+static const u8 sNoiseData35[] = { 0x30, 0x91, 0x18, 0xFF };
+static const u8 sNoiseData36[] = { 0x20, 0x11, 0x11, 0xFF };
+static const u8 sNoiseData37[] = { 0x27, 0x92, 0x10, 0xFF };
+static const u8 sNoiseData38[] = { 0x33, 0x91, 0x00, 0x33, 0x11, 0x00, 0xFF };
+static const u8 sNoiseData39[] = { 0x33, 0x91, 0x11, 0x33, 0x11, 0x00, 0xFF };
+static const u8 sNoiseData311[] = { 0x20, 0xA8, 0x6B, 0x20, 0x71, 0x00, 0xFF };
+static const u8 sNoiseData312[] = { 0x20, 0x84, 0x12, 0xFF };
+static const u8 sNoiseData45[] = { 0x20, 0xA1, 0x31, 0xFF };
+static const u8 sNoiseData47[] = { 0x33, 0x81, 0x00, 0x33, 0x11, 0x00, 0xFF };
+static const u8 sNoiseData48[] = { 0x33, 0x51, 0x21, 0x33, 0x11, 0x11, 0xFF };
+static const u8 sNoiseData49[] = { 0x33, 0x51, 0x50, 0x33, 0x11, 0x11, 0xFF };
+static const u8 sNoiseData410[] = { 0x33, 0x81, 0x21, 0x33, 0x11, 0x11, 0xFF };
+static const u8 sNoiseData412[] = { 0x33, 0x88, 0x15, 0x20, 0x65, 0x12, 0xFF };
+
+// Groups the separate samples into sample groups
+static const u8 *const sNoiseDataGroup0[] =
+{
+    sNoiseData00,
+    sNoiseData01,
+    sNoiseData02,
+    sNoiseData03,
+    sNoiseData04,
+    sNoiseData05,
+    sNoiseData06,
+    sNoiseData07,
+    sNoiseData08,
+    sNoiseData09,
+    sNoiseData010,
+    sNoiseData011,
+    sNoiseData012
+};
+
+static const u8 *const sNoiseDataGroup1[] =
+{
+    sNoiseData00,
+    sNoiseData08,
+    sNoiseData09,
+    sNoiseData010,
+    sNoiseData011,
+    sNoiseData012,
+    sNoiseData16,
+    sNoiseData17,
+    sNoiseData18,
+    sNoiseData19,
+    sNoiseData110,
+    sNoiseData111,
+    sNoiseData112
+};
+
+static const u8 *const sNoiseDataGroup2[] =
+{
+    sNoiseData00,
+    sNoiseData01,
+    sNoiseData110,
+    sNoiseData111,
+    sNoiseData112,
+    sNoiseData05,
+    sNoiseData06,
+    sNoiseData07,
+    sNoiseData08,
+    sNoiseData09,
+    sNoiseData010,
+    sNoiseData011,
+    sNoiseData012
+};
+
+static const u8 *const sNoiseDataGroup3[] =
+{
+    sNoiseData30,
+    sNoiseData31,
+    sNoiseData32,
+    sNoiseData33,
+    sNoiseData34,
+    sNoiseData35,
+    sNoiseData36,
+    sNoiseData37,
+    sNoiseData38,
+    sNoiseData39,
+    sNoiseData30,
+    sNoiseData311,
+    sNoiseData312
+};
+
+static const u8 *const sNoiseDataGroup4[] =
+{
+    sNoiseData30,
+    sNoiseData36,
+    sNoiseData32,
+    sNoiseData33,
+    sNoiseData34,
+    sNoiseData45,
+    sNoiseData35,
+    sNoiseData47,
+    sNoiseData48,
+    sNoiseData49,
+    sNoiseData410,
+    sNoiseData311,
+    sNoiseData412
+};
+
+static const u8 *const sNoiseDataGroup5[] =
+{
+    sNoiseData00,
+    sNoiseData110,
+    sNoiseData111,
+    sNoiseData112,
+    sNoiseData37,
+    sNoiseData38,
+    sNoiseData39,
+    sNoiseData05,
+    sNoiseData06,
+    sNoiseData412,
+    sNoiseData33,
+    sNoiseData32,
+    sNoiseData311
+};
+
+// A simple table pointing to each of the sample groups
+static const u8 *const *const sNoiseDataGroupTable[] =
+{
+    sNoiseDataGroup0,
+    sNoiseDataGroup1,
+    sNoiseDataGroup2,
+    sNoiseDataGroup3,
+    sNoiseDataGroup4,
+    sNoiseDataGroup5
+};
+
 void ProcessNoteCommand(u8 commandID, u16 tempo, struct GBSTrack *track)
 {
     u16 noteLength = CalculateLength(track->frameDelay, tempo, (commandID & 0xF), track->noteLength2);
@@ -136,47 +293,63 @@ void ProcessNoteCommand(u8 commandID, u16 tempo, struct GBSTrack *track)
     track->noteLength1 = (noteLength & 0xFF00) >> 8;
     track->noteLength2 = noteLength & 0xFF;
 
-    if (commandID & 0xF0)
+    if (track->noiseActive && ((track->trackID - 1) == CGBCHANNEL_NOISE))
     {
-        track->pitch = CalculatePitch((commandID & 0xF0) >> 4, track->keyShift, track->currentOctave, 0);
-        track->noteNoiseSampling = TRUE;
-        
-        // Initialize pitch bend data from target and duration
-        if (track->pitchBendActivation)
+        if (commandID & 0xF0)
         {
-            u32 distance = 0;
-            if (track->noteLength1 <= track->pitchBendDuration)
-            {
-                track->pitchBendDuration = 1;
-            }
-            else
-            {
-                track->pitchBendDuration = track->noteLength1 - track->pitchBendDuration;
-            }
-
-            if (track->pitch < track->pitchBendTarget)
-            {
-                track->pitchBendDir = TRUE;
-                distance = track->pitchBendTarget - track->pitch;
-            }
-            else
-            {
-                track->pitchBendDir = FALSE;
-                distance = track->pitch - track->pitchBendTarget;
-            }
-
-            track->pitchBendAmount = distance / track->pitchBendDuration;
-            track->pitchBendFraction = distance % track->pitchBendDuration;
-            track->pitchBendFractionAccumulator = 0;
+            u32 engineSet = track->dutyCycle;
+            const u8 *const *noiseGroup = sNoiseDataGroupTable[engineSet];
+            const u8 *noiseData = NULL;
+            
+            noiseData = noiseGroup[(commandID & 0xF0) >> 4];
+            track->samplePointer = noiseData;
+            track->noiseFrameDelay = 0;
         }
     }
-    else if (!IsM4AUsingCGBChannel(track->trackID - 1))
+    else
     {
-        track->noteRest = TRUE;
+        if (commandID & 0xF0)
+        {
+            track->pitch = CalculatePitch((commandID & 0xF0) >> 4, track->keyShift, track->currentOctave, 0);
+            track->noteNoiseSampling = TRUE;
+            
+            // Initialize pitch bend data from target and duration
+            if (track->pitchBendActivation)
+            {
+                u32 distance = 0;
+                if (track->noteLength1 <= track->pitchBendDuration)
+                {
+                    track->pitchBendDuration = 1;
+                }
+                else
+                {
+                    track->pitchBendDuration = track->noteLength1 - track->pitchBendDuration;
+                }
+
+                if (track->pitch < track->pitchBendTarget)
+                {
+                    track->pitchBendDir = TRUE;
+                    distance = track->pitchBendTarget - track->pitch;
+                }
+                else
+                {
+                    track->pitchBendDir = FALSE;
+                    distance = track->pitch - track->pitchBendTarget;
+                }
+
+                track->pitchBendAmount = distance / track->pitchBendDuration;
+                track->pitchBendFraction = distance % track->pitchBendDuration;
+                track->pitchBendFractionAccumulator = 0;
+            }
+        }
+        else
+        {
+            track->noteRest = TRUE;
+        }
     }
 }
 
-u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
+u8 ParseCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
 {
     u8 commandID = *track->nextInstruction++; // grab next byte and increment pointer
 
@@ -186,21 +359,17 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
             track->currentOctave = commandID & 7;
             break;
         case SetNoteAttributesAndLength:
-        {
-            u8 byte2 = *track->nextInstruction++;
-            track->frameDelay = byte2;
-            byte2 = *track->nextInstruction++;
-            track->velocity = (byte2 & 0xF0) >> 4;
-            track->fadeSpeed = byte2 & 0x7;
-            track->fadeDirection = (byte2 & 0x8) >> 3;
-            break;
-        }
+            track->frameDelay = *track->nextInstruction++;
+            if ((track->trackID - 1) == CGBCHANNEL_NOISE)
+            {
+                break;
+            }
+            // fallthrough
         case SetNoteAttributes:
         {
-            u8 byte2 = *track->nextInstruction++;
-            track->velocity = (byte2 & 0xF0) >> 4;
-            track->fadeSpeed = byte2 & 0x7;
-            track->fadeDirection = (byte2 & 0x8) >> 3;
+            u8 velocityEnvelope = *track->nextInstruction++;
+            track->velocity = (velocityEnvelope & 0xF0) >> 4;
+            track->envelope = velocityEnvelope & 0xF;
             break;
         }
         case SetKeyShift:
@@ -211,12 +380,12 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
             track->nextInstruction += 2;
             break;
         case SetDutyCycle:
-            track->currentVoice = *track->nextInstruction++;
+            track->dutyCycle = *track->nextInstruction++;
             break;
         case SetDutyCyclePattern:
             track->dutyCycleLoop = TRUE;
             track->dutyCyclePattern = *track->nextInstruction++;
-            track->currentVoice = track->dutyCyclePattern & 3;
+            track->dutyCycle = track->dutyCyclePattern & 3;
             break;
         case PitchSweep:
             track->pitchSweep = *track->nextInstruction++;
@@ -252,21 +421,21 @@ u8 ToneTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *trac
             }
             break;
         }
-        case SetChannelVolume:
-        {
-            // TODO: Should be global, not channel volume
-            u8 volume = *track->nextInstruction++;
-            if (track->channelVolume != volume)
+        case NoiseSet:
+            if (track->noiseActive)
             {
-                track->channelVolume = volume;
-                if (!IsM4AUsingCGBChannel(track->trackID - 1))
-                {
-                    vu8 *control = SoundControl();
-                    control[0] = track->channelVolume;
-                }
+                track->noiseActive = FALSE;
+            }
+            else
+            {
+                track->noiseActive = TRUE;
+                track->dutyCycle = *track->nextInstruction++;
             }
             break;
-        }
+        case SetChannelVolume:
+            track->channelVolume = *track->nextInstruction++;
+            track->volumeChange = TRUE;
+            break;
         case SetTone:
             track->tone = UShortEndianSwap(T1_READ_16(track->nextInstruction));
             track->nextInstruction += 2;
@@ -457,8 +626,8 @@ u16 HandleTrackDutyAndModulation(struct GBSTrack *track)
 
     if (track->dutyCycleLoop)
     {
-        track->currentVoice = (track->dutyCyclePattern & 0xC0) >> 6;
-        track->dutyCyclePattern = (track->dutyCyclePattern << 2) | track->currentVoice;
+        track->dutyCycle = (track->dutyCyclePattern & 0xC0) >> 6;
+        track->dutyCyclePattern = (track->dutyCyclePattern << 2) | track->dutyCycle;
         track->noteDutyOverride = TRUE;
     }
 
@@ -523,6 +692,24 @@ u16 HandleTrackDutyAndModulation(struct GBSTrack *track)
     return finalPitch;
 }
 
+void HandleNoise(struct GBSTrack *track)
+{
+    if (track->noiseActive)
+    {
+        if (track->noiseFrameDelay > 0)
+        {
+            track->noiseFrameDelay--;
+        }
+        else if (track->samplePointer != NULL && track->samplePointer[0] != 0xFF)
+        {
+            track->noiseFrameDelay = (*track->samplePointer++ & 0xF) + 1;
+            track->envelope = *track->samplePointer++;
+            track->pitch = *track->samplePointer++;
+            track->noteNoiseSampling = TRUE;
+        }
+    }
+}
+
 void UpdateStereoPan(struct GBSTrack *track)
 {
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
@@ -536,20 +723,19 @@ void UpdateStereoPan(struct GBSTrack *track)
     soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->trackID - 1].panMask) | thisPan;
 }
 
-void UpdateVoiceVolVelocity(struct GBSTrack *track, vu16 *control)
+void UpdateDutyEnvelopeVelocity(struct GBSTrack *track, vu16 *control)
 {
-    u16 thisVoiceVolVelocity = track->currentVoice << 6;
-    thisVoiceVolVelocity |= track->fadeSpeed << 8;
-    thisVoiceVolVelocity |= track->fadeDirection << 11;
-    thisVoiceVolVelocity |= track->velocity << 12;
-    thisVoiceVolVelocity |= 0x3F;
-        
-    *control = thisVoiceVolVelocity;
+    *control = 0x3F | (track->dutyCycle << 6) | (track->envelope << 8) | (track->velocity << 12);
 }
 
 void UpdateCGBTone1(struct GBSTrack *track, u16 pitch)
 {
     vu16 *control = ToneTrackControl();
+
+    if (track->notePitchSweep)
+    {
+        control[0] = (control[0] & 0xFF00) | track->pitchSweep;
+    }
 
     if (track->noteRest)
     {
@@ -558,7 +744,7 @@ void UpdateCGBTone1(struct GBSTrack *track, u16 pitch)
     else if (track->noteNoiseSampling)
     {
         UpdateStereoPan(track);
-        UpdateVoiceVolVelocity(track, &control[1]);
+        UpdateDutyEnvelopeVelocity(track, &control[1]);
         control[2] = pitch | 0x8000;
     }
     else
@@ -580,7 +766,7 @@ void UpdateCGBTone1(struct GBSTrack *track, u16 pitch)
 
         if (track->noteDutyOverride)
         {
-            control[1] = (control[1] & 0xFF3F) | (track->currentVoice << 6);
+            control[1] = (control[1] & 0xFF3F) | (track->dutyCycle << 6);
         }
     }
 }
@@ -596,7 +782,7 @@ void UpdateCGBTone2(struct GBSTrack *track, u16 pitch)
     else if (track->noteNoiseSampling)
     {
         UpdateStereoPan(track);
-        UpdateVoiceVolVelocity(track, &control[0]);
+        UpdateDutyEnvelopeVelocity(track, &control[0]);
         control[2] = pitch | 0x8000;
     }
     else
@@ -613,7 +799,7 @@ void UpdateCGBTone2(struct GBSTrack *track, u16 pitch)
 
         if (track->noteDutyOverride)
         {
-            control[0] = (control[0] & 0xFF3F) | (track->currentVoice << 6);
+            control[0] = (control[0] & 0xFF3F) | (track->dutyCycle << 6);
         }
     }
 }
@@ -668,7 +854,7 @@ void LoadWavePattern(struct GBSTrack *track, int patternID)
         control[1] = (control[1] & 0x00FF) | track->velocity << 13;
         control[0] = (control[0] & 0xFF00) | 0x80; // Switch back to first wave bank
     }
-    track->currentVoice = patternID;
+    track->envelope = patternID;
     track->shouldReload = FALSE;
 }
 
@@ -683,7 +869,7 @@ void UpdateCGBWave(struct GBSTrack *track, u16 pitch)
     else if (track->noteNoiseSampling)
     {
         UpdateStereoPan(track);
-        LoadWavePattern(track, track->currentVoice);
+        LoadWavePattern(track, track->envelope);
         control[2] = pitch | 0x8000;
     }
     else if (track->noteVibratoOverride)
@@ -693,6 +879,34 @@ void UpdateCGBWave(struct GBSTrack *track, u16 pitch)
         // Either we replicate both behaviors exactly or just store both bytes
         //control[2] = (control[2] & 0xFF00) | (pitch & 0xFF);
         control[2] = pitch;
+    }
+}
+
+void NoiseTrack_Reset()
+{
+    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
+    vu16 *control = NoiseTrackControl();
+    vu8 *soundControl = SoundControl();
+
+    soundControl[1] &= ~soundInfo->cgbChans[CGBCHANNEL_NOISE].panMask;
+
+    control[0] = 0x800;
+    control[2] = 0x8000;
+}
+
+void UpdateCGBNoise(struct GBSTrack *track)
+{
+    vu16 *control = NoiseTrackControl();
+
+    if (track->noteRest)
+    {
+        NoiseTrack_Reset();
+    }
+    else if (track->noteNoiseSampling)
+    {
+        UpdateStereoPan(track);
+        control[0] = (track->envelope << 8) | 0x3F;
+        control[2] = (track->pitch & 0xFF) | 0x8000;
     }
 }
 
@@ -710,6 +924,9 @@ void UpdateCGBChannel(struct GBSTrack *track, u16 pitch)
                 break;
             case CGBCHANNEL_WAVE:
                 UpdateCGBWave(track, pitch);
+                break;
+            default: // CGBCHANNEL_NOISE
+                UpdateCGBNoise(track);
                 break;
         }
     }
@@ -740,7 +957,7 @@ bool32 ToneTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
         u32 commandID = *track->nextInstruction;
         while (commandID >= SetOctave7)
         {
-            commandID = ToneTrack_ProcessCommands(info, track);
+            commandID = ParseCommands(info, track);
             if (commandID == End && track->returnLocation == NULL)
             {
                 ProcessNoteCommand(0, info->gbsTempo, track);
@@ -763,165 +980,10 @@ bool32 ToneTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
     }
 
     thisPitch = HandleTrackDutyAndModulation(track);
-
-    if (track->trackID == 1)
-    {
-        if (track->notePitchSweep)
-        {
-            if (!IsM4AUsingCGBChannel(track->trackID - 1))
-            {
-                vu16 *control = ToneTrackControl();
-                control[0] = (control[0] & 0xFF00) | track->pitchSweep;
-            }
-        }
-
-        SetMasterVolumeFromFade(track->volX);
-    }
-
+    HandleNoise(track);
     UpdateCGBChannel(track, thisPitch);
 
     return trackActive;
-}
-
-u8 WaveTrack_ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
-{
-    u8 commandID = *track->nextInstruction++; // grab next byte and increment pointer
-
-    switch (commandID)
-    {
-        case SetOctave7 ... SetOctave0:
-            track->currentOctave = commandID & 7;
-            break;
-        case SetNoteAttributesAndLength:
-        {
-            u8 byte2 = 0;
-            track->frameDelay = *track->nextInstruction++;
-            byte2 = *track->nextInstruction++;
-            track->velocity = (byte2 & 0x70) >> 4;
-            track->currentVoice = byte2 & 0xF;
-            break;
-        }
-        case SetNoteAttributes:
-        {
-            u8 byte2 = *track->nextInstruction++;
-            track->velocity = (byte2 & 0x70) >> 4;
-            track->currentVoice = byte2 & 0xF;
-            break;
-        }
-        case SetKeyShift:
-            track->keyShift = *track->nextInstruction++;
-            break;
-        case SetDutyCycle:
-            // Not used in wave track
-            track->nextInstruction++;
-            break;
-        case SetDutyCyclePattern:
-            // Not used in wave track
-            track->nextInstruction++;
-            break;
-        case PitchSweep:
-            // Not used in wave track
-            track->nextInstruction++;
-            break;
-        case PitchBend:
-            // Not used in wave track
-            track->nextInstruction += 2;
-            break;
-        case SetModulation:
-        {
-            u8 modulationDelay = *track->nextInstruction++;
-            u8 byte2 = *track->nextInstruction++;
-            if (byte2 != 0)
-            {
-                track->modulationActivation = TRUE;
-                track->modulationDir = FALSE;
-                track->modulationDelay = modulationDelay;
-                track->modulationDelayCountdown = track->modulationDelay;
-                track->modulationMode = 0;
-                track->modulationDepth = (byte2 & 0xF0) >> 4;
-                track->modulationSpeed = byte2 & 0xF;
-                track->modulationCountdown = track->modulationSpeed;
-            }
-            else
-            {
-                track->modulationActivation = FALSE;
-            }
-            break;
-        }
-        case SetTone:
-            track->tone = UShortEndianSwap(T1_READ_16(track->nextInstruction));
-            track->nextInstruction += 2;
-            track->pitchOffset = TRUE;
-            break;
-        case Pan:
-            track->pan = *track->nextInstruction++;
-            break;
-        case JumpIf:
-            // Not implemented
-            track->nextInstruction += 5;
-            break;
-        case Jump:
-            track->nextInstruction = T1_READ_PTR(track->nextInstruction);
-            break;
-        case Loop:
-        {
-            u8 loopCount = *track->nextInstruction++;
-            if (track->returnLocation == NULL)
-            {
-                if (loopCount == 0 || (loopCount - 1) > track->loopCounter)
-                {
-                    if (loopCount != 0)
-                    {
-                        track->loopCounter++;
-                    }
-                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
-                }
-                else if (loopCount != 0 && track->loopCounter != 0)
-                {
-                    track->loopCounter = 0;
-                    track->nextInstruction += 4;
-                }
-            }
-            else
-            {
-                if (loopCount == 0 || (loopCount - 1) > track->loopCounter2)
-                {
-                    if (loopCount != 0)
-                    {
-                        track->loopCounter2++;
-                    }
-                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
-                }
-                else if (loopCount != 0 && track->loopCounter2 != 0)
-                {
-                    track->loopCounter2 = 0;
-                    track->nextInstruction += 4;
-                }
-            }
-            break;
-        }
-        case Call:
-            if (track->returnLocation == NULL)
-            {
-                track->returnLocation = track->nextInstruction + 4;
-                track->nextInstruction = T1_READ_PTR(track->nextInstruction);
-            }
-            break;
-        case End:
-            if (track->returnLocation == NULL)
-            {
-                return End;
-            }
-            else
-            {
-                track->nextInstruction = track->returnLocation;
-                track->returnLocation = NULL;
-            }
-            break;
-        default:
-            break;
-    }
-    return *track->nextInstruction;
 }
 
 bool32 WaveTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
@@ -938,7 +1000,7 @@ bool32 WaveTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
     }
     else if (track->shouldReload)
     {
-        LoadWavePattern(track, track->currentVoice);
+        LoadWavePattern(track, track->envelope);
         track->shouldReload = FALSE;
     }
 
@@ -947,7 +1009,7 @@ bool32 WaveTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
         u32 commandID = *track->nextInstruction;
         while (commandID >= SetOctave7)
         {
-            commandID = WaveTrack_ProcessCommands(info, track);
+            commandID = ParseCommands(info, track);
             if (commandID == End && track->returnLocation == NULL)
             {
                 ProcessNoteCommand(0, info->gbsTempo, track);
@@ -969,378 +1031,73 @@ bool32 WaveTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
     }
 
     thisPitch = HandleTrackDutyAndModulation(track);
+    HandleNoise(track);
     UpdateCGBChannel(track, thisPitch);
+
     return trackActive;
-}
-
-// Individual noise samples. Arranged into groups of 3 bytes, with 0xFF terminating the array when in the 1st of 3 slots
-
-static const u8 sNoiseData00[] = { 0x20, 0x11, 0x00, 0xFF };
-static const u8 sNoiseData01[] = { 0x20, 0xC1, 0x33, 0xFF };
-static const u8 sNoiseData02[] = { 0x20, 0xB1, 0x33, 0xFF };
-static const u8 sNoiseData03[] = { 0x20, 0xA1, 0x33, 0xFF };
-static const u8 sNoiseData04[] = { 0x20, 0x81, 0x33, 0xFF };
-static const u8 sNoiseData05[] = { 0x27, 0x84, 0x37, 0x26, 0x84, 0x36, 0x25, 0x83, 0x35, 0x24, 0x83, 0x34, 0x23, 0x82, 0x33, 0x22, 0x81, 0x32, 0xFF };
-static const u8 sNoiseData06[] = { 0x20, 0x51, 0x2A, 0xFF };
-static const u8 sNoiseData07[] = { 0x21, 0x41, 0x2B, 0x20, 0x61, 0x2A, 0xFF };
-static const u8 sNoiseData08[] = { 0x20, 0x81, 0x10, 0xFF };
-static const u8 sNoiseData09[] = { 0x20, 0x82, 0x23, 0xFF };
-static const u8 sNoiseData010[] = { 0x20, 0x82, 0x25, 0xFF };
-static const u8 sNoiseData011[] = { 0x20, 0x82, 0x26, 0xFF };
-static const u8 sNoiseData012[] = { 0x20, 0xA1, 0x10, 0xFF };
-static const u8 sNoiseData16[] = { 0x20, 0xA2, 0x11, 0xFF };
-static const u8 sNoiseData17[] = { 0x20, 0xA2, 0x50, 0xFF };
-static const u8 sNoiseData18[] = { 0x20, 0xA1, 0x18, 0x20, 0x31, 0x33, 0xFF };
-static const u8 sNoiseData19[] = { 0x22, 0x91, 0x28, 0x20, 0x71, 0x18, 0xFF };
-static const u8 sNoiseData110[] = { 0x20, 0x91, 0x22, 0xFF };
-static const u8 sNoiseData111[] = { 0x20, 0x71, 0x22, 0xFF };
-static const u8 sNoiseData112[] = { 0x20, 0x61, 0x22, 0xFF };
-static const u8 sNoiseData30[] = { 0xFF };
-static const u8 sNoiseData31[] = { 0x20, 0x91, 0x33, 0xFF };
-static const u8 sNoiseData32[] = { 0x20, 0x51, 0x32, 0xFF };
-static const u8 sNoiseData33[] = { 0x20, 0x81, 0x31, 0xFF };
-static const u8 sNoiseData34[] = { 0x20, 0x88, 0x6B, 0x20, 0x71, 0x00, 0xFF };
-static const u8 sNoiseData35[] = { 0x30, 0x91, 0x18, 0xFF };
-static const u8 sNoiseData36[] = { 0x20, 0x11, 0x11, 0xFF };
-static const u8 sNoiseData37[] = { 0x27, 0x92, 0x10, 0xFF };
-static const u8 sNoiseData38[] = { 0x33, 0x91, 0x00, 0x33, 0x11, 0x00, 0xFF };
-static const u8 sNoiseData39[] = { 0x33, 0x91, 0x11, 0x33, 0x11, 0x00, 0xFF };
-static const u8 sNoiseData311[] = { 0x20, 0xA8, 0x6B, 0x20, 0x71, 0x00, 0xFF };
-static const u8 sNoiseData312[] = { 0x20, 0x84, 0x12, 0xFF };
-static const u8 sNoiseData45[] = { 0x20, 0xA1, 0x31, 0xFF };
-static const u8 sNoiseData47[] = { 0x33, 0x81, 0x00, 0x33, 0x11, 0x00, 0xFF };
-static const u8 sNoiseData48[] = { 0x33, 0x51, 0x21, 0x33, 0x11, 0x11, 0xFF };
-static const u8 sNoiseData49[] = { 0x33, 0x51, 0x50, 0x33, 0x11, 0x11, 0xFF };
-static const u8 sNoiseData410[] = { 0x33, 0x81, 0x21, 0x33, 0x11, 0x11, 0xFF };
-static const u8 sNoiseData412[] = { 0x33, 0x88, 0x15, 0x20, 0x65, 0x12, 0xFF };
-
-// Groups the separate samples into sample groups
-static const u8 *const sNoiseDataGroup0[] =
-{
-    sNoiseData00,
-    sNoiseData01,
-    sNoiseData02,
-    sNoiseData03,
-    sNoiseData04,
-    sNoiseData05,
-    sNoiseData06,
-    sNoiseData07,
-    sNoiseData08,
-    sNoiseData09,
-    sNoiseData010,
-    sNoiseData011,
-    sNoiseData012
-};
-
-static const u8 *const sNoiseDataGroup1[] =
-{
-    sNoiseData00,
-    sNoiseData08,
-    sNoiseData09,
-    sNoiseData010,
-    sNoiseData011,
-    sNoiseData012,
-    sNoiseData16,
-    sNoiseData17,
-    sNoiseData18,
-    sNoiseData19,
-    sNoiseData110,
-    sNoiseData111,
-    sNoiseData112
-};
-
-static const u8 *const sNoiseDataGroup2[] =
-{
-    sNoiseData00,
-    sNoiseData01,
-    sNoiseData110,
-    sNoiseData111,
-    sNoiseData112,
-    sNoiseData05,
-    sNoiseData06,
-    sNoiseData07,
-    sNoiseData08,
-    sNoiseData09,
-    sNoiseData010,
-    sNoiseData011,
-    sNoiseData012
-};
-
-static const u8 *const sNoiseDataGroup3[] =
-{
-    sNoiseData30,
-    sNoiseData31,
-    sNoiseData32,
-    sNoiseData33,
-    sNoiseData34,
-    sNoiseData35,
-    sNoiseData36,
-    sNoiseData37,
-    sNoiseData38,
-    sNoiseData39,
-    sNoiseData30,
-    sNoiseData311,
-    sNoiseData312
-};
-
-static const u8 *const sNoiseDataGroup4[] =
-{
-    sNoiseData30,
-    sNoiseData36,
-    sNoiseData32,
-    sNoiseData33,
-    sNoiseData34,
-    sNoiseData45,
-    sNoiseData35,
-    sNoiseData47,
-    sNoiseData48,
-    sNoiseData49,
-    sNoiseData410,
-    sNoiseData311,
-    sNoiseData412
-};
-
-static const u8 *const sNoiseDataGroup5[] =
-{
-    sNoiseData00,
-    sNoiseData110,
-    sNoiseData111,
-    sNoiseData112,
-    sNoiseData37,
-    sNoiseData38,
-    sNoiseData39,
-    sNoiseData05,
-    sNoiseData06,
-    sNoiseData412,
-    sNoiseData33,
-    sNoiseData32,
-    sNoiseData311
-};
-
-// A simple table pointing to each of the sample groups
-static const u8 *const *const sNoiseDataGroupTable[] =
-{
-    sNoiseDataGroup0,
-    sNoiseDataGroup1,
-    sNoiseDataGroup2,
-    sNoiseDataGroup3,
-    sNoiseDataGroup4,
-    sNoiseDataGroup5
-};
-
-u8 NoiseTrack_ProcessCommands(struct GBSTrack *track)
-{
-    u8 commandID = *track->nextInstruction++;
-
-    switch (commandID)
-    {
-        case SetNoteAttributesAndLength:
-            track->frameDelay = *track->nextInstruction++;
-            break;
-        case NoiseSet:
-            if (track->noiseActive)
-            {
-                track->noiseActive = FALSE;
-            }
-            else
-            {
-                track->noiseActive = TRUE;
-                track->currentVoice = *track->nextInstruction++;
-            }
-            break;
-        case Pan:
-            track->pan = *track->nextInstruction++;
-            break;
-        case Loop:
-        {
-            u8 loopCount = *track->nextInstruction++;
-            if (track->returnLocation == NULL)
-            {
-                if (loopCount == 0 || (loopCount - 1) > track->loopCounter)
-                {
-                    if (loopCount != 0)
-                    {
-                        track->loopCounter++;
-                    }
-                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
-                }
-                else if (loopCount != 0 && track->loopCounter != 0)
-                {
-                    track->loopCounter = 0;
-                    track->nextInstruction += 4;
-                }
-            }
-            else
-            {
-                if (loopCount == 0 || (loopCount - 1) > track->loopCounter2)
-                {
-                    if (loopCount != 0)
-                    {
-                        track->loopCounter2++;
-                    }
-                    track->nextInstruction = T1_READ_PTR(track->nextInstruction);
-                }
-                else if (loopCount != 0 && track->loopCounter2 != 0)
-                {
-                    track->loopCounter2 = 0;
-                    track->nextInstruction += 4;
-                }
-            }
-            break;
-        }
-        case Call:
-            if (track->returnLocation == NULL)
-            {
-                track->returnLocation = track->nextInstruction + 4;
-                track->nextInstruction = T1_READ_PTR(track->nextInstruction);
-            }
-            break;
-        case End:
-            if (track->returnLocation == NULL)
-            {
-                return End;
-            }
-            else
-            {
-                track->nextInstruction = track->returnLocation;
-                track->returnLocation = NULL;
-            }
-            break;
-        default:
-            break;
-    }
-    return *track->nextInstruction;
-}
-
-void NoiseTrack_WritePattern(struct GBSTrack *track)
-{
-    if (track->samplePointer[0] != 0xFF)
-    {
-        u16 value1 = (track->samplePointer[0] & 0xF);
-        u16 value2 = (track->samplePointer[1] << 8) | 0x3F;
-        u16 value3 = track->samplePointer[2] | 0x8000;
-        track->noiseActive = TRUE;
-        track->noiseFrameDelay = value1;
-        track->samplePointer += 3;
-        if (!IsM4AUsingCGBChannel(CGBCHANNEL_NOISE))
-        {
-            vu16 *control = NoiseTrackControl();
-            control[0] = value2;
-            control[2] = value3;
-        }
-    }
-    else
-    {
-        track->noiseActive = FALSE;
-        track->noiseFrameDelay = 0;
-    }
-}
-
-void NoiseTrack_Reset()
-{
-    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
-    vu16 *control = NoiseTrackControl();
-    vu8 *soundControl = SoundControl();
-
-    soundControl[1] &= ~soundInfo->cgbChans[CGBCHANNEL_NOISE].panMask;
-
-    control[0] = 0x800;
-    control[2] = 0x8000;
-}
-
-void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct GBSTrack *track)
-{
-    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
-    u16 noteLength = CalculateLength(track->frameDelay, tempo, (commandID & 0xF), track->noteLength2);
-    u8 thisPan = soundInfo->cgbChans[track->trackID - 1].panMask;
-    
-    track->noteLength1 = (noteLength & 0xFF00) >> 8;
-    track->noteLength2 = noteLength & 0xFF;
-
-    // Check if command is rest
-    if (commandID & 0xF0)
-    {
-        u32 engineSet = track->currentVoice;
-        const u8 *const *noiseGroup = sNoiseDataGroupTable[engineSet];
-        const u8 *noiseData = NULL;
-        
-        noiseData = noiseGroup[(commandID & 0xF0) >> 4];
-        track->samplePointer = noiseData;
-
-        if (!IsM4AUsingCGBChannel(CGBCHANNEL_NOISE))
-        {
-            vu8 *soundControl = SoundControl();
-            
-            if (gSaveBlock2Ptr->optionsSound == OPTIONS_SOUND_STEREO)
-                thisPan &= track->pan;
-            soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->trackID - 1].panMask) | thisPan;
-        }
-        
-        NoiseTrack_WritePattern(track);
-    }
-    else if (!IsM4AUsingCGBChannel(CGBCHANNEL_NOISE))
-    {
-        // If resting but we have control, clear the track
-        NoiseTrack_Reset();
-    }
 }
 
 bool16 NoiseTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
 {
-    bool16 result = TRUE;
+    bool32 trackActive = TRUE;
+    u16 thisPitch = track->pitch;
+
+    // The M4A sound effects can change instrument data out from under us.
+    // We want to reload the correct values for this track when
+    // control is returned to GBS from M4A.
+    if (IsM4AUsingCGBChannel(track->trackID - 1))
+    {
+        track->shouldReload = TRUE;
+    }
+    else if (track->shouldReload)
+    {
+        track->shouldReload = FALSE;
+    }
 
     if (track->noteLength1 < 2)
     {
         u32 commandID = *track->nextInstruction;
         while (commandID >= SetOctave7)
         {
-            commandID = NoiseTrack_ProcessCommands(track);
+            commandID = ParseCommands(info, track);
             if (commandID == End && track->returnLocation == NULL)
             {
-                NoiseTrack_ExecuteModifications(0, info->gbsTempo, track);
-                result = FALSE;
+                ProcessNoteCommand(0, info->gbsTempo, track);
+                track->noteRest = TRUE;
+                trackActive = FALSE;
                 break;
             }
         }
         if (commandID != End)
         {
-            NoiseTrack_ExecuteModifications(commandID, info->gbsTempo, track);
+            ProcessNoteCommand(commandID, info->gbsTempo, track);
             track->nextInstruction++;
-        }
-        else
-        {
-            track->noiseActive = FALSE;
-            track->noiseFrameDelay = 0;
+            track->modulationDelayCountdown = track->modulationDelay;
         }
     }
     else
     {
         track->noteLength1--;
-        if (track->noiseActive)
-        {
-            if (track->noiseFrameDelay == 0)
-            {
-                NoiseTrack_WritePattern(track);
-            }
-            else
-            {
-                track->noiseFrameDelay--;
-            }
-        }
     }
 
-    return result;
+    thisPitch = HandleTrackDutyAndModulation(track);
+    HandleNoise(track);
+    UpdateCGBChannel(track, thisPitch);
+
+    return trackActive;
 }
 
 bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
 {
     struct GBSTrack *gbsTrack = (struct GBSTrack *)track;
+    vu8 *soundControl = SoundControl();
     bool32 success = FALSE;
+    u32 masterVolume = 0;
     
     // Set bias level to 0 for less crunch
     // Always set here since m4a engine may have changed it
-    // TODO: Use SWI instead
-    REG_SOUNDBIAS = REG_SOUNDBIAS & 0xFC00;
+    // TODO: Now I can't tell the difference, was there ever one...?
+    //REG_SOUNDBIAS = REG_SOUNDBIAS & 0xFC00;
 
     // Reset all note flags
     gbsTrack->noteDutyOverride = FALSE;
@@ -1366,6 +1123,15 @@ bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
             break;
     }
 
+    masterVolume = GetMasterVolumeFromFade(track->volX);
+    // Ensure we're not stepping on m4a's toes by checking for default volume and channel usage
+    if ((masterVolume == 0x77) && (gUsedCGBChannels == 0) && gbsTrack->volumeChange)
+    {
+        masterVolume = gbsTrack->channelVolume;
+        gbsTrack->volumeChange = FALSE;
+    }
+    soundControl[0] = masterVolume;
+
     return success;
 }
 
@@ -1386,7 +1152,7 @@ void ply_gbs_switch(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *
         // Disable m4a control of CGB channel.
         soundInfo->cgbChans[gbChannel].sf = 0;
         // Clear used bit.
-        gUsedCGBChannels[gbChannel] = FALSE;
+        gUsedCGBChannels &= ~(1 << gbChannel);
         
         switch (gbChannel)
         {
