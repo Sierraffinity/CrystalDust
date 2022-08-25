@@ -100,21 +100,20 @@ static const s16 sFrequencyTable[] =
     0xFDED
 };
 
-u16 CalculatePitch(u8 note, s8 keyShift, u8 octave, u16 tone)
+u16 CalculatePitch(u8 note, s8 keyShift, u8 octave)
 {
     u8 octaveShifted = octave + ((keyShift & 0xF0) >> 4);
     u8 noteShifted = note + (keyShift & 0xF);
-    s16 freq = (sFrequencyTable[noteShifted] >> (7 - octaveShifted)) & 0x7FF;
-    return freq + tone;
+    return (sFrequencyTable[noteShifted] >> (7 - octaveShifted)) & 0x7FF;
 }
 
 void ResetCGBChannel(struct GBSTrack *track)
 {
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
-    vu16 *control = ToneTrackControl() + (track->trackID * 4);
+    vu16 *control = ToneTrackControl() + ((track->trackID - 1) * 4);
     vu8 *soundControl = SoundControl();
 
-    soundControl[1] &= ~soundInfo->cgbChans[track->trackID].panMask;
+    soundControl[1] &= ~soundInfo->cgbChans[track->trackID - 1].panMask;
 
     control[0] = 0;
     control[1] = 0x800;
@@ -300,7 +299,7 @@ void ProcessNoteCommand(u8 commandID, u16 tempo, struct GBSTrack *track)
     {
         if (commandID & 0xF0)
         {
-            track->pitch = CalculatePitch((commandID & 0xF0) >> 4, track->keyShift, track->currentOctave, 0);
+            track->pitch = CalculatePitch((commandID & 0xF0) >> 4, track->keyShift, track->currentOctave);
             track->noteNoiseSampling = TRUE;
             
             // Initialize pitch bend data from target and duration
@@ -386,7 +385,7 @@ u8 ParseCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
             u8 byte2 = 0;
             track->pitchBendDuration = *track->nextInstruction++;
             byte2 = *track->nextInstruction++;
-            track->pitchBendTarget = CalculatePitch(byte2 & 0xF, track->keyShift, (byte2 & 0xF0) >> 4, 0);
+            track->pitchBendTarget = CalculatePitch(byte2 & 0xF, track->keyShift, (byte2 & 0xF0) >> 4);
             track->pitchBendActivation = TRUE;
             break;
         }
