@@ -1237,7 +1237,7 @@ _081DD8E0:
 GBSUpdate:
 	adds r0, r7, 0
 	adds r1, r5, 0
-	bl GBSTrack_Update
+	bl GBSMain
 	cmp r0, 0
 	bne _081DD994
 	adds r0, r7, 0

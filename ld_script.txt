@@ -28,7 +28,6 @@ SECTIONS {
 
         /* .bss.code starts at 0x3001AA8 */
         src/m4a.o(.bss.code);
-        src/gbs.o(.bss.code);
 
         /* COMMON starts at 0x30022A8 */
         INCLUDE "sym_common.ld"
@@ -1346,7 +1345,7 @@ SECTIONS {
         sound/songs/gbsounds/gbs_route29.o(.rodata)
         sound/songs/gbsounds/gbs_route3.o(.rodata)
         sound/songs/gbsounds/gbs_route30.o(.rodata)
-        sound/songs/gbsounds/gbs_route32.o(.rodata)
+        sound/songs/gbsounds/gbs_route34.o(.rodata)
         sound/songs/gbsounds/gbs_route38.o(.rodata)
         sound/songs/gbsounds/gbs_route42.o(.rodata)
         sound/songs/gbsounds/gbs_ruins_of_alph.o(.rodata)

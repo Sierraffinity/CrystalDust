@@ -5,7 +5,7 @@
  *      Author: Jambo51
  *  Revised for M4A integration in: February 2020
  *      Author: huderlem
- *  Integration finalized in: 2022
+ *  Integration finalized in: August 2022
  *      Author: Sierraffinity
  */
 
@@ -13,8 +13,6 @@
 #include "gba/m4a_internal.h"
 #include "gba/gbs_internal.h"
 #include "m4a.h"
-
-bool8 gWaveTrackShouldReloadPattern;
 
 static inline u16 UShortEndianSwap(u16 input)
 {
@@ -110,24 +108,16 @@ u16 CalculatePitch(u8 note, s8 keyShift, u8 octave, u16 tone)
     return freq + tone;
 }
 
-void ToneTrack_Reset(int trackID)
+void ResetCGBChannel(struct GBSTrack *track)
 {
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
-    vu16 *control = ToneTrackControl() + (trackID * 4);
+    vu16 *control = ToneTrackControl() + (track->trackID * 4);
     vu8 *soundControl = SoundControl();
 
-    soundControl[1] &= ~soundInfo->cgbChans[trackID].panMask;
+    soundControl[1] &= ~soundInfo->cgbChans[track->trackID].panMask;
 
-    if (trackID == 1)
-    {
-        control[0] = 0x800;
-    }
-    else
-    {
-        control[0] = 0;
-        control[1] = 0x800;
-    }
-
+    control[0] = 0;
+    control[1] = 0x800;
     control[2] = 0x8000;
 }
 
@@ -739,7 +729,7 @@ void UpdateCGBTone1(struct GBSTrack *track, u16 pitch)
 
     if (track->noteRest)
     {
-        ToneTrack_Reset(track->trackID - 1);
+        ResetCGBChannel(track);
     }
     else if (track->noteNoiseSampling)
     {
@@ -777,7 +767,7 @@ void UpdateCGBTone2(struct GBSTrack *track, u16 pitch)
     
     if (track->noteRest)
     {
-        ToneTrack_Reset(track->trackID - 1);
+        ResetCGBChannel(track);
     }
     else if (track->noteNoiseSampling)
     {
@@ -802,19 +792,6 @@ void UpdateCGBTone2(struct GBSTrack *track, u16 pitch)
             control[0] = (control[0] & 0xFF3F) | (track->dutyCycle << 6);
         }
     }
-}
-
-void WaveTrack_Reset()
-{
-    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
-    vu16 *control = WaveTrackControl();
-    vu8 *soundControl = SoundControl();
-
-    soundControl[1] &= ~soundInfo->cgbChans[CGBCHANNEL_WAVE].panMask;
-
-    control[0] = 0;
-    control[1] = 0x800;
-    control[2] = 0x8000;
 }
 
 static const u32 sWaveTrackPatterns[][4] = {
@@ -864,7 +841,7 @@ void UpdateCGBWave(struct GBSTrack *track, u16 pitch)
     
     if (track->noteRest)
     {
-        WaveTrack_Reset();
+        ResetCGBChannel(track);
     }
     else if (track->noteNoiseSampling)
     {
@@ -882,25 +859,13 @@ void UpdateCGBWave(struct GBSTrack *track, u16 pitch)
     }
 }
 
-void NoiseTrack_Reset()
-{
-    struct SoundInfo *soundInfo = SOUND_INFO_PTR;
-    vu16 *control = NoiseTrackControl();
-    vu8 *soundControl = SoundControl();
-
-    soundControl[1] &= ~soundInfo->cgbChans[CGBCHANNEL_NOISE].panMask;
-
-    control[0] = 0x800;
-    control[2] = 0x8000;
-}
-
 void UpdateCGBNoise(struct GBSTrack *track)
 {
     vu16 *control = NoiseTrackControl();
 
     if (track->noteRest)
     {
-        NoiseTrack_Reset();
+        ResetCGBChannel(track);
     }
     else if (track->noteNoiseSampling)
     {
@@ -932,7 +897,7 @@ void UpdateCGBChannel(struct GBSTrack *track, u16 pitch)
     }
 }
 
-bool32 ToneTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
+bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
 {
     bool32 trackActive = TRUE;
     u16 thisPitch = track->pitch;
@@ -946,9 +911,18 @@ bool32 ToneTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
     }
     else if (track->shouldReload)
     {
-        track->notePitchSweep = TRUE;
-        track->pitchSweep = 0;
-        track->noteDutyOverride = TRUE;
+        switch (track->trackID - 1)
+        {
+            case CGBCHANNEL_TONE1:
+                track->notePitchSweep = TRUE;
+                track->pitchSweep = 0;
+                break;
+            case CGBCHANNEL_WAVE:
+                LoadWavePattern(track, track->envelope);
+                break;
+            default:
+                break;
+        }
         track->shouldReload = FALSE;
     }
 
@@ -986,108 +960,7 @@ bool32 ToneTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
     return trackActive;
 }
 
-bool32 WaveTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
-{
-    bool32 trackActive = TRUE;
-    u16 thisPitch = track->pitch;
-
-    // The M4A sound effects can change the wave pattern out from under us.
-    // We want to reload the correct wave pattern for this track when
-    // control is returned to GBS from M4A.
-    if (IsM4AUsingCGBChannel(track->trackID - 1))
-    {
-        track->shouldReload = TRUE;
-    }
-    else if (track->shouldReload)
-    {
-        LoadWavePattern(track, track->envelope);
-        track->shouldReload = FALSE;
-    }
-
-    if (track->noteLength1 < 2)
-    {
-        u32 commandID = *track->nextInstruction;
-        while (commandID >= SetOctave7)
-        {
-            commandID = ParseCommands(info, track);
-            if (commandID == End && track->returnLocation == NULL)
-            {
-                ProcessNoteCommand(0, info->gbsTempo, track);
-                track->noteRest = TRUE;
-                trackActive = FALSE;
-                break;
-            }
-        }
-        if (commandID != End)
-        {
-            ProcessNoteCommand(commandID, info->gbsTempo, track);
-            track->nextInstruction++;
-            track->modulationDelayCountdown = track->modulationDelay;
-        }
-    }
-    else
-    {
-        track->noteLength1--;
-    }
-
-    thisPitch = HandleTrackDutyAndModulation(track);
-    HandleNoise(track);
-    UpdateCGBChannel(track, thisPitch);
-
-    return trackActive;
-}
-
-bool16 NoiseTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
-{
-    bool32 trackActive = TRUE;
-    u16 thisPitch = track->pitch;
-
-    // The M4A sound effects can change instrument data out from under us.
-    // We want to reload the correct values for this track when
-    // control is returned to GBS from M4A.
-    if (IsM4AUsingCGBChannel(track->trackID - 1))
-    {
-        track->shouldReload = TRUE;
-    }
-    else if (track->shouldReload)
-    {
-        track->shouldReload = FALSE;
-    }
-
-    if (track->noteLength1 < 2)
-    {
-        u32 commandID = *track->nextInstruction;
-        while (commandID >= SetOctave7)
-        {
-            commandID = ParseCommands(info, track);
-            if (commandID == End && track->returnLocation == NULL)
-            {
-                ProcessNoteCommand(0, info->gbsTempo, track);
-                track->noteRest = TRUE;
-                trackActive = FALSE;
-                break;
-            }
-        }
-        if (commandID != End)
-        {
-            ProcessNoteCommand(commandID, info->gbsTempo, track);
-            track->nextInstruction++;
-            track->modulationDelayCountdown = track->modulationDelay;
-        }
-    }
-    else
-    {
-        track->noteLength1--;
-    }
-
-    thisPitch = HandleTrackDutyAndModulation(track);
-    HandleNoise(track);
-    UpdateCGBChannel(track, thisPitch);
-
-    return trackActive;
-}
-
-bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
+bool32 GBSMain(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
 {
     struct GBSTrack *gbsTrack = (struct GBSTrack *)track;
     vu8 *soundControl = SoundControl();
@@ -1107,21 +980,8 @@ bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
 	gbsTrack->noteRest = FALSE;
 	gbsTrack->noteVibratoOverride = FALSE;
 
-    switch (track->gbsIdentifier - 1)
-    {
-        case 2:
-            // Wave Track Update
-            success = WaveTrack_Update(info, gbsTrack);
-            break;
-        case 3:
-            // Noise Track Update
-            success = NoiseTrack_Update(info, gbsTrack);
-            break;
-        default:
-            // Tone Track Update
-            success = ToneTrack_Update(info, gbsTrack);
-            break;
-    }
+    // Run unified GBS track update function
+    success = GBSTrack_Update(info, gbsTrack);
 
     masterVolume = GetMasterVolumeFromFade(track->volX);
     // Ensure we're not stepping on m4a's toes by checking for default volume and channel usage
@@ -1153,39 +1013,16 @@ void ply_gbs_switch(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *
         soundInfo->cgbChans[gbChannel].sf = 0;
         // Clear used bit.
         gUsedCGBChannels &= ~(1 << gbChannel);
-        
-        switch (gbChannel)
-        {
-            case 0:
-            case 1:
-                ToneTrack_Reset(gbChannel);
-                break;
-            case 2:
-                WaveTrack_Reset();
-                LoadWavePattern((struct GBSTrack *)track, 0);
-                break;
-            case 3:
-                NoiseTrack_Reset();
-                break;
-        }
+        ResetCGBChannel((struct GBSTrack *)track);
+        // TODO: Figure out if this is needed when resetting
+        //LoadWavePattern((struct GBSTrack *)track, 0);
     }
 }
 
 void GBSTrackStop(struct MusicPlayerTrack *track)
 {
-    if (track->gbsIdentifier == 0)
-        return;
-
-    switch (track->gbsIdentifier - 1)
+    if (track->gbsIdentifier != 0)
     {
-        case 2:
-            WaveTrack_Reset();
-            break;
-        case 3:
-            NoiseTrack_Reset();
-            break;
-        default:
-            ToneTrack_Reset(track->gbsIdentifier - 1);
-            break;
+        ResetCGBChannel((struct GBSTrack *)track);
     }
 }
