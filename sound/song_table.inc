@@ -631,12 +631,12 @@ gGBSSongTable::
 	song_gbs MUS_GYM,					gbs_gym_Header,					0, 0	@ Gym Theme
 	song_gbs MUS_SURF,					gbs_surf_Header,				0, 0	@ Surfing
 	song_gbs MUS_ILEX_FOREST,			gbs_unioncave_Header,			0, 0	@ Union Cave
-	@song_gbs MUS_LEVEL_UP,				gbs_healpokemon_Header,			2, 2	@ Level Up!
+	song_gbs MUS_LEVEL_UP,				gbs_levelup_Header,				2, 2	@ Level Up!
 	song_gbs MUS_HEAL,					gbs_healpokemon_Header,			2, 2	@ Healing
-	@song_gbs MUS_OBTAIN_BADGE,			gbs_healpokemon_Header,			2, 2	@ Got a Badge!
-	@song_gbs MUS_OBTAIN_ITEM,			gbs_healpokemon_Header,			2, 2	@ Got an Item!
-	@song_gbs MUS_EVOLVED,				gbs_healpokemon_Header,			2, 2	@ Your Pokémon Evolved!
-	@song_gbs MUS_OBTAIN_TMHM,			gbs_healpokemon_Header,			2, 2	@ Got a TM/HM!
+	song_gbs MUS_OBTAIN_BADGE,			gbs_getbadge_Header,			2, 2	@ Got a Badge!
+	song_gbs MUS_OBTAIN_ITEM,			gbs_item_Header,				2, 2	@ Got an Item!
+	song_gbs MUS_EVOLVED,				gbs_healpokemon_Header,			2, 2	@ Your Pokémon Evolved!
+	song_gbs MUS_OBTAIN_TMHM,			gbs_gettm_Header,				2, 2	@ Got a TM/HM!
 	song_gbs MUS_RUINS_OF_ALPH,			gbs_ruinsofalphinterior_Header,	0, 0	@ Ruins of Alph
 	song_gbs MUS_ROUTE30,				gbs_route30_Header,				0, 0	@ Route 30
 	song_gbs MUS_BUENAS_THEME,			gbs_buenaspassword_Header,		0, 0	@ Buena's Password
@@ -677,7 +677,7 @@ gGBSSongTable::
 	song_gbs MUS_UNOWN_RADIO,			gbs_ruinsofalphradio_Header,	0, 0	@ Unown Signal
 	song_gbs MUS_BUG_CONTEST_PREP,		gbs_contestresults_Header,		0, 0	@ Preparing for the Bug-Catching Contest
 	song_gbs MUS_ENCOUNTER_KIMONO,		gbs_lookkimonogirl_Header,		0, 0	@ Trainers' Eyes Meet (Kimono Girl)
-	@song_gbs MUS_REGISTER_PHONE,		gbs_lookkimonogirl_Header,		0, 0	@ Phone Number Registered!
+	song_gbs MUS_REGISTER_PHONE,		gbs_registerphonenumber_Header,	0, 0	@ Phone Number Registered!
 	song_gbs MUS_VS_JOHTO_WILD,			gbs_johtowildbattle_Header,		0, 0	@ Battle! (Wild Pokémon - Johto)
 	song_gbs MUS_VS_ROCKET,				gbs_rocketbattle_Header,		0, 0	@ Battle! (Team Rocket)
 	song_gbs MUS_VS_JOHTO_TRAINER,		gbs_johtotrainerbattle_Header,	0, 0	@ Battle! (Trainer - Johto)
