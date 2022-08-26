@@ -1,11 +1,10 @@
+from genericpath import isfile
 import sys
 import os
 import re
 from pathlib import Path
 
 def buildsong(lines, songname, newname, channels):
-    #print(songname)
-    #print(channels)
     inchannel = False
     currentchannel = ""
     neededchannels = dict(channels)
@@ -24,7 +23,6 @@ def buildsong(lines, songname, newname, channels):
                 elif cleanline.endswith(':'):
                     inchannel = False
                 elif command[0] == "sound_loop":
-                    #if int(command[1].strip(',')) == 0:
                     if songname in command[2]:
                         command[2] = command[2].replace(songname, newname)
                     elif command[2].find('.') > 0:
@@ -53,9 +51,8 @@ def buildsong(lines, songname, newname, channels):
             if not inchannel:
                 for channel in neededchannels:
                     if channel in cleanline and cleanline.endswith(':'):
-                        #print("Found channel {} on line {}".format(channel, lines.index(cleanline)))
                         outLines.append(line.replace(songname, newname))
-                        outLines.append("\tgbs_switch {}".format(neededchannels[channel] - 1))
+                        outLines.append("\tgbs_switch {}".format((neededchannels[channel] - 1) % 4))
                         currentchannel = channel
                         del neededchannels[channel]
                         inchannel = True
@@ -114,40 +111,49 @@ def convert(inFile, outFile, newname):
             elif channelcount != 0:
                 raise ValueError("Encountered non-channel", cleanline)
 
+def convertFile(path, outDir):
+    try:
+        with open(path, 'r') as inFile:
+            newname = 'gbs_{}'.format(path.stem)
+            with open(outDir / (newname + '.s'), 'w') as outFile:
+                convert(inFile, outFile, newname)
+    except:
+        raise ValueError("Error processing file.", path.name)
+
 def main():
     if len(sys.argv) < 3:
         print("Usage: {} <input directory> <output directory>".format(sys.argv[0]))
         sys.exit()
 
-    inDir = sys.argv[1]
-    outDir = sys.argv[2]
+    if os.path.isdir(sys.argv[1]):
+        inDir = Path(sys.argv[1])
+        outDir = Path(sys.argv[2])
 
-    if not os.path.isdir(inDir):
-        print("Directory {} does not exist. Exiting...".format(inDir))
-        sys.exit()
-    
-    pathList = list(Path(inDir).glob('*.asm'))
-    outDirPath = Path(outDir)
-    outDirPath.mkdir(parents=True, exist_ok=True)
-    
-    count = 0
-    for path in pathList:
-        try:
-            with open(path, 'r') as inFile:
-                newname = 'gbs_{}'.format(path.stem)
-                with open(outDirPath / (newname + '.s'), 'w') as outFile:
-                    convert(inFile, outFile, newname)
-                    count += 1
-                    print("%s processed..." % path.name)
-                    #sys.exit()
-        except:
-            sys.stderr.write('\033[KError processing file %s: %d files processed before error.\n' % (path.name, count))
-            raise
+        pathList = list(inDir.glob('*.asm'))
+        outDir.mkdir(parents=True, exist_ok=True)
+        
+        count = 0
+        for path in pathList:
+            try:
+                convertFile(path, outDir)
+                count += 1
+                print("%s processed..." % path.name)
+            except:
+                break
 
-    if count == len(pathList):
-        print("%d files successfully processed." % count)
+        if count == len(pathList):
+            print("%d files successfully processed." % count)
+        else:
+            sys.exit('\nError during processing: %d files processed.' % count)
+    elif os.path.isfile(sys.argv[1]):
+        path = Path(sys.argv[1])
+        outDir = Path(sys.argv[2])
+        outDir.mkdir(parents=True, exist_ok=True)
+        convertFile(path, outDir)
+        print("%s successfully processed." % path.name)
     else:
-        sys.exit('\nError during processing: %d files processed.' % count)
+        print("File or directory '{}' does not exist. Exiting...".format(sys.argv[1]))
+        sys.exit()    
 
 if __name__ == '__main__':
     main()
