@@ -657,7 +657,7 @@ gGBSSongTable::
 	song_gbs MUS_ENCOUNTER_FEMALE,		gbs_enc_beauty_Header,			0, 0	@ Trainers' Eyes Meet (Female)
 	song_gbs MUS_VICTORY_TRAINER,		gbs_victory_trainer_Header,		0, 0	@ Victory! (Trainer)
 	song_gbs MUS_TITLE,					gbs_crystal_title_Header,		0, 0	@ Title Screen
-	song_gbs MUS_INTRO,					gbs_crystal_intro_Header,		0, 0	@ Opening Movie
+	song_gbs MUS_INTRO,					Music_CrystalOpening_Header,		0, 0	@ Opening Movie
 	song_gbs MUS_ENCOUNTER_RIVAL,		gbs_silvers_theme_Header,		0, 0	@ Rival's Theme
 	song_gbs MUS_ENCOUNTER_SAGE,		gbs_enc_sage_Header,			0, 0	@ Trainers' Eyes Meet (Sage)
 	song_gbs MUS_ENCOUNTER_OFFICER,		gbs_enc_officer_Header,			0, 0	@ Trainers' Eyes Meet (Officer)

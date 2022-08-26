@@ -14,12 +14,6 @@
 #include "gba/gbs_internal.h"
 #include "m4a.h"
 
-static inline u16 UShortEndianSwap(u16 input)
-{
-    u16 temp = (input & 0xFF) << 8;
-    return (input >> 8) | temp;
-}
-
 static inline vu16 *ToneTrackControl()
 {
     return (vu16 *)(REG_ADDR_NR10);
@@ -575,7 +569,7 @@ static u8 ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
                 track->keyShift = *track->nextInstruction++;
                 break;
             case SetTempo:
-                info->gbsTempo = UShortEndianSwap(T1_READ_16(track->nextInstruction));
+                info->gbsTempo = T1_READ_16(track->nextInstruction);
                 track->nextInstruction += 2;
                 break;
             case SetDutyCycle:
@@ -636,7 +630,7 @@ static u8 ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
                 track->volumeChange = TRUE;
                 break;
             case SetTone:
-                track->tone = UShortEndianSwap(T1_READ_16(track->nextInstruction));
+                track->tone = T1_READ_16(track->nextInstruction);
                 track->nextInstruction += 2;
                 track->pitchOffset = TRUE;
                 break;

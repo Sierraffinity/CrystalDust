@@ -1,0 +1,30 @@
+For "global:" lines, store songname
+Find next channel_count
+
+Print:
+	.include "asm/macros.inc"
+
+	.section .rodata
+	.align 1
+
+For channel_count lines, read identifier then number
+Search file for identifier
+Start printing lines as-is, except:
+    For "global:" lines, store name then print "gbs_switch channel"
+    For note lines, replace "#" with "s"
+    For ".local:" lines, replace with "global.local:"
+    For sound_ret, sound_loop 0, sound_jump lines, finish reading and search anew
+
+When done with all listed channels, print:
+
+	.align 4
+	.global songname_Header
+songname_Header:
+	.byte channelCount  @ NumTrks
+	.byte 0 	        @ NumBlks
+	.byte 0 	        @ Priority
+	.byte 0 	        @ Reverb
+
+	.int voicegroup000
+
+	.int identifiers
