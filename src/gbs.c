@@ -16,8 +16,10 @@
 
 static bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track);
 static void ApplyPitchBend(struct GBSTrack *track);
-static u16 HandleTrackDutyAndModulation(struct GBSTrack *track);
-static void HandleNoise(struct GBSTrack *track);
+static void ApplyDutyCycle(struct GBSTrack *track);
+static u16 ApplyPitchOffset(struct GBSTrack *track, u16 pitch);
+static u16 ApplyModulation(struct GBSTrack *track, u16 pitch);
+static void ApplyNoise(struct GBSTrack *track);
 static u8 ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track);
 static void ProcessNoteCommand(u8 commandID, u16 tempo, struct GBSTrack *track);
 static void UpdateCGBChannel(struct GBSTrack *track, u16 pitch);
@@ -30,7 +32,7 @@ static void UpdateDutyEnvelopeVelocity(struct GBSTrack *track, vu8 *lengthDuty, 
 static void LoadWavePattern(struct GBSTrack *track, int patternID);
 static inline bool32 IsM4AUsingCGBChannel(int channel);
 static u32 GetMasterVolumeFromFade(u32 volX);
-static u16 CalculateLength(u8 frameDelay, u16 tempo, u8 bitLength, u16 previousLeftover);
+static u16 CalculateNoteLength(u8 frameDelay, u16 tempo, u8 length, u16 previousLeftover);
 static u16 CalculatePitch(u8 note, s8 keyShift, u8 octave);
 static void ClearCGBChannel(struct GBSTrack *track);
 
@@ -39,7 +41,7 @@ static void ClearCGBChannel(struct GBSTrack *track);
 static bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *track)
 {
     bool32 trackActive = TRUE;
-    u16 thisPitch = track->pitch;
+    u16 thisPitch = 0;
 
     // The M4A sound effects can change instrument data out from under us.
     // We want to reload the correct values for this track when
@@ -79,8 +81,12 @@ static bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *tra
         ApplyPitchBend(track);
     }
 
-    thisPitch = HandleTrackDutyAndModulation(track);
-    HandleNoise(track);
+    thisPitch = track->pitch;
+
+    ApplyDutyCycle(track);
+    thisPitch = ApplyPitchOffset(track, thisPitch);
+    thisPitch = ApplyModulation(track, thisPitch);
+    ApplyNoise(track);
     UpdateCGBChannel(track, thisPitch);
 
     return trackActive;
@@ -139,23 +145,29 @@ static void ApplyPitchBend(struct GBSTrack *track)
     }
 }
 
-static u16 HandleTrackDutyAndModulation(struct GBSTrack *track)
+static void ApplyDutyCycle(struct GBSTrack *track)
 {
-    u16 finalPitch = track->pitch;
-
     if (track->dutyCycleLoop)
     {
         track->dutyCycle = (track->dutyCyclePattern & 0xC0) >> 6;
         track->dutyCyclePattern = (track->dutyCyclePattern << 2) | track->dutyCycle;
         track->noteDutyOverride = TRUE;
     }
+}
 
+static u16 ApplyPitchOffset(struct GBSTrack *track, u16 pitch)
+{
     if (track->pitchOffset)
     {
         // TODO: Should tone be signed?
-        finalPitch += track->tone;
+        pitch += track->tone;
     }
     
+    return pitch;
+}
+
+static u16 ApplyModulation(struct GBSTrack *track, u16 pitch)
+{
     if (track->modulationActivation)
     {
         if (track->modulationDelayCountdown > 0)
@@ -182,24 +194,24 @@ static u16 HandleTrackDutyAndModulation(struct GBSTrack *track)
                         u8 halfValue = track->modulationDepth >> 1;
                         if (track->modulationDir)
                         {
-                            finalPitch += (track->modulationDepth - halfValue);
+                            pitch += (track->modulationDepth - halfValue);
                         }
                         else
                         {
-                            finalPitch -= halfValue;
+                            pitch -= halfValue;
                         }
                         break;
                     }
                     case 1:
                         if (track->modulationDir)
                         {
-                            finalPitch -= track->modulationDepth;
+                            pitch -= track->modulationDepth;
                         }
                         break;
                     case 2:
                         if (track->modulationDir)
                         {
-                            finalPitch += track->modulationDepth;
+                            pitch += track->modulationDepth;
                         }
                         break;
                 }
@@ -208,10 +220,10 @@ static u16 HandleTrackDutyAndModulation(struct GBSTrack *track)
         }
     }
 
-    return finalPitch;
+    return pitch;
 }
 
-static void HandleNoise(struct GBSTrack *track)
+static void ApplyNoise(struct GBSTrack *track)
 {
     if (track->noiseActive)
     {
@@ -403,7 +415,7 @@ static u8 ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
 
 static void ProcessNoteCommand(u8 commandID, u16 tempo, struct GBSTrack *track)
 {
-    u16 noteLength = CalculateLength(track->frameDelay, tempo, (commandID & 0xF), track->noteLength2);
+    u16 noteLength = CalculateNoteLength(track->frameDelay, tempo, (commandID & 0xF), track->noteLength2);
 
     track->noteLength1 = (noteLength & 0xFF00) >> 8;
     track->noteLength2 = noteLength & 0xFF;
@@ -781,9 +793,9 @@ static u32 GetMasterVolumeFromFade(u32 volX)
     return (masterVolume << 4) | masterVolume;
 }
 
-static u16 CalculateLength(u8 frameDelay, u16 tempo, u8 bitLength, u16 previousLeftover)
+static u16 CalculateNoteLength(u8 frameDelay, u16 tempo, u8 length, u16 previousLeftover)
 {
-    return ((frameDelay * (bitLength + 1)) * tempo) + previousLeftover;
+    return ((frameDelay * (length + 1)) * tempo) + previousLeftover;
 }
 
 static u16 CalculatePitch(u8 note, s8 keyShift, u8 octave)
