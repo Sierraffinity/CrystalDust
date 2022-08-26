@@ -27,7 +27,7 @@
 .endm
 
 .macro note pitch:req, length:req
-	.byte ((\pitch << 4) | (\length - 1))
+	.byte (\pitch << 4) | (\length - 1)
 .endm
 
 .macro drum_note instrument:req, length:req
@@ -144,7 +144,7 @@
 .macro pitch_slide duration:req, octave:req, pitch:req
 	.byte _pitch_slide
 	.byte \duration - 1
-	.byte (8 - \octave << 4) | (\pitch % 12)
+	.byte ((8 - \octave) << 4) | (\pitch % 12)
 .endm
 
 	enum _vibrato @ 0xE1
