@@ -635,7 +635,7 @@ gGBSSongTable::
 	song_gbs MUS_HEAL,					gbs_healpokemon_Header,			2, 2	@ Healing
 	song_gbs MUS_OBTAIN_BADGE,			gbs_getbadge_Header,			2, 2	@ Got a Badge!
 	song_gbs MUS_OBTAIN_ITEM,			gbs_item_Header,				2, 2	@ Got an Item!
-	song_gbs MUS_EVOLVED,				gbs_healpokemon_Header,			2, 2	@ Your Pokémon Evolved!
+	song_gbs MUS_EVOLVED,				gbs_caughtmon_Header,			2, 2	@ Your Pokémon Evolved!
 	song_gbs MUS_OBTAIN_TMHM,			gbs_gettm_Header,				2, 2	@ Got a TM/HM!
 	song_gbs MUS_RUINS_OF_ALPH,			gbs_ruinsofalphinterior_Header,	0, 0	@ Ruins of Alph
 	song_gbs MUS_ROUTE30,				gbs_route30_Header,				0, 0	@ Route 30
