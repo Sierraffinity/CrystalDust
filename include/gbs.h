@@ -3,6 +3,10 @@
  *
  *  Created on: 21 May 2018
  *      Author: CoolerMaster
+ *  Revised for M4A integration in: February 2020
+ *      Author: huderlem
+ *  Integration finalized in: August 2022
+ *      Author: Sierraffinity
  */
 
 #ifndef INCLUDE_GBA_GBS_INTERNAL_H_
@@ -27,24 +31,24 @@ enum SoundEngineCommands
 	SetNoteAttributes,
 	PitchSweep,
 	SetDutyCyclePattern,
-	Portamento,
+	ToggleSFX,
 	PitchBend,
 	SetModulation,
 	E2,
 	NoiseSet,
-	E4,
-	SetChannelVolume,
+	ForceStereoPanning,
+	SetVolume,
 	SetTone,
 	E7,
 	E8,
-	E9,
-	EA,
-	EB,
-	EC,
-	ED,
+	SetTempoRelative,
+	RestartTrack,
+	NewSong,
+	SFXPriorityOn,
+	SFXPriorityOff,
 	EE,
 	Pan,
-	F0,
+	SFXToggleNoise,
 	F1,
 	F2,
 	F3,
@@ -54,7 +58,7 @@ enum SoundEngineCommands
 	F7,
 	F8,
 	F9,
-	SetHostTempo,
+	SetCondition,
 	JumpIf,
 	Jump,
 	Loop,
