@@ -32,7 +32,7 @@ static void UpdateDutyEnvelopeVelocity(struct GBSTrack *track, vu8 *lengthDuty, 
 static void LoadWavePattern(struct GBSTrack *track, int patternID);
 static inline bool32 IsM4AUsingCGBChannel(int channel);
 static u32 GetMasterVolumeFromFade(u32 volX);
-static u16 CalculateNoteLength(u8 frameDelay, u16 tempo, u8 length, u16 previousLeftover);
+static u16 CalculateNoteLength(u8 noteUnitLength, u16 tempo, u8 length, u16 previousLeftover);
 static u16 CalculatePitch(u8 note, s8 keyShift, u8 octave);
 static void ClearCGBChannel(struct GBSTrack *track);
 
@@ -227,15 +227,15 @@ static void ApplyNoise(struct GBSTrack *track)
 {
     if (track->noiseActive)
     {
-        if (track->noiseFrameDelay > 0)
+        if (track->noiseSampleCountdown > 0)
         {
-            track->noiseFrameDelay--;
+            track->noiseSampleCountdown--;
         }
-        else if (track->samplePointer != NULL && track->samplePointer[0] != NOISE_DATA_END)
+        else if (track->noiseSamplePointer != NULL && track->noiseSamplePointer[0] != NOISE_DATA_END)
         {
-            track->noiseFrameDelay = (*track->samplePointer++ & 0xF) + 1;
-            track->envelope = *track->samplePointer++;
-            track->pitch = *track->samplePointer++;
+            track->noiseSampleCountdown = (*track->noiseSamplePointer++ & 0xF) + 1;
+            track->envelope = *track->noiseSamplePointer++;
+            track->pitch = *track->noiseSamplePointer++;
             track->noteNoiseSampling = TRUE;
         }
     }
@@ -253,14 +253,14 @@ static u8 ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
             case SetOctave7 ... SetOctave0:
                 track->currentOctave = commandID & 7;
                 break;
-            case SetNoteAttributesAndLength:
-                track->frameDelay = *track->nextInstruction++;
+            case SetNoteUnitLengthAndEnvelope:
+                track->noteUnitLength = *track->nextInstruction++;
                 if ((track->trackID - 1) == CGBCHANNEL_NOISE)
                 {
                     break;
                 }
                 // fallthrough
-            case SetNoteAttributes:
+            case SetEnvelope:
             {
                 u8 velocityEnvelope = *track->nextInstruction++;
                 track->velocity = (velocityEnvelope & 0xF0) >> 4;
@@ -316,7 +316,7 @@ static u8 ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
                 }
                 break;
             }
-            case NoiseSet:
+            case ToggleAndSetNoise:
                 if (track->noiseActive)
                 {
                     track->noiseActive = FALSE;
@@ -415,7 +415,7 @@ static u8 ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
 
 static void ProcessNoteCommand(u8 commandID, u16 tempo, struct GBSTrack *track)
 {
-    u16 noteLength = CalculateNoteLength(track->frameDelay, tempo, (commandID & 0xF), track->noteLength2);
+    u16 noteLength = CalculateNoteLength(track->noteUnitLength, tempo, (commandID & 0xF), track->noteLength2);
 
     track->noteLength1 = (noteLength & 0xFF00) >> 8;
     track->noteLength2 = noteLength & 0xFF;
@@ -429,8 +429,8 @@ static void ProcessNoteCommand(u8 commandID, u16 tempo, struct GBSTrack *track)
             const u8 *noiseData = NULL;
             
             noiseData = noiseGroup[(commandID & 0xF0) >> 4];
-            track->samplePointer = noiseData;
-            track->noiseFrameDelay = 0;
+            track->noiseSamplePointer = noiseData;
+            track->noiseSampleCountdown = 0;
         }
     }
     else
@@ -793,9 +793,9 @@ static u32 GetMasterVolumeFromFade(u32 volX)
     return (masterVolume << 4) | masterVolume;
 }
 
-static u16 CalculateNoteLength(u8 frameDelay, u16 tempo, u8 length, u16 previousLeftover)
+static u16 CalculateNoteLength(u8 noteUnitLength, u16 tempo, u8 length, u16 previousLeftover)
 {
-    return ((frameDelay * (length + 1)) * tempo) + previousLeftover;
+    return ((noteUnitLength * (length + 1)) * tempo) + previousLeftover;
 }
 
 static u16 CalculatePitch(u8 note, s8 keyShift, u8 octave)
