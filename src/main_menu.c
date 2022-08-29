@@ -793,7 +793,7 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
     else if (IsBGMStopped()) // coming from title screen, waiting for music to fade
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0xFFFF); // fade from white
-        m4aSongNumStart(MUS_MAIN_MENU, FlagGet(FLAG_GB_PLAYER_ENABLED));
+        m4aSongNumStart(MUS_MAIN_MENU, FlagGet(FLAG_SYS_GBS_ENABLED));
     }
     else    // egads, music is not faded yet!
     {
@@ -1607,7 +1607,7 @@ void Task_NewGameClockSetIntro1(u8 taskId)
         if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
             RtcReset();
         
-        FlagClear(FLAG_GB_PLAYER_ENABLED);
+        FlagClear(FLAG_SYS_GBS_ENABLED);
 
         gTasks[taskId].data[0] = 15;
         gTasks[taskId].func = Task_NewGameClockSetIntro2;

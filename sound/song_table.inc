@@ -633,7 +633,7 @@ gGBSSongTable::
 	song_gbs SE_INTRO_SUICUNE2,			gbs_sfx_introsuicune2_Header,	1, 1	@ Intro Ditto transformation
 	song_gbs SE_INTRO_SUICUNE3,			gbs_sfx_introsuicune3_Header,	1, 1	@ Intro Ditto transformation
 	@song_gbs SE_PHONE_BEEP,				gbs_sfx_phonebeep_Header,		1, 1	@ Phone beep
-	song_gbs MUS_CAUGHT,				gbs_successfulcapture_Header,	0, 0	@ You Caught a Pokémon!
+	song_gbs MUS_CAUGHT,				gbs_successfulcapture_Header,	0, 0	@ Victory! (Caught)
 	song_gbs MUS_VICTORY_WILD,			gbs_wildpokemonvictory_Header,	0, 0	@ Victory! (Wild Pokémon)
 	song_gbs MUS_VICTORY_GYM_LEADER,	gbs_gymleadervictory_Header,	0, 0	@ Victory! (Gym Leader)
 	song_gbs MUS_POKECOM_CENTER,		gbs_mobilecenter_Header,		0, 0	@ Pokécom Center
@@ -691,10 +691,11 @@ gGBSSongTable::
 	song_gbs MUS_UNOWN_RADIO,			gbs_ruinsofalphradio_Header,	0, 0	@ Unown Signal
 	song_gbs MUS_BUG_CONTEST_PREP,		gbs_contestresults_Header,		0, 0	@ Preparing for the Bug-Catching Contest
 	song_gbs MUS_ENCOUNTER_KIMONO,		gbs_lookkimonogirl_Header,		0, 0	@ Trainers' Eyes Meet (Kimono Girl)
-	song_gbs MUS_REGISTER_PHONE,		gbs_registerphonenumber_Header,	0, 0	@ Phone Number Registered!
+	song_gbs MUS_REGISTER_PHONE,		gbs_registerphonenumber_Header,	2, 2	@ Phone Number Registered!
 	song_gbs MUS_VS_JOHTO_WILD,			gbs_johtowildbattle_Header,		0, 0	@ Battle! (Wild Pokémon - Johto)
 	song_gbs MUS_VS_ROCKET,				gbs_rocketbattle_Header,		0, 0	@ Battle! (Team Rocket)
 	song_gbs MUS_VS_JOHTO_TRAINER,		gbs_johtotrainerbattle_Header,	0, 0	@ Battle! (Trainer - Johto)
 	song_gbs MUS_VS_JOHTO_LEADER,		gbs_johtogymbattle_Header,		0, 0	@ Battle! (Gym Leader - Johto)
 	song_gbs MUS_VS_RIVAL,				gbs_rivalbattle_Header,			0, 0	@ Battle! (Rival)
+	song_gbs MUS_RG_CAUGHT_INTRO,		gbs_sfx_caughtmon_Header,		2, 2	@ You Caught a Pokémon!
 	.4byte 0xFFFFFFFF

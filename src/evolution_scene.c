@@ -1000,7 +1000,7 @@ static void Task_TradeEvolutionScene(u8 taskID)
     case 2:
         if (IsCryFinished())
         {
-            m4aSongNumStop(MUS_EVOLUTION, FlagGet(FLAG_GB_PLAYER_ENABLED));
+            m4aSongNumStop(MUS_EVOLUTION, FlagGet(FLAG_SYS_GBS_ENABLED));
             PlaySE(MUS_EVOLUTION_INTRO);
             gTasks[taskID].tState++;
         }

@@ -25,7 +25,6 @@ gbs_gettm_Ch5:
 	note G_, 2
 	volume_envelope 10, 5
 	note Fs, 8
-	rest 6
 	sound_ret
 
 	toggle_sfx @ unused
@@ -49,7 +48,6 @@ gbs_gettm_Ch6:
 	note C_, 2
 	volume_envelope 11, 5
 	note D_, 8
-	rest 6
 	sound_ret
 
 	toggle_sfx @ unused
@@ -81,7 +79,6 @@ gbs_gettm_Ch7:
 	note C_, 4
 	octave 2
 	note A_, 16
-	rest 6
 	sound_ret
 
 	toggle_sfx @ unused
@@ -102,7 +99,6 @@ gbs_gettm_Ch8:
 	note Cs, 1
 	note D_, 2
 	note B_, 16
-	rest 6
 	sound_ret
 
 	toggle_sfx @ unused

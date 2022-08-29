@@ -25,7 +25,6 @@ gbs_registerphonenumber_Ch5:
 	octave 4
 	note Cs, 3
 	note C_, 2
-	rest 8
 	sound_ret
 
 	toggle_sfx @ unused
@@ -50,7 +49,6 @@ gbs_registerphonenumber_Ch6:
 	octave 4
 	note G_, 3
 	note Gs, 2
-	rest 8
 	sound_ret
 
 	toggle_sfx @ unused
@@ -72,7 +70,6 @@ gbs_registerphonenumber_Ch7:
 	rest 1
 	note As, 3
 	note Gs, 2
-	rest 8
 	sound_ret
 
 	toggle_sfx @ unused
@@ -84,7 +81,7 @@ gbs_registerphonenumber_Ch8:
 	drum_speed 12
 	note C_, 2
 	rest 16
-	rest 16
+	rest 8
 	sound_ret
 
 	toggle_sfx @ unused

@@ -32,7 +32,6 @@ gbs_getegg_Ch5:
 	note C_, 2
 	volume_envelope 10, 4
 	note F_, 9
-	rest 9
 	sound_ret
 
 	toggle_sfx @ unused
@@ -62,7 +61,6 @@ gbs_getegg_Ch6:
 	note G_, 2
 	volume_envelope 12, 4
 	note A_, 9
-	rest 9
 	sound_ret
 
 	toggle_sfx @ unused
@@ -82,7 +80,6 @@ gbs_getegg_Ch7:
 	note G_, 2
 	note As, 6
 	note A_, 9
-	rest 9
 	sound_ret
 
 	toggle_sfx @ unused
@@ -95,7 +92,7 @@ gbs_getegg_Ch8:
 	rest 2
 	drum_speed 12
 	rest 16
-	rest 12
+	rest 3
 	sound_ret
 
 	toggle_sfx @ unused

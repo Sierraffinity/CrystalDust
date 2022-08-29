@@ -21,7 +21,6 @@ gbs_item_Ch5:
 	note G_, 4
 	note G_, 4
 	note F_, 12
-	rest 12
 	sound_ret
 
 gbs_item_Ch6:
@@ -39,7 +38,6 @@ gbs_item_Ch6:
 	note As, 4
 	note As, 4
 	note A_, 12
-	rest 12
 	sound_ret
 
 gbs_item_Ch7:
@@ -64,7 +62,7 @@ gbs_item_Ch7:
 	note F_, 6
 	volume_envelope 3, 5
 	note F_, 4
-	rest 14
+	rest 2
 	sound_ret
 
 gbs_item_Ch8:
@@ -73,7 +71,7 @@ gbs_item_Ch8:
 	sfx_toggle_noise 4
 	drum_speed 12
 	note C_, 16
-	rest 16
+	rest 4
 	sound_ret
 
 	.align 4

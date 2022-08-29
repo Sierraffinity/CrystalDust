@@ -14,6 +14,7 @@ struct Fanfare
 {
     u16 songNum;
     u16 duration;
+    u16 durationGBS;
 };
 
 // ewram
@@ -43,24 +44,25 @@ static void Task_DuckBGMForPokemonCry(u8 taskId);
 static void RestoreBGMVolumeAfterPokemonCry(void);
 
 static const struct Fanfare sFanfares[] = {
-    { MUS_LEVEL_UP,                  80 },
-    { MUS_OBTAIN_ITEM,              160 },
-    { MUS_EVOLVED,                  220 },
-    { MUS_OBTAIN_TMHM,              220 },
-    { MUS_HEAL,                     160 },
-    { MUS_OBTAIN_BADGE,             340 },
-    { MUS_MOVE_DELETED,             180 },
-    { MUS_OBTAIN_EGG,               160 },
-    { MUS_PKMNCHANNEL_INTERLUDE,    430 },
-    { MUS_SLOTS_JACKPOT,            250 },
-    { MUS_SLOTS_WIN,                150 },
-    { MUS_TOO_BAD,                  160 },
-    { MUS_RG_POKE_FLUTE,            450 },
-    { MUS_RG_OBTAIN_KEY_ITEM,       170 },
-    { MUS_RG_DEX_RATING,            196 },
-    { MUS_OBTAIN_B_POINTS,          313 },
-    { MUS_OBTAIN_SYMBOL,            318 },
-    { MUS_REGISTER_PHONE,           180 },
+    { MUS_LEVEL_UP,                  80,  70 },
+    { MUS_OBTAIN_ITEM,              160, 140 },
+    { MUS_EVOLVED,                  220, 180 },
+    { MUS_OBTAIN_TMHM,              220, 180 },
+    { MUS_HEAL,                     160, 160 },
+    { MUS_OBTAIN_BADGE,             340, 250 },
+    { MUS_MOVE_DELETED,             180, 180 },
+    { MUS_OBTAIN_EGG,               160, 150 },
+    { MUS_PKMNCHANNEL_INTERLUDE,    430, 410 },
+    { MUS_SLOTS_JACKPOT,            250, 250 },
+    { MUS_SLOTS_WIN,                150, 150 },
+    { MUS_TOO_BAD,                  160, 160 },
+    { MUS_RG_POKE_FLUTE,            450, 450 },
+    { MUS_RG_OBTAIN_KEY_ITEM,       170, 170 },
+    { MUS_RG_DEX_RATING,            196, 196 },
+    { MUS_OBTAIN_B_POINTS,          313, 313 },
+    { MUS_OBTAIN_SYMBOL,            318, 318 },
+    { MUS_REGISTER_PHONE,           190, 180 },
+    { MUS_RG_CAUGHT_INTRO,          230, 170 },
 };
 
 #define CRY_VOLUME  120 // was 125 in R/S
@@ -190,10 +192,18 @@ bool8 IsNotWaitingForBGMStop(void)
 void PlayFanfareByFanfareNum(u8 fanfareNum)
 {
     u16 songNum;
+    bool32 isGBSEnabled = FlagGet(FLAG_SYS_GBS_ENABLED);
     m4aMPlayStop(&gMPlayInfo_BGM);
     songNum = sFanfares[fanfareNum].songNum;
-    sFanfareCounter = sFanfares[fanfareNum].duration;
-    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
+    if (isGBSEnabled)
+    {
+        sFanfareCounter = sFanfares[fanfareNum].durationGBS;
+    }
+    else
+    {
+        sFanfareCounter = sFanfares[fanfareNum].duration;
+    }
+    m4aSongNumStart(songNum, isGBSEnabled);
 }
 
 bool8 WaitFanfare(bool8 stop)
@@ -216,13 +226,13 @@ bool8 WaitFanfare(bool8 stop)
 
 void StopFanfareByFanfareNum(u8 fanfareNum)
 {
-    m4aSongNumStop(sFanfares[fanfareNum].songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
+    m4aSongNumStop(sFanfares[fanfareNum].songNum, FlagGet(FLAG_SYS_GBS_ENABLED));
 }
 
 void PlayFanfare(u16 songNum)
 {
-    s32 i;
-    for (i = 0; (u32)i < 18; i++)
+    int i;
+    for (i = 0; i < ARRAY_COUNT(sFanfares); i++)
     {
         if (sFanfares[i].songNum == songNum)
         {
@@ -268,10 +278,10 @@ void FadeInNewBGM(u16 songNum, u8 speed)
         songNum = 0;
     if (songNum == MUS_NONE)
         songNum = 0;
-    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
+    m4aSongNumStart(songNum, FlagGet(FLAG_SYS_GBS_ENABLED));
     m4aMPlayImmInit(&gMPlayInfo_BGM);
     m4aMPlayVolumeControl(&gMPlayInfo_BGM, 0xFFFF, 0);
-    m4aSongNumStop(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
+    m4aSongNumStop(songNum, FlagGet(FLAG_SYS_GBS_ENABLED));
     m4aMPlayFadeIn(&gMPlayInfo_BGM, speed);
 }
 
@@ -565,17 +575,17 @@ void PlayBGM(u16 songNum)
         songNum = 0;
     if (songNum == MUS_NONE)
         songNum = 0;
-    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
+    m4aSongNumStart(songNum, FlagGet(FLAG_SYS_GBS_ENABLED));
 }
 
 void PlaySE(u16 songNum)
 {
-    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
+    m4aSongNumStart(songNum, FlagGet(FLAG_SYS_GBS_ENABLED));
 }
 
 void PlaySE12WithPanning(u16 songNum, s8 pan)
 {
-    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
+    m4aSongNumStart(songNum, FlagGet(FLAG_SYS_GBS_ENABLED));
     m4aMPlayImmInit(&gMPlayInfo_SE1);
     m4aMPlayImmInit(&gMPlayInfo_SE2);
     m4aMPlayPanpotControl(&gMPlayInfo_SE1, 0xFFFF, pan);
@@ -584,14 +594,14 @@ void PlaySE12WithPanning(u16 songNum, s8 pan)
 
 void PlaySE1WithPanning(u16 songNum, s8 pan)
 {
-    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
+    m4aSongNumStart(songNum, FlagGet(FLAG_SYS_GBS_ENABLED));
     m4aMPlayImmInit(&gMPlayInfo_SE1);
     m4aMPlayPanpotControl(&gMPlayInfo_SE1, 0xFFFF, pan);
 }
 
 void PlaySE2WithPanning(u16 songNum, s8 pan)
 {
-    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
+    m4aSongNumStart(songNum, FlagGet(FLAG_SYS_GBS_ENABLED));
     m4aMPlayImmInit(&gMPlayInfo_SE2);
     m4aMPlayPanpotControl(&gMPlayInfo_SE2, 0xFFFF, pan);
 }

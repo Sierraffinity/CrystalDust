@@ -1723,7 +1723,7 @@ static void Task_IntroStartPart3(u8 taskId)
                                 | DISPCNT_OBJ_ON
                                 | DISPCNT_WIN0_ON);
     gIntroFrameCounter = 0;
-    m4aSongNumStart(MUS_INTRO, FlagGet(FLAG_GB_PLAYER_ENABLED));
+    m4aSongNumStart(MUS_INTRO, FlagGet(FLAG_SYS_GBS_ENABLED));
 }
 
 static void Task_IntroDoSuicuneRunningInPlace(u8 taskId)

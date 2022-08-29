@@ -767,14 +767,14 @@ static void Task_UseGBPlayer(u8 taskId)
 
     if (!IsSEPlaying())
     {
-        if (FlagGet(FLAG_GB_PLAYER_ENABLED))
+        if (FlagGet(FLAG_SYS_GBS_ENABLED))
         {
-            FlagClear(FLAG_GB_PLAYER_ENABLED);
+            FlagClear(FLAG_SYS_GBS_ENABLED);
             text = gText_GBPlayerOff;
         }
         else
         {
-            FlagSet(FLAG_GB_PLAYER_ENABLED);
+            FlagSet(FLAG_SYS_GBS_ENABLED);
             text = gText_GBPlayerOn;
         }
 
