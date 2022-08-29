@@ -58,7 +58,7 @@
 	.byte \frequency
 .endm
 
-@ MusicCommands indexes (see audio/engine.asm)
+@ GBSCommands indexes (see include/gbs.h)
 	enum_start 0xD0
 
 	enum _octave @ 0xD0

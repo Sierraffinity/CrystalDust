@@ -41,7 +41,6 @@
 #include "window.h"
 #include "constants/event_objects.h"
 #include "constants/field_specials.h"
-#include "constants/flags.h"
 #include "constants/game_stat.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"

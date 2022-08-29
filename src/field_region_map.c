@@ -1,6 +1,5 @@
 #include "global.h"
 #include "bg.h"
-#include "event_data.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
 #include "main.h"
@@ -13,7 +12,6 @@
 #include "text.h"
 #include "text_window.h"
 #include "window.h"
-#include "constants/flags.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 

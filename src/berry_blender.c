@@ -35,7 +35,6 @@
 #include "save.h"
 #include "strings.h"
 #include "constants/berry.h"
-#include "constants/flags.h"
 #include "constants/game_stat.h"
 #include "constants/items.h"
 #include "constants/rgb.h"

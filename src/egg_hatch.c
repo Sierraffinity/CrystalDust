@@ -35,7 +35,6 @@
 #include "field_screen_effect.h"
 #include "data.h"
 #include "battle.h" // to get rid of later
-#include "constants/flags.h"
 #include "constants/rgb.h"
 #include "constants/flags.h"
 #include "constants/region_map_sections.h"

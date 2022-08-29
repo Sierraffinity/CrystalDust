@@ -10,7 +10,6 @@
 #include "battle_tv.h"
 #include "bg.h"
 #include "data.h"
-#include "event_data.h"
 #include "link.h"
 #include "main.h"
 #include "m4a.h"
@@ -29,7 +28,6 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "recorded_battle.h"
-#include "constants/flags.h"
 
 // this file's functions
 static void LinkPartnerHandleGetMonData(void);

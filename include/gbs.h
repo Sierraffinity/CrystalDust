@@ -14,7 +14,7 @@
 
 #include "gba/gba.h"
 
-enum SoundEngineCommands
+enum GBSCommands
 {
 	SetOctave7 = 0xD0,
 	SetOctave6,

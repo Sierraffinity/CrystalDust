@@ -10,7 +10,6 @@
 #include "battle_tv.h"
 #include "bg.h"
 #include "data.h"
-#include "event_data.h"
 #include "item_use.h"
 #include "link.h"
 #include "main.h"
@@ -27,7 +26,6 @@
 #include "util.h"
 #include "window.h"
 #include "constants/battle_anim.h"
-#include "constants/flags.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
 
