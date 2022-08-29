@@ -10,3 +10,4 @@ gPokemonCryTracks
 gPokemonCrySong
 gMPlayMemAccArea
 gMPlayInfo_SE3
+gUsedCGBChannels

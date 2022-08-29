@@ -783,3 +783,6 @@ const u32 gItemIconPalette_BlueCard[] = INCBIN_U32("graphics/items/icon_palettes
 
 const u32 gItemIcon_Squirtbottle[] = INCBIN_U32("graphics/items/icons/squirtbottle.4bpp.lz");
 const u32 gItemIconPalette_Squirtbottle[] = INCBIN_U32("graphics/items/icon_palettes/squirtbottle.gbapal.lz");
+
+const u32 gItemIcon_GBPlayer[] = INCBIN_U32("graphics/items/icons/gb_player.4bpp.lz");
+const u32 gItemIconPalette_GBPlayer[] = INCBIN_U32("graphics/items/icon_palettes/gb_player.gbapal.lz");

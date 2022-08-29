@@ -5,6 +5,7 @@
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "evolution_scene.h"
 #include "evolution_graphics.h"
 #include "gpu_regs.h"
@@ -30,6 +31,7 @@
 #include "trade.h"
 #include "util.h"
 #include "constants/battle_string_ids.h"
+#include "constants/flags.h"
 #include "constants/species.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
@@ -998,7 +1000,7 @@ static void Task_TradeEvolutionScene(u8 taskID)
     case 2:
         if (IsCryFinished())
         {
-            m4aSongNumStop(MUS_EVOLUTION);
+            m4aSongNumStop(MUS_EVOLUTION, FlagGet(FLAG_SYS_GBS_ENABLED));
             PlaySE(MUS_EVOLUTION_INTRO);
             gTasks[taskID].tState++;
         }

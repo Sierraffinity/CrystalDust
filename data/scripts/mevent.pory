@@ -1,0 +1,100 @@
+script EventScript_Questionnaire {
+    lockall
+    msgbox("There is a questionnaire.\n"
+           "Would you like to fill it out?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        setvar(VAR_0x8004, EASY_CHAT_TYPE_QUESTIONNAIRE)
+        call(Common_ShowEasyChatScreen)
+        lock
+        faceplayer
+        textcolor(MSG_COLOR_BLUE)
+        specialvar(VAR_0x8008, GetMartEmployeeObjectEventId)
+        switch (var(VAR_0x8004))
+        {
+            case 1:
+                if (flag(FLAG_SYS_POKEDEX_GET) && !flag(FLAG_SYS_MYSTERY_EVENT_ENABLE))
+                {
+                    applymovement(VAR_0x8008, Common_Movement_FaceDown)
+                    waitmovement(0)
+                    playse(SE_PIN)
+                    applymovement(VAR_0x8008, Common_Movement_ExclamationMark)
+                    waitmovement(0)
+                    applymovement(VAR_0x8008, Common_Movement_Delay48)
+                    waitmovement(0)
+                    msgbox("Oh, hello!\n"
+                           "You know those words?\p"
+                           "That means you must know about\n"
+                           "the MYSTERY EVENT.")
+                    setflag(FLAG_SYS_MYSTERY_EVENT_ENABLE)
+                    msgbox("Once you save your game, you can\n"
+                           "access the MYSTERY EVENT.")
+                }
+                else
+                {
+                    goto(Mevent_EventScript_QuestionnaireThankYou)
+                }
+            case 2:
+                if (flag(FLAG_SYS_POKEDEX_GET) && !flag(FLAG_SYS_MYSTERY_GIFT_ENABLE))
+                {
+                    applymovement(VAR_0x8008, Common_Movement_FaceDown)
+                    waitmovement(0)
+                    playse(SE_PIN)
+                    applymovement(VAR_0x8008, Common_Movement_ExclamationMark)
+                    waitmovement(0)
+                    applymovement(VAR_0x8008, Common_Movement_Delay48)
+                    waitmovement(0)
+                    msgbox("Oh, hello!\n"
+                           "You know those words?\p"
+                           "That means you must know about\n"
+                           "the MYSTERY GIFT.\p"
+                           "From now on, you should be\n"
+                           "receiving MYSTERY GIFTS!")
+                    setflag(FLAG_SYS_MYSTERY_GIFT_ENABLE)
+                    msgbox("Once you save your game, you can\n"
+                           "access the MYSTERY GIFT.")
+                }
+                else
+                {
+                    goto(Mevent_EventScript_QuestionnaireThankYou)
+                }
+            case 3:
+                if (!flag(FLAG_RECEIVED_GB_PLAYER))
+                {
+                    applymovement(VAR_0x8008, Common_Movement_FaceDown)
+                    waitmovement(0)
+                    playse(SE_PIN)
+                    applymovement(VAR_0x8008, Common_Movement_ExclamationMark)
+                    waitmovement(0)
+                    applymovement(VAR_0x8008, Common_Movement_Delay48)
+                    waitmovement(0)
+                    msgbox("Oh, hello!\n"
+                           "You know those words?\p"
+                           "That means you must know about\n"
+                           "our special promotion.\p"
+                           "It's been very popular, but luckily\n"
+                           "we still have a few to give away!")
+                    giveitem(ITEM_GB_PLAYER)
+                    setflag(FLAG_RECEIVED_GB_PLAYER)
+                    msgbox("Just flip the switch, and you'll be\n"
+                           "swimming in sounds from the past!")
+                }
+                else
+                {
+                    goto(Mevent_EventScript_QuestionnaireThankYou)
+                }
+            default:
+                if (var(VAR_RESULT) == 1)
+                {
+Mevent_EventScript_QuestionnaireThankYou:
+                    applymovement(VAR_0x8008, Common_Movement_FaceDown)
+                    waitmovement(0)
+                    msgbox("Thank you for taking the time to\n"
+                           "fill out our questionnaire.\p"
+                           "Your feedback will be used for\n"
+                           "future reference.")
+                }
+        }
+    }
+    releaseall
+}

@@ -20,6 +20,8 @@
 #include "trig.h"
 #include "graphics.h"
 #include "pokedex.h"
+#include "constants/flags.h"
+#include "constants/vars.h"
 #include "event_data.h"
 #include "random.h"
 #include "constants/species.h"
@@ -1239,7 +1241,7 @@ void CB2_StartCreditsSequence(void)
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
     EnableInterrupts(INTR_FLAG_VBLANK);
     SetVBlankCallback(CreditsVBlankCallback);
-    m4aSongNumStart(MUS_CREDITS);
+    m4aSongNumStart(MUS_CREDITS, FlagGet(FLAG_SYS_GBS_ENABLED));
     SetMainCallback2(CB2_RunCreditsSequence);
     gUnknown_0203BCE5 = 0;
     sCreditsData = AllocZeroed(sizeof(struct CreditsData));
@@ -1477,7 +1479,7 @@ static void Task_CreditsTheEnd6(u8 taskIdA)
             FadeOutBGM(8);
 
         if (gTasks[taskIdA].data[TDA_0] == 6840)
-            m4aSongNumStart(MUS_END);
+            m4aSongNumStart(MUS_END, FlagGet(FLAG_SYS_GBS_ENABLED));
 
         gTasks[taskIdA].data[TDA_0] -= 1;
     }
