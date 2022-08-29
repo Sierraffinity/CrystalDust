@@ -46,13 +46,13 @@ static bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *tra
     // The M4A sound effects can change instrument data out from under us.
     // We want to reload the correct values for this track when
     // control is returned to GBS from M4A.
-    if (IsM4AUsingCGBChannel(track->trackID - 1))
+    if (IsM4AUsingCGBChannel(track->channelID - 1))
     {
         track->shouldReload = TRUE;
     }
     else if (track->shouldReload)
     {
-        switch (track->trackID - 1)
+        switch (track->channelID - 1)
         {
             case CGBCHANNEL_TONE1:
                 track->notePitchSweep = TRUE;
@@ -76,7 +76,7 @@ static bool32 GBSTrack_Update(struct MusicPlayerInfo *info, struct GBSTrack *tra
         track->noteLength1--;
     }
 
-    if ((track->trackID - 1) == CGBCHANNEL_TONE1)
+    if ((track->channelID - 1) == CGBCHANNEL_TONE1)
     {
         ApplyPitchBend(track);
     }
@@ -255,7 +255,7 @@ static u8 ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
                 break;
             case SetNoteUnitLengthAndEnvelope:
                 track->noteUnitLength = *track->nextInstruction++;
-                if ((track->trackID - 1) == CGBCHANNEL_NOISE)
+                if ((track->channelID - 1) == CGBCHANNEL_NOISE)
                 {
                     break;
                 }
@@ -281,6 +281,9 @@ static u8 ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
                 track->dutyCycleLoop = TRUE;
                 track->dutyCyclePattern = *track->nextInstruction++;
                 track->dutyCycle = track->dutyCyclePattern & 3;
+                break;
+            case ToggleSFX:
+                track->isSFXChannel = !track->isSFXChannel;
                 break;
             case PitchSweep:
                 track->pitchSweep = *track->nextInstruction++;
@@ -317,6 +320,7 @@ static u8 ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
                 break;
             }
             case ToggleAndSetNoise:
+            case SFXToggleNoise:
                 if (track->noiseActive)
                 {
                     track->noiseActive = FALSE;
@@ -408,7 +412,37 @@ static u8 ProcessCommands(struct MusicPlayerInfo *info, struct GBSTrack *track)
         commandID = *track->nextInstruction++; 
     }
 
-    ProcessNoteCommand(commandID, info->gbsTempo, track);
+    if (trackActive)
+    {
+        if (track->isSFXChannel)
+        {
+            u16 noteLength = CalculateNoteLength(track->noteUnitLength, info->gbsTempo, commandID, track->noteLength2);
+            u8 velocityEnvelope = *track->nextInstruction++;
+
+            track->noteNoiseSampling = TRUE;
+
+            track->noteLength1 = (noteLength & 0xFF00) >> 8;
+            track->noteLength2 = noteLength & 0xFF;
+
+            track->velocity = (velocityEnvelope & 0xF0) >> 4;
+            track->envelope = velocityEnvelope & 0xF;
+
+            if ((track->channelID - 1) == CGBCHANNEL_NOISE)
+            {
+                track->pitch = (track->pitch & 0xFF00) | *track->nextInstruction++;
+            }
+            else
+            {
+                track->pitch = T1_READ_16(track->nextInstruction);
+                track->nextInstruction += 2;
+            }
+        }
+        else
+        {
+            ProcessNoteCommand(commandID, info->gbsTempo, track);
+        }
+    }
+
     track->modulationDelayCountdown = track->modulationDelay;
     return trackActive;
 }
@@ -420,7 +454,7 @@ static void ProcessNoteCommand(u8 commandID, u16 tempo, struct GBSTrack *track)
     track->noteLength1 = (noteLength & 0xFF00) >> 8;
     track->noteLength2 = noteLength & 0xFF;
 
-    if (track->noiseActive && ((track->trackID - 1) == CGBCHANNEL_NOISE))
+    if (track->noiseActive && ((track->channelID - 1) == CGBCHANNEL_NOISE))
     {
         if (commandID & 0xF0)
         {
@@ -493,9 +527,9 @@ static void ProcessNoteCommand(u8 commandID, u16 tempo, struct GBSTrack *track)
 
 static void UpdateCGBChannel(struct GBSTrack *track, u16 pitch)
 {
-    if (!IsM4AUsingCGBChannel(track->trackID - 1))
+    if (!IsM4AUsingCGBChannel(track->channelID - 1))
     {
-        switch (track->trackID - 1)
+        switch (track->channelID - 1)
         {
             case CGBCHANNEL_TONE1:
                 UpdateCGBTone1(track, pitch);
@@ -623,7 +657,7 @@ static void UpdateCGBWave(struct GBSTrack *track, u16 pitch)
 static void UpdateCGBNoise(struct GBSTrack *track)
 {
     vu8 *length = (vu8 *)REG_ADDR_NR41;
-    vu8 *envelope = (vu8 *)REG_ADDR_NR42;
+    vu8 *envelopeVelocity = (vu8 *)REG_ADDR_NR42;
     vu8 *frequency = (vu8 *)REG_ADDR_NR43;
     vu8 *control = (vu8 *)REG_ADDR_NR44;
 
@@ -635,7 +669,7 @@ static void UpdateCGBNoise(struct GBSTrack *track)
     {
         UpdateStereoPan(track);
         *length = 0x3F;
-        *envelope = track->envelope;
+        *envelopeVelocity = track->envelope | track->velocity << 4;
         *frequency = track->pitch & 0xFF;
         *control = 0x80;
     }
@@ -645,13 +679,13 @@ static void UpdateStereoPan(struct GBSTrack *track)
 {
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     vu8 *soundControl = (vu8 *)REG_ADDR_NR50;
-    u8 thisPan = soundInfo->cgbChans[track->trackID - 1].panMask;
+    u8 thisPan = soundInfo->cgbChans[track->channelID - 1].panMask;
 
     if (gSaveBlock2Ptr->optionsSound == OPTIONS_SOUND_STEREO)
     {
         thisPan &= track->pan;
     }
-    soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->trackID - 1].panMask) | thisPan;
+    soundControl[1] = (soundControl[1] & ~soundInfo->cgbChans[track->channelID - 1].panMask) | thisPan;
 }
 
 static void LoadWavePattern(struct GBSTrack *track, int patternID)
@@ -732,26 +766,35 @@ void ply_gbs_switch(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
     u8 *cmdPtrBackup = track->cmdPtr;
     u8 gbChannel = *cmdPtrBackup++;
+    bool32 isGBSAlreadyRunning = FALSE;
 
-    if (gbChannel < 4)
+    if (gbChannel < 8)
     {
+        struct GBSTrack *gbsTrack = (struct GBSTrack *)track;
         // Clear out all m4a data.
-        memset(track, 0, sizeof(*track));
+        memset(gbsTrack, 0, sizeof(*gbsTrack));
 
         // Set up track with new GBS data (and restore some important info).
-        track->gbsIdentifier = gbChannel + 1;
-        track->cmdPtr = cmdPtrBackup;
-        track->pan = 0xFF;
-        track->flags = MPT_FLG_EXIST;
+        gbsTrack->channelID = (gbChannel % 4) + 1;
+        if (gbChannel >= 4)
+        {
+            gbsTrack->isSFXChannel = TRUE;
+        }
+        gbsTrack->nextInstruction = cmdPtrBackup;
+        gbsTrack->flags = MPT_FLG_EXIST;
+
+        // Set engine defaults.
+        gbsTrack->pan = 0xFF;
+        gbsTrack->noteUnitLength = 1;
 
         // Disable m4a control of CGB channel.
         soundInfo->cgbChans[gbChannel].sf = 0;
 
         // Clear used bit.
         gUsedCGBChannels &= ~(1 << gbChannel);
-        ClearCGBChannel((struct GBSTrack *)track);
+        ClearCGBChannel(gbsTrack);
         // TODO: Figure out if this is needed when resetting
-        //LoadWavePattern((struct GBSTrack *)track, 0);
+        //LoadWavePattern(gbsTrack, 0);
     }
 }
 
@@ -808,10 +851,10 @@ static u16 CalculatePitch(u8 note, s8 keyShift, u8 octave)
 static void ClearCGBChannel(struct GBSTrack *track)
 {
     struct SoundInfo *soundInfo = SOUND_INFO_PTR;
-    vu16 *control = ((vu16 *)REG_ADDR_NR10) + ((track->trackID - 1) * 4);
+    vu16 *control = ((vu16 *)REG_ADDR_NR10) + ((track->channelID - 1) * 4);
     vu8 *soundControl = (vu8 *)REG_ADDR_NR50;
 
-    soundControl[1] &= ~soundInfo->cgbChans[track->trackID - 1].panMask;
+    soundControl[1] &= ~soundInfo->cgbChans[track->channelID - 1].panMask;
 
     control[0] = 0;
     control[1] = 0x800;

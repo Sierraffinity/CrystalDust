@@ -80,7 +80,7 @@ struct GBSTrack
 	u8 flags; // 0x0, m4a engine flags
 	u8 noteLength1;
 	u8 patternLevel:4;
-	u8 trackID:4;
+	u8 channelID:4;
 	u8 noteUnitLength; // frames per 16th note
 	u8 noteLength2; // 0x4
 	u8 currentOctave;
@@ -90,26 +90,7 @@ struct GBSTrack
 	s8 keyShift;
 	u8 loopCounter2;
 	u16 tone; // 0xC
-
-    // GBS engine flags
-	bool8 pitchBendActivation:1;
-	bool8 pitchBendDir:1;
-	bool8 modulationActivation:1;
-	bool8 modulationDir:1;
-	bool8 dutyCycleLoop:1;
-	bool8 pitchOffset:1;
-	bool8 noteDutyOverride:1;
-	bool8 noteFreqOverride:1;
-
-	bool8 notePitchSweep:1;
-	bool8 noteNoiseSampling:1;
-	bool8 noteRest:1;
-	bool8 noteVibratoOverride:1;
-	bool8 noiseActive:1;
-	bool8 fadeDirection:1;
-	bool8 shouldReload:1;
-	bool8 volumeChange:1;
-
+    u16 pitchBendTarget;
 	u8 volMR; // 0x10
 	u8 volML;
 	u8 vol;
@@ -130,12 +111,32 @@ struct GBSTrack
 	const u8 *noiseSamplePointer; // 0x24
 	u8 noiseSampleCountdown; // 0x28
 	u8 pitchBendAmount;
-    u16 pitchBendTarget;
-	u8 pitchBendDuration; // 0x2C
-	u8 pitchBendFraction;
+	u8 pitchBendDuration;
+	u8 pitchBendFraction; // 0x2C
 	u8 pitchBendFractionAccumulator;
-    s8 pitchBendRate;
-    u8 padding[16];
+
+    // GBS engine flags
+	bool8 pitchBendActivation:1;
+	bool8 pitchBendDir:1;
+	bool8 modulationActivation:1;
+	bool8 modulationDir:1;
+	bool8 dutyCycleLoop:1;
+	bool8 pitchOffset:1;
+	bool8 noteDutyOverride:1;
+	bool8 noteFreqOverride:1;
+
+	bool8 notePitchSweep:1;
+	bool8 noteNoiseSampling:1;
+	bool8 noteRest:1;
+	bool8 noteVibratoOverride:1;
+	bool8 noiseActive:1;
+	bool8 fadeDirection:1;
+	bool8 shouldReload:1;
+	bool8 volumeChange:1;
+
+	bool8 isSFXChannel:1;
+
+    u8 padding[15];
 	const u8 *nextInstruction; // 0x40
 	const u8 *returnLocation; // 0x44
 	u8 padding3[8]; // 0x48

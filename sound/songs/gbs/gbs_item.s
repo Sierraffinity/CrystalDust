@@ -5,7 +5,7 @@
 
 
 gbs_item_Ch5:
-	gbs_switch 0
+	gbs_switch 4
 	toggle_sfx
 	tempo 108
 	volume 7, 7
@@ -25,7 +25,7 @@ gbs_item_Ch5:
 	sound_ret
 
 gbs_item_Ch6:
-	gbs_switch 1
+	gbs_switch 5
 	toggle_sfx
 	vibrato 8, 2, 7
 	duty_cycle 2
@@ -43,7 +43,7 @@ gbs_item_Ch6:
 	sound_ret
 
 gbs_item_Ch7:
-	gbs_switch 2
+	gbs_switch 6
 	toggle_sfx
 	note_type 8, 2, 5
 	octave 4
@@ -68,7 +68,7 @@ gbs_item_Ch7:
 	sound_ret
 
 gbs_item_Ch8:
-	gbs_switch 3
+	gbs_switch 7
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 12

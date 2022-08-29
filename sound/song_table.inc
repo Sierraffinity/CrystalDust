@@ -273,18 +273,18 @@ gSongTable:: @ 86B49F0
 	song se_pike_curtain_close, 1, 1
 	song se_pike_curtain_open, 1, 1
 	song se_sudowoodo_shake, 1, 1
-	song se_intro_unown1, 1, 1
-	song se_intro_unown2, 1, 1
-	song se_intro_unown3, 1, 1
 	song se_intro_dittobounce1, 1, 1
 	song se_intro_dittobounce2, 1, 1
 	song se_intro_dittotransform, 1, 1
 	song se_intro_logo_ding, 1, 1
+	song se_intro_unown1, 1, 1
+	song se_intro_unown2, 1, 1
+	song se_intro_unown3, 1, 1
+	song se_bike_hop, 1, 1
+	song se_m_sand_attack, 1, 1
+	song se_m_wing_attack, 1, 1
+	song se_m_hyper_beam, 1, 1
 	song se_phone_beep, 1, 1
-	song dummy_song_header, 0, 0
-	song dummy_song_header, 0, 0
-	song dummy_song_header, 0, 0
-	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
@@ -620,6 +620,19 @@ dummy_song_header: @ 86B5D00
 
 	.align 2
 gGBSSongTable::
+	@song_gbs SE_PHONE_CALL,				gbs_sfx_call_Header,			1, 1	@ Phone call
+	@song_gbs SE_PHONE_CLICK,			gbs_sfx_phoneclick_Header,		1, 1	@ Phone clck
+	song_gbs SE_INTRO_UNOWN1,			gbs_sfx_introunown1_Header,		1, 1	@ Intro Unown low pitch
+	song_gbs SE_INTRO_UNOWN2,			gbs_sfx_introunown2_Header,		1, 1	@ Intro Unown mid pitch
+	song_gbs SE_INTRO_UNOWN3,			gbs_sfx_introunown3_Header,		1, 1	@ Intro Unown hi pitch
+	song_gbs SE_INTRO_DITTOBOUNCE1,		gbs_sfx_dittobounce_Header,		1, 1	@ Intro Ditto bounce 1
+	song_gbs SE_INTRO_DITTOBOUNCE2,		gbs_sfx_dittopopup_Header,		1, 1	@ Intro Ditto bounce 2
+	song_gbs SE_INTRO_DITTOTRANSFORM,	gbs_sfx_dittotransform_Header,	1, 1	@ Intro Ditto transformation
+	song_gbs SE_INTRO_PICHU_WOOPER,		gbs_sfx_intropichu_Header,		1, 1	@ Intro Ditto transformation
+	song_gbs SE_INTRO_SUICUNE1,			gbs_sfx_introsuicune1_Header,	1, 1	@ Intro Ditto transformation
+	song_gbs SE_INTRO_SUICUNE2,			gbs_sfx_introsuicune2_Header,	1, 1	@ Intro Ditto transformation
+	song_gbs SE_INTRO_SUICUNE3,			gbs_sfx_introsuicune3_Header,	1, 1	@ Intro Ditto transformation
+	@song_gbs SE_PHONE_BEEP,				gbs_sfx_phonebeep_Header,		1, 1	@ Phone beep
 	song_gbs MUS_CAUGHT,				gbs_successfulcapture_Header,	0, 0	@ You Caught a Pokémon!
 	song_gbs MUS_VICTORY_WILD,			gbs_wildpokemonvictory_Header,	0, 0	@ Victory! (Wild Pokémon)
 	song_gbs MUS_VICTORY_GYM_LEADER,	gbs_gymleadervictory_Header,	0, 0	@ Victory! (Gym Leader)
@@ -640,7 +653,7 @@ gGBSSongTable::
 	song_gbs MUS_RUINS_OF_ALPH,			gbs_ruinsofalphinterior_Header,	0, 0	@ Ruins of Alph
 	song_gbs MUS_ROUTE30,				gbs_route30_Header,				0, 0	@ Route 30
 	song_gbs MUS_BUENAS_THEME,			gbs_buenaspassword_Header,		0, 0	@ Buena's Password
-	@song_gbs MUS_EVOLUTION_INTRO,		gbs_evolution_Header,			2, 2	@ Evolution Start!
+	song_gbs MUS_EVOLUTION_INTRO,		gbs_evolutionintro_Header,		2, 2	@ Evolution Start!
 	song_gbs MUS_EVOLUTION,				gbs_evolution_Header,			0, 0	@ Evolution
 	song_gbs MUS_ENCOUNTER_LASS,		gbs_looklass_Header,			0, 0	@ Trainers' Eyes Meet (Lass)
 	song_gbs MUS_ENCOUNTER_MALE,		gbs_lookyoungster_Header,		0, 0	@ Trainers' Eyes Meet (Male)
@@ -655,6 +668,7 @@ gGBSSongTable::
 	song_gbs MUS_POKEMON_LULLABY,		gbs_pokemonlullaby_Header,		0, 0	@ Pokémon Lullaby
 	song_gbs MUS_NEW_BARK,				gbs_newbarktown_Header,			0, 0	@ New Bark Town
 	song_gbs MUS_ENCOUNTER_FEMALE,		gbs_lookbeauty_Header,			0, 0	@ Trainers' Eyes Meet (Female)
+	song_gbs MUS_MOMS_THEME,			gbs_mom_Header,					0, 0	@ Mom's Theme
 	song_gbs MUS_VICTORY_TRAINER,		gbs_trainervictory_Header,		0, 0	@ Victory! (Trainer)
 	song_gbs MUS_TITLE,					gbs_titlescreen_Header,			0, 0	@ Title Screen
 	song_gbs MUS_INTRO,					gbs_crystalopening_Header,		0, 0	@ Opening Movie

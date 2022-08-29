@@ -9,19 +9,9 @@ gbs_evolution_Ch1:
 	volume 7, 7
 	vibrato 6, 3, 4
 	pitch_offset 1
-	duty_cycle 2
-	note_type 12, 9, 2
-	octave 3
-	pitch_slide 1, 4, A_
-	note C_, 1
-	pitch_slide 1, 4, A_
-	note G_, 1
-	pitch_slide 1, 4, A_
-	note C_, 1
-	pitch_slide 1, 4, A_
-	note G_, 1
-	rest 4
 	duty_cycle 3
+	note_type 12, 10, 2
+	octave 3
 	stereo_panning FALSE, TRUE
 gbs_evolution_Ch1.mainloop:
 gbs_evolution_Ch1.loop1:
@@ -66,16 +56,10 @@ gbs_evolution_Ch1.sub2:
 
 gbs_evolution_Ch2:
 	gbs_switch 1
-	duty_cycle 2
-	vibrato 8, 2, 5
-	note_type 12, 10, 2
-	octave 4
-	note G_, 1
-	note D_, 1
-	note G_, 1
-	note D_, 1
-	rest 4
 	duty_cycle 3
+	vibrato 8, 2, 5
+	note_type 12, 11, 2
+	octave 4
 	stereo_panning TRUE, FALSE
 gbs_evolution_Ch2.mainloop:
 gbs_evolution_Ch2.loop1:
@@ -123,7 +107,6 @@ gbs_evolution_Ch2.sub2:
 gbs_evolution_Ch3:
 	gbs_switch 2
 	note_type 12, 1, 6
-	rest 8
 gbs_evolution_Ch3.mainloop:
 gbs_evolution_Ch3.loop1:
 	sound_call gbs_evolution_Ch3.sub1
@@ -193,7 +176,6 @@ gbs_evolution_Ch4:
 	gbs_switch 3
 	toggle_noise 5
 	drum_speed 12
-	rest 8
 gbs_evolution_Ch4.mainloop:
 	stereo_panning TRUE, FALSE
 	drum_note 11, 6

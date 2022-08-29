@@ -1,6 +1,7 @@
 #include "global.h"
 #include "trainer_pokemon_sprites.h"
 #include "bg.h"
+#include "constants/flags.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/species.h"
@@ -1605,6 +1606,8 @@ void Task_NewGameClockSetIntro1(u8 taskId)
         // moved from new_game.c so it doesn't change up the time on us unexpectedly after setting
         if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
             RtcReset();
+        
+        FlagClear(FLAG_GB_PLAYER_ENABLED);
 
         gTasks[taskId].data[0] = 15;
         gTasks[taskId].func = Task_NewGameClockSetIntro2;

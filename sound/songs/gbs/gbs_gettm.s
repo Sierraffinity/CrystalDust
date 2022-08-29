@@ -4,7 +4,7 @@
 	.align 1
 
 gbs_gettm_Ch5:
-	gbs_switch 0
+	gbs_switch 4
 	toggle_sfx
 	tempo 144
 	volume 7, 7
@@ -31,7 +31,7 @@ gbs_gettm_Ch5:
 	toggle_sfx @ unused
 
 gbs_gettm_Ch6:
-	gbs_switch 1
+	gbs_switch 5
 	toggle_sfx
 	duty_cycle 3
 	vibrato 8, 2, 4
@@ -55,7 +55,7 @@ gbs_gettm_Ch6:
 	toggle_sfx @ unused
 
 gbs_gettm_Ch7:
-	gbs_switch 2
+	gbs_switch 6
 	toggle_sfx
 	note_type 6, 2, 5
 	octave 2
@@ -87,7 +87,7 @@ gbs_gettm_Ch7:
 	toggle_sfx @ unused
 
 gbs_gettm_Ch8:
-	gbs_switch 3
+	gbs_switch 7
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 6

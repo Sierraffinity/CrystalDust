@@ -52,7 +52,7 @@ def buildsong(lines, songname, newname, channels):
                 for channel in neededchannels:
                     if channel in cleanline and cleanline.endswith(':'):
                         outLines.append(line.replace(songname, newname))
-                        outLines.append("\tgbs_switch {}".format((neededchannels[channel] - 1) % 4))
+                        outLines.append("\tgbs_switch {}".format((neededchannels[channel] - 1)))
                         currentchannel = channel
                         del neededchannels[channel]
                         inchannel = True
@@ -114,7 +114,7 @@ def convert(inFile, outFile, newname):
 def convertFile(path, outDir):
     try:
         with open(path, 'r') as inFile:
-            newname = 'gbs_{}'.format(path.stem)
+            newname = 'gbs_{}'.format(path.stem).lower()
             with open(outDir / (newname + '.s'), 'w') as outFile:
                 convert(inFile, outFile, newname)
     except:

@@ -1478,7 +1478,7 @@ static void Task_IntroDoSuicuneRunAcrossScreen(u8 taskId)
     if (gIntroFrameCounter == 665)
     {
         DestroyTask(data[2]);
-        PlaySE(SE_M_SAND_ATTACK);
+        PlaySE(SE_INTRO_SUICUNE1);
         data[2] = CreateSprite(&gSpriteTemplate_SuicuneSilhouette, 272, 68, 0);
         gSprites[data[2]].data[0] = -10;
         gSprites[data[2]].data[1] = 0;
@@ -1486,7 +1486,7 @@ static void Task_IntroDoSuicuneRunAcrossScreen(u8 taskId)
     
     if (gIntroFrameCounter == 695)
     {
-        PlaySE(SE_M_WING_ATTACK);
+        PlaySE(SE_INTRO_SUICUNE2);
         CreateTask(Task_ShakeGrass, 0);
     }
     
@@ -1649,7 +1649,7 @@ static void SpriteCallback_PopUpPkmn(struct Sprite *sprite)
     switch (sprite->data[0])
     {
     case 0:
-        PlaySE(SE_BIKE_HOP);
+        PlaySE(SE_INTRO_PICHU_WOOPER);
         sprite->data[1] = 10;
         sprite->data[0]++;
     case 1:
@@ -1737,7 +1737,7 @@ static void Task_IntroDoSuicuneRunningInPlace(u8 taskId)
     
     if (gIntroFrameCounter == 96)
     {
-        PlaySE(SE_M_HYPER_BEAM);
+        PlaySE(SE_INTRO_SUICUNE3);
         StartSpriteAnim(&gSprites[data[2]], 1);
         gSprites[data[2]].data[0] = -8;
         gSprites[data[2]].data[1] = -3;
