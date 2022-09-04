@@ -909,13 +909,15 @@ void AnimTask_ThrowBall_StandingTrainer(u8 taskId)
 
     if (gBattleTypeFlags & BATTLE_TYPE_DUDE_TUTORIAL)
     {
-        x = 25;
-        y = 8;
+        x = 26;
+        y = 7;
     }
     else
     {
         x = 23;
-        y = 5;
+        y = 11;
+        if (gSaveBlock2Ptr->playerGender == FEMALE)
+            y = 13;
     }
 
     ballId = BallIdToGfxId(ITEM_ID_TO_BALL_ID(gLastUsedItem));
@@ -951,7 +953,8 @@ static void Task_PlayerThrow_Wait(u8 taskId)
 {
     if (gSprites[gBattlerSpriteIds[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)]].animEnded)
     {
-        StartSpriteAnim(&gSprites[gBattlerSpriteIds[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)]], 0);
+        // Do not reset sprite after throw, just leave on last frame of animation
+        //StartSpriteAnim(&gSprites[gBattlerSpriteIds[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)]], 0);
         DestroyTask(taskId);
     }
 }

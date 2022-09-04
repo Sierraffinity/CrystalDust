@@ -1591,7 +1591,7 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
 
 static void DebugMenu_WildBattle(u8 taskId)
 {
-    Debug_StartWildBattle(SPECIES_HO_OH, 100, 0, FALSE);
+    Debug_StartWildBattle(SPECIES_HO_OH, 1, 0, FALSE);
 }
 
 static void DebugMenu_TrainerBattle(u8 taskId)

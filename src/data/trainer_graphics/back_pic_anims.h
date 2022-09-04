@@ -33,7 +33,7 @@ static const union AnimCmd gAnimCmd_Dude_1[] =
     ANIMCMD_FRAME(1, 24),
     ANIMCMD_FRAME(2, 9),
     ANIMCMD_FRAME(3, 24),
-    ANIMCMD_FRAME(0, 9),
+    ANIMCMD_FRAME(4, 9),
     ANIMCMD_END,
 };
 
