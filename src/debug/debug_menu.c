@@ -1,6 +1,7 @@
 #if DEBUG
 #include "global.h"
 #include "battle.h"
+#include "battle_setup.h"
 #include "battle_transition.h"
 #include "clock.h"
 #include "coins.h"
@@ -39,6 +40,7 @@
 #include "constants/flags.h"
 #include "constants/heal_locations.h"
 #include "constants/moves.h"
+#include "constants/opponents.h"
 #include "constants/species.h"
 #include "constants/songs.h"
 #include "constants/vars.h"
@@ -115,6 +117,7 @@ static void DebugMenu_Pokegear_ProcessInput(u8 taskId);
 static void DebugMenu_EnableMapCard(u8 taskId);
 static void DebugMenu_EnableRadioCard(u8 taskId);
 static void DebugMenu_WildBattle(u8 taskId);
+static void DebugMenu_TrainerBattle(u8 taskId);
 static void DebugMenu_100Or0CatchRate(u8 taskId);
 static void DebugMenu_BattleTerrain(u8 taskId);
 static void DebugMenu_ToggleForceShiny(u8 taskId);
@@ -186,6 +189,7 @@ static const u8 sText_EnableMapCard[] = _("Enable map card");
 static const u8 sText_EnableRadioCard[] = _("Enable radio card");
 static const u8 sText_DexCount[] = _("Count: {STR_VAR_1}");
 static const u8 sText_WildBattle[] = _("Start wild battle");
+static const u8 sText_TrainerBattle[] = _("Start trainer battle");
 static const u8 sText_FlyTo[] = _("Fly to…");
 static const u8 sText_SetRespawn[] = _("Set respawn");
 static const u8 sText_FlagStatus[] = _("Flag: {STR_VAR_1}\nStatus: {STR_VAR_2}");
@@ -283,6 +287,7 @@ CREATE_BOUNCER(PokemonActions, MainActions);
 static const struct DebugMenuAction sDebugMenu_BattleActions[] =
 {
     { sText_WildBattle, DebugMenu_WildBattle, NULL },
+    { sText_TrainerBattle, DebugMenu_TrainerBattle, NULL },
     { sText_100Or0CatchRate, DebugMenu_100Or0CatchRate, NULL },
     { sText_ToggleForceShiny, DebugMenu_ToggleForceShiny, NULL },
     { sText_TestBattleTransition, DebugMenu_TestBattleTransition, NULL },
@@ -1583,7 +1588,12 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
 
 static void DebugMenu_WildBattle(u8 taskId)
 {
-    Debug_StartWildBattle(SPECIES_ABRA, 100, 0, FALSE);
+    Debug_StartWildBattle(SPECIES_HO_OH, 100, 0, FALSE);
+}
+
+static void DebugMenu_TrainerBattle(u8 taskId)
+{
+    Debug_StartTrainerBattle(TRAINER_BUGSY);
 }
 
 static void DebugMenu_ToggleForceShiny(u8 taskId)

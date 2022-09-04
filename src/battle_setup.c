@@ -1214,6 +1214,26 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
     }
 }
 
+#if DEBUG
+void Debug_StartTrainerBattle(u16 trainer)
+{
+    static const u8 battleText[] = _("Oh no I lost?");
+    static u8 battleConfig[9] = { 0 };
+
+    battleConfig[0] = TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT;
+    battleConfig[1] = trainer & 0xFF;
+    battleConfig[2] = (trainer & 0xFF00) >> 8;
+    battleConfig[3] = 0;
+    battleConfig[4] = 0;
+    battleConfig[5] = ((u32)battleText) & 0xFF;
+    battleConfig[6] = (((u32)battleText) & 0xFF00) >> 8;
+    battleConfig[7] = (((u32)battleText) & 0xFF0000) >> 16;
+    battleConfig[8] = (((u32)battleText) & 0xFF000000) >> 24;
+    BattleSetup_ConfigureTrainerBattle(battleConfig);
+    BattleSetup_StartTrainerBattle();
+}
+#endif
+
 void ConfigureAndSetUpOneTrainerBattle(u8 trainerObjEventId, const u8 *trainerScript)
 {
     gSelectedObjectEvent = trainerObjEventId;
