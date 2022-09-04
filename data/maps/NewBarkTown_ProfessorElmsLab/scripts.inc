@@ -94,6 +94,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Elm_20:
 	setvar VAR_ROUTE29_STATE, 1
 	setvar VAR_ELM_LAB_STATE, 6
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
+	setrespawn HEAL_LOCATION_NEW_BARK_TOWN
 	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_1
 
 NewBarkTown_ProfessorElmsLab_EventScript_Elm_8:

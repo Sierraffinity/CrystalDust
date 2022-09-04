@@ -153,6 +153,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
         setvar(VAR_ROUTE29_STATE, 1)
         setvar(VAR_ELM_LAB_STATE, 6)
         setvar(VAR_CABLE_CLUB_TUTORIAL_STATE, 1)
+        setrespawn(HEAL_LOCATION_NEW_BARK_TOWN)
     }
     elif (flag(FLAG_SYS_POKEMON_GET))
     {

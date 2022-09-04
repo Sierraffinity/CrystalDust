@@ -909,8 +909,8 @@ void AnimTask_ThrowBall_StandingTrainer(u8 taskId)
 
     if (gBattleTypeFlags & BATTLE_TYPE_DUDE_TUTORIAL)
     {
-        x = 26;
-        y = 7;
+        x = 25;
+        y = 8;
     }
     else
     {

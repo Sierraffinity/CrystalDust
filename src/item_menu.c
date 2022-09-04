@@ -2485,20 +2485,21 @@ void Task_WallyTutorialBagMenu(u8 taskId)
     {
         switch (data[8])
         {
-            case 0x66:
+            case 102:
                 PlaySE(SE_RG_BAG_POCKET);
                 SwitchBagPocket(taskId, MENU_CURSOR_DELTA_RIGHT, 0);
                 data[8]++;
                 break;
-            case 0xCC:
+            case 204:
                 PlaySE(SE_SELECT);
+                BagDestroyPocketScrollArrowPair();
                 BagMenu_PrintCursor_(data[0], 2);
                 Bag_FillMessageBoxWithPalette(1);
                 gSpecialVar_ItemId = ITEM_POKE_BALL;
                 OpenContextMenu(taskId);
                 data[8]++;
                 break;
-            case 0x132:
+            case 306:
                 PlaySE(SE_SELECT);
                 BagMenu_RemoveWindow(10);
                 BagMenu_RemoveWindow(6);
