@@ -30,6 +30,7 @@ script Route20_SeafoamGym_EventScript_Blaine {
     release
     end
 }script(local) Route20_SeafoamGym_EventScript_BlaineDefeated{
+    lock
     clearflag(FLAG_TEMP_1)
     if(!flag(FLAG_BADGE15_GET))
     {

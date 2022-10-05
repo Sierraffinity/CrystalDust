@@ -63,7 +63,7 @@ mapscripts FastShip_Cabins_SE_SSE_Captains_MapScripts {
             textcolor(0)
             msgbox("{PLAYER}, was it? I heard you\nentertained my granddaughter.\pI want to thank you for that.\nI know! I'd like you to have this!", MSGBOX_DEFAULT)
             checkitemspace(ITEM_METAL_COAT, 1)
-            if(var(VAR_RESULT))
+            if(var(VAR_RESULT) == TRUE)
             {
                 giveitem(ITEM_METAL_COAT, 1)
                 setflag(FLAG_RECEIVED_METAL_COAT_ON_FAST_SHIP)

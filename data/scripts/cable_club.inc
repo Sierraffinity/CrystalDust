@@ -233,7 +233,6 @@ CableClub_EventScript_TrainerCardDataOverwritten::
 	message CableClub_Text_TrainerCardDataOverwritten
 	waitmessage
 	playse SE_PIN
-	delay 60
 	message CableClub_Text_HopeToSeeYouAgain
 	waitmessage
 	applymovement OBJ_EVENT_ID_PLAYER, Movement_PlayerExitLinkRoom

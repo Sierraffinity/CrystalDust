@@ -86,9 +86,10 @@ script NationalPark_EventScript_Beverly {
     msgbox("I must say, your {POKEMON} are quite\ncute, too.", MSGBOX_AUTOCLOSE)
 }
 
+// original after-battle text had "win" instead of "wins", but this trainer only has one Pokemon so "wins" makes more sense grammatically 
 script NationalPark_EventScript_William {
     trainerbattle_single(TRAINER_WILLIAM, "We adore our {POKEMON}, even if they\ndislike us.\pThat's what being a {POKE}FAN is all\nabout.", "M-my {POKEMON}!")
-    msgbox("I lost the battle, but my {POKEMON} win\nthe prize for being most lovely.", MSGBOX_AUTOCLOSE)
+    msgbox("I lost the battle, but my {POKEMON}\nwins the prize for being most lovely.", MSGBOX_AUTOCLOSE)
 }
 
 script NationalPark_EventScript_Krise {
