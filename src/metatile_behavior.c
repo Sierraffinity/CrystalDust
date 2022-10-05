@@ -245,8 +245,8 @@ static const u8 sTileBitAttributes[] =
     [MB_WIRELESS_BOX_RESULTS] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_TRAINER_HILL_TIMER] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_SKY_PILLAR_CLOSED_DOOR] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_EB] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_EC] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_DECOR_POSTER] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_DECOR_CONSOLE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_ED] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_EE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_EF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
@@ -1617,4 +1617,20 @@ bool32 MetatileBehavior_IsCyclingRoadPullDownTile(u8 metatileBehavior)
 bool8 MetatileBehavior_IsCyclingRoadPullDownTileGrass(u8 metatileBehavior)
 {
     return metatileBehavior == MB_CYCLING_ROAD_PULL_DOWN_GRASS;
+}
+
+bool8 MetatileBehavior_IsDecorPoster(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_DECOR_POSTER)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsDecorConsole(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_DECOR_CONSOLE)
+        return TRUE;
+    else
+        return FALSE;
 }

@@ -116,17 +116,19 @@
 #define VAR_ROUTE30_STATE                    0x4061 // Unused Var
 #define VAR_ROUTE31_STATE                    0x4062
 #define VAR_ROUTE32_STATE                    0x4063
-#define VAR_ROUTE33_STATE                    0x4064 // Unused Var
-#define VAR_ROUTE34_STATE                    0x4065 // Unused Var
-#define VAR_ROUTE35_STATE                    0x4066 // Unused Var
-#define VAR_ROUTE36_STATE                    0x4067 // Unused Var
-#define VAR_ROUTE109_STATE                   0x4068 // Unused Var
-#define VAR_ROUTE110_STATE                   0x4069
-#define VAR_ROUTE111_STATE                   0x406A // Unused Var
-#define VAR_ROUTE112_STATE                   0x406B // Unused Var
-#define VAR_ROUTE113_STATE                   0x406C // Unused Var
-#define VAR_ROUTE114_STATE                   0x406D // Unused Var
-#define VAR_ROUTE115_STATE                   0x406E // Unused Var
+// room decor vars
+#define VAR_ROOM_BED                         0x4064
+#define VAR_ROOM_CARPET                      0x4065
+#define VAR_ROOM_PLANT                       0x4066
+#define VAR_ROUTE36_STATE                    0x4067 // Used for Sierra Event on Route 36...
+#define VAR_ROOM_CONSOLE                     0x4068
+#define VAR_ROOM_LEFT_ORNAMENT               0x4069
+#define VAR_ROOM_RIGHT_ORNAMENT              0x406A
+#define VAR_ROOM_BIG_DOLL                    0x406B
+#define VAR_ROOM_TABLE                       0x406C
+#define VAR_ROOM_CUSHION                     0x406D
+#define VAR_ROOM_POSTER                      0x406E
+
 #define VAR_ROUTE116_STATE                   0x406F
 #define VAR_ROUTE45_STATE                   0x4070 // Unused Var
 #define VAR_ROUTE46_STATE                    0x4071

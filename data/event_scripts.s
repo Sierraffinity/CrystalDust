@@ -44,6 +44,7 @@
 #include "constants/phone_contact.h"
 #include "constants/pokemon.h"
 #include "constants/radio.h"
+#include "constants/room_decor.h"
 #include "constants/roulette.h"
 #include "constants/script_menu.h"
 #include "constants/secret_bases.h"

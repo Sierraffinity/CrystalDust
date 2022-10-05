@@ -1803,6 +1803,14 @@ static const struct SpriteFrameImage sPicTable_WooperDoll[] = {
     obj_frame_tiles(gObjectEventPic_WooperDoll),
 };
 
+static const struct SpriteFrameImage sPicTable_GoldShield[] = {
+    obj_frame_tiles(gObjectEventPic_GoldShield),
+};
+
+static const struct SpriteFrameImage sPicTable_SilverShield[] = {
+    obj_frame_tiles(gObjectEventPic_SilverShield),
+};
+
 static const struct SpriteFrameImage sPicTable_LatiasLatios[] = {
     overworld_frame(gObjectEventPic_LatiasLatios, 4, 4, 0),
     overworld_frame(gObjectEventPic_LatiasLatios, 4, 4, 0),

@@ -1,15 +1,19 @@
 #include "global.h"
 #include "script.h"
 #include "event_data.h"
+#include "field_camera.h"
+#include "fieldmap.h"
 #include "field_player_avatar.h"
 #include "mevent.h"
 #include "pokemon_storage_system.h"
 #include "string_util.h"
 #include "tv.h"
 #include "util.h"
+#include "constants/event_objects.h"
 #include "constants/layouts.h"
 #include "constants/map_scripts.h"
 #include "constants/moves.h"
+#include "constants/room_decor.h"
 
 #define RAM_SCRIPT_MAGIC 51
 
@@ -747,4 +751,465 @@ void SetMtMoonRocksClearedGoneThroughLowerFloors(void)
     {
         FlagSet(FLAG_MT_MOON_ROCKS_CLEARED);
     }
+}
+
+static void SetUpRoomDecorBed(void)
+{
+    if(VarGet(VAR_ROOM_BED) <= BED_PIKACHU && VarGet(VAR_ROOM_BED) != BED_NONE)
+    {
+        // Feathery Bed values
+        u32 topLeft = 0x068;
+        u32 topMid = 0x069;
+        u32 topRight = 0x06A;
+        u32 botLeft = 0x070;
+        u32 botMid = 0x071;
+        u32 botRight = 0x072;
+        // top of bed frame; the same for all beds
+        MapGridSetMetatileIdAt(TILE_BED_START_X    , TILE_BED_START_Y    , 0x012);
+        MapGridSetMetatileIdAt(TILE_BED_START_X + 1, TILE_BED_START_Y    , 0x013);
+        MapGridSetMetatileIdAt(TILE_BED_START_X + 2, TILE_BED_START_Y    , 0x014);
+        switch(VarGet(VAR_ROOM_BED))
+        {
+            case BED_PINK:
+                topLeft += 3;
+                topMid += 3;
+                topRight += 3;
+                botLeft += 3;
+                botMid += 3;
+                botRight += 3;
+                break;
+            case BED_POLKADOT:
+                topLeft += 16;
+                topMid += 16;
+                topRight += 16;
+                botLeft += 16;
+                botMid += 16;
+                botRight += 16;
+                break;
+            case BED_PIKACHU:
+                topLeft += 19;
+                topMid += 19;
+                topRight += 19;
+                botLeft += 19;
+                botMid += 19;
+                botRight += 19;
+                break;
+        }
+        MapGridSetMetatileIdAt(TILE_BED_START_X    , TILE_BED_START_Y + 1, topLeft);
+        MapGridSetMetatileIdAt(TILE_BED_START_X + 1, TILE_BED_START_Y + 1, topMid);
+        MapGridSetMetatileIdAt(TILE_BED_START_X + 2, TILE_BED_START_Y + 1, topRight);
+        MapGridSetMetatileIdAt(TILE_BED_START_X    , TILE_BED_START_Y + 2, botLeft);
+        MapGridSetMetatileIdAt(TILE_BED_START_X + 1, TILE_BED_START_Y + 2, botMid | METATILE_COLLISION_MASK);
+        MapGridSetMetatileIdAt(TILE_BED_START_X + 2, TILE_BED_START_Y + 2, botRight);
+    }
+}
+
+static void SetUpRoomDecorPlant(void)
+{
+    if(VarGet(VAR_ROOM_PLANT) <= PLANT_GORGEOUS && VarGet(VAR_ROOM_PLANT) != PLANT_NONE)
+    {   // left only for 2x2 plants, set to Colorful
+        // Magna Plant Values
+        u32 topLeft = 0x08A;
+        u32 botLeft = 0x092;
+        u32 topRight = 0x05E;
+        u32 botRight = 0x066;
+        switch(VarGet(VAR_ROOM_PLANT))
+        {
+            case PLANT_MAGNA:
+                topLeft = 0x001;
+                botLeft = 0x001;
+                break;
+            case PLANT_TROPIC:
+                topLeft = 0x001;
+                botLeft = 0x001;
+                topRight += 16;
+                botRight += 16;
+                break;
+            case PLANT_JUMBO:
+                topLeft = 0x001;
+                botLeft = 0x001;
+                topRight += 32;
+                botRight += 32;
+                break;
+            case PLANT_RED:
+                topLeft = 0x001;
+                botLeft = 0x001;
+                topRight += 17;
+                botRight += 17;
+                break;
+            case PLANT_TROPICAL:
+                topLeft = 0x001;
+                botLeft = 0x001;
+                topRight += 1;
+                botRight += 1;
+                break;
+            case PLANT_PRETTY:
+                topLeft = 0x001;
+                botLeft = 0x001;
+                topRight += 33;
+                botRight += 33;
+                break;
+            case PLANT_COLORFUL:
+                topRight += 45;
+                botRight += 45;
+                break;
+            case PLANT_BIG:
+                topLeft += 2;
+                botLeft += 2;
+                topRight += 47;
+                botRight += 47;
+                break;
+            case PLANT_GORGEOUS:
+                topLeft += 4;
+                botLeft += 4;
+                topRight += 49;
+                botRight += 49;
+                break;
+        }
+        MapGridSetMetatileIdAt(TILE_PLANT_START_X - 1, TILE_PLANT_START_Y    , topLeft);
+        MapGridSetMetatileIdAt(TILE_PLANT_START_X    , TILE_PLANT_START_Y    , topRight);
+        if(VarGet(VAR_ROOM_PLANT) < PLANT_COLORFUL)
+            MapGridSetMetatileIdAt(TILE_PLANT_START_X - 1, TILE_PLANT_START_Y + 1, botLeft);
+        else
+            MapGridSetMetatileIdAt(TILE_PLANT_START_X - 1, TILE_PLANT_START_Y + 1, botLeft | METATILE_COLLISION_MASK);
+        MapGridSetMetatileIdAt(TILE_PLANT_START_X    , TILE_PLANT_START_Y + 1, botRight | METATILE_COLLISION_MASK);
+    }
+}
+
+static void SetUpRoomDecorPoster(void)
+{
+    if(VarGet(VAR_ROOM_POSTER) <= POSTER_KISS && VarGet(VAR_ROOM_POSTER) != POSTER_NONE)
+    {
+        MapGridSetMetatileIdAt(TILE_POSTER_START_X    , TILE_POSTER_START_Y    , 0x02A + ((VarGet(VAR_ROOM_POSTER) - 1) * 2) | METATILE_COLLISION_MASK);
+        MapGridSetMetatileIdAt(TILE_POSTER_START_X + 1, TILE_POSTER_START_Y    , 0x02B + ((VarGet(VAR_ROOM_POSTER) - 1) * 2) | METATILE_COLLISION_MASK);
+        if(VarGet(VAR_ROOM_POSTER) < POSTER_SKY)
+        {
+            MapGridSetMetatileIdAt(TILE_POSTER_START_X    , TILE_POSTER_START_Y + 1, 0x046 + ((VarGet(VAR_ROOM_POSTER) - 1) * 2) | METATILE_COLLISION_MASK);
+            MapGridSetMetatileIdAt(TILE_POSTER_START_X + 1, TILE_POSTER_START_Y + 1, 0x047 + ((VarGet(VAR_ROOM_POSTER) - 1) * 2) | METATILE_COLLISION_MASK);
+        }
+        else
+        {
+            MapGridSetMetatileIdAt(TILE_POSTER_START_X    , TILE_POSTER_START_Y + 1, 0x060 + ((VarGet(VAR_ROOM_POSTER) - 13) * 2) | METATILE_COLLISION_MASK);
+            MapGridSetMetatileIdAt(TILE_POSTER_START_X + 1, TILE_POSTER_START_Y + 1, 0x061 + ((VarGet(VAR_ROOM_POSTER) - 13) * 2) | METATILE_COLLISION_MASK);
+        }
+    }
+}
+
+static void SetUpRoomDecorConsole(void)
+{
+    if(VarGet(VAR_ROOM_CONSOLE) <= CONSOLE_GAMECUBE && VarGet(VAR_ROOM_CONSOLE) != CONSOLE_NONE)
+    {
+        MapGridSetMetatileIdAt(TILE_CONSOLE_START_X, TILE_CONSOLE_START_Y    , 0x019 + (VarGet(VAR_ROOM_CONSOLE) - 1) | METATILE_COLLISION_MASK);
+        MapGridSetMetatileIdAt(TILE_CONSOLE_START_X, TILE_CONSOLE_START_Y + 1, 0x021 + (VarGet(VAR_ROOM_CONSOLE) - 1));
+    }
+}
+
+static void SetUpRoomDecorCarpet(void)
+{
+    if(VarGet(VAR_ROOM_CARPET) <= CARPET_SPIKES && VarGet(VAR_ROOM_CARPET) != CARPET_NONE)
+    {
+        u32 shift = 0;
+        switch(VarGet(VAR_ROOM_CARPET))
+        {
+            case CARPET_YELLOW:
+            case CARPET_GREEN:
+                shift = 1;
+                break;
+            case CARPET_SURF:
+            case CARPET_THUNDER:
+                shift = 2;
+                break;
+            case CARPET_FIRE_BLAST:
+            case CARPET_POWDER_SNOW:
+                shift = 3;
+                break;
+            case CARPET_ATTRACT:
+            case CARPET_FISSURE:
+                shift = 4;
+                break;
+            case CARPET_SPIKES:
+                shift = 5;
+                break;
+        }
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X    , TILE_CARPET_START_Y    , 0x218 + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X + 1, TILE_CARPET_START_Y    , 0x219 + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X + 2, TILE_CARPET_START_Y    , 0x21A + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X + 3, TILE_CARPET_START_Y    , 0x21B + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X    , TILE_CARPET_START_Y + 1, 0x220 + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X + 1, TILE_CARPET_START_Y + 1, 0x221 + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X + 2, TILE_CARPET_START_Y + 1, 0x222 + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X + 3, TILE_CARPET_START_Y + 1, 0x223 + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X    , TILE_CARPET_START_Y + 2, 0x228 + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X + 1, TILE_CARPET_START_Y + 2, 0x229 + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X + 2, TILE_CARPET_START_Y + 2, 0x22A + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X + 3, TILE_CARPET_START_Y + 2, 0x22B + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X    , TILE_CARPET_START_Y + 3, 0x230 + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X + 1, TILE_CARPET_START_Y + 3, 0x231 + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X + 2, TILE_CARPET_START_Y + 3, 0x232 + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+        MapGridSetMetatileIdAt(TILE_CARPET_START_X + 3, TILE_CARPET_START_Y + 3, 0x233 + ((VarGet(VAR_ROOM_CARPET) - 1) * 4) + (shift * 24));
+    }
+}
+
+static void SetUpRoomDecorDesk(void)
+{
+    if(VarGet(VAR_ROOM_TABLE) <= DESK_HARD && VarGet(VAR_ROOM_TABLE) != DESK_NONE)
+    {
+        u32 shift = 0;
+        if(VarGet(VAR_ROOM_TABLE) > DESK_COMFORT)
+        {
+            shift = 1;
+        }
+        MapGridSetMetatileIdAt(TILE_DESK_START_X    , TILE_DESK_START_Y    , 0x098 + ((VarGet(VAR_ROOM_TABLE) - 1) * 2) + ((VarGet(VAR_ROOM_CARPET)) * 32) + (shift * 8) | METATILE_COLLISION_MASK);
+        MapGridSetMetatileIdAt(TILE_DESK_START_X + 1, TILE_DESK_START_Y    , 0x099 + ((VarGet(VAR_ROOM_TABLE) - 1) * 2) + ((VarGet(VAR_ROOM_CARPET)) * 32) + (shift * 8) | METATILE_COLLISION_MASK);
+        MapGridSetMetatileIdAt(TILE_DESK_START_X    , TILE_DESK_START_Y + 1, 0x0A0 + ((VarGet(VAR_ROOM_TABLE) - 1) * 2) + ((VarGet(VAR_ROOM_CARPET)) * 32) + (shift * 8) | METATILE_COLLISION_MASK);
+        MapGridSetMetatileIdAt(TILE_DESK_START_X + 1, TILE_DESK_START_Y + 1, 0x0A1 + ((VarGet(VAR_ROOM_TABLE) - 1) * 2) + ((VarGet(VAR_ROOM_CARPET)) * 32) + (shift * 8) | METATILE_COLLISION_MASK);
+    }
+}
+
+static void SetUpRoomDecorCushion(void)
+{
+    FlagSet(FLAG_TEMP_4);
+    if(VarGet(VAR_ROOM_BED) <= BED_PIKACHU && VarGet(VAR_ROOM_BED) != BED_NONE) // no cushion if no bed
+    {
+        if(VarGet(VAR_ROOM_CUSHION) <= CUSHION_WATER && VarGet(VAR_ROOM_CUSHION) != CUSHION_NONE)
+        {
+            FlagClear(FLAG_TEMP_4);
+            switch(VarGet(VAR_ROOM_CUSHION))
+            {
+                case CUSHION_PIKA:
+                    VarSet(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_ZPIKA_CUSHION);
+                    break;
+                case CUSHION_ROUND:
+                    VarSet(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_ZROUND_CUSHION);
+                    break;
+                case CUSHION_KISS:
+                    VarSet(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_ZKISS_CUSHION);
+                    break;
+                case CUSHION_ZIGZAG:
+                    VarSet(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_ZIGZAG_CUSHION);
+                    break;
+                case CUSHION_SPIN:
+                    VarSet(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_ZSPIN_CUSHION);
+                    break;
+                case CUSHION_DIAMOND:
+                    VarSet(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_ZDIAMOND_CUSHION);
+                    break;
+                case CUSHION_BALL:
+                    VarSet(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_ZBALL_CUSHION);
+                    break;
+                case CUSHION_GRASS:
+                    VarSet(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_ZGRASS_CUSHION);
+                    break;
+                case CUSHION_FIRE:
+                    VarSet(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_ZFIRE_CUSHION);
+                    break;
+                case CUSHION_WATER:
+                    VarSet(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_ZWATER_CUSHION);
+                    break;
+            }
+        }
+    }
+}
+
+static void SetUpRoomDecorBigDoll(void)
+{
+    FlagSet(FLAG_TEMP_3);
+    if(VarGet(VAR_ROOM_BIG_DOLL) <= BIG_DOLL_REGISTEEL && VarGet(VAR_ROOM_BIG_DOLL) != BIG_DOLL_NONE)
+    {
+        FlagClear(FLAG_TEMP_3);
+        switch(VarGet(VAR_ROOM_BIG_DOLL))
+        {
+            case BIG_DOLL_SNORLAX:
+                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_BIG_SNORLAX_DOLL);
+                break;
+            case BIG_DOLL_ONIX:
+                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_ONIX_DOLL);
+                break;
+            case BIG_DOLL_LAPRAS:
+                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_BIG_LAPRAS_DOLL);
+                break;
+            case BIG_DOLL_RHYDON:
+                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_RHYDON_DOLL);
+                break;
+            case BIG_DOLL_VENUSAUR:
+                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_VENUSAUR_DOLL);
+                break;
+            case BIG_DOLL_CHARIZARD:
+                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_CHARIZARD_DOLL);
+                break;
+            case BIG_DOLL_BLASTOISE:
+                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_BLASTOISE_DOLL);
+                break;
+            case BIG_DOLL_WAILMER:
+                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_WAILMER_DOLL);
+                break;
+            case BIG_DOLL_REGIROCK:
+                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_REGIROCK_DOLL);
+                break;
+            case BIG_DOLL_REGICE:
+                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_REGICE_DOLL);
+                break;
+            case BIG_DOLL_REGISTEEL:
+                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_REGISTEEL_DOLL);
+                break;
+        }
+    }
+}
+
+static u16 MapOrnamentConstantsToObjectEventGfx(u16 ornament)
+{
+    switch(ornament)
+    {
+        case DOLL_PIKACHU:
+            return OBJ_EVENT_GFX_PIKACHU_DOLL;
+        case DOLL_SURF_PIKACHU:
+            return OBJ_EVENT_GFX_ZSURFING_PIKACHU_DOLL;
+        case DOLL_CLEFAIRY:
+            return OBJ_EVENT_GFX_CLEFAIRY_DOLL;
+        case DOLL_JIGGLYPUFF:
+            return OBJ_EVENT_GFX_JIGGLYPUFF_DOLL;
+        case DOLL_BULBASAUR:
+            return OBJ_EVENT_GFX_ZBULBASAUR_DOLL;
+        case DOLL_ODDISH:
+            return OBJ_EVENT_GFX_ZODDISH_DOLL;
+        case DOLL_GENGAR:
+            return OBJ_EVENT_GFX_ZGENGAR_DOLL;
+        case DOLL_SHELLDER:
+            return OBJ_EVENT_GFX_ZSHELLDER_DOLL;
+        case DOLL_GRIMER:
+            return OBJ_EVENT_GFX_ZGRIMER_DOLL;
+        case DOLL_VOLTORB:
+            return OBJ_EVENT_GFX_ZVOLTORB_DOLL;
+        case DOLL_WEEDLE:
+            return OBJ_EVENT_GFX_ZWEEDLE_DOLL;
+        case DOLL_MAGIKARP:
+            return OBJ_EVENT_GFX_ZMAGIKARP_DOLL;
+        case DOLL_CHARMANDER:
+            return OBJ_EVENT_GFX_ZCHARMANDER_DOLL;
+        case DOLL_SQUIRTLE:
+            return OBJ_EVENT_GFX_ZSQUIRTLE_DOLL;
+        case DOLL_POLIWAG:
+            return OBJ_EVENT_GFX_ZPOLIWAG_DOLL;
+        case DOLL_DIGLETT:
+            return OBJ_EVENT_GFX_ZDIGLETT_DOLL;
+        case DOLL_STARYU:
+            return OBJ_EVENT_GFX_ZSTARYU_DOLL;
+        case DOLL_TENTACOOL:
+            return OBJ_EVENT_GFX_ZTENTACOOL_DOLL;
+        case DOLL_UNOWN:
+            return OBJ_EVENT_GFX_ZUNOWN_DOLL;
+        case DOLL_GEODUDE:
+            return OBJ_EVENT_GFX_ZGEODUDE_DOLL;
+        case DOLL_MACHOP:
+            return OBJ_EVENT_GFX_ZMACHOP_DOLL;
+        case DOLL_SILVER_TROPHY:
+            return OBJ_EVENT_GFX_ZSILVER_TROPHY;
+        case DOLL_GOLD_TROPHY:
+            return OBJ_EVENT_GFX_ZGOLD_TROPHY;
+        case DOLL_MAGNEMITE:
+            return OBJ_EVENT_GFX_ZMAGNEMITE_DOLL;
+        case DOLL_NATU:
+            return OBJ_EVENT_GFX_ZNATU_DOLL;
+        case DOLL_PORYGON2:
+            return OBJ_EVENT_GFX_ZPORYGON2_DOLL;
+        case DOLL_WOOPER:
+            return OBJ_EVENT_GFX_ZWOOPER_DOLL;
+        case DOLL_PICHU:
+            return OBJ_EVENT_GFX_ZPICHU_DOLL;
+        case DOLL_MARILL:
+            return OBJ_EVENT_GFX_ZMARILL_DOLL;
+        case DOLL_TOGEPI:
+            return OBJ_EVENT_GFX_ZTOGEPI_DOLL;
+        case DOLL_CYNDAQUIL:
+            return OBJ_EVENT_GFX_ZCYNDAQUIL_DOLL;
+        case DOLL_CHIKORITA:
+            return OBJ_EVENT_GFX_ZCHIKORITA_DOLL;
+        case DOLL_TOTODILE:
+            return OBJ_EVENT_GFX_ZTOTODILE_DOLL;
+        case DOLL_MEOWTH:
+            return OBJ_EVENT_GFX_ZMEOWTH_DOLL;
+        case DOLL_DITTO:
+            return OBJ_EVENT_GFX_ZDITTO_DOLL;
+        case DOLL_SMOOCHUM:
+            return OBJ_EVENT_GFX_ZSMOOCHUM_DOLL;
+        case DOLL_TREECKO:
+            return OBJ_EVENT_GFX_ZTREECKO_DOLL;
+        case DOLL_TORCHIC:
+            return OBJ_EVENT_GFX_ZTORCHIC_DOLL;
+        case DOLL_MUDKIP:
+            return OBJ_EVENT_GFX_ZMUDKIP_DOLL;
+        case DOLL_DUSKULL:
+            return OBJ_EVENT_GFX_ZDUSKULL_DOLL;
+        case DOLL_WYNAUT:
+            return OBJ_EVENT_GFX_ZWYNAUT_DOLL;
+        case DOLL_BALTOY:
+            return OBJ_EVENT_GFX_ZBALTOY_DOLL;
+        case DOLL_KECLEON:
+            return OBJ_EVENT_GFX_ZKECLEON_DOLL;
+        case DOLL_AZURILL:
+            return OBJ_EVENT_GFX_ZAZURILL_DOLL;
+        case DOLL_SKITTY:
+            return OBJ_EVENT_GFX_ZSKITTY_DOLL;
+        case DOLL_SWABLU:
+            return OBJ_EVENT_GFX_ZSWABLU_DOLL;
+        case DOLL_GULPIN:
+            return OBJ_EVENT_GFX_ZGULPIN_DOLL;
+        case DOLL_LOTAD:
+            return OBJ_EVENT_GFX_ZLOTAD_DOLL;
+        case DOLL_SEEDOT:
+            return OBJ_EVENT_GFX_ZSEEDOT_DOLL;
+        case DOLL_SILVER_SHIELD:
+            return OBJ_EVENT_GFX_ZSILVER_SHIELD;
+        case DOLL_GOLD_SHIELD:
+            return OBJ_EVENT_GFX_ZGOLD_SHIELD;
+        default:
+            return OBJ_EVENT_GFX_ZUNOWN_DOLL;
+    }
+}
+
+extern const u16 gObjectEventPal_ShieldDecorations;
+
+// The Silver and Gold Shields were tiles in RSE Secret Bases, but object events here.
+// No existing event object palette matches and the "free" slot 10 is taken up by decor that uses Red's palette.
+// So, if the shields are present, their palette has to be force-loaded into their paletteNum slot (11).
+void PatchShieldPaletteToSlot11(void)
+{
+    LoadPaletteDayNight(&gObjectEventPal_ShieldDecorations, 16 * 11 + 0x100, 0x20);
+}
+
+static void SetUpRoomDecorOrnaments(void)
+{
+    FlagSet(FLAG_TEMP_1);
+    FlagSet(FLAG_TEMP_2);
+    if(VarGet(VAR_ROOM_TABLE) <= DESK_HARD && VarGet(VAR_ROOM_TABLE) != DESK_NONE) // no ornament if no table
+    {
+        if(VarGet(VAR_ROOM_LEFT_ORNAMENT) <= DOLL_GOLD_SHIELD && VarGet(VAR_ROOM_LEFT_ORNAMENT) != DOLL_NONE)
+        {
+            FlagClear(FLAG_TEMP_1);
+            VarSet(VAR_OBJ_GFX_ID_0, MapOrnamentConstantsToObjectEventGfx(VarGet(VAR_ROOM_LEFT_ORNAMENT)));
+        }
+        if(VarGet(VAR_ROOM_RIGHT_ORNAMENT) <= DOLL_GOLD_SHIELD && VarGet(VAR_ROOM_RIGHT_ORNAMENT) != DOLL_NONE)
+        {
+            FlagClear(FLAG_TEMP_2);
+            VarSet(VAR_OBJ_GFX_ID_1, MapOrnamentConstantsToObjectEventGfx(VarGet(VAR_ROOM_RIGHT_ORNAMENT)));
+        }
+        PatchShieldPaletteToSlot11();
+    }
+}
+
+void SetUpRoomDecor(void)
+{
+    SetUpRoomDecorBed();
+    SetUpRoomDecorPlant();
+    SetUpRoomDecorPoster();
+    SetUpRoomDecorConsole();
+    SetUpRoomDecorCarpet();
+    SetUpRoomDecorDesk();
+    SetUpRoomDecorCushion();
+    SetUpRoomDecorBigDoll();
+    SetUpRoomDecorOrnaments();
+    DrawWholeMapView();
 }

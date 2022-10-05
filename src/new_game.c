@@ -48,6 +48,7 @@
 #include "berry_powder.h"
 #include "mevent.h"
 #include "union_room_chat.h"
+#include "constants/room_decor.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
@@ -150,6 +151,17 @@ void ResetMenuAndMonGlobals(void)
     ResetPokeblockScrollPositions();
 }
 
+static void SetDefaultRoomDecor(void)
+{
+    VarSet(VAR_ROOM_BED, BED_FEATHERY);
+    VarSet(VAR_ROOM_TABLE, DESK_DEFAULT);
+    VarSet(VAR_ROOM_POSTER, POSTER_MAP);
+
+    gSaveBlock1Ptr->roomDecorInventory.featheryBed = TRUE;
+    gSaveBlock1Ptr->roomDecorInventory.townMap = TRUE;
+    gSaveBlock1Ptr->roomDecorInventory.defaultDesk = TRUE;
+}
+
 void NewGameInitData(void)
 {
     if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
@@ -211,6 +223,7 @@ void NewGameInitData(void)
     ResetTrainerHillResults();
     ResetContestLinkResults();
     SetBuildNumber();
+    SetDefaultRoomDecor();
 }
 
 static void ResetMiniGamesRecords(void)

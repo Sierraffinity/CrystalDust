@@ -380,3 +380,6 @@ const u32 gObjectEventPic_MagnemiteDoll[] = INCBIN_U32("graphics/object_events/p
 const u32 gObjectEventPic_NatuDoll[] = INCBIN_U32("graphics/object_events/pics/dolls/natu_doll.4bpp");
 const u32 gObjectEventPic_Porygon2Doll[] = INCBIN_U32("graphics/object_events/pics/dolls/porygon2_doll.4bpp");
 const u32 gObjectEventPic_WooperDoll[] = INCBIN_U32("graphics/object_events/pics/dolls/wooper_doll.4bpp");
+const u32 gObjectEventPic_GoldShield[] = INCBIN_U32("graphics/object_events/pics/dolls/gold_shield.4bpp");
+const u32 gObjectEventPic_SilverShield[] = INCBIN_U32("graphics/object_events/pics/dolls/silver_shield.4bpp");
+const u16 gObjectEventPal_ShieldDecorations[] = INCBIN_U16("graphics/object_events/palettes/shield_decorations.gbapal");

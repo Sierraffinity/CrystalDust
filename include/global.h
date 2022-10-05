@@ -907,6 +907,151 @@ struct MysteryEventStruct
     /*0x344 0x3570*/ u32 unk_344[2][5];
 }; // 0x36C 0x3598
 
+struct RoomDecor
+{
+    // Beds
+    u32 featheryBed:1;
+    u32 pinkBed:1;
+    u32 polkadotBed:1;
+    u32 pikachuBed:1;
+    // Carpets
+    u32 redCarpet:1;
+    u32 blueCarpet:1;
+    u32 yellowCarpet:1;
+    u32 greenCarpet:1;
+    u32 surfMat:1;
+    u32 thunderMat:1;
+    u32 fireBlastMat:1;
+    u32 powderSnowMat:1;
+    u32 attractMat:1;
+    u32 fissureMat:1;
+    u32 spikesMat:1;
+    // Big Doll
+    u32 bigSnorlax:1;
+    u32 bigOnix:1;
+    u32 bigLapras:1;
+    u32 rhydonDoll:1;
+    u32 venusaurDoll:1;
+    u32 charizardDoll:1;
+    u32 blastoiseDoll:1;
+    u32 wailmerDoll:1;
+    u32 regirockDoll:1;
+    u32 regiceDoll:1;
+    u32 registeelDoll:1;
+    // Game Console
+    u32 nes:1;
+    u32 snes:1;
+    u32 n64:1;
+    u32 gamecube:1;
+    u32 padding1:2;
+    //
+    // Posters
+    u32 townMap:1;
+    u32 pikachuPoster:1;
+    u32 clefairyPoster:1;
+    u32 jigglypuffPoster:1;
+    u32 ballPoster:1;
+    u32 greenPoster:1;
+    u32 redPoster:1;
+    u32 bluePoster:1;
+    u32 cutePoster:1;
+    u32 pikaPoster:1;
+    u32 longPoster:1;
+    u32 seaPoster:1;
+    u32 skyPoster:1;
+    u32 kissPoster:1;
+    // Tables
+    u32 defaultDesk:1;
+    u32 heavyDesk:1;
+    u32 raggedDesk:1;
+    u32 comfortDesk:1;
+    u32 prettyDesk:1;
+    u32 brickDesk:1;
+    u32 campDesk:1;
+    u32 hardDesk:1;
+    // Cushions
+    u32 pikaCushion:1;
+    u32 roundCushion:1;
+    u32 kissCushion:1;
+    u32 zigzagCushion:1;
+    u32 spinCushion:1;
+    u32 diamondCushion:1;
+    u32 ballCushion:1;
+    u32 grassCushion:1;
+    u32 fireCushion:1;
+    u32 waterCushion:1;
+    //
+    // Ornaments (2 bits for two of each)
+    u32 pikachuDoll:2;
+    u32 surfPikachuDoll:2;
+    u32 clefairyDoll:2;
+    u32 jigglypuffDoll:2;
+    u32 bulbasaurDoll:2;
+    u32 oddishDoll:2;
+    u32 gengarDoll:2;
+    u32 shellderDoll:2;
+    //
+    u32 grimerDoll:2;
+    u32 voltorbDoll:2;
+    u32 weedleDoll:2;
+    u32 magikarpDoll:2;
+    u32 charmanderDoll:2;
+    u32 squirtleDoll:2;
+    u32 poliwagDoll:2;
+    u32 diglettDoll:2;
+    //
+    u32 staryuDoll:2;
+    u32 tentacoolDoll:2;
+    u32 unownDoll:2;
+    u32 geodudeDoll:2;
+    u32 machopDoll:2;
+    u32 magnemiteDoll:2;
+    u32 natuDoll:2;
+    u32 porygon2Doll:2;
+    //
+    u32 wooperDoll:2;
+    u32 pichuDoll:2;
+    u32 marillDoll:2;
+    u32 togepiDoll:2;
+    u32 cyndaquilDoll:2;
+    u32 totodileDoll:2;
+    u32 meowthDoll:2;
+    u32 dittoDoll:2;
+    //
+    u32 smoochumDoll:2;
+    u32 treeckoDoll:2;
+    u32 torchicDoll:2;
+    u32 mudkipDoll:2;
+    u32 duskullDoll:2;
+    u32 wynautDoll:2;
+    u32 baltoyDoll:2;
+    u32 kecleonDoll:2;
+    //
+    u32 azurillDoll:2;
+    u32 skittyDoll:2;
+    u32 swabluDoll:2;
+    u32 gulpinDoll:2;
+    u32 lotadDoll:2;
+    u32 seedotDoll:2;
+    // Trophy and Shield ornaments (one of each)
+    u32 silverTrophy:1;
+    u32 goldTrophy:1;
+    u32 silverShield:1;
+    u32 goldShield:1;
+    //
+    // Plants
+    u32 magnaPlant:1;
+    u32 tropicPlant:1;
+    u32 jumboPlant:1;
+    u32 redPlant:1;
+    u32 tropicalPlant:1;
+    u32 prettyFlowers:1;
+    u32 colorfulPlant:1;
+    u32 bigPlant:1;
+    u32 gorgeousPlant:1;
+    u32 padding2:23;
+}; /*size = 0x18*/
+
 // For external event data storage. The majority of these may have never been used.
 // In Emerald, the only known used fields are the PokeCoupon and BoxRS ones, but hacking the distribution discs allows Emerald to receive events and set the others
 struct ExternalEventData
@@ -1033,7 +1178,8 @@ struct SaveBlock1
     /*0x31F4*/ u8 padding_31F4[4];
     /*0x31F8*/ struct EnigmaBerry enigmaBerry;
     /*0x322C*/ struct MEventBuffers unk_322C;
-    /*0x3598*/ u8 field_3598[0x180];
+    /*0x3598*/ u8 field_3598[360];
+    /*0x3700*/ struct RoomDecor roomDecorInventory;
     /*0x3718*/ u32 trainerHillTimes[4];
     /*0x3728*/ struct RamScript ramScript;
     /*0x3B14*/ struct RecordMixingGift recordMixingGift;

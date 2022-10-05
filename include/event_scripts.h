@@ -560,6 +560,8 @@ extern const u8 EventScript_FallDownHoleMtPyre[];
 extern const u8 EventScript_UseWhirlpool[];
 extern const u8 EventScript_CannotUseWhirlpool[];
 extern const u8 EventScript_UseWhirlpoolFromPartyMenu[];
+extern const u8 NewBarkTown_PlayersHouse_2F_DecorPoster[];
+extern const u8 NewBarkTown_PlayersHouse_2F_DecorConsole[];
 
 // Secret Base
 extern const u8 SecretBase_EventScript_PC[];

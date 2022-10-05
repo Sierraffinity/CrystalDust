@@ -274,6 +274,8 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MagnemiteDoll;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_NatuDoll;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Porygon2Doll;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_WooperDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_GoldShield;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SilverShield;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] = {
     [OBJ_EVENT_GFX_GOLD_NORMAL] =              &gObjectEventGraphicsInfo_GoldNormal,
@@ -545,6 +547,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_ZNATU_DOLL] =               &gObjectEventGraphicsInfo_NatuDoll,
     [OBJ_EVENT_GFX_ZPORYGON2_DOLL] =           &gObjectEventGraphicsInfo_Porygon2Doll,
     [OBJ_EVENT_GFX_ZWOOPER_DOLL] =             &gObjectEventGraphicsInfo_WooperDoll,
+    [OBJ_EVENT_GFX_ZGOLD_SHIELD] =             &gObjectEventGraphicsInfo_GoldShield,
+    [OBJ_EVENT_GFX_ZSILVER_SHIELD] =           &gObjectEventGraphicsInfo_SilverShield,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

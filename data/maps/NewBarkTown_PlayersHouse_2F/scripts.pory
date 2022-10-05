@@ -1,12 +1,19 @@
 mapscripts NewBarkTown_PlayersHouse_2F_MapScripts{
-    MAP_SCRIPT_ON_TRANSITION{
-        call(SecretBase_EventScript_SetDecorationFlags)
-        setvar(VAR_SECRET_BASE_INITIALIZED, 0)
+    MAP_SCRIPT_ON_LOAD{
+        callnative(SetUpRoomDecor)
         end
     }
+	// To manually patch in the Silver & Gold Shield palette since
+    // some decorations already use the custom palette slot.
     MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
-        VAR_SECRET_BASE_INITIALIZED, 0: SecretBase_EventScript_InitDecorations
+        VAR_TEMP_0, 0{
+			callnative(PatchShieldPaletteToSlot11)
+			end
+        }
     ]
+	MAP_SCRIPT_ON_RETURN_TO_FIELD{
+        callnative(PatchShieldPaletteToSlot11)
+    }
 }
 
 script EventScript_PlayerPC{
@@ -43,7 +50,7 @@ script NewBarkTown_PlayersHouse_2F_Radio{
         msgbox(NewBarkTown_PlayersHouse_2F_Text_RadioTextDone, MSGBOX_SIGN)
         end
     }
-    playbgm(MUS_OAKS_LAB 0)
+    playbgm(MUS_OAKS_LAB, 0)
 	message("This was PROF. OAK'S {POKEMON} TALK!\nPlease tune in next time!")
 	waitmessage
 	delay(90)
@@ -64,4 +71,343 @@ script NewBarkTown_PlayersHouse_2F_Radio{
 
 text(local) NewBarkTown_PlayersHouse_2F_Text_RadioTextDone{
 	"{POKEMON}!\n{POKEMON} CHANNEL…"
+}
+
+script NewBarkTown_PlayersHouse_2F_DecorPoster{
+	if(var(VAR_ROOM_POSTER) <= POSTER_KISS)
+	{
+		bufferstring(1, " a ")
+		switch(var(VAR_ROOM_POSTER))
+		{
+			case POSTER_CLEFAIRY:
+				bufferspeciesname(0, SPECIES_CLEFAIRY)
+			case POSTER_PIKACHU:
+				bufferspeciesname(0, SPECIES_PIKACHU)
+			case POSTER_JIGGLYPUFF:
+				bufferspeciesname(0, SPECIES_JIGGLYPUFF)
+			case POSTER_BALL:
+				bufferitemname(0, ITEM_POKE_BALL)
+			case POSTER_GREEN:
+				bufferspeciesname(0, SPECIES_TREECKO)
+			case POSTER_RED:
+				bufferspeciesname(0, SPECIES_TORCHIC)
+			case POSTER_BLUE:
+				bufferspeciesname(0, SPECIES_MUDKIP)
+			case POSTER_CUTE:
+				bufferspeciesname(0, SPECIES_AZURILL)
+			case POSTER_PIKA:
+				bufferstring(1, " ")
+				bufferstring(0, "PIKACHU\nand PICHU")
+			case POSTER_LONG:
+				bufferspeciesname(0, SPECIES_SEVIPER)
+			case POSTER_SEA:
+				bufferspeciesname(0, SPECIES_RELICANTH)
+			case POSTER_SKY:
+				bufferspeciesname(0, SPECIES_WINGULL)
+			case POSTER_KISS:
+				bufferspeciesname(0, SPECIES_SMOOCHUM)
+		}
+		msgbox("It's a poster of{STR_VAR_2}cute {STR_VAR_1}.", MSGBOX_SIGN)
+		end
+	}
+}
+
+script NewBarkTown_PlayersHouse_2F_DecorConsole{
+	if(var(VAR_ROOM_CONSOLE) <= CONSOLE_GAMECUBE)
+	{
+		switch(var(VAR_ROOM_CONSOLE))
+		{
+			case CONSOLE_NES:
+				msgbox("{PLAYER} played with the NES.\p…Okay!\nIt's time to go!", MSGBOX_SIGN)
+				end
+			case CONSOLE_SNES:
+				msgbox("It's a Super NES.\pThe graphics look so lifelike!", MSGBOX_SIGN)
+				end
+			case CONSOLE_N64:
+				msgbox("It's a Nintendo 64.\pA Transfer Pak is connected to the\nback of the controller.", MSGBOX_SIGN)
+				end
+			case CONSOLE_VIRTUALBOY:
+				msgbox("It's a Virtual Boy.\pIt looks uncomfortable to play.", MSGBOX_SIGN)
+				end
+			case CONSOLE_GAMECUBE:
+				msgbox("It's a Nintendo GameCube.\pA Game Boy Advance is connected to\nserve as the controller.", MSGBOX_SIGN)
+				end
+		}
+	}
+}
+
+script NewBarkTown_PlayersHouse_2F_DecorBigDoll{
+	msgbox("A giant doll!\nIt's fluffy and cuddly.", MSGBOX_SIGN)
+	end
+}
+
+script(local) NewBarkTown_PlayersHouse_2F_BufferOrnamentString{
+	switch(var(VAR_RESULT))
+	{
+		case DOLL_PIKACHU:
+			bufferspeciesname(0, SPECIES_PIKACHU)
+			return
+		case DOLL_SURF_PIKACHU:
+			bufferstring(0, "SURF PIKACHU")
+			return
+		case DOLL_CLEFAIRY:
+			bufferspeciesname(0, SPECIES_CLEFAIRY)
+			return
+		case DOLL_JIGGLYPUFF:
+			bufferspeciesname(0, SPECIES_JIGGLYPUFF)
+			return
+		case DOLL_BULBASAUR:
+			bufferspeciesname(0, SPECIES_BULBASAUR)
+			return
+		case DOLL_ODDISH:
+			bufferspeciesname(0, SPECIES_ODDISH)
+			return
+		case DOLL_GENGAR:
+			bufferspeciesname(0, SPECIES_GENGAR)
+			return
+		case DOLL_SHELLDER:
+			bufferspeciesname(0, SPECIES_SHELLDER)
+			return
+		case DOLL_GRIMER:
+			bufferspeciesname(0, SPECIES_GRIMER)
+			return
+		case DOLL_VOLTORB:
+			bufferspeciesname(0, SPECIES_VOLTORB)
+			return
+		case DOLL_WEEDLE:
+			bufferspeciesname(0, SPECIES_WEEDLE)
+			return
+		case DOLL_MAGIKARP:
+			bufferspeciesname(0, SPECIES_MAGIKARP)
+			return
+		case DOLL_CHARMANDER:
+			bufferspeciesname(0, SPECIES_CHARMANDER)
+			return
+		case DOLL_SQUIRTLE:
+			bufferspeciesname(0, SPECIES_SQUIRTLE)
+			return
+		case DOLL_POLIWAG:
+			bufferspeciesname(0, SPECIES_POLIWAG)
+			return
+		case DOLL_DIGLETT:
+			bufferspeciesname(0, SPECIES_DIGLETT)
+			return
+		case DOLL_STARYU:
+			bufferspeciesname(0, SPECIES_STARYU)
+			return
+		case DOLL_TENTACOOL:
+			bufferspeciesname(0, SPECIES_TENTACOOL)
+			return
+		case DOLL_UNOWN:
+			bufferspeciesname(0, SPECIES_UNOWN)
+			return
+		case DOLL_GEODUDE:
+			bufferspeciesname(0, SPECIES_GEODUDE)
+			return
+		case DOLL_MACHOP:
+			bufferspeciesname(0, SPECIES_MACHOP)
+			return
+		case DOLL_MAGNEMITE:
+			bufferspeciesname(0, SPECIES_MAGNEMITE)
+			return
+		case DOLL_NATU:
+			bufferspeciesname(0, SPECIES_NATU)
+			return
+		case DOLL_PORYGON2:
+			bufferspeciesname(0, SPECIES_PORYGON2)
+			return
+		case DOLL_WOOPER:
+			bufferspeciesname(0, SPECIES_WOOPER)
+			return
+		case DOLL_PICHU:
+			bufferspeciesname(0, SPECIES_PICHU)
+			return
+		case DOLL_MARILL:
+			bufferspeciesname(0, SPECIES_MARILL)
+			return
+		case DOLL_TOGEPI:
+			bufferspeciesname(0, SPECIES_TOGEPI)
+			return
+		case DOLL_CYNDAQUIL:
+			bufferspeciesname(0, SPECIES_CYNDAQUIL)
+			return
+		case DOLL_CHIKORITA:
+			bufferspeciesname(0, SPECIES_CHIKORITA)
+			return
+		case DOLL_TOTODILE:
+			bufferspeciesname(0, SPECIES_TOTODILE)
+			return
+		case DOLL_MEOWTH:
+			bufferspeciesname(0, SPECIES_MEOWTH)
+			return
+		case DOLL_DITTO:
+			bufferspeciesname(0, SPECIES_DITTO)
+			return
+		case DOLL_SMOOCHUM:
+			bufferspeciesname(0, SPECIES_SMOOCHUM)
+			return
+		case DOLL_TREECKO:
+			bufferspeciesname(0, SPECIES_TREECKO)
+			return
+		case DOLL_TORCHIC:
+			bufferspeciesname(0, SPECIES_TORCHIC)
+			return
+		case DOLL_MUDKIP:
+			bufferspeciesname(0, SPECIES_MUDKIP)
+			return
+		case DOLL_DUSKULL:
+			bufferspeciesname(0, SPECIES_DUSKULL)
+			return
+		case DOLL_WYNAUT:
+			bufferspeciesname(0, SPECIES_WYNAUT)
+			return
+		case DOLL_BALTOY:
+			bufferspeciesname(0, SPECIES_BALTOY)
+			return
+		case DOLL_KECLEON:
+			bufferspeciesname(0, SPECIES_KECLEON)
+			return
+		case DOLL_AZURILL:
+			bufferspeciesname(0, SPECIES_AZURILL)
+			return
+		case DOLL_SKITTY:
+			bufferspeciesname(0, SPECIES_SKITTY)
+			return
+		case DOLL_SWABLU:
+			bufferspeciesname(0, SPECIES_SWABLU)
+			return
+		case DOLL_GULPIN:
+			bufferspeciesname(0, SPECIES_GULPIN)
+			return
+		case DOLL_LOTAD:
+			bufferspeciesname(0, SPECIES_LOTAD)
+			return
+		case DOLL_SEEDOT:
+			bufferspeciesname(0, SPECIES_SEEDOT)
+			return
+	}
+}
+
+script NewBarkTown_PlayersHouse_2F_DecorOrnament{
+	if(var(VAR_LAST_TALKED) == 1)
+	{
+		copyvar(VAR_RESULT, VAR_ROOM_LEFT_ORNAMENT)
+	}
+	else
+	{
+		copyvar(VAR_RESULT, VAR_ROOM_RIGHT_ORNAMENT)
+	}
+	if(var(VAR_RESULT) != DOLL_SILVER_TROPHY && var(VAR_RESULT) != DOLL_GOLD_TROPHY && var(VAR_RESULT) < DOLL_SILVER_SHIELD)
+	{	// regular dolls
+		call(NewBarkTown_PlayersHouse_2F_BufferOrnamentString)
+		msgbox("It's an adorable {STR_VAR_1} DOLL.", MSGBOX_SIGN)
+		end
+	}
+	else
+	{
+		if(var(VAR_RESULT) == DOLL_SILVER_TROPHY)
+		{
+			msgbox("It's a normal-looking SILVER TROPHY.", MSGBOX_SIGN)
+			end
+		}
+		if(var(VAR_RESULT) == DOLL_GOLD_TROPHY)
+		{
+			msgbox("It's a gorgeous-looking GOLD TROPHY.", MSGBOX_SIGN)
+			end
+		}
+		if(var(VAR_RESULT) == DOLL_SILVER_SHIELD)
+		{
+			bufferstring(1, "SILVER")
+			bufferstring(0, "50")
+		}
+		elif(var(VAR_RESULT) == DOLL_GOLD_SHIELD)
+		{
+			bufferstring(1, "GOLD")
+			bufferstring(0, "100")
+		}
+		msgbox("A shield of {STR_VAR_2} that marks\nwinning {STR_VAR_1} times in a row at the\lBATTLE TOWER.", MSGBOX_SIGN)
+	}
+}
+
+script NewBarkTown_PlayersHouse_2F_DecorCushion{
+	if(var(VAR_ROOM_CUSHION) <= CUSHION_WATER)
+	{
+		switch(var(VAR_ROOM_CUSHION))
+		{
+			case CUSHION_PIKA:
+				bufferstring(0, "PIKA")
+			case CUSHION_ROUND:
+				bufferstring(0, "ROUND")
+			case CUSHION_KISS:
+				bufferstring(0, "KISS")
+			case CUSHION_ZIGZAG:
+				bufferstring(0, "ZIGZAG")
+			case CUSHION_SPIN:
+				bufferstring(0, "SPIN")
+			case CUSHION_DIAMOND:
+				bufferstring(0, "DIAMOND")
+			case CUSHION_BALL:
+				bufferstring(0, "BALL")
+			case CUSHION_GRASS:
+				bufferstring(0, "GRASS")
+			case CUSHION_FIRE:
+				bufferstring(0, "FIRE")
+			case CUSHION_WATER:
+				bufferstring(0, "WATER")
+		}
+		msgbox("It's a comfortable {STR_VAR_1} CUSHION.", MSGBOX_SIGN)
+	}
+}
+
+// debug
+script NewBarkTown_PlayersHouse_2F_CreateRandomRoom{
+	random(4)
+	addvar(VAR_RESULT, 1)
+	copyvar(VAR_ROOM_BED, VAR_RESULT)
+
+	random(11)
+	addvar(VAR_RESULT, 1)
+	copyvar(VAR_ROOM_CARPET, VAR_RESULT)
+
+	random(9)
+	addvar(VAR_RESULT, 1)
+	copyvar(VAR_ROOM_PLANT, VAR_RESULT)
+
+	random(14)
+	addvar(VAR_RESULT, 1)
+	copyvar(VAR_ROOM_POSTER, VAR_RESULT)
+
+	random(5)
+	addvar(VAR_RESULT, 1)
+	copyvar(VAR_ROOM_CONSOLE, VAR_RESULT)
+
+	random(8)
+	addvar(VAR_RESULT, 1)
+	copyvar(VAR_ROOM_TABLE, VAR_RESULT)
+
+	random(12)
+	if(var(VAR_RESULT) == 0 || var(VAR_RESULT) > 11)
+	{
+		setvar(VAR_ROOM_CUSHION, 0)
+	}
+	else
+	{
+		copyvar(VAR_ROOM_CUSHION, VAR_RESULT)
+	}
+
+	random(11)
+	addvar(VAR_RESULT, 1)
+	copyvar(VAR_ROOM_BIG_DOLL, VAR_RESULT)
+
+	random(51)
+	addvar(VAR_RESULT, 1)
+	copyvar(VAR_ROOM_LEFT_ORNAMENT, VAR_RESULT)
+
+	random(51)
+	addvar(VAR_RESULT, 1)
+	copyvar(VAR_ROOM_RIGHT_ORNAMENT, VAR_RESULT)
+
+	release
+	warp(MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_2F, 0xFF, 5, 4)
+	end
 }

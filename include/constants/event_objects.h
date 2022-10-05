@@ -270,8 +270,10 @@
 #define OBJ_EVENT_GFX_ZNATU_DOLL                 266
 #define OBJ_EVENT_GFX_ZPORYGON2_DOLL             267
 #define OBJ_EVENT_GFX_ZWOOPER_DOLL               268
+#define OBJ_EVENT_GFX_ZGOLD_SHIELD               269
+#define OBJ_EVENT_GFX_ZSILVER_SHIELD             270
 
-#define NUM_OBJ_EVENT_GFX                        269
+#define NUM_OBJ_EVENT_GFX                        271
 
 
 // These are dynamic object gfx ids.

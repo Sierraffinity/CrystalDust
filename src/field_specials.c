@@ -3094,6 +3094,8 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_ZNATU_DOLL] =				MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_ZPORYGON2_DOLL] =			MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_ZWOOPER_DOLL] =				MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_ZGOLD_SHIELD] =			    MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_ZSILVER_SHIELD] =			MSG_COLOR_BLACK,
     };
 
     if (graphicsId < NUM_OBJ_EVENT_GFX)

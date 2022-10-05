@@ -527,6 +527,10 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
         return EventScript_Window;
     if (MetatileBehavior_IsRadio(metatileBehavior) == TRUE)
         return EventScript_Radio1;
+    if (MetatileBehavior_IsDecorPoster(metatileBehavior) == TRUE)
+        return NewBarkTown_PlayersHouse_2F_DecorPoster;
+    if (MetatileBehavior_IsDecorConsole(metatileBehavior) == TRUE)
+        return NewBarkTown_PlayersHouse_2F_DecorConsole;
 
     height = position->height;
     if (height == MapGridGetZCoordAt(position->x, position->y))
