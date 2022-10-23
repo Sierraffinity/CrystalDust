@@ -33,7 +33,7 @@ mapscripts Route27_MapScripts {
 }
 
 script Route27_Eventscript_FatGuy {
-    msgbox("Do you know what you just did?\nYou've taken your first step into KANTO!\pCheck your {POKE}GEAR MAP and see.", MSGBOX_NPC)
+    msgbox("Do you know what you just did?\nYou've taken your first step into\lKANTO!\pCheck your {POKE}GEAR MAP and see.", MSGBOX_NPC)
     end
 }
 
