@@ -59,6 +59,18 @@ script FastShip_Cabins_SW_SSW_NW_EventScript_LazySailor{
     set_invisible
 }
 
+script FastShip_Cabins_SW_SSW_NW_EventScript_Scott{
+    checkplayergender
+    bufferstring(0, "him")
+    if(var(VAR_RESULT) == FEMALE)
+    {
+        bufferstring(0, "her")
+    }
+    msgbox("I heard that the {POKEMON} LEAGUE\nCHAMPION is onboard.\pI'd sure like to meet a powerful\ntrainer like {STR_VAR_1}.", MSGBOX_NPC)
+    turnobject(VAR_LAST_TALKED, DIR_NORTH)
+    end
+}
+
 // To Vermilion
 script FastShip_Cabins_SW_SSW_NW_EventScript_GentlemanEdward{
     trainerbattle_single(TRAINER_EDWARD, "Oh, no. I've lost something\nthat's very important.", "I…\nI can't find it…")

@@ -2704,7 +2704,7 @@
     {
       "id": "LAYOUT_ROUTE40",
       "name": "Route40_Layout",
-      "width": 31,
+      "width": 34,
       "height": 50,
       "border_width": 2,
       "border_height": 2,
@@ -5016,6 +5016,18 @@
       "secondary_tileset": "gTileset_PlayersHouse",
       "border_filepath": "data/layouts/CeruleanCity_BerryCrushHouse/border.bin",
       "blockdata_filepath": "data/layouts/CeruleanCity_BerryCrushHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE40_FRONTIER_GATE",
+      "name": "Route40_FrontierGate_Layout",
+      "width": 40,
+      "height": 22,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_BattleFrontierOutsideWest",
+      "border_filepath": "data/layouts/Route40_FrontierGate/border.bin",
+      "blockdata_filepath": "data/layouts/Route40_FrontierGate/map.bin"
     }
   ]
 }

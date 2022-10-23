@@ -1,0 +1,85 @@
+mapscripts Route40_FrontierGate_MapScripts {}
+
+script Route40_FrontierGate_EventScript_Biker{
+    msgbox("I'm excited to try out all the spots\nat the BATTLE FRONTIER, but…\pHow am I going to get my bike up\nthe stairs at the BATTLE PYRAMID?", MSGBOX_NPC)
+    end
+}
+
+script Route40_FrontierGate_EventScript_Woman{
+    bufferspeciesname(0, SPECIES_BLISSEY)
+    buffermovename(1, MOVE_MINIMIZE)
+    bufferitemname(2, ITEM_BRIGHT_POWDER)
+    msgbox("Let's see…\p{STR_VAR_2} learned, check!\n{STR_VAR_3} held, check!\l{STR_VAR_1} and I are ready to win!", MSGBOX_NPC)
+    end
+}
+
+script Route40_FrontierGate_EventScript_CooltrainerF{
+    lock
+    msgbox("We're the perfect team.\nWe'll be MULTI BATTLE ROOM champs!", MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script Route40_FrontierGate_EventScript_CooltrainerM{
+    lock
+    buffermovename(0, MOVE_EARTHQUAKE)
+    msgbox("We'll win as long as you don't hit\nmy {POKEMON} with {STR_VAR_1} again.", MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script Route40_FrontierGate_EventScript_Sign{
+    msgbox("BATTLE FRONTIER DOCK", MSGBOX_SIGN)
+    end
+}
+
+script Route40_FrontierGate_EventScript_MrBriney{
+    lock
+    faceplayer
+    if(!flag(FLAG_MET_MR_BRINEY))
+    {
+        setflag(FLAG_MET_MR_BRINEY)
+        msgbox("Hm?\nYou're {PLAYER}?\pSCOTT told me about you!\nYou're the {POKEMON} LEAGUE CHAMP!\pWhat's that?\nYou want to sail with me?\lYou've come to the right man!\pWe'll set sail for the\nBATTLE FRONTIER?", MSGBOX_YESNO)
+        if(!var(VAR_RESULT))
+        {
+            goto(Route40_FrontierGate_EventScript_MrBrineyDeclined)
+        }
+        goto(Route40_FrontierGate_EventScript_MrBrineyAccepted)
+    }
+    msgbox("Ahoy! For you, I'll go out\nto sea anytime!\pNow, my friend, are we bound for\nthe BATTLE FRONTIER?", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(Route40_FrontierGate_EventScript_MrBrineyDeclined)
+    }
+    goto(Route40_FrontierGate_EventScript_MrBrineyAccepted)
+}script(local) Route40_FrontierGate_EventScript_MrBrineyDeclined{
+    msgbox("You just tell me whenever you\nneed to set sail again!", MSGBOX_NPC)
+    end
+}script(local) Route40_FrontierGate_EventScript_MrBrineyAccepted{
+    msgbox("Anchors aweigh!\pPEEKO, we're setting sail, my darling!", MSGBOX_NPC)
+    turnobject(VAR_LAST_TALKED, DIR_SOUTH)
+    delay(0x40)
+    setobjectpriority(1, MAP_ROUTE40_FRONTIER_GATE, 0)
+	setobjectpriority(OBJ_EVENT_ID_PLAYER, MAP_ROUTE40_FRONTIER_GATE, 0)
+    applymovement(1, Frontier_Movement_BrineyBoardBoat)
+    waitmovement(0)
+    removeobject(1)
+    removeobject(1)
+    applymovement(OBJ_EVENT_ID_PLAYER, Frontier_Movement_PlayerBoardBoat)
+    waitmovement(0)
+    hideobjectat(OBJ_EVENT_ID_PLAYER, MAP_ROUTE40_FRONTIER_GATE)
+    //call(Common_EventScript_PlayBrineysBoatMusic) // The sequence is too short to have this music make an impact and not sound weird
+    applymovement(2, Frontier_Movement_BoatExits)
+    waitmovement(0)
+    warp(MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 0xFF, 19, 67)
+    waitstate
+    end
+}movement Frontier_Movement_BrineyBoardBoat{
+    walk_down
+}movement Frontier_Movement_PlayerBoardBoat{
+    walk_down * 2
+}movement Frontier_Movement_BoatExits{
+    walk_left * 2
+    walk_fast_left * 2
+    walk_fastest_left * 5
+}

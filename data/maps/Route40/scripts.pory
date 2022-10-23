@@ -20,13 +20,24 @@ script Route40_Eventscript_FenceGirl {
     end
 }
 
+// The original text is, "Hm! There's a big building up ahead!\nWhat is it?" but it has to be changed for the new Battle Frontier
 script Route40_Eventscript_GateMan {
-    msgbox("Hm! There's a big building up ahead!\nWhat is it?", MSGBOX_NPC)
+	if(!flag(FLAG_VISITED_VERMILION_CITY))
+    {
+        msgbox("Hm! There's construction up ahead!\nWhat will it be?", MSGBOX_NPC)
+        end
+    }
+    msgbox("Hm! There's a big dock up ahead!\nWhat is it?", MSGBOX_NPC)
     end
 }
 
 script Route40_Eventscript_OceanBoy {
-    msgbox("Have you gone to the BATTLE\nTOWER?\pI think a lot of tough TRAINERS\nhave gathered there already.\pBut since you have so many BADGES,\nyou shouldn't do badly at all.", MSGBOX_NPC)
+	if(!flag(FLAG_VISITED_VERMILION_CITY))
+    {	// New text for before the dock is built
+        msgbox("I heard that there's a place\nfar away where a lot of tough\lTRAINERS have gathered.\pBut how would any of us get\nthere from here?", MSGBOX_NPC)
+        end
+    }   // original text doesn't have "at the BATTLE FRONTIER" in it.
+    msgbox("Have you gone to the BATTLE\nTOWER at the BATTLE FRONTIER?\pI think a lot of tough TRAINERS\nhave gathered there already.\pBut since you have so many BADGES,\nyou shouldn't do badly at all.", MSGBOX_NPC)
     end
 }
 

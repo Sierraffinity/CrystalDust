@@ -1,1 +1,25 @@
-mapscripts Route40_Gatehouse_MapScripts {}
+mapscripts Route40_Gatehouse_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!flag(FLAG_VISITED_VERMILION_CITY))
+        {
+            setflag(FLAG_TEMP_1)
+            setobjectxyperm(1, 4, 2)
+            setobjectmovementtype(1, MOVEMENT_TYPE_FACE_DOWN)
+        }
+    }
+}
+
+script Route40_Gatehouse_EventScript_Officer{
+    if(!flag(FLAG_VISITED_VERMILION_CITY))
+    {
+        msgbox("Out this way a new dock is\nunder construction.\pI'm making sure no one wanders onto\nthe worksite and gets hurt.", MSGBOX_NPC)
+        end
+    }
+    msgbox("This gate leads to the BATTLE\nFRONTIER dock.\pThe BATTLE FRONTIER is the ultimate\nchallenge for TRAINERS!", MSGBOX_NPC)
+    end
+}
+
+script Route40_Gatehouse_EventScript_LittleBoy{
+    msgbox("My older sister went to compete at\nthe BATTLE FRONTIER!\pShe said she'd bring back DOLLS\nfor my room!", MSGBOX_NPC)
+    end
+}

@@ -147,9 +147,15 @@ script OlivineCity_EventScript_LighthouseSign{
     msgbox("OLIVINE LIGHTHOUSE\pAlso known as the GLITTER\nLIGHTHOUSE", MSGBOX_SIGN)
     end
 }
-
+// original text was "BATTLE TOWER AHEAD\nOpening Now!" but had to be changed for the Battle Frontier
 script OlivineCity_EventScript_BattleTowerSign{
-    msgbox("BATTLE TOWER AHEAD\nOpening Now!", MSGBOX_SIGN)
+    if(!flag(FLAG_VISITED_VERMILION_CITY))
+    {
+        msgbox("The sign is blank…\nIt looks like it was put in recently.", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox("BATTLE FRONTIER DOCK AHEAD\nOpening Now!", MSGBOX_SIGN)
     end
 }
 

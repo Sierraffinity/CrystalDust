@@ -1094,3 +1094,5 @@ Common_EventScript_FindItem::
 	.include "data/maps/MtMoon_B2F/scripts.inc"
 	.include "data/maps/MtMoon_B3F/scripts.inc"
 	.include "data/maps/CeruleanCity_BerryCrushHouse/scripts.inc"
+
+	.include "data/maps/Route40_FrontierGate/scripts.inc"

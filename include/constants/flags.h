@@ -867,7 +867,7 @@
 #define FLAG_GOT_TM19_FROM_ERIKA                                    0x330
 #define FLAG_GOT_COINS_FROM_GAMBLER_AT_CELADON                      0x331
 #define FLAG_EUSINE_LEFT_CELADON                                    0x332
-#define FLAG_MOVE_TUTOR_TAUGHT_DREAM_EATER                                               0x333
+#define FLAG_MOVE_TUTOR_TAUGHT_DREAM_EATER                          0x333
 #define FLAG_MET_ROCKET_GRUNT_AT_CERULEAN_GYM                       0x334
 #define FLAG_MET_MISTY_AT_CERULEAN_CAPE                             0x335
 #define FLAG_FOUGHT_SNORLAX                                         0x336 // need this to remove guard in Victory Road Gate
@@ -879,8 +879,8 @@
 #define FLAG_MOVE_TUTOR_TAUGHT_SWIFT                                0x33B
 #define FLAG_MOVE_TUTOR_TAUGHT_ICY_WIND                             0x33C
 #define FLAG_MOVE_TUTOR_TAUGHT_ENDURE                               0x33D
+#define FLAG_MET_MR_BRINEY                                          0x33E
 // STOPPED HERE
-#define FLAG_UNUSED_0x33E                                           0x33E
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAGMA_GRUNTS               0x33F
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER                0x340
 #define FLAG_HIDE_DARK_CAVE_STEVEN                                  0x341
