@@ -1,3 +1,4 @@
+raw `
 .set LOCALID_SS_TIDAL, 2
 .set LOCALID_FERRY_ATTENDANT, 3
 .set LOCALID_MANIAC_1, 9
@@ -536,137 +537,95 @@ BattleFrontier_OutsideWest_Text_MonWithLongTailInFrontier:
 	.string "Oh, challenges can wait. I feel driven\n"
 	.string "to find the delightful creature!$"
 
-BattleFrontier_OutsideWest_EventScript_DockFatMan::
-	msgbox BattleFrontier_OutsideWest_EventScript_DockFatMan_Text_0, MSGBOX_NPC
-	end
+`
 
+script BattleFrontier_OutsideWest_EventScript_DockFatMan{
+    msgbox("Hey!\pDo you know what you just did?\nYou've taken your first step into\lHOENN!\pYour {POKE}GEAR MAP doesn't show the\nmap for HOENN, though!", MSGBOX_NPC)
+    end
+}
 
-BattleFrontier_OutsideWest_EventScript_FactoryScientist::
-	msgbox BattleFrontier_OutsideWest_EventScript_FactoryScientist_Text_0, MSGBOX_NPC
-	end
+script BattleFrontier_OutsideWest_EventScript_FactoryScientist{
+    msgbox("The BATTLE FACTORY is all about\nknowledge and strategy.\pYou have to use what you know\nabout {POKEMON} and quickly adapt\lto get the best from your team.\pIt's the perfect facility for an\nintellectual like me.", MSGBOX_NPC)
+    end
+}
 
+script BattleFrontier_OutsideWest_EventScript_FactoryLittleGirl{
+    msgbox("My mommy is a TRAINER, but I'm\nnot!\pShe took me here so I could\nbattle too!\pYou don't have to have {POKEMON}\nof your own to battle here!", MSGBOX_NPC)
+    end
+}
 
-BattleFrontier_OutsideWest_EventScript_FactoryLittleGirl::
-	msgbox BattleFrontier_OutsideWest_EventScript_FactoryLittleGirl_Text_0, MSGBOX_NPC
-	end
+script BattleFrontier_OutsideWest_EventScript_FactoryPokefanF{
+    msgbox("My little girl is a natural battler,\nbut she's too young to raise her\lown {POKEMON}.\pI take her here to let her try\nbattling with all kinds of {POKEMON}!", MSGBOX_NPC)
+    end
+}
 
+script BattleFrontier_OutsideWest_EventScript_Biker{
+    msgbox("The KANTO RIDER FEDERATION claims\nanother island!\pNow to show everyone my menacing\nmotorcycle moves!", MSGBOX_NPC)
+    end
+}
 
-BattleFrontier_OutsideWest_EventScript_FactoryPokefanF::
-	msgbox BattleFrontier_OutsideWest_EventScript_FactoryPokefanF_Text_0, MSGBOX_NPC
-	end
+script BattleFrontier_OutsideWest_EventScript_CooltrainerM{
+    msgbox("The TRAINERS here are tough, but\nI'm even tougher!\pI have ten BADGES, some are even\nfrom different regions!\pNot many TRAINERS have been to\nas many places as I have.\pWith my experience, there's no way\nI can possibly lose!", MSGBOX_NPC)
+    end
+}
 
+script BattleFrontier_OutsideWest_EventScript_Rocker{
+    msgbox("There used to be nothing here a\nfew short years ago, but now look!\pIt's so amazing that I brought my\nmother out to see it.", MSGBOX_NPC)
+    turnobject(11, DIR_SOUTH)
+    end
+}
 
-BattleFrontier_OutsideWest_EventScript_Biker::
-	msgbox BattleFrontier_OutsideWest_EventScript_Biker_Text_0, MSGBOX_NPC
-	end
+script BattleFrontier_OutsideWest_EventScript_RockersMother{
+    msgbox("What do I think of this place?\nMeh. It could be better.", MSGBOX_NPC)
+    turnobject(1, DIR_NORTH)
+    end
+}
 
+script BattleFrontier_OutsideWest_EventScript_Firebreather{
+    msgbox("The MART here sells vitamins for\n{POKEMON}, but I buy them with BP\lat the EXCHANGE SERVICE CORNER.\pThey're an essential part of training\nnew {POKEMON} for my team.", MSGBOX_NPC)
+    end
+}
 
-BattleFrontier_OutsideWest_EventScript_CooltrainerM::
-	msgbox BattleFrontier_OutsideWest_EventScript_CooltrainerM_Text_0, MSGBOX_NPC
-	end
+script BattleFrontier_OutsideWest_EventScript_Worker{
+    msgbox("People are surprised that I\nvacation here every year.\pSome people like laying on beaches,\nsome like exploring new cities,\lbut I like battling.\pThe different rules here give me\nthe variety I crave for battles.\pThey keep things from getting too\nstale and predictable.", MSGBOX_NPC)
+    end
+}
 
+script BattleFrontier_OutsideWest_EventScript_Swimmer{
+    msgbox("Hmm… How do I get into the water\nfrom here?\pThere are no wild {POKEMON} in the sea\nout here, so it's great for a swim.", MSGBOX_NPC)
+    end
+}
 
-BattleFrontier_OutsideWest_EventScript_Rocker::
-	msgbox BattleFrontier_OutsideWest_EventScript_Rocker_Text_0, MSGBOX_NPC
-	turnobject 11, DIR_SOUTH
-	end
+script BattleFrontier_OutsideWest_EventScript_SmearglePokefanF{
+    msgbox("I caught a SMEARGLE in a cave\nhidden on this island.\pThey're rare where I come from,\nso it was delightful to find one!\pWhere is the cave entrance?\pIf I told you, my SMEARGLE wouldn't\nbe as rare anymore now would it?", MSGBOX_NPC)
+    end
+}
 
-
-BattleFrontier_OutsideWest_EventScript_RockersMother::
-	msgbox BattleFrontier_OutsideWest_EventScript_RockersMother_Text_0, MSGBOX_NPC
-	turnobject 1, DIR_NORTH
-	end
-
-
-BattleFrontier_OutsideWest_EventScript_Firebreather::
-	msgbox BattleFrontier_OutsideWest_EventScript_Firebreather_Text_0, MSGBOX_NPC
-	end
-
-
-BattleFrontier_OutsideWest_EventScript_Worker::
-	msgbox BattleFrontier_OutsideWest_EventScript_Worker_Text_0, MSGBOX_NPC
-	end
-
-
-BattleFrontier_OutsideWest_EventScript_Swimmer::
-	msgbox BattleFrontier_OutsideWest_EventScript_Swimmer_Text_0, MSGBOX_NPC
-	end
-
-
-BattleFrontier_OutsideWest_EventScript_SmearglePokefanF::
-	msgbox BattleFrontier_OutsideWest_EventScript_SmearglePokefanF_Text_0, MSGBOX_NPC
-	end
-
-
-BattleFrontier_OutsideWest_EventScript_MrBriney::
-	lock
-	faceplayer
-	msgbox BattleFrontier_OutsideWest_EventScript_MrBriney_Text_0, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq BattleFrontier_OutsideWest_EventScript_MrBriney_2
-BattleFrontier_OutsideWest_EventScript_MrBriney_1:
-	goto BattleFrontier_OutsideWest_EventScript_MrBrineyAccepted
-	return
-
-BattleFrontier_OutsideWest_EventScript_MrBriney_2:
-	goto Route40_FrontierGate_EventScript_MrBrineyDeclined
-	goto BattleFrontier_OutsideWest_EventScript_MrBriney_1
-
-
-BattleFrontier_OutsideWest_EventScript_MrBrineyAccepted:
-	msgbox Frontier_Test_MrBrineyAccepted, MSGBOX_NPC
-	turnobject VAR_LAST_TALKED, DIR_SOUTH
-	delay 0x40
-	setobjectpriority 3, MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 0
-	setobjectpriority OBJ_EVENT_ID_PLAYER, MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 0
-	applymovement 3, Frontier_Movement_BrineyBoardBoat
-	waitmovement 0
-	removeobject 3
-	applymovement OBJ_EVENT_ID_PLAYER, Frontier_Movement_PlayerBoardBoat
-	waitmovement 0
-	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE40_FRONTIER_GATE
-	applymovement 2, Frontier_Movement_BoatExits
-	waitmovement 0
-	warp MAP_ROUTE40_FRONTIER_GATE, 0xFF, 9, 8
-	waitstate
-	end
-
-
-BattleFrontier_OutsideWest_EventScript_DockFatMan_Text_0:
-	.string "Hey!\pDo you know what you just did?\nYou've taken your first step into\lHOENN!\pYour {POKE}GEAR MAP doesn't show the\nmap for HOENN, though!$"
-
-BattleFrontier_OutsideWest_EventScript_FactoryScientist_Text_0:
-	.string "The BATTLE FACTORY is all about\nknowledge and strategy.\pYou have to use what you know\nabout {POKEMON} and quickly adapt\lto get the best from your team.\pIt's the perfect facility for an\nintellectual like me.$"
-
-BattleFrontier_OutsideWest_EventScript_FactoryLittleGirl_Text_0:
-	.string "My mommy is a TRAINER, but I'm\nnot!\pShe took me here so I could\nbattle too!\pYou don't have to have {POKEMON}\nof your own to battle here!$"
-
-BattleFrontier_OutsideWest_EventScript_FactoryPokefanF_Text_0:
-	.string "My little girl is a natural battler,\nbut she's too young to raise her\lown {POKEMON}.\pI take her here to let her try\nbattling with all kinds of {POKEMON}!$"
-
-BattleFrontier_OutsideWest_EventScript_Biker_Text_0:
-	.string "The KANTO RIDER FEDERATION claims\nanother island!\pNow to show everyone my menacing\nmotorcycle moves!$"
-
-BattleFrontier_OutsideWest_EventScript_CooltrainerM_Text_0:
-	.string "The TRAINERS here are tough, but\nI'm even tougher!\pI have ten BADGES, some are even\nfrom different regions!\pNot many TRAINERS have been to\nas many places as I have.\pWith my experience, there's no way\nI can possibly lose!$"
-
-BattleFrontier_OutsideWest_EventScript_Rocker_Text_0:
-	.string "There used to be nothing here a\nfew short years ago, but now look!\pIt's so amazing that I brought my\nmother out to see it.$"
-
-BattleFrontier_OutsideWest_EventScript_RockersMother_Text_0:
-	.string "What do I think of this place?\nMeh. It could be better.$"
-
-BattleFrontier_OutsideWest_EventScript_Firebreather_Text_0:
-	.string "The MART here sells vitamins for\n{POKEMON}, but I buy them with BP\lat the EXCHANGE SERVICE CORNER.\pThey're an essential part of training\nnew {POKEMON} for my team.$"
-
-BattleFrontier_OutsideWest_EventScript_Worker_Text_0:
-	.string "People are surprised that I\nvacation here every year.\pSome people like laying on beaches,\nsome like exploring new cities,\lbut I like battling.\pThe different rules here give me\nthe variety I crave for battles.\pThey keep things from getting too\nstale and predictable.$"
-
-BattleFrontier_OutsideWest_EventScript_Swimmer_Text_0:
-	.string "Hmm… How do I get into the water\nfrom here?\pThere are no wild {POKEMON} in the sea\nout here, so it's great for a swim.$"
-
-BattleFrontier_OutsideWest_EventScript_SmearglePokefanF_Text_0:
-	.string "I caught a SMEARGLE in a cave\nhidden on this island.\pThey're rare where I come from,\nso it was delightful to find one!\pWhere is the cave entrance?\pIf I told you, my SMEARGLE wouldn't\nbe as rare anymore now would it?$"
-
-BattleFrontier_OutsideWest_EventScript_MrBriney_Text_0:
-	.string "Ahoy! For you, I'll go out\nto sea anytime!\pNow, my friend, are we bound for\nOLIVINE?$"
+script BattleFrontier_OutsideWest_EventScript_MrBriney{
+    lock
+    faceplayer
+    msgbox("Ahoy! For you, I'll go out\nto sea anytime!\pNow, my friend, are we bound for\nOLIVINE?", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(Route40_FrontierGate_EventScript_MrBrineyDeclined)
+    }
+    goto(BattleFrontier_OutsideWest_EventScript_MrBrineyAccepted)
+}script(local) BattleFrontier_OutsideWest_EventScript_MrBrineyAccepted{
+    msgbox(Frontier_Test_MrBrineyAccepted, MSGBOX_NPC)
+    turnobject(VAR_LAST_TALKED, DIR_SOUTH)
+    delay(0x40)
+    setobjectpriority(3, MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 0)
+	setobjectpriority(OBJ_EVENT_ID_PLAYER, MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 0)
+    applymovement(3, Frontier_Movement_BrineyBoardBoat)
+    waitmovement(0)
+    removeobject(3)
+    applymovement(OBJ_EVENT_ID_PLAYER, Frontier_Movement_PlayerBoardBoat)
+    waitmovement(0)
+    hideobjectat(OBJ_EVENT_ID_PLAYER, MAP_ROUTE40_FRONTIER_GATE)
+    //call(Common_EventScript_PlayBrineysBoatMusic) // The sequence is too short to have this music make an impact and not sound weird
+    applymovement(2, Frontier_Movement_BoatExits)
+    waitmovement(0)
+    warp(MAP_ROUTE40_FRONTIER_GATE, 0xFF, 9, 8)
+    waitstate
+    end
+}

@@ -52,18 +52,17 @@ script Route40_FrontierGate_EventScript_MrBriney{
         goto(Route40_FrontierGate_EventScript_MrBrineyDeclined)
     }
     goto(Route40_FrontierGate_EventScript_MrBrineyAccepted)
-}script(local) Route40_FrontierGate_EventScript_MrBrineyDeclined{
+}script Route40_FrontierGate_EventScript_MrBrineyDeclined{
     msgbox("You just tell me whenever you\nneed to set sail again!", MSGBOX_NPC)
     end
 }script(local) Route40_FrontierGate_EventScript_MrBrineyAccepted{
-    msgbox("Anchors aweigh!\pPEEKO, we're setting sail, my darling!", MSGBOX_NPC)
+    msgbox(Frontier_Test_MrBrineyAccepted, MSGBOX_NPC)
     turnobject(VAR_LAST_TALKED, DIR_SOUTH)
     delay(0x40)
     setobjectpriority(1, MAP_ROUTE40_FRONTIER_GATE, 0)
 	setobjectpriority(OBJ_EVENT_ID_PLAYER, MAP_ROUTE40_FRONTIER_GATE, 0)
     applymovement(1, Frontier_Movement_BrineyBoardBoat)
     waitmovement(0)
-    removeobject(1)
     removeobject(1)
     applymovement(OBJ_EVENT_ID_PLAYER, Frontier_Movement_PlayerBoardBoat)
     waitmovement(0)
@@ -82,4 +81,6 @@ script Route40_FrontierGate_EventScript_MrBriney{
     walk_left * 2
     walk_fast_left * 2
     walk_fastest_left * 5
+}text Frontier_Test_MrBrineyAccepted{
+    "Anchors aweigh!\pPEEKO, we're setting sail, my darling!"
 }
