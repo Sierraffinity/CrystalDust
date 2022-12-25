@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Morning and night battle terrain variants for all outdoor terrain types.
 - Surfing animation from FireRed (credit to [@ShinyDragonHunter](https://github.com/ShinyDragonHunter)).
 - Flying animation from FireRed (credit to [@ShinyDragonHunter](https://github.com/ShinyDragonHunter)).
+- Game Boy Player/Sounds music engine, a port of Crystal's sound engine to GBA ([@Jambo51](https://github.com/Jambo51), [@ShantyTown](https://github.com/huderlem), and myself).
 
 ### Fixed
 

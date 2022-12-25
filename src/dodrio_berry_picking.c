@@ -1458,7 +1458,7 @@ static void sub_8025F48(void)
     {
         if (gUnknown_02022C98->unk144 == 0)
         {
-            m4aSongNumStop(SE_SUCCESS);
+            m4aSongNumStop(SE_SUCCESS, FALSE);
             PlaySE(SE_SUCCESS);
             gUnknown_02022C98->unk144 = 1;
         }
@@ -1501,7 +1501,7 @@ static void sub_8026044(void)
     {
         if (gUnknown_02022C98->unk144 == 0)
         {
-            m4aSongNumStop(SE_SUCCESS);
+            m4aSongNumStop(SE_SUCCESS, FALSE);
             PlaySE(SE_SUCCESS);
             gUnknown_02022C98->unk144 = 1;
         }

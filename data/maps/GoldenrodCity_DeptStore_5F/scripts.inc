@@ -220,7 +220,7 @@ GoldenrodCity_DeptStore_5F_EventScript_MysteryGiftGirl_Text_0:
 	.string "MYSTERY GIFT.\p"
 	.string "With just a little beep, you get\n"
 	.string "a gift.\p"
-	.string "Use it to LINK TOGETHER WITH ALL!$"
+	.string "Use it to “LINK TOGETHER WITH ALL”!$"
 
 GoldenrodCity_DeptStore_5F_EventScript_FloorNumber_Text_0:
 	.string "Customize Your POKéMON\p"

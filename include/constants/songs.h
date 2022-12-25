@@ -277,14 +277,18 @@
 #define SE_PIKE_CURTAIN_OPEN        268 // SE_CURTAIN1
 #define SE_SUDOWOODO_SHAKE          269 // SE_USSOKI
 // CrystalDust SFX
-#define SE_INTRO_UNOWN1             270 // Intro Unown low pitch
-#define SE_INTRO_UNOWN2             271 // Intro Unown mid pitch
-#define SE_INTRO_UNOWN3             272 // Intro Unown hi pitch
-#define SE_INTRO_DITTOBOUNCE1       273 // Intro Ditto bounce 1
-#define SE_INTRO_DITTOBOUNCE2       274 // Intro Ditto bounce 2
-#define SE_INTRO_DITTOTRANSFORM     275 // Intro Ditto transformation
-#define SE_INTRO_LOGO_DING          276 // Intro e-Reader logo ding
-#define SE_PHONE_BEEP               277 // Phone beep
+#define SE_INTRO_DITTOBOUNCE1       270 // Intro Ditto bounce 1
+#define SE_INTRO_DITTOBOUNCE2       271 // Intro Ditto bounce 2
+#define SE_INTRO_DITTOTRANSFORM     272 // Intro Ditto transformation
+#define SE_INTRO_LOGO_DING          273 // Intro e-Reader logo ding
+#define SE_INTRO_UNOWN1             274 // Intro Unown low pitch
+#define SE_INTRO_UNOWN2             275 // Intro Unown mid pitch
+#define SE_INTRO_UNOWN3             276 // Intro Unown hi pitch
+#define SE_INTRO_PICHU_WOOPER       277 // Intro Pichu & Wooper pop up
+#define SE_INTRO_SUICUNE1           278 // Intro Suicune SFX 1
+#define SE_INTRO_SUICUNE2           279 // Intro Suicune SFX 2
+#define SE_INTRO_SUICUNE3           280 // Intro Suicune SFX 3
+#define SE_PHONE_BEEP               281 // Phone beep
 
 // Music
 #define MUS_LITTLEROOT_TEST         350 // MUS_TETSUJI

@@ -22,6 +22,7 @@
 #define tSeIndex data[2]
 #define tBgmIndexOld data[3]
 #define tSeIndexOld data[4]
+#define tGBSounds data[5]
 #define tWhichSubmenu data[14]
 #define tState data[15]
 
@@ -259,11 +260,11 @@ void CB2_StartSoundCheckMenu(void) // sub_080E8320
 
 static void Task_InitSoundCheckMenu_CreateWindows(u8 taskId) // SanitizeDayCareMailForRuby
 {
-    const u8 soundcheckStr[] = _("SOUND TEST{CLEAR_TO 120}A: PLAY  B: EXIT");
+    const u8 soundcheckStr[] = _("SOUND TEST{CLEAR_TO 108}A: PLAY  B: EXIT");
     const u8 bgmStr[] = _("MUSIC");
     const u8 seStr[] = _("SOUND EFFECTS");
     const u8 upDownStr[] = _("{LEFT_ARROW}PREV {RIGHT_ARROW}NEXT");
-    const u8 driverStr[] = _("R: CRY TEST");
+    const u8 driverStr[] = _("R: CRY   START: GBS");
 
     if (!gPaletteFade.active)
     {
@@ -271,7 +272,7 @@ static void Task_InitSoundCheckMenu_CreateWindows(u8 taskId) // SanitizeDayCareM
         SetStandardWindowBorderStyle(WIN_INFO, FALSE);
         AddTextPrinterParameterized(WIN_INFO, 2, soundcheckStr, 0, 0, TEXT_SPEED_FF, NULL);
         AddTextPrinterParameterized(WIN_INFO, 0, gStringVar1, 0, 18, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(WIN_INFO, 2, driverStr, 120, 14, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_INFO, 2, driverStr, 108, 14, TEXT_SPEED_FF, NULL);
         PutWindowTilemapAndCopyWindowToVram(WIN_INFO);
         SetStandardWindowBorderStyle(WIN_MUS, FALSE);
         AddTextPrinterParameterized(WIN_MUS, 2, bgmStr, 0, 0, TEXT_SPEED_FF, NULL);
@@ -324,19 +325,19 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
             {
                 if (gTasks[taskId].tSeIndex != 0)
                 {
-                    m4aSongNumStop(gTasks[taskId].tSeIndexOld);
-                    m4aSongNumStart(gTasks[taskId].tSeIndex);
+                    m4aSongNumStop(gTasks[taskId].tSeIndexOld, gTasks[taskId].tGBSounds);
+                    m4aSongNumStart(gTasks[taskId].tSeIndex, gTasks[taskId].tGBSounds);
                     gTasks[taskId].tSeIndexOld = gTasks[taskId].tSeIndex;
                 }
                 else
                 {
-                    m4aSongNumStop(gTasks[taskId].tSeIndexOld);
+                    m4aSongNumStop(gTasks[taskId].tSeIndexOld, gTasks[taskId].tGBSounds);
                     gTasks[taskId].tSeIndexOld = 0;
                 }
             }
             else if (gTasks[taskId].tSeIndex != 0)
             {
-                m4aSongNumStart(gTasks[taskId].tSeIndex);
+                m4aSongNumStart(gTasks[taskId].tSeIndex, gTasks[taskId].tGBSounds);
                 gTasks[taskId].tSeIndexOld = gTasks[taskId].tSeIndex;
             }
         }
@@ -346,28 +347,37 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
             {
                 if (gTasks[taskId].tBgmIndex != 0)
                 {
-                    m4aSongNumStop(gTasks[taskId].tBgmIndexOld + (MUS_LITTLEROOT_TEST - 1));
-                    m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_LITTLEROOT_TEST - 1));
+                    m4aSongNumStop(gTasks[taskId].tBgmIndexOld + (MUS_LITTLEROOT_TEST - 1), gTasks[taskId].tGBSounds);
+                    m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_LITTLEROOT_TEST - 1), gTasks[taskId].tGBSounds);
                     gTasks[taskId].tBgmIndexOld = gTasks[taskId].tBgmIndex;
                 }
                 else
                 {
-                    m4aSongNumStop(gTasks[taskId].tBgmIndexOld + (MUS_LITTLEROOT_TEST - 1));
+                    m4aSongNumStop(gTasks[taskId].tBgmIndexOld + (MUS_LITTLEROOT_TEST - 1), gTasks[taskId].tGBSounds);
                     gTasks[taskId].tBgmIndexOld = 0;
                 }
             }
             else if (gTasks[taskId].tBgmIndex != 0)
             {
-                m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_LITTLEROOT_TEST - 1));
+                m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_LITTLEROOT_TEST - 1), gTasks[taskId].tGBSounds);
                 gTasks[taskId].tBgmIndexOld = gTasks[taskId].tBgmIndex;
             }
         }
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        m4aSongNumStart(SE_SELECT);
+        m4aSongNumStart(SE_SELECT, FALSE);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB(0, 0, 0));
         gTasks[taskId].func = Task_ExitToTitleScreen;
+    }
+    else if (JOY_NEW(START_BUTTON))
+    {
+        gTasks[taskId].tGBSounds = !gTasks[taskId].tGBSounds;
+        if (gTasks[taskId].tBgmIndex != 0 && gTasks[taskId].tBgmIndexOld != 0)
+        {
+            m4aSongNumStop(gTasks[taskId].tBgmIndex + (MUS_LITTLEROOT_TEST - 1), !gTasks[taskId].tGBSounds);
+            m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_LITTLEROOT_TEST - 1), gTasks[taskId].tGBSounds);
+        }
     }
     else if (JOY_REPEAT(DPAD_UP | DPAD_DOWN))
     {
@@ -382,7 +392,7 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
             if (gTasks[taskId].tSeIndex > 0)
                 gTasks[taskId].tSeIndex--;
             else
-                gTasks[taskId].tSeIndex = SE_INTRO_LOGO_DING;
+                gTasks[taskId].tSeIndex = SE_PHONE_BEEP;
         }
         else
         {
@@ -397,7 +407,7 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
     {
         if (gTasks[taskId].tWindowSelected != TEST_MUS)
         {
-            if (gTasks[taskId].tSeIndex < SE_INTRO_LOGO_DING)
+            if (gTasks[taskId].tSeIndex < SE_PHONE_BEEP)
                 gTasks[taskId].tSeIndex++;
             else
                 gTasks[taskId].tSeIndex = 0;
@@ -886,7 +896,7 @@ static void Task_ProcessPanTestInput(u8 taskId) // sub_080E9284
     if (JOY_REPEAT(DPAD_RIGHT))
     {
         sSoundTestParams[CRY_TEST_VOICE]++;
-        if (sSoundTestParams[CRY_TEST_VOICE] > SE_SUDOWOODO_SHAKE)
+        if (sSoundTestParams[CRY_TEST_VOICE] > SE_PHONE_BEEP)
             sSoundTestParams[CRY_TEST_VOICE] = MUS_DUMMY;
         PrintPanTestMenuText();
     }
@@ -894,7 +904,7 @@ static void Task_ProcessPanTestInput(u8 taskId) // sub_080E9284
     {
         sSoundTestParams[CRY_TEST_VOICE]--;
         if (sSoundTestParams[CRY_TEST_VOICE] < MUS_DUMMY)
-            sSoundTestParams[CRY_TEST_VOICE] = SE_SUDOWOODO_SHAKE;
+            sSoundTestParams[CRY_TEST_VOICE] = SE_PHONE_BEEP;
         PrintPanTestMenuText();
     }
 }
@@ -1550,13 +1560,17 @@ static void DestroyWindow(u8 windowId) // sub_080E9750
     X(SE_PIKE_CURTAIN_CLOSE, "SE-PIKE-CURTAIN-CLOSE") \
     X(SE_PIKE_CURTAIN_OPEN, "SE-PIKE-CURTAIN-OPEN") \
     X(SE_SUDOWOODO_SHAKE, "SE-SUDOWOODO-SHAKE") \
-    X(SE_INTRO_UNOWN1, "SE-INTRO-UNOWN1") \
-    X(SE_INTRO_UNOWN2, "SE-INTRO-UNOWN2") \
-    X(SE_INTRO_UNOWN3, "SE-INTRO-UNOWN3") \
     X(SE_INTRO_DITTOBOUNCE1, "SE-INTRO-DITTOBOUNCE1") \
     X(SE_INTRO_DITTOBOUNCE2, "SE-INTRO-DITTOBOUNCE2") \
     X(SE_INTRO_DITTOTRANSFORM, "SE-INTRO-DITTOTRANSFORM") \
     X(SE_INTRO_LOGO_DING, "SE-INTRO-LOGO-DING") \
+    X(SE_INTRO_UNOWN1, "SE-INTRO-UNOWN1") \
+    X(SE_INTRO_UNOWN2, "SE-INTRO-UNOWN2") \
+    X(SE_INTRO_UNOWN3, "SE-INTRO-UNOWN3") \
+    X(SE_INTRO_PICHU_WOOPER, "SE-INTRO-PICHU-WOOPER") \
+    X(SE_INTRO_SUICUNE1, "SE-INTRO-SUICUNE1") \
+    X(SE_INTRO_SUICUNE2, "SE-INTRO-SUICUNE2") \
+    X(SE_INTRO_SUICUNE3, "SE-INTRO-SUICUNE3") \
     X(SE_PHONE_BEEP, "SE-PHONE-BEEP")
 
 // Create BGM list
@@ -1588,5 +1602,6 @@ SOUND_LIST_SE
 #undef tSeIndex
 #undef tBgmIndexOld
 #undef tSeIndexOld
+#undef tGBSounds
 #undef tWhichSubmenu
 #undef tState

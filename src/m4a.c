@@ -1,5 +1,6 @@
 #include <string.h>
 #include "gba/m4a_internal.h"
+#include "constants/songs.h"
 
 extern const u8 gCgb3Vol[];
 
@@ -18,6 +19,7 @@ struct MusicPlayerInfo gMPlayInfo_BGM;
 struct MusicPlayerInfo gMPlayInfo_SE1;
 struct MusicPlayerInfo gMPlayInfo_SE2;
 struct MusicPlayerInfo gMPlayInfo_SE3;
+u8 gUsedCGBChannels;
 u8 gMPlayMemAccArea[0x10];
 
 u32 MidiKeyToFreq(struct WaveData *wav, u8 key, u8 fineAdjust)
@@ -103,21 +105,36 @@ void m4aSoundMain(void)
     SoundMain();
 }
 
-void m4aSongNumStart(u16 n)
+const struct Song *GetSong(int songID, bool32 gbsEnabled)
+{
+    if (gbsEnabled)
+    {
+        int i;
+        for (i = 0; gGBSSongTable[i].songID != 0xFFFFFFFF; i++)
+        {
+            if (gGBSSongTable[i].songID == songID)
+            {
+                return &gGBSSongTable[i].song;
+            }
+        }
+    }
+
+    return &gSongTable[songID];
+}
+
+void m4aSongNumStart(u16 n, bool32 gbsEnabled)
 {
     const struct MusicPlayer *mplayTable = gMPlayTable;
-    const struct Song *songTable = gSongTable;
-    const struct Song *song = &songTable[n];
+    const struct Song *song = GetSong(n, gbsEnabled);
     const struct MusicPlayer *mplay = &mplayTable[song->ms];
 
     MPlayStart(mplay->info, song->header);
 }
 
-void m4aSongNumStartOrChange(u16 n)
+void m4aSongNumStartOrChange(u16 n, bool32 gbsEnabled)
 {
     const struct MusicPlayer *mplayTable = gMPlayTable;
-    const struct Song *songTable = gSongTable;
-    const struct Song *song = &songTable[n];
+    const struct Song *song = GetSong(n, gbsEnabled);
     const struct MusicPlayer *mplay = &mplayTable[song->ms];
 
     if (mplay->info->songHeader != song->header)
@@ -134,11 +151,10 @@ void m4aSongNumStartOrChange(u16 n)
     }
 }
 
-void m4aSongNumStartOrContinue(u16 n)
+void m4aSongNumStartOrContinue(u16 n, bool32 gbsEnabled)
 {
     const struct MusicPlayer *mplayTable = gMPlayTable;
-    const struct Song *songTable = gSongTable;
-    const struct Song *song = &songTable[n];
+    const struct Song *song = GetSong(n, gbsEnabled);
     const struct MusicPlayer *mplay = &mplayTable[song->ms];
 
     if (mplay->info->songHeader != song->header)
@@ -149,22 +165,20 @@ void m4aSongNumStartOrContinue(u16 n)
         MPlayContinue(mplay->info);
 }
 
-void m4aSongNumStop(u16 n)
+void m4aSongNumStop(u16 n, bool32 gbsEnabled)
 {
     const struct MusicPlayer *mplayTable = gMPlayTable;
-    const struct Song *songTable = gSongTable;
-    const struct Song *song = &songTable[n];
+    const struct Song *song = GetSong(n, gbsEnabled);
     const struct MusicPlayer *mplay = &mplayTable[song->ms];
 
     if (mplay->info->songHeader == song->header)
         m4aMPlayStop(mplay->info);
 }
 
-void m4aSongNumContinue(u16 n)
+void m4aSongNumContinue(u16 n, bool32 gbsEnabled)
 {
     const struct MusicPlayer *mplayTable = gMPlayTable;
-    const struct Song *songTable = gSongTable;
-    const struct Song *song = &songTable[n];
+    const struct Song *song = GetSong(n, gbsEnabled);
     const struct MusicPlayer *mplay = &mplayTable[song->ms];
 
     if (mplay->info->songHeader == song->header)
@@ -596,7 +610,14 @@ void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader
         mplayInfo->tempoI = 150;
         mplayInfo->tempoU = 0x100;
         mplayInfo->tempoC = 0;
+        mplayInfo->gbsTempo = 0x100;
         mplayInfo->fadeOI = 0;
+
+        // Restore the master volume of the GB channels in case GBS changed it.
+        REG_NR50 = 0x77;
+
+        // Restore bias level.
+        //REG_SOUNDBIAS = (REG_SOUNDBIAS & 0xFC00) | 0x200;
 
         for (i = 0, track = mplayInfo->tracks; i < songHeader->trackCount && i < mplayInfo->trackCount; i++, track++)
         {
@@ -890,9 +911,12 @@ void CgbSound(void)
     vu8 *nrx2ptr;
     vu8 *nrx3ptr;
     vu8 *nrx4ptr;
+    int i;
 
-    // Most comparision operations that cast to s8 perform 'and' by 0xFF.
+    // Most comparison operations that cast to s8 perform 'and' by 0xFF.
     int mask = 0xff;
+
+    gUsedCGBChannels = 0;
 
     if (soundInfo->c15)
         soundInfo->c15--;
@@ -903,6 +927,8 @@ void CgbSound(void)
     {
         if (!(channels->sf & 0xc7))
             continue;
+
+        gUsedCGBChannels |= 1 << (ch - 1);
 
         switch (ch)
         {

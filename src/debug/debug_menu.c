@@ -104,6 +104,7 @@ static void DebugMenu_MaxCoins(u8 taskId);
 static void DebugMenu_BecomeChampion(u8 taskId);
 static void DebugMenu_ToggleWalkThroughWalls(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
+static void DebugMenu_ToggleGBSounds(u8 taskId);
 static void DebugMenu_CraftDNTint(u8 taskId);
 static void DebugMenu_CraftDNTint_ProcessInput(u8 taskId);
 static void DebugMenu_Pokedex_ToggleNationalDex(u8 taskId);
@@ -133,6 +134,8 @@ static void DebugMenu_AddItem_ProcessInputNum(u8 taskId);
 static void DebugMenu_AddItem_ProcessInputCount(u8 taskId);
 static void DebugMenu_LottoNumber_ProcessInput(u8 taskId);
 static void DebugMenu_BattleTerrain_ProcessInput(u8 taskId);
+static void DebugMenu_TestFanfares(u8 taskId);
+static void DebugMenu_TestFanfares_ProcessInput(u8 taskId);
 
 extern bool8 gPaletteTintDisabled;
 extern bool8 gPaletteOverrideDisabled;
@@ -163,6 +166,8 @@ static const u8 sText_ToggleWalkThroughWalls[] = _("Toggle walk through walls");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
 static const u8 sText_StartSurfing[] = _("Start surfing");
+static const u8 sText_ToggleGBSounds[] = _("Toggle GB Sounds");
+static const u8 sText_TestFanfares[] = _("Test fanfares");
 static const u8 sText_TestBattleTransition[] = _("Test battle transition");
 static const u8 sText_CreateDaycareEgg[] = _("Create daycare egg");
 static const u8 sText_PoisonAllMons[] = _("Poison all Pokémon");
@@ -190,9 +195,11 @@ static const u8 sText_ClockStatus[] = _("Time: {STR_VAR_1}");
 static const u8 sText_RespawnStatus[] = _("Respawn point:\n{STR_VAR_1}");
 static const u8 sText_LottoStatus[] = _("Lotto num:\n{STR_VAR_1}");
 static const u8 sText_BattleTerrain[] = _("Terrain override:\n{STR_VAR_1}");
+static const u8 sText_GBSCounter[] = _("VBlank Counter: {STR_VAR_1}\nGBS Counter: {STR_VAR_2}\nm4a Counter: {STR_VAR_3}");
 static const u8 sText_On[] = _("{COLOR GREEN}ON");
 static const u8 sText_Off[] = _("{COLOR RED}OFF");
 static const u8 sText_RGBValues[] = _("{COLOR RED}{STR_VAR_1}\n{COLOR GREEN}{STR_VAR_2}\n{COLOR BLUE}{STR_VAR_3}");
+static const u8 sText_FanfareIndex[] = _("Fanfare num:\n{STR_VAR_1}");
 
 extern u8 PokedexRating_EventScript_ShowRatingMessage[];
 
@@ -298,6 +305,8 @@ static const struct DebugMenuAction sDebugMenu_MiscActions[] =
     { sText_ToggleRunningShoes, DebugMenu_ToggleRunningShoes, NULL },
     { sText_EnableResetRTC, DebugMenu_EnableResetRTC, NULL },
     { sText_StartSurfing, DebugMenu_StartSurfing, NULL },
+    { sText_ToggleGBSounds, DebugMenu_ToggleGBSounds, NULL },
+    { sText_TestFanfares, DebugMenu_TestFanfares, NULL },
 };
 
 CREATE_BOUNCER(MiscActions, MainActions);
@@ -391,6 +400,17 @@ static const struct WindowTemplate sDebugMenu_Window_LottoNum =
 };
 
 static const struct WindowTemplate sDebugMenu_Window_BattleTerrain = 
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 11,
+    .height = 4,
+    .paletteNum = 15,
+    .baseBlock = 0x120
+};
+
+static const struct WindowTemplate sDebugMenu_Window_TestFanfares = 
 {
     .bg = 0,
     .tilemapLeft = 1,
@@ -1060,6 +1080,16 @@ static void DebugMenu_StartSurfing(u8 taskId)
     DebugMenu_Exit(taskId);
 }
 
+static void DebugMenu_ToggleGBSounds(u8 taskId)
+{
+    if (FlagGet(FLAG_SYS_GBS_ENABLED))
+        FlagClear(FLAG_SYS_GBS_ENABLED);
+    else
+        FlagSet(FLAG_SYS_GBS_ENABLED);
+    PlayNewMapMusic(MUS_DUMMY);
+    Overworld_PlaySpecialMapMusic();
+}
+
 static void DebugMenu_TestBattleTransition(u8 taskId)
 {
     TestBattleTransition(VarGet(0x4000));
@@ -1643,6 +1673,92 @@ static void DebugMenu_SetRespawn_ProcessInput(u8 taskId)
     {
         PlaySE(SE_SELECT);
         SetLastHealLocationWarp(tRespawnNum);
+    }
+
+    if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        ReturnToPreviousMenu(taskId, GET_BOUNCER);
+    }
+}
+
+static void DebugMenu_TestFanfares_PrintStatus(u8 windowId, u8 fanfareNum)
+{
+    FillWindowPixelBuffer(windowId, 0x11);
+    ConvertIntToDecimalStringN(gStringVar1, fanfareNum, STR_CONV_MODE_LEFT_ALIGN, 2);
+    StringExpandPlaceholders(gStringVar4, sText_FanfareIndex);
+    AddTextPrinterParameterized5(windowId, 2, gStringVar4, 0, 1, 0, NULL, 0, 2);
+}
+
+#define tFanfareNum data[1]
+
+static void DebugMenu_TestFanfares(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    DebugMenu_RemoveMenu(taskId);
+    tWindowId = AddWindow(&sDebugMenu_Window_TestFanfares);
+    SetStandardWindowBorderStyle(tWindowId, FALSE);
+    DebugMenu_TestFanfares_PrintStatus(tWindowId, 0);
+    ScheduleBgCopyTilemapToVram(0);
+    tFanfareNum = 0;
+    gTasks[taskId].func = DebugMenu_TestFanfares_ProcessInput;
+}
+
+// Must be kept in sync with sound.c
+static const u16 sFanfares[] =
+{
+    MUS_LEVEL_UP,
+    MUS_OBTAIN_ITEM,
+    MUS_EVOLVED,
+    MUS_OBTAIN_TMHM,
+    MUS_HEAL,
+    MUS_OBTAIN_BADGE,
+    MUS_MOVE_DELETED,
+    MUS_OBTAIN_EGG,
+    MUS_PKMNCHANNEL_INTERLUDE,
+    MUS_SLOTS_JACKPOT,
+    MUS_SLOTS_WIN,
+    MUS_TOO_BAD,
+    MUS_RG_POKE_FLUTE,
+    MUS_RG_OBTAIN_KEY_ITEM,
+    MUS_RG_DEX_RATING,
+    MUS_OBTAIN_B_POINTS,
+    MUS_OBTAIN_SYMBOL,
+    MUS_REGISTER_PHONE,
+    MUS_RG_CAUGHT_INTRO,
+};
+
+static void DebugMenu_TestFanfares_ProcessInput(u8 taskId)
+{
+    u32 temp, shifter;
+    s16 *data = gTasks[taskId].data;
+
+    if (JOY_REPEAT(DPAD_UP))
+    {
+        temp = tFanfareNum + 1;
+
+        if (temp >= 0 && temp < ARRAY_COUNT(sFanfares))
+        {
+            tFanfareNum = temp;
+            DebugMenu_TestFanfares_PrintStatus(tWindowId, tFanfareNum);
+        }
+    }
+
+    if (JOY_REPEAT(DPAD_DOWN))
+    {
+        temp = tFanfareNum - 1;
+
+        if (temp >= 0 && temp < ARRAY_COUNT(sFanfares))
+        {
+            tFanfareNum = temp;
+            DebugMenu_TestFanfares_PrintStatus(tWindowId, tFanfareNum);
+        }
+    }
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        PlayFanfare(sFanfares[tFanfareNum]);
     }
 
     if (JOY_NEW(B_BUTTON))

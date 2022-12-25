@@ -61,6 +61,7 @@ static void ItemUseOnFieldCB_Itemfinder(u8);
 static void ItemUseOnFieldCB_Berry(u8 taskId);
 static void ItemUseOnFieldCB_WailmerPailBerry(u8 taskId);
 static void ItemUseOnFieldCB_SquirtBottleSudowoodo(u8 taskId);
+static void Task_UseGBPlayer(u8 taskId);
 static bool8 TryToWaterSudowoodo(void);
 static void BootUpSoundTMHM(u8 taskId);
 static void Task_ShowTMHMContainedMessage(u8 taskId);
@@ -750,6 +751,48 @@ static void ItemUseOnFieldCB_SquirtBottleSudowoodo(u8 taskId)
     ScriptContext1_SetupScript(Route36_EventScript_UseSquirtbottleOnSudowoodo);
     DestroyTask(taskId);
 }
+
+#define tSETimer data[8]
+
+void ItemUseOutOfBattle_GBPlayer(u8 taskId)
+{
+    gTasks[taskId].func = Task_UseGBPlayer;
+    gTasks[taskId].tSETimer = 0;
+}
+
+static void Task_UseGBPlayer(u8 taskId)
+{
+    const u8 *text = NULL;
+    s16 *data = gTasks[taskId].data;
+
+    if (!IsSEPlaying())
+    {
+        if (FlagGet(FLAG_SYS_GBS_ENABLED))
+        {
+            FlagClear(FLAG_SYS_GBS_ENABLED);
+            text = gText_GBPlayerOff;
+        }
+        else
+        {
+            FlagSet(FLAG_SYS_GBS_ENABLED);
+            text = gText_GBPlayerOn;
+        }
+
+        PlayNewMapMusic(MUS_DUMMY);
+        Overworld_PlaySpecialMapMusic();
+
+        if (!tUsingRegisteredKeyItem)
+        {
+            DisplayItemMessage(taskId, 2, text, BagMenu_InitListsMenu);
+        }
+        else
+        {
+            DisplayItemMessageOnField(taskId, text, Task_CloseCantUseKeyItemMessage);
+        }
+    }
+}
+
+#undef tSETimer
 
 void ItemUseOutOfBattle_Medicine(u8 taskId)
 {

@@ -214,7 +214,7 @@
 #define FLAG_RECEIVED_TM44_REST              0xC8
 #define FLAG_FLORIA_WENT_TO_ROUTE_36         0xC9
 #define FLAG_GOT_ODD_EGG                     0xCA
-#define FLAG_RECEIVED_GREEN_SCARF            0xCB
+#define FLAG_RECEIVED_GB_PLAYER              0xCB
 #define FLAG_RECEIVED_YELLOW_SCARF           0xCC
 #define FLAG_INTERACTED_WITH_STEVEN_SPACE_CENTER    0xCD
 #define FLAG_ENCOUNTERED_LATIAS_OR_LATIOS    0xCE
@@ -1376,7 +1376,7 @@
 #define FLAG_SYS_HAS_MAP_CARD                       (SYSTEM_FLAGS + 0x21)
 #define FLAG_SYS_HAS_RADIO_CARD                     (SYSTEM_FLAGS + 0x22)
 #define FLAG_SYS_MOM_BANKING_ENABLED                (SYSTEM_FLAGS + 0x23)
-#define FLAG_UNUSED_0x884                           (SYSTEM_FLAGS + 0x24) // Unused Flag
+#define FLAG_SYS_GBS_ENABLED                        (SYSTEM_FLAGS + 0x24)
 #define FLAG_UNUSED_0x885                           (SYSTEM_FLAGS + 0x25) // Unused Flag
 #define FLAG_UNUSED_0x886                           (SYSTEM_FLAGS + 0x26) // Unused Flag
 #define FLAG_UNUSED_0x887                           (SYSTEM_FLAGS + 0x27) // Unused Flag

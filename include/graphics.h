@@ -3932,6 +3932,8 @@ extern const u32 gItemIcon_BlueCard[];
 extern const u32 gItemIconPalette_BlueCard[];
 extern const u32 gItemIcon_Squirtbottle[];
 extern const u32 gItemIconPalette_Squirtbottle[];
+extern const u32 gItemIcon_GBPlayer[];
+extern const u32 gItemIconPalette_GBPlayer[];
 
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];

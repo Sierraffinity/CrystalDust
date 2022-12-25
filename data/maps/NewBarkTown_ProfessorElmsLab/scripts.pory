@@ -464,7 +464,14 @@ script NewBarkTown_EventScript_PokeBallMain {
             message("{PLAYER} received the {STR_VAR_1}\n"
                     "from PROF. ELM!")
             waitmessage
-            playfanfare(MUS_RG_OBTAIN_KEY_ITEM)
+            if (flag(FLAG_SYS_GBS_ENABLED))
+            {
+                playfanfare(MUS_RG_CAUGHT_INTRO)
+            }
+            else
+            {
+                playfanfare(MUS_RG_OBTAIN_KEY_ITEM)
+            }
             waitfanfare
             msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
             if (var(VAR_RESULT) == YES)

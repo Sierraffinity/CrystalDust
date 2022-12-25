@@ -38,7 +38,8 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_SoYourePlayer
 	textcolor MSG_COLOR_SYS
-	playfanfare MUS_RG_OBTAIN_KEY_ITEM
+	call_if_set FLAG_SYS_GBS_ENABLED, Route30_MrPokemonsHouse_EventScript_GetDexFanfareGBS
+	call_if_unset FLAG_SYS_GBS_ENABLED, Route30_MrPokemonsHouse_EventScript_GetDexFanfareNoGBS
 	message Route30_MrPokemonsHouse_Text_PlayerReceivedPokedex
 	waitmessage
 	waitfanfare
@@ -79,6 +80,14 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	setvar VAR_MR_POKEMONS_HOUSE_STATE, 1
 	releaseall
 	end
+
+Route30_MrPokemonsHouse_EventScript_GetDexFanfareGBS:
+	playfanfare MUS_OBTAIN_ITEM
+	return
+
+Route30_MrPokemonsHouse_EventScript_GetDexFanfareNoGBS:
+	playfanfare MUS_RG_OBTAIN_KEY_ITEM
+	return
 
 Route30_MrPokemonsHouse_EventScript_RivalGetsCyndaquil:
 	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL

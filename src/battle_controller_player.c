@@ -876,7 +876,7 @@ static void sub_80586F8(void)
     {
         if (gReceivedRemoteLinkPlayers == 0)
         {
-            m4aSongNumStop(SE_LOW_HEALTH);
+            m4aSongNumStop(SE_LOW_HEALTH, FALSE);
             gMain.inBattle = 0;
             gMain.callback1 = gPreBattleCallback1;
             SetMainCallback2(sub_8038D64);
@@ -889,7 +889,7 @@ static void sub_80586F8(void)
     {
         if (IsLinkTaskFinished())
         {
-            m4aSongNumStop(SE_LOW_HEALTH);
+            m4aSongNumStop(SE_LOW_HEALTH, FALSE);
             gMain.inBattle = 0;
             gMain.callback1 = gPreBattleCallback1;
             SetMainCallback2(sub_8038D64);
@@ -918,7 +918,7 @@ void sub_80587B0(void)
         }
         else
         {
-            m4aSongNumStop(SE_LOW_HEALTH);
+            m4aSongNumStop(SE_LOW_HEALTH, FALSE);
             gMain.inBattle = 0;
             gMain.callback1 = gPreBattleCallback1;
             SetMainCallback2(gMain.savedCallback);
@@ -1244,7 +1244,7 @@ static void sub_8059400(u8 taskId)
             u16 species;
             s32 expOnNextLvl;
 
-            m4aSongNumStop(SE_EXP);
+            m4aSongNumStop(SE_EXP, FALSE);
             level = GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL);
             currExp = GetMonData(&gPlayerParty[monId], MON_DATA_EXP);
             species = GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES);

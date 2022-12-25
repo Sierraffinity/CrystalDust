@@ -198,45 +198,46 @@ struct PokemonCrySong
 
 struct MusicPlayerTrack
 {
-    u8 flags;
+    u8 flags; // 0x0
     u8 wait;
-    u8 patternLevel;
+    u8 patternLevel:4;
+    u8 gbsIdentifier:4;
     u8 repN;
-    u8 gateTime;
+    u8 gateTime; // 0x4
     u8 key;
     u8 velocity;
     u8 runningStatus;
-    u8 keyM;
+    u8 keyM; // 0x8
     u8 pitM;
     s8 keyShift;
     s8 keyShiftX;
-    s8 tune;
+    s8 tune; // 0xC
     u8 pitX;
     s8 bend;
     u8 bendRange;
-    u8 volMR;
+    u8 volMR; // 0x10
     u8 volML;
     u8 vol;
     u8 volX;
-    s8 pan;
+    s8 pan; // 0x14
     s8 panX;
     s8 modM;
     u8 mod;
-    u8 modT;
+    u8 modT; // 0x18
     u8 lfoSpeed;
     u8 lfoSpeedC;
     u8 lfoDelay;
-    u8 lfoDelayC;
+    u8 lfoDelayC; // 0x1C
     u8 priority;
     u8 echoVolume;
     u8 echoLength;
-    struct SoundChannel *chan;
-    struct ToneData tone;
-    u8 gap[10];
+    struct SoundChannel *chan; // 0x20
+    struct ToneData tone; // 0x24
+    u8 gap[10]; // 0x30
     u16 unk_3A;
-    u32 unk_3C;
-    u8 *cmdPtr;
-    u8 *patternStack[3];
+    u32 unk_3C; // 0x3C
+    u8 *cmdPtr; // 0x40
+    u8 *patternStack[3]; // 0x44
 };
 
 #define MUSICPLAYER_STATUS_TRACK 0x0000ffff
@@ -267,6 +268,7 @@ struct MusicPlayerInfo
     u16 fadeOI;
     u16 fadeOC;
     u16 fadeOV;
+    u16 gbsTempo;
     struct MusicPlayerTrack *tracks;
     struct ToneData *tone;
     u32 ident;
@@ -289,8 +291,15 @@ struct Song
     u16 me;
 };
 
+struct GBSSongItem
+{
+    u32 songID;
+    struct Song song;
+};
+
 extern const struct MusicPlayer gMPlayTable[];
 extern const struct Song gSongTable[];
+extern const struct GBSSongItem gGBSSongTable[];
 
 #define MAX_DIRECTSOUND_CHANNELS 12
 
@@ -429,6 +438,7 @@ void ply_goto(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 void ply_patt(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 void ply_pend(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 void ply_rept(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
+void ply_gbs_switch(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 void ply_memacc(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 void ply_prio(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 void ply_tempo(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
