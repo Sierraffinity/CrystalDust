@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed a typo with Youngster Samuel's defeat text ("Beaten by a pass**s**ing stranger!").
 - Fixed a bug with certain Pokémon floating after hatching.
 - Fixed phone service being available in certain areas where it shouldn't have been.
+- Fixed memory leak in Oak speech when entering/exiting naming screen.
 
 ## [v3.0.0-alpha.0.5] - 2021-01-04
 ### Changed
