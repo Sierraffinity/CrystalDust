@@ -60,7 +60,7 @@ static void Task_BarnDoorWipeChild(u8 taskId);
 static void StartWarpFadeIn(bool8 a0);
 
 // const
-static const u16 sFlashLevelPixelRadii[] = { 200, 72, 64, 56, 48, 40, 32, 24, 0 };
+static const u16 sFlashLevelPixelRadii[] = { 200, 72, 56, 40, 24 };
 const s32 gMaxFlashLevel = ARRAY_COUNT(sFlashLevelPixelRadii) - 1;
 
 const struct ScanlineEffectParams sFlashEffectParams =
@@ -1040,7 +1040,7 @@ void AnimateFlash(u8 flashLevel)
     u8 value = 0;
     if (!flashLevel)
         value = 1;
-    sub_80AFFDC(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, sFlashLevelPixelRadii[curFlashLevel], sFlashLevelPixelRadii[flashLevel], value, 1);
+    sub_80AFFDC(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, sFlashLevelPixelRadii[curFlashLevel], sFlashLevelPixelRadii[flashLevel], value, 2);
     sub_80AFFB8();
     ScriptContext2_Enable();
 }
