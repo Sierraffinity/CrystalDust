@@ -73,7 +73,7 @@ script CianwoodCity_ManiasHouse_EventScript_Mania{
                 specialvar(VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot)
                 if(var(VAR_RESULT) == 0)
                 {   // Shuckie is the only mon able to battle, can't give it back
-                    goto(CianwoodCity_ManiasHouse_EventScript_ShuckieReturnedOrKept)
+                    goto(CianwoodCity_ManiasHouse_EventScript_CantReturnShuckie)
                 }
                 msgbox("Thank you!", MSGBOX_DEFAULT)
                 callnative(ZeroMonAtSlot0x8004AndCompact)
@@ -91,6 +91,12 @@ script CianwoodCity_ManiasHouse_EventScript_Mania{
     goto(CianwoodCity_ManiasHouse_EventScript_ShuckieReturnedOrKept)
 }script CianwoodCity_ManiasHouse_EventScript_WontReturnShuckie{
     msgbox("Oh, no, no… That's the same\nas being robbed.")
+    release
+    end
+}script CianwoodCity_ManiasHouse_EventScript_CantReturnShuckie{
+    // This is unused text from Gold and Silver, but makes more sense than
+    // jumping to ..._ShuckieReturnedOrKept which is what happens in GSC.
+    msgbox("If I take my {POKEMON} back, what\nare you going to use in battle?", MSGBOX_DEFAULT)
     release
     end
 }script CianwoodCity_ManiasHouse_EventScript_ShuckieReturnedOrKept{
