@@ -40,8 +40,8 @@ script Route20_SeafoamGym_EventScript_Blaine {
         textcolor(MSG_COLOR_PREV)
         setflag(FLAG_BADGE15_GET)
         setgymtrainers(15)
-        // falls through to the next script
     }
+    goto(Route20_SeafoamGym_EventScript_GiveOverheat)
 }script(local) Route20_SeafoamGym_EventScript_GiveOverheat{
     msgbox("Here, I will give you this, too.\nIt's called OVERHEAT!\pIt has a slight drawback, but it's\npowerful and well worth it!", MSGBOX_DEFAULT)
     closemessage
@@ -54,7 +54,7 @@ script Route20_SeafoamGym_EventScript_Blaine {
     }
     giveitem(ITEM_TM50, 1)
     setflag(FLAG_GOT_TM50_FROM_BLAINE)
-    msgbox("BLAINE: I did lose this time, but\nI'm going to win the next time.\pWhen I rebuild my CINNABAR GYM,\nwe'll have to have a rematch.", MSGBOX_NPC)
+    msgbox("BLAINE: I did lose this time, but\nI'm going to win the next time.\pWhen I rebuild my CINNABAR GYM,\nwe'll have to have a rematch.", MSGBOX_DEFAULT)
     release
     end
 }
