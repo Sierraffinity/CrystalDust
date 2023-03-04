@@ -34,6 +34,7 @@ static struct ScriptContext sScriptContext2;
 static bool8 sScriptContext2Enabled;
 static u8 sCanExitScriptEarly;
 static u8 sDoesTextboxUseSignBorder;
+static u8 sMsgBoxWalkawayDisabled;
 
 extern ScrCmdFunc gScriptCmdTable[];
 extern ScrCmdFunc gScriptCmdTableEnd[];
@@ -276,6 +277,8 @@ bool8 ScriptContext2_RunScript(void)
 void ScriptContext1_SetupScript(const u8 *ptr)
 {
     DisableExitingFromScriptEarly();
+    EnableMsgBoxWalkaway();
+    
     InitScriptContext(&sScriptContext1, gScriptCmdTable, gScriptCmdTableEnd);
     SetupBytecodeScript(&sScriptContext1, ptr);
     ScriptContext2_Enable();
@@ -1212,4 +1215,19 @@ void SetUpRoomDecor(void)
     SetUpRoomDecorBigDoll();
     SetUpRoomDecorOrnaments();
     DrawWholeMapView();
+}
+
+void DisableMsgBoxWalkaway(void)
+{
+    sMsgBoxWalkawayDisabled = TRUE;
+}
+
+void EnableMsgBoxWalkaway(void)
+{
+    sMsgBoxWalkawayDisabled = FALSE;
+}
+
+bool8 IsMsgBoxWalkawayDisabled(void)
+{
+    return sMsgBoxWalkawayDisabled;
 }

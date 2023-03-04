@@ -65,6 +65,7 @@ static EWRAM_DATA u16 sMovingNpcMapId = 0;
 static EWRAM_DATA u16 sFieldEffectScriptId = 0;
 
 static u8 gBrailleWindowId;
+static struct ScriptContext * sScriptContextPtr;
 
 extern const SpecialFunc gSpecials[];
 extern const u8 *gStdScripts[];
@@ -1344,17 +1345,46 @@ bool8 ScrCmd_closemessage(struct ScriptContext *ctx)
     return FALSE;
 }
 
+static bool8 ScriptContext_NextCommandEndsScript(struct ScriptContext * ctx)
+{
+    const u8 * script = ctx->scriptPtr;
+    u8 nextCmd = *script;
+    if (nextCmd == 3) // return
+    {
+        script = ctx->stack[ctx->stackDepth - 1];
+        nextCmd = *script;
+    }
+    if (nextCmd < 0x6B || nextCmd > 0x6C) // releaseall or release
+        return FALSE;
+    else
+        return TRUE;
+}
+
 static bool8 WaitForAorBPress(void)
 {
     if (JOY_NEW(A_BUTTON))
         return TRUE;
     if (JOY_NEW(B_BUTTON))
         return TRUE;
+
+    if (ScriptContext_NextCommandEndsScript(sScriptContextPtr) == TRUE)
+    {
+        if ((JOY_HELD(DPAD_UP) && gSpecialVar_Facing != DIR_NORTH) ||
+            (JOY_HELD(DPAD_DOWN) && gSpecialVar_Facing != DIR_SOUTH) ||
+            (JOY_HELD(DPAD_LEFT) && gSpecialVar_Facing != DIR_WEST) ||
+            (JOY_HELD(DPAD_RIGHT) && gSpecialVar_Facing != DIR_EAST))
+        {
+            DisableExitingFromScriptEarly();
+            return TRUE;
+        }
+    }
+
     return FALSE;
 }
 
 bool8 ScrCmd_waitbuttonpress(struct ScriptContext *ctx)
 {
+    sScriptContextPtr = ctx;
     SetupNativeScript(ctx, WaitForAorBPress);
     return TRUE;
 }

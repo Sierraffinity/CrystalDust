@@ -74,6 +74,11 @@ bool8 DoesTextboxUseSignBorder(void);
 void SwitchToPhoneScript(const u8 *script, u32 phoneContext);
 void CountBadges(void);
 
+// Walk away when script finished
+void DisableMsgBoxWalkaway(void);
+void EnableMsgBoxWalkaway(void);
+bool8 IsMsgBoxWalkawayDisabled(void);
+
 // srccmd.h
 void SetMovingNpcId(u16 npcId);
 
