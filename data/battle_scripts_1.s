@@ -592,6 +592,8 @@ BattleScript_EffectRoar::
 	attackcanceler
 	attackstring
 	ppreduce
+	getifcantrunfrombattle BS_ATTACKER
+	jumpifbyte CMP_EQUAL, gBattleCommunication, 1, BattleScript_ButItFailed
 	jumpifability BS_TARGET, ABILITY_SUCTION_CUPS, BattleScript_AbilityPreventsPhasingOut
 	jumpifstatus3 BS_TARGET, STATUS3_ROOTED, BattleScript_PrintMonIsRooted
 	accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
