@@ -61,6 +61,7 @@ static void UpdatePerDay(struct Time *localTime)
         {
             FlagSet(FLAG_SYS_TIME_CAPSULE_UNLOCKED);
             SetUnlockedPokedexFlags();
+            SetChampionSaveWarp();
         }
         *days = localTime->days;
     }
