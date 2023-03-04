@@ -28,6 +28,10 @@ mapscripts GoldenrodCity_MapScripts {
                 setflag(FLAG_TEMP_1)
             }
         }
+        else
+        {
+            setflag(FLAG_TEMP_1)
+        }
     }
 }
 
