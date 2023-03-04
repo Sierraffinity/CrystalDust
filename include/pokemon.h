@@ -12,7 +12,8 @@ struct PokemonSubstruct0
     u8 ppBonuses;
     u8 friendship;
     u16 locationBit:1;
-    u16 filler:15;
+    u16 apricornBall:4;
+    u16 filler:11;
 };
 
 struct PokemonSubstruct1
@@ -95,8 +96,7 @@ struct BoxPokemon
     u8 isBadEgg:1;
     u8 hasSpecies:1;
     u8 isEgg:1;
-    u8 altBall:3;
-    u8 unused:2;
+    u8 unused:5;
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings;
     u16 checksum;

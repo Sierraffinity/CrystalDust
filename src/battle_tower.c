@@ -2985,6 +2985,8 @@ static void FillPartnerParty(u16 trainerId)
             SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_MET_LEVEL, &j);
             j = 1;
             SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_LOCATION_BIT, &j);
+            j = 0;
+            SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_APRICORN_BALL, &j);
             CalculateMonStats(&gPlayerParty[MULTI_PARTY_SIZE + i]);
         }
     }
