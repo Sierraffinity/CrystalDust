@@ -3268,8 +3268,8 @@ bool8 NameRaterWasNicknameChanged(void)
 
 void SetRivalNickname(void)
 {
-    StringCopy(gSaveBlock1Ptr->rivalName, gText_DefaultNameSilver);
-    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock1Ptr->rivalName, 0, 0, 0, CB2_ReturnToFieldContinueScriptPlayMapMusic);
+    StringCopy(gSaveBlock2Ptr->rivalName, gText_DefaultNameSilver);
+    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, 0, 0, 0, CB2_ReturnToFieldContinueScriptPlayMapMusic);
 }
 
 void ChangePokemonNickname(void)

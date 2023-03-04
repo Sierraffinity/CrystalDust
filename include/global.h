@@ -483,7 +483,7 @@ struct SaveBlock2
              u16 daylightSavingTime:1; // whether daylight saving time is enabled
              u16 twentyFourHourClock:1; // whether the Pokégear shows a 24 hour clock or not
     /*0x18*/ struct Pokedex pokedex;
-    /*0x90*/ u8 filler_90[0x8];
+    /*0x90*/ u8 rivalName[PLAYER_NAME_LENGTH + 1];
     /*0x98*/ struct Time localTimeOffset;
     /*0xA0*/ struct Time lastBerryTreeUpdate;
     /*0xA8*/ u32 gcnLinkFlags; // Read by Pokemon Colosseum/XD
@@ -1175,7 +1175,7 @@ struct SaveBlock1
     /*0x31B3*/ struct ExternalEventData externalEventData;
     /*0x31C7*/ struct ExternalEventFlags externalEventFlags;
     /*0x31DC*/ struct Roamer roamer[2];
-    /*0x31F4*/ u8 padding_31F4[4];
+    /*0x31F4*/ u32 bankedMoney;
     /*0x31F8*/ struct EnigmaBerry enigmaBerry;
     /*0x322C*/ struct MEventBuffers unk_322C;
     /*0x3598*/ u8 field_3598[360];
@@ -1187,14 +1187,12 @@ struct SaveBlock1
     /*0x3B58*/ LilycoveLady lilycoveLady;
     /*0x3B98*/ struct TrainerNameRecord trainerNameRecords[20];
     /*0x3C88*/ u8 registeredTexts[UNION_ROOM_KB_ROW_COUNT][21];
-    /*0x3D5A*/ u8 filler3D5A[0xA];
+    /*0x3D5A*/ u8 filler3D5A[2];
+    /*0x3D5C*/ u32 gameBuild;
+    /*0x3D60*/ u32 saveBlockMagic;  
     /*0x3D64*/ struct SaveTrainerHill trainerHill;
     /*0x3D70*/ struct WaldaPhrase waldaPhrase;
-    /*0x3D88*/ u8 rivalName[PLAYER_NAME_LENGTH + 1];
-    /*0x3D90*/ u32 bankedMoney;
-    /*0x3D94*/ u32 gameBuild;
-    /*0x3D9C*/ u32 saveBlockMagic;
-    // sizeof: 0x3D9C
+    // sizeof: 0x3D88
 };
 
 extern struct SaveBlock1* gSaveBlock1Ptr;

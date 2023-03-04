@@ -211,7 +211,7 @@ void NewGameInitData(void)
     ResetLotteryCorner();
     WarpToPlayersRoom();
     ScriptContext2_RunNewScript(EventScript_ResetAllMapFlags);
-    StringCopy(gSaveBlock1Ptr->rivalName, gText_DefaultNameSilver);
+    StringCopy(gSaveBlock2Ptr->rivalName, gText_DefaultNameSilver);
     ResetMiniGamesRecords();
     InitUnionRoomChatRegisteredTexts();
     InitLilycoveLady();

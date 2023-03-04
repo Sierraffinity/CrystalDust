@@ -451,7 +451,7 @@ static const u8 *ExpandPlaceholder_KunChan(void)
 
 static const u8 *ExpandPlaceholder_RivalName(void)
 {
-    return gSaveBlock1Ptr->rivalName;
+    return gSaveBlock2Ptr->rivalName;
 }
 
 static const u8 *ExpandPlaceholder_Version(void)
