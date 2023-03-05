@@ -84,7 +84,7 @@ script CeladonCity_GameCorner_EventScript_MonClerk_ConfirmPrize {
             switch (var(VAR_TEMP_3))
             {
                 case 2: // no room anywhere
-                    call(Common_EventScript_BagIsFull)
+                    call(Common_EventScript_NoMoreRoomForPokemon)
                     goto(CeladonCity_GameCorner_EventScript_MonClerk_ReturnToShowChoice)
                 default:
                     removecoins(VAR_TEMP_2)
