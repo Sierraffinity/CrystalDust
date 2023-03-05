@@ -89,7 +89,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE",
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
       "in_connection": false,
       "x": 22,
       "y": 20,
@@ -104,7 +104,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE",
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
       "in_connection": false,
       "x": 29,
       "y": 7,
@@ -119,7 +119,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE",
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
       "in_connection": false,
       "x": 44,
       "y": 9,
@@ -134,7 +134,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE",
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
       "in_connection": false,
       "x": 15,
       "y": 16,
@@ -189,7 +189,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "AzaleaTown_EventScript_Kurt",
       "flag": "FLAG_HIDE_AZALEA_TOWN_KURT"
     },
     {
@@ -287,6 +287,15 @@
       "var": "VAR_AZALEA_TOWN_STATE",
       "var_value": "1",
       "script": "AzaleaTown_EventScript_RivalTrigger_4"
+    },
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_TEMP_3",
+      "var_value": "0",
+      "script": "AzaleaTown_EventScript_KurtsHouseTrigger"
     }
   ],
   "bg_events": [

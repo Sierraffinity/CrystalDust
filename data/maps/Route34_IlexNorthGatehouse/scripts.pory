@@ -4,8 +4,12 @@ mapscripts Route34_IlexNorthGatehouse_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         if (flag(FLAG_FOREST_IS_RESTLESS))
         {
-            setobjectxyperm(OBJ_TAUNT_WOMAN, 4, 9)
+            setobjectxyperm(OBJ_TAUNT_WOMAN, 4, 10)
             setobjectmovementtype(OBJ_TAUNT_WOMAN, MOVEMENT_TYPE_FACE_UP)
+        }
+        if(!flag(FLAG_HIDE_ILEX_FOREST_LASS))
+        {
+            setflag(FLAG_TEMP_1)
         }
     }
 }
@@ -17,6 +21,8 @@ script Route34_IlexNorthGatehouse_EventScript_TauntWoman {
     {
         msgbox("Something's wrong in ILEX FOREST…\n"
                "You should stay away right now.")
+        release
+        end
     }
 	elif (!flag(FLAG_RECEIVED_TM12_TAUNT))
 	{

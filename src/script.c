@@ -2,6 +2,7 @@
 #include "script.h"
 #include "event_data.h"
 #include "field_camera.h"
+#include "field_effect_helpers.h"
 #include "fieldmap.h"
 #include "field_player_avatar.h"
 #include "mevent.h"
@@ -754,6 +755,12 @@ void SetMtMoonRocksClearedGoneThroughLowerFloors(void)
     {
         FlagSet(FLAG_MT_MOON_ROCKS_CLEARED);
     }
+}
+
+void HideWarpArrowSprite(void)
+{
+    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    SetSpriteInvisible(playerObjEvent->warpArrowSpriteId);
 }
 
 static void SetUpRoomDecorBed(void)

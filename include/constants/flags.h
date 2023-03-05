@@ -847,8 +847,10 @@
 
 #define FLAG_HIDE_LUGIA                                             0x320
 #define FLAG_HIDE_HO_OH                                             0x321
+
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER                    0x322
 #define FLAG_HIDE_SLATEPORT_CITY_CONTEST_REPORTER                   0x323
+
 // Bill's Grandpa cont.
 #define FLAG_SHOWED_ODDISH_TO_BILLS_GRANDPA                         0x324
 #define FLAG_GOT_LEAF_STONE_FROM_BILLS_GRANDPA                      0x325
@@ -880,12 +882,14 @@
 #define FLAG_MOVE_TUTOR_TAUGHT_ICY_WIND                             0x33C
 #define FLAG_MOVE_TUTOR_TAUGHT_ENDURE                               0x33D
 #define FLAG_MET_MR_BRINEY                                          0x33E
-// STOPPED HERE
-#define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAGMA_GRUNTS               0x33F
+#define FLAG_GS_BALL_AVAILABLE_FROM_POKECOM_CENTER                  0x33F
+
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER                0x340
-#define FLAG_HIDE_DARK_CAVE_STEVEN                                  0x341
-#define FLAG_HIDE_ROUTE_128_STEVEN                                  0x342
-#define FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY                       0x343
+
+#define FLAG_CAN_GIVE_GS_BALL_TO_KURT                               0x341
+#define FLAG_GAVE_KURT_GS_BALL                                      0x342
+#define FLAG_FOUGHT_CELEBI                                          0x343 // used for regenerating after HoF
+// STOPPED HERE
 #define FLAG_HIDE_BATTLE_FRONTIER_RECEPTION_GATE_SCOTT              0x344
 #define FLAG_HIDE_ROUTE_110_BIRCH                                   0x345
 #define FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL         0x346

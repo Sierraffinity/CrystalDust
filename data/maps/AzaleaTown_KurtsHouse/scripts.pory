@@ -20,56 +20,48 @@ mapscripts AzaleaTown_KurtsHouse_MapScripts {
             setobjectxyperm(GIRL, 12, 4)
             setobjectmovementtype(GIRL, MOVEMENT_TYPE_FACE_RIGHT)
         }
+        if(flag(FLAG_VISITED_VERMILION_CITY))
+        {
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SLOWPOKE)
+        }
+        else
+        {
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SLOWPOKE_TAILLESS)
+        }
     }
 }
 
-script AzaleaTown_KurtsHouse_EventScript_Kurt {
+script AzaleaTown_KurtsHouse_EventScript_Kurt{
     lock
     faceplayer
-    // TODO: Check GS Ball
-    if (!flag(FLAG_TEMP_1) &&
-        flag(FLAG_DAILY_KURT_MAKING_BALLS))
-    {
-        if (flag(FLAG_BUGGING_KURT_TOO_MUCH))
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    if(var(VAR_RESULT) < 6)
+    {   // Kurt on left side of house; Kurt1 in pokecrystal
+        if (flag(FLAG_KURT_GAVE_LURE_BALL))
         {
-            msgbox("KURT: I'm working!\n"
-                   "Don't bother me!")
-        }
-        else
-        {
-            msgbox("KURT: Now that my granddaughter is\n"
-                   "helping me, I can work much faster.")
-            setflag(FLAG_BUGGING_KURT_TOO_MUCH)
-        }
-        turnobject(KURT, DIR_NORTH)
-    }
-    elif (flag(FLAG_KURT_GAVE_LURE_BALL))
-    {
-        goto(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks)
-    }
-    elif (flag(FLAG_CLEARED_SLOWPOKE_WELL))
-    {
-        msgbox("KURT: Hi, {PLAYER}!\p"
-               "You handled yourself like a real\n"
-               "hero at the WELL.\p"
-               "I like your style!\p"
-               "I would be honored to make some\n"
-               "BALLS for a TRAINER like you.\p"
-               "This is all I have now, but please\n"
-               "take it.")
-        giveitem(ITEM_LURE_BALL)
-        if (!var(VAR_RESULT))
-        {
-			goto(Common_EventScript_ShowBagIsFull)
-        }
-        else
-        {
-            setflag(FLAG_KURT_GAVE_LURE_BALL)
             goto(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks)
         }
-    }
-    else
-    {
+        if (flag(FLAG_CLEARED_SLOWPOKE_WELL))
+        {
+            msgbox("KURT: Hi, {PLAYER}!\p"
+                "You handled yourself like a real\n"
+                "hero at the WELL.\p"
+                "I like your style!\p"
+                "I would be honored to make some\n"
+                "BALLS for a TRAINER like you.\p"
+                "This is all I have now, but please\n"
+                "take it.")
+            giveitem(ITEM_LURE_BALL)
+            if (!var(VAR_RESULT))
+            {
+                goto(Common_EventScript_ShowBagIsFull)
+            }
+            else
+            {
+                setflag(FLAG_KURT_GAVE_LURE_BALL)
+                goto(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks)
+            }
+        } // Initial encounter
         msgbox("Hm?\n"
                "Who are you?\p"
                "{PLAYER}, eh?\p"
@@ -108,12 +100,36 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt {
         playse(SE_EXIT)
         removeobject(KURT)
         waitse
+        release
+        end
     }
-    release
-}
-
-// TODO: Wait for local label
-script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
+    else
+    {   // Kurt on right side of house; Kurt2 in pokecrystal
+        lock
+        faceplayer
+        checkitem(ITEM_GS_BALL, 1)
+        if(flag(FLAG_GAVE_KURT_GS_BALL) && var(VAR_RESULT) == FALSE)
+        {
+            msgbox("I'm checking it now.", MSGBOX_DEFAULT)
+            turnobject(VAR_LAST_TALKED, DIR_NORTH)
+            msgbox("Ah-ha! I see!\pSo…")
+            release
+            end
+        }
+        if (flag(FLAG_BUGGING_KURT_TOO_MUCH))
+        {
+            msgbox("KURT: I'm working!\n"
+                   "Don't bother me!", MSGBOX_NPC)
+        }
+        else
+        {
+            msgbox("KURT: Now that my granddaughter is\n"
+                   "helping me, I can work much faster.", MSGBOX_NPC)
+            setflag(FLAG_BUGGING_KURT_TOO_MUCH)
+        }
+        turnobject(KURT, DIR_NORTH)
+    }
+}script(local) AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
     if (flag(FLAG_TEMP_1))
     {
         call(AzaleaTown_KurtsHouse_EventScript_Kurt_ItllTakeADay)
@@ -135,7 +151,56 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
     }
     else
     {
-        // TODO: GS Ball stuff here
+        if(flag(FLAG_CAN_GIVE_GS_BALL_TO_KURT))
+        {
+            if(!flag(FLAG_GAVE_KURT_GS_BALL))
+            {
+                checkitem(ITEM_GS_BALL, 1)
+                msgbox("Wh-what is that?\nI've never seen one before.\pIt looks a lot like a {POKE} BALL, but\nit appears to be something else.\pLet me check it for you.", MSGBOX_NPC)
+                removeitem(ITEM_GS_BALL, 1)
+                setflag(FLAG_GAVE_KURT_GS_BALL)
+                setflag(FLAG_DAILY_KURT_MAKING_BALLS)
+                setflag(FLAG_TEMP_1)
+                end
+            }
+            else
+            {
+                if(!flag(FLAG_DAILY_KURT_MAKING_BALLS))
+                {
+                    msgbox("{PLAYER}!\pThis BALL started to shake while\nI was checking it.\pThere must be something to this!")
+                    closemessage
+                    setflag(FLAG_FOREST_IS_RESTLESS)
+                    clearflag(FLAG_CAN_GIVE_GS_BALL_TO_KURT)
+                    clearflag(FLAG_GAVE_KURT_GS_BALL)
+                    fadenewbgm(MUS_NONE)
+                    delay(20)
+                    applymovement(KURT, Common_Movement_ExclamationMark)
+                    playse(SE_PIN)
+                    delay(0x40)
+                    if(var(VAR_FACING) == DIR_NORTH)
+                    {
+                        turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+                        playse(SE_FLEE)
+                        applymovement(KURT, AzaleaTown_KurtsHouse_Movement_KurtAroundPlayer)
+                        waitmovement(0)
+                    }
+                    else
+                    {
+                        turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+                        playse(SE_FLEE)
+                        applymovement(KURT, AzaleaTown_KurtsHouse_Movement_KurtStraightOut)
+                        waitmovement(0)
+                    }
+                    playse(SE_EXIT)
+                    removeobject(KURT)
+                    clearflag(FLAG_HIDE_AZALEA_TOWN_KURT)
+                    waitse
+                    fadedefaultbgm
+                    release
+                    end
+                }
+            }
+        }
         if (!flag(FLAG_TEMP_2) && !flag(FLAG_TEMP_3))
         {
             msgbox(AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement)
@@ -231,8 +296,16 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu {
 }
 
 script AzaleaTown_KurtsHouse_EventScript_Kurt_ItllTakeADay {
-    msgbox("KURT: It'll take a day to make you\n"
+    checkitem(ITEM_GS_BALL, 1)
+    if(flag(FLAG_GAVE_KURT_GS_BALL) && var(VAR_RESULT) == FALSE)
+    {
+        msgbox("I'm checking it now.\pAh-ha! I see!\nSo…")
+    }
+    else
+    {
+        msgbox("KURT: It'll take a day to make you\n"
            "a BALL. Come back for it later.")
+    }
 }
 
 movement AzaleaTown_KurtsHouse_Movement_PlayerWatchesKurt {
@@ -253,43 +326,75 @@ movement AzaleaTown_KurtsHouse_Movement_KurtStraightOut {
     walk_fast_down * 5
 }
 
-script AzaleaTown_KurtsHouse_EventScript_KurtsGranddaughter {
+script AzaleaTown_KurtsHouse_EventScript_KurtsGranddaughter{
     lock
     faceplayer
-    if (flag(FLAG_TEMP_1) ||
-        flag(FLAG_DAILY_KURT_MAKING_BALLS))
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    if(var(VAR_RESULT) <= 7)
+    {   // left side of house
+        if (flag(FLAG_TEMP_1) && !flag(FLAG_GAVE_KURT_GS_BALL))
+        {
+            goto(AzaleaTown_KurtsHouse_EventScript_KurtsGranddaughter2)
+        }
+        if (flag(FLAG_TEMP_2))
+        {
+            msgbox("It's fun to make BALLS!")
+            release
+            end
+        }
+        if(flag(FLAG_FOREST_IS_RESTLESS) && flag(FLAG_HIDE_AZALEA_TOWN_KURTS_HOUSE_KURT))
+        {
+            msgbox(AzaleaTown_KurtsHouse_Text_KurtsGranddaughterLonely)
+            release
+            end
+        }
+        if(flag(FLAG_VISITED_VERMILION_CITY))
+        {
+            msgbox("Dad works at SILPH where he\nstudies {POKE} BALLS.\pI have to stay home with\nGrandpa and SLOWPOKE.")
+            release
+            end
+        }
+        if(flag(FLAG_CLEARED_SLOWPOKE_WELL))
+        {
+            msgbox("The SLOWPOKE my dad gave me came\n"
+                "back! Its TAIL is growing back too!")
+            release
+            end
+        }
+        if(flag(FLAG_HIDE_AZALEA_TOWN_SLOWPOKE_WELL_GUARD))
+        {
+            msgbox(AzaleaTown_KurtsHouse_Text_KurtsGranddaughterLonely)
+            release
+            end
+        }
+        msgbox("The SLOWPOKE are gone…\n"
+               "Were they taken away by bad people?")
+        release
+        end
+    }
+    else
+    {   // right side of house
+        goto(AzaleaTown_KurtsHouse_EventScript_KurtsGranddaughter2)
+    }
+}script AzaleaTown_KurtsHouse_EventScript_KurtsGranddaughter2{
+    faceplayer
+    
+    if(flag(FLAG_GAVE_KURT_GS_BALL))
     {
-        msgbox("I get to help Grandpa with his\n"
+        msgbox("Grandpa's checking a BALL right now.\nSo I'm waiting till he's done.")
+        release
+        turnobject(GIRL, DIR_EAST)
+        end
+    }
+    msgbox("I get to help Grandpa with his\n"
                "work now!\p"
                "We'll make good BALLS for you, so\n"
                "please wait!")
-        if (!flag(FLAG_TEMP_1))
-        {
-            turnobject(GIRL, DIR_EAST)
-        }
-    }
-    elif (flag(FLAG_TEMP_2))
-    {
-        msgbox("It's fun to make BALLS!")
-    }
-    // TODO: After accessing Kanto she says something about her dad
-    // Maybe also make Slowpoke have a tail at that point
-    elif (flag(FLAG_CLEARED_SLOWPOKE_WELL))
-    {
-        msgbox("The SLOWPOKE my dad gave me came\n"
-               "back! Its TAIL is growing back too!")
-    }
-    elif (flag(FLAG_HIDE_AZALEA_TOWN_SLOWPOKE_WELL_GUARD))
-    {
-        msgbox("Grandpa's gone…\n"
-               "I'm so lonely…")
-    }
-    else
-    {
-        msgbox("The SLOWPOKE are gone…\n"
-               "Were they taken away by bad people?")
-    }
     release
+    turnobject(GIRL, DIR_EAST)
+    end
+}text AzaleaTown_KurtsHouse_Text_KurtsGranddaughterLonely{
+    "Grandpa's gone…\nI'm so lonely…"
 }
 
 script AzaleaTown_KurtsHouse_EventScript_OakPhoto {

@@ -31,7 +31,7 @@ script TinTower_Roof_EventScript_Trigger {
     applymovement(OBJ_EVENT_ID_CAMERA, TinTower_Roof_Movement_CameraPanUp)
     waitmovement(0)
     delay(50)
-    playmoncry(SPECIES_HO_OH, 2)playmoncry(SPECIES_HO_OH, 2)
+    playmoncry(SPECIES_HO_OH, 2)
     message("Shaoooh!")
     waitmessage
     delay(30)

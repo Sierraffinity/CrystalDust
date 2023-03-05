@@ -2522,3 +2522,15 @@ static const struct SpriteFrameImage sPicTable_SSAqua[] = {
     overworld_frame(gObjectEventPic_SSAqua, 8, 16, 0),
     overworld_frame(gObjectEventPic_SSAqua, 8, 16, 0),
 };
+
+const struct SpriteFrameImage sPicTable_Celebi[] = {
+    overworld_frame(gObjectEventPic_Celebi, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Celebi, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Celebi, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Celebi, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Celebi, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Celebi, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Celebi, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Celebi, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Celebi, 2, 2, 0),
+};

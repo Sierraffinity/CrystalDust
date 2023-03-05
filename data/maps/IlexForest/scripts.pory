@@ -24,6 +24,7 @@ const POS10_Y = 37
 mapscripts IlexForest_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_LANDMARK_ILEX_FOREST)
+		setflag(FLAG_TEMP_1)
 		switch (var(VAR_ILEX_FARFETCHD_STATE))
 		{
 		default:
@@ -47,6 +48,16 @@ mapscripts IlexForest_MapScripts {
 		case 10:
 			setobjectxyperm(OBJ_FARFETCHD, POS10_X, POS10_Y)
 		}
+    }
+	MAP_SCRIPT_ON_RESUME {
+        if (flag(FLAG_SYS_CTRL_OBJ_DELETE))
+        {
+            specialvar(VAR_RESULT, GetBattleOutcome)
+            if (var(VAR_RESULT) == B_OUTCOME_CAUGHT)
+            {
+                removeobject(13)
+            }
+        }
     }
 }
 
@@ -468,7 +479,124 @@ script IlexForest_EventScript_DroppedItemsSign {
 }
 
 script IlexForest_EventScript_Shrine {
+	if(flag(FLAG_FOREST_IS_RESTLESS))
+	{
+		checkitem(ITEM_GS_BALL, 1)
+		copyvar(VAR_0x800B, VAR_RESULT)
+		if(var(VAR_0x800B) || flag(FLAG_FOUGHT_CELEBI))
+		{
+			lock
+			bufferitemname(0, ITEM_GS_BALL)
+			if(var(VAR_0x800B))
+			{
+				msgbox("ILEX FOREST SHRINE…\pIt's in honor of the forest's\nprotector…\pOh?\nWhat's this?\pIt's a hole. It looks like the\n{STR_VAR_1} would fit inside it.\pWant to put the {STR_VAR_1} here?", MSGBOX_YESNO)
+			}
+			else
+			{
+				msgbox("ILEX FOREST SHRINE…\pIt's in honor of the forest's\nprotector…\pOh?\nWhat's this?\pIt's a hole. The {STR_VAR_1} is\nsitting inside it.\pDisturb the {STR_VAR_1}?", MSGBOX_YESNO)
+			}
+			if(!var(VAR_RESULT))
+			{
+				release
+				end
+			}
+			clearflag(FLAG_FOREST_IS_RESTLESS)
+			setflag(FLAG_HIDE_AZALEA_TOWN_KURT)
+			removeobject(7)
+			if(var(VAR_0x800B))
+			{
+				msgbox("{PLAYER} put in the {STR_VAR_1}.")
+				closemessage
+			}
+			else
+			{
+				msgbox("{PLAYER} disturbed the {STR_VAR_1}.")
+				closemessage
+			}
+			removeitem(ITEM_GS_BALL, 1)
+			delay(20)
+			applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+			playse(SE_PIN)
+			delay(0x40)
+			fadenewbgm(MUS_NONE)
+			applymovement(OBJ_EVENT_ID_PLAYER, IlexForest_Movement_StepBack)
+			waitmovement(0)
+			setmetatile(18, 30, 0x2C3, 1)
+			special(DrawWholeMapView)
+			delay(30)
+			delay(20)
+			addobject(13)
+			delay(5)
+			removeobject(13)
+			delay(5)
+			addobject(13)
+			delay(10)
+			removeobject(13)
+			delay(10)
+			addobject(13)
+			delay(15)
+			removeobject(13)
+			delay(15)
+			addobject(13)
+			delay(15)
+			playmoncry(SPECIES_CELEBI, 0)
+			waitmoncry
+			applymovement(13, IlexForest_Movement_CelebiJumpsDown)
+			waitmovement(0)
+			delay(20)
+			setmetatile(18, 30, 0x2A4, 1)
+			special(DrawWholeMapView)
+			setwildbattle(SPECIES_CELEBI, 30, ITEM_NONE)
+			setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+			dowildbattle
+			clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+			specialvar(VAR_RESULT, GetBattleOutcome)
+			switch (var(VAR_RESULT))
+			{
+				case B_OUTCOME_CAUGHT:
+					call(IlexForest_EventScript_CelebiCaught)
+				case B_OUTCOME_WON:
+					call(IlexForest_EventScript_RemoveCelebi)
+				case B_OUTCOME_RAN:
+				case B_OUTCOME_PLAYER_TELEPORTED:
+					call(IlexForest_EventScript_RemoveCelebi)
+			}
+			setflag(FLAG_DEFEATED_CELEBI)
+			setflag(FLAG_FOUGHT_CELEBI)
+			clearflag(FLAG_HIDE_AZALEA_TOWN_KURTS_HOUSE_KURT)
+			release
+			end
+		}
+	}
 	msgbox("ILEX FOREST SHRINE…\p"
 		   "It's in honor of the forest's\n"
 		   "protector…", MSGBOX_SIGN)
+}movement IlexForest_Movement_StepBack{
+	lock_facing_direction
+	walk_slow_down
+	face_up
+	unlock_facing_direction
+}movement IlexForest_Movement_CelebiJumpsDown{
+	jump_2_down_slow
+}script IlexForest_EventScript_CelebiCaught{
+    setflag(FLAG_CAUGHT_CELEBI)
+	addobject(6)
+	delay(30)
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+	applymovement(6, IlexForest_Movement_KurtToPlayer)
+	waitmovement(0)
+	textcolor(MSG_COLOR_BLUE)
+	msgbox("Whew, wasn't that something!\p{PLAYER}, that was fantastic.\nThanks!\pThe legends about that SHRINE\nwere real after all.\pI feel inspired by what\nI just saw.\pIt motivates me to make better\nBALLS!\pI'm going!")
+	closemessage
+	applymovement(6, IlexForest_Movement_KurtFromPlayer)
+	waitmovement(0)
+	removeobject(6)
+}script IlexForest_EventScript_RemoveCelebi{
+    fadescreenswapbuffers(FADE_TO_BLACK)
+	removeobject(13)
+	fadescreenswapbuffers(FADE_FROM_BLACK)
+}movement IlexForest_Movement_KurtToPlayer{
+	walk_up * 5
+}movement IlexForest_Movement_KurtFromPlayer{
+	walk_down * 5
 }

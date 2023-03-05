@@ -165,6 +165,21 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_PokemonCenter_1F_EventScript_NewsWoman",
       "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_TEALA",
+      "in_connection": false,
+      "x": 1,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TEMP_2"
     }
   ],
   "warp_events": [
@@ -191,7 +206,15 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 16,
+      "elevation": 0,
+      "var": "VAR_0x8003",
+      "var_value": "0",
+      "script": "GoldenrodCity_PokemonCenter_1F_EventScript_GSBallTrigger"
+    }
   ],
   "bg_events": [
     {

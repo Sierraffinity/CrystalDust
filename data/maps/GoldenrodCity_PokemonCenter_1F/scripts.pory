@@ -6,6 +6,7 @@ const TRADE_GIRL = 7
 const BUG_CATCHER = 8
 const YOUNGSTER = 9
 const NEWS_WOMAN = 10
+const GS_BALL_TEALA = 11
 
 mapscripts GoldenrodCity_PokemonCenter_1F_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
@@ -22,6 +23,12 @@ mapscripts GoldenrodCity_PokemonCenter_1F_MapScripts {
             setobjectmovementtype(YOUNGSTER, MOVEMENT_TYPE_FACE_RIGHT)
             setobjectmovementtype(NEWS_WOMAN, MOVEMENT_TYPE_FACE_LEFT)
             setobjectxyperm(NEWS_WOMAN, 32, 8)
+        }
+        setflag(FLAG_TEMP_2)
+        setvar(VAR_0x8003, 1)
+        if(flag(FLAG_GS_BALL_AVAILABLE_FROM_POKECOM_CENTER))
+        {
+            setvar(VAR_0x8003, 0)
         }
     }
     MAP_SCRIPT_ON_RESUME: CableClub_OnResume
@@ -361,4 +368,45 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse {
                "Please try again later.")
     }
     release
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_GSBallTrigger {
+    checkitemspace(ITEM_GS_BALL, 1)
+    if(!var(VAR_RESULT))
+    {   // Don't have space for the GS Ball, don't play event
+        setvar(VAR_0x8003, 1)
+        end
+    }
+    lock
+    callnative(HideWarpArrowSprite)
+    addobject(GS_BALL_TEALA)
+    playse(SE_ESCALATOR)
+    waitse
+    playbgm(MUS_FOLLOW_ME, 0)
+    applymovement(GS_BALL_TEALA, GoldenrodCity_PokemonCenter_1F_Movement_GSBallNurseToPlayer)
+    waitmovement(0)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    bufferitemname(0, ITEM_GS_BALL)
+    textcolor(MSG_COLOR_RED)
+    msgbox("{PLAYER}, isn't it?\pCongratulations!\pAs a special deal, a {STR_VAR_1} has\nbeen sent just for you!\pPlease accept it!", MSGBOX_DEFAULT)
+    giveitem(ITEM_GS_BALL, 1)
+    clearflag(FLAG_GS_BALL_AVAILABLE_FROM_POKECOM_CENTER)
+    setflag(FLAG_CAN_GIVE_GS_BALL_TO_KURT)
+    msgbox("Please do come again!", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(GS_BALL_TEALA, GoldenrodCity_PokemonCenter_1F_Movement_GSBallNurseToStairs)
+    waitmovement(0)
+    playse(SE_ESCALATOR)
+    waitse
+    fadedefaultbgm
+    removeobject(GS_BALL_TEALA)
+    setvar(VAR_0x8003, 1)
+    release
+    end
+}movement GoldenrodCity_PokemonCenter_1F_Movement_GSBallNurseToPlayer {
+    walk_right * 6
+    walk_down
+}movement GoldenrodCity_PokemonCenter_1F_Movement_GSBallNurseToStairs {
+    walk_up
+    walk_left * 6
 }
