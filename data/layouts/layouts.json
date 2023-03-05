@@ -4832,8 +4832,8 @@
       "height": 12,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_IcePath",
       "border_filepath": "data/layouts/Route20_SeafoamGym/border.bin",
       "blockdata_filepath": "data/layouts/Route20_SeafoamGym/map.bin"
     },
