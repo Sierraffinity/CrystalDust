@@ -41,9 +41,48 @@ script PalletTown_ProfessorOaksLab_EventScript_Oak {
     {
         callnative(CountBadges)
         if(var(VAR_RESULT) == 16)
-        {
+        {   // prepend unlocking Mt. Silver with getting the National Dex.
+            msgbox("OAK: {PLAYER}, you've got an\nimpeccable sense of timing.\pI've just finished compiling the data\nfor the NATIONAL {POKEDEX}, you see.\pSo, since you're here, let me\nupgrade your {POKEDEX} with the\lNATIONAL MODE.\pAfter all, there are many kinds of\n{POKEMON} in this world of ours!", MSGBOX_DEFAULT)
+            closemessage
+            textcolor(MSG_COLOR_SYS)
+            msgbox("PROF. OAK took your {POKEDEX}\nunit.", MSGBOX_DEFAULT)
+            closemessage
+            switch(var(VAR_FACING))
+            {
+                case DIR_NORTH:
+                    applymovement(VAR_LAST_TALKED, PalletTown_ProfessorOaksLab_Movement_OakUpgradesPokedexFacingUp)
+                case DIR_SOUTH:
+                    applymovement(VAR_LAST_TALKED, PalletTown_ProfessorOaksLab_Movement_OakUpgradesPokedexFacingDown)
+                case DIR_WEST:
+                    applymovement(VAR_LAST_TALKED, PalletTown_ProfessorOaksLab_Movement_OakUpgradesPokedexFacingLeft)
+                case DIR_EAST:
+                    applymovement(VAR_LAST_TALKED, PalletTown_ProfessorOaksLab_Movement_OakUpgradesPokedexFacingRight)
+            }
+            waitmovement(0)
+            delay(30)
+            faceplayer
+            textcolor(MSG_COLOR_BLUE)
+            msgbox("…And that's done!\pNow this unit can record data on\na lot more {POKEMON}.")
+            closemessage
+            playfanfare(MUS_RG_OBTAIN_KEY_ITEM)
+            textcolor(MSG_COLOR_SYS)
+            message("{PLAYER}'s {POKEDEX} was upgraded!")
+            waitmessage
+            waitfanfare
+            special(EnableNationalPokedex)
+            textcolor(MSG_COLOR_BLUE)
+            msgbox("OAK: I'm afraid it won't be easy to\ncomplete the NATIONAL {POKEDEX}.\pYou may want to start by getting\nall the KANTO GYM BADGES…")
+            closemessage
+            applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
+            playse(SE_PIN)
+            delay(0x40)
             msgbox("OAK: Wow!\nThat's excellent!\pYou collected the BADGES of GYMS in\nKANTO. Well done!\pI was right in my assessment of you.\nTell you what, {PLAYER}.\pI'll make arrangements so that you\ncan go to MT. SILVER.\pMT. SILVER is a big mountain that is\nhome to many wild {POKEMON}.\pIt's too dangerous for your average\ntrainer, so it's off limits.\pBut we can make an exception\nin your case, {PLAYER}.\pGo up to INDIGO PLATEAU.\nYou can reach MT. SILVER from there.", MSGBOX_DEFAULT)
             setflag(FLAG_OPENED_MT_SILVER)
+            // In Crystal, this script continues into the Pokedex evaluation. Because prepending Mt. Silver's
+            // unlock with getting the National Pokedex makes the script so long already, and because it feels
+            // like a random segue after everything he's just done for the player, this script instead ends here.
+            release
+            end
         }
         elif(var(VAR_RESULT) == 8)
         {
@@ -64,4 +103,44 @@ script PalletTown_ProfessorOaksLab_EventScript_Oak {
     msgbox("If you're in the area, I hope you\ncome visit again.", MSGBOX_DEFAULT)
     release
     end
+}movement(local) PalletTown_ProfessorOaksLab_Movement_OakUpgradesPokedexFacingUp{
+    walk_in_place_fastest_up
+    delay_16
+	delay_4
+    walk_in_place_fastest_up
+    delay_16
+	delay_4
+    walk_in_place_fastest_up
+    delay_16
+	delay_4
+}movement(local) PalletTown_ProfessorOaksLab_Movement_OakUpgradesPokedexFacingDown{
+    walk_in_place_fastest_down
+    delay_16
+	delay_4
+    walk_in_place_fastest_down
+    delay_16
+	delay_4
+    walk_in_place_fastest_down
+    delay_16
+	delay_4
+}movement(local) PalletTown_ProfessorOaksLab_Movement_OakUpgradesPokedexFacingLeft{
+    walk_in_place_fastest_left
+    delay_16
+	delay_4
+    walk_in_place_fastest_left
+    delay_16
+	delay_4
+    walk_in_place_fastest_left
+    delay_16
+	delay_4
+}movement(local) PalletTown_ProfessorOaksLab_Movement_OakUpgradesPokedexFacingRight{
+    walk_in_place_fastest_right
+    delay_16
+	delay_4
+    walk_in_place_fastest_right
+    delay_16
+	delay_4
+    walk_in_place_fastest_right
+    delay_16
+	delay_4
 }
