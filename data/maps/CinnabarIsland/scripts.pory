@@ -1,7 +1,61 @@
 mapscripts CinnabarIsland_MapScripts {
     MAP_SCRIPT_ON_TRANSITION{
         setflag(FLAG_VISITED_CINNABAR_ISLAND)
+        if(!flag(FLAG_BILL_ESCORTING_TO_SEVII))
+        {
+            setflag(FLAG_TEMP_1)
+        }
+        else
+        {
+            setvar(VAR_TEMP_1, 1)
+            savebgm(MUS_FOLLOW_ME)
+        }
     }
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_1, 1{
+            lockall
+            clearflag(FLAG_DONT_TRANSITION_MUSIC)
+            savebgm(MUS_DUMMY)
+            textcolor(MSG_COLOR_BLUE)
+            setvar(VAR_TEMP_1, 0)
+            applymovement(2, CinnabarIsland_Movement_ToShore)
+            applymovement(OBJ_EVENT_ID_PLAYER, CinnabarIsland_Movement_ToShore)
+            waitmovement(0)
+            turnobject(2, DIR_EAST)
+            applymovement(3, CinnabarIsland_Movement_BoatToShore)
+            waitmovement(0)
+            turnobject(2, DIR_NORTH)
+            msgbox("Looks like my pal's boat arrived,\ntoo.\pHe sent it specially here to\nCINNABAR to pick me up.")
+            closemessage
+            applymovement(2, CinnabarIsland_Movement_BoardBoat)
+            waitmovement(0)
+            applymovement(OBJ_EVENT_ID_PLAYER, CinnabarIsland_Movement_ToShore)
+            waitmovement(0)
+            applymovement(OBJ_EVENT_ID_PLAYER, CinnabarIsland_Movement_BoardBoat)
+            waitmovement(0)
+            delay(40)
+            clearflag(FLAG_BILL_ESCORTING_TO_SEVII)
+            warp(MAP_CINNABAR_ISLAND, 0xFF 14, 14) //debug, Sevii isn't done yet
+            waitstate                              //debug
+            release                                //debug
+            end                                    //debug
+            //setvar(VAR_0x8004, SEAGALLOP_CINNABAR_ISLAND)
+	        //setvar(VAR_0x8006, SEAGALLOP_THREE_ISLAND)
+            //goto(EventScript_SetSail)
+        }
+    ]
+}movement(local) CinnabarIsland_Movement_ToShore{
+    walk_down
+}movement(local) CinnabarIsland_Movement_BoatToShore{
+    delay_16
+	delay_16
+    walk_fast_left * 5
+	walk_left * 3
+	walk_slow_left * 2
+}movement(local) CinnabarIsland_Movement_BoardBoat{
+    walk_in_place_fastest_down
+    delay_4
+    set_invisible
 }
 
 script CinnabarIsland_EventScript_TownSign {

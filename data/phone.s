@@ -578,3 +578,39 @@ MasterBall_Text_ElmCall:
 	.string "I have something here for you.\n"
 	.string "Could you swing by my LAB?\p"
 	.string "See you later!$"
+
+InviteToSevii_Text_BillCall:
+	.string "Hi, {PLAYER}? It's me, BILL!\n"
+	.string "Thanks for using my STORAGE SYSTEM.\p"
+	.string "I have a favor to ask…\p"
+	.string "You know how the volcano in CINNABAR\n"
+	.string "erupted and destroyed the town?\p"
+	.string "Fortunately, everyone was evacuated\n"
+	.string "in time and no one was hurt…\p"
+	.string "Well, CINNABAR's volcano is part of\n"
+	.string "a volcanic system that stretches to\l"
+	.string "this little island far to the south.\p"
+	.string "What island? ONE ISLAND, of course!\n"
+	.string "It's down in the SEVII ISLANDS.\p"
+	.string "MT. EMBER there erupted first, giving\n"
+	.string "us a warning that CINNABAR was next.\p"
+	.string "The damage was pretty bad in the SEVII\n"
+	.string "ISLANDS, and they're still recovering.\p"
+	.string "A friend invited me to THREE ISLAND.\n"
+	.string "Well, in truth, he asked for my help…\p"
+	.string "The last time I went to SEVII, I\n"
+	.string "brought a strong TRAINER with me.\p"
+	.string "This time I think it's even more vital\n"
+	.string "to bring someone like that along.\p"
+	.string "When you're not busy, would you\n"
+	.string "please meet me on CINNABAR ISLAND?\p"
+	.string "I'll be waiting for you in the\n"
+	.string "{POKEMON} CENTER there.\p"
+	.string "Thanks, {PLAYER}!\n"
+	.string "See you soon!$"
+
+
+PhoneScript_Bill_InviteToSevii::
+	phone_stdcall InviteToSevii_Text_BillCall
+	phone_end
+

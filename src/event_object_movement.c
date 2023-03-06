@@ -455,7 +455,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_SS_AQUA                 0x1116
 #define OBJ_EVENT_PAL_TAG_MURKROW                 0x1117
 #define OBJ_EVENT_PAL_TAG_RED_GYARADOS_REFLECTION 0x1118
-#define OBJ_EVENT_PAL_TAG_UNUSED_3                0x1119
+#define OBJ_EVENT_PAL_TAG_SEAGALLOP               0x1119
 #define OBJ_EVENT_PAL_TAG_UNUSED                  0x111A
 #define OBJ_EVENT_PAL_TAG_EUSINE                  0x111B
 #define OBJ_EVENT_PAL_TAG_DRAGONITE               0x111C
@@ -499,6 +499,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Kris,                  OBJ_EVENT_PAL_TAG_KRIS},
     {gObjectEventPal_KrisReflection,        OBJ_EVENT_PAL_TAG_KRIS_REFLECTION},
     {gObjectEventPal_RedGyaradosReflection, OBJ_EVENT_PAL_TAG_RED_GYARADOS_REFLECTION},
+    {gObjectEventPal_Seagallop,             OBJ_EVENT_PAL_TAG_SEAGALLOP},
     //{gObjectEventPal_CableCar,              OBJ_EVENT_PAL_TAG_CABLE_CAR},
     {gObjectEventPal_SSTidal,               OBJ_EVENT_PAL_TAG_SSTIDAL},
     {gObjectEventPal_Murkrow,               OBJ_EVENT_PAL_TAG_MURKROW},

@@ -11,5 +11,6 @@ extern const u8 VioletCity_PhoneScript_ElmCall[];
 extern const u8 PhoneScript_Bill_JustRanOutOfRoom[];
 extern const u8 RadioTower_PhoneScript_ElmCall[];
 extern const u8 MasterBall_PhoneScript_ElmCall[];
+extern const u8 PhoneScript_Bill_InviteToSevii[];
 
 #endif // GUARD_PHONE_SCRIPTS_H

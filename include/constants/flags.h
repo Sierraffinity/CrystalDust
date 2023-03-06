@@ -889,16 +889,19 @@
 #define FLAG_CAN_GIVE_GS_BALL_TO_KURT                               0x341
 #define FLAG_GAVE_KURT_GS_BALL                                      0x342
 #define FLAG_FOUGHT_CELEBI                                          0x343 // used for regenerating after HoF
-// STOPPED HERE
+
 #define FLAG_HIDE_BATTLE_FRONTIER_RECEPTION_GATE_SCOTT              0x344
-#define FLAG_HIDE_ROUTE_110_BIRCH                                   0x345
+
+#define FLAG_FORCED_CALL_START_SEVII                                0x345
+
 #define FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL         0x346
-#define FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1                             0x347
-#define FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN                      0x348
+#define FLAG_STARTED_SEVII_QUEST                                    0x347
+#define FLAG_BILL_ESCORTING_TO_SEVII                                0x348
+// STOPPED HERE
 #define FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN               0x349
 #define FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO                         0x34A
 #define FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY                      0x34B
-#define FLAG_HIDE_GOLDENROD_CITY_SCIENTIST                           0x34C
+#define FLAG_HIDE_GOLDENROD_CITY_SCIENTIST                          0x34C
 #define FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT                  0x34D
 #define FLAG_HIDE_SLATEPORT_CITY_HARBOR_ARCHIE                      0x34E
 #define FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD                           0x34F

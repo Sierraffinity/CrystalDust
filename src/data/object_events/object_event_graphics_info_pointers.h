@@ -278,6 +278,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_GoldShield;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SilverShield;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SilverShield;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Celebi;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Seagallop;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] = {
     [OBJ_EVENT_GFX_GOLD_NORMAL] =              &gObjectEventGraphicsInfo_GoldNormal,
@@ -552,6 +553,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_ZGOLD_SHIELD] =             &gObjectEventGraphicsInfo_GoldShield,
     [OBJ_EVENT_GFX_ZSILVER_SHIELD] =           &gObjectEventGraphicsInfo_SilverShield,
     [OBJ_EVENT_GFX_CELEBI] =                   &gObjectEventGraphicsInfo_Celebi,
+    [OBJ_EVENT_GFX_SEAGALLOP] = &gObjectEventGraphicsInfo_Seagallop,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

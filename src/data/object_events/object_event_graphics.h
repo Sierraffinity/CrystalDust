@@ -384,3 +384,5 @@ const u32 gObjectEventPic_GoldShield[] = INCBIN_U32("graphics/object_events/pics
 const u32 gObjectEventPic_SilverShield[] = INCBIN_U32("graphics/object_events/pics/dolls/silver_shield.4bpp");
 const u16 gObjectEventPal_ShieldDecorations[] = INCBIN_U16("graphics/object_events/palettes/shield_decorations.gbapal");
 const u32 gObjectEventPic_Celebi[] = INCBIN_U32("graphics/object_events/pics/pokemon/celebi.4bpp");
+const u16 gObjectEventPal_Seagallop[] = INCBIN_U16("graphics/object_events/palettes/seagallop.gbapal");
+const u16 gObjectEventPic_Seagallop[] = INCBIN_U16("graphics/object_events/pics/misc/seagallop.4bpp");

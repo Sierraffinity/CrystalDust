@@ -1,6 +1,10 @@
 mapscripts CinnabarIsland_PokemonCenter_1F_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setrespawn(HEAL_LOCATION_CINNABAR_ISLAND)
+        if(!flag(FLAG_OPENED_MT_SILVER) || flag(FLAG_STARTED_SEVII_QUEST))
+        {
+            setflag(FLAG_TEMP_1)
+        }
     }
     MAP_SCRIPT_ON_RESUME: CableClub_OnResume
 }
@@ -13,4 +17,74 @@ script CinnabarIsland_PokemonCenter_1F_EventScript_CooltrainerF{
 script CinnabarIsland_PokemonCenter_1F_EventScript_FatMan{
     msgbox("It's been a year since the\nvolcano erupted.", MSGBOX_NPC)
     end
+}
+
+script CinnabarIsland_PokemonCenter_1F_EventScript_Bill{
+    lock
+    faceplayer
+    msgbox("BILL: Hey, you kept me waiting!\nReady to set sail to THREE ISLAND?", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("What, are you too busy?\pWell, all right.\nThe boat hasn't arrived yet anyway.\pCome see me when you're done with\nyour business.", MSGBOX_NPC)
+        release
+        end
+    }
+    msgbox("All right, then.\nLet's go!")
+    closemessage
+    playbgm(MUS_FOLLOW_ME, 1)
+    savebgm(MUS_FOLLOW_ME)
+    setflag(FLAG_DONT_TRANSITION_MUSIC)
+    delay(20)
+    switch(var(VAR_FACING))
+    {
+        case DIR_SOUTH:
+            applymovement(VAR_LAST_TALKED, CinnabarIsland_PokemonCenter_1F_Movement_BillExit)
+            applymovement(OBJ_EVENT_ID_PLAYER, CinnabarIsland_PokemonCenter_1F_Movement_PlayerExitSouth)
+        case DIR_EAST:
+            applymovement(VAR_LAST_TALKED, CinnabarIsland_PokemonCenter_1F_Movement_BillExitEast)
+	        applymovement(OBJ_EVENT_ID_PLAYER, CinnabarIsland_PokemonCenter_1F_Movement_PlayerExitEast)
+        case DIR_WEST:
+            applymovement(VAR_LAST_TALKED, CinnabarIsland_PokemonCenter_1F_Movement_BillExit)
+	        applymovement(OBJ_EVENT_ID_PLAYER, CinnabarIsland_PokemonCenter_1F_Movement_PlayerExitWest)
+    }
+    waitmovement(0)
+    setflag(FLAG_BILL_ESCORTING_TO_SEVII)
+    warp(MAP_CINNABAR_ISLAND, 0xFF 14, 11)
+    waitstate
+    release
+    end
+}movement(local) CinnabarIsland_PokemonCenter_1F_Movement_BillExit{
+	walk_left * 4
+	walk_down * 3
+	delay_8
+	set_invisible
+}movement(local) CinnabarIsland_PokemonCenter_1F_Movement_PlayerExitSouth{
+	walk_down
+	walk_left * 4
+	walk_down * 2
+	delay_16
+	walk_down
+}movement(local) CinnabarIsland_PokemonCenter_1F_Movement_BillExitEast{
+	walk_up
+	walk_left * 2
+	walk_down
+	walk_left * 2
+	walk_down * 3
+	delay_8
+	set_invisible
+}movement(local) CinnabarIsland_PokemonCenter_1F_Movement_PlayerExitEast{
+	delay_16 * 3
+	face_left
+	delay_16
+	walk_left * 3
+	walk_down * 2
+	delay_8
+	walk_down
+	delay_8
+	set_invisible
+}movement(local) CinnabarIsland_PokemonCenter_1F_Movement_PlayerExitWest{
+	walk_left * 5
+	walk_down * 2
+	delay_16
+	walk_down
 }

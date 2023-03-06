@@ -1053,6 +1053,11 @@ static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
         .phoneContactId = PHONE_CONTACT_ELM,
         .callCondition = ReceiveCallWhenOutside,
         .script = MasterBall_PhoneScript_ElmCall
+    },{
+        .flag = FLAG_FORCED_CALL_START_SEVII,
+        .phoneContactId = PHONE_CONTACT_BILL,
+        .callCondition = ReceiveCallWhenOutside,
+        .script = PhoneScript_Bill_InviteToSevii
     },
 };
 
