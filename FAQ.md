@@ -218,7 +218,7 @@ The Sleep Talk tutor in Goldenrod City is not available until Team Rocket is def
 No, and there is currently no way to make saves from previous versions compatible.
 
 ### Will my save from the progress branch be compatible with the next release or a different build of the progress branch?
-Possibly not, and very likely not for the next official release. The progress branch is an in-development build and even saves from one development build to the next may not be compatible. To ease development, there are no guarantees that saves from the progress branch with be compatible with the official release, nor that they will be compatible for every prerelease build going forward. You play the progress branch at your own risk.
+Possibly not, and very likely not for the next official release. The progress branch is an in-development build and even saves from one development build to the next may not be compatible. To ease development, there are no guarantees that saves from the progress branch will be compatible with the official release, nor that they will be compatible for every prerelease build going forward. You play the progress branch at your own risk.
 
 ### My emulator/flashcart doesn't work with CrystalDust! The game won't save or the clock won't function!
 The recommended emulator for desktop is [mGBA](https://mgba.io/downloads.html).
