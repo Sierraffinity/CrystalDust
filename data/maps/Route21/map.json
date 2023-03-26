@@ -71,6 +71,13 @@
       "trainer_sight_or_berry_tree_id": "6",
       "script": "Route21_EventScript_SwimmerMSeth",
       "flag": "0"
+    },
+    {
+      "type": "clone",
+      "x": 15,
+      "y": -3,
+      "source_id": 1,
+      "source_map": "MAP_PALLET_TOWN"
     }
   ],
   "warp_events": [
