@@ -25,10 +25,10 @@ mapscripts GoldenrodCity_PokemonCenter_1F_MapScripts {
             setobjectxyperm(NEWS_WOMAN, 32, 8)
         }
         setflag(FLAG_TEMP_2)
-        setvar(VAR_0x8003, 1)
+        setvar(VAR_TEMP_1, 1)
         if(flag(FLAG_GS_BALL_AVAILABLE_FROM_POKECOM_CENTER))
         {
-            setvar(VAR_0x8003, 0)
+            setvar(VAR_TEMP_1, 0)
         }
     }
     MAP_SCRIPT_ON_RESUME: CableClub_OnResume
@@ -374,7 +374,7 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_GSBallTrigger {
     checkitemspace(ITEM_GS_BALL, 1)
     if(!var(VAR_RESULT))
     {   // Don't have space for the GS Ball, don't play event
-        setvar(VAR_0x8003, 1)
+        setvar(VAR_TEMP_1, 1)
         end
     }
     lock
@@ -400,7 +400,7 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_GSBallTrigger {
     waitse
     fadedefaultbgm
     removeobject(GS_BALL_TEALA)
-    setvar(VAR_0x8003, 1)
+    setvar(VAR_TEMP_1, 1)
     release
     end
 }movement GoldenrodCity_PokemonCenter_1F_Movement_GSBallNurseToPlayer {

@@ -211,7 +211,7 @@
       "x": 7,
       "y": 16,
       "elevation": 0,
-      "var": "VAR_0x8003",
+      "var": "VAR_TEMP_1",
       "var_value": "0",
       "script": "GoldenrodCity_PokemonCenter_1F_EventScript_GSBallTrigger"
     }
