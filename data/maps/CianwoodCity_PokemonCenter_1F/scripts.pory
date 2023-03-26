@@ -17,6 +17,8 @@ script CianwoodCity_PokemonCenter_1F_Eventscript_Boy{
         msgbox("I love showing off the {POKEMON} that\nI've raised. Don't you?\pI'm going to get into a bunch of\nbattles and show off my {POKEMON}!", MSGBOX_NPC)
         end
     }
+    goto(CianwoodCity_PokemonCenter_1F_Eventscript_SoftlockPrevention)
+}script CianwoodCity_PokemonCenter_1F_Eventscript_SoftlockPrevention{
     lock
     faceplayer
     msgbox("Huh? Do you happen to…\nhave only one {POKEMON}?\pThat must be hard on you.\n…\pThat's right!\nI'll give you a TENTACOOL!\pI just caught a little too many.\nI was going to release it,\lso take it. Go ahead!", MSGBOX_DEFAULT)

@@ -15,8 +15,13 @@ script CinnabarIsland_PokemonCenter_1F_EventScript_CooltrainerF{
 }
 
 script CinnabarIsland_PokemonCenter_1F_EventScript_FatMan{
-    msgbox("It's been a year since the\nvolcano erupted.", MSGBOX_NPC)
-    end
+    specialvar(VAR_RESULT, HasMoreThanOnePokemon)
+    if(var(VAR_RESULT) == TRUE)
+    {
+        msgbox("It's been a year since the\nvolcano erupted.", MSGBOX_NPC)
+        end
+    }
+    goto(CianwoodCity_PokemonCenter_1F_Eventscript_SoftlockPrevention)
 }
 
 script CinnabarIsland_PokemonCenter_1F_EventScript_Bill{
