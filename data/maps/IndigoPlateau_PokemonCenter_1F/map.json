@@ -78,18 +78,18 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
+      "graphics_id": "OBJ_EVENT_GFX_BILL",
       "in_connection": false,
-      "x": 15,
-      "y": 11,
+      "x": 1,
+      "y": 10,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 2,
-      "movement_range_y": 2,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "IndigoPlateau_PokemonCenter_1F_Eventscript_Guy",
-      "flag": "0"
+      "script": "0",
+      "flag": "FLAG_TEMP_2"
     },
     {
       "type": "original",
@@ -105,6 +105,21 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_TEMP_1"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
+      "in_connection": false,
+      "x": 15,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "IndigoPlateau_PokemonCenter_1F_Eventscript_Guy",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -136,7 +151,7 @@
       "x": 23,
       "y": 3,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_TEMP_1",
       "var_value": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_Eventscript_RivalRematchTriggers"
     },
@@ -145,7 +160,7 @@
       "x": 24,
       "y": 3,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_TEMP_1",
       "var_value": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_Eventscript_RivalRematchTriggers"
     },
@@ -154,7 +169,7 @@
       "x": 25,
       "y": 3,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_TEMP_1",
       "var_value": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_Eventscript_RivalRematchTriggers"
     }

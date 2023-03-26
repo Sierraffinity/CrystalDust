@@ -9,18 +9,30 @@ mapscripts IndigoPlateau_PokemonCenter_1F_MapScripts {
         cleartrainerflag(TRAINER_LANCE)
         if(defeated(TRAINER_RIVAL_REMATCH_CHIKORITA) || defeated(TRAINER_RIVAL_REMATCH_CYNDAQUIL) || defeated(TRAINER_RIVAL_REMATCH_TOTODILE))
         {
-            setvar(VAR_TEMP_0, 1)
+            setvar(VAR_TEMP_1, 1)
         }
         if(!(defeated(TRAINER_RIVAL_MT_MOON_CHIKORITA) || defeated(TRAINER_RIVAL_MT_MOON_TOTODILE) || defeated(TRAINER_RIVAL_MT_MOON_CYNDAQUIL)))
         {
-            setvar(VAR_TEMP_0, 1)
+            setvar(VAR_TEMP_1, 1)
         }
         gettime
         if(!(var(VAR_0x8003) == DAY_MONDAY || var(VAR_0x8003) == DAY_WEDNESDAY))
         {
+            setvar(VAR_TEMP_1, 1)
+        }
+        // The Bill event that unlocks the Time Capsule
+        // is done here if the player never entered the
+        // Ecruteak Pokemon Center as a safeguard since
+        // this is a mandatory Pokemon Center.
+        if(flag(FLAG_MET_BILL_IN_ECRUTEAK))
+        {
             setvar(VAR_TEMP_0, 1)
+            setflag(FLAG_TEMP_2)
         }
     }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 0: EcruteakCity_PokemonCenter_1F_Eventscript_Bill
+    ]
     MAP_SCRIPT_ON_RESUME: CableClub_OnResume
 }
 
@@ -86,7 +98,7 @@ script IndigoPlateau_PokemonCenter_1F_Eventscript_RivalRematchTriggers{
     removeobject(6)
     savebgm(MUS_RG_VICTORY_ROAD)
     fadedefaultbgm
-    setvar(VAR_TEMP_0,1)
+    setvar(VAR_TEMP_1,1)
     releaseall
     end
 }movement(local) IndigoPlateau_PokemonCenter_1F_Movement_RivalToPlayerLeft{
