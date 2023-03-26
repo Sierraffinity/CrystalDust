@@ -49,7 +49,7 @@ script CinnabarIsland_PokemonCenter_1F_EventScript_Bill{
     }
     waitmovement(0)
     setflag(FLAG_BILL_ESCORTING_TO_SEVII)
-    warp(MAP_CINNABAR_ISLAND, 0xFF 14, 11)
+    warp(MAP_CINNABAR_ISLAND, 0xFF, 14, 11)
     waitstate
     release
     end
