@@ -151,8 +151,7 @@ script OlivineCity_EventScript_LighthouseSign{
 script OlivineCity_EventScript_BattleTowerSign{
     if(!flag(FLAG_VISITED_VERMILION_CITY))
     {
-        msgbox("The sign is blank…\nIt looks like it was put in recently.", MSGBOX_DEFAULT)
-        release
+        msgbox("The sign is blank…\nIt looks like it was put in recently.", MSGBOX_SIGN)
         end
     }
     msgbox("BATTLE FRONTIER DOCK AHEAD\nOpening Now!", MSGBOX_SIGN)
