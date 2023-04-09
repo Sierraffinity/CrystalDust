@@ -10,6 +10,13 @@ enum {
     MATCH_CALL_TYPE_GYMLEADER_ELITEFOUR
 };
 
+struct MomItemTable {
+    u32 threshold;
+    u16 price;
+    bool8 itemType; // TRUE for Doll, False for item
+    u8 item; // no item indices bought by mom are > 255, so u8 is enough.
+};
+
 s32 GetRematchIdxByTrainerIdx(s32 trainerIdx);
 void InitMatchCallCounters(void);
 bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer);
@@ -25,5 +32,6 @@ void DrawMatchCallTextBoxBorder_Internal(u32 windowId, u32 tileOffset, u32 palet
 bool32 CleanupAfterMatchCallHangup(void);
 void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId);
 bool32 MapAllowsMatchCall(void);
+void MomTriesToBuySomething(void);
 
 #endif //GUARD_MATCH_CALL_H

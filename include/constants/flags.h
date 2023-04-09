@@ -897,8 +897,10 @@
 #define FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL         0x346
 #define FLAG_STARTED_SEVII_QUEST                                    0x347
 #define FLAG_BILL_ESCORTING_TO_SEVII                                0x348
+
+#define FLAG_FORCED_CALL_MOM_ITEM                                   0x349
+
 // STOPPED HERE
-#define FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN               0x349
 #define FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO                         0x34A
 #define FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY                      0x34B
 #define FLAG_HIDE_GOLDENROD_CITY_SCIENTIST                          0x34C

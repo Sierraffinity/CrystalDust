@@ -614,3 +614,29 @@ PhoneScript_Bill_InviteToSevii::
 	phone_stdcall InviteToSevii_Text_BillCall
 	phone_end
 
+PhoneScript_Mom_BoughtItem::
+	phone_compare VAR_0x8004, 1
+	phone_goto_if_eq PhoneScript_Mom_BoughtDoll
+	phone_stdcall BoughtItem_Text_MomCall
+	phone_end
+
+PhoneScript_Mom_BoughtDoll::
+	phone_stdcall BoughtDoll_Text_MomCall
+	phone_end
+
+BoughtItem_Text_MomCall:
+	.string "Hi, {PLAYER}!\n"
+	.string "How are you?\p"
+	.string "I found a useful item shopping, so\n"
+	.string "I bought it with your money. Sorry!\p"
+	.string "It's in your PC.\n"
+	.string "You'll like it!$"
+
+BoughtDoll_Text_MomCall:
+	.string "Hi, {PLAYER}!\n"
+	.string "How are you?\p"
+	.string "While shopping today, I saw this\n"
+	.string "adorable doll, so I bought it with\l"
+	.string "your money. Sorry!\p"
+	.string "It's in your room.\n"
+	.string "You'll love it!$"

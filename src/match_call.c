@@ -10,9 +10,11 @@
 #include "field_player_avatar.h"
 #include "gpu_regs.h"
 #include "graphics.h"
+#include "item.h"
 #include "main.h"
 #include "match_call.h"
 #include "menu.h"
+#include "money.h"
 #include "new_game.h"
 #include "overworld.h"
 #include "palette.h"
@@ -36,8 +38,10 @@
 #include "constants/abilities.h"
 #include "constants/battle_frontier.h"
 #include "constants/event_objects.h"
+#include "constants/items.h"
 #include "constants/maps.h"
 #include "constants/region_map_sections.h"
+#include "constants/room_decor.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
 
@@ -1018,6 +1022,7 @@ static const struct MatchCallText *const sMatchCallGeneralTopics[] =
 };
 
 static bool8 ReceiveCallWhenOutside(void);
+static bool8 AlwaysTrue(void);
 
 static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
     {
@@ -1058,6 +1063,11 @@ static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
         .phoneContactId = PHONE_CONTACT_BILL,
         .callCondition = ReceiveCallWhenOutside,
         .script = PhoneScript_Bill_InviteToSevii
+    },{
+        .flag = FLAG_FORCED_CALL_MOM_ITEM,
+        .phoneContactId = PHONE_CONTACT_MOM,
+        .callCondition = AlwaysTrue, // MomTriesToBuySomething() in mom_item_calls.c makes sure the call conditions are right
+        .script = PhoneScript_Mom_BoughtItem
     },
 };
 
@@ -1165,6 +1175,11 @@ static bool32 SelectForcedPhoneCall(void)
 static bool8 ReceiveCallWhenOutside(void)
 {
     return IsMapTypeOutdoors(gMapHeader.mapType);
+}
+
+static bool8 AlwaysTrue(void)
+{
+    return TRUE;
 }
 
 static u32 GetNumRegisteredNPCs(void)
@@ -2082,4 +2097,123 @@ void LoadMatchCallWindowGfx2(u32 windowId, u32 destOffset, u32 paletteId)
 void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
 {
     DrawMatchCallTextBoxBorder_Internal(windowId, tileOffset, paletteId);
+}
+
+static const struct MomItemTable MomItems_1[] = {
+    {0, 600, FALSE, ITEM_SUPER_POTION},
+    {0,  90, FALSE, ITEM_ANTIDOTE},
+    {0, 180, FALSE, ITEM_POKE_BALL},
+    {0, 450, FALSE, ITEM_ESCAPE_ROPE},
+    {0, 500, FALSE, ITEM_GREAT_BALL},
+};
+
+static const struct MomItemTable MomItems_2[] = {
+    {   900,   600, FALSE, ITEM_SUPER_POTION},
+    {  4000,   270, FALSE, ITEM_REPEL},
+    {  7000,   600, FALSE, ITEM_SUPER_POTION},
+    { 10000,  1800, TRUE,  DOLL_CHARMANDER},
+    { 15000,  3000, FALSE, ITEM_MOON_STONE},
+    { 19000,   600, FALSE, ITEM_SUPER_POTION},
+    { 30000,  4800, TRUE,  DOLL_CLEFAIRY},
+    { 40000,   900, FALSE, ITEM_HYPER_POTION},
+    { 50000,  8000, TRUE,  DOLL_PIKACHU},
+    {100000, 22800, TRUE,  BIG_DOLL_SNORLAX + 1}, // BIG_DOLL_SNORLAX expands to 1, which is the same as DOLL_PIKACHU. Oops.
+};
+
+static void MomTriesToBuySomethingFromTable1(void)
+{
+    /*
+    u32 i;
+    u32 moneyMatch;
+    
+    // Determine the multiples of 2300 match here. If false, return.
+
+    i = Random() % ARRAY_COUNT(MomItems_1);
+
+    // will always have enough money, since this triggers for multiples of 2300
+    // and nothing in MomItems_1 has a price > 2300
+
+    if(AddPCItem(MomItems_1[i].item, 1))
+    {
+        FlagSet(FLAG_FORCED_CALL_MOM_ITEM);
+        VarSet(VAR_0x8004, 0);
+        RemoveMoney(&gSaveBlock1Ptr->bankedMoney, MomItems_1[i].price);
+    }
+    */
+    return;
+}
+
+void MomTriesToBuySomething(void)
+{
+    if(MapAllowsMatchCall())
+    {
+        u32 i =  VarGet(VAR_MOM_BOUGHT_ITEMS);
+        if(i >= ARRAY_COUNT(MomItems_2) || !IsEnoughMoney(&gSaveBlock1Ptr->bankedMoney, MomItems_2[i].threshold))
+        {
+            //secondary table
+            MomTriesToBuySomethingFromTable1();
+        }
+        else
+        {
+            if(!MomItems_2[i].itemType)
+            {   // regular item
+                if(AddPCItem(MomItems_2[i].item, 1))
+                {
+                    FlagSet(FLAG_FORCED_CALL_MOM_ITEM);
+                    VarSet(VAR_MOM_BOUGHT_ITEMS, i + 1);
+                    VarSet(VAR_0x8004, 0);
+                    RemoveMoney(&gSaveBlock1Ptr->bankedMoney, MomItems_2[i].price);
+                }
+                return;
+            }
+            else
+            {   // doll
+                switch(MomItems_2[i].item)
+                {
+                    case DOLL_CHARMANDER:
+                        if(gSaveBlock1Ptr->roomDecorInventory.charmanderDoll < 2)
+                            gSaveBlock1Ptr->roomDecorInventory.charmanderDoll += 1;
+                        else // somehow already have 2, remove from Mom's buy list
+                        {
+                            VarSet(VAR_MOM_BOUGHT_ITEMS, i + 1);
+                            return;
+                        }
+                        break;
+                    case DOLL_CLEFAIRY:
+                        if(gSaveBlock1Ptr->roomDecorInventory.clefairyDoll < 2)
+                            gSaveBlock1Ptr->roomDecorInventory.clefairyDoll += 1;
+                        else // somehow already have 2, remove from Mom's buy list
+                        {
+                            VarSet(VAR_MOM_BOUGHT_ITEMS, i + 1);
+                            return;
+                        }
+                        break;
+                    case DOLL_PIKACHU:
+                        if(gSaveBlock1Ptr->roomDecorInventory.pikachuDoll < 2)
+                            gSaveBlock1Ptr->roomDecorInventory.pikachuDoll += 1;
+                        else // somehow already have 2, remove from Mom's buy list
+                        {
+                            VarSet(VAR_MOM_BOUGHT_ITEMS, i + 1);
+                            return;
+                        }
+                        break;
+                    case BIG_DOLL_SNORLAX + 1:
+                        if(gSaveBlock1Ptr->roomDecorInventory.bigSnorlax != 1)
+                            gSaveBlock1Ptr->roomDecorInventory.bigSnorlax = 1;
+                        else // somehow already have 1, remove from Mom's buy list
+                        {
+                            VarSet(VAR_MOM_BOUGHT_ITEMS, i + 1);
+                            return;
+                        }
+                        break;
+                    default:
+                        return;
+                }
+                FlagSet(FLAG_FORCED_CALL_MOM_ITEM);
+                VarSet(VAR_0x8004, 1);
+                VarSet(VAR_MOM_BOUGHT_ITEMS, i + 1);
+                RemoveMoney(&gSaveBlock1Ptr->bankedMoney, MomItems_2[i].price);
+            }
+        }
+    }
 }
