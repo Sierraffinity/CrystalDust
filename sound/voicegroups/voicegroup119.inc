@@ -21,7 +21,7 @@ voicegroup119:: @ 869AC70
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8D94
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8DA0
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8DAC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8DB8
+	voice_directsound 60, 0, DirectSoundWaveData_sc88_accordion, 255, 0, 255, 165  @ 86A93B8
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8DC4
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8DD0
 	voice_directsound 60, 0, DirectSoundWaveData_sc88_nylon_str_guitar, 128, 249, 25, 127  @ 86A8DDC
@@ -36,7 +36,7 @@ voicegroup119:: @ 869AC70
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E48
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E54
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E60
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E6C
+	voice_directsound 60, 0, DirectSoundWaveData_unused_sc88_unison_slap, 255, 165, 180, 216  @ 86A946C
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E78
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E84
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E90
@@ -80,8 +80,8 @@ voicegroup119:: @ 869AC70
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9058
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9064
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9070
-	voice_square_2_alt 1, 0, 2, 7, 2 @ 8497A38
-	voice_square_1_alt 0, 3, 0, 3, 6, 2 @ 8497A44
+	voice_square_2_alt 3, 0, 4, 4, 4 @ 8497A38
+	voice_square_1_alt 0, 1, 0, 2, 7, 2 @ 8497A44
 	voice_square_2_alt 3, 0, 2, 6, 5  @ 86A9094
 	voice_programmable_wave_alt ProgrammableWaveData_86B4890, 0, 3, 6, 5  @ 86A90A0
 	voice_programmable_wave_alt ProgrammableWaveData_86B4870, 0, 7, 15, 0  @ 86A92E0
@@ -126,6 +126,6 @@ voicegroup119:: @ 869AC70
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9280
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A928C
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9298
-	voice_noise_alt 0, 0, 2, 6, 2  @ 86A92A4
+	voice_noise_alt 0, 0, 2, 6, 0  @ 86A92A4
 	voice_noise_alt 0, 0, 1, 6, 0  @ 86A92B0
 
