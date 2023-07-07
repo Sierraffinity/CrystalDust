@@ -41,3 +41,5 @@ data/scripts/bug_catching_contest.inc
 src/data/items.h
 include/constants/map_groups.h
 data/scripts/move_tutors.inc
+.cproject
+.project
