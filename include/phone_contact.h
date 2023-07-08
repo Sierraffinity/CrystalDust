@@ -20,7 +20,7 @@ struct PhoneContact
     u8 isPermanent;
 };
 
-enum {
+enum { //All phone contacts defined in constants/phone_contact.h - Updating this throws syntax error
     PHONE_CONTACT_ANDRES = PHONE_CONTACT_NON_TRAINERS_COUNT,
     PHONE_CONTACT_DUSTY,
     PHONE_CONTACT_LOLA,
