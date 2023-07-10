@@ -12,6 +12,9 @@ script Route33_EventScript_Girl {
 script Route33_EventScript_Anthony {
     trainerbattle_single(TRAINER_ANTHONY_1, "I came through the tunnel, but I\nstill have plenty of energy left!", "Whoa!\nYou've got more zip than me!")
     // TODO: Phone
+    // Testomg Phone Flag
+    msgbox("Take my phone number.")
+    registerphonecontact(FLAG_PHONE_CARD_HIKER_ANTHONY)
     msgbox("We HIKERS are at our best in\nthe mountains.")
     release
 }
