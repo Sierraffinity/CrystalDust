@@ -985,6 +985,20 @@ bool8 IsPhoneContactAvailable(const struct PhoneContact *phoneContact, s8 dayOfW
 
 static const u8 sPhoneContactName_UnknownContact[] = _("UNKNOWN CONTACT");
 
+const bool8 FindPhoneContactNameFromFlag(void){
+	int i;
+	u16 contactFlag = gSpecialVar_0x8003;
+
+	for(i=0;i<PHONE_CONTACT_COUNT;i++){
+		if(gPhoneContacts[i].registeredFlag == contactFlag){
+			StringCopy(gStringVar1, gPhoneContacts[i].customDisplayName);
+			return TRUE;
+		}
+	}
+	StringCopy(gStringVar1, sPhoneContactName_UnknownContact);
+	return FALSE;
+}
+
 const u8 *BuildPhoneContactDisplayName(const struct PhoneContact *phoneContact, u8 *dest)
 {
     int i, j;

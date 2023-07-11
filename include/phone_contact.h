@@ -111,5 +111,6 @@ extern const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT];
 bool8 IsPhoneContactAvailable(const struct PhoneContact *phoneContact, s8 dayOfWeek, s8 hour);
 const u8 *BuildPhoneContactDisplayName(const struct PhoneContact *phoneContact, u8 *dest);
 const u8 *BuildPhoneContactDisplayNameForCall(const struct PhoneContact *phoneContact, u8 *dest);
+const bool8 FindPhoneContactNameFromFlag(void);
 
 #endif //GUARD_PHONE_CONTACT_H

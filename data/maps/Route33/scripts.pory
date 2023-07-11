@@ -13,8 +13,17 @@ script Route33_EventScript_Anthony {
     trainerbattle_single(TRAINER_ANTHONY_1, "I came through the tunnel, but I\nstill have plenty of energy left!", "Whoa!\nYou've got more zip than me!")
     // TODO: Phone
     // Testomg Phone Flag
-    msgbox("Take my phone number.")
-    registerphonecontact(FLAG_PHONE_CARD_HIKER_ANTHONY)
+    if(!flag(FLAG_PHONE_CARD_HIKER_ANTHONY))
+    {
+    	msgbox(format("By the way, I'm a HIKER, so I often go to mountains and caves.\p"
+    	 "I occasionally see rare {POKE}MON.\p"
+    	 "I could call you the next time I see one.\p"
+    	 "Feel like swapping phone numbers?", "1_latin_frlg"), MSGBOX_YESNO)
+    	 if(var(VAR_RESULT) == 1)
+    	 {
+    		registerphonecontact(FLAG_PHONE_CARD_HIKER_ANTHONY)
+    		}
+    }
     msgbox("We HIKERS are at our best in\nthe mountains.")
     release
 }

@@ -1,6 +1,5 @@
 Std_RegisteredInMatchCall::
 	waitse
-	setflag [0x8004]
 	playfanfare MUS_REGISTER_PHONE
 	textcolor MSG_COLOR_SYS
 	msgbox EventScript_Text_Trainer_Registered
@@ -22,4 +21,5 @@ EventScript_GotoTrainerScript::
 	end
 
 EventScript_Text_Trainer_Registered:
-	.string "{PLAYER} registered a new phone number!$"
+	.string "{PLAYER} registered {STR_VAR_1}'s\n"
+	.string "phone number!$"
