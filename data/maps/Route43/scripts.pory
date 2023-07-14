@@ -1,49 +1,90 @@
 mapscripts Route43_MapScripts {}
 
 script Route43_Eventscript_RouteSign { //used for both signs
-    msgbox("ROUTE 43\nLAKE OF RAGE - MAHOGANY TOWN", MSGBOX_SIGN)
-    end
+  msgbox("ROUTE 43\nLAKE OF RAGE - MAHOGANY TOWN", MSGBOX_SIGN)
+  end
 }
 
 script Route43_Eventscript_TrainerTipsSign {
-    msgbox("TRAINER TIPS\pAll {POKEMON} have pros and cons\ndepending on their types.\pIf their types differ, a higher-\nlevel {POKEMON} may lose in battle.\pLearn which types are strong and\nweak against your {POKEMON}'s type.", MSGBOX_SIGN)
-    end
+  msgbox("TRAINER TIPS\pAll {POKEMON} have pros and cons\ndepending on their types.\pIf their types differ, a higher-\nlevel {POKEMON} may lose in battle.\pLearn which types are strong and\nweak against your {POKEMON}'s type.", MSGBOX_SIGN)
+  end
 }
 
 script Route43_Eventscript_CamperSpencer {
-    trainerbattle_single(TRAINER_SPENCER, "I can do so much with my {POKEMON}--\nit's super-fun!", "Losing isn't fun at all…")
-    msgbox("What is going on at the\nLAKE OF RAGE?\lWe were planning to camp there.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_SPENCER, "I can do so much with my {POKEMON}--\nit's super-fun!", "Losing isn't fun at all…")
+  msgbox("What is going on at the\nLAKE OF RAGE?\lWe were planning to camp there.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route43_Eventscript_PicnickerTiffany {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_TIFFANY_1, "Are you going to the LAKE OF RAGE\ntoo? Let's play for a little while!", "I played too much!")
-    msgbox("Isn't my CLEFAIRY just the most\nadorable thing?", MSGBOX_AUTOCLOSE)
+  // TODO: Phone
+  trainerbattle_single(TRAINER_TIFFANY_1, "Are you going to the LAKE OF RAGE\ntoo? Let's play for a little while!", "I played too much!")
+  if (!flag(FLAG_PHONE_CARD_PICNICKER_TIFFANY)) {
+    if (!flag(FLAG_PICNICKER_TIFFANY_OFFERED_NUMBER)) {
+      msgbox("Hi! You like CLEFAIRY too?\n"
+        "They're so very cute, aren't they?\l"
+        "I think we can be good friends!\p"
+        "I want to know your phone number!\n"
+        "Let's talk about CLEFAIRY!", MSGBOX_YESNO)
+      setflag(FLAG_PICNICKER_TIFFANY_OFFERED_NUMBER)
+    } else {
+      msgbox("I want to know your phone number!\nLet's talk about CLEFAIRY!", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_PICNICKER_TIFFANY)
+      msgbox("Isn't my CLEFAIRY super-adorable?", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("Aww... Oh well. Look for me if you\nwant to talk about CLEFAIRY.", MSGBOX_AUTOCLOSE)
+    }
     end
+  }
+  msgbox("Isn't my CLEFAIRY just the most\nadorable thing?", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route43_Eventscript_PokemaniacBrent {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_BRENT_1, "Hey! Do you have any rare {POKEMON}?", "Oh, my poor {POKEMON}!\nDarlings!")
-    msgbox("I'd be happy just to own a single\nrare {POKEMON}.", MSGBOX_AUTOCLOSE)
+  // TODO: Phone
+  trainerbattle_single(TRAINER_BRENT_1, "Hey! Do you have any rare {POKEMON}?", "Oh, my poor {POKEMON}!\nDarlings!")
+  if (!flag(FLAG_PHONE_CARD_POKEMANIAC_BRENT)) {
+    if (!flag(FLAG_POKEMANIAC_BRENT_OFFERED_NUMBER)) {
+      msgbox("By the way, you're a {POKE}MANIAC...\n"
+        "I can tell. Yes, you are.\l"
+        "But your knowledge is shallow still!\p"
+        "Do you know BILL?\n"
+        "He's an incredible\n{POKE}MANIAC.\l"
+        "I revere him.\p"
+        "I'll teach you all I know about BILL,\n"
+        "so leave me your phone number.", MSGBOX_YESNO)
+      setflag(FLAG_POKEMANIAC_BRENT_OFFERED_NUMBER)
+    } else {
+      msgbox("I'll teach you all I know about\nBILL, so leave me your phone number.", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_POKEMANIAC_BRENT)
+      msgbox("BILL--he's more than amazing! To\nbe a {POKE}MANIAC like him someday...\lThat's my dream.", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("You're going to regret it... And I\nwon't care...", MSGBOX_AUTOCLOSE)
+    }
     end
+  }
+  msgbox("I'd be happy just to own a single\nrare {POKEMON}.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route43_Eventscript_FishermanMarvin {
-    trainerbattle_single(TRAINER_MARVIN, "I'm in a slump.\nMaybe it's the gear I'm using.\pLet's battle for a change of pace!", "I lost, but I feel better anyway.")
-    msgbox("KURT's LURE BALL is the best for\ncatching hooked {POKEMON}.\pIt's much more effective than an\nULTRA BALL.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_MARVIN, "I'm in a slump.\nMaybe it's the gear I'm using.\pLet's battle for a change of pace!", "I lost, but I feel better anyway.")
+  msgbox("KURT's LURE BALL is the best for\ncatching hooked {POKEMON}.\pIt's much more effective than an\nULTRA BALL.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route43_Eventscript_PokemaniacRon {
-    trainerbattle_single(TRAINER_RON, "Would you get this? Some {RIVAL}\nguy made fun of my {POKEMON}!\pDarn it! My {POKEMON}'s great!", "My NIDOKING did pretty right on!")
-    msgbox("It's okay for people to like\ndifferent types of {POKEMON}.\p{POKEMON} isn't just about having the\nmost powerful one.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_RON, "Would you get this? Some {RIVAL}\nguy made fun of my {POKEMON}!\pDarn it! My {POKEMON}'s great!", "My NIDOKING did pretty right on!")
+  msgbox("It's okay for people to like\ndifferent types of {POKEMON}.\p{POKEMON} isn't just about having the\nmost powerful one.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route43_Eventscript_PokemaniacBen {
-    trainerbattle_single(TRAINER_BEN, "I love {POKEMON}!\pThat's why I started--and why I'll\nkeep on collecting {POKEMON}!", "How could you do this to me?")
-    msgbox("What else do I like besides {POKEMON}?\nMARY on the radio. I bet she's cute!", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_BEN, "I love {POKEMON}!\pThat's why I started--and why I'll\nkeep on collecting {POKEMON}!", "How could you do this to me?")
+  msgbox("What else do I like besides {POKEMON}?\nMARY on the radio. I bet she's cute!", MSGBOX_AUTOCLOSE)
+  end
 }

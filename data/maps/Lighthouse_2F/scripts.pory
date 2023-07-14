@@ -1,14 +1,34 @@
 mapscripts Lighthouse_2F_MapScripts {}
 
 script Lighthouse_2F_EventScript_GentlemanAlfred {
-    trainerbattle_single(TRAINER_ALFRED,  "Hm? This is no place for playing.", "Ah! I can see that you're serious.")
-    msgbox("Up top is a {POKEMON} that keeps the\nLIGHTHOUSE lit.\pBut I hear that it's sick now and\ncan't be cured by ordinary medicine.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_ALFRED, "Hm? This is no place for playing.", "Ah! I can see that you're serious.")
+  msgbox("Up top is a {POKEMON} that keeps the\nLIGHTHOUSE lit.\pBut I hear that it's sick now and\ncan't be cured by ordinary medicine.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Lighthouse_2F_Eventscript_SailorHuey {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_HUEY_1, "Men of the sea are always spoiling\nfor a good fight!", "Urf!\nI lose!")
-    msgbox("What power! How would you like\nto sail the seas with me?", MSGBOX_AUTOCLOSE)
-    end
+  // TODO: Phone
+  trainerbattle_single(TRAINER_HUEY_1, "Men of the sea are always spoiling\nfor a good fight!", "Urf!\nI lose!")
+  if (!flag(FLAG_PHONE_CARD_SAILOR_HUEY)) {
+    if (!flag(FLAG_SAILOR_HUEY_OFFERED_NUMBER)) {
+      msgbox("Cool! That's the first time I've\n"
+      		"lost in a while!\p"
+      		"Hey, give me your phone number.\n"
+      		"You'd be fun to battle,\l"
+      		"so I'll call you when I get stronger!", MSGBOX_YESNO) 
+      		setflag(FLAG_SAILOR_HUEY_OFFERED_NUMBER)
+    } else {
+      msgbox("Hey, give me your phone number.\n"
+      		 "You'd be fun to battle, so I'll call\l"
+      		 "you when I get stronger!", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_SAILOR_HUEY) 
+      msgbox("Hey, let's battle again!", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("Looks like you're a wimp...", MSGBOX_AUTOCLOSE)
+    }
+  }
+  msgbox("What power! How would you like\nto sail the seas with me?", MSGBOX_AUTOCLOSE)
+  end
 }

@@ -1,56 +1,91 @@
 mapscripts Route45_MapScripts {}
 
 script Route45_Eventscript_RouteSign {
-    msgbox("ROUTE 45\nMOUNTAIN ROAD AHEAD", MSGBOX_SIGN)
-    end
+  msgbox("ROUTE 45\nMOUNTAIN ROAD AHEAD", MSGBOX_SIGN)
+  end
 }
 
 script Route45_Eventscript_HikerErik { // uppermost Hiker
-    trainerbattle_single(TRAINER_ERIK, "Be prepared for anything!\pLet me see if your {POKEMON} have\nbeen raised properly!", "Oh, I lost that!")
-    msgbox("I'll head back to BLACKTHORN's\nICE PATH and train some more.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_ERIK, "Be prepared for anything!\pLet me see if your {POKEMON} have\nbeen raised properly!", "Oh, I lost that!")
+  msgbox("I'll head back to BLACKTHORN's\nICE PATH and train some more.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route45_Eventscript_CooltrainerRyan {
-    trainerbattle_single(TRAINER_RYAN, "What are your thoughts on\nraising {POKEMON}?", "You've won my respect.")
-    msgbox("I see you're raising your {POKEMON}\nwith care.\pThe bond you build will save you\nin tough situations.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_RYAN, "What are your thoughts on\nraising {POKEMON}?", "You've won my respect.")
+  msgbox("I see you're raising your {POKEMON}\nwith care.\pThe bond you build will save you\nin tough situations.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route44_Eventscript_HikerParry { // middle, above Cooltrainer Kelly
-    // TODO: Phone
-    trainerbattle_single(TRAINER_PARRY_1, "My {POKEMON} are power packed!", "Wahahah!\nI'm the big loser!")
-    msgbox("I'm not much good at thinking, see?\nSo, I just plow ahead with power!", MSGBOX_AUTOCLOSE)
+  // TODO: Phone
+  trainerbattle_single(TRAINER_PARRY_1, "My {POKEMON} are power packed!", "Wahahah!\nI'm the big loser!")
+  if (!flag(FLAG_PHONE_CARD_HIKER_PARRY)) {
+    if (!flag(FLAG_HIKER_PARRY_OFFERED_NUMBER)) {
+      msgbox("Sheesh, the way you attacked!\n"
+        "That was something!\l"
+        "We should meet again!\l"
+        "How about giving me your number?", MSGBOX_YESNO)
+      setflag(FLAG_HIKER_PARRY_OFFERED_NUMBER)
+    } else {
+      msgbox("So you want to register my phone\nnumber for a re- match, huh?", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_HIKER_PARRY)
+      msgbox("I'll call you whenever I feel like\nbattling!", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("No? That's fine. A definite no is\neasy to take!\pI'll be right here\nwhen you're ready for a rematch.", MSGBOX_AUTOCLOSE)
+    }
     end
+  }
+  msgbox("I'm not much good at thinking, see?\nSo, I just plow ahead with power!", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route45_Eventscript_CooltrainerKelly {
-    trainerbattle_single(TRAINER_KELLY, "What is your battle strategy?\pIt is foolish to use strong moves\nindiscriminately.", "Fine.\nI lost.")
-    msgbox("I'm not in favor of overly powerful\nmoves.\pI want to win, but I also don't want\nto harm {POKEMON}.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_KELLY, "What is your battle strategy?\pIt is foolish to use strong moves\nindiscriminately.", "Fine.\nI lost.")
+  msgbox("I'm not in favor of overly powerful\nmoves.\pI want to win, but I also don't want\nto harm {POKEMON}.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route45_Eventscript_BlackBeltKenji {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_KENJI, "I was training here alone.\nBehold the fruits of my labor!", "Waaaargh!")
-    msgbox("This calls for extreme measures.\pI must take to the hills and train\nin solitude.", MSGBOX_AUTOCLOSE)
+  // TODO: Phone
+  if (!flag(FLAG_PHONE_CARD_BLACKBELT_KENJI)) {
+    if (!flag(FLAG_BLACKBELT_KENJI_OFFERED_NUMBER)) {
+      msgbox("Our battle was remarkable!\l"
+        "I wish for some-thing to remember you by!\l"
+        "Perhaps your phone number will do?\l"
+        "My training makes it impossible to chat much, but...", MSGBOX_YESNO)
+      setflag(FLAG_BLACKBELT_KENJI_OFFERED_NUMBER)
+    } else {
+      msgbox("My training makes chatting tough,\nbut will you take down my number?", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_BLACKBELT_KENJI)
+      msgbox("I must train harder to become the\nmightiest!", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("If you decide you want my number,\ncome see me.", MSGBOX_AUTOCLOSE)
+    }
     end
+  }
+  msgbox("This calls for extreme measures.\lI must take to the hills and train\lin solitude.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route45_Eventscript_HikerTimothy { // lower & leftmost
-    trainerbattle_single(TRAINER_TIMOTHY, "Why do I climb mountains?\nBecause they're there.\pWhy do I train {POKEMON}?\nBecause they're there!", "Losses…\nThey're there too!")
-    msgbox("The best thing to ever happen to me\nwas discovering {POKEMON}.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_TIMOTHY, "Why do I climb mountains?\nBecause they're there.\pWhy do I train {POKEMON}?\nBecause they're there!", "Losses…\nThey're there too!")
+  msgbox("The best thing to ever happen to me\nwas discovering {POKEMON}.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route45_Eventscript_HikerMichael { // lower & rightmost
-    trainerbattle_single(TRAINER_MICHAEL, "Yo! You're spunky!\nBut you know what?\pWhen it comes to sheer spunkiness,\nI'm the man!", "My {POKEMON} weren't spunky enough!")
-    msgbox("Boy, do I love HP UP!\nMmmm, yum!\pI keep drinking my {POKEMON}'s!\nI can't help it!", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_MICHAEL, "Yo! You're spunky!\nBut you know what?\pWhen it comes to sheer spunkiness,\nI'm the man!", "My {POKEMON} weren't spunky enough!")
+  msgbox("Boy, do I love HP UP!\nMmmm, yum!\pI keep drinking my {POKEMON}'s!\nI can't help it!", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route45_Eventscript_CamperQuentin {
-    trainerbattle_single(TRAINER_QUENTIN, "I'm really, really tough!", "I was tough at the BATTLE TOWER…")
-    msgbox("Have you been to the BATTLE TOWER?\nI never, ever lose there, but…", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_QUENTIN, "I'm really, really tough!", "I was tough at the BATTLE TOWER…")
+  msgbox("Have you been to the BATTLE TOWER?\nI never, ever lose there, but…", MSGBOX_AUTOCLOSE)
+  end
 }

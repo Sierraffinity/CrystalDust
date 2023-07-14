@@ -1,199 +1,205 @@
 mapscripts Route31_MapScripts {
-    MAP_SCRIPT_ON_FRAME_TABLE [
-        VAR_ROUTE31_STATE, 0 {
-            lockall
-            setflag(FLAG_HIDE_MAP_NAME_POPUP)
-            pokegearcall(PhoneScript_Mom, 0)
-            waitstate
-            clearflag(FLAG_HIDE_MAP_NAME_POPUP)
-            setvar(VAR_ROUTE31_STATE, 1)
-            releaseall
-        }
-    ]
+  MAP_SCRIPT_ON_FRAME_TABLE[
+    VAR_ROUTE31_STATE, 0 {
+      lockall
+      setflag(FLAG_HIDE_MAP_NAME_POPUP)
+      pokegearcall(PhoneScript_Mom, 0)
+      waitstate
+      clearflag(FLAG_HIDE_MAP_NAME_POPUP)
+      setvar(VAR_ROUTE31_STATE, 1)
+      releaseall
+    }
+  ]
 }
 
 script Route31_EventScript_Explorer {
-    msgbox("DARK CAVE…\p"
-	       "If {POKEMON} could light it up, I'd\n"
-	       "explore it.", MSGBOX_NPC)
+  msgbox("DARK CAVE…\p"
+    "If {POKEMON} could light it up, I'd\n"
+    "explore it.", MSGBOX_NPC)
 }
 
 script Route31_EventScript_SleepyMan {
+  lock
+  faceplayer
+  if (flag(FLAG_MOVE_TUTOR_TAUGHT_NIGHTMARE)) {
+    msgbox(Route31_Text_SleepyMan_TMDescription)
+  }
+  elif(flag(FLAG_GAVE_KENYA_TO_RANDYS_FRIEND)) {
+    msgbox("…Zzzz…\n"
+      "Huh?\p"
+      "Oh, it's you again! Thanks for\n"
+      "bringing that MAIL to me.\p"
+      "My friend's a good guy, and you're\n"
+      "swell too!\p"
+      "I'd like to do something good in\n"
+      "return for your help!\p"
+      "I know!\p"
+      "How about I teach your {POKEMON}\n"
+      "NIGHTMARE for helping me?", MSGBOX_YESNO)
+    if (var (VAR_RESULT)) {
+      call(Route31_EventScript_SleepyMan_TryGiveTM)
+    } else {
+      msgbox(Route31_Text_SleepyMan_Declined)
+    }
+  }
+  elif(flag(FLAG_GOT_KENYA_FROM_RANDY)) {
+    msgbox("…Zzzz…\n"
+      "Huh?\p"
+      "What's that?\n"
+      "You have MAIL for me?")
+    special(ChoosePartyMon)
+    waitstate
     lock
     faceplayer
-    if (flag(FLAG_MOVE_TUTOR_TAUGHT_NIGHTMARE))
-    {
-        msgbox(Route31_Text_SleepyMan_TMDescription)
-    }
-    elif (flag(FLAG_GAVE_KENYA_TO_RANDYS_FRIEND))
-    {
-        msgbox("…Zzzz…\n"
-               "Huh?\p"
-               "Oh, it's you again! Thanks for\n"
-               "bringing that MAIL to me.\p"
-               "My friend's a good guy, and you're\n"
-               "swell too!\p"
-               "I'd like to do something good in\n"
-               "return for your help!\p"
-               "I know!\p"
-               "How about I teach your {POKEMON}\n"
-               "NIGHTMARE for helping me?", MSGBOX_YESNO)
-        if(var(VAR_RESULT))
+    if (var (VAR_0x8004) != 0xFF) {
+      setvar(VAR_0x8005, INGAME_TRADE_GIFT_SPEAROW)
+      special(CheckForGiftMonAndTakeMail)
+      switch (var (VAR_RESULT)) {
+      case GIFTMON_NO_MAIL:
+        msgbox("Why is this {POKEMON} so special?\n"
+          "It doesn't have any MAIL.")
+      case GIFTMON_LAST_MON:
+        msgbox("If I take that {POKEMON} from you,\n"
+          "what are you going to use in battle?")
+      case GIFTMON_WRONG_MAIL:
+        msgbox("This MAIL isn't for me.")
+      default:
+        if (var (VAR_RESULT) == GIFTMON_WRONG_MON) {
+          msgbox("…Huh? Who's that {POKEMON}?\n"
+            "It's not one I know.\p"
+            "You can keep it, and I'll just\n"
+            "take the MAIL.")
+          textcolor(MSG_COLOR_SYS)
+          playfanfare(MUS_OBTAIN_ITEM)
+          message("{PLAYER} handed over the MAIL.")
+        } else // GIFTMON_MATCH
         {
-            call(Route31_EventScript_SleepyMan_TryGiveTM)
+          textcolor(MSG_COLOR_SYS)
+          playfanfare(MUS_OBTAIN_ITEM)
+          msgbox("{PLAYER} handed over the {POKEMON}\n"
+            "holding the MAIL.")
         }
-        else
-        {
-            msgbox(Route31_Text_SleepyMan_Declined)
+        setflag(FLAG_GAVE_KENYA_TO_RANDYS_FRIEND)
+        waitmessage
+        waitfanfare
+        textcolor(MSG_COLOR_PREV)
+        msgbox("Let's see…\p"
+          "“There's a dark place near you.\n"
+          "Let's go have an adventure there!”\p"
+          "Does he mean DARK CAVE?\n"
+          "That sounds like fun.\p"
+          "You know, I heard that cave leads\n"
+          "to another road.\p"
+          "Anyway, thanks for bringing this\n"
+          "to me.\p"
+          "My friend's a good guy, and you're\n"
+          "swell too!\p"
+          "I'd like to do something good in\n"
+          "return for your help!\p"
+          "I know!\p"
+          "How about I teach your {POKEMON}\n"
+          "NIGHTMARE for helping me?", MSGBOX_YESNO)
+        if (var (VAR_RESULT)) {
+          call(Route31_EventScript_SleepyMan_TryGiveTM)
+        } else {
+          msgbox(Route31_Text_SleepyMan_Declined)
         }
+      }
+    } else {
+      msgbox(Route31_Text_SleepyMan_Declined)
     }
-    elif (flag(FLAG_GOT_KENYA_FROM_RANDY))
-    {
-        msgbox("…Zzzz…\n"
-               "Huh?\p"
-               "What's that?\n"
-               "You have MAIL for me?")
-        special(ChoosePartyMon)
-        waitstate
-        lock
-        faceplayer
-        if (var(VAR_0x8004) != 0xFF)
-        {
-            setvar(VAR_0x8005, INGAME_TRADE_GIFT_SPEAROW)
-            special(CheckForGiftMonAndTakeMail)
-            switch (var(VAR_RESULT))
-            {
-                case GIFTMON_NO_MAIL:
-                    msgbox("Why is this {POKEMON} so special?\n"
-                           "It doesn't have any MAIL.")
-                case GIFTMON_LAST_MON:
-                    msgbox("If I take that {POKEMON} from you,\n"
-                           "what are you going to use in battle?")
-                case GIFTMON_WRONG_MAIL:
-                    msgbox("This MAIL isn't for me.")
-                default:
-                    if (var(VAR_RESULT) == GIFTMON_WRONG_MON)
-                    {
-                        msgbox("…Huh? Who's that {POKEMON}?\n"
-                               "It's not one I know.\p"
-                               "You can keep it, and I'll just\n"
-                               "take the MAIL.")
-                        textcolor(MSG_COLOR_SYS)
-                        playfanfare(MUS_OBTAIN_ITEM)
-                        message("{PLAYER} handed over the MAIL.")
-                    }
-                    else // GIFTMON_MATCH
-                    {
-                        textcolor(MSG_COLOR_SYS)
-                        playfanfare(MUS_OBTAIN_ITEM)
-                        msgbox("{PLAYER} handed over the {POKEMON}\n"
-                               "holding the MAIL.")
-                    }
-                    setflag(FLAG_GAVE_KENYA_TO_RANDYS_FRIEND)
-                    waitmessage
-                    waitfanfare
-                    textcolor(MSG_COLOR_PREV)
-                    msgbox("Let's see…\p"
-                           "“There's a dark place near you.\n"
-                           "Let's go have an adventure there!”\p"
-                           "Does he mean DARK CAVE?\n"
-                           "That sounds like fun.\p"
-                           "You know, I heard that cave leads\n"
-                           "to another road.\p"
-                           "Anyway, thanks for bringing this\n"
-                           "to me.\p"
-                           "My friend's a good guy, and you're\n"
-                           "swell too!\p"
-                           "I'd like to do something good in\n"
-                           "return for your help!\p"
-                           "I know!\p"
-                           "How about I teach your {POKEMON}\n"
-                           "NIGHTMARE for helping me?", MSGBOX_YESNO)
-                    if(var(VAR_RESULT))
-                    {
-                        call(Route31_EventScript_SleepyMan_TryGiveTM)
-                    }
-                    else
-                    {
-                        msgbox(Route31_Text_SleepyMan_Declined)
-                    }
-            }
-        }
-        else
-        {
-            msgbox(Route31_Text_SleepyMan_Declined)
-        }
-    }
-    else
-    {
-        msgbox("…Hnuurg… Huh?\p"
-               "I walked too far today looking\n"
-               "for {POKEMON}.\p"
-               "My feet hurt and I'm sleepy…\p"
-               "If I were a wild {POKEMON}, I'd be\n"
-               "easy to catch…\p"
-               "…Zzzz…")
-    }
-    release
+  }
+  else {
+    msgbox("…Hnuurg… Huh?\p"
+      "I walked too far today looking\n"
+      "for {POKEMON}.\p"
+      "My feet hurt and I'm sleepy…\p"
+      "If I were a wild {POKEMON}, I'd be\n"
+      "easy to catch…\p"
+      "…Zzzz…")
+  }
+  release
 }
 
 text Route31_Text_SleepyMan_Declined {
-    "What?\nYou don't want anything?"
+  "What?\nYou don't want anything?"
 }
 
 text Route31_Text_SleepyMan_TMDescription {
-    "That's NIGHTMARE.\p"
-    "It's a wicked move that steadily cuts\n"
-    "the HP of a sleeping enemy.\p"
-    "Ooooh…\n"
-    "That's scary…\l"
-    "I don't want to have bad dreams."
+  "That's NIGHTMARE.\p"
+  "It's a wicked move that steadily cuts\n"
+  "the HP of a sleeping enemy.\p"
+  "Ooooh…\n"
+  "That's scary…\l"
+  "I don't want to have bad dreams."
 }
 
 script Route31_EventScript_SleepyMan_TryGiveTM {
-    call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
-    if(!var(VAR_RESULT))
-    {
-        goto(MoveTutor_EventScript_NightmareDeclined)
-    }
-    msgbox("Which {POKEMON} should learn\nNIGHTMARE?", MSGBOX_DEFAULT)
-	setvar(VAR_0x8005, TUTOR_MOVE_NIGHTMARE)
-	call(MoveTutor_EventScript_OpenPartyMenu)
-	if(var(VAR_RESULT) == 0)
-    {
-        goto(MoveTutor_EventScript_NightmareDeclined)
-    }
-	setflag(FLAG_MOVE_TUTOR_TAUGHT_NIGHTMARE)
-	goto(Route31_EventScript_SleepyMan)
-	end
+  call(MoveTutor_EventScript_CanOnlyBeLearnedOnce)
+  if (!
+    var (VAR_RESULT)) {
+    goto(MoveTutor_EventScript_NightmareDeclined)
+  }
+  msgbox("Which {POKEMON} should learn\nNIGHTMARE?", MSGBOX_DEFAULT)
+  setvar(VAR_0x8005, TUTOR_MOVE_NIGHTMARE)
+  call(MoveTutor_EventScript_OpenPartyMenu)
+  if (var (VAR_RESULT) == 0) {
+    goto(MoveTutor_EventScript_NightmareDeclined)
+  }
+  setflag(FLAG_MOVE_TUTOR_TAUGHT_NIGHTMARE)
+  goto(Route31_EventScript_SleepyMan)
+  end
 }
 
-script MoveTutor_EventScript_NightmareDeclined{
-    msgbox(Route31_Text_SleepyMan_Declined)
-    release
-    end
+script MoveTutor_EventScript_NightmareDeclined {
+  msgbox(Route31_Text_SleepyMan_Declined)
+  release
+  end
 }
 
 script Route31_EventScript_Youngster {
-    msgbox("I found a good {POKEMON} in\n"
-           "DARK CAVE.\p"
-           "I'm going to raise it to take on\n"
-           "FALKNER, the leader of VIOLET\l"
-           "CITY's GYM.", MSGBOX_NPC)
+  msgbox("I found a good {POKEMON} in\n"
+    "DARK CAVE.\p"
+    "I'm going to raise it to take on\n"
+    "FALKNER, the leader of VIOLET\l"
+    "CITY's GYM.", MSGBOX_NPC)
 }
 
 script Route31_EventScript_Trainer_Wade {
-    trainerbattle_single(TRAINER_WADE_1, "I caught a bunch of {POKEMON}.\nLet me battle with you!", "Awwwww…")
-    // TODO: Phone
-	msgbox("You can catch {POKEMON} even if you\nhave six with you.\pIf you catch one, it'll go to your\nBOX automatically.", MSGBOX_DEFAULT)
-	release
+  trainerbattle_single(TRAINER_WADE_1, "I caught a bunch of {POKEMON}.\nLet me battle with you!", "Awwwww…")
+  // TODO: Phone
+  if (!flag(FLAG_PHONE_CARD_BUG_CATCHER_WADE)) {
+    if (!flag(FLAG_BUG_CATCHER_WADE_OFFERED_NUMBER)) {
+      msgbox("You're awesome! I like you! I look\n"
+        "for {POKEMON} here every day.\p"
+        "When I'm in the grass,\n"
+        "I find all kinds of BERRIES.\l"
+        "If you'd like, I'll share some.\p"
+        "Could I get your phone number?", MSGBOX_YESNO)
+      setflag(FLAG_BUG_CATCHER_WADE_OFFERED_NUMBER)
+    } else {
+      msgbox("When I'm in the grass, I find all\n"
+        "kinds of BERRIES.\l"
+        "If you'd like, I'll share some.\p"
+        "Could I get your phone number?", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_BUG_CATCHER_WADE)
+      msgbox("You'll hear from me as soon as I\nfind anything that you might like.", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("Oh well. Don't be shy if you want\nto get my number.", MSGBOX_AUTOCLOSE)
+    }
+    end
+  }
+  msgbox("You can catch {POKEMON} even if you\nhave six with you.\pIf you catch one, it'll go to your\nBOX automatically.", MSGBOX_DEFAULT)
+  release
 }
 
 script Route31_EventScript_Directions {
-    msgbox("ROUTE 31\n"
-           "VIOLET CITY - CHERRYGROVE CITY", MSGBOX_SIGN)
+  msgbox("ROUTE 31\n"
+    "VIOLET CITY - CHERRYGROVE CITY", MSGBOX_SIGN)
 }
 
 script Route31_EventScript_DarkCave {
-    msgbox("DARK CAVE", MSGBOX_SIGN)
+  msgbox("DARK CAVE", MSGBOX_SIGN)
 }

@@ -1,49 +1,93 @@
 mapscripts Route38_MapScripts {}
 
 script Route38_Eventscript_RouteSign {
-    msgbox("ROUTE 38\nOLIVINE CITY - ECRUTEAK CITY", MSGBOX_SIGN)
-    end
+  msgbox("ROUTE 38\nOLIVINE CITY - ECRUTEAK CITY", MSGBOX_SIGN)
+  end
 }
 
 script Route38_Eventscript_TrainerTipsSign {
-    msgbox("TRAINER TIPS\pIf a {POKEMON} is trying to evolve,\nyou can stop it.\pPress the B button during\nevolution.\pThat startles the {POKEMON} and stops\nits evolution.", MSGBOX_SIGN)
-    end
+  msgbox("TRAINER TIPS\pIf a {POKEMON} is trying to evolve,\nyou can stop it.\pPress the B button during\nevolution.\pThat startles the {POKEMON} and stops\nits evolution.", MSGBOX_SIGN)
+  end
 }
 
 script Route38_Eventscript_SailorHarry {
-    trainerbattle_single(TRAINER_HARRY, "I've been overseas, so I know about\nall sorts of {POKEMON}!", "Your skill is world class!")
-    msgbox("All kinds of people around the world\nlive happily with {POKEMON}.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_HARRY, "I've been overseas, so I know about\nall sorts of {POKEMON}!", "Your skill is world class!")
+  msgbox("All kinds of people around the world\nlive happily with {POKEMON}.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route38_Eventscript_LassDana {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_DANA_1, "You seem to be good at {POKEMON}.\pIf you are, how about giving me\nsome advice?", "I see. So you can battle that way.")
-    msgbox("I know something good!\pThe MOOMOO FARM's milk is famous for\nits flavor.", MSGBOX_AUTOCLOSE)
+  // TODO: Phone
+  trainerbattle_single(TRAINER_DANA_1, "You seem to be good at {POKEMON}.\pIf you are, how about giving me\nsome advice?", "I see. So you can battle that way.")
+  if (!flag(FLAG_PHONE_CARD_LASS_DANA)) {
+    if (!flag(FLAG_LASS_DANA_OFFERED_NUMBER)) {
+      msgbox("You're really good at {POKEMON}!\p"
+        "Boys give me items after battles,\n"
+        "but sometimes they give me too much.\l"
+        "Next time, I can share some if you want.\p"
+        "Let me get your phone number.", MSGBOX_YESNO)
+      setflag(FLAG_LASS_DANA_OFFERED_NUMBER)
+    } else {
+      msgbox("I'll share my gifts with you. Let\nme get your phone number.", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_LASS_DANA)
+      msgbox("Next time a boy gives me something\nafter a battle, I'll share some!\lDoes that make me bad?", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("Aww, you don't want anything? But\nit's all for free...", MSGBOX_AUTOCLOSE)
+    }
     end
+  }
+  msgbox("I know something good!\pThe MOOMOO FARM's milk is famous for\nits flavor.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route38_Eventscript_BeautyValerie { //the one furthest to the east
-    trainerbattle_single(TRAINER_VALERIE, "Hi! Aren't you a cute TRAINER!\nMay I see your {POKEMON}?", "I'm glad I got to see your {POKEMON}!")
-    msgbox("When I see {POKEMON}, they seem to\nsoothe my nerves.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_VALERIE, "Hi! Aren't you a cute TRAINER!\nMay I see your {POKEMON}?", "I'm glad I got to see your {POKEMON}!")
+  msgbox("When I see {POKEMON}, they seem to\nsoothe my nerves.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route38_Eventscript_BirdKeeperToby {
-    trainerbattle_single(TRAINER_TOBY, "Fly high into the sky, my beloved\nbird {POKEMON}!", "I feel like just flying away now.")
-    msgbox("I plan to train in CIANWOOD CITY to\nteach my {POKEMON} how to FLY.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_TOBY, "Fly high into the sky, my beloved\nbird {POKEMON}!", "I feel like just flying away now.")
+  msgbox("I plan to train in CIANWOOD CITY to\nteach my {POKEMON} how to FLY.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route38_Eventscript_SchoolboyChad {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_CHAD_1, "Let me try something I learned today.", "I didn't study enough, I guess.")
-    msgbox("I have to take so many tests, I\ndon't have much time for {POKEMON}.\pSo when I do get to play, I really\nconcentrate.", MSGBOX_AUTOCLOSE)
+  // TODO: Phone
+  trainerbattle_single(TRAINER_CHAD_1, "Let me try something I learned today.", "I didn't study enough, I guess.")
+  if (!flag(FLAG_PHONE_CARD_SCHOOLBOY_CHAD)) {
+    if (!flag(FLAG_SCHOOLBOY_CHAD_OFFERED_NUMBER)) {
+      msgbox("Huh? Is that thing a {POKEDEX}?\l"
+        "Have you met PROF.OAK\l Huh?\l"
+        "You have? That's way cool!\p"
+        "I have a dream\n"
+        "of becoming a {POKEMON} researcher\l"
+        "like PROF.OAK.\p"
+        "May I please have your phone number?\n"
+        "We should chat about PROF.OAK.\l"
+        "I'm sure it will be loads of fun!", MSGBOX_YESNO)
+      setflag(FLAG_SCHOOLBOY_CHAD_OFFERED_NUMBER)
+    } else {
+      msgbox("May I please have your phone\nnumber?\l"
+        "We should chat about PROF.OAK.\l"
+        "I'm sure it will be loads of fun!", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_SCHOOLBOY_CHAD)
+      msgbox("You must listen to PROF.OAK'S\n{POKEMON} TALK, right?", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("Oh... I wish I had a chance to\nmeet PROF.OAK...", MSGBOX_AUTOCLOSE)
+    }
     end
+  }
+  msgbox("I have to take so many tests, I\ndon't have much time for {POKEMON}.\pSo when I do get to play, I really\nconcentrate.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route38_Eventscript_BeautyOlivia { //the one furthest to the west
-    trainerbattle_single(TRAINER_OLIVIA, "Don't you think my {POKEMON} and I are\nbeautiful?", "We drink MOOMOO MILK every day.")
-    msgbox("MOOMOO MILK is good for beauty and\nhealth, but inconveniently, they\lonly sell a bottle at a time.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_OLIVIA, "Don't you think my {POKEMON} and I are\nbeautiful?", "We drink MOOMOO MILK every day.")
+  msgbox("MOOMOO MILK is good for beauty and\nhealth, but inconveniently, they\lonly sell a bottle at a time.", MSGBOX_AUTOCLOSE)
+  end
 }

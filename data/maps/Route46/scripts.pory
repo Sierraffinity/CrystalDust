@@ -1,21 +1,40 @@
-mapscripts Route46_MapScripts { }
+mapscripts Route46_MapScripts {}
 
 script Route46_EventScript_Bailey {
-    trainerbattle_single(TRAINER_BAILEY, "Awright! I'll show you the power\nof mountain {POKEMON}!", "Mercy!\nYou showed me your power!")
-    msgbox("It's over. I don't mind.\nWe HIKERS are like that.", MSGBOX_AUTOCLOSE)
+  trainerbattle_single(TRAINER_BAILEY, "Awright! I'll show you the power\nof mountain {POKEMON}!", "Mercy!\nYou showed me your power!")
+  msgbox("It's over. I don't mind.\nWe HIKERS are like that.", MSGBOX_AUTOCLOSE)
 }
 
 script Route46_EventScript_Ted {
-    trainerbattle_single(TRAINER_TED, "I'm raising {POKEMON} too!\nWill you battle with me?", "Wha…?")
-    msgbox("I did my best but came up short.\nNo excuses--I admit I lost.", MSGBOX_AUTOCLOSE)
+  trainerbattle_single(TRAINER_TED, "I'm raising {POKEMON} too!\nWill you battle with me?", "Wha…?")
+  msgbox("I did my best but came up short.\nNo excuses--I admit I lost.", MSGBOX_AUTOCLOSE)
 }
 
 script Route46_EventScript_Erin {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_ERIN_1, "I raise {POKEMON} too!\nWill you battle with me?", "Oh, rats!")
-    msgbox("I've been to many GYMS, but the\nGYM in GOLDENROD is my favorite.\pIt's filled with pretty flowers!", MSGBOX_AUTOCLOSE)
+  // TODO: Phone
+  trainerbattle_single(TRAINER_ERIN_1, "I raise {POKEMON} too!\nWill you battle with me?", "Oh, rats!")
+  if (!flag(FLAG_PHONE_CARD_PICNICKER_ERIN)) {
+    if (!flag(FLAG_PICNICKER_ERIN_OFFERED_NUMBER)) {
+      msgbox("It really made me angry to lose.\n"
+        "I'll have to train much harder...\p"
+        "Here's my number.\n"
+        "I'm ERIN--don't forget!\l"
+        "Want to battle me again?", MSGBOX_YESNO)
+      setflag(FLAG_PICNICKER_ERIN_OFFERED_NUMBER)
+    } else {
+      msgbox("I want to battle with you again.\nDo you want to exchange numbers?", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_PICNICKER_ERIN)
+      msgbox("I'll remember to call when I want\nto battle again!", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("Oh... I'm sad... If you do want to\nbattle, come see ERIN--that's me!", MSGBOX_AUTOCLOSE)
+    }
+    end
+  }
+  msgbox("I've been to many GYMS, but the\nGYM in GOLDENROD is my favorite.\pIt's filled with pretty flowers!", MSGBOX_AUTOCLOSE)
 }
 
 script Route46_EventScript_RouteSign {
-    msgbox("ROUTE 46\nMOUNTAIN ROAD AHEAD", MSGBOX_SIGN)
+  msgbox("ROUTE 46\nMOUNTAIN ROAD AHEAD", MSGBOX_SIGN)
 }

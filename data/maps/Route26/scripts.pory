@@ -1,44 +1,90 @@
 mapscripts Route26_MapScripts {}
 
 script Route26_Eventscript_Sign {
-    msgbox("ROUTE 26\n{POKEMON} LEAGUE RECEPTION GATE", MSGBOX_SIGN)
-    end
+  msgbox("ROUTE 26\n{POKEMON} LEAGUE RECEPTION GATE", MSGBOX_SIGN)
+  end
 }
 // trainers from bottom to top
 script Route26_Eventscript_FishermanScott {
-    trainerbattle_single(TRAINER_SCOTT, "I'm feeling great today!\pI feel like I could boot even the\nLEAGUE CHAMP!", "No!\nNot in this battle!")
-    msgbox("Just like in fishing, it's all over\nin {POKEMON} if you give up.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_SCOTT, "I'm feeling great today!\pI feel like I could boot even the\nLEAGUE CHAMP!", "No!\nNot in this battle!")
+  msgbox("Just like in fishing, it's all over\nin {POKEMON} if you give up.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route26_Eventscript_PsychicRichard {
-    trainerbattle_single(TRAINER_RICHARD, "Wow, look at all those BADGES!\nI'm impressed.\pBut you're not satisfied by just\ncollecting them, right?", "Good battle!")
-    msgbox("People and {POKEMON} grow from their\nexperiences.\pDon't get lazy and complacent.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_RICHARD, "Wow, look at all those BADGES!\nI'm impressed.\pBut you're not satisfied by just\ncollecting them, right?", "Good battle!")
+  msgbox("People and {POKEMON} grow from their\nexperiences.\pDon't get lazy and complacent.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route26_Eventscript_CooltrainerJoyce {
-    trainerbattle_single(TRAINER_JOYCE, "Since you've come this far,\nyou must be good.\pI'm going to give this battle\neverything I've got!", "No!\nI don't believe this!")
-    msgbox("I've defeated eight GYM LEADERS,\nso I was feeling confident.\pI'll have to try harder next time.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_JOYCE, "Since you've come this far,\nyou must be good.\pI'm going to give this battle\neverything I've got!", "No!\nI don't believe this!")
+  msgbox("I've defeated eight GYM LEADERS,\nso I was feeling confident.\pI'll have to try harder next time.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route26_Eventscript_CooltrainerGaven {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_GAVEN_1, "By experiencing tough battles,\nyou gain power.", "Gaah!\nLife is even tougher!")
-    msgbox("To get to the {POKEMON} LEAGUE, you\nhave to get through VICTORY ROAD.\pBut VICTORY ROAD is tough.\nPractically nobody goes there!", MSGBOX_AUTOCLOSE)
+  // TODO: Phone
+  trainerbattle_single(TRAINER_GAVEN_1, "By experiencing tough battles,\nyou gain power.", "Gaah!\nLife is even tougher!")
+  if (!flag(FLAG_PHONE_CARD_COOLTRAINER_GAVEN)) {
+    if (!flag(FLAG_COOLTRAINER_GAVEN_OFFERED_NUMBER)) {
+      msgbox("Wow, you're tough. I haven't\n"
+        "battled that seriously in a long time.\p"
+        "Could I get your phone number?\l"
+        "I'd like to battle again\l"
+        "when I heal PLACEHOLDER TEXT and the rest\l of my team.", MSGBOX_YESNO)
+      setflag(FLAG_COOLTRAINER_GAVEN_OFFERED_NUMBER)
+    } else {
+      msgbox("Could I get your phone number?\p"
+        "I'd like to battle again\n"
+        "when I heal PLACEHOLDER TEXT\l"
+        "and the rest of my team.\n", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_COOLTRAINER_GAVEN)
+      msgbox("How should I beat you?\pI'm tormented by those thoughts\n all the time...", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("OK... I understand... But if you\nchange your mind, give me a shout\lanytime.", MSGBOX_AUTOCLOSE)
+    }
     end
+  }
+  msgbox("To get to the {POKEMON} LEAGUE, you\nhave to get through VICTORY ROAD.\pBut VICTORY ROAD is tough.\nPractically nobody goes there!", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route26_Eventscript_CooltrainerJake {
-    trainerbattle_single(TRAINER_JAKE, "I'm making my final preparations\nfor the {POKEMON} LEAGUE.", "I blew it!")
-    msgbox("It's going to be tough to win\nat the LEAGUE.\pI need to do some more training.\pI hear that the LEAGUE's ELITE FOUR\nare tougher than GYM LEADERS.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_JAKE, "I'm making my final preparations\nfor the {POKEMON} LEAGUE.", "I blew it!")
+  msgbox("It's going to be tough to win\nat the LEAGUE.\pI need to do some more training.\pI hear that the LEAGUE's ELITE FOUR\nare tougher than GYM LEADERS.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route26_Eventscript_CooltrainerBeth {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_BETH_1, "I lost to a TRAINER named {RIVAL}.\nHe was really strong, but…\pIt was as if he absolutely had to\nwin at any cost.\pI feel sorry for his {POKEMON}.", "{POKEMON} aren't tools of war.")
-    msgbox("{POKEMON} are invaluable, lifelong\npartners.", MSGBOX_AUTOCLOSE)
+  // TODO: Phone
+  trainerbattle_single(TRAINER_BETH_1, "I lost to a TRAINER named {RIVAL}.\nHe was really strong, but…\pIt was as if he absolutely had to\nwin at any cost.\pI feel sorry for his {POKEMON}.", "{POKEMON} aren't tools of war.")
+  if (!flag(FLAG_PHONE_CARD_COOLTRAINER_BETH)) {
+    if (!flag(FLAG_COOLTRAINER_BETH_OFFERED_NUMBER)) {
+      msgbox("It's been a while since I lost...\p"
+        "You're very good at battling.\l"
+        "We should battle again sometime.\l"
+        "By challenging a tough trainer like you,\l"
+        "I think I can get better too.\p"
+        "So how about it?\n"
+        "Would you give me your phone number?\n", MSGBOX_YESNO)
+      setflag(FLAG_COOLTRAINER_BETH_OFFERED_NUMBER)
+    } else {
+      msgbox("By challenging a tough trainer\n"
+        "like you, I think I can\l"
+        "get better too. So how about it?\l"
+        "Would you give me your phone number?", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_COOLTRAINER_BETH)
+      msgbox(BethNumberAcceptedText: "Let's battle\nagain sometime!")
+    } else {
+      msgbox(BethNumberDecdText: "That's too\nbad... Let me know if you change your\nmind.")
+    }
     end
+  }
+  msgbox("{POKEMON} are invaluable, lifelong\npartners.", MSGBOX_AUTOCLOSE)
+  end
 }

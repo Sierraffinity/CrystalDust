@@ -1,33 +1,41 @@
-mapscripts Route33_MapScripts { }
+mapscripts Route33_MapScripts {}
 
 script Route33_EventScript_Girl {
-    msgbox("Pant, pant…\n"
-           "I finally got through that cave.\p"
-           "It was so much bigger than I'd\n"
-           "expected.\p"
-           "I got too tired to explore the whole\n"
-           "thing, so I came outside.", MSGBOX_NPC)
+  msgbox("Pant, pant…\n"
+    "I finally got through that cave.\p"
+    "It was so much bigger than I'd\n"
+    "expected.\p"
+    "I got too tired to explore the whole\n"
+    "thing, so I came outside.", MSGBOX_NPC)
 }
 
 script Route33_EventScript_Anthony {
-    trainerbattle_single(TRAINER_ANTHONY_1, "I came through the tunnel, but I\nstill have plenty of energy left!", "Whoa!\nYou've got more zip than me!")
-    // TODO: Phone
-    // Testomg Phone Flag
-    if(!flag(FLAG_PHONE_CARD_HIKER_ANTHONY))
-    {
-    	msgbox(format("By the way, I'm a HIKER, so I often go to mountains and caves.\p"
-    	 "I occasionally see rare {POKE}MON.\p"
-    	 "I could call you the next time I see one.\p"
-    	 "Feel like swapping phone numbers?", "1_latin_frlg"), MSGBOX_YESNO)
-    	 if(var(VAR_RESULT) == 1)
-    	 {
-    		registerphonecontact(FLAG_PHONE_CARD_HIKER_ANTHONY)
-    		}
+  trainerbattle_single(TRAINER_ANTHONY_1, "I came through the tunnel, but I\nstill have plenty of energy left!", "Whoa!\nYou've got more zip than me!")
+  // TODO: Phone
+  if (!flag(FLAG_PHONE_CARD_HIKER_ANTHONY)) {
+    if (!flag(FLAG_HIKER_ANTHONY_OFFERED_NUMBER)) {
+      msgbox("By the way, I'm a HIKER,\n"
+        "so I often go to mountains and caves.\p"
+        "I occasionally see rare {POKEMON}.\l" 
+        "I could call you\l"
+        "the next time I see one.\l"
+        "Feel like swapping phone numbers?", MSGBOX_YESNO)
+      setflag(FLAG_HIKER_ANTHONY_OFFERED_NUMBER)
+    } else {
+      msgbox("I could call you when I see some\nrare {POKEMON}.\p Feel like swapping phone numbers?", MSGBOX_YESNO)
     }
-    msgbox("We HIKERS are at our best in\nthe mountains.")
-    release
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_HIKER_ANTHONY)
+      msgbox("Be patient. I'll find some rare\n{POKEMON} for you!", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("You're cold. I may as well head to\nthe mountains...", MSGBOX_AUTOCLOSE)
+    }
+    end
+  }
+  msgbox("We HIKERS are at our best in\nthe mountains.")
+  release
 }
 
 script Route33_EventScript_DirectionsSign {
-    msgbox("ROUTE 33", MSGBOX_SIGN)
+  msgbox("ROUTE 33", MSGBOX_SIGN)
 }

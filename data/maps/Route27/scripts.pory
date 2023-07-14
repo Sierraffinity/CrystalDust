@@ -1,81 +1,124 @@
 mapscripts Route27_MapScripts {
-    MAP_SCRIPT_ON_TRANSITION{
-        setvar(VAR_TEMP_0, 1)
+  MAP_SCRIPT_ON_TRANSITION {
+    setvar(VAR_TEMP_0, 1)
+  }
+  MAP_SCRIPT_ON_FRAME_TABLE[
+    VAR_TEMP_0, 0 {
+      getplayerxy(VAR_RESULT, VAR_0x8001)
+      setvar(VAR_0x8001, 22)
+      subvar(VAR_0x8001, VAR_RESULT)
+      lockall
+      turnobject(1, DIR_WEST)
+      playse(SE_PIN)
+      applymovement(1, Common_Movement_ExclamationMark)
+      delay(0x40)
+      waitmovement(0)
+      while (var (VAR_0x8001) != 0) {
+        applymovement(1, Route27_Movement_FatGuyToPlayer)
+        waitmovement(0)
+        subvar(VAR_0x8001, 1)
+      }
+      turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+      textcolor(0)
+      msgbox("Hey!\pDo you know what you just did?\nYou've taken your first step into\lKANTO!\pCheck your {POKE}GEAR MAP and see.")
+      setvar(VAR_TEMP_0, 1)
+      setflag(FLAG_ENTERED_KANTO)
+      releaseall
+      end
     }
-    MAP_SCRIPT_ON_FRAME_TABLE [
-        VAR_TEMP_0, 0 {
-            getplayerxy(VAR_RESULT, VAR_0x8001)
-            setvar(VAR_0x8001, 22)
-            subvar(VAR_0x8001, VAR_RESULT)
-            lockall
-            turnobject(1, DIR_WEST)
-            playse(SE_PIN)
-            applymovement(1, Common_Movement_ExclamationMark)
-            delay(0x40)
-            waitmovement(0)
-            while(var(VAR_0x8001) != 0)
-            {
-                applymovement(1, Route27_Movement_FatGuyToPlayer)
-                waitmovement(0)
-                subvar(VAR_0x8001, 1)
-            }
-            turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
-            textcolor(0)
-            msgbox("Hey!\pDo you know what you just did?\nYou've taken your first step into\lKANTO!\pCheck your {POKE}GEAR MAP and see.")
-            setvar(VAR_TEMP_0, 1)
-            setflag(FLAG_ENTERED_KANTO)
-            releaseall
-            end
-        }
-    ]
-}movement Route27_Movement_FatGuyToPlayer{
-    walk_left
+  ]
+}
+movement Route27_Movement_FatGuyToPlayer {
+  walk_left
 }
 
 script Route27_Eventscript_FatGuy {
-    msgbox("Do you know what you just did?\nYou've taken your first step into\lKANTO!\pCheck your {POKE}GEAR MAP and see.", MSGBOX_NPC)
-    end
+  msgbox("Do you know what you just did?\nYou've taken your first step into\lKANTO!\pCheck your {POKE}GEAR MAP and see.", MSGBOX_NPC)
+  end
 }
 
 script Route27_Eventscript_TohjoFallsSign {
-    msgbox("TOHJO FALLS\nTHE LINK BETWEEN KANTO AND JOHTO", MSGBOX_SIGN)
-    end
+  msgbox("TOHJO FALLS\nTHE LINK BETWEEN KANTO AND JOHTO", MSGBOX_SIGN)
+  end
 }
 //trainers from left to right
 script Route27_Eventscript_CooltrainerMegan {
-    trainerbattle_single(TRAINER_MEGAN, "It's rare to see anyone come here.\nAre you training on your own?", "Oh!\nYou're really strong!")
-    msgbox("I'm checking out pre- and post-\nevolution {POKEMON}.\pEvolution really does make {POKEMON}\nstronger.\pBut evolved forms also learn moves\nlater on.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_MEGAN, "It's rare to see anyone come here.\nAre you training on your own?", "Oh!\nYou're really strong!")
+  msgbox("I'm checking out pre- and post-\nevolution {POKEMON}.\pEvolution really does make {POKEMON}\nstronger.\pBut evolved forms also learn moves\nlater on.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route27_Eventscript_CooltrainerBlake {
-    trainerbattle_single(TRAINER_BLAKE, "You look pretty strong.\nLet me battle you!", "Yow!")
-    msgbox("If you prevail on this harsh trek,\nthe truth will be revealed!\pHeh, sorry. I just wanted to say\nsomething cool.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_BLAKE, "You look pretty strong.\nLet me battle you!", "Yow!")
+  msgbox("If you prevail on this harsh trek,\nthe truth will be revealed!\pHeh, sorry. I just wanted to say\nsomething cool.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route27_Eventscript_CooltrainerBrian { // on bridge
-    trainerbattle_single(TRAINER_BRIAN, "Hm?\nYou're good, aren't you?", "Just as I thought!")
-    msgbox("A good TRAINER can recognize other\ngood TRAINERS.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_BRIAN, "Hm?\nYou're good, aren't you?", "Just as I thought!")
+  msgbox("A good TRAINER can recognize other\ngood TRAINERS.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route27_Eventscript_BirdKeeperJose {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_JOSE_1, "Tweet! Tweet! Tetweet!", "Tweet!")
-    msgbox("BIRD KEEPERS like me mimic bird\nwhistles to command {POKEMON}.", MSGBOX_AUTOCLOSE)
+  // TODO: Phone
+  trainerbattle_single(TRAINER_JOSE_1, "Tweet! Tweet! Tetweet!", "Tweet!")
+  if (!flag(FLAG_PHONE_CARD_BIRD_KEEPER_JOSE)) {
+    if (!flag(FLAG_BIRD_KEEPER_JOSE_OFFERED_NUMBER)) {
+      msgbox("If my PLACEHOLDER TEXT sees anything pretty,\n"
+        "it goes and gets it.\p"
+        "Do you like pretty things?\n"
+        "I could share if it gets some more.\p"
+        "What's your phone number?\n"
+        "I'll call.\l"
+        "Don't expect a whole lot, OK?\n", MSGBOX_YESNO)
+      setflag(FLAG_BIRD_KEEPER_JOSE_OFFERED_NUMBER)
+    } else {
+      msgbox("Do you like pretty things?\p"
+        "I could share if FARFETCH'D\n"
+        "goes and gets more.\p"
+        "What's your phone number?\n"
+        "I'll call.", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_BIRD_KEEPER_JOSE)
+      msgbox("I'll call you as soon as I get\nsomething pretty.", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("You sure? Well, tell me if you\nchange your mind.", MSGBOX_AUTOCLOSE)
+    }
     end
+  }
+  msgbox("BIRD KEEPERS like me mimic bird\nwhistles to command {POKEMON}.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route27_Eventscript_PsychicGilbert {
-    trainerbattle_single(TRAINER_GILBERT, "Don't say a thing!\nLet me guess what you're thinking.\pMmmmmmm…\pI got it! You're on the {POKEMON}\nLEAGUE challenge!", "You're too much!")
-    msgbox("With your skills, you'll do well at\nthe LEAGUE.\pThat's what my premonition says.", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_GILBERT, "Don't say a thing!\nLet me guess what you're thinking.\pMmmmmmm…\pI got it! You're on the {POKEMON}\nLEAGUE challenge!", "You're too much!")
+  msgbox("With your skills, you'll do well at\nthe LEAGUE.\pThat's what my premonition says.", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route27_Eventscript_CooltrainerReena {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_REENA_1, "You shouldn't underestimate the wild\n{POKEMON} in these parts.", "Oh!\nYou're much too strong!")
-    msgbox("You're just a kid, but you're not\nto be underestimated either.", MSGBOX_AUTOCLOSE)
+  // TODO: Phone
+  trainerbattle_single(TRAINER_REENA_1, "You shouldn't underestimate the wild\n{POKEMON} in these parts.", "Oh!\nYou're much too strong!")
+  if (!flag(FLAG_PHONE_CARD_COOLTRAINER_REENA)) {
+    if (!flag(FLAG_COOLTRAINER_REENA_OFFERED_NUMBER)) {
+      msgbox("Not bad... It's something to beat\n"
+        "me, even by an unlikely fluke...\p"
+        "I like you! Give me your number! You can\n"
+        "be my practice partner!", MSGBOX_YESNO)
+      setflag(FLAG_COOLTRAINER_REENA_OFFERED_NUMBER)
+    } else {
+      msgbox("Give me your phone number! You are\ngoing to be my practice partner!", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_COOLTRAINER_REENA)
+      msgbox("Don't be too proud about beating\nme! It was a fluke!", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("I don't believe it! You're going to\nregret this!", MSGBOX_AUTOCLOSE)
+    }
     end
+  }
+  msgbox("You're just a kid, but you're not\nto be underestimated either.", MSGBOX_AUTOCLOSE)
+  end
 }

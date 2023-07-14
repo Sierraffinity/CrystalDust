@@ -1,72 +1,91 @@
 mapscripts Route42_MapScripts {
-    MAP_SCRIPT_ON_TRANSITION{
-        if(!(flag(FLAG_AWAKENED_LEGENDARY_BEASTS) && !flag(FLAG_SAW_SUICUNE_ON_ROUTE_42)))
-        {
-            setflag(FLAG_TEMP_1)
-            setvar(VAR_TEMP_0, 1)
-        }
+  MAP_SCRIPT_ON_TRANSITION {
+    if (!(flag(FLAG_AWAKENED_LEGENDARY_BEASTS) && !flag(FLAG_SAW_SUICUNE_ON_ROUTE_42))) {
+      setflag(FLAG_TEMP_1)
+      setvar(VAR_TEMP_0, 1)
     }
+  }
 }
 
 script Route42_Eventscript_SuicuneTrigger {
-    lockall
-    turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
-    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
-    playse(SE_PIN)
-    delay(0x40)
-    playse(SE_LEDGE)
-    setmetatile(32, 21, 0x2D4, 0)
-    special(DrawWholeMapView)
-    applymovement(7, Route42_Movement_Suicune)
-    waitse
-    playse(SE_LEDGE)
-    waitse
-    playse(SE_LEDGE)
-    waitse
-    playse(SE_LEDGE)
-    waitse
-    playse(SE_LEDGE)
-    waitse
-    waitmovement(0)
-    removeobject(7)
-    setmetatile(32, 21, 0x13, 0)
-    special(DrawWholeMapView)
-    setflag(FLAG_SAW_SUICUNE_ON_ROUTE_42)
-    clearflag(FLAG_SAW_SUICUNE_ON_ROUTE_36)
-    setvar(VAR_TEMP_0, 1)
-    releaseall
-    end
-}movement Route42_Movement_Suicune{
-    jump_2_up_fast * 2
-    jump_2_right_fast * 3
-    set_invisible
+  lockall
+  turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+  applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+  playse(SE_PIN)
+  delay(0x40)
+  playse(SE_LEDGE)
+  setmetatile(32, 21, 0x2D4, 0)
+  special(DrawWholeMapView)
+  applymovement(7, Route42_Movement_Suicune)
+  waitse
+  playse(SE_LEDGE)
+  waitse
+  playse(SE_LEDGE)
+  waitse
+  playse(SE_LEDGE)
+  waitse
+  playse(SE_LEDGE)
+  waitse
+  waitmovement(0)
+  removeobject(7)
+  setmetatile(32, 21, 0x13, 0)
+  special(DrawWholeMapView)
+  setflag(FLAG_SAW_SUICUNE_ON_ROUTE_42)
+  clearflag(FLAG_SAW_SUICUNE_ON_ROUTE_36)
+  setvar(VAR_TEMP_0, 1)
+  releaseall
+  end
+}
+movement Route42_Movement_Suicune {
+  jump_2_up_fast * 2
+  jump_2_right_fast * 3
+  set_invisible
 }
 
 script Route42_Eventscript_RouteSign { //used for both easternmost and westernmost signs
-    msgbox("ROUTE 42\nECRUTEAK CITY - MAHOGANY TOWN", MSGBOX_SIGN)
-    end
+  msgbox("ROUTE 42\nECRUTEAK CITY - MAHOGANY TOWN", MSGBOX_SIGN)
+  end
 }
 
 script Route42_Eventscript_MtMortarSign { //used for both signs near the cave
-    msgbox("MT. MORTAR\nWATERFALL CAVE INSIDE", MSGBOX_SIGN)
-    end
+  msgbox("MT. MORTAR\nWATERFALL CAVE INSIDE", MSGBOX_SIGN)
+  end
 }
 
 script Route42_Eventscript_FishermanTully {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_TULLY_1, "Let me demonstrate the power of the\n{POKEMON} I caught!", "What? That's not right.")
-    msgbox("I want to become the TRAINER CHAMP\nusing the {POKEMON} I caught.\pThat's the best part of fishing!", MSGBOX_AUTOCLOSE)
+  // TODO: Phone
+  trainerbattle_single(TRAINER_TULLY_1, "Let me demonstrate the power of the\n{POKEMON} I caught!", "What? That's not right.")
+  if (!flag(FLAG_PHONE_CARD_FISHER_TULLY)) {
+    if (!flag(FLAG_FISHER_TULLY_OFFERED_NUMBER)) {
+      msgbox("Hey, you're trying to be the\nultimate trainer too?\l"
+        "Then we're comrades!\p"
+        "If I find any more items by the water,\n"
+        "I'll give you some.\p"
+        "Just give me your\nphone number.", MSGBOX_YESNO)
+      setflag(FLAG_FISHER_TULLY_OFFERED_NUMBER)
+    } else {
+      msgbox("If I find any more items by the\nwater, I'll give you some.\lJust give me your phone number.", MSGBOX_YESNO)
+    }
+    if (var (VAR_RESULT) == 1) {
+      registerphonecontact(FLAG_PHONE_CARD_FISHER_TULLY)
+      msgbox("You'll be hearing from me if I find\nsomething good.", MSGBOX_AUTOCLOSE)
+    } else {
+      msgbox("Is that so? Then I'll just have to\nuse them myself.", MSGBOX_AUTOCLOSE)
+    }
     end
+  }
+  msgbox("I want to become the TRAINER CHAMP\nusing the {POKEMON} I caught.\pThat's the best part of fishing!", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route42_Eventscript_PokemaniacShane {
-    trainerbattle_single(TRAINER_SHANE, "HEY! This is my secret place!\nGet lost, you outsider!", "I should have used my MOON STONE…")
-    msgbox("You're working on a {POKEDEX}?\pWow, you must know some pretty rare\n{POKEMON}!\pMay I please see it?\nPlease?", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_SHANE, "HEY! This is my secret place!\nGet lost, you outsider!", "I should have used my MOON STONE…")
+  msgbox("You're working on a {POKEDEX}?\pWow, you must know some pretty rare\n{POKEMON}!\pMay I please see it?\nPlease?", MSGBOX_AUTOCLOSE)
+  end
 }
 
 script Route42_Eventscript_HikerBenjamin {
-    trainerbattle_single(TRAINER_BENJAMIN, "Ah, it's good to be outside!\nI feel so free!", "Gahahah!")
-    msgbox("Losing feels insignificant if you\nlook up at the big sky!", MSGBOX_AUTOCLOSE)
-    end
+  trainerbattle_single(TRAINER_BENJAMIN, "Ah, it's good to be outside!\nI feel so free!", "Gahahah!")
+  msgbox("Losing feels insignificant if you\nlook up at the big sky!", MSGBOX_AUTOCLOSE)
+  end
 }
