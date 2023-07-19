@@ -101,29 +101,34 @@ script NationalPark_EventScript_Jack {
 script NationalPark_EventScript_Beverly {
   // TODO: Phone
   trainerbattle_single(TRAINER_BEVERLY, "My {POKEMON} are simply darling.\pLet me tell you how proud my\ndarlings make me.", "I can beat you in pride, but…")
-  if (!flag(FLAG_PHONE_CARD_POKEFAN_BEVERLY)) {
-    if (!flag(FLAG_POKEFAN_BEVERLY_OFFERED_NUMBER)) {
-      msgbox("Your MARILL is so cute and\n"
-      		 "adorable!\p" 
-      		 "You love {POKEMON}\n"
-      		 "just like I do!\p"
-      		 "Want to trade phone numbers?\n"
-      		 "Let's chat! It'll be so much fun!\n", MSGBOX_YESNO) 
-      setflag(FLAG_POKEFAN_BEVERLY_OFFERED_NUMBER)
-    } else {
-      msgbox("Your MARILL is so cute and\n"
-             "adorable!\p" 
-             "We should chat, it will be fun.\n"
-             "Can I have your phone number?\n", MSGBOX_YESNO)
-    }
-    if (var (VAR_RESULT) == 1) {
-      registerphonecontact(FLAG_PHONE_CARD_POKEFAN_BEVERLY) 
-      msgbox("To be honest, I want a MARILL. But\nI make do with my cute SNUBBULL.", MSGBOX_AUTOCLOSE)
-    } else {
-      msgbox("Oh... That's disappointing...\nGoodbye, MARILL...", MSGBOX_AUTOCLOSE)
-    }
-    end
-  }
+  setvar(VAR_0x8004, SPECIES_MARILL)
+  special(IsPlayersMonOfSpeciesInParty)
+	if(var(VAR_RESULT) == 1)
+	{
+	  if (!flag(FLAG_PHONE_CARD_POKEFAN_BEVERLY)) {
+	    if (!flag(FLAG_POKEFAN_BEVERLY_OFFERED_NUMBER)) {
+	      msgbox("Your MARILL is so cute and\n"
+	      		 "adorable!\p" 
+	      		 "You love {POKEMON}\n"
+	      		 "just like I do!\p"
+	      		 "Want to trade phone numbers?\n"
+	      		 "Let's chat! It'll be so much fun!\n", MSGBOX_YESNO) 
+	      setflag(FLAG_POKEFAN_BEVERLY_OFFERED_NUMBER)
+	    } else {
+	      msgbox("Your MARILL is so cute and\n"
+	             "adorable!\p" 
+	             "We should chat, it will be fun.\n"
+	             "Can I have your phone number?\n", MSGBOX_YESNO)
+	    }
+	    if (var(VAR_RESULT) == 1) {
+	      registerphonecontact(FLAG_PHONE_CARD_POKEFAN_BEVERLY) 
+	      msgbox("To be honest, I want a MARILL. But\nI make do with my cute SNUBBULL.", MSGBOX_AUTOCLOSE)
+	    } else {
+	      msgbox("Oh... That's disappointing...\nGoodbye, MARILL...", MSGBOX_AUTOCLOSE)
+	    }
+	    end
+	  }
+	}
   msgbox("I must say, your {POKEMON} are quite\ncute, too.", MSGBOX_AUTOCLOSE)
 }
 

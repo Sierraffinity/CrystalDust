@@ -301,6 +301,8 @@ script RadioTower_2F_EventScript_Buena_OfferNumber {
     else
     {
         // TODO: Registration
+        registerphonecontact(FLAG_PHONE_CARD_BUENA)
+        msgbox("I look forward to hearing\nfrom you!",MSGBOX_AUTOCLOSE)
     }
 }
 

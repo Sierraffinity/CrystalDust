@@ -1611,7 +1611,8 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer)
     // If the player is on the same route as the trainer
     // and they can be rematched, they will always request a battle
     if (TrainerIsEligibleForRematch(matchCallId)
-     && GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId)
+     && GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId
+	 && gPhoneContacts[gRematchTable[matchCallId].phoneContactId].canAcceptRematch(gLocalTime.dayOfWeek, gLocalTime.hours))
     {
         matchCallText = GetSameRouteMatchCallText(matchCallId, str);
     }

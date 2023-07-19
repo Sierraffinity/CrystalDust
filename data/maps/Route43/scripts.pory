@@ -19,25 +19,30 @@ script Route43_Eventscript_CamperSpencer {
 script Route43_Eventscript_PicnickerTiffany {
   // TODO: Phone
   trainerbattle_single(TRAINER_TIFFANY_1, "Are you going to the LAKE OF RAGE\ntoo? Let's play for a little while!", "I played too much!")
-  if (!flag(FLAG_PHONE_CARD_PICNICKER_TIFFANY)) {
-    if (!flag(FLAG_PICNICKER_TIFFANY_OFFERED_NUMBER)) {
-      msgbox("Hi! You like CLEFAIRY too?\n"
-        "They're so very cute, aren't they?\l"
-        "I think we can be good friends!\p"
-        "I want to know your phone number!\n"
-        "Let's talk about CLEFAIRY!", MSGBOX_YESNO)
-      setflag(FLAG_PICNICKER_TIFFANY_OFFERED_NUMBER)
-    } else {
-      msgbox("I want to know your phone number!\nLet's talk about CLEFAIRY!", MSGBOX_YESNO)
-    }
-    if (var (VAR_RESULT) == 1) {
-      registerphonecontact(FLAG_PHONE_CARD_PICNICKER_TIFFANY)
-      msgbox("Isn't my CLEFAIRY super-adorable?", MSGBOX_AUTOCLOSE)
-    } else {
-      msgbox("Aww... Oh well. Look for me if you\nwant to talk about CLEFAIRY.", MSGBOX_AUTOCLOSE)
-    }
-    end
-  }
+	setvar(VAR_0x8004, SPECIES_CLEFAIRY)
+	special(IsPlayersMonOfSpeciesInParty)
+	if(var(VAR_RESULT) == 1)
+	{
+	  if (!flag(FLAG_PHONE_CARD_PICNICKER_TIFFANY)) {
+	    if (!flag(FLAG_PICNICKER_TIFFANY_OFFERED_NUMBER)) {
+	      msgbox("Hi! You like CLEFAIRY too?\n"
+	        "They're so very cute, aren't they?\l"
+	        "I think we can be good friends!\p"
+	        "I want to know your phone number!\n"
+	        "Let's talk about CLEFAIRY!", MSGBOX_YESNO)
+	      setflag(FLAG_PICNICKER_TIFFANY_OFFERED_NUMBER)
+	    } else {
+	      msgbox("I want to know your phone number!\nLet's talk about CLEFAIRY!", MSGBOX_YESNO)
+	    }
+	    if (var(VAR_RESULT) == 1) {
+	      registerphonecontact(FLAG_PHONE_CARD_PICNICKER_TIFFANY)
+	      msgbox("Isn't my CLEFAIRY super-adorable?", MSGBOX_AUTOCLOSE)
+	    } else {
+	      msgbox("Aww... Oh well. Look for me if you\nwant to talk about CLEFAIRY.", MSGBOX_AUTOCLOSE)
+	    }
+	    end
+	  }
+	 }
   msgbox("Isn't my CLEFAIRY just the most\nadorable thing?", MSGBOX_AUTOCLOSE)
   end
 }
