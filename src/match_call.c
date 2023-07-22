@@ -1103,14 +1103,14 @@ static bool32 UpdateMatchCallMinutesCounter(void)
 
 static bool32 CheckMatchCallChance(void)
 {
-    int callChance = 1;
+   /* int callChance = 1;
     if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG) && GetMonAbility(&gPlayerParty[0]) == ABILITY_LIGHTNING_ROD)
         callChance = 2;
     
-    if (Random() % 10 < callChance * 3) 
+    if (Random() % 10 < callChance * 3) */
         return TRUE;
-    else
-        return FALSE;
+    //else
+      //  return FALSE;
 }
 
 bool32 MapAllowsMatchCall(void)
@@ -1137,15 +1137,26 @@ static bool32 SelectMatchCallTrainer(void)
     u32 numRegistered = GetNumRegisteredNPCs();
     if (numRegistered == 0)
         return FALSE;
-
     sMatchCallState.callerId = GetActiveMatchCallTrainerId(Random() % numRegistered);
+    //sMatchCallState.callerId = (Random() % numRegistered);
+    /*while(sMatchCallState.callerId == 0 || sMatchCallState.callerId == PHONE_CONTACT_MOM || sMatchCallState.callerId == PHONE_CONTACT_BILL ||
+    		sMatchCallState.callerId == PHONE_CONTACT_ELM || sMatchCallState.callerId == PHONE_CONTACT_BIKE_SHOP)
+    {
+    	sMatchCallState.callerId += 1;
+    }*/
+    //sMatchCallState.callerId = (4 + (Random() % (numRegistered - 4)));
     sMatchCallState.triggeredFromScript = FALSE;
     if (sMatchCallState.callerId == PHONE_CONTACT_COUNT)
         return FALSE;
-
-    matchCallId = GetTrainerMatchCallId(gRematchTable[gPhoneContacts[sMatchCallState.callerId].rematchTrainerId].trainerIds[0]);
-    if (GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId && !TrainerIsEligibleForRematch(matchCallId))
-        return FALSE;
+    if(gPhoneContacts[sMatchCallState.callerId].rematchTrainerId != 0xFF)
+    {
+    	matchCallId = GetTrainerMatchCallId(gRematchTable[gPhoneContacts[sMatchCallState.callerId].rematchTrainerId].trainerIds[0]);
+    	if (GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId && !TrainerIsEligibleForRematch(matchCallId))
+    		return FALSE;
+    }
+    else{
+    	matchCallId = TRAINER_NONE;
+    }
 
     return TRUE;
 }
@@ -1185,10 +1196,13 @@ static bool8 AlwaysTrue(void)
 static u32 GetNumRegisteredNPCs(void)
 {
     u32 i, count;
-    for (i = 0, count = 0; i < REMATCH_TABLE_ENTRIES; i++)
+    //for (i = 0, count = 0; i < REMATCH_TABLE_ENTRIES; i++)
+    for (i = 0, count = 0; i < PHONE_CONTACT_COUNT; i++)
     {
-        if (gPhoneContacts[gRematchTable[i].phoneContactId].rematchTrainerId != 0xFF &&
-            FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
+        //if (gPhoneContacts[gRematchTable[i].phoneContactId].rematchTrainerId != 0xFF &&
+        //    FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
+    	if (FlagGet(gPhoneContacts[i].registeredFlag) && (i != PHONE_CONTACT_MOM &&  i != PHONE_CONTACT_BILL &&
+    			i != PHONE_CONTACT_ELM && i != PHONE_CONTACT_BIKE_SHOP))
         {
             count++;
         }
@@ -1200,19 +1214,22 @@ static u32 GetNumRegisteredNPCs(void)
 static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
 {
     u32 i;
-    for (i = 0; i < REMATCH_TABLE_ENTRIES; i++)
+    for (i = 0; i < PHONE_CONTACT_COUNT; i++)
     {
-        if (gPhoneContacts[gRematchTable[i].phoneContactId].rematchTrainerId != 0xFF &&
-            FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
+        //if (gPhoneContacts[gRematchTable[i].phoneContactId].rematchTrainerId != 0xFF &&
+          //  FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
+    	if(FlagGet(gPhoneContacts[i].registeredFlag) && (i != PHONE_CONTACT_MOM &&  i != PHONE_CONTACT_BILL &&
+    			i != PHONE_CONTACT_ELM && i != PHONE_CONTACT_BIKE_SHOP))
         {
             if (!activeMatchCallId)
-                return gRematchTable[i].phoneContactId;
+                return i;
 
             activeMatchCallId--;
         }
     }
 
-    return REMATCH_TABLE_ENTRIES;
+    //return REMATCH_TABLE_ENTRIES;
+    return PHONE_CONTACT_COUNT;
 }
 
 bool32 TryStartForcedMatchCall(void)
@@ -1233,9 +1250,15 @@ bool32 TryStartMatchCall(void)
 
     if (UpdateMatchCallStepCounter() && UpdateMatchCallMinutesCounter()
      && CheckMatchCallChance() && MapAllowsMatchCall() && SelectMatchCallTrainer())
-    {
-        StartMatchCall();
-        return TRUE;
+    {//Add check for Buena, send to StartMatchCallFromScript, do a script for Buena if she calls
+    	if(sMatchCallState.callerId == PHONE_CONTACT_BUENA){
+    		StartMatchCallFromScript(gPhoneContacts[sMatchCallState.callerId].phoneScript, sMatchCallState.callerId);
+    	}
+    	else
+    	{
+    		StartMatchCall();
+    	}
+    	return TRUE;
     }
 
     return FALSE;
