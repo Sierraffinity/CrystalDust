@@ -1252,7 +1252,7 @@ bool32 TryStartMatchCall(void)
      && CheckMatchCallChance() && MapAllowsMatchCall() && SelectMatchCallTrainer())
     {//Add check for Buena, send to StartMatchCallFromScript, do a script for Buena if she calls
     	if(sMatchCallState.callerId == PHONE_CONTACT_BUENA){
-    		StartMatchCallFromScript(gPhoneContacts[sMatchCallState.callerId].phoneScript, sMatchCallState.callerId);
+    		StartMatchCallFromScript(PhoneScript_Buena_Caller, sMatchCallState.callerId);
     	}
     	else
     	{

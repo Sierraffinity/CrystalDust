@@ -647,13 +647,16 @@ PhoneScript_Buena::
 PhoneScript_Buena_Call:
 	phone_initcall
 	phone_end_if_not_available
+	phone_goto_if_set FLAG_ROCKETS_IN_RADIO_TOWER, PhoneScript_Buena_Rocket
 	phone_gettime
+	phone_compare VAR_0x8000, 17
+	phone_goto_if_gt PhoneScript_Buena_Midnight_Answer
 	phone_compare VAR_0x8002, TIME_MORNING
-	phone_call_if_eq PhoneScript_Buena_Morning
+	phone_call_if_eq PhoneScript_Buena_Morning_Answer
 	phone_compare VAR_0x8002, TIME_DAY
-	phone_call_if_eq PhoneScript_Buena_Day
+	phone_call_if_eq PhoneScript_Buena_Day_Answer
 	phone_compare VAR_0x8002, TIME_NIGHT
-	phone_call_if_eq PhoneScript_Buena_Night
+	phone_call_if_eq PhoneScript_Buena_Night_Answer
 	phone_random 3
 	phone_compare VAR_RESULT, 0
 	phone_call_if_eq PhoneScript_Buena_Favorite_Slot_Machine
@@ -665,40 +668,168 @@ PhoneScript_Buena_Call:
 	phone_hangup
 	phone_end
 
-PhoneScript_Buena_Morning:
+PhoneScript_Buena_Morning_Answer:
 	phone_message BuenaPhoneMorningAnswerText
 	phone_return
 
-
-PhoneScript_Buena_Day:
+PhoneScript_Buena_Day_Answer:
 	phone_message BuenaPhoneDayAnswerText
 	phone_return
 
-
-PhoneScript_Buena_Night:
+PhoneScript_Buena_Night_Answer:
 	phone_message BuenaPhoneNiteAnswerText
 	phone_return
 
-
-PhoneScript_Buena_Midnight:
-	phone_message Text_Buena_RegularCall
-	phone_return
-
+PhoneScript_Buena_Midnight_Answer:
+	phone_message BuenaPhoneMidnightAnswerText
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
 
 PhoneScript_Buena_Favorite_Slot_Machine:
 	phone_message BuenaPhoneFavoriteSlotMachineAnswerText
 	phone_return
 
-
 PhoneScript_Buena_Pokegear:
 	phone_message BuenaPhonePokegearAnswerText
 	phone_return
-
 
 PhoneScript_Buena_Cooped_Up:
 	phone_message BuenaPhoneCoopedUpInRadioTowerAnswerText
 	phone_return
 
+PhoneScript_Buena_Caller::
+	phone_initcall
+	phone_end_if_not_available
+	phone_goto_if_set FLAG_ROCKETS_IN_RADIO_TOWER, PhoneScript_Buena_Rocket
+	phone_gettime
+	phone_compare VAR_0x8000, 17
+	phone_goto_if_gt PhoneScript_Buena_Midnight_Call
+	phone_compare VAR_0x8002, TIME_MORNING
+	phone_call_if_eq PhoneScript_Buena_Morning_Call
+	phone_compare VAR_0x8002, TIME_DAY
+	phone_call_if_eq PhoneScript_Buena_Day_Call
+	phone_compare VAR_0x8002, TIME_NIGHT
+	phone_call_if_eq PhoneScript_Buena_Night_Call
+	phone_call_if_set FLAG_IS_CHAMPION, PhoneScript_Buena_Random_14
+	phone_call_if_unset FLAG_IS_CHAMPION, PhoneScript_Buena_Random_11
+	phone_compare VAR_RESULT, 0
+	phone_call_if_eq PhoneScript_Buena_Went_Out_With_Ben
+	phone_compare VAR_RESULT, 1
+	phone_call_if_eq PhoneScript_Buena_Receptionist
+	phone_compare VAR_RESULT, 2
+	phone_call_if_eq PhoneScript_Buena_Lucky_Number
+	phone_compare VAR_RESULT, 3
+	phone_call_if_eq PhoneScript_Buena_Stressed_From_Work
+	phone_compare VAR_RESULT, 4
+	phone_call_if_eq PhoneScript_Buena_Professor_Oak
+	phone_compare VAR_RESULT, 5
+	phone_call_if_eq PhoneScript_Buena_Cold
+	phone_compare VAR_RESULT, 6
+	phone_call_if_eq PhoneScript_Buena_Radio_Card_Questions
+	phone_compare VAR_RESULT, 7
+	phone_call_if_eq PhoneScript_Buena_Pikachu_Fan_Club
+	phone_compare VAR_RESULT, 8
+	phone_call_if_eq PhoneScript_Buena_Radio_Tower_Director
+	phone_compare VAR_RESULT, 9
+	phone_call_if_eq PhoneScript_Buena_When_Do_You_Relax
+	phone_compare VAR_RESULT, 10
+	phone_call_if_eq PhoneScript_Buena_Starter_Pokemon
+	phone_compare VAR_RESULT, 11
+	phone_call_if_eq PhoneScript_Buena_Company_Vacation
+	phone_compare VAR_RESULT, 12
+	phone_call_if_eq PhoneScript_Buena_Ben_And_Fern
+	phone_compare VAR_RESULT, 13
+	phone_call_if_eq PhoneScript_Buena_Going_Shopping
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+PhoneScript_Buena_Random_11:
+	phone_random 11
+	phone_return
+
+PhoneScript_Buena_Random_14:
+	phone_random 14
+	phone_return
+
+PhoneScript_Buena_Rocket:
+	phone_message BuenaPhoneRocketText
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+PhoneScript_Buena_Morning_Call:
+	phone_message BuenaPhoneMorningText
+	phone_return
+
+PhoneScript_Buena_Day_Call:
+	phone_message BuenaPhoneDayText
+	phone_return
+
+PhoneScript_Buena_Night_Call:
+	phone_message BuenaPhoneNiteText
+	phone_return
+
+PhoneScript_Buena_Midnight_Call:
+	phone_message BuenaPhoneMidnightText
+	phone_return
+
+PhoneScript_Buena_Went_Out_With_Ben:
+	phone_message BuenaPhoneWentOutWithBenText
+	phone_return
+
+PhoneScript_Buena_Receptionist:
+	phone_message BuenaPhoneReceptionistText
+	phone_return
+
+PhoneScript_Buena_Lucky_Number:
+	phone_message BuenaPhoneLuckyNumberShowText
+	phone_return
+
+PhoneScript_Buena_Stressed_From_Work:
+	phone_message BuenaPhoneStressedFromWorkText
+	phone_return
+
+PhoneScript_Buena_Professor_Oak:
+	phone_message BuenaPhoneProfessorOakText
+	phone_return
+
+PhoneScript_Buena_Cold:
+	phone_message BuenaPhoneGotAColdText
+	phone_return
+
+PhoneScript_Buena_Radio_Card_Questions:
+	phone_message BuenaPhoneRadioCardQuestionsText
+	phone_return
+
+PhoneScript_Buena_Pikachu_Fan_Club:
+	phone_message BuenaPhonePikachuFanClubText
+	phone_return
+
+PhoneScript_Buena_Radio_Tower_Director:
+	phone_message BuenaPhoneRadioTowerDirectorText
+	phone_return
+
+PhoneScript_Buena_When_Do_You_Relax:
+	phone_message BuenaPhoneWhenDoYouRelaxText
+	phone_return
+
+PhoneScript_Buena_Starter_Pokemon:
+	phone_message BuenaPhoneStarterPokemonText
+	phone_return
+
+PhoneScript_Buena_Company_Vacation:
+	phone_message BuenaPhoneCompanyVacationText
+	phone_return
+
+PhoneScript_Buena_Ben_And_Fern:
+	phone_message BuenaPhoneBenAndFernText
+	phone_return
+
+PhoneScript_Buena_Going_Shopping:
+	phone_message BuenaPhoneGoingShoppingText
+	phone_return
 
 Text_Buena_RegularCall:
 	.string "Hi, {PLAYER}!\n"

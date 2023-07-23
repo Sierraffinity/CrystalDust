@@ -14,5 +14,6 @@ extern const u8 MasterBall_PhoneScript_ElmCall[];
 extern const u8 PhoneScript_Bill_InviteToSevii[];
 extern const u8 PhoneScript_Mom_BoughtItem[];
 extern const u8 PhoneScript_Buena[];
+extern const u8 PhoneScript_Buena_Caller[];
 
 #endif // GUARD_PHONE_SCRIPTS_H
