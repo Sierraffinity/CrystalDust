@@ -1138,13 +1138,6 @@ static bool32 SelectMatchCallTrainer(void)
     if (numRegistered == 0)
         return FALSE;
     sMatchCallState.callerId = GetActiveMatchCallTrainerId(Random() % numRegistered);
-    //sMatchCallState.callerId = (Random() % numRegistered);
-    /*while(sMatchCallState.callerId == 0 || sMatchCallState.callerId == PHONE_CONTACT_MOM || sMatchCallState.callerId == PHONE_CONTACT_BILL ||
-    		sMatchCallState.callerId == PHONE_CONTACT_ELM || sMatchCallState.callerId == PHONE_CONTACT_BIKE_SHOP)
-    {
-    	sMatchCallState.callerId += 1;
-    }*/
-    //sMatchCallState.callerId = (4 + (Random() % (numRegistered - 4)));
     sMatchCallState.triggeredFromScript = FALSE;
     if (sMatchCallState.callerId == PHONE_CONTACT_COUNT)
         return FALSE;
@@ -1170,7 +1163,6 @@ static bool32 SelectForcedPhoneCall(void)
     {
         if (sForcedPhoneCalls[i].callCondition() &&
             FlagGet(sForcedPhoneCalls[i].flag))
-            //FlagGet(gPhoneContacts[sForcedPhoneCalls[i].phoneContactId].registeredFlag))
         {
             FlagClear(sForcedPhoneCalls[i].flag);
             sMatchCallState.callerId = sForcedPhoneCalls[i].phoneContactId;
@@ -1196,11 +1188,8 @@ static bool8 AlwaysTrue(void)
 static u32 GetNumRegisteredNPCs(void)
 {
     u32 i, count;
-    //for (i = 0, count = 0; i < REMATCH_TABLE_ENTRIES; i++)
     for (i = 0, count = 0; i < PHONE_CONTACT_COUNT; i++)
     {
-        //if (gPhoneContacts[gRematchTable[i].phoneContactId].rematchTrainerId != 0xFF &&
-        //    FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
     	if (FlagGet(gPhoneContacts[i].registeredFlag) && (i != PHONE_CONTACT_MOM &&  i != PHONE_CONTACT_BILL &&
     			i != PHONE_CONTACT_ELM && i != PHONE_CONTACT_BIKE_SHOP))
         {
@@ -1216,8 +1205,6 @@ static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
     u32 i;
     for (i = 0; i < PHONE_CONTACT_COUNT; i++)
     {
-        //if (gPhoneContacts[gRematchTable[i].phoneContactId].rematchTrainerId != 0xFF &&
-          //  FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
     	if(FlagGet(gPhoneContacts[i].registeredFlag) && (i != PHONE_CONTACT_MOM &&  i != PHONE_CONTACT_BILL &&
     			i != PHONE_CONTACT_ELM && i != PHONE_CONTACT_BIKE_SHOP))
         {
@@ -1228,7 +1215,6 @@ static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
         }
     }
 
-    //return REMATCH_TABLE_ENTRIES;
     return PHONE_CONTACT_COUNT;
 }
 
@@ -1250,7 +1236,8 @@ bool32 TryStartMatchCall(void)
 
     if (UpdateMatchCallStepCounter() && UpdateMatchCallMinutesCounter()
      && CheckMatchCallChance() && MapAllowsMatchCall() && SelectMatchCallTrainer())
-    {//Add check for Buena, send to StartMatchCallFromScript, do a script for Buena if she calls
+    {
+    	// Check for Buena
     	if(sMatchCallState.callerId == PHONE_CONTACT_BUENA){
     		StartMatchCallFromScript(PhoneScript_Buena_Caller, sMatchCallState.callerId);
     	}
@@ -1634,8 +1621,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer)
     // If the player is on the same route as the trainer
     // and they can be rematched, they will always request a battle
     if (TrainerIsEligibleForRematch(matchCallId)
-     && GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId
-	 && gPhoneContacts[gRematchTable[matchCallId].phoneContactId].canAcceptRematch(gLocalTime.dayOfWeek, gLocalTime.hours))
+     && GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId)
     {
         matchCallText = GetSameRouteMatchCallText(matchCallId, str);
     }
