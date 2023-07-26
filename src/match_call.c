@@ -157,7 +157,7 @@ static const struct MatchCallText *GetSameRouteMatchCallText(int, u8 *);
 static const struct MatchCallText *GetDifferentRouteMatchCallText(int, u8 *);
 static const struct MatchCallText *GetBattleMatchCallText(int, u8 *);
 static const struct MatchCallText *GetGeneralMatchCallText(int, u8 *);
-static bool32 ShouldTrainerRequestBattle(int);
+static bool32 ShouldTrainerRequestBattle(const struct PhoneContact *);
 static void BuildMatchCallString(int, const struct MatchCallText *, u8 *);
 static u16 GetFrontierStreakInfo(u16, u32 *);
 static void PopulateMatchCallStringVars(int, const s8 *);
@@ -1149,6 +1149,11 @@ static bool32 SelectMatchCallTrainer(void)
     }
     else{
     	matchCallId = TRAINER_NONE;
+    	if(Overworld_GetMapHeaderByGroupAndId(gPhoneContacts[sMatchCallState.callerId].mapGroup, gPhoneContacts[sMatchCallState.callerId].mapNum)->regionMapSectionId ==
+    			gMapHeader.regionMapSectionId)
+    	{
+    		return FALSE;
+    	}
     }
 
     return TRUE;
@@ -1579,7 +1584,7 @@ static u16 GetRematchTrainerLocation(int matchCallId)
 static u32 GetNumRematchTrainersFought(void)
 {
     u32 i, count;
-    for (i = 0, count = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
+    for (i = 0, count = 0; i < REMATCH_TABLE_ENTRIES; i++)
     {
         if (HasTrainerBeenFought(gRematchTable[i].trainerIds[0]))
             count++;
@@ -1609,7 +1614,7 @@ static u32 GetNthRematchTrainerFought(int n)
     return REMATCH_TABLE_ENTRIES;
 }
 
-bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer)
+bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)
 {
     u32 matchCallId;
     const struct MatchCallText *matchCallText;
@@ -1625,12 +1630,13 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer)
     {
         matchCallText = GetSameRouteMatchCallText(matchCallId, str);
     }
-    // TODO: Disable ability to ask for rematch until making decision about daily rematch flags.
-    else if (FALSE /*(!isCallingPlayer && gPhoneContacts[gRematchTable[matchCallId].phoneContactId].canAcceptRematch(gLocalTime.dayOfWeek, gLocalTime.hours))*/
-          || (isCallingPlayer  && ShouldTrainerRequestBattle(matchCallId)))
+    else if ((!isCallingPlayer && CanPhoneContactAcceptRematch(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours)) ||
+            (isCallingPlayer  && ShouldTrainerRequestBattle(phoneContact)))
     {
         matchCallText = GetDifferentRouteMatchCallText(matchCallId, str);
         retVal = TRUE;
+        FlagSet(phoneContact->rematchOfferedFlag);
+        gSaveBlock1Ptr->trainerRematches[phoneContact->registeredFlag] = 1;
         UpdateRematchIfDefeated(matchCallId);
     }
     else if (Random() % 3)
@@ -1980,9 +1986,9 @@ static int GetNumOwnedBadges(void)
 }
 
 // Whether or not a trainer calling the player from a different route should request a battle
-static bool32 ShouldTrainerRequestBattle(int matchCallId)
+static bool32 ShouldTrainerRequestBattle(const struct PhoneContact *phoneContact)
 {
-    int dayCount;
+    /*int dayCount;
     int otId;
     u16 dewfordRand;
     int numRematchTrainersFought;
@@ -2003,8 +2009,17 @@ static bool32 ShouldTrainerRequestBattle(int matchCallId)
     {
         if (GetNthRematchTrainerFought(n) == matchCallId)
             return TRUE;
-    }
+    }*/
 
+	for(int i = 1; i < 4; i++)
+	{
+		if(!HasTrainerBeenFought(gRematchTable[phoneContact->rematchTrainerId].trainerIds[i]) && FlagGet(phoneContact->rematchFlags[i-1] &&
+				phoneContact->rematchFlags[i-1] != FALSE) &&
+				!FlagGet(phoneContact->rematchOfferedFlag))
+		{
+			return TRUE;
+		}
+	}
     return FALSE;
 }
 

@@ -1,6 +1,8 @@
 #ifndef GUARD_MATCH_CALL_H
 #define GUARD_MATCH_CALL_H
 
+#include "phone_contact.h"
+
 enum {
     MATCH_CALL_TYPE_NON_TRAINER,
     MATCH_CALL_TYPE_TRAINER,
@@ -19,7 +21,7 @@ struct MomItemTable {
 
 s32 GetRematchIdxByTrainerIdx(s32 trainerIdx);
 void InitMatchCallCounters(void);
-bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer);
+bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
 bool32 TryStartMatchCall(void);
 bool32 TryStartForcedMatchCall(void);
 u8 EndOverworldPhoneCall(void);

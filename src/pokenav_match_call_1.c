@@ -351,8 +351,9 @@ const u8 *GetMatchCallMessageText(int index, u8 *arg1)
         return gText_CallCantBeMadeHere;
 
     if (!state->matchCallEntries[index].isSpecialTrainer)
-        *arg1 = SelectMatchCallMessage(GetTrainerIdxByRematchIdx(state->matchCallEntries[index].headerId), gStringVar4, FALSE);
-    else
+        //*arg1 = SelectMatchCallMessage(GetTrainerIdxByRematchIdx(state->matchCallEntries[index].headerId), gStringVar4, FALSE);
+    	*arg1 = FALSE;
+    	else
         MatchCall_GetMessage(state->matchCallEntries[index].headerId, gStringVar4);
 
     return gStringVar4;
