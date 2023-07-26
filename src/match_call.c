@@ -1144,7 +1144,7 @@ static bool32 SelectMatchCallTrainer(void)
     if(gPhoneContacts[sMatchCallState.callerId].rematchTrainerId != 0xFF)
     {
     	matchCallId = GetTrainerMatchCallId(gRematchTable[gPhoneContacts[sMatchCallState.callerId].rematchTrainerId].trainerIds[0]);
-    	if (GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId && !TrainerIsEligibleForRematch(matchCallId))
+    	if (GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId)
     		return FALSE;
     }
     else{

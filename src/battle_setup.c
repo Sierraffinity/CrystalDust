@@ -1606,7 +1606,7 @@ static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u
             else if (FlagGet(gPhoneContacts[table[i].phoneContactId].registeredFlag)
              && (Random() % 100) <= 30)  // 31% chance of getting a rematch.
             {
-                SetRematchIdForTrainer(table, i);
+                //SetRematchIdForTrainer(table, i);
                 ret = TRUE;
             }
         }
