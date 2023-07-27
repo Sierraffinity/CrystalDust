@@ -682,15 +682,17 @@
 #define FLAG_FISHER_WILTON_OFFERED_NUMBER		0x27E
 #define FLAG_HIKER_PARRY_OFFERED_NUMBER			0x27F
 
+//Phone Calls for found items
+#define FLAG_CALL_LEAF_STONE  		0x280 // Picnicker Gina, Route 34
+#define FLAG_CALL_FIRE_STONE  		0x281 // School Kid Alan, Route 36
+#define FLAG_CALL_THUNDER_STONE  	0x282 //Lass Dana, Route 38
+#define FLAG_CALL_NUGGET 			0x283 // Pokefan Derek, Route 39
+#define FLAG_CALL_WATER_STONE  		0x284 // Fisherman Tully, Route 42
+#define FLAG_CALL_PINK_BOW  		0x285 // Picnicker Tiffany, Route 43
+#define FLAG_CALL_POKEBALL  		0x286 // Fisherman Wilton, Route 44
+#define FLAG_CALL_STAR_PIECE  		0x287 // Bird Keeper jose, Route 27
+
 //Unused Flags
-#define FLAG_UNUSED_0x280  0x280 // Unused Flag
-#define FLAG_UNUSED_0x281  0x281 // Unused Flag
-#define FLAG_UNUSED_0x282  0x282 // Unused Flag
-#define FLAG_UNUSED_0x283  0x283 // Unused Flag
-#define FLAG_UNUSED_0x284  0x284 // Unused Flag
-#define FLAG_UNUSED_0x285  0x285 // Unused Flag
-#define FLAG_UNUSED_0x286  0x286 // Unused Flag
-#define FLAG_UNUSED_0x287  0x287 // Unused Flag
 #define FLAG_UNUSED_0x288  0x288 // Unused Flag
 #define FLAG_UNUSED_0x289  0x289 // Unused Flag
 #define FLAG_UNUSED_0x28A  0x28A // Unused Flag
