@@ -15,6 +15,9 @@
 #include "constants/flags.h"
 #include "constants/maps.h"
 
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
+
 extern const u8 gTrainerClassNames[][13];
 
 static bool8 CanAcceptRematch_Always(s8 dayOfWeek, s8 hour);
@@ -692,3 +695,5 @@ const u8 *BuildPhoneContactDisplayNameForCall(const struct PhoneContact *phoneCo
         return sPhoneContactName_UnknownContact;
     }
 }
+
+#pragma GCC pop_options

@@ -45,6 +45,9 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
+
 // Each match call message has variables that can be populated randomly or
 // dependent on the trainer. The below are IDs for how to populate the vars
 // in a given message.
@@ -396,15 +399,6 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
         .differentRouteMatchCallTextId = TEXT_ID(REQ_TOPIC_DIFF_ROUTE, 4),
     },
     {
-        .trainerId = TRAINER_NONE, //TRAINER_CHRIS
-        .unused = 0,
-        .battleTopicTextIds = BATTLE_TEXT_IDS(8),
-        .generalTextId = TEXT_ID(GEN_TOPIC_PERSONAL, 23),
-        .battleFrontierRecordStreakTextIndex = 8,
-        .sameRouteMatchCallTextId = TEXT_ID(REQ_TOPIC_SAME_ROUTE, 8),
-        .differentRouteMatchCallTextId = TEXT_ID(REQ_TOPIC_DIFF_ROUTE, 8),
-    },
-    {
         .trainerId = TRAINER_BRENT_1,
         .unused = 0,
         .battleTopicTextIds = BATTLE_TEXT_IDS(12),
@@ -413,8 +407,17 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
         .sameRouteMatchCallTextId = TEXT_ID(REQ_TOPIC_SAME_ROUTE, 12),
         .differentRouteMatchCallTextId = TEXT_ID(REQ_TOPIC_DIFF_ROUTE, 12),
     },
+	{
+	    .trainerId = TRAINER_CHAD_1,
+	    .unused = 0,
+	    .battleTopicTextIds = BATTLE_TEXT_IDS(8),
+	    .generalTextId = TEXT_ID(GEN_TOPIC_PERSONAL, 23),
+	    .battleFrontierRecordStreakTextIndex = 8,
+	    .sameRouteMatchCallTextId = TEXT_ID(REQ_TOPIC_SAME_ROUTE, 8),
+	    .differentRouteMatchCallTextId = TEXT_ID(REQ_TOPIC_DIFF_ROUTE, 8),
+	},
     {
-        .trainerId = TRAINER_NONE,
+        .trainerId = TRAINER_WILTON_1,
         .unused = 0,
         .battleTopicTextIds = BATTLE_TEXT_IDS(2),
         .generalTextId = TEXT_ID(GEN_TOPIC_PERSONAL, 26),
@@ -423,7 +426,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
         .differentRouteMatchCallTextId = TEXT_ID(REQ_TOPIC_DIFF_ROUTE, 2),
     },
     {
-        .trainerId = TRAINER_NONE,
+        .trainerId = TRAINER_PARRY_1,
         .unused = 0,
         .battleTopicTextIds = BATTLE_TEXT_IDS(1),
         .generalTextId = TEXT_ID(GEN_TOPIC_PERSONAL, 25),
@@ -1144,8 +1147,9 @@ static bool32 SelectMatchCallTrainer(void)
     if(gPhoneContacts[sMatchCallState.callerId].rematchTrainerId != 0xFF)
     {
     	matchCallId = GetTrainerMatchCallId(gRematchTable[gPhoneContacts[sMatchCallState.callerId].rematchTrainerId].trainerIds[0]);
-    	if (GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId)
-    		return FALSE;
+    	if (Overworld_GetMapHeaderByGroupAndId(gPhoneContacts[sMatchCallState.callerId].mapGroup, gPhoneContacts[sMatchCallState.callerId].mapNum)->regionMapSectionId ==
+    			gMapHeader.regionMapSectionId)
+    		return FALSE;//
     }
     else{
     	matchCallId = TRAINER_NONE;
@@ -1625,6 +1629,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
 
     // If the player is on the same route as the trainer
     // and they can be rematched, they will always request a battle
+    // Should theoretically never run...
     if (TrainerIsEligibleForRematch(matchCallId)
      && GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId)
     {
@@ -1636,7 +1641,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
         matchCallText = GetDifferentRouteMatchCallText(matchCallId, str);
         retVal = TRUE;
         FlagSet(phoneContact->rematchOfferedFlag);
-        gSaveBlock1Ptr->trainerRematches[phoneContact->registeredFlag] = 1;
+        gSaveBlock1Ptr->trainerRematches[phoneContact->rematchTrainerId] = 1;
         UpdateRematchIfDefeated(matchCallId);
     }
     else if (Random() % 3)
@@ -2013,8 +2018,7 @@ static bool32 ShouldTrainerRequestBattle(const struct PhoneContact *phoneContact
 
 	for(int i = 1; i < 4; i++)
 	{
-		if(!HasTrainerBeenFought(gRematchTable[phoneContact->rematchTrainerId].trainerIds[i]) && FlagGet(phoneContact->rematchFlags[i-1] &&
-				phoneContact->rematchFlags[i-1] != FALSE) &&
+		if(!HasTrainerBeenFought(gRematchTable[phoneContact->rematchTrainerId].trainerIds[i]) && FlagGet(phoneContact->rematchFlags[i-1]) &&
 				!FlagGet(phoneContact->rematchOfferedFlag))
 		{
 			return TRUE;
@@ -2242,3 +2246,5 @@ void MomTriesToBuySomething(void)
         }
     }
 }
+
+#pragma GCC pop_options

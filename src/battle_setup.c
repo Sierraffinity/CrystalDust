@@ -52,6 +52,9 @@
 #include "constants/weather.h"
 #include "match_call.h"
 
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
+
 enum
 {
     TRAINER_PARAM_LOAD_VAL_8BIT,
@@ -1586,7 +1589,7 @@ static void SetRematchIdForTrainer(const struct RematchTrainer *table, u32 table
             break;
     }
 
-    gSaveBlock1Ptr->trainerRematches[tableId] = i;
+    //gSaveBlock1Ptr->trainerRematches[tableId] = i;
 }
 
 static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u16 mapGroup, u16 mapNum)
@@ -1606,7 +1609,7 @@ static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u
             else if (FlagGet(gPhoneContacts[table[i].phoneContactId].registeredFlag)
              && (Random() % 100) <= 30)  // 31% chance of getting a rematch.
             {
-                //SetRematchIdForTrainer(table, i);
+                SetRematchIdForTrainer(table, i);//
                 ret = TRUE;
             }
         }
@@ -1875,3 +1878,5 @@ u16 CountBattledRematchTeams(u16 trainerId)
 
     return i;
 }
+
+#pragma GCC pop_options

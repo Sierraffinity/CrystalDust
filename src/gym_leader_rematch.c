@@ -82,7 +82,7 @@ static void UpdateGymLeaderRematchFromArray(const u16 *data, size_t size, u32 ma
                     {
                         if (whichLeader == 0)
                         {
-                            gSaveBlock1Ptr->trainerRematches[data[i]] = lowestRematchIndex;
+                            //gSaveBlock1Ptr->trainerRematches[data[i]] = lowestRematchIndex;
                             break;
                         }
                         whichLeader--;
