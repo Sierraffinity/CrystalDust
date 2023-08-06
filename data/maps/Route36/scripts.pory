@@ -324,6 +324,11 @@ script Route36_EventScript_Mark {
 script Route36_EventScript_Alan {
     // TODO: Phone
     trainerbattle_single(TRAINER_ALAN_1, "Thanks to my studies, I'm ready\nfor any {POKEMON}!", "Oops!\nComputation error?")
+    if(flag(FLAG_CALL_ALAN_GIFT)){
+	msgbox("FIRE STONE!", MSGBOX_AUTOCLOSE)
+	clearflag(FLAG_CALL_ALAN_GIFT)
+	giveitem(ITEM_FIRE_STONE, 1)
+}
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
     if(var(VAR_RESULT) == 1)
 	{

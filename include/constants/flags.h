@@ -682,19 +682,19 @@
 #define FLAG_FISHER_WILTON_OFFERED_NUMBER		0x27E
 #define FLAG_HIKER_PARRY_OFFERED_NUMBER			0x27F
 
-//Phone Calls for found items
-#define FLAG_CALL_LEAF_STONE  		0x280 // Picnicker Gina, Route 34
-#define FLAG_CALL_FIRE_STONE  		0x281 // School Kid Alan, Route 36
-#define FLAG_CALL_THUNDER_STONE  	0x282 //Lass Dana, Route 38
-#define FLAG_CALL_NUGGET 			0x283 // Pokefan Derek, Route 39
-#define FLAG_CALL_WATER_STONE  		0x284 // Fisherman Tully, Route 42
-#define FLAG_CALL_PINK_BOW  		0x285 // Picnicker Tiffany, Route 43
-#define FLAG_CALL_POKEBALL  		0x286 // Fisherman Wilton, Route 44
-#define FLAG_CALL_STAR_PIECE  		0x287 // Bird Keeper jose, Route 27
+//Phone Calls for gift items
+#define FLAG_CALL_GINA_GIFT  			0x280
+#define FLAG_CALL_ALAN_GIFT  			0x281
+#define FLAG_CALL_DANA_GIFT  			0x282
+#define FLAG_CALL_DEREK_GIFT 			0x283
+#define FLAG_CALL_TULLY_GIFT  			0x284
+#define FLAG_CALL_TIFFANY_GIFT  		0x285
+#define FLAG_CALL_WILTON_GIFT  			0x286
+#define FLAG_CALL_JOSE_GIFT  			0x287
+#define FLAG_CALL_BEVERLY_GIFT			0x288
+#define FLAG_CALL_KENJI_GIFT			0x289
 
 //Unused Flags
-#define FLAG_UNUSED_0x288  0x288 // Unused Flag
-#define FLAG_UNUSED_0x289  0x289 // Unused Flag
 #define FLAG_UNUSED_0x28A  0x28A // Unused Flag
 #define FLAG_UNUSED_0x28B  0x28B // Unused Flag
 #define FLAG_UNUSED_0x28C  0x28C // Unused Flag
@@ -1259,9 +1259,10 @@
 #define FLAG_ITEM_ARTISAN_CAVE_B1F_HP_UP                            0x4A1
 #define FLAG_ITEM_ARTISAN_CAVE_1F_CARBOS                            0x4A2
 
-#define FLAG_UNUSED_0x4A3                                           0x4A3 // Unused Flag
-#define FLAG_UNUSED_0x4A4                                           0x4A4 // Unused Flag
-#define FLAG_UNUSED_0x4A5                                           0x4A5 // Unused Flag
+#define FLAG_IRWIN_FORCED_CALL										0x4A3
+#define FLAG_GOLDENROD_SALE_FORCED_CALL								0x4A4
+#define FLAG_BUG_CATCHING_CONTEST_FORCED_CALL						0x4A5
+
 #define FLAG_UNUSED_0x4A6                                           0x4A6 // Unused Flag
 #define FLAG_UNUSED_0x4A7                                           0x4A7 // Unused Flag
 #define FLAG_UNUSED_0x4A8                                           0x4A8 // Unused Flag

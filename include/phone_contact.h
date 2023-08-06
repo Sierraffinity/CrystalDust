@@ -22,6 +22,7 @@ struct PhoneContact
     u16 registeredFlag;
     u16 rematchFlags[4];
     u16 rematchOfferedFlag;
+    u16 itemFlag;
     u8 rematchTrainerId;
     u8 trainerId;
     u8 availability;
