@@ -642,7 +642,11 @@ BoughtDoll_Text_MomCall:
 	.string "You'll love it!$"
 
 PhoneScript_Buena::
-	phone_goto PhoneScript_Buena_Call
+	phone_callnativecontext isPlayerBeingCalled
+	phone_compare VAR_RESULT, 0
+	phone_goto_if_eq PhoneScript_Buena_Call
+	phone_compare VAR_RESULT, 1
+	phone_goto_if_eq PhoneScript_Buena_Caller
 
 PhoneScript_Buena_Call:
 	phone_initcall
@@ -1066,3 +1070,557 @@ BuenaPhoneCoopedUpInRadioTowerAnswerText:
 	.string "you lose touch with the outside.\l"
 	.string "It can be boring.\l"
 	.string "Please call again!$"
+
+PhoneScript_Kenji::
+	phone_callnativecontext isPlayerBeingCalled
+	phone_compare VAR_RESULT, 0
+	phone_goto_if_eq PhoneScript_Kenji_Answer
+	phone_compare VAR_RESULT, 1
+	phone_goto_if_eq PhoneScript_Kenji_Calling_Greet
+
+PhoneScript_Kenji_Call::
+	phone_gettime
+	phone_compare VAR_0x8000, 12
+	phone_call_if_ge PhoneScript_Kenji_Check_For_Break
+	phone_compare VAR_0x8002, TIME_MORNING
+	phone_call_if_eq PhoneScript_Kenji_Call_Morning
+	phone_compare VAR_0x8002, TIME_DAY
+	phone_call_if_ge PhoneScript_Kenji_Another_Time
+	phone_compare VAR_0x8002, TIME_NIGHT
+	phone_call_if_eq PhoneScript_Kenji_Call_Night
+	phone_message Matchcall_Kenji_Hangup
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+PhoneScript_Kenji_Check_For_Break:
+	phone_gettime
+	phone_compare VAR_0x8000, 13
+	phone_goto_if_lt PhoneScript_Kenji_On_Break
+	phone_return
+
+PhoneScript_Kenji_Another_Time:
+	phone_message Matchcall_Kenji_Another_Time
+	phone_return
+
+PhoneScript_Kenji_On_Break:
+	phone_setflag FLAG_CALL_KENJI_GIFT
+	phone_message Matchcall_Kenji_Gift
+	phone_message Matchcall_Kenji_Hangup
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+PhoneScript_Kenji_Call_Morning:
+	phone_message Matchcall_Kenji_Call_Morning
+	phone_return
+
+PhoneScript_Kenji_Call_Night:
+	phone_message Matchcall_Kenji_Call_Night
+	phone_return
+
+PhoneScript_Kenji_Answer:
+	phone_initcall
+	phone_end_if_not_available
+	phone_gettime
+	phone_compare VAR_0x8002, TIME_MORNING
+	phone_call_if_eq PhoneScript_Kenji_Morning_Answer
+	phone_compare VAR_0x8002, TIME_DAY
+	phone_call_if_eq PhoneScript_Kenji_Day_Answer
+	phone_compare VAR_0x8002, TIME_NIGHT
+	phone_call_if_eq PhoneScript_Kenji_Night_Answer
+	phone_goto PhoneScript_Kenji_Call
+
+PhoneScript_Kenji_Morning_Answer:
+	phone_message Matchcall_Kenji_Answer_Morn
+	phone_return
+
+PhoneScript_Kenji_Day_Answer:
+	phone_message Matchcall_Kenji_Answer_Day
+	phone_return
+
+PhoneScript_Kenji_Night_Answer:
+	phone_message Matchcall_Kenji_Answer_Night
+	phone_return
+
+PhoneScript_Kenji_Calling_Greet:
+	phone_initcall
+	phone_end_if_not_available
+	phone_message Matchcall_Kenji_Call
+	phone_goto PhoneScript_Kenji_Caller
+
+PhoneScript_Kenji_Caller:
+	phone_message Matchcall_Kenji_Generic
+	phone_message Matchcall_Kenji_Hangup
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+Matchcall_Kenji_Answer_Morn::
+	.string "KENJI here…\n"
+
+	.string "{PLAYER}!\l"
+	.string "Beautiful morning, hey?\p$"
+
+
+Matchcall_Kenji_Answer_Day::
+	.string "KENJI here…\n"
+
+
+	.string "{PLAYER}!\l"
+	.string "Beautiful weather, hey?\p$"
+
+
+Matchcall_Kenji_Answer_Night::
+	.string "KENJI here…\n"
+
+
+	.string "{PLAYER}!\l"
+	.string "Beautiful moonlight, hey?\p$"
+
+
+Matchcall_Kenji_Call::
+	.string  "Hey, {PLAYER}!\n"
+	.string "This is KENJI!\p$"
+
+
+Matchcall_Kenji_Hangup::
+	.string  "Anyway, we'll chat again!$"
+
+
+Matchcall_Kenji_Generic::
+	.string  "Are you still on your journey?\n"
+
+	.string "I remain dedicated to my training.\l"
+
+	.string "Oooooaaarrrgh!\p$"
+
+
+Matchcall_Kenji_Another_Time::
+	.string  "I'm in training now.\n"
+
+	.string "I apologize, but call me back\l"
+	.string "another time.\l"
+
+	.string "Oooooaaarrrgh!\p$"
+
+
+Matchcall_Kenji_Chat_Tomorrow::
+	.string  "I apologize, but I don't have time\n"
+
+	.string "to chat while I am in training!\l"
+
+	.string "I'll have time to chat tomorrow!\l"
+
+	.string "Yiiihah!\p$"
+
+
+Matchcall_Kenji_Call_Morning::
+	.string  "I plan to take a lunch break,\n"
+	.string "so come see me then!\l"
+	.string "Ayiiiyah!\p$"
+
+
+Matchcall_Kenji_Gift::
+	.string  "I'm taking a break on ROUTE 45!\n"
+
+	.string "Why not drop by if you are free?\p$"
+
+
+Matchcall_Kenji_Call_Night::
+	.string  "I rested up over my lunch break.\n"
+
+	.string "Now it's time to resume training!\l"
+
+	.string "Oooryaah!\p$"
+
+
+PhoneScript_Irwin::
+	phone_callnativecontext isPlayerBeingCalled
+	phone_compare VAR_RESULT, 0
+	phone_goto_if_eq PhoneScript_Irwin_Call
+	phone_compare VAR_RESULT, 1
+	phone_goto_if_eq PhoneScript_Irwin_Caller
+
+PhoneScript_Irwin_Call:
+	phone_initcall
+	phone_end_if_not_available
+	phone_gettime
+	phone_compare VAR_0x8002, TIME_MORNING
+	phone_call_if_eq PhoneScript_Irwin_Answer_Morn
+	phone_compare VAR_0x8002, TIME_DAY
+	phone_call_if_eq PhoneScript_Irwin_Answer_Day
+	phone_compare VAR_0x8002, TIME_NIGHT
+	phone_call_if_eq PhoneScript_Irwin_Answer_Night
+	phone_call_if_set FLAG_ROCKETS_IN_RADIO_TOWER, PhoneScript_Irwin_Rocket_Takeover
+	phone_random 3
+	phone_compare VAR_RESULT, 0
+	phone_call_if_eq PhoneScript_Irwin_So_Much_To_Chat_About
+	phone_compare VAR_RESULT, 1
+	phone_call_if_eq PhoneScript_Irwin_Escapades
+	phone_compare VAR_RESULT, 2
+	phone_call_if_eq PhoneScript_Irwin_Good_Match
+	phone_message Matchcall_Irwin_Hangup
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+PhoneScript_Irwin_Hangup:
+	phone_message Matchcall_Irwin_Hangup
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+PhoneScript_Irwin_Rocket_Takeover:
+	phone_message Matchcall_Irwin_Rocket_Takeover
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_So_Much_To_Chat_About:
+	phone_message Matchcall_Irwin_So_Much_To_Chat_About
+	phone_return
+
+PhoneScript_Irwin_Escapades:
+	phone_message Matchcall_Irwin_Escapades
+	phone_return
+
+PhoneScript_Irwin_Good_Match:
+	phone_message Matchcall_Irwin_Good_Match
+	phone_return
+
+PhoneScript_Irwin_Caller:
+	phone_initcall
+	phone_end_if_not_available
+	phone_gettime
+	phone_compare VAR_0x8002, TIME_MORNING
+	phone_call_if_eq PhoneScript_Irwin_Call_Morn
+	phone_compare VAR_0x8002, TIME_DAY
+	phone_call_if_eq PhoneScript_Irwin_Call_Day
+	phone_compare VAR_0x8002, TIME_NIGHT
+	phone_call_if_eq PhoneScript_Irwin_Call_Night
+	phone_call_if_set FLAG_OPENED_MT_SILVER, PhoneScript_Irwin_Mt_Silver
+	phone_call_if_set FLAG_FOUGHT_SNORLAX, PhoneScript_Irwin_Snorlax
+	phone_call_if_set FLAG_RETURNED_MACHINE_PART, PhoneScript_Irwin_Magnet_Train
+	phone_call_if_set FLAG_BADGE14_GET, PhoneScript_Irwin_Marsh_Badge
+	phone_call_if_set FLAG_IS_CHAMPION, PhoneScript_Irwin_Elite_Four
+	phone_call_if_set FLAG_BADGE08_GET, PhoneScript_Irwin_Rising_Badge
+	phone_call_if_set FLAG_CLEARED_RADIO_TOWER, PhoneScript_Irwin_Radio_Tower
+	phone_call_if_set FLAG_CLEARED_ROCKET_HIDEOUT, PhoneScript_Irwin_Rocket_Hideout
+	phone_call_if_set FLAG_CURED_AMPHY, PhoneScript_Irwin_Jasmine_Returned
+	phone_call_if_set FLAG_BADGE04_GET, PhoneScript_Irwin_Fog_Badge
+	phone_call_if_set FLAG_BADGE03_GET, PhoneScript_Irwin_Plain_Badge
+	phone_call PhoneScript_Irwin_Called_Right_Away
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+PhoneScript_Irwin_Called_Right_Away:
+	phone_message Matchcall_Irwin_Called_Right_Away
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_Plain_Badge:
+	phone_message Matchcall_Irwin_Plain_Badge
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_Fog_Badge:
+	phone_message Matchcall_Irwin_Fog_Badge
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_Jasmine_Returned:
+	phone_message Matchcall_Irwin_Jasmine_Returned
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_Rocket_Hideout:
+	phone_message Matchcall_Irwin_Rocket_Hideout
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_Radio_Tower:
+	phone_message Matchcall_Irwin_Radio_Tower
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_Rising_Badge:
+	phone_message Matchcall_Irwin_Rising_Badge
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_Elite_Four:
+	phone_message Matchcall_Irwin_Elite_Four
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_Marsh_Badge:
+	phone_message Matchcall_Irwin_Marsh_Badge
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_Magnet_Train:
+	phone_message Matchcall_Irwin_Magnet_Train
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_Snorlax:
+	phone_message Matchcall_Irwin_Snorlax
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_Mt_Silver:
+	phone_message Matchcall_Irwin_Mt_Silver
+	phone_call Matchcall_Irwin_Hangup
+
+PhoneScript_Irwin_Answer_Morn:
+	phone_message Matchcall_Irwin_Answer_Morn
+	phone_return
+
+PhoneScript_Irwin_Answer_Day:
+	phone_message Matchcall_Irwin_Answer_Day
+	phone_return
+
+PhoneScript_Irwin_Answer_Night:
+	phone_message Matchcall_Irwin_Answer_Night
+	phone_return
+
+PhoneScript_Irwin_Call_Morn:
+	phone_message Matchcall_Irwin_Call_Morn
+	phone_return
+
+PhoneScript_Irwin_Call_Day:
+	phone_message Matchcall_Irwin_Call_Day
+	phone_return
+
+PhoneScript_Irwin_Call_Night:
+	phone_message Matchcall_Irwin_Call_Night
+	phone_return
+
+Matchcall_Irwin_Answer_Morn::
+	.string  "Hello? IRWIN here…\n"
+
+	.string "Hey, {PLAYER}!\p$"
+
+
+Matchcall_Irwin_Answer_Day::
+	.string  "Hello? IRWIN here…\n"
+
+	.string "Wow, {PLAYER}!\p$"
+
+
+Matchcall_Irwin_Answer_Night::
+	.string  "Hello? IRWIN here…\n"
+
+	.string "Yippee, {PLAYER}!\p$"
+
+
+Matchcall_Irwin_Call_Morn::
+	.string  "Uh, hello. {PLAYER}?\n"
+
+	.string "It's your pal, IRWIN!\p$"
+
+
+Matchcall_Irwin_Call_Day::
+	.string  "Uh, hello. {PLAYER}?\n"
+
+	.string "It's your buddy IRWIN!\p$"
+
+
+Matchcall_Irwin_Call_Night::
+	.string  "Uh, hello. {PLAYER}?\n"
+
+	.string "It's your sidekick IRWIN!\p$"
+
+
+Matchcall_Irwin_Hangup::
+	.string  "I hate having to hang up on you!\n"
+
+	.string "Call you later!$"
+
+
+Matchcall_Irwin_Rocket_Takeover::
+	.string  "{PLAYER}, have you heard?\n"
+
+	.string "GOLDENROD's RADIO TOWER has been\l"
+
+	.string "taken over by TEAM ROCKET!\l"
+
+	.string "…Um… What's TEAM ROCKET?\p$"
+
+
+Matchcall_Irwin_Plain_Badge::
+	.string  "{PLAYER}, I heard!\n"
+
+	.string "You defeated that WHITNEY?\l"
+
+	.string "It makes me proud to be your friend!\p$"
+
+
+Matchcall_Irwin_Jasmine_Returned::
+	.string  "Hey, I heard about you!\n"
+
+	.string "You saved that {POKEMON} at the\l"
+
+	.string "LIGHTHOUSE, didn't you?\l"
+
+	.string "{PLAYER}, I wish you'd come see me\l"
+
+	.string "when I'm sick in bed with a cold!\p$"
+
+
+Matchcall_Irwin_Rocket_Hideout::
+	.string  "I heard, I heard, I heard!\n"
+
+	.string "You smashed TEAM ROCKET's hideout!\l"
+
+	.string "You're like a movie hero, even!\l"
+
+	.string "But um… What was TEAM ROCKET?\p$"
+
+
+Matchcall_Irwin_Radio_Tower::
+	.string  "I heard, I heard, I heard!\n"
+
+	.string "About your heroic liberation of the\l"
+
+	.string "RADIO TOWER!\l"
+	.string "You rock so hard!\p$"
+
+
+Matchcall_Irwin_Rising_Badge::
+	.string  "I saw, I saw!\n"
+
+	.string "I saw you go into the DRAGON'S DEN!\l"
+
+	.string "I'm certain you passed!\l"
+	.string "Aww, no need to be modest!\l"
+	.string "You can't fail!\p$"
+
+
+Matchcall_Irwin_Elite_Four::
+	.string  "Yesterday, I went out to NEW BARK TOWN.\n"
+
+	.string " There was a lady who looked a lot like you, {PLAYER}.\p"
+
+	.string "What? That lady was your mom?\n"
+
+	.string "Aww, I should've introduced myself!\l"
+
+	.string "I bet your mom's really proud of all that you've\l"
+	.string "accomplished.\p"
+
+	.string "Heh, put it this way. I'd be proud if I were your\n"
+	.string "mom, believe me!\p$"
+
+
+Matchcall_Irwin_Vermillion::
+	.string  "I saw, I saw, I saw!\n"
+
+	.string "You striding onto a ship, {PLAYER}!\l"
+
+	.string "I can't get over how good you look\l"
+
+	.string "with the sea as your backdrop!\p$"
+
+
+Matchcall_Irwin_Magnet_Train::
+	.string  "I heard, I heard!\n"
+
+	.string "You got a MAGNET TRAIN PASS!\l"
+
+	.string "When I saw you departing on the ship, I felt sad\l"
+	.string "that I wouldn't be able to see you for a while.\l"
+
+	.string "But since you have that PASS, you can zip back anytime!\l"
+	.string "That's reassuring!\l"
+
+	.string "What? You can FLY back anytime?\l"
+
+	.string "What do you mean by FLY?\p$"
+
+
+Matchcall_Irwin_Snorlax::
+	.string  "I saw, I saw!\n"
+
+	.string "You waking up SNORLAX!\l"
+
+	.string "I was watching you from afar, so I couldn't tell what\l"
+	.string "you did exactly.\l"
+
+	.string "Did you play a flute to wake it?\l"
+
+	.string "Wow! That's like magic!\p$"
+
+
+Matchcall_Irwin_Mt_Silver::
+	.string  "I hear rumors about you all over the place.\n"
+
+	.string "It just makes me sigh, {PLAYER}.\l"
+
+	.string "How did you get so strong?\l"
+
+	.string "Go for the world championship now!\l"
+
+	.string "I'll always be cheering you on!\p$"
+
+
+Matchcall_Irwin_Called_Right_Away::
+	.string  "Hehe, I called right away!\n"
+
+	.string "I think we can be good friends!\p$"
+
+
+Matchcall_Irwin_Fog_Badge::
+	.string  "I saw, I heard!\n"
+
+	.string "You beat MORTY of ECRUTEAK GYM!\l"
+
+	.string "Th-that's just incredible!\l"
+
+	.string "I actually went to the GYM's entrance\l"
+
+	.string "to cheer you on.\l"
+	.string "Did you know that?\l"
+
+	.string "But everyone was floating,\l"
+
+	.string "and there were ghosts all over!\l"
+
+	.string "So I chickened out and took off for home…\p$"
+
+
+Matchcall_Irwin_Marsh_Badge::
+	.string  "{PLAYER}, I heard!\n"
+
+	.string "You're kicking up a mighty ruckus\l"
+
+	.string "over in KANTO!\l"
+	.string "What a glorious rampage it must be!\l"
+
+	.string "You so rock!\p$"
+
+
+Matchcall_Irwin_Escapades::
+	.string  "Hearing about your escapades\n"
+	.string "rocks my soul!\l"
+	.string "It sure does!\p$"
+
+
+Matchcall_Irwin_Good_Match::
+	.string  "I'm so glad you called!\n"
+
+	.string "I was just about to call you too!\l"
+
+	.string "I guess we must be a good match!\p$"
+
+
+Matchcall_Irwin_So_Much_To_Chat_About::
+	.string  "How are you?\n"
+
+	.string "What are you doing?\l"
+
+	.string "Where are you?\l"
+
+	.string "How many BADGES do you have now?\l"
+
+	.string "How much money have you saved?\l"
+
+	.string "How's your mom?\l"
+
+	.string "Have you got lots of {POKEMON}?\l"
+
+	.string "Is it going to be sunny tomorrow?\p"
+
+	.string "Arrgh, there's so much I want to\n"
+
+	.string "chat about!\l"
+	.string "This is going nowhere!\p$"

@@ -15,5 +15,7 @@ extern const u8 PhoneScript_Bill_InviteToSevii[];
 extern const u8 PhoneScript_Mom_BoughtItem[];
 extern const u8 PhoneScript_Buena[];
 extern const u8 PhoneScript_Buena_Caller[];
+extern const u8 PhoneScript_Kenji[];
+extern const u8 PhoneScript_Irwin[];
 
 #endif // GUARD_PHONE_SCRIPTS_H

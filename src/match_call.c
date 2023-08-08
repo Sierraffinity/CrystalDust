@@ -1601,13 +1601,13 @@ bool32 TryStartMatchCall(void)
      && CheckMatchCallChance() && MapAllowsMatchCall() && SelectMatchCallTrainer())
     {
     	// Check for Buena
-    	if(sMatchCallState.callerId == PHONE_CONTACT_BUENA){ //Fix this?
+    	/*if(sMatchCallState.callerId == PHONE_CONTACT_BUENA){ //Fix this?
     		StartMatchCallFromScript(PhoneScript_Buena_Caller, sMatchCallState.callerId);
     	}
     	else
-    	{
+    	{*/
     		StartMatchCall();
-    	}
+    	//}
     	return TRUE;
     }
 
@@ -2634,6 +2634,12 @@ void MomTriesToBuySomething(void)
             }
         }
     }
+}
+
+void isPlayerBeingCalled(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
+{
+	VarSet(VAR_RESULT, isCallingPlayer);
+	return;
 }
 
 #pragma GCC pop_options

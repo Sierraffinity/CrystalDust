@@ -128,7 +128,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_BUENA] = {
         .customDisplayName = sphonecontactname_Buena,
-        .phoneScript = PhoneScript_Buena, //Replace with unique script
+        .phoneScript = PhoneScript_Buena,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(RADIO_TOWER_2F),
         .mapGroup = MAP_GROUP(RADIO_TOWER_2F),
@@ -561,7 +561,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_BLACKBELT_KENJI] = {
         .customDisplayName = sphonecontactname_Blackbelt_Kenji,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_Kenji,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(ROUTE45),
         .mapGroup = MAP_GROUP(ROUTE45),
@@ -577,7 +577,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_JUGGLER_IRWIN] = {
         .customDisplayName = sphonecontactname_Juggler_Irwin,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_Irwin,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(ROUTE35),
         .mapGroup = MAP_GROUP(ROUTE35),

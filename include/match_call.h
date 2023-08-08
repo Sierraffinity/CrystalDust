@@ -35,5 +35,7 @@ bool32 CleanupAfterMatchCallHangup(void);
 void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId);
 bool32 MapAllowsMatchCall(void);
 void MomTriesToBuySomething(void);
+void isPlayerBeingCalled(const struct PhoneContact *, bool8);
+
 
 #endif //GUARD_MATCH_CALL_H
