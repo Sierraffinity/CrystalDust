@@ -21,7 +21,9 @@ struct MomItemTable {
 
 s32 GetRematchIdxByTrainerIdx(s32 trainerIdx);
 void InitMatchCallCounters(void);
+void SelectMatchCallMessage_Opening(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
 bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
+void SelectMatchCallMessage_Hangup(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
 bool32 TryStartMatchCall(void);
 bool32 TryStartForcedMatchCall(void);
 u8 EndOverworldPhoneCall(void);

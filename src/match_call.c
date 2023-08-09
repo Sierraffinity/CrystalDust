@@ -138,6 +138,7 @@ struct MatchCallTrainerTextInfo
     struct MatchCallText remindGiftText;
     struct MatchCallText remindRematchText;
     struct MatchCallText remindSwarmText;
+    struct MatchCallText hangupText;
 };
 
 struct MultiTrainerMatchCallText
@@ -224,6 +225,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Anthony_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = {Matchcall_Anthony_Remind_Swarm, STRS_SWARM_MSG},
+		.hangupText = {Matchcall_Anthony_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_RALPH_1,
@@ -250,6 +252,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Ralph_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = {Matchcall_Ralph_Remind_Swarm, STRS_SWARM_MSG},
+		.hangupText = {Matchcall_Ralph_Hangup, STRS_NORMAL_MSG},
 
     },
     {
@@ -277,6 +280,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Arnie_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = {Matchcall_Arnie_Remind_Swarm, STRS_SWARM_MSG},
+		.hangupText = {Matchcall_Arnie_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_DANA_1,
@@ -303,6 +307,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = {Matchcall_Dana_Remind_Gift, STRS_GIFT_MSG},
 	    .remindRematchText = {Matchcall_Anthony_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Dana_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_JOEY_1,
@@ -329,6 +334,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Joey_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Joey_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_TODD_1,
@@ -355,6 +361,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Todd_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Todd_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_GINA_1,
@@ -381,6 +388,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = {Matchcall_Gina_Remind_Gift, STRS_GIFT_MSG},
 	    .remindRematchText = {Matchcall_Gina_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Gina_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_BEVERLY,
@@ -407,6 +415,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = {Matchcall_Beverly_Remind_Gift, STRS_GIFT_MSG},
 	    .remindRematchText = 0,
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Beverly_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_ALAN_1,
@@ -433,6 +442,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = {Matchcall_Alan_Remind_Gift, STRS_GIFT_MSG},
 	    .remindRematchText = {Matchcall_Alan_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Alan_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_VANCE_1,
@@ -459,6 +469,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Vance_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Vance_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_TULLY_1,
@@ -485,6 +496,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = {Matchcall_Tully_Remind_Gift, STRS_GIFT_MSG},
 	    .remindRematchText = {Matchcall_Tully_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Tully_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_HUEY_1,
@@ -511,6 +523,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Huey_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Huey_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_TIFFANY_1,
@@ -537,6 +550,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = {Matchcall_Tiffany_Remind_Gift, STRS_GIFT_MSG},
 	    .remindRematchText = 0,
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Tiffany_Hangup, STRS_NORMAL_MSG},
     },
     /*{
      * Kenji will have custom script
@@ -590,6 +604,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Erin_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Erin_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_JOSE_1,
@@ -616,6 +631,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = {Matchcall_Jose_Remind_Gift, STRS_GIFT_MSG},
 	    .remindRematchText = {Matchcall_Jose_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Jose_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_JACK_1,
@@ -642,6 +658,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Jack_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Jack_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_REENA_1,
@@ -668,6 +685,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Reena_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Reena_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_GAVEN_1,
@@ -694,6 +712,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Gaven_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Gaven_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_BETH_1,
@@ -720,6 +739,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = {Matchcall_Beth_Remind_Gift, STRS_GIFT_MSG},
 	    .remindRematchText = 0,
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Beth_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_WADE_1,
@@ -746,6 +766,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = {Matchcall_Wade_Remind_Gift, STRS_GIFT_MSG},
 	    .remindRematchText = {Matchcall_Wade_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Wade_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_LIZ_1,
@@ -772,6 +793,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Liz_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Liz_Hangup, STRS_NORMAL_MSG},
     },
     /*{
      * IRWIN will have his own script.
@@ -825,6 +847,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = {Matchcall_Derek_Remind_Gift, STRS_GIFT_MSG},
 	    .remindRematchText = 0,
 	    .remindSwarmText =  0,
+		.hangupText = {Matchcall_Derek_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_BRENT_1,
@@ -851,6 +874,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Brent_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Brent_Hangup, STRS_NORMAL_MSG},
     },
 	{
 	    .trainerId = TRAINER_CHAD_1,
@@ -877,6 +901,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Chad_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Chad_Hangup, STRS_NORMAL_MSG},
 	},
     {
         .trainerId = TRAINER_WILTON_1,
@@ -903,6 +928,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = {Matchcall_Wilton_Remind_Gift, STRS_GIFT_MSG},
 	    .remindRematchText = {Matchcall_Wilton_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Wilton_Hangup, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_PARRY_1,
@@ -929,6 +955,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .remindGiftText = 0,
 	    .remindRematchText = {Matchcall_Parry_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindSwarmText = 0,
+		.hangupText = {Matchcall_Parry_Hangup, STRS_NORMAL_MSG},
     },
 };
 
@@ -1981,6 +2008,64 @@ u32 getRematchIdFromTrainerId(int trainerId) //Declare in .h
 	        if (gRematchTable[i].trainerIds[0] == trainerId) return i;
 	    }
 	return -1;
+}
+
+void SelectMatchCallMessage_Hangup(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)
+{
+	 u32 matchCallId;
+	 u32 rematchId;
+	 const struct MatchCallText *matchCallText;
+
+	 matchCallId = GetTrainerMatchCallId(trainerId);
+
+	 matchCallText = &sMatchCallTrainers[matchCallId].hangupText;
+
+	 BuildMatchCallString(matchCallId, matchCallText, str);
+}
+
+void SelectMatchCallMessage_Opening(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)
+{
+	 u32 matchCallId;
+	 u32 rematchId;
+	 const struct MatchCallText *matchCallText;
+
+	 matchCallId = GetTrainerMatchCallId(trainerId);
+
+	 u8 timeOfDay = GetTimeOfDay(gLocalTime.hours);
+	 if(isCallingPlayer)
+	 {
+		 switch(timeOfDay){
+			 case TIME_MORNING:
+				 matchCallText = &sMatchCallTrainers[matchCallId].callTexts[0];
+				 break;
+
+			 case TIME_DAY:
+				 matchCallText = &sMatchCallTrainers[matchCallId].callTexts[1];
+				 break;
+
+			 case TIME_NIGHT:
+				 matchCallText = &sMatchCallTrainers[matchCallId].callTexts[2];
+				 break;
+		 }
+
+	 }
+	 else
+	 {
+		 switch(timeOfDay){
+			 case TIME_MORNING:
+				 matchCallText = &sMatchCallTrainers[matchCallId].answerTexts[0];
+				 break;
+
+			 case TIME_DAY:
+				 matchCallText = &sMatchCallTrainers[matchCallId].answerTexts[1];
+				 break;
+
+			 case TIME_NIGHT:
+				 matchCallText = &sMatchCallTrainers[matchCallId].answerTexts[2];
+				 break;
+		 }
+	 }
+	 BuildMatchCallString(matchCallId, matchCallText, str);
 }
 
 bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)

@@ -551,8 +551,17 @@ PhoneScript_Bill_JustRanOutOfRoom::
 	phone_end
 
 PhoneScript_StandardMatchCallTrainer::
+	phone_initcall
+	phone_callnativecontext SelectMessage_StandardMatchCallTrainer_Opening
+	phone_message gStringVar4
+	phone_waitbuttonpress
 	phone_callnativecontext SelectMessage_StandardMatchCallTrainer
-	phone_stdcall gStringVar4
+	phone_message gStringVar4
+	phone_waitbuttonpress
+	phone_callnativecontext SelectMessage_StandardMatchCallTrainer_Hangup
+	phone_message gStringVar4
+	phone_waitbuttonpress
+	phone_hangup
 	phone_end
 
 RadioTower_PhoneScript_ElmCall::

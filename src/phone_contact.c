@@ -593,6 +593,16 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
 };
 
+void SelectMessage_StandardMatchCallTrainer_Opening(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
+{
+	SelectMatchCallMessage_Opening(phoneContact->trainerId, gStringVar4, isCallingPlayer, phoneContact);
+}
+
+void SelectMessage_StandardMatchCallTrainer_Hangup(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
+{
+	SelectMatchCallMessage_Hangup(phoneContact->trainerId, gStringVar4, isCallingPlayer, phoneContact);
+}
+
 void SelectMessage_StandardMatchCallTrainer(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
 {
     SelectMatchCallMessage(phoneContact->trainerId, gStringVar4, isCallingPlayer, phoneContact);
