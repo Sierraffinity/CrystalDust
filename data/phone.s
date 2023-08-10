@@ -1262,6 +1262,12 @@ PhoneScript_Irwin_Call:
 	phone_compare VAR_0x8002, TIME_NIGHT
 	phone_call_if_eq PhoneScript_Irwin_Answer_Night
 	phone_call_if_set FLAG_ROCKETS_IN_RADIO_TOWER, PhoneScript_Irwin_Rocket_Takeover
+	phone_call PhoneScript_Irwin_Random
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+PhoneScript_Irwin_Random:
 	phone_random 3
 	phone_compare VAR_RESULT, 0
 	phone_call_if_eq PhoneScript_Irwin_So_Much_To_Chat_About
@@ -1269,10 +1275,7 @@ PhoneScript_Irwin_Call:
 	phone_call_if_eq PhoneScript_Irwin_Escapades
 	phone_compare VAR_RESULT, 2
 	phone_call_if_eq PhoneScript_Irwin_Good_Match
-	phone_message Matchcall_Irwin_Hangup
-	phone_waitbuttonpress
-	phone_hangup
-	phone_end
+	phone_call Matchcall_Irwin_Hangup
 
 PhoneScript_Irwin_Hangup:
 	phone_message Matchcall_Irwin_Hangup
@@ -1296,6 +1299,9 @@ PhoneScript_Irwin_Good_Match:
 	phone_message Matchcall_Irwin_Good_Match
 	phone_return
 
+PhoneScript_Irwin_Right_Away::
+	phone_stdcall Matchcall_Irwin_Called_Right_Away
+
 PhoneScript_Irwin_Caller:
 	phone_initcall
 	phone_end_if_not_available
@@ -1317,7 +1323,7 @@ PhoneScript_Irwin_Caller:
 	phone_call_if_set FLAG_CURED_AMPHY, PhoneScript_Irwin_Jasmine_Returned
 	phone_call_if_set FLAG_BADGE04_GET, PhoneScript_Irwin_Fog_Badge
 	phone_call_if_set FLAG_BADGE03_GET, PhoneScript_Irwin_Plain_Badge
-	phone_call PhoneScript_Irwin_Called_Right_Away
+	phone_call PhoneScript_Irwin_Random
 	phone_waitbuttonpress
 	phone_hangup
 	phone_end
@@ -1633,3 +1639,40 @@ Matchcall_Irwin_So_Much_To_Chat_About::
 
 	.string "chat about!\l"
 	.string "This is going nowhere!\p$"
+
+
+PhoneScript_Wade_BugCatching_Contest::
+	phone_stdcall Matchcall_Wade_BugCatching_Contest
+
+Matchcall_Wade_BugCatching_Contest::
+	.string  "The Bug-Catching Contest is at the\n"
+
+	.string "NATIONAL PARK today.\l"
+
+	.string "Are you going, {PLAYER}?\l"
+
+	.string "I'm trying to make up my mind.$"
+
+
+PhoneScript_Todd_Goldenrod_Dept_Sale::
+	phone_stdcall Matchcall_Todd_Goldenrod_Dept_Sale
+
+Matchcall_Todd_Goldenrod_Dept_Sale::
+	.string "This is it--the one\n"
+	.string "we've all been waiting for!\p"
+
+	.string "GOLDENROD DEPT. STORE's bargain sale\n"
+	.string "is on now!\l"
+
+	.string "Want it cheap?\l"
+	.string "Want it lots?\l"
+
+	.string "Don't miss this GOLDENROD chance!\l"
+
+	.string "Huh? I sound like a huckster?\l"
+
+	.string "Well, yeah. I was mimicking them…\p"
+
+	.string "Anyway, you've got to get there\n"
+	.string	"as soon as you can!$"
+

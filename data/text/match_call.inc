@@ -5920,17 +5920,6 @@ Matchcall_Wade_Rematch::
 Matchcall_Wade_Hangup::
 	.string  "See you later!$"
 
-
-Matchcall_Wade_BugCatching_Contest::
-	.string  "The Bug-Catching Contest is at the\n"
-
-	.string "NATIONAL PARK today.\l"
-
-	.string "Are you going, {PLAYER}?\l"
-
-	.string "I'm trying to make up my mind.$"
-
-
 Matchcall_Wade_Gift::
 	.string  "I found all kinds of BERRIES.\n"
 	.string "If you want, I'll share some with you.\l"
@@ -6157,27 +6146,6 @@ Matchcall_Todd_Rematch::
 
 Matchcall_Todd_Hangup::
 	.string "See you later!$"
-
-
-Matchcall_Todd_Goldenrod_Dept_Sale::
-	.string "This is it--the one\n"
-	.string "we've all been waiting for!\p"
-
-	.string "GOLDENROD DEPT. STORE's bargain sale\n"
-	.string "is on now!\l"
-
-	.string "Want it cheap?\l"
-	.string "Want it lots?\l"
-
-	.string "Don't miss this GOLDENROD chance!\l"
-
-	.string "Huh? I sound like a huckster?\l"
-
-	.string "Well, yeah. I was mimicking them…\p"
-
-	.string "Anyway, you've got to get there\n"
-	.string	"as soon as you can!$"
-
 
 Matchcall_Todd_Generic5::
 	.string "I'm saving up for the next\n"

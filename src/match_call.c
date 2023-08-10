@@ -1452,7 +1452,24 @@ static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
         .phoneContactId = PHONE_CONTACT_MOM,
         .callCondition = AlwaysTrue, // MomTriesToBuySomething() in mom_item_calls.c makes sure the call conditions are right
         .script = PhoneScript_Mom_BoughtItem
-    },
+    },{
+		.flag = FLAG_BUG_CATCHING_CONTEST_FORCED_CALL,
+		.phoneContactId = PHONE_CONTACT_BUG_CATCHER_WADE,
+		.callCondition = ReceiveCallWhenOutside,
+		.script = PhoneScript_Wade_BugCatching_Contest
+	},{
+		.flag = FLAG_IRWIN_FORCED_CALL,
+		.phoneContactId = PHONE_CONTACT_JUGGLER_IRWIN,
+		.callCondition = ReceiveCallWhenOutside,
+		.script = PhoneScript_Irwin_Right_Away
+	},/*{
+	// Currently unimplemented until Goldenrod Sales are implemented.
+	 *
+		.flag = FLAG_BUG_CATCHING_CONTEST_FORCED_CALL,
+		.phoneContactId = PHONE_CONTACT_CAMPER_TODD,
+		.callCondition = ReceiveCallWhenOutside,
+		.script = PhoneScript_Todd_Goldenrod_Dept_Sale
+	},*/
 };
 
 static const struct ScanlineEffectParams sScanlineParams =
@@ -2097,15 +2114,18 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
     {
     	matchCallText = &sMatchCallTrainers[matchCallId].remindGiftText;
     }
-    else if ((!isCallingPlayer && CanPhoneContactAcceptRematch(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours) && !FlagGet(sMatchCallTrainers[matchCallId].rematchOfferedFlag)) ||
-            (isCallingPlayer  && ShouldTrainerRequestBattle(rematchId, matchCallId) && !FlagGet(sMatchCallTrainers[matchCallId].rematchOfferedFlag)))
-    {
-        matchCallText = &sMatchCallTrainers[matchCallId].rematchText;
-        retVal = TRUE;
-        FlagSet(sMatchCallTrainers[matchCallId].rematchOfferedFlag);
-        gSaveBlock1Ptr->trainerRematches[rematchId] = 1;
-        UpdateRematchIfDefeated(rematchId);
-    }
+    else if(sMatchCallTrainers[matchCallId].rematchOfferedFlag && !FlagGet(sMatchCallTrainers[matchCallId].rematchOfferedFlag))
+	{
+		if((!isCallingPlayer && CanPhoneContactAcceptRematch(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours)) ||
+            (isCallingPlayer  && ShouldTrainerRequestBattle(rematchId, matchCallId)))
+		{
+			matchCallText = &sMatchCallTrainers[matchCallId].rematchText;
+			retVal = TRUE;
+			FlagSet(sMatchCallTrainers[matchCallId].rematchOfferedFlag);
+			gSaveBlock1Ptr->trainerRematches[rematchId] = 1;
+			UpdateRematchIfDefeated(rematchId);
+		}
+	}
     else if (sMatchCallTrainers[matchCallId].giftFlag /* && randomNumber % 9 */ && !FlagGet(sMatchCallTrainers[matchCallId].giftFlag))
     {
     	FlagSet(sMatchCallTrainers[matchCallId].giftFlag);
@@ -2725,6 +2745,30 @@ void isPlayerBeingCalled(const struct PhoneContact *phoneContact, bool8 isCallin
 {
 	VarSet(VAR_RESULT, isCallingPlayer);
 	return;
+}
+
+void UpdateForcedCallsPerDay()
+{
+	switch(gLocalTime.dayOfWeek)
+	{
+		case DAY_SUNDAY:
+			break;
+		case DAY_MONDAY:
+			break;
+		case DAY_TUESDAY:
+			FlagSet(FLAG_BUG_CATCHING_CONTEST_FORCED_CALL);
+			break;
+		case DAY_WEDNESDAY:
+			break;
+		case DAY_THURSDAY:
+			FlagSet(FLAG_BUG_CATCHING_CONTEST_FORCED_CALL);
+			break;
+		case DAY_FRIDAY:
+			break;
+		case DAY_SATURDAY:
+			FlagSet(FLAG_BUG_CATCHING_CONTEST_FORCED_CALL);
+			break;
+	}
 }
 
 #pragma GCC pop_options

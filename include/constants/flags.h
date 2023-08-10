@@ -1588,30 +1588,30 @@
 #define FLAG_UNUSED_0x933                           				(DAILY_FLAGS_START + 0x33) // Unused Flag
 #define FLAG_DAILY_APPRENTICE_LEAVES                				(DAILY_FLAGS_START + 0x34)
 
-#define FLAG_ANTHONY_OFFERED_REMATCH                   				(DAILY_FLAGS_START + 0x35) // Unused Flag
-#define FLAG_RALPH_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x36) // Unused Flag
-#define FLAG_ARNIE_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x37) // Unused Flag
-#define FLAG_DANA_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x38) // Unused Flag
-#define FLAG_JOEY_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x39) // Unused Flag
-#define FLAG_TODD_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3A) // Unused Flag
-#define FLAG_GINA_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3B) // Unused Flag
-#define FLAG_ALAN_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3C) // Unused Flag
-#define FLAG_VANCE_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x3D) // Unused Flag
-#define FLAG_TULLY_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x3E) // Unused Flag
-#define FLAG_HUEY_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3F) // Unused Flag
-#define FLAG_TIFFANY_OFFERED_REMATCH                   				(DAILY_FLAGS_START + 0x40) // Unused Flag
-#define FLAG_ERIN_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x41) // Unused Flag
-#define FLAG_JOSE_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x42) // Unused Flag
-#define FLAG_JACK_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x43) // Unused Flag
-#define FLAG_REENA_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x44) // Unused Flag
-#define FLAG_GAVEN_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x45) // Unused Flag
-#define FLAG_BETH_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x46) // Unused Flag
-#define FLAG_WADE_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x47) // Unused Flag
-#define FLAG_LIZ_OFFERED_REMATCH                       				(DAILY_FLAGS_START + 0x48) // Unused Flag
-#define FLAG_BRENT_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x49) // Unused Flag
-#define FLAG_CHAD_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x4A) // Unused Flag
-#define FLAG_WILTON_OFFERED_REMATCH                    				(DAILY_FLAGS_START + 0x4B) // Unused Flag
-#define FLAG_PARRY_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x4C) // Unused Flag
+#define FLAG_ANTHONY_OFFERED_REMATCH                   				(DAILY_FLAGS_START + 0x35)
+#define FLAG_RALPH_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x36)
+#define FLAG_ARNIE_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x37)
+#define FLAG_DANA_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x38)
+#define FLAG_JOEY_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x39)
+#define FLAG_TODD_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3A)
+#define FLAG_GINA_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3B)
+#define FLAG_ALAN_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3C)
+#define FLAG_VANCE_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x3D)
+#define FLAG_TULLY_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x3E)
+#define FLAG_HUEY_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3F)
+#define FLAG_TIFFANY_OFFERED_REMATCH                   				(DAILY_FLAGS_START + 0x40)
+#define FLAG_ERIN_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x41)
+#define FLAG_JOSE_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x42)
+#define FLAG_JACK_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x43)
+#define FLAG_REENA_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x44)
+#define FLAG_GAVEN_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x45)
+#define FLAG_BETH_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x46)
+#define FLAG_WADE_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x47)
+#define FLAG_LIZ_OFFERED_REMATCH                       				(DAILY_FLAGS_START + 0x48)
+#define FLAG_BRENT_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x49)
+#define FLAG_CHAD_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x4A)
+#define FLAG_WILTON_OFFERED_REMATCH                    				(DAILY_FLAGS_START + 0x4B)
+#define FLAG_PARRY_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x4C)
 
 #define FLAG_UNUSED_0x94D                           				(DAILY_FLAGS_START + 0x4D) // Unused Flag
 #define FLAG_UNUSED_0x94E                           				(DAILY_FLAGS_START + 0x4E) // Unused Flag
