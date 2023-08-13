@@ -1275,7 +1275,7 @@ PhoneScript_Irwin_Random:
 	phone_call_if_eq PhoneScript_Irwin_Escapades
 	phone_compare VAR_RESULT, 2
 	phone_call_if_eq PhoneScript_Irwin_Good_Match
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Hangup:
 	phone_message Matchcall_Irwin_Hangup
@@ -1301,6 +1301,7 @@ PhoneScript_Irwin_Good_Match:
 
 PhoneScript_Irwin_Right_Away::
 	phone_stdcall Matchcall_Irwin_Called_Right_Away
+	phone_end
 
 PhoneScript_Irwin_Caller:
 	phone_initcall
@@ -1643,6 +1644,7 @@ Matchcall_Irwin_So_Much_To_Chat_About::
 
 PhoneScript_Wade_BugCatching_Contest::
 	phone_stdcall Matchcall_Wade_BugCatching_Contest
+	phone_end
 
 Matchcall_Wade_BugCatching_Contest::
 	.string  "The Bug-Catching Contest is at the\n"
@@ -1656,6 +1658,8 @@ Matchcall_Wade_BugCatching_Contest::
 
 PhoneScript_Todd_Goldenrod_Dept_Sale::
 	phone_stdcall Matchcall_Todd_Goldenrod_Dept_Sale
+	phone_setflag FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING
+	phone_end
 
 Matchcall_Todd_Goldenrod_Dept_Sale::
 	.string "This is it--the one\n"

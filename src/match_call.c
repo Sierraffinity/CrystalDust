@@ -962,33 +962,33 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 static const struct MatchCallText sMatchCallGenericTexts[] =
 {
 		{ .text = Matchcall_Alan_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Alan_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Alan_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Alan_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Alan_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Alan_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Alan_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Alan_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Anthony_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Anthony_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Anthony_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Anthony_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Anthony_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Anthony_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Anthony_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Anthony_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Anthony_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Arnie_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Arnie_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Arnie_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Arnie_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Arnie_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Arnie_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Arnie_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Arnie_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Beth_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Beth_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Beth_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Beth_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Beth_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Beth_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Beth_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Beth_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Beverly_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Beverly_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Beverly_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Beverly_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Beverly_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Beverly_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Beverly_Generic3,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Beverly_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Beverly_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Brent_Generic15,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Brent_Generic15,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
 		{ .text = Matchcall_Brent_Generic14,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Brent_Generic13,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Brent_Generic13,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Brent_Generic12,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Brent_Generic11,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Brent_Generic10,    .stringVarFuncIds = STRS_NORMAL_MSG},
@@ -1002,9 +1002,9 @@ static const struct MatchCallText sMatchCallGenericTexts[] =
 		{ .text = Matchcall_Brent_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Brent_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Chad_Generic15,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Chad_Generic14,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Chad_Generic13,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Chad_Generic12,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Chad_Generic14,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Chad_Generic13,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Chad_Generic12,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Chad_Generic11,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Chad_Generic10,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Chad_Generic9,    .stringVarFuncIds = STRS_NORMAL_MSG},
@@ -1016,36 +1016,36 @@ static const struct MatchCallText sMatchCallGenericTexts[] =
 		{ .text = Matchcall_Chad_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Chad_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Chad_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Dana_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Dana_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Dana_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Dana_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Dana_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Dana_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Dana_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Dana_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Dana_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Derek_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Derek_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Derek_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Derek_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Derek_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Derek_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Derek_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Derek_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Derek_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Erin_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Erin_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Erin_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Erin_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Erin_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Erin_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Erin_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Erin_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Erin_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Gaven_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Gaven_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Gaven_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Gaven_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Gaven_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Gaven_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Gaven_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Gaven_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Gaven_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Gina_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Gina_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Gina_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Gina_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Gina_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Gina_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Gina_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Gina_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Gina_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Huey_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Jack_Generic16,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Jack_Generic15,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Jack_Generic14,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Jack_Generic13,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Jack_Generic16,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Jack_Generic15,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Jack_Generic14,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Jack_Generic13,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Jack_Generic12,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Jack_Generic11,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Jack_Generic10,    .stringVarFuncIds = STRS_NORMAL_MSG},
@@ -1059,19 +1059,19 @@ static const struct MatchCallText sMatchCallGenericTexts[] =
 		{ .text = Matchcall_Jack_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Jack_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Joey_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Joey_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Joey_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Joey_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Joey_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Jose_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Jose_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Jose_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Jose_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Joey_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Joey_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Joey_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Joey_Generic1,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Jose_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Jose_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Jose_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Jose_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Jose_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Liz_Generic16,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Liz_Generic15,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Liz_Generic14,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Liz_Generic13,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Liz_Generic16,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Liz_Generic15,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Liz_Generic14,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Liz_Generic13,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Liz_Generic12,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Liz_Generic11,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Liz_Generic10,    .stringVarFuncIds = STRS_NORMAL_MSG},
@@ -1083,53 +1083,53 @@ static const struct MatchCallText sMatchCallGenericTexts[] =
 		{ .text = Matchcall_Liz_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Liz_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Liz_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Liz_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Parry_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Parry_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Parry_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Parry_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Liz_Generic1,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Parry_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Parry_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Parry_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Parry_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Parry_Rematch,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Parry_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Ralph_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Ralph_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Ralph_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Ralph_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Ralph_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Ralph_Generic3,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Ralph_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Ralph_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Reena_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Reena_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Reena_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Reena_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Reena_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Reena_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Reena_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Reena_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Tiffany_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Tiffany_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Tiffany_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Tiffany_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Tiffany_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Tiffany_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Tiffany_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Tiffany_Generic3,    .stringVarFuncIds = {STR_TRAINER_NAME, STR_SPECIES_IN_ROUTE, STR_SPECIES_IN_PARTY}},
+		{ .text = Matchcall_Tiffany_Generic2,    .stringVarFuncIds = {STR_TRAINER_NAME, STR_SPECIES_IN_ROUTE, STR_SPECIES_IN_PARTY}},
+		{ .text = Matchcall_Tiffany_Generic1,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
 		{ .text = Matchcall_Tiffany_Generic6,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Tully_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Tully_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Tully_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Tully_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Tully_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Tully_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Tully_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Tully_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Vance_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Vance_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Vance_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Vance_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Vance_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Vance_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Vance_Generic3,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Vance_Generic2,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
 		{ .text = Matchcall_Vance_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Wade_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Wade_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Wade_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Wade_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Wade_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Wade_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Wade_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Wade_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Wade_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Wilton_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Wilton_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Wilton_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Wilton_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Wilton_Generic2,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Wilton_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Wilton_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Wilton_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Wilton_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Todd_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Todd_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Todd_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Todd_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Todd_Generic4,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		{ .text = Matchcall_Todd_Generic3,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		{ .text = Matchcall_Todd_Generic2,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
 		{ .text = Matchcall_Todd_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
 };
 
@@ -1462,14 +1462,12 @@ static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
 		.phoneContactId = PHONE_CONTACT_JUGGLER_IRWIN,
 		.callCondition = ReceiveCallWhenOutside,
 		.script = PhoneScript_Irwin_Right_Away
-	},/*{
-	// Currently unimplemented until Goldenrod Sales are implemented.
-	 *
-		.flag = FLAG_BUG_CATCHING_CONTEST_FORCED_CALL,
+	},{
+		.flag = FLAG_GOLDENROD_SALE_FORCED_CALL,
 		.phoneContactId = PHONE_CONTACT_CAMPER_TODD,
 		.callCondition = ReceiveCallWhenOutside,
 		.script = PhoneScript_Todd_Goldenrod_Dept_Sale
-	},*/
+	},
 };
 
 static const struct ScanlineEffectParams sScanlineParams =
@@ -1568,11 +1566,12 @@ static bool32 SelectForcedPhoneCall(void)
     sMatchCallState.forcedPhoneCallId = 0;
     for (i = 0; i < ARRAY_COUNT(sForcedPhoneCalls); i++)
     {
+    	sMatchCallState.callerId = sForcedPhoneCalls[i].phoneContactId;
         if (sForcedPhoneCalls[i].callCondition() &&
-            FlagGet(sForcedPhoneCalls[i].flag))
+            FlagGet(sForcedPhoneCalls[i].flag) &&
+			FlagGet(gPhoneContacts[sMatchCallState.callerId].registeredFlag))
         {
             FlagClear(sForcedPhoneCalls[i].flag);
-            sMatchCallState.callerId = sForcedPhoneCalls[i].phoneContactId;
             sMatchCallState.forcedPhoneCallId = i + 1;
             sMatchCallState.triggeredFromScript = 0;
             return TRUE;
@@ -2114,27 +2113,24 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
     {
     	matchCallText = &sMatchCallTrainers[matchCallId].remindGiftText;
     }
-    else if(sMatchCallTrainers[matchCallId].rematchOfferedFlag && !FlagGet(sMatchCallTrainers[matchCallId].rematchOfferedFlag))
+    else if(sMatchCallTrainers[matchCallId].rematchOfferedFlag &&
+    		((!isCallingPlayer && CanPhoneContactAcceptRematch(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours)) ||
+            (isCallingPlayer  && ShouldTrainerRequestBattle(rematchId, matchCallId))))
 	{
-		if((!isCallingPlayer && CanPhoneContactAcceptRematch(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours)) ||
-            (isCallingPlayer  && ShouldTrainerRequestBattle(rematchId, matchCallId)))
-		{
-			matchCallText = &sMatchCallTrainers[matchCallId].rematchText;
-			retVal = TRUE;
-			FlagSet(sMatchCallTrainers[matchCallId].rematchOfferedFlag);
-			gSaveBlock1Ptr->trainerRematches[rematchId] = 1;
-			UpdateRematchIfDefeated(rematchId);
-		}
+		matchCallText = &sMatchCallTrainers[matchCallId].rematchText;
+		retVal = TRUE;
+		FlagSet(sMatchCallTrainers[matchCallId].rematchOfferedFlag);
+		gSaveBlock1Ptr->trainerRematches[rematchId] = 1;
+		UpdateRematchIfDefeated(rematchId);
 	}
-    else if (sMatchCallTrainers[matchCallId].giftFlag /* && randomNumber % 9 */ && !FlagGet(sMatchCallTrainers[matchCallId].giftFlag))
+    else if (sMatchCallTrainers[matchCallId].giftFlag && randomNumber % 9 && !FlagGet(sMatchCallTrainers[matchCallId].giftFlag))
     {
     	FlagSet(sMatchCallTrainers[matchCallId].giftFlag);
     	matchCallText = &sMatchCallTrainers[matchCallId].giftText;
     }
-    /*else if (randomNumber % 3)
+    /*else if (randomNumber == 2)
     {
-        // Message talking about a battle the NPC had
-        matchCallText = GetBattleMatchCallText(matchCallId, str);
+        //matchCallText = SWARM STUFF
     }*/
     else
     {
@@ -2747,6 +2743,12 @@ void isPlayerBeingCalled(const struct PhoneContact *phoneContact, bool8 isCallin
 	return;
 }
 
+bool DetermineGoldenrodSale(int random_modulus)
+{
+	int chance = Random() % random_modulus;
+	return chance == 0;
+}
+
 void UpdateForcedCallsPerDay()
 {
 	switch(gLocalTime.dayOfWeek)
@@ -2767,6 +2769,7 @@ void UpdateForcedCallsPerDay()
 			break;
 		case DAY_SATURDAY:
 			FlagSet(FLAG_BUG_CATCHING_CONTEST_FORCED_CALL);
+			if(DetermineGoldenRoldSale(2)) FlagSet(FLAG_GOLDENROD_SALE_FORCED_CALL);
 			break;
 	}
 }
