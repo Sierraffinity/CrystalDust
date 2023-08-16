@@ -2,6 +2,8 @@
 #define GUARD_MATCH_CALL_H
 
 #include "phone_contact.h"
+#include "constants/maps.h"
+#include "constants/region_map_sections.h"
 
 enum {
     MATCH_CALL_TYPE_NON_TRAINER,
@@ -40,5 +42,26 @@ void MomTriesToBuySomething(void);
 void isPlayerBeingCalled(const struct PhoneContact *, bool8);
 void UpdateForcedCallsPerDay();
 
+typedef enum
+{
+	OUTBREAK_WALKING,
+	OUTBREAK_SURFING,
+	OUTBREAK_FISHING
+} massOutbreakWildState;
+
+struct massOutbreakPhoneCallData{
+    /*0x0C*/ u16 species;
+    u8 location_map_num;
+    u8 location_map_group;
+    /*0x13*/ u8 probability;
+    /*0x14*/ u8 level;
+    massOutbreakWildState wildState;
+    u8 specialLevel1;
+    u8 specialLevel2;
+};
+
+void MatchCall_StartMassOutbreak(struct massOutbreakPhoneCallData *massOutbreak);
+void MatchCall_EndMassOutbreak(void);
+void MatchCall_TryEndMassOutbreak(u16 days);
 
 #endif //GUARD_MATCH_CALL_H

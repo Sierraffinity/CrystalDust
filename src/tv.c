@@ -1554,13 +1554,13 @@ void StartMassOutbreak(void)
     gSaveBlock1Ptr->outbreakLocationMapNum = show->massOutbreak.locationMapNum;
     gSaveBlock1Ptr->outbreakLocationMapGroup = show->massOutbreak.locationMapGroup;
     gSaveBlock1Ptr->outbreakPokemonLevel = show->massOutbreak.level;
-    gSaveBlock1Ptr->outbreakUnk1 = show->massOutbreak.var02;
-    gSaveBlock1Ptr->outbreakUnk2 = show->massOutbreak.var0E;
+    gSaveBlock1Ptr->outbreakSpecialLevel1 = show->massOutbreak.var02;
+    gSaveBlock1Ptr->outbreakWildState = show->massOutbreak.var0E;
     gSaveBlock1Ptr->outbreakPokemonMoves[0] = show->massOutbreak.moves[0];
     gSaveBlock1Ptr->outbreakPokemonMoves[1] = show->massOutbreak.moves[1];
     gSaveBlock1Ptr->outbreakPokemonMoves[2] = show->massOutbreak.moves[2];
     gSaveBlock1Ptr->outbreakPokemonMoves[3] = show->massOutbreak.moves[3];
-    gSaveBlock1Ptr->outbreakUnk4 = show->massOutbreak.var03;
+    gSaveBlock1Ptr->outbreakSpecialLevel2 = show->massOutbreak.var03;
     gSaveBlock1Ptr->outbreakPokemonProbability = show->massOutbreak.probability;
     gSaveBlock1Ptr->outbreakDaysLeft = 2;
 }
@@ -1680,21 +1680,21 @@ void EndMassOutbreak(void)
     gSaveBlock1Ptr->outbreakLocationMapNum = 0;
     gSaveBlock1Ptr->outbreakLocationMapGroup = 0;
     gSaveBlock1Ptr->outbreakPokemonLevel = 0;
-    gSaveBlock1Ptr->outbreakUnk1 = 0;
-    gSaveBlock1Ptr->outbreakUnk2 = 0;
+    gSaveBlock1Ptr->outbreakSpecialLevel1 = 0;
+    gSaveBlock1Ptr->outbreakWildState = 0;
     gSaveBlock1Ptr->outbreakPokemonMoves[0] = MOVE_NONE;
     gSaveBlock1Ptr->outbreakPokemonMoves[1] = MOVE_NONE;
     gSaveBlock1Ptr->outbreakPokemonMoves[2] = MOVE_NONE;
     gSaveBlock1Ptr->outbreakPokemonMoves[3] = MOVE_NONE;
-    gSaveBlock1Ptr->outbreakUnk4 = 0;
+    gSaveBlock1Ptr->outbreakSpecialLevel2 = 0;
     gSaveBlock1Ptr->outbreakPokemonProbability = 0;
     gSaveBlock1Ptr->outbreakDaysLeft = 0;
 }
 
 void UpdateTVShowsPerDay(u16 days)
 {
-    UpdateMassOutbreakTimeLeft(days);
-    TryEndMassOutbreak(days);
+    //UpdateMassOutbreakTimeLeft(days);
+    //TryEndMassOutbreak(days);
     UpdatePokeNewsTimeLeft(days);
     ResolveWorldOfMastersShow(days);
     ResolveNumberOneShow(days);

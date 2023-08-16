@@ -130,6 +130,7 @@ struct MatchCallTrainerTextInfo
     u16 giftFlag;
     u8 genericStartIndex;
     u8 genericTextsAmount;
+    struct massOutbreakPhoneCallData swarmData;
     struct MatchCallText callTexts[3];
     struct MatchCallText answerTexts[3];
     struct MatchCallText giftText;
@@ -198,6 +199,50 @@ static void PopulateBattleFrontierStreak(int, u8 *);
 
 #define TEXT_ID(topic, id) (((topic) << 8) | ((id) & 0xFF))
 
+const struct massOutbreakPhoneCallData qwilfishOutbreakData = {
+	.species = SPECIES_QWILFISH,
+	.location_map_num = MAP_NUM(ROUTE32),
+	.location_map_group = MAP_NUM(ROUTE32),
+	.probability = 90,
+	.level = 20,
+	.wildState = OUTBREAK_FISHING,
+	.specialLevel1 = 5,
+	.specialLevel2 = 40,
+};
+
+const struct massOutbreakPhoneCallData dunsparceOutbreakData = {
+	.species = SPECIES_DUNSPARCE,
+	.location_map_num = MAP_NUM(DARK_CAVE_SOUTH),
+	.location_map_group = MAP_NUM(DARK_CAVE_SOUTH),
+	.probability = 60,
+	.level = 3,
+	.wildState = OUTBREAK_WALKING,
+	.specialLevel1 = 0,
+	.specialLevel2 = 0,
+};
+
+const struct massOutbreakPhoneCallData yanmaOutbreakData = {
+	.species = SPECIES_YANMA,
+	.location_map_num = MAP_NUM(ROUTE35),
+	.location_map_group = MAP_NUM(ROUTE35),
+	.probability = 30,
+	.level = 13,
+	.wildState = OUTBREAK_WALKING,
+	.specialLevel1 = 0,
+	.specialLevel2 = 0,
+};
+
+const struct massOutbreakPhoneCallData outbreakNone = {
+	.species = 0,
+	.location_map_num = 0,
+	.location_map_group = 0,
+	.probability = 0,
+	.level = 0,
+	.wildState = 0,
+	.specialLevel1 = 0,
+	.specialLevel2 = 0,
+};
+
 static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 {
     {
@@ -213,6 +258,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 5,
 	    .genericTextsAmount = 5,
+		.swarmData = dunsparceOutbreakData,
 	    .callTexts = {{Matchcall_Anthony_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Anthony_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Anthony_Call_Night, STRS_NORMAL_MSG}},
@@ -240,6 +286,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 129,
 	    .genericTextsAmount = 5,
+		.swarmData = qwilfishOutbreakData,
 	    .callTexts = {{Matchcall_Ralph_Call, STRS_NORMAL_MSG},
 	    				 {Matchcall_Ralph_Call, STRS_NORMAL_MSG},
 						 {Matchcall_Ralph_Call, STRS_NORMAL_MSG}},
@@ -268,6 +315,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 11,
 	    .genericTextsAmount = 5,
+		.swarmData = yanmaOutbreakData,
 	    .callTexts = {{Matchcall_Arnie_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Arnie_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Arnie_Call_Night, STRS_NORMAL_MSG}},
@@ -295,6 +343,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = FLAG_CALL_DANA_GIFT,
 	    .genericStartIndex = 55,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Dana_Call, STRS_NORMAL_MSG},
 	    				 {Matchcall_Dana_Call, STRS_NORMAL_MSG},
 						 {Matchcall_Dana_Call, STRS_NORMAL_MSG}},
@@ -322,6 +371,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 97,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Joey_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Joey_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Joey_Call_Night, STRS_NORMAL_MSG}},
@@ -349,6 +399,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 165,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Todd_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Todd_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Todd_Call_Night, STRS_NORMAL_MSG}},
@@ -376,6 +427,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = FLAG_CALL_GINA_GIFT,
 	    .genericStartIndex = 75,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Gina_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Gina_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Gina_Call_Night, STRS_NORMAL_MSG}},
@@ -403,6 +455,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = FLAG_CALL_BEVERLY_GIFT,
 	    .genericStartIndex = 20,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Beverly_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Beverly_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Beverly_Call_Night, STRS_NORMAL_MSG}},
@@ -430,6 +483,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = FLAG_CALL_ALAN_GIFT,
 	    .genericStartIndex = 0,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Alan_Call, STRS_NORMAL_MSG},
 	    				 {Matchcall_Alan_Call, STRS_NORMAL_MSG},
 						 {Matchcall_Alan_Call, STRS_NORMAL_MSG}},
@@ -457,6 +511,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 150,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Vance_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Vance_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Vance_Call_Night, STRS_NORMAL_MSG}},
@@ -484,6 +539,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = FLAG_CALL_TULLY_GIFT,
 	    .genericStartIndex = 145,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Tully_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Tully_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Tully_Call_Night, STRS_NORMAL_MSG}},
@@ -511,6 +567,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 80,
 	    .genericTextsAmount = 1,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Huey_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Huey_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Huey_Call_Night, STRS_NORMAL_MSG}},
@@ -538,6 +595,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 139,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Tiffany_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Tiffany_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Tiffany_Call_Night, STRS_NORMAL_MSG}},
@@ -592,6 +650,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 65,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Erin_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Erin_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Erin_Call_Night, STRS_NORMAL_MSG}},
@@ -619,6 +678,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = FLAG_CALL_JOSE_GIFT,
 	    .genericStartIndex = 102,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Jose_Call, STRS_NORMAL_MSG},
 	    				 {Matchcall_Jose_Call, STRS_NORMAL_MSG},
 						 {Matchcall_Jose_Call, STRS_NORMAL_MSG}},
@@ -646,6 +706,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 81,
 	    .genericTextsAmount = 16,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Jack_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Jack_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Jack_Call_Night, STRS_NORMAL_MSG}},
@@ -673,6 +734,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 134,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Reena_Call, STRS_NORMAL_MSG},
 	    				 {Matchcall_Reena_Call, STRS_NORMAL_MSG},
 						 {Matchcall_Reena_Call, STRS_NORMAL_MSG}},
@@ -700,6 +762,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 70,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Gaven_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Gaven_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Gaven_Call_Night, STRS_NORMAL_MSG}},
@@ -727,6 +790,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 15,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Beth_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Beth_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Beth_Call_Night, STRS_NORMAL_MSG}},
@@ -754,6 +818,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 155,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Wade_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Wade_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Wade_Call_Night, STRS_NORMAL_MSG}},
@@ -781,6 +846,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 107,
 	    .genericTextsAmount = 16,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Liz_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Liz_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Liz_Call_Night, STRS_NORMAL_MSG}},
@@ -835,6 +901,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = FLAG_CALL_DEREK_GIFT,
 	    .genericStartIndex = 60,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Derek_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Derek_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Derek_Call_Night, STRS_NORMAL_MSG}},
@@ -862,6 +929,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 25,
 	    .genericTextsAmount = 15,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Brent_Call, STRS_NORMAL_MSG},
 	    				 {Matchcall_Brent_Call, STRS_NORMAL_MSG},
 						 {Matchcall_Brent_Call, STRS_NORMAL_MSG}},
@@ -889,6 +957,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 40,
 	    .genericTextsAmount = 15,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Chad_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Chad_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Chad_Call_Night, STRS_NORMAL_MSG}},
@@ -916,6 +985,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = FLAG_CALL_WILTON_GIFT,
 	    .genericStartIndex = 160,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Wilton_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Wilton_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Wilton_Call_Night, STRS_NORMAL_MSG}},
@@ -943,6 +1013,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 	    .giftFlag = 0,
 	    .genericStartIndex = 123,
 	    .genericTextsAmount = 5,
+		.swarmData = outbreakNone,
 	    .callTexts = {{Matchcall_Parry_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Parry_Call_Day, STRS_NORMAL_MSG},
 						 {Matchcall_Parry_Call_Night, STRS_NORMAL_MSG}},
@@ -2113,9 +2184,13 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
     {
     	matchCallText = &sMatchCallTrainers[matchCallId].remindGiftText;
     }
+    else if (sMatchCallTrainers[matchCallId].swarmData.species != SPECIES_NONE && gSaveBlock1Ptr->outbreakPokemonSpecies == sMatchCallTrainers[matchCallId].swarmData.species)
+    {
+    	matchCallText = &sMatchCallTrainers[matchCallId].remindSwarmText;
+    }
     else if(sMatchCallTrainers[matchCallId].rematchOfferedFlag &&
     		((!isCallingPlayer && CanPhoneContactAcceptRematch(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours)) ||
-            (isCallingPlayer  && ShouldTrainerRequestBattle(rematchId, matchCallId))))
+            (isCallingPlayer  && ShouldTrainerRequestBattle(rematchId, matchCallId))) && FALSE)
 	{
 		matchCallText = &sMatchCallTrainers[matchCallId].rematchText;
 		retVal = TRUE;
@@ -2123,15 +2198,17 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
 		gSaveBlock1Ptr->trainerRematches[rematchId] = 1;
 		UpdateRematchIfDefeated(rematchId);
 	}
-    else if (sMatchCallTrainers[matchCallId].giftFlag && randomNumber % 9 && !FlagGet(sMatchCallTrainers[matchCallId].giftFlag))
+    else if (sMatchCallTrainers[matchCallId].giftFlag && /*randomNumber % 9*/ FALSE && !FlagGet(sMatchCallTrainers[matchCallId].giftFlag))
     {
     	FlagSet(sMatchCallTrainers[matchCallId].giftFlag);
     	matchCallText = &sMatchCallTrainers[matchCallId].giftText;
     }
-    /*else if (randomNumber == 2)
+    else if (sMatchCallTrainers[matchCallId].swarmData.species != SPECIES_NONE && gSaveBlock1Ptr->outbreakPokemonSpecies == SPECIES_NONE /*&& randomNumber  2*/)
     {
-        //matchCallText = SWARM STUFF
-    }*/
+        matchCallText = &sMatchCallTrainers[matchCallId].swarmText;
+        struct massOutbreakPhoneCallData* swarmData = &sMatchCallTrainers[matchCallId].swarmData;
+        MatchCall_StartMassOutbreak(swarmData);
+    }
     else
     {
         // Message talking about something else
@@ -2743,7 +2820,7 @@ void isPlayerBeingCalled(const struct PhoneContact *phoneContact, bool8 isCallin
 	return;
 }
 
-bool DetermineGoldenrodSale(int random_modulus)
+bool8 DetermineGoldenrodSale(int random_modulus)
 {
 	int chance = Random() % random_modulus;
 	return chance == 0;
@@ -2769,9 +2846,54 @@ void UpdateForcedCallsPerDay()
 			break;
 		case DAY_SATURDAY:
 			FlagSet(FLAG_BUG_CATCHING_CONTEST_FORCED_CALL);
-			if(DetermineGoldenRoldSale(2)) FlagSet(FLAG_GOLDENROD_SALE_FORCED_CALL);
+			if(DetermineGoldenrodSale(2)) FlagSet(FLAG_GOLDENROD_SALE_FORCED_CALL);
 			break;
 	}
+}
+
+void MatchCall_StartMassOutbreak(struct massOutbreakPhoneCallData *massOutbreak)
+{
+    gSaveBlock1Ptr->outbreakPokemonSpecies = massOutbreak->species;
+    gSaveBlock1Ptr->outbreakLocationMapNum = massOutbreak->location_map_num;
+    //gSaveBlock1Ptr->outbreakLocationMapGroup = massOutbreak->location_map_group;
+    //Map group seems not to be used
+    gSaveBlock1Ptr->outbreakPokemonLevel = massOutbreak->level;
+    //gSaveBlock1Ptr->outbreakPokemonMoves[0] = massOutbreak->moves[0];
+    //gSaveBlock1Ptr->outbreakPokemonMoves[1] = massOutbreak->moves[1];
+    //gSaveBlock1Ptr->outbreakPokemonMoves[2] = massOutbreak->moves[2];
+    //gSaveBlock1Ptr->outbreakPokemonMoves[3] = massOutbreak->moves[3];
+    gSaveBlock1Ptr->outbreakPokemonProbability = massOutbreak->probability;
+    gSaveBlock1Ptr->outbreakWildState = massOutbreak->wildState;
+    gSaveBlock1Ptr->outbreakSpecialLevel1 = massOutbreak->specialLevel1;
+    gSaveBlock1Ptr->outbreakSpecialLevel2 = massOutbreak->specialLevel2;
+    gSaveBlock1Ptr->outbreakDaysLeft = 1;
+}
+
+void MatchCall_EndMassOutbreak(void)
+{
+    gSaveBlock1Ptr->outbreakPokemonSpecies = SPECIES_NONE;
+    gSaveBlock1Ptr->outbreakLocationMapNum = 0;
+    gSaveBlock1Ptr->outbreakLocationMapGroup = 0;
+    gSaveBlock1Ptr->outbreakPokemonLevel = 0;
+    gSaveBlock1Ptr->outbreakSpecialLevel1 = 0;
+    gSaveBlock1Ptr->outbreakWildState = 0;
+    gSaveBlock1Ptr->outbreakPokemonMoves[0] = MOVE_NONE;
+    gSaveBlock1Ptr->outbreakPokemonMoves[1] = MOVE_NONE;
+    gSaveBlock1Ptr->outbreakPokemonMoves[2] = MOVE_NONE;
+    gSaveBlock1Ptr->outbreakPokemonMoves[3] = MOVE_NONE;
+    gSaveBlock1Ptr->outbreakSpecialLevel2 = 0;
+    gSaveBlock1Ptr->outbreakPokemonProbability = 0;
+    gSaveBlock1Ptr->outbreakDaysLeft = 0;
+}
+
+void MatchCall_TryEndMassOutbreak(u16 days)
+{
+    if(gSaveBlock1Ptr->outbreakPokemonSpecies == SPECIES_NONE) return;
+
+	if (gSaveBlock1Ptr->outbreakDaysLeft <= days)
+        MatchCall_EndMassOutbreak();
+    else
+        gSaveBlock1Ptr->outbreakDaysLeft -= days;
 }
 
 #pragma GCC pop_options

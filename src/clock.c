@@ -59,6 +59,7 @@ static void UpdatePerDay(struct Time *localTime)
         SetShoalItemFlag(daysSince);
         SetRandomLotteryNumber(daysSince);
         UpdateForcedCallsPerDay();
+        MatchCall_TryEndMassOutbreak(daysSince);
         if(FlagGet(FLAG_MET_BILL_IN_ECRUTEAK) && !FlagGet(FLAG_SYS_TIME_CAPSULE_UNLOCKED))
         {
             FlagSet(FLAG_SYS_TIME_CAPSULE_UNLOCKED);
