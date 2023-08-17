@@ -42,12 +42,16 @@ void MomTriesToBuySomething(void);
 void isPlayerBeingCalled(const struct PhoneContact *, bool8);
 void UpdateForcedCallsPerDay();
 
-typedef enum
+/*typedef enum
 {
 	OUTBREAK_WALKING,
 	OUTBREAK_SURFING,
 	OUTBREAK_FISHING
-} massOutbreakWildState;
+} massOutbreakWildState;*/
+
+#define OUTBREAK_WALKING 1
+#define OUTBREAK_SURFING 2
+#define OUTBREAK_FISHING 3
 
 struct massOutbreakPhoneCallData{
     /*0x0C*/ u16 species;
@@ -55,7 +59,7 @@ struct massOutbreakPhoneCallData{
     u8 location_map_group;
     /*0x13*/ u8 probability;
     /*0x14*/ u8 level;
-    massOutbreakWildState wildState;
+    u8 wildState;
     u8 specialLevel1;
     u8 specialLevel2;
 };

@@ -1036,8 +1036,8 @@ BuenaPhoneCompanyVacationText:
 	.string "Bye-bye!$"
 
 BuenaPhoneBenAndFernText:
-	.string "Did you know…?\n"
-	.string "BEN and FERN talk on the phone\l"
+	.string "Did you know…?\p"
+	.string "BEN and FERN talk on the phone\n"
 	.string "for hours about what {POKEMON} music\l"
 	.string "should play on different days of the week.\p"
 	.string "One time, FERN's rapping style\n"

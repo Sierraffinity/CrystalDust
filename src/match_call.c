@@ -1152,7 +1152,7 @@ static const struct MatchCallText sMatchCallGenericTexts[] =
 		{ .text = Matchcall_Liz_Generic6,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Liz_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Liz_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Liz_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Liz_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Liz_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Liz_Generic1,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
 		{ .text = Matchcall_Parry_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
