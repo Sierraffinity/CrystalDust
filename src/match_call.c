@@ -1776,7 +1776,7 @@ static const struct WindowTemplate sPhoneCardNameTextWindow =
     .bg = 0,
     .tilemapLeft = 1,
     .tilemapTop = 1,
-    .width = 14,
+    .width = 19,
     .height = 4,
     .paletteNum = 15,
     .baseBlock = 0x180
@@ -1964,7 +1964,7 @@ static void PerformHangupAnimation(u8 taskId)
     {
         gScanlineEffect.state = 3;
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 14, 30, 6);
-        FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 16, 6);
+        FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 25, 6);
         RemoveWindow(gPhoneCallWindowId);
         RemoveWindow(gPhoneCallerNameWindowId);
         CopyBgTilemapBufferToVram(0);
