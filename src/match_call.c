@@ -2372,39 +2372,53 @@ void UpdateForcedCallsPerDay()
 	switch(gLocalTime.dayOfWeek)
 	{
 		case DAY_SUNDAY:
+			FlagClear(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
+			FlagClear(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
+			FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
 			break;
 		case DAY_MONDAY:
+			FlagClear(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
+			FlagClear(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
+			FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
 			break;
 		case DAY_TUESDAY:
-			if(FlagSet(gPhoneContacts[PHONE_CONTACT_BUG_CATCHER_WADE].registeredFlag))
+			if(FlagGet(gPhoneContacts[PHONE_CONTACT_BUG_CATCHER_WADE].registeredFlag))
 			{
 				FlagSet(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
 			}
-			else if(FlagSet(gPhoneContacts[PHONE_CONTACT_POKEFAN_DEREK].registeredFlag))
+			else if(FlagGet(gPhoneContacts[PHONE_CONTACT_POKEFAN_DEREK].registeredFlag))
 			{
 				FlagSet(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
 			}
+			FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
 			break;
 		case DAY_WEDNESDAY:
+			FlagClear(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
+			FlagClear(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
+			FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
 			break;
 		case DAY_THURSDAY:
-			if(FlagSet(gPhoneContacts[PHONE_CONTACT_POKEFAN_DEREK].registeredFlag))
+			if(FlagGet(gPhoneContacts[PHONE_CONTACT_POKEFAN_DEREK].registeredFlag))
 			{
 				FlagSet(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
 			}
-			else if(FlagSet(gPhoneContacts[PHONE_CONTACT_BUG_CATCHER_WADE].registeredFlag))
+			else if(FlagGet(gPhoneContacts[PHONE_CONTACT_BUG_CATCHER_WADE].registeredFlag))
 			{
 				FlagSet(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
 			}
+			FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
 			break;
 		case DAY_FRIDAY:
+			FlagClear(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
+			FlagClear(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
+			FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
 			break;
 		case DAY_SATURDAY:
-			if(FlagSet(gPhoneContacts[PHONE_CONTACT_POKEFAN_DEREK].registeredFlag))
+			if(FlagGet(gPhoneContacts[PHONE_CONTACT_POKEFAN_DEREK].registeredFlag))
 			{
 				FlagSet(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
 			}
-			else if(FlagSet(gPhoneContacts[PHONE_CONTACT_BUG_CATCHER_WADE].registeredFlag))
+			else if(FlagGet(gPhoneContacts[PHONE_CONTACT_BUG_CATCHER_WADE].registeredFlag))
 			{
 				FlagSet(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
 			}
