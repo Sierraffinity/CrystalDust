@@ -22,6 +22,7 @@ extern const u8 PhoneScript_Todd_Goldenrod_Dept_Sale[];
 extern const u8 PhoneScript_Irwin_Right_Away[];
 extern const u8 PhoneScript_Derek_BugCatching_Contest[];
 extern const u8 PhoneScript_Gina[];
+extern const u8 PhoneScript_Todd[];
 
 
 #endif // GUARD_PHONE_SCRIPTS_H

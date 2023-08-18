@@ -6105,12 +6105,3 @@ Matchcall_Todd_Remind_Rematch::
 
 	.string "I'll be waiting on {STR_VAR_2}.$"
 
-
-Matchcall_Todd_Remind_Goldenrod_Dept_Sale::
-	.string "Haven't you gone to GOLDENROD\n"
-	.string "DEPT. STORE?\l"
-	.string "I've scoped it out already!\l"
-
-	.string "They had some real bargains.\l"
-
-	.string "You should get there quickly.$"

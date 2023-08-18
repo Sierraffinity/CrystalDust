@@ -157,7 +157,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_CAMPER_TODD] = {
         .customDisplayName = sphonecontactname_Camper_Todd,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_Todd,
         .mapNum = MAP_NUM(ROUTE34),
         .mapGroup = MAP_GROUP(ROUTE34),
         .registeredFlag = FLAG_PHONE_CARD_CAMPER_TODD,
