@@ -27,17 +27,18 @@ script Route26_Eventscript_CooltrainerGaven {
   // TODO: Phone
   trainerbattle_single(TRAINER_GAVEN_1, "By experiencing tough battles,\nyou gain power.", "Gaah!\nLife is even tougher!")
   if (!flag(FLAG_PHONE_CARD_COOLTRAINER_GAVEN)) {
+  	bufferspeciesname(0, SPECIES_VICTREEBEL)
     if (!flag(FLAG_COOLTRAINER_GAVEN_OFFERED_NUMBER)) {
       msgbox("Wow, you're tough. I haven't\n"
         "battled that seriously in a long time.\p"
         "Could I get your phone number?\l"
         "I'd like to battle again\l"
-        "when I heal PLACEHOLDER TEXT and the rest\l of my team.", MSGBOX_YESNO)
+        "when I heal {STR_VAR_1} and the rest\l of my team.", MSGBOX_YESNO)
       setflag(FLAG_COOLTRAINER_GAVEN_OFFERED_NUMBER)
     } else {
       msgbox("Could I get your phone number?\p"
         "I'd like to battle again\n"
-        "when I heal PLACEHOLDER TEXT\l"
+        "when I heal {STR_VAR_1}\l"
         "and the rest of my team.\n", MSGBOX_YESNO)
     }
     if (var (VAR_RESULT) == 1) {

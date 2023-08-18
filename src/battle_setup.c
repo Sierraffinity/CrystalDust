@@ -282,7 +282,7 @@ const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES] =
     [REMATCH_RALPH] = REMATCH(TRAINER_RALPH_1, TRAINER_RALPH_2, TRAINER_RALPH_3, TRAINER_RALPH_4, TRAINER_RALPH_5, ROUTE32, PHONE_CONTACT_FISHER_RALPH),
     [REMATCH_ARNIE] = REMATCH(TRAINER_ARNIE_1, TRAINER_ARNIE_2, TRAINER_ARNIE_3, TRAINER_ARNIE_4, TRAINER_ARNIE_5, ROUTE35, PHONE_CONTACT_BUG_CATCHER_ARNIE),
     [REMATCH_DANA] = REMATCH(TRAINER_DANA_1, TRAINER_DANA_2, TRAINER_DANA_3, TRAINER_DANA_4, TRAINER_DANA_5, ROUTE38, PHONE_CONTACT_LASS_DANA),
-    [REMATCH_JOEY] = REMATCH(TRAINER_JOEY_1, TRAINER_JOEY_2, TRAINER_JOEY_3, TRAINER_JOEY_4, TRAINER_JOEY_5, ROUTE3, PHONE_CONTACT_YOUNGSTER_JOEY),
+    [REMATCH_JOEY] = REMATCH(TRAINER_JOEY_1, TRAINER_JOEY_2, TRAINER_JOEY_3, TRAINER_JOEY_4, TRAINER_JOEY_5, ROUTE30, PHONE_CONTACT_YOUNGSTER_JOEY),
     [REMATCH_TODD] = REMATCH(TRAINER_TODD_1, TRAINER_TODD_2, TRAINER_TODD_3, TRAINER_TODD_4, TRAINER_TODD_5, ROUTE34, PHONE_CONTACT_CAMPER_TODD),
     [REMATCH_GINA] = REMATCH(TRAINER_GINA_1, TRAINER_GINA_2, TRAINER_GINA_3, TRAINER_GINA_4, TRAINER_GINA_5, ROUTE34, PHONE_CONTACT_PICNICKER_GINA),
     [REMATCH_ALAN] = REMATCH(TRAINER_ALAN_1, TRAINER_ALAN_2, TRAINER_ALAN_3, TRAINER_ALAN_4, TRAINER_ALAN_5, ROUTE36, PHONE_CONTACT_SCHOOLBOY_ALAN),
@@ -1653,8 +1653,9 @@ static bool32 IsRematchTrainerIn_(const struct RematchTrainer *table, u16 mapGro
 static bool8 IsFirstTrainerIdReadyForRematch(const struct RematchTrainer *table, u16 firstBattleTrainerId)
 {
     s32 tableId = FirstBattleTrainerIdToRematchTableId(table, firstBattleTrainerId);
+    u32 matchCallId = GetTrainerMatchCallId(firstBattleTrainerId);
 
-    if(!FlagGet(gPhoneContacts[gRematchTable[tableId].phoneContactId].rematchOfferedFlag))
+    if(!FlagGet(gMatchCallTrainers[matchCallId].rematchOfferedFlag))
     	return FALSE;
     if (tableId == -1)
         return FALSE;
@@ -1669,8 +1670,9 @@ static bool8 IsFirstTrainerIdReadyForRematch(const struct RematchTrainer *table,
 static bool8 IsTrainerReadyForRematch_(const struct RematchTrainer *table, u16 trainerId)
 {
     s32 tableId = TrainerIdToRematchTableId(table, trainerId);
+    u32 matchCallId = GetTrainerMatchCallId(trainerId);
 
-    if(!FlagGet(gPhoneContacts[gRematchTable[tableId].phoneContactId].rematchOfferedFlag))
+    if(!FlagGet(gMatchCallTrainers[matchCallId].rematchOfferedFlag))
         return FALSE;
     if (tableId == -1)
         return FALSE;

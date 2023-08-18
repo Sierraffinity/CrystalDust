@@ -64,8 +64,9 @@ script Route27_Eventscript_BirdKeeperJose {
   // TODO: Phone
   trainerbattle_single(TRAINER_JOSE_1, "Tweet! Tweet! Tetweet!", "Tweet!")
   if (!flag(FLAG_PHONE_CARD_BIRD_KEEPER_JOSE)) {
+  bufferspeciesname(0, SPECIES_FARFETCHD)
     if (!flag(FLAG_BIRD_KEEPER_JOSE_OFFERED_NUMBER)) {
-      msgbox("If my PLACEHOLDER TEXT sees anything pretty,\n"
+      msgbox("If my {STR_VAR_1} sees anything pretty,\n"
         "it goes and gets it.\p"
         "Do you like pretty things?\n"
         "I could share if it gets some more.\p"

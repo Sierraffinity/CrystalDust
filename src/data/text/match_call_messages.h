@@ -387,37 +387,3 @@ const u8 gText_MatchCallChampion_Wallace_Strategy[] = _("Dignity and respect.");
 const u8 gText_MatchCallChampion_Wallace_Pokemon[] = _("I prefer POKéMON of grace.");
 const u8 gText_MatchCallChampion_Wallace_Intro1[] = _("I represent beauty as");
 const u8 gText_MatchCallChampion_Wallace_Intro2[] = _("well as intelligence.");
-
-const u8 *const gMatchCallFlavorTexts[REMATCH_TABLE_ENTRIES][CHECK_PAGE_ENTRY_COUNT] = 
-{
-    [REMATCH_ANTHONY] = MCFLAVOR(RuinManiac_Andres),
-    [REMATCH_RALPH] = MCFLAVOR(RuinManiac_Dusty),
-    [REMATCH_ARNIE] = MCFLAVOR(Tuber_Lola),
-    [REMATCH_DANA] = MCFLAVOR(Tuber_Ricky),
-    [REMATCH_JOEY] = MCFLAVOR(Cooltrainer_Cristin),
-    //[REMATCH_WADER] = MCFLAVOR(CoolTRAINER_BROOKE_OLD),
-    [REMATCH_TODD] = MCFLAVOR(Cooltrainer_Wilton),
-    [REMATCH_GINA] = MCFLAVOR(HexManiac_Valerie),
-    [REMATCH_BEVERLY] = MCFLAVOR(Lady_Cindy),
-    [REMATCH_ALAN] = MCFLAVOR(Beauty_Thalia),
-    [REMATCH_VANCE] = MCFLAVOR(Beauty_Jessica),
-    [REMATCH_TULLY] = MCFLAVOR(RichBoy_Winston),
-    [REMATCH_HUEY] = MCFLAVOR(PokeManiac_Steve),
-    [REMATCH_TIFFANY] = MCFLAVOR(Swimmer_Tony),
-    [REMATCH_KENJI] = MCFLAVOR(BlackBelt_Nob),
-    [REMATCH_ERIN] = MCFLAVOR(BlackBelt_Koji),
-    [REMATCH_JOSE] = MCFLAVOR(Guitarist_Fernando),
-    [REMATCH_JACK] = MCFLAVOR(Guitarist_Dalton),
-    [REMATCH_REENA] = MCFLAVOR(Kindler_Bernie),
-    [REMATCH_GAVEN] = MCFLAVOR(Camper_Ethan),
-    [REMATCH_BETH] = MCFLAVOR(OldCouple_JohnAndJay),
-    [REMATCH_WADE] = MCFLAVOR(BugManiac_Jeffrey),
-    [REMATCH_LIZ] = MCFLAVOR(Psychic_Cameron),
-    [REMATCH_IRWIN] = MCFLAVOR(Psychic_Jacki),
-    [REMATCH_DEREK] = MCFLAVOR(Gentleman_Walter),
-    //[REMATCH_CHRIS] = MCFLAVOR(SchoolKid_Karen),
-    [REMATCH_BRENT] = MCFLAVOR(SchoolKid_Jerry),
-    [REMATCH_CHAD] = MCFLAVOR(SrAndJr_AnnaAndMeg),
-    [REMATCH_WILTON] = MCFLAVOR(Pokefan_Isabel),
-    [REMATCH_PARRY] = MCFLAVOR(Pokefan_Miguel),
-};

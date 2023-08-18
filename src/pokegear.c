@@ -1568,7 +1568,7 @@ void Task_InitPokegearPhoneCall(u8 taskId)
             
             if (phoneContact->mapNum == gSaveBlock1Ptr->location.mapNum && phoneContact->mapGroup == gSaveBlock1Ptr->location.mapGroup)
                 str = sPhoneCallText_JustGoTalkToThem;
-            else if (!IsPhoneContactAvailable(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours))
+            else if (!DummiedOut_IsPhoneContactAvailable(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours))
                 str = sPhoneCallText_NobodyAnswered;
 
             if (str != NULL)

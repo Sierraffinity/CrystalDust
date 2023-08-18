@@ -41,28 +41,58 @@ bool32 MapAllowsMatchCall(void);
 void MomTriesToBuySomething(void);
 void isPlayerBeingCalled(const struct PhoneContact *, bool8);
 void UpdateForcedCallsPerDay();
-
-/*typedef enum
-{
-	OUTBREAK_WALKING,
-	OUTBREAK_SURFING,
-	OUTBREAK_FISHING
-} massOutbreakWildState;*/
+u32 getRematchIdFromTrainerId(int trainerId);
+bool8 CanMatchCallIdAcceptRematch(int matchCallId, s8 dayOfWeek, s8 hour);
+int GetTrainerMatchCallId(int);
 
 #define OUTBREAK_WALKING 1
 #define OUTBREAK_SURFING 2
 #define OUTBREAK_FISHING 3
 
 struct massOutbreakPhoneCallData{
-    /*0x0C*/ u16 species;
+    u16 species;
     u8 location_map_num;
     u8 location_map_group;
-    /*0x13*/ u8 probability;
-    /*0x14*/ u8 level;
+    u8 probability;
+    u8 level;
     u8 wildState;
     u8 specialLevel1;
     u8 specialLevel2;
 };
+
+#define NUM_STRVARS_IN_MSG 3
+
+struct MatchCallText
+{
+    const u8 *text;
+    s8 stringVarFuncIds[NUM_STRVARS_IN_MSG];
+};
+
+struct MatchCallTrainerTextInfo
+{
+    u16 trainerId;
+    u16 unused;
+    u8 battleFrontierRecordStreakTextIndex;
+    u16 rematchOfferedFlag;
+    u16 rematchCheckFlags[4];
+    u16 giftFlag;
+    u8 genericStartIndex;
+    u8 genericTextsAmount;
+    struct massOutbreakPhoneCallData outbreakData;
+    struct MatchCallText callTexts[3];
+    struct MatchCallText answerTexts[3];
+    struct MatchCallText giftText;
+    struct MatchCallText rematchText;
+    struct MatchCallText outbreakText;
+    struct MatchCallText remindGiftText;
+    struct MatchCallText remindRematchText;
+    struct MatchCallText remindoutbreakText;
+    struct MatchCallText hangupText;
+    s8 rematchAvailability[2];
+};
+
+#define MATCH_CALL_COUNT 25
+extern const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT];
 
 void MatchCall_StartMassOutbreak(struct massOutbreakPhoneCallData *massOutbreak);
 void MatchCall_EndMassOutbreak(void);
