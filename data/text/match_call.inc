@@ -4033,18 +4033,6 @@ Matchcall_Derek_Generic2::
 Matchcall_Derek_Hangup::
 	.string  "Well, let's talk again!$"
 
-
-Matchcall_Derek_Bug_Catching_Contest::
-	.string  "Did you remember?\n"
-	.string "The Bug-Catching Contest is today.\l"
-
-	.string "You're going to go, aren't you?\p"
-
-	.string "I think I'll participate with\n"
-
-	.string "PIKACHU to show off its cuteness.$"
-
-
 Matchcall_Derek_Gift::
 	.string  "I'd like you to have a NUGGET.\n"
 
@@ -4350,16 +4338,6 @@ Matchcall_Gina_Rematch::
 
 Matchcall_Gina_Hangup::
 	.string  "Bye! Let's chat again!$"
-
-
-Matchcall_Gina_Rocket_Tower::
-	.string  "Have you heard about TEAM ROCKET?\n"
-
-	.string "They've taken over the RADIO TOWER\l"
-	.string "in GOLDENROD.\l"
-
-	.string "Are the people inside safe?$"
-
 
 Matchcall_Gina_Gift::
 	.string  "I picked up something nice today.\n"

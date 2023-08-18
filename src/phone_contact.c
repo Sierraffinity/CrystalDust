@@ -167,7 +167,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_PICNICKER_GINA] = {
         .customDisplayName = sphonecontactname_Picnicker_Gina,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_Gina,
         .mapNum = MAP_NUM(ROUTE34),
         .mapGroup = MAP_GROUP(ROUTE34),
         .registeredFlag = FLAG_PHONE_CARD_PICNICKER_GINA,

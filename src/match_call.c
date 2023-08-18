@@ -1168,10 +1168,15 @@ static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
         .callCondition = AlwaysTrue, // MomTriesToBuySomething() in mom_item_calls.c makes sure the call conditions are right
         .script = PhoneScript_Mom_BoughtItem
     },{
-		.flag = FLAG_BUG_CATCHING_CONTEST_FORCED_CALL,
+		.flag = FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL,
 		.phoneContactId = PHONE_CONTACT_BUG_CATCHER_WADE,
 		.callCondition = ReceiveCallWhenOutside,
 		.script = PhoneScript_Wade_BugCatching_Contest
+	},{
+		.flag = FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL,
+		.phoneContactId = PHONE_CONTACT_POKEFAN_DEREK,
+		.callCondition = ReceiveCallWhenOutside,
+		.script = PhoneScript_Derek_BugCatching_Contest
 	},{
 		.flag = FLAG_IRWIN_FORCED_CALL,
 		.phoneContactId = PHONE_CONTACT_JUGGLER_IRWIN,
@@ -2371,17 +2376,38 @@ void UpdateForcedCallsPerDay()
 		case DAY_MONDAY:
 			break;
 		case DAY_TUESDAY:
-			FlagSet(FLAG_BUG_CATCHING_CONTEST_FORCED_CALL);
+			if(FlagSet(gPhoneContacts[PHONE_CONTACT_BUG_CATCHER_WADE].registeredFlag))
+			{
+				FlagSet(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
+			}
+			else if(FlagSet(gPhoneContacts[PHONE_CONTACT_POKEFAN_DEREK].registeredFlag))
+			{
+				FlagSet(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
+			}
 			break;
 		case DAY_WEDNESDAY:
 			break;
 		case DAY_THURSDAY:
-			FlagSet(FLAG_BUG_CATCHING_CONTEST_FORCED_CALL);
+			if(FlagSet(gPhoneContacts[PHONE_CONTACT_POKEFAN_DEREK].registeredFlag))
+			{
+				FlagSet(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
+			}
+			else if(FlagSet(gPhoneContacts[PHONE_CONTACT_BUG_CATCHER_WADE].registeredFlag))
+			{
+				FlagSet(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
+			}
 			break;
 		case DAY_FRIDAY:
 			break;
 		case DAY_SATURDAY:
-			FlagSet(FLAG_BUG_CATCHING_CONTEST_FORCED_CALL);
+			if(FlagSet(gPhoneContacts[PHONE_CONTACT_POKEFAN_DEREK].registeredFlag))
+			{
+				FlagSet(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
+			}
+			else if(FlagSet(gPhoneContacts[PHONE_CONTACT_BUG_CATCHER_WADE].registeredFlag))
+			{
+				FlagSet(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
+			}
 			if(DetermineGoldenrodSale(2)) FlagSet(FLAG_GOLDENROD_SALE_FORCED_CALL);
 			break;
 	}

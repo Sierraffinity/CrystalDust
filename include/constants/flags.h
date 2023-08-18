@@ -1261,9 +1261,9 @@
 
 #define FLAG_IRWIN_FORCED_CALL										0x4A3
 #define FLAG_GOLDENROD_SALE_FORCED_CALL								0x4A4
-#define FLAG_BUG_CATCHING_CONTEST_FORCED_CALL						0x4A5
+#define FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL					0x4A5
+#define FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL                 0x4A6
 
-#define FLAG_UNUSED_0x4A6                                           0x4A6 // Unused Flag
 #define FLAG_UNUSED_0x4A7                                           0x4A7 // Unused Flag
 #define FLAG_UNUSED_0x4A8                                           0x4A8 // Unused Flag
 #define FLAG_UNUSED_0x4A9                                           0x4A9 // Unused Flag

@@ -1646,6 +1646,10 @@ PhoneScript_Wade_BugCatching_Contest::
 	phone_stdcall Matchcall_Wade_BugCatching_Contest
 	phone_end
 
+PhoneScript_Derek_BugCatching_Contest::
+	phone_stdcall Matchcall_Derek_Bug_Catching_Contest
+	phone_end
+
 Matchcall_Wade_BugCatching_Contest::
 	.string  "The Bug-Catching Contest is at the\n"
 
@@ -1655,6 +1659,15 @@ Matchcall_Wade_BugCatching_Contest::
 
 	.string "I'm trying to make up my mind.$"
 
+Matchcall_Derek_Bug_Catching_Contest::
+	.string  "Did you remember?\n"
+	.string "The Bug-Catching Contest is today.\l"
+
+	.string "You're going to go, aren't you?\p"
+
+	.string "I think I'll participate with\n"
+
+	.string "PIKACHU to show off its cuteness.$"
 
 PhoneScript_Todd_Goldenrod_Dept_Sale::
 	phone_stdcall Matchcall_Todd_Goldenrod_Dept_Sale
@@ -1680,3 +1693,18 @@ Matchcall_Todd_Goldenrod_Dept_Sale::
 	.string "Anyway, you've got to get there\n"
 	.string	"as soon as you can!$"
 
+PhoneScript_Gina::
+	phone_goto_if_set FLAG_ROCKETS_IN_RADIO_TOWER, PhoneScript_Gina_Rocket_Tower
+	phone_goto PhoneScript_StandardMatchCallTrainer
+
+PhoneScript_Gina_Rocket_Tower:
+	phone_stdcall Matchcall_Gina_Rocket_Tower
+	phone_end
+
+Matchcall_Gina_Rocket_Tower::
+	.string  "Have you heard about TEAM ROCKET?\n"
+
+	.string "They've taken over the RADIO TOWER\l"
+	.string "in GOLDENROD.\l"
+
+	.string "Are the people inside safe?$"
