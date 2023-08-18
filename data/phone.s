@@ -1697,14 +1697,6 @@ PhoneScript_Gina::
 	phone_goto_if_set FLAG_ROCKETS_IN_RADIO_TOWER, PhoneScript_Gina_Rocket_Tower
 	phone_goto PhoneScript_StandardMatchCallTrainer
 
-PhoneScript_Derek::
-	phone_goto_if_set FLAG_ROCKETS_IN_RADIO_TOWER, PhoneScript_Gina_Rocket_Tower
-	phone_goto PhoneScript_StandardMatchCallTrainer
-
-PhoneScript_Wade::
-	phone_goto_if_set FLAG_ROCKETS_IN_RADIO_TOWER, PhoneScript_Gina_Rocket_Tower
-	phone_goto PhoneScript_StandardMatchCallTrainer
-
 PhoneScript_Todd::
 	phone_goto_if_set FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING, PhoneScript_Gina_Rocket_Tower
 	phone_goto PhoneScript_StandardMatchCallTrainer
