@@ -33,6 +33,22 @@ script Route39_Eventscript_PsychicNorman {
 
 script Route39_Eventscript_PokefanDerek { // Can this guy give out his phone number? Bulbapedia says yes if the player has a Pikachu in their party.
   trainerbattle_single(TRAINER_DEREK, "This is a good time to brag about my\nPIKACHU!", "I had no time to show off PIKACHU…")
+		  
+	if(flag(FLAG_CALL_DEREK_GIFT)){
+				msgbox("I've been looking for you!\nHere, see this? This is it!\pI'm certain your PIKACHU will love\nmy gift too!", MSGBOX_AUTOCLOSE)
+				giveitem(ITEM_NUGGET, 1)
+				if(var(VAR_0x8007) == FALSE)
+				{
+					msgbox("Uh-oh, too bad.\nYou don't have any room.\pBe sure to get it later.", MSGBOX_AUTOCLOSE)
+				}
+				else
+				{
+					clearflag(FLAG_CALL_DEREK_GIFT)
+				}
+				end
+				
+		}
+		
 	setvar(VAR_0x8004, SPECIES_PIKACHU)
 	special(IsPlayersMonOfSpeciesInParty)
 	if(var(VAR_RESULT) == 1)
@@ -42,7 +58,7 @@ script Route39_Eventscript_PokefanDerek { // Can this guy give out his phone num
 	      msgbox("Oh, wow! PIKACHU!\n"
 	        "It's so soft and furry! How cute!\p"
 	        "Let's be friends!\n"
-	        "PIKACHU-lovers are never bad\lpeople!\l"
+	        "PIKACHU-lovers are never bad people!\l"
 	        "Let's chat about PIKACHU!\l"
 	        "Can I\nget your phone number?", MSGBOX_YESNO)
 	      setflag(FLAG_POKEFAN_DEREK_OFFERED_NUMBER)

@@ -63,6 +63,28 @@ script Route27_Eventscript_CooltrainerBrian { // on bridge
 script Route27_Eventscript_BirdKeeperJose {
   // TODO: Phone
   trainerbattle_single(TRAINER_JOSE_1, "Tweet! Tweet! Tetweet!", "Tweet!")
+		  
+	if(flag(FLAG_CALL_JOSE_GIFT)){
+				msgbox("Kept me waiting!\nLook, this is it!\pSee?\nIsn't it some kind of pretty?", MSGBOX_AUTOCLOSE)
+				giveitem(ITEM_STAR_PIECE, 1)
+				if(var(VAR_0x8007) == FALSE)
+				{
+					msgbox("Huh? you don't have anywhere to\nput this.\pBetter come back for it.", MSGBOX_AUTOCLOSE)
+				}
+				else
+				{
+					clearflag(FLAG_CALL_JOSE_GIFT)
+				}
+				end
+				
+		}
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_JOSE_1, "Tweet! Tweeeeet!\nKept me waiting!\pGo, FARFETCH'D!", "Tweet!")
+	   clearflag(FLAG_JOSE_OFFERED_REMATCH)
+	}
+		
   if (!flag(FLAG_PHONE_CARD_BIRD_KEEPER_JOSE)) {
   bufferspeciesname(0, SPECIES_FARFETCHD)
     if (!flag(FLAG_BIRD_KEEPER_JOSE_OFFERED_NUMBER)) {
@@ -102,6 +124,14 @@ script Route27_Eventscript_PsychicGilbert {
 script Route27_Eventscript_CooltrainerReena {
   // TODO: Phone
   trainerbattle_single(TRAINER_REENA_1, "You shouldn't underestimate the wild\n{POKEMON} in these parts.", "Oh!\nYou're much too strong!")
+		  
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_REENA_1, "What took you?\nStart right away!", "Oh!\nYou're much too strong!")
+	   clearflag(FLAG_REENA_OFFERED_REMATCH)
+	}	
+	
   if (!flag(FLAG_PHONE_CARD_COOLTRAINER_REENA)) {
     if (!flag(FLAG_COOLTRAINER_REENA_OFFERED_NUMBER)) {
       msgbox("Not bad... It's something to beat\n"

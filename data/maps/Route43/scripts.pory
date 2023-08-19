@@ -19,6 +19,28 @@ script Route43_Eventscript_CamperSpencer {
 script Route43_Eventscript_PicnickerTiffany {
   // TODO: Phone
   trainerbattle_single(TRAINER_TIFFANY_1, "Are you going to the LAKE OF RAGE\ntoo? Let's play for a little while!", "I played too much!")
+		
+		if(flag(FLAG_CALL_TIFFANY_GIFT)){
+					msgbox("You took a long time!\nSee this?\pIsn't it cute?\nIt's a cute scarf!", MSGBOX_AUTOCLOSE)
+					giveitem(ITEM_SILK_SCARF, 1)
+					if(var(VAR_0x8007) == FALSE)
+					{
+						msgbox("Uh-oh, your PACK is crammed full!", MSGBOX_AUTOCLOSE)
+					}
+					else
+					{
+						clearflag(FLAG_CALL_TIFFANY_GIFT)
+					}
+					end
+					}
+				
+		
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_TIFFANY_1, "There you are!\nCLEFAIRY, I want you to try hard!", "I played too much!")
+	   clearflag(FLAG_TIFFANY_OFFERED_REMATCH)
+	}
 	setvar(VAR_0x8004, SPECIES_CLEFAIRY)
 	special(IsPlayersMonOfSpeciesInParty)
 	if(var(VAR_RESULT) == 1)
@@ -50,6 +72,14 @@ script Route43_Eventscript_PicnickerTiffany {
 script Route43_Eventscript_PokemaniacBrent {
   // TODO: Phone
   trainerbattle_single(TRAINER_BRENT_1, "Hey! Do you have any rare {POKEMON}?", "Oh, my poor {POKEMON}!\nDarlings!")
+		  
+   specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_BRENT_1, "I've been waiting!\nLook, check out my {POKEMON}!", "Oh, my poor {POKEMON}!\nDarlings!")
+	   clearflag(FLAG_BRENT_OFFERED_REMATCH)
+	}
+		
   if (!flag(FLAG_PHONE_CARD_POKEMANIAC_BRENT)) {
     if (!flag(FLAG_POKEMANIAC_BRENT_OFFERED_NUMBER)) {
       msgbox("By the way, you're a {POKE}MANIAC...\n"

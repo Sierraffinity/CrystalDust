@@ -55,6 +55,25 @@ script Route42_Eventscript_MtMortarSign { //used for both signs near the cave
 script Route42_Eventscript_FishermanTully {
   // TODO: Phone
   trainerbattle_single(TRAINER_TULLY_1, "Let me demonstrate the power of the\n{POKEMON} I caught!", "What? That's not right.")
+		if(flag(FLAG_CALL_TULLY_GIFT)){
+					msgbox("Hey, there you are!\nHere's a gift, as promised.", MSGBOX_AUTOCLOSE)
+					giveitem(ITEM_WATER_STONE, 1)
+					if(var(VAR_0x8007) == FALSE)
+					{
+						msgbox("Your pack's full?\nCome back later, that'll do it.", MSGBOX_AUTOCLOSE)
+					}
+					else
+					{
+						clearflag(FLAG_CALL_TULLY_GIFT)
+					}
+					end
+			}
+		    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+		    if(var(VAR_RESULT) == 1)
+			{
+			   trainerbattle_rematch(TRAINER_TULLY_1, "I've been doing more than just fishing\nsine we last met.\lYou're in for a big surprise!", "What? That's not right.")
+			   clearflag(FLAG_TULLY_OFFERED_REMATCH)
+			}
   if (!flag(FLAG_PHONE_CARD_FISHER_TULLY)) {
     if (!flag(FLAG_FISHER_TULLY_OFFERED_NUMBER)) {
       msgbox("Hey, you're trying to be the\nultimate trainer too?\l"

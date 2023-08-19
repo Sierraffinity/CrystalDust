@@ -294,6 +294,14 @@ script Route32_EventScript_Albert {
 script Route32_EventScript_Liz {
   trainerbattle_single(TRAINER_LIZ_1, "Uh-huh.\nYeah, and you know…\pPardon? You want to battle?\nI'm on the phone.\pOh, all right.\nBut let's make this fast.", "Oh!\nI've got to relieve my anger!")
   // TODO: Phone
+		  
+   specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_LIZ_1, "You're late!\nLet's get started now!", "Oh!\nI've got to relieve my anger!")
+	   clearflag(FLAG_LIZ_OFFERED_REMATCH)
+	}
+	
   if (!flag(FLAG_PHONE_CARD_PICNICKER_LIZ)) {
     if (!flag(FLAG_PICNICKER_LIZ_OFFERED_NUMBER)) {
       msgbox("Oh? You're on a big journey to see\n"
@@ -341,7 +349,13 @@ script Route32_EventScript_Justin {
 
 script Route32_EventScript_Ralph {
   trainerbattle_single(TRAINER_RALPH_1, "I'm really good at both fishing\nand {POKEMON}.\pI'm not about to lose to any kid!", "Tch!\nI tried to rush things…")
-  // TODO: Phone
+
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_RALPH_1, "Hey kid!\nNo losing for me this day!", "Tch!\nI tried to rush things…")
+	   clearflag(FLAG_RALPH_OFFERED_REMATCH)
+	}
   if (!flag(FLAG_PHONE_CARD_FISHER_RALPH)) {
     if (!flag(FLAG_FISHER_RALPH_OFFERED_NUMBER)) {
       msgbox("Don't young people fish anymore?\p"

@@ -5511,7 +5511,7 @@ Matchcall_Tiffany_Hangup::
 
 
 Matchcall_Tiffany_Gift::
-	.string  "I bought some PINK BOWS at GOLDENROD\n"
+	.string  "I bought some cute scarves at GOLDENROD\n"
 	.string "DEPT.STORE for my CLEFAIRY.\p"
 
 	.string "I got too many, so I'll give you\n"

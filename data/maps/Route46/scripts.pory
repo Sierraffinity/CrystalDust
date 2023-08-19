@@ -13,6 +13,12 @@ script Route46_EventScript_Ted {
 script Route46_EventScript_Erin {
   // TODO: Phone
   trainerbattle_single(TRAINER_ERIN_1, "I raise {POKEMON} too!\nWill you battle with me?", "Oh, rats!")
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_ERIN_1, "Yay! I waited!\nLet's start now!", "Oh, rats!")
+	   clearflag(FLAG_ERIN_OFFERED_REMATCH)
+	}
   if (!flag(FLAG_PHONE_CARD_PICNICKER_ERIN)) {
     if (!flag(FLAG_PICNICKER_ERIN_OFFERED_NUMBER)) {
       msgbox("It really made me angry to lose.\n"

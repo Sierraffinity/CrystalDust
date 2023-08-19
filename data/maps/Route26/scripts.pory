@@ -26,6 +26,14 @@ script Route26_Eventscript_CooltrainerJoyce {
 script Route26_Eventscript_CooltrainerGaven {
   // TODO: Phone
   trainerbattle_single(TRAINER_GAVEN_1, "By experiencing tough battles,\nyou gain power.", "Gaah!\nLife is even tougher!")
+
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_GAVEN_1, "Hi! I've been waiting for you!\nThis time, I'm going to win!", "Gaah!\nLife is even tougher!")
+	   clearflag(FLAG_GAVEN_OFFERED_REMATCH)
+	}
+
   if (!flag(FLAG_PHONE_CARD_COOLTRAINER_GAVEN)) {
   	bufferspeciesname(0, SPECIES_VICTREEBEL)
     if (!flag(FLAG_COOLTRAINER_GAVEN_OFFERED_NUMBER)) {
@@ -62,6 +70,14 @@ script Route26_Eventscript_CooltrainerJake {
 script Route26_Eventscript_CooltrainerBeth {
   // TODO: Phone
   trainerbattle_single(TRAINER_BETH_1, "I lost to a TRAINER named {RIVAL}.\nHe was really strong, but…\pIt was as if he absolutely had to\nwin at any cost.\pI feel sorry for his {POKEMON}.", "{POKEMON} aren't tools of war.")
+		  
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_BETH_1, "You sure kept me waiting!\nLet's go!", "{POKEMON} aren't tools of war.")
+	   clearflag(FLAG_BETH_OFFERED_REMATCH)
+	}
+		
   if (!flag(FLAG_PHONE_CARD_COOLTRAINER_BETH)) {
     if (!flag(FLAG_COOLTRAINER_BETH_OFFERED_NUMBER)) {
       msgbox("It's been a while since I lost...\p"

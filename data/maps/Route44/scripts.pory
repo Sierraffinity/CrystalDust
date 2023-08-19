@@ -25,6 +25,29 @@ script Route44_Eventscript_FishermanEdgar { // lower one
 script Route44_Eventscript_FishermanWilton { // upper one
   // TODO: Phone
   trainerbattle_single(TRAINER_WILTON_1, "Aack! You made me lose a POLIWAG!\nWhat are you going to do about it?", "Just forget about it.")
+		  
+	if(flag(FLAG_CALL_WILTON_GIFT)){
+				msgbox("So here you are!\nSee this?\pI snagged it just a little\nwhile ago.\lIt's yours.", MSGBOX_AUTOCLOSE)
+				random(10)
+				addvar(VAR_RESULT,2)
+				giveitem(VAR_RESULT, 1)
+				if(var(VAR_0x8007) == FALSE)
+				{
+					msgbox("Your PACK's full?\nI'll give it to you later.", MSGBOX_AUTOCLOSE)
+				}
+				else
+				{
+					clearflag(FLAG_CALL_WILTON_GIFT)
+				}
+				end
+		}
+		specialvar(VAR_RESULT, ShouldTryRematchBattle)
+		if(var(VAR_RESULT) == 1)
+		{
+		   trainerbattle_rematch(TRAINER_WILTON_1, "Argh! You startled POLIWAG into\nfleeing again!", "Just forget about it.")
+		   clearflag(FLAG_WILTON_OFFERED_REMATCH)
+		}
+		
   if (!flag(FLAG_PHONE_CARD_FISHER_WILTON)) {
     if (!flag(FLAG_FISHER_WILTON_OFFERED_NUMBER)) {
       msgbox("Eh, our battle was fun, I'd say...\p"
@@ -68,6 +91,12 @@ script Route44_Eventscript_PokemaniacZach {
 script Route44_Eventscript_BirdKeeperVance {
   // TODO: Phone
   trainerbattle_single(TRAINER_VANCE_1, "Do you know about the legendary\nbird {POKEMON}?", "Whew!\nYou're hot stuff.")
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_VANCE_1, "Am I happy to see you!\nI won't lose!", "Whew!\nYou're hot stuff.")
+	   clearflag(FLAG_VANCE_OFFERED_REMATCH)
+	}
   if (!flag(FLAG_PHONE_CARD_BIRD_KEEPER_VANCE)) {
     if (!flag(FLAG_BIRD_KEEPER_VANCE_OFFERED_NUMBER)) {
       msgbox("You know, you are really strong.\n"

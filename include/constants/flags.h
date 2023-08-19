@@ -693,9 +693,9 @@
 #define FLAG_CALL_JOSE_GIFT  			0x287
 #define FLAG_CALL_BEVERLY_GIFT			0x288
 #define FLAG_CALL_KENJI_GIFT			0x289
+#define FLAG_CALL_WADE_GIFT				0x28A
 
 //Unused Flags
-#define FLAG_UNUSED_0x28A  0x28A // Unused Flag
 #define FLAG_UNUSED_0x28B  0x28B // Unused Flag
 #define FLAG_UNUSED_0x28C  0x28C // Unused Flag
 #define FLAG_UNUSED_0x28D  0x28D // Unused Flag

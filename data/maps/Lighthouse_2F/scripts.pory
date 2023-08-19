@@ -9,6 +9,12 @@ script Lighthouse_2F_EventScript_GentlemanAlfred {
 script Lighthouse_2F_Eventscript_SailorHuey {
   // TODO: Phone
   trainerbattle_single(TRAINER_HUEY_1, "Men of the sea are always spoiling\nfor a good fight!", "Urf!\nI lose!")
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_HUEY_1, "Hey!\nI'm tired of waiting for you!", "Urf!\nI lose!")
+	   clearflag(FLAG_HUEY_OFFERED_REMATCH)
+	}
   if (!flag(FLAG_PHONE_CARD_SAILOR_HUEY)) {
     if (!flag(FLAG_SAILOR_HUEY_OFFERED_NUMBER)) {
       msgbox("Cool! That's the first time I've\n"
@@ -28,6 +34,7 @@ script Lighthouse_2F_Eventscript_SailorHuey {
     } else {
       msgbox("Looks like you're a wimp...", MSGBOX_AUTOCLOSE)
     }
+	end
   }
   msgbox("What power! How would you like\nto sail the seas with me?", MSGBOX_AUTOCLOSE)
   end

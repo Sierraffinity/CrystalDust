@@ -12,6 +12,13 @@ script Route33_EventScript_Girl {
 script Route33_EventScript_Anthony {
   trainerbattle_single(TRAINER_ANTHONY_1, "I came through the tunnel, but I\nstill have plenty of energy left!", "Whoa!\nYou've got more zip than me!")
   // TODO: Phone
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	    trainerbattle_rematch(TRAINER_ANTHONY_1, 
+	    		"All righty, then!\nMy {POKEMON} and I are raring to go!", "Whoa!\nYou've got more zip than me!")
+		clearflag(FLAG_ANTHONY_OFFERED_REMATCH)
+	}		  
   if (!flag(FLAG_PHONE_CARD_HIKER_ANTHONY)) {
     if (!flag(FLAG_HIKER_ANTHONY_OFFERED_NUMBER)) {
       msgbox("By the way, I'm a HIKER,\n"

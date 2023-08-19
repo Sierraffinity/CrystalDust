@@ -92,7 +92,14 @@ script Route30_EventScript_Trainer_Joey {
   //TODO: Phone
   trainerbattle_single(TRAINER_JOEY_1,
     "I just lost, so I'm trying to find\nmore {POKEMON}.\pWait! You look weak!\nCome on, let's battle!", "Ack! I lost again!\nDoggone it!")
-  if (!flag(FLAG_PHONE_CARD_YOUNGSTER_JOEY)) {
+
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_JOEY_1, "I've been waiting!\nLet's battle now!", "Ack! I lost again!\nDoggone it!")
+	   clearflag(FLAG_JOEY_OFFERED_REMATCH)
+	}
+	if (!flag(FLAG_PHONE_CARD_YOUNGSTER_JOEY)) {
     if (!flag(FLAG_YOUNGSTER_JOEY_OFFERED_NUMBER)) {
       msgbox("Listen, can I\n"
       		 "get your phone number?\l" 

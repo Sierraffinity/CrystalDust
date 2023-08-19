@@ -11,6 +11,12 @@ mapscripts Route34_MapScripts {
 script Route34_EventScript_Todd {
   trainerbattle_single(TRAINER_TODD_1, "I'm confident in my ability to\nraise {POKEMON}.\pWant to see?", "Did I screw up my training?")
   //TODO: Phone
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_TODD_1, "I waited for you!\pI even cut back my shopping to raise\nmy {POKEMON} better!", "Did I screw up my training?")
+	   clearflag(FLAG_TODD_OFFERED_REMATCH)
+	}
   if (!flag(FLAG_PHONE_CARD_CAMPER_TODD)) {
     if (!flag(FLAG_CAMPER_TODD_OFFERED_NUMBER)) {
       msgbox("From here, I can see\n GOLDENROD's DEPT.STORE.\l"
@@ -46,6 +52,25 @@ script Route34_EventScript_Ian {
 script Route34_EventScript_Gina {
   trainerbattle_single(TRAINER_GINA_1, "Are you a TRAINER?\nLet's have a practice battle.", "Oh, no!\nI just can't win…")
   //TODO: Phone
+	if(flag(FLAG_CALL_GINA_GIFT)){
+				msgbox("So you're finally here!\nI think this will make you happy.", MSGBOX_AUTOCLOSE)
+				giveitem(ITEM_LEAF_STONE, 1)
+				if(var(VAR_0x8007) == FALSE)
+				{
+					msgbox("Your PACK looks completely full.\nI'll have to hold on to this.", MSGBOX_AUTOCLOSE)
+				}
+				else
+				{
+					clearflag(FLAG_CALL_GINA_GIFT)
+				}
+				end
+		}
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_GINA_1, "I've been waiting!\nI've gotten a bit better at this!", "Oh no!\nI just can't win…")
+	   clearflag(FLAG_GINA_OFFERED_REMATCH)
+	}
   if (!flag(FLAG_PHONE_CARD_PICNICKER_GINA)) {
     if (!flag(FLAG_PICNICKER_GINA_OFFERED_NUMBER)) {
       msgbox("Whenever I see a strong trainer,\n"

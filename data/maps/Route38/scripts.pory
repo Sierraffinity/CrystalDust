@@ -19,7 +19,26 @@ script Route38_Eventscript_SailorHarry {
 script Route38_Eventscript_LassDana {
   // TODO: Phone
   trainerbattle_single(TRAINER_DANA_1, "You seem to be good at {POKEMON}.\pIf you are, how about giving me\nsome advice?", "I see. So you can battle that way.")
-  if (!flag(FLAG_PHONE_CARD_LASS_DANA)) {
+	if(flag(FLAG_CALL_DANA_GIFT)){
+		msgbox("Hi! Are you here for your gift?\nThis should really make your day!", MSGBOX_AUTOCLOSE)
+		giveitem(ITEM_THUNDER_STONE, 1)
+		if(var(VAR_0x8007) == FALSE)
+		{
+			msgbox("Where are you going to put this?\nI'll keep it, so come get it later!", MSGBOX_AUTOCLOSE)
+		}
+		else
+		{
+			clearflag(FLAG_CALL_DANA_GIFT)
+		}
+				end
+		}
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_DANA_1, "You're really late!\nI'm eager to get going!", "I see. So you can battle that way.")
+	   clearflag(FLAG_DANA_OFFERED_REMATCH)
+	}
+	if (!flag(FLAG_PHONE_CARD_LASS_DANA)) {
     if (!flag(FLAG_LASS_DANA_OFFERED_NUMBER)) {
       msgbox("You're really good at {POKEMON}!\p"
         "Boys give me items after battles,\n"
@@ -57,6 +76,14 @@ script Route38_Eventscript_BirdKeeperToby {
 script Route38_Eventscript_SchoolboyChad {
   // TODO: Phone
   trainerbattle_single(TRAINER_CHAD_1, "Let me try something I learned today.", "I didn't study enough, I guess.")
+		  
+   specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_CHAD_1, "I've been waiting!\nLet's battle now!", "I didn't study enough, I guess.")
+	   clearflag(FLAG_CHAD_OFFERED_REMATCH)
+	}
+		
   if (!flag(FLAG_PHONE_CARD_SCHOOLBOY_CHAD)) {
     if (!flag(FLAG_SCHOOLBOY_CHAD_OFFERED_NUMBER)) {
       msgbox("Huh? Is that thing a {POKEDEX}?\l"

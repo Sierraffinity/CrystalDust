@@ -478,7 +478,7 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
         .battleFrontierRecordStreakTextIndex = 4,
 	    .rematchOfferedFlag = FLAG_TIFFANY_OFFERED_REMATCH,
 		.rematchCheckFlags = {FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE},
-	    .giftFlag = 0,
+	    .giftFlag = FLAG_CALL_TIFFANY_GIFT,
 	    .genericStartIndex = 139,
 	    .genericTextsAmount = 5,
 		.outbreakData = outbreakNone,
@@ -653,7 +653,7 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
         .battleFrontierRecordStreakTextIndex = 1,
 	    .rematchOfferedFlag = FLAG_WADE_OFFERED_REMATCH,
 		.rematchCheckFlags = {FLAG_VISITED_CIANWOOD_CITY, FLAG_VISITED_MAHOGANY_TOWN, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION},
-	    .giftFlag = 0,
+	    .giftFlag = FLAG_CALL_WADE_GIFT,
 	    .genericStartIndex = 155,
 	    .genericTextsAmount = 5,
 		.outbreakData = outbreakNone,
@@ -825,7 +825,7 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 		.unused = 0,
 		.battleFrontierRecordStreakTextIndex = 1,
 		.rematchOfferedFlag = 0,
-		.rematchCheckFlags = {FLAG_VISITED_OLIVINE_CITY, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART},
+		.rematchCheckFlags = 0,
 		.giftFlag = FLAG_CALL_DEREK_GIFT,
 		.genericStartIndex = 60,
 		.genericTextsAmount = 5,
@@ -2369,19 +2369,16 @@ bool8 DetermineGoldenrodSale(int random_modulus)
 
 void UpdateForcedCallsPerDay()
 {
+	FlagClear(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
+	FlagClear(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
+	FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
+	FlagClear(FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING);
+
 	switch(gLocalTime.dayOfWeek)
 	{
 		case DAY_SUNDAY:
-			FlagClear(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
-			FlagClear(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
-			FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
-			FlagClear(FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING);
 			break;
 		case DAY_MONDAY:
-			FlagClear(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
-			FlagClear(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
-			FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
-			FlagClear(FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING);
 			break;
 		case DAY_TUESDAY:
 			if(FlagGet(gPhoneContacts[PHONE_CONTACT_BUG_CATCHER_WADE].registeredFlag))
@@ -2392,13 +2389,8 @@ void UpdateForcedCallsPerDay()
 			{
 				FlagSet(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
 			}
-			FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
-			FlagClear(FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING);
 			break;
 		case DAY_WEDNESDAY:
-			FlagClear(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
-			FlagClear(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
-			FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
 			break;
 		case DAY_THURSDAY:
 			if(FlagGet(gPhoneContacts[PHONE_CONTACT_POKEFAN_DEREK].registeredFlag))
@@ -2409,14 +2401,8 @@ void UpdateForcedCallsPerDay()
 			{
 				FlagSet(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
 			}
-			FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
-			FlagClear(FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING);
 			break;
 		case DAY_FRIDAY:
-			FlagClear(FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL);
-			FlagClear(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
-			FlagClear(FLAG_GOLDENROD_SALE_FORCED_CALL);
-			FlagClear(FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING);
 			break;
 		case DAY_SATURDAY:
 			if(FlagGet(gPhoneContacts[PHONE_CONTACT_POKEFAN_DEREK].registeredFlag))
@@ -2428,7 +2414,6 @@ void UpdateForcedCallsPerDay()
 				FlagSet(FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL);
 			}
 			if(DetermineGoldenrodSale(2)) FlagSet(FLAG_GOLDENROD_SALE_FORCED_CALL);
-			else FlagClear(FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING);
 			break;
 	}
 }

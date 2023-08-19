@@ -168,6 +168,29 @@ script Route31_EventScript_Youngster {
 script Route31_EventScript_Trainer_Wade {
   trainerbattle_single(TRAINER_WADE_1, "I caught a bunch of {POKEMON}.\nLet me battle with you!", "Awwwww…")
   // TODO: Phone
+		  
+	if(flag(FLAG_CALL_WADE_GIFT)){
+				msgbox("Good to see you!\nSee? This is what I found.\lIt's for you.", MSGBOX_AUTOCLOSE)
+				random(42)
+				addvar(VAR_RESULT,133)
+				giveitem(VAR_RESULT, 1)
+				if(var(VAR_0x8007) == FALSE)
+				{
+					msgbox("Oops, your PACK's full. Tood bad.\nYou should come back for it later.", MSGBOX_AUTOCLOSE)
+				}
+				else
+				{
+					clearflag(FLAG_CALL_WADE_GIFT)
+				}
+				end
+		}
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_WADE_1, "I was waiting for you! Let's battle!", "Awwwww…")
+	   clearflag(FLAG_WADE_OFFERED_REMATCH)
+	}
+	
   if (!flag(FLAG_PHONE_CARD_BUG_CATCHER_WADE)) {
     if (!flag(FLAG_BUG_CATCHER_WADE_OFFERED_NUMBER)) {
       msgbox("You're awesome! I like you! I look\n"

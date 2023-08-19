@@ -33,6 +33,32 @@ script Route35_EventScript_Walt {
 script Route35_EventScript_Arnie {
   // TODO: Phone
   trainerbattle_single(TRAINER_ARNIE_1, "I'll go anywhere if BUG {POKEMON}\nappear there.", "Huh?\nI shouldn't have lost that…")
+  
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_ARNIE_1, "It's my turn to win now!\nI've turned over a new leaf!", "Huh?\nI shouldn't have lost that…")
+	   clearflag(FLAG_ARNIE_OFFERED_REMATCH)
+	}
+  if (!flag(FLAG_PHONE_CARD_BUG_CATCHER_ARNIE)) {
+      if (!flag(FLAG_BUG_CATCHER_ARNIE_OFFERED_NUMBER)) {
+        msgbox("Do you get the feeling that there are more\nrare {POKEMON} around?\p"
+        		"I'm positive there are, so I look all\nthe time.\p"
+        		"If I find one, I want to share the good news\nwith everyone I know.\l"
+        		"I know! Give me your phone number!", MSGBOX_YESNO)
+        setflag(FLAG_BUG_CATCHER_ARNIE_OFFERED_NUMBER)
+      } else {
+        msgbox("I want to let peopke know if\nI see rare {POKEMON}.\lPlease give me your phone number!", MSGBOX_YESNO)
+      }
+      if (var (VAR_RESULT) == 1) {
+        registerphonecontact(FLAG_PHONE_CARD_BUG_CATCHER_ARNIE)
+        msgbox("If I spot any awesome {POKEMON}\nI'll be sure to give you a call!", MSGBOX_AUTOCLOSE)
+      } else {
+        msgbox("Aww! I want to tell someone\n about my discoveries!", MSGBOX_AUTOCLOSE)
+      }
+      end
+    }
+	
   msgbox("My VENONAT won me the Bug-Catching\nContest at the NATIONAL PARK.", MSGBOX_AUTOCLOSE)
 }
 
@@ -59,6 +85,7 @@ script Route35_EventScript_Irwin {
         "Now I can call you anytime,\n"
         "whether anything's up or not.\l"
         "You know, just to chat!", MSGBOX_AUTOCLOSE)
+		setflag(FLAG_IRWIN_FORCED_CALL)
     } else {
       msgbox("Oh, but... I'm not dangerous! I\njust want to call and chat about\leverything and nothing!", MSGBOX_AUTOCLOSE)
     }

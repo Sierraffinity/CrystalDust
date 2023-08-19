@@ -74,6 +74,14 @@ script NationalPark_EventScript_Persian {
 script NationalPark_EventScript_Jack {
   // TODO: Phone
   trainerbattle_single(TRAINER_JACK_1, "The world of {POKEMON} is deep.\pThere are still lots of things\nwe don't know.\pBut I know more than you do!", "Wha-wha-what?")
+		  
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+	   trainerbattle_rematch(TRAINER_JACK_1, "Hi! I was waiting for you to show!\nLet's get started right away!", "Wha-what-what?")
+	   clearflag(FLAG_JACK_OFFERED_REMATCH)
+	}
+		
   if (!flag(FLAG_PHONE_CARD_SCHOOLBOY_JACK)) {
     if (!flag(FLAG_SCHOOLBOY_JACK_OFFERED_NUMBER)) {
       msgbox("Your knowledge is impressive! I like\n"
@@ -101,6 +109,21 @@ script NationalPark_EventScript_Jack {
 script NationalPark_EventScript_Beverly {
   // TODO: Phone
   trainerbattle_single(TRAINER_BEVERLY, "My {POKEMON} are simply darling.\pLet me tell you how proud my\ndarlings make me.", "I can beat you in pride, but…")
+		  
+		if(flag(FLAG_CALL_BEVERLY_GIFT)){
+					msgbox("Oh? {PLAYER}?\nI waited here for you.\lI brought you a little gift.", MSGBOX_AUTOCLOSE)
+					giveitem(ITEM_NUGGET, 1)
+					if(var(VAR_0x8007) == FALSE)
+					{
+						msgbox("Oh?\nYou have no room?\lPlease come back for it later.", MSGBOX_AUTOCLOSE)
+					}
+					else
+					{
+						clearflag(FLAG_CALL_BEVERLY_GIFT)
+					}
+					end
+			}
+		
   setvar(VAR_0x8004, SPECIES_MARILL)
   special(IsPlayersMonOfSpeciesInParty)
 	if(var(VAR_RESULT) == 1)
