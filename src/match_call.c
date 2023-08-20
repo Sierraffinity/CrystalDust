@@ -45,9 +45,6 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 
-#pragma GCC push_options
-#pragma GCC optimize ("O0")
-
 // Each match call message has variables that can be populated randomly or
 // dependent on the trainer. The below are IDs for how to populate the vars
 // in a given message.
@@ -1211,7 +1208,7 @@ static bool32 UpdateMatchCallMinutesCounter(void)
     int curMinutes;
     RtcCalcLocalTime();
     curMinutes = GetTotalMinutes(&gLocalTime);
-    if (sMatchCallState.minutes > curMinutes || curMinutes - sMatchCallState.minutes > /*9*/2)//DEBUG CODE
+    if (sMatchCallState.minutes > curMinutes || curMinutes - sMatchCallState.minutes > 9)
     {
         sMatchCallState.minutes = curMinutes;
         return TRUE;
@@ -1221,8 +1218,7 @@ static bool32 UpdateMatchCallMinutesCounter(void)
 }
 
 static bool32 CheckMatchCallChance(void)
-{//DEBUG CODE
-	/*
+{
     int callChance = 1;
     if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG) && GetMonAbility(&gPlayerParty[0]) == ABILITY_LIGHTNING_ROD)
         callChance = 2;
@@ -1230,7 +1226,7 @@ static bool32 CheckMatchCallChance(void)
     if (Random() % 10 < callChance * 3)
         return TRUE;
     else
-        return FALSE;*/
+        return FALSE;
 	return TRUE;
 }
 
@@ -1796,7 +1792,7 @@ bool8 CanMatchCallIdAcceptRematch(int matchCallId, s8 dayOfWeek, s8 hour)
 }
 
 bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)
-{//DEBUG CODE
+{
     u32 matchCallId;
     u32 rematchId;
     const struct MatchCallText *matchCallText;
@@ -1829,13 +1825,13 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
 		gSaveBlock1Ptr->trainerRematches[rematchId] = 1;
 		UpdateRematchIfDefeated(rematchId);
 	}
-    else if (gMatchCallTrainers[matchCallId].giftFlag && /*(randomNumber == 1 || randomNumber == 2 || randomNumber == 3)*/1 && !FlagGet(gMatchCallTrainers[matchCallId].giftFlag) && isCallingPlayer)
+    else if (gMatchCallTrainers[matchCallId].giftFlag && (randomNumber == 1 || randomNumber == 2 || randomNumber == 3) && !FlagGet(gMatchCallTrainers[matchCallId].giftFlag) && isCallingPlayer)
     {
     	FlagSet(gMatchCallTrainers[matchCallId].giftFlag);
     	matchCallText = &gMatchCallTrainers[matchCallId].giftText;
     }
     else if (isCallingPlayer && gMatchCallTrainers[matchCallId].outbreakData.species != SPECIES_NONE && gSaveBlock1Ptr->outbreakPokemonSpecies == SPECIES_NONE
-    		&& /*randomNumber == 4*/1)
+    		&& randomNumber == 4)
     {
         matchCallText = &gMatchCallTrainers[matchCallId].outbreakText;
         struct massOutbreakPhoneCallData* outbreakData = &gMatchCallTrainers[matchCallId].outbreakData;
@@ -2461,4 +2457,3 @@ void MatchCall_TryEndMassOutbreak(u16 days)
         gSaveBlock1Ptr->outbreakDaysLeft -= days;
 }
 
-#pragma GCC pop_options

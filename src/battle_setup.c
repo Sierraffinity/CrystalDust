@@ -52,9 +52,6 @@
 #include "constants/weather.h"
 #include "match_call.h"
 
-#pragma GCC push_options
-#pragma GCC optimize ("O0")
-
 enum
 {
     TRAINER_PARAM_LOAD_VAL_8BIT,
@@ -1880,5 +1877,3 @@ u16 CountBattledRematchTeams(u16 trainerId)
 
     return i;
 }
-
-#pragma GCC pop_options
