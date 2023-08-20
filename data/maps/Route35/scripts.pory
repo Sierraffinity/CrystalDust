@@ -42,9 +42,9 @@ script Route35_EventScript_Arnie {
 	}
   if (!flag(FLAG_PHONE_CARD_BUG_CATCHER_ARNIE)) {
       if (!flag(FLAG_BUG_CATCHER_ARNIE_OFFERED_NUMBER)) {
-        msgbox("Do you get the feeling that there are more\nrare {POKEMON} around?\p"
+        msgbox("Do you get the feeling that there are\nmore rare {POKEMON} around?\p"
         		"I'm positive there are, so I look all\nthe time.\p"
-        		"If I find one, I want to share the good news\nwith everyone I know.\l"
+        		"If I find one, I want to share the\ngood news with everyone I know.\l"
         		"I know! Give me your phone number!", MSGBOX_YESNO)
         setflag(FLAG_BUG_CATCHER_ARNIE_OFFERED_NUMBER)
       } else {
@@ -69,12 +69,12 @@ script Route35_EventScript_Irwin {
     if (!flag(FLAG_JUGGLER_IRWIN_OFFERED_NUMBER)) {
       msgbox("You're the best I've ever battled!\p"
         "Huh? You're the one who saved all\n"
-        "the SLOWPOKE?\l"
+        "the SLOWPOKE?\p"
         "Well, no wonder I couldn't\n"
         "beat you!\p"
         "Would it be OK to get your number?\n"
-        "I don't want to miss\l"
-        "anything you do from now on!", MSGBOX_YESNO)
+        "I don't want to miss anything\l"
+        "you do from now on!", MSGBOX_YESNO)
       setflag(FLAG_JUGGLER_IRWIN_OFFERED_NUMBER)
     } else {
       msgbox("You will tell me your phone\nnumber?", MSGBOX_YESNO)
@@ -82,8 +82,8 @@ script Route35_EventScript_Irwin {
     if (var (VAR_RESULT) == 1) {
       registerphonecontact(FLAG_PHONE_CARD_JUGGLER_IRWIN)
       msgbox("Wow! Gee, thanks!\p"
-        "Now I can call you anytime,\n"
-        "whether anything's up or not.\l"
+        "Now I can call you anytime, whether\n"
+        "anything's up or not.\l"
         "You know, just to chat!", MSGBOX_AUTOCLOSE)
 		setflag(FLAG_IRWIN_FORCED_CALL)
     } else {

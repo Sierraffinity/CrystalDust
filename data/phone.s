@@ -1285,7 +1285,7 @@ PhoneScript_Irwin_Hangup:
 
 PhoneScript_Irwin_Rocket_Takeover:
 	phone_message Matchcall_Irwin_Rocket_Takeover
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_So_Much_To_Chat_About:
 	phone_message Matchcall_Irwin_So_Much_To_Chat_About
@@ -1331,51 +1331,51 @@ PhoneScript_Irwin_Caller:
 
 PhoneScript_Irwin_Called_Right_Away:
 	phone_message Matchcall_Irwin_Called_Right_Away
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Plain_Badge:
 	phone_message Matchcall_Irwin_Plain_Badge
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Fog_Badge:
 	phone_message Matchcall_Irwin_Fog_Badge
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Jasmine_Returned:
 	phone_message Matchcall_Irwin_Jasmine_Returned
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Rocket_Hideout:
 	phone_message Matchcall_Irwin_Rocket_Hideout
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Radio_Tower:
 	phone_message Matchcall_Irwin_Radio_Tower
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Rising_Badge:
 	phone_message Matchcall_Irwin_Rising_Badge
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Elite_Four:
 	phone_message Matchcall_Irwin_Elite_Four
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Marsh_Badge:
 	phone_message Matchcall_Irwin_Marsh_Badge
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Magnet_Train:
 	phone_message Matchcall_Irwin_Magnet_Train
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Snorlax:
 	phone_message Matchcall_Irwin_Snorlax
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Mt_Silver:
 	phone_message Matchcall_Irwin_Mt_Silver
-	phone_call Matchcall_Irwin_Hangup
+	phone_call PhoneScript_Irwin_Hangup
 
 PhoneScript_Irwin_Answer_Morn:
 	phone_message Matchcall_Irwin_Answer_Morn
@@ -1572,7 +1572,7 @@ Matchcall_Irwin_Mt_Silver::
 Matchcall_Irwin_Called_Right_Away::
 	.string  "Hehe, I called right away!\n"
 
-	.string "I think we can be good friends!\p$"
+	.string "I think we can be good friends!$"
 
 
 Matchcall_Irwin_Fog_Badge::

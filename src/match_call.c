@@ -124,7 +124,7 @@ EWRAM_DATA struct MatchCallState sMatchCallState = {0};
 EWRAM_DATA struct BattleFrontierStreakInfo sBattleFrontierStreakInfo = {0};
 
 static u32 GetNumRegisteredNPCs(void);
-static u32 GetActiveMatchCallTrainerId(u32);
+static u32 GetActiveMatchCallPhoneContactId(u32);
 static u16 GetRematchTrainerLocation(int);
 static bool32 TrainerIsEligibleForRematch(int);
 static void StartMatchCall(void);
@@ -1211,7 +1211,7 @@ static bool32 UpdateMatchCallMinutesCounter(void)
     int curMinutes;
     RtcCalcLocalTime();
     curMinutes = GetTotalMinutes(&gLocalTime);
-    if (sMatchCallState.minutes > curMinutes || curMinutes - sMatchCallState.minutes > 9)
+    if (sMatchCallState.minutes > curMinutes || curMinutes - sMatchCallState.minutes > /*9*/2)//DEBUG CODE
     {
         sMatchCallState.minutes = curMinutes;
         return TRUE;
@@ -1221,15 +1221,17 @@ static bool32 UpdateMatchCallMinutesCounter(void)
 }
 
 static bool32 CheckMatchCallChance(void)
-{
-   /* int callChance = 1;
+{//DEBUG CODE
+	/*
+    int callChance = 1;
     if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG) && GetMonAbility(&gPlayerParty[0]) == ABILITY_LIGHTNING_ROD)
         callChance = 2;
     
-    if (Random() % 10 < callChance * 3) */
+    if (Random() % 10 < callChance * 3)
         return TRUE;
-    //else
-      //  return FALSE;
+    else
+        return FALSE;*/
+	return TRUE;
 }
 
 bool32 MapAllowsMatchCall(void)
@@ -1256,25 +1258,15 @@ static bool32 SelectMatchCallTrainer(void)
     u32 numRegistered = GetNumRegisteredNPCs();
     if (numRegistered == 0)
         return FALSE;
-    sMatchCallState.callerId = GetActiveMatchCallTrainerId(Random() % numRegistered);
+    sMatchCallState.callerId = GetActiveMatchCallPhoneContactId(Random() % numRegistered);
     sMatchCallState.triggeredFromScript = FALSE;
+    matchCallId = GetTrainerMatchCallId(gPhoneContacts[sMatchCallState.callerId].rematchTrainerId);
     if (sMatchCallState.callerId == PHONE_CONTACT_COUNT)
         return FALSE;
-    if(gPhoneContacts[sMatchCallState.callerId].rematchTrainerId != 0xFF)
-    {//FIX THIS
-    	matchCallId = GetTrainerMatchCallId(gRematchTable[gPhoneContacts[sMatchCallState.callerId].rematchTrainerId].trainerIds[0]);
-    	if (Overworld_GetMapHeaderByGroupAndId(gPhoneContacts[sMatchCallState.callerId].mapGroup, gPhoneContacts[sMatchCallState.callerId].mapNum)->regionMapSectionId ==
-    			gMapHeader.regionMapSectionId)
-    		return FALSE;
-    }
-    else{
-    	matchCallId = TRAINER_NONE;
-    	if(Overworld_GetMapHeaderByGroupAndId(gPhoneContacts[sMatchCallState.callerId].mapGroup, gPhoneContacts[sMatchCallState.callerId].mapNum)->regionMapSectionId ==
-    			gMapHeader.regionMapSectionId)
-    	{
-    		return FALSE;
-    	}
-    }
+
+	if (Overworld_GetMapHeaderByGroupAndId(gPhoneContacts[sMatchCallState.callerId].mapGroup, gPhoneContacts[sMatchCallState.callerId].mapNum)->regionMapSectionId ==
+			gMapHeader.regionMapSectionId)
+		return FALSE;
 
     return TRUE;
 }
@@ -1327,7 +1319,7 @@ static u32 GetNumRegisteredNPCs(void)
     return count;
 }
 
-static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
+static u32 GetActiveMatchCallPhoneContactId(u32 activeMatchCallId)
 {
     u32 i;
     for (i = 0; i < PHONE_CONTACT_COUNT; i++)
@@ -1804,12 +1796,12 @@ bool8 CanMatchCallIdAcceptRematch(int matchCallId, s8 dayOfWeek, s8 hour)
 }
 
 bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)
-{
+{//DEBUG CODE
     u32 matchCallId;
     u32 rematchId;
     const struct MatchCallText *matchCallText;
     bool32 retVal = FALSE;
-    u16 randomNumber = Random();
+    u16 randomNumber = Random() & 9;
 
     matchCallId = GetTrainerMatchCallId(trainerId);
     rematchId = getRematchIdFromTrainerId(trainerId);
@@ -1837,12 +1829,13 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
 		gSaveBlock1Ptr->trainerRematches[rematchId] = 1;
 		UpdateRematchIfDefeated(rematchId);
 	}
-    else if (gMatchCallTrainers[matchCallId].giftFlag && /*randomNumber % 9*/ FALSE && !FlagGet(gMatchCallTrainers[matchCallId].giftFlag) && isCallingPlayer)
+    else if (gMatchCallTrainers[matchCallId].giftFlag && /*(randomNumber == 1 || randomNumber == 2 || randomNumber == 3)*/1 && !FlagGet(gMatchCallTrainers[matchCallId].giftFlag) && isCallingPlayer)
     {
     	FlagSet(gMatchCallTrainers[matchCallId].giftFlag);
     	matchCallText = &gMatchCallTrainers[matchCallId].giftText;
     }
-    else if (isCallingPlayer && gMatchCallTrainers[matchCallId].outbreakData.species != SPECIES_NONE && gSaveBlock1Ptr->outbreakPokemonSpecies == SPECIES_NONE /*&& randomNumber  2*/)
+    else if (isCallingPlayer && gMatchCallTrainers[matchCallId].outbreakData.species != SPECIES_NONE && gSaveBlock1Ptr->outbreakPokemonSpecies == SPECIES_NONE
+    		&& /*randomNumber == 4*/1)
     {
         matchCallText = &gMatchCallTrainers[matchCallId].outbreakText;
         struct massOutbreakPhoneCallData* outbreakData = &gMatchCallTrainers[matchCallId].outbreakData;
@@ -1868,7 +1861,7 @@ int GetTrainerMatchCallId(int trainerId)
         else
             i++;
     }
-    return 0;
+    return FALSE;
 }
 
 static const struct MatchCallText *GetGenericMatchCallText(int matchCallId, u8 *str)
