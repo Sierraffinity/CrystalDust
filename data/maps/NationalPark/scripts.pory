@@ -91,9 +91,8 @@ script NationalPark_EventScript_Jack {
       		 setflag(FLAG_SCHOOLBOY_JACK_OFFERED_NUMBER)
     } else {
       msgbox("Want to trade battle tips? I'll\n"
-      		 "phone if I get good info.\p"
-      		 "Would you tell me\n"
-      		 "your number?\n", MSGBOX_YESNO)
+      		 "phone if I get good info.\l"
+      		 "Would you tell me your number?\n", MSGBOX_YESNO)
     }
     if (var (VAR_RESULT) == 1) {
       registerphonecontact(FLAG_PHONE_CARD_SCHOOLBOY_JACK) 
@@ -132,8 +131,8 @@ script NationalPark_EventScript_Beverly {
 	    if (!flag(FLAG_POKEFAN_BEVERLY_OFFERED_NUMBER)) {
 	      msgbox("Your MARILL is so cute and\n"
 	      		 "adorable!\p" 
-	      		 "You love {POKEMON}\n"
-	      		 "just like I do!\p"
+	      		 "You love {POKEMON} just like\n"
+	      		 "I do!\p"
 	      		 "Want to trade phone numbers?\n"
 	      		 "Let's chat! It'll be so much fun!\n", MSGBOX_YESNO) 
 	      setflag(FLAG_POKEFAN_BEVERLY_OFFERED_NUMBER)
@@ -145,7 +144,7 @@ script NationalPark_EventScript_Beverly {
 	    }
 	    if (var(VAR_RESULT) == 1) {
 	      registerphonecontact(FLAG_PHONE_CARD_POKEFAN_BEVERLY) 
-	      msgbox("To be honest, I want a MARILL. But\nI make do with my cute SNUBBULL.", MSGBOX_AUTOCLOSE)
+	      msgbox("To be honest, I want a MARILL.\nBut I make do with my cute SNUBBULL.", MSGBOX_AUTOCLOSE)
 	    } else {
 	      msgbox("Oh... That's disappointing...\nGoodbye, MARILL...", MSGBOX_AUTOCLOSE)
 	    }

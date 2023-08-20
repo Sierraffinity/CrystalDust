@@ -41,19 +41,19 @@ script Route38_Eventscript_LassDana {
 	if (!flag(FLAG_PHONE_CARD_LASS_DANA)) {
     if (!flag(FLAG_LASS_DANA_OFFERED_NUMBER)) {
       msgbox("You're really good at {POKEMON}!\p"
-        "Boys give me items after battles,\n"
-        "but sometimes they give me too much.\l"
-        "Next time, I can share some if you want.\p"
+        "Boys give me items after battles, but\n"
+        "sometimes they give me too much.\p"
+        "Next time, I can share some if you\nwant.\p"
         "Let me get your phone number.", MSGBOX_YESNO)
       setflag(FLAG_LASS_DANA_OFFERED_NUMBER)
     } else {
-      msgbox("I'll share my gifts with you. Let\nme get your phone number.", MSGBOX_YESNO)
+      msgbox("I'll share my gifts with you. Let me\nget your phone number.", MSGBOX_YESNO)
     }
     if (var (VAR_RESULT) == 1) {
       registerphonecontact(FLAG_PHONE_CARD_LASS_DANA)
       msgbox("Next time a boy gives me something\nafter a battle, I'll share some!\lDoes that make me bad?", MSGBOX_AUTOCLOSE)
     } else {
-      msgbox("Aww, you don't want anything? But\nit's all for free...", MSGBOX_AUTOCLOSE)
+      msgbox("Aww, you don't want anything? But it's\nall for free...", MSGBOX_AUTOCLOSE)
     }
     end
   }
@@ -86,13 +86,12 @@ script Route38_Eventscript_SchoolboyChad {
 		
   if (!flag(FLAG_PHONE_CARD_SCHOOLBOY_CHAD)) {
     if (!flag(FLAG_SCHOOLBOY_CHAD_OFFERED_NUMBER)) {
-      msgbox("Huh? Is that thing a {POKEDEX}?\l"
-        "Have you met PROF.OAK\l Huh?\l"
+      msgbox("Huh? Is that thing a {POKEDEX}?\n"
+        "Have you met PROF.OAK?\lHuh?\l"
         "You have? That's way cool!\p"
-        "I have a dream\n"
-        "of becoming a {POKEMON} researcher\l"
-        "like PROF.OAK.\p"
-        "May I please have your phone number?\n"
+        "I have a dream of becoming a\n"
+        "{POKEMON} researcher like PROF.OAK.\p"
+        "May I please have your phone\nnumber?\l"
         "We should chat about PROF.OAK.\l"
         "I'm sure it will be loads of fun!", MSGBOX_YESNO)
       setflag(FLAG_SCHOOLBOY_CHAD_OFFERED_NUMBER)
@@ -105,7 +104,7 @@ script Route38_Eventscript_SchoolboyChad {
       registerphonecontact(FLAG_PHONE_CARD_SCHOOLBOY_CHAD)
       msgbox("You must listen to PROF.OAK'S\n{POKEMON} TALK, right?", MSGBOX_AUTOCLOSE)
     } else {
-      msgbox("Oh... I wish I had a chance to\nmeet PROF.OAK...", MSGBOX_AUTOCLOSE)
+      msgbox("Oh... I wish I had a chance to meet\nPROF.OAK...", MSGBOX_AUTOCLOSE)
     }
     end
   }

@@ -1821,7 +1821,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
     }
     else if(gMatchCallTrainers[matchCallId].rematchOfferedFlag &&
     		((!isCallingPlayer && CanMatchCallIdAcceptRematch(matchCallId, gLocalTime.dayOfWeek, gLocalTime.hours)) ||
-            (isCallingPlayer  && ShouldTrainerRequestBattle(rematchId, matchCallId))) && FALSE)
+            (isCallingPlayer  && ShouldTrainerRequestBattle(rematchId, matchCallId))))
 	{
 		matchCallText = &gMatchCallTrainers[matchCallId].rematchText;
 		retVal = TRUE;

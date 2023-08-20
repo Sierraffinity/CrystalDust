@@ -21,15 +21,15 @@ script Route33_EventScript_Anthony {
 	}		  
   if (!flag(FLAG_PHONE_CARD_HIKER_ANTHONY)) {
     if (!flag(FLAG_HIKER_ANTHONY_OFFERED_NUMBER)) {
-      msgbox("By the way, I'm a HIKER,\n"
-        "so I often go to mountains and caves.\p"
+      msgbox("By the way, I'm a HIKER, so\n"
+        "I often go to mountains and caves.\p"
         "I occasionally see rare {POKEMON}.\l" 
         "I could call you\l"
         "the next time I see one.\l"
         "Feel like swapping phone numbers?", MSGBOX_YESNO)
       setflag(FLAG_HIKER_ANTHONY_OFFERED_NUMBER)
     } else {
-      msgbox("I could call you when I see some\nrare {POKEMON}.\p Feel like swapping phone numbers?", MSGBOX_YESNO)
+      msgbox("I could call you when I see some\nrare {POKEMON}.\pFeel like swapping phone numbers?", MSGBOX_YESNO)
     }
     if (var (VAR_RESULT) == 1) {
       registerphonecontact(FLAG_PHONE_CARD_HIKER_ANTHONY)

@@ -37,21 +37,20 @@ script Route26_Eventscript_CooltrainerGaven {
   if (!flag(FLAG_PHONE_CARD_COOLTRAINER_GAVEN)) {
   	bufferspeciesname(0, SPECIES_VICTREEBEL)
     if (!flag(FLAG_COOLTRAINER_GAVEN_OFFERED_NUMBER)) {
-      msgbox("Wow, you're tough. I haven't\n"
-        "battled that seriously in a long time.\p"
-        "Could I get your phone number?\l"
-        "I'd like to battle again\l"
-        "when I heal {STR_VAR_1} and the rest\l of my team.", MSGBOX_YESNO)
+      msgbox("Wow, you're tough. I haven't battled\n"
+        "that seriously in a long time.\p"
+        "Could I get your phone number?\n"
+        "I'd like to battle again when I\l"
+        "heal {STR_VAR_1} and the rest\lof my team.", MSGBOX_YESNO)
       setflag(FLAG_COOLTRAINER_GAVEN_OFFERED_NUMBER)
     } else {
       msgbox("Could I get your phone number?\p"
-        "I'd like to battle again\n"
-        "when I heal {STR_VAR_1}\l"
-        "and the rest of my team.\n", MSGBOX_YESNO)
+        "I'd like to battle again when I heal\n"
+        "{STR_VAR_1} and the rest of my team\l", MSGBOX_YESNO)
     }
     if (var (VAR_RESULT) == 1) {
       registerphonecontact(FLAG_PHONE_CARD_COOLTRAINER_GAVEN)
-      msgbox("How should I beat you?\pI'm tormented by those thoughts\n all the time...", MSGBOX_AUTOCLOSE)
+      msgbox("How should I beat you?\pI'm tormented by those thoughts\nall the time...", MSGBOX_AUTOCLOSE)
     } else {
       msgbox("OK... I understand... But if you\nchange your mind, give me a shout\lanytime.", MSGBOX_AUTOCLOSE)
     }
@@ -81,24 +80,24 @@ script Route26_Eventscript_CooltrainerBeth {
   if (!flag(FLAG_PHONE_CARD_COOLTRAINER_BETH)) {
     if (!flag(FLAG_COOLTRAINER_BETH_OFFERED_NUMBER)) {
       msgbox("It's been a while since I lost...\p"
-        "You're very good at battling.\l"
-        "We should battle again sometime.\l"
-        "By challenging a tough trainer like you,\l"
-        "I think I can get better too.\p"
+        "You're very good at battling.\n"
+        "We should battle again sometime.\p"
+        "By challenging a tough trainer like\n"
+        "you, I think I can get better too.\p"
         "So how about it?\n"
         "Would you give me your phone number?\n", MSGBOX_YESNO)
       setflag(FLAG_COOLTRAINER_BETH_OFFERED_NUMBER)
     } else {
-      msgbox("By challenging a tough trainer\n"
-        "like you, I think I can\l"
-        "get better too. So how about it?\l"
+      msgbox("By challenging a tough trainer like\n"
+        "you, I think I can get better too.\l"
+        "So how about it?\l"
         "Would you give me your phone number?", MSGBOX_YESNO)
     }
     if (var (VAR_RESULT) == 1) {
       registerphonecontact(FLAG_PHONE_CARD_COOLTRAINER_BETH)
-      msgbox(BethNumberAcceptedText: "Let's battle\nagain sometime!")
+      msgbox("Let's battle again sometime!", MSGBOX_AUTOCLOSE)
     } else {
-      msgbox(BethNumberDecdText: "That's too\nbad... Let me know if you change your\nmind.")
+      msgbox("That's too bad...\nLet me know if you change your mind.", MSGBOX_AUTOCLOSE)
     }
     end
   }

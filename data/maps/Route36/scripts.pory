@@ -358,9 +358,9 @@ script Route36_EventScript_Alan {
     }
     if (var (VAR_RESULT) == 1) {
       registerphonecontact(FLAG_PHONE_CARD_SCHOOLBOY_ALAN)
-      msgbox("I'll call you as soon as I find something.\nYou can count on it.", MSGBOX_AUTOCLOSE)
+      msgbox("I'll call you as soon as I find\nsomething. You can count on it.", MSGBOX_AUTOCLOSE)
     } else {
-      msgbox("Oh, I thought I t would be a good break to\ncall you when I'm studying...", MSGBOX_AUTOCLOSE)
+      msgbox("Oh, I thought it would be a good\nbreak to call you when I'm studying...", MSGBOX_AUTOCLOSE)
     }
     end
   }

@@ -306,10 +306,10 @@ script Route32_EventScript_Liz {
     if (!flag(FLAG_PICNICKER_LIZ_OFFERED_NUMBER)) {
       msgbox("Oh? You're on a big journey to see\n"
         "the sights?\l"
-        "Neat! Let's be friends!\p"
-        "Can I have your phone number?\l"
-        "I want to hear about\l"
-        "everything you've seen!\n", MSGBOX_YESNO)
+        "Neat! Let's be friends!\l"
+        "Can I have your phone number?\p"
+        "I want to hear about everything\n"
+        "you've seen!\n", MSGBOX_YESNO)
       setflag(FLAG_PICNICKER_LIZ_OFFERED_NUMBER)
     } else {
       msgbox("Let's be friends! Can I have your\n"

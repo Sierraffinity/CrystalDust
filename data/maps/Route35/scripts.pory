@@ -48,13 +48,13 @@ script Route35_EventScript_Arnie {
         		"I know! Give me your phone number!", MSGBOX_YESNO)
         setflag(FLAG_BUG_CATCHER_ARNIE_OFFERED_NUMBER)
       } else {
-        msgbox("I want to let peopke know if\nI see rare {POKEMON}.\lPlease give me your phone number!", MSGBOX_YESNO)
+        msgbox("I want to let people know if\nI see rare {POKEMON}.\lPlease give me your phone number!", MSGBOX_YESNO)
       }
       if (var (VAR_RESULT) == 1) {
         registerphonecontact(FLAG_PHONE_CARD_BUG_CATCHER_ARNIE)
         msgbox("If I spot any awesome {POKEMON}\nI'll be sure to give you a call!", MSGBOX_AUTOCLOSE)
       } else {
-        msgbox("Aww! I want to tell someone\n about my discoveries!", MSGBOX_AUTOCLOSE)
+        msgbox("Aww! I want to tell someone about\nmy discoveries!", MSGBOX_AUTOCLOSE)
       }
       end
     }

@@ -86,7 +86,7 @@ script Route43_Eventscript_PokemaniacBrent {
         "I can tell. Yes, you are.\l"
         "But your knowledge is shallow still!\p"
         "Do you know BILL?\n"
-        "He's an incredible\n{POKE}MANIAC.\l"
+        "He's an incredible {POKE}MANIAC.\l"
         "I revere him.\p"
         "I'll teach you all I know about BILL,\n"
         "so leave me your phone number.", MSGBOX_YESNO)

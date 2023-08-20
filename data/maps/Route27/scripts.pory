@@ -88,8 +88,8 @@ script Route27_Eventscript_BirdKeeperJose {
   if (!flag(FLAG_PHONE_CARD_BIRD_KEEPER_JOSE)) {
   bufferspeciesname(0, SPECIES_FARFETCHD)
     if (!flag(FLAG_BIRD_KEEPER_JOSE_OFFERED_NUMBER)) {
-      msgbox("If my {STR_VAR_1} sees anything pretty,\n"
-        "it goes and gets it.\p"
+      msgbox("If my {STR_VAR_1} sees anything\n"
+        "pretty, it goes and gets it.\p"
         "Do you like pretty things?\n"
         "I could share if it gets some more.\p"
         "What's your phone number?\n"
@@ -136,8 +136,8 @@ script Route27_Eventscript_CooltrainerReena {
     if (!flag(FLAG_COOLTRAINER_REENA_OFFERED_NUMBER)) {
       msgbox("Not bad... It's something to beat\n"
         "me, even by an unlikely fluke...\p"
-        "I like you! Give me your number! You can\n"
-        "be my practice partner!", MSGBOX_YESNO)
+        "I like you! Give me your number!\n"
+        "You can be my practice partner!", MSGBOX_YESNO)
       setflag(FLAG_COOLTRAINER_REENA_OFFERED_NUMBER)
     } else {
       msgbox("Give me your phone number! You are\ngoing to be my practice partner!", MSGBOX_YESNO)

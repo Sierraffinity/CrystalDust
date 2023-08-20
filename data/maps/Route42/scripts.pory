@@ -80,7 +80,7 @@ script Route42_Eventscript_FishermanTully {
         "Then we're comrades!\p"
         "If I find any more items by the water,\n"
         "I'll give you some.\p"
-        "Just give me your\nphone number.", MSGBOX_YESNO)
+        "Just give me your phone number.", MSGBOX_YESNO)
       setflag(FLAG_FISHER_TULLY_OFFERED_NUMBER)
     } else {
       msgbox("If I find any more items by the\nwater, I'll give you some.\lJust give me your phone number.", MSGBOX_YESNO)

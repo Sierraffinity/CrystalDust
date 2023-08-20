@@ -30,9 +30,9 @@ script Route34_EventScript_Todd {
     }
     if (var (VAR_RESULT) == 1) {
       registerphonecontact(FLAG_PHONE_CARD_CAMPER_TODD)
-      msgbox("I check GOLDENROD DEPT.STORE\nevery day,\l so I know when there's a sale.", MSGBOX_AUTOCLOSE)
+      msgbox("I check GOLDENROD DEPT.STORE\nevery day, so I know when there's\la sale.", MSGBOX_AUTOCLOSE)
     } else {
-      msgbox("Anyway... If you're short on money,\ntake down my number.\l I'll call you when there's a sale.", MSGBOX_AUTOCLOSE)
+      msgbox("Anyway... If you're short on money,\ntake down my number.\lI'll call you when there's a sale.", MSGBOX_AUTOCLOSE)
     }
     end
   }
@@ -86,13 +86,13 @@ script Route34_EventScript_Gina {
     }
     if (var (VAR_RESULT) == 1) {
       registerphonecontact(FLAG_PHONE_CARD_PICNICKER_GINA)
-      msgbox("I'll call as soon as I get\nanything!", MSGBOX_AUTOCLOSE)
+      msgbox("I'll call as soon as I get anything!", MSGBOX_AUTOCLOSE)
     } else {
       msgbox("Is that so? Well, I'll still be\nrooting for you!", MSGBOX_AUTOCLOSE)
     }
     end
   }
-  msgbox("You're too strong to be a\npractice partner.", MSGBOX_AUTOCLOSE)
+  msgbox("You're too strong to be a practice\npartner.", MSGBOX_AUTOCLOSE)
 }
 
 script Route34_EventScript_Keith {

@@ -17,15 +17,15 @@ script Lighthouse_2F_Eventscript_SailorHuey {
 	}
   if (!flag(FLAG_PHONE_CARD_SAILOR_HUEY)) {
     if (!flag(FLAG_SAILOR_HUEY_OFFERED_NUMBER)) {
-      msgbox("Cool! That's the first time I've\n"
-      		"lost in a while!\p"
-      		"Hey, give me your phone number.\n"
-      		"You'd be fun to battle,\l"
-      		"so I'll call you when I get stronger!", MSGBOX_YESNO) 
+      msgbox("Cool! That's the first time I've lost\n"
+      		"in a while!\l"
+      		"Hey, give me your phone number.\p"
+      		"You'd be fun to battle, so  I'll\n"
+      		"call you when I get stronger!", MSGBOX_YESNO) 
       		setflag(FLAG_SAILOR_HUEY_OFFERED_NUMBER)
     } else {
-      msgbox("Hey, give me your phone number.\n"
-      		 "You'd be fun to battle, so I'll call\l"
+      msgbox("Hey, give me your phone number.\p"
+      		 "You'd be fun to battle, so I'll call\n"
       		 "you when I get stronger!", MSGBOX_YESNO)
     }
     if (var (VAR_RESULT) == 1) {

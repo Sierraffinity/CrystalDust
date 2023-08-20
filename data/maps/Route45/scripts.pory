@@ -60,10 +60,10 @@ script Route45_Eventscript_BlackBeltKenji {
   // TODO: Phone
   if (!flag(FLAG_PHONE_CARD_BLACKBELT_KENJI)) {
     if (!flag(FLAG_BLACKBELT_KENJI_OFFERED_NUMBER)) {
-      msgbox("Our battle was remarkable!\l"
-        "I wish for some-thing to remember you by!\l"
-        "Perhaps your phone number will do?\l"
-        "My training makes it impossible to chat much, but...", MSGBOX_YESNO)
+      msgbox("Our battle was remarkable!\n"
+        "I wish for some-thing to remember\lyou by!\l"
+        "Perhaps your phone number will do?\p"
+        "My training makes it impossible to\nchat much, but...", MSGBOX_YESNO)
       setflag(FLAG_BLACKBELT_KENJI_OFFERED_NUMBER)
     } else {
       msgbox("My training makes chatting tough,\nbut will you take down my number?", MSGBOX_YESNO)
