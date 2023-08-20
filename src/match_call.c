@@ -1261,7 +1261,7 @@ static bool32 SelectMatchCallTrainer(void)
     if (sMatchCallState.callerId == PHONE_CONTACT_COUNT)
         return FALSE;
     if(gPhoneContacts[sMatchCallState.callerId].rematchTrainerId != 0xFF)
-    {
+    {//FIX THIS
     	matchCallId = GetTrainerMatchCallId(gRematchTable[gPhoneContacts[sMatchCallState.callerId].rematchTrainerId].trainerIds[0]);
     	if (Overworld_GetMapHeaderByGroupAndId(gPhoneContacts[sMatchCallState.callerId].mapGroup, gPhoneContacts[sMatchCallState.callerId].mapNum)->regionMapSectionId ==
     			gMapHeader.regionMapSectionId)
@@ -1837,7 +1837,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
 		gSaveBlock1Ptr->trainerRematches[rematchId] = 1;
 		UpdateRematchIfDefeated(rematchId);
 	}
-    else if (gMatchCallTrainers[matchCallId].giftFlag && /*randomNumber % 9*/ FALSE && !FlagGet(gMatchCallTrainers[matchCallId].giftFlag))
+    else if (gMatchCallTrainers[matchCallId].giftFlag && /*randomNumber % 9*/ FALSE && !FlagGet(gMatchCallTrainers[matchCallId].giftFlag) && isCallingPlayer)
     {
     	FlagSet(gMatchCallTrainers[matchCallId].giftFlag);
     	matchCallText = &gMatchCallTrainers[matchCallId].giftText;
@@ -1861,14 +1861,14 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
 int GetTrainerMatchCallId(int trainerId)
 {
     int i = 0;
-    while (i < MATCH_CALL_COUNT)
+    while (i <= MATCH_CALL_COUNT-1)
     {
         if (gMatchCallTrainers[i].trainerId == trainerId)
             return i;
         else
             i++;
     }
-    return -1;
+    return 0;
 }
 
 static const struct MatchCallText *GetGenericMatchCallText(int matchCallId, u8 *str)
@@ -1939,7 +1939,9 @@ static void PopulateTrainerName(int matchCallId, u8 *destStr)
 
 static void PopulateMapName(int matchCallId, u8 *destStr)
 {
-    GetMapName(destStr, GetRematchTrainerLocation(matchCallId), 0);
+	u32 phoneContactId = GetPhoneContactFromTrainerId(gMatchCallTrainers[matchCallId].trainerId);
+	const struct MapHeader *mapHeader = Overworld_GetMapHeaderByGroupAndId(gPhoneContacts[phoneContactId].mapGroup, gPhoneContacts[phoneContactId].mapNum);
+    GetMapName(destStr, mapHeader->regionMapSectionId, 0);
 }
 
 static u8 GetLandEncounterSlot(void)
@@ -1997,12 +1999,14 @@ static void PopulateSpeciesFromTrainerLocation(int matchCallId, u8 *destStr)
     RtcCalcLocalTime();
     timeOfDay = GetCurrentTimeOfDay();
 
+    u32 phoneContactId = GetPhoneContactFromTrainerId(gMatchCallTrainers[matchCallId].trainerId);
+
     if (gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED)) // ??? This check is nonsense.
     {
         while (gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED))
         {
-            if (gWildMonHeaders[i].mapGroup == gRematchTable[matchCallId].mapGroup
-             && gWildMonHeaders[i].mapNum == gRematchTable[matchCallId].mapNum)
+            if (gWildMonHeaders[i].mapGroup == gPhoneContacts[phoneContactId].mapGroup
+             && gWildMonHeaders[i].mapNum == gPhoneContacts[phoneContactId].mapNum)
                 break;
 
             i++;
@@ -2044,6 +2048,7 @@ static void PopulateSpeciesFromTrainerParty(int matchCallId, u8 *destStr)
     const u8 *speciesName;
 
     trainerId = GetLastBeatenRematchTrainerId(gMatchCallTrainers[matchCallId].trainerId);
+    if(trainerId == FALSE){ trainerId = gMatchCallTrainers[matchCallId].trainerId;}
     party = gTrainers[trainerId].party;
     monId = Random() % gTrainers[trainerId].partySize;
 

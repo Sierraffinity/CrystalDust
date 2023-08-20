@@ -91,7 +91,7 @@ struct MatchCallTrainerTextInfo
     s8 rematchAvailability[2];
 };
 
-#define MATCH_CALL_COUNT 25
+#define MATCH_CALL_COUNT 26
 extern const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT];
 
 void MatchCall_StartMassOutbreak(struct massOutbreakPhoneCallData *massOutbreak);

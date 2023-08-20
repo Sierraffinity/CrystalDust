@@ -423,6 +423,18 @@ const bool8 FindPhoneContactNameFromFlag(void){
 	return FALSE;
 }
 
+u32 GetPhoneContactFromTrainerId(int trainerId)
+{
+	int i;
+
+	for(i=0;i<PHONE_CONTACT_COUNT;i++){
+		if(gPhoneContacts[i].trainerId == trainerId){
+			return i;
+		}
+	}
+	return 0;
+}
+
 const u8 *BuildPhoneContactDisplayName(const struct PhoneContact *phoneContact, u8 *dest)
 {
     int i, j;
