@@ -1277,8 +1277,7 @@ static bool32 SelectForcedPhoneCall(void)
     	sMatchCallState.callerId = sForcedPhoneCalls[i].phoneContactId;
         if (sForcedPhoneCalls[i].callCondition() &&
             FlagGet(sForcedPhoneCalls[i].flag) &&
-			FlagGet(gPhoneContacts[sMatchCallState.callerId].registeredFlag) &&
-			UpdateMatchCallStepCounter() && UpdateMatchCallMinutesCounter())
+			FlagGet(gPhoneContacts[sMatchCallState.callerId].registeredFlag))
         {
             FlagClear(sForcedPhoneCalls[i].flag);
             sMatchCallState.forcedPhoneCallId = i + 1;
@@ -1345,15 +1344,18 @@ bool32 TryStartForcedMatchCall(void)
 
 bool32 TryStartMatchCall(void)
 {
-    if (TryStartForcedMatchCall())
-        return TRUE;
 
-    if (UpdateMatchCallStepCounter() && UpdateMatchCallMinutesCounter()
-     && CheckMatchCallChance() && MapAllowsMatchCall() && SelectMatchCallTrainer())
-    {
-    	StartMatchCall();
-    	return TRUE;
-    }
+	if(UpdateMatchCallStepCounter())
+	{
+		if (TryStartForcedMatchCall())
+			return TRUE;
+
+		if (CheckMatchCallChance() && MapAllowsMatchCall() && SelectMatchCallTrainer() && UpdateMatchCallMinutesCounter())
+		{
+			StartMatchCall();
+			return TRUE;
+		}
+	}
 
     return FALSE;
 }
