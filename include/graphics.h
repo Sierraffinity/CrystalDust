@@ -4206,21 +4206,28 @@ extern const u16 gPokenavRibbonsSummaryBg_Pal[];
 extern const u32 gPokenavRibbonsSummaryBg_Gfx[];
 extern const u32 gPokenavRibbonsSummaryBg_Tilemap[];
 
-extern const u32 gPageInfoTilemap[];
-extern const u32 gUnknown_08D98CC8[];
-extern const u32 gPageSkillsTilemap[];
-extern const u32 gPageBattleMovesTilemap[];
-extern const u32 gPageContestMovesTilemap[];
-extern const u32 gStatusScreenPalette[];
-extern const u16 gUnknown_08D85620[];
-extern const u16 gSummaryScreenWindow_Tilemap[];
-extern const u32 gMoveTypes_Pal[];
-extern const u32 gStatusScreenBitmap[];
+extern const u32 gSummaryScreenTiles[];
+extern const u32 gSummaryScreenBackgroundTilemap[];
+extern const u32 gSummaryScreenPalette[];
+extern const u32 gSummaryScreenPageInfoTilemap[];
+extern const u32 gSummaryScreenPageInfoEggTilemap[];
+extern const u32 gSummaryScreenPageSkillsTilemap[];
+extern const u32 gSummaryScreenPageMovesTilemap[];
+extern const u32 gSummaryScreenPageMoveDetailsTilemap[];
+extern const u32 gSummaryScreenPageContestMovesTilemap[];
+extern const u32 gSummaryScreenPageContestMoveDetailsTilemap[];
 
-extern const u16 gSummaryScreenPowAcc_Tilemap[];
-extern const u16 gSummaryScreenAppealJam_Tilemap[];
+extern const u32 gSummaryExpBar_Tiles[];
+extern const u32 gSummaryHealthBar_Tiles[];
+extern const u16 gExpBarHighHealthBar_Pal[];
+extern const u16 gExpBarMediumHealthBar_Pal[];
+extern const u16 gExpBarLowHealthBar_Pal[];
+
+extern const u32 gShinyIcon_Gfx[];
+extern const u16 gShinyIcon_Pal[];
 
 extern const u32 gMoveTypes_Gfx[];
+extern const u32 gMoveTypes_Pal[];
 extern const u32 gSummaryMoveSelect_Gfx[];
 extern const u32 gSummaryMoveSelect_Pal[];
 extern const u32 gStatusGfx_Icons[];
