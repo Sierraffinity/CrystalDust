@@ -5,11 +5,10 @@ struct PokedexAreaMapTemplate
 {
     u32 bg:2;
     u32 offset:8;
-    u32 mode:2;
-    u32 unk:20; // never read
+    u32 unused:22;
 };
 
-void LoadPokedexAreaMapGfx(const struct PokedexAreaMapTemplate *);
+void LoadPokedexAreaMapGfx(const struct PokedexAreaMapTemplate *, bool8 *, u8);
 bool32 sub_81C4E90(void);
 void PokedexAreaMapChangeBgY(u32);
 void FreePokedexAreaMapBgNum(void);

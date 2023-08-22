@@ -6,9 +6,9 @@
 #define CORNER_BUTTON_X 21
 #define CORNER_BUTTON_Y 13
 
-// Exported type declarations
 #define MAP_NAME_LENGTH 16
 
+// Exported type declarations
 enum
 {
     MAP_INPUT_NONE,
@@ -107,6 +107,7 @@ struct RegionMap {
     u8 mapBaseIdx;
     bool8 bgManaged;
     s8 xOffset;
+    s8 yOffset;
     bool8 onButton;
     u8 ALIGNED(4) cursorImage[0x100];
 }; // size = 0x884
@@ -123,15 +124,17 @@ struct RegionMapLocation
 // Exported RAM declarations
 
 // Exported ROM declarations
-void InitRegionMapData(struct RegionMap *regionMap, const struct BgTemplate *template, u8 mapMode, s8 xOffset);
+void InitRegionMapData(struct RegionMap *regionMap, const struct BgTemplate *template, u8 mapMode, s8 xOffset, s8 yOffset);
+bool8 ChangeDecompressedRegionMapGfx(u16* ptr, bool8* permissions);
 bool8 LoadRegionMapGfx(bool8 shouldBuffer);
 bool8 LoadRegionMapGfx_Pt2(void);
 void UpdateRegionMapVideoRegs(void);
-void InitRegionMap(struct RegionMap *regionMap, u8 mode, s8 xOffset);
+void InitRegionMap(struct RegionMap *regionMap, u8 mode, s8 xOffset, s8 yOffset);
 u8 DoRegionMapInputCallback(void);
 bool8 UpdateRegionMapZoom(void);
 void FreeRegionMapResources(void);
-u16 GetRegionMapSectionIdAt(u16 x, u16 y);
+bool8 MapsecWasVisited(u16 mapSecId);
+u16 GetRegionMapSectionIdAt(u16 x, u16 y, u8 region);
 void CreateRegionMapPlayerIcon(u16 x, u16 y);
 void CreateRegionMapCursor(u16 tileTag, u16 paletteTag, bool8 visible);
 bool32 IsEventIslandMapSecId(u8 mapSecId);
@@ -139,6 +142,7 @@ u8 *GetMapName(u8 *, u16, u16);
 u8 *GetMapNameHandleFerrySecretBase(u8 *dest, u16 mapSecId);
 u8 *GetMapNameForSummaryScreen(u8 *dest, u16 mapSecId);
 u8 *GetMapNameHandleSpecialMaps(u8 *dest, u16 mapSecId);
+u8 GetMapRegion(u16 mapSectionId);
 u8 GetCurrentRegion(void);
 void ShowRegionMapCursorSprite(void);
 void HideRegionMapCursorSprite(void);
@@ -150,6 +154,9 @@ void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y);
 void CB2_OpenFlyMap(void);
 bool8 IsRegionMapZoomed(void);
 void TrySetPlayerIconBlink(void);
+const u16 *GetRegionMapPalette(void);
+const u32 *GetRegionMapTileset(void);
+const u32 *GetRegionMapTilemap(u8 region);
 void BlendRegionMap(u16 color, u32 coeff);
 void SetRegionMapDataForZoom(void);
 void PlaySEForSelectedMapsec(void);

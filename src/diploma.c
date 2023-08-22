@@ -17,7 +17,7 @@
 #include "constants/rgb.h"
 
 extern const u8 gText_DexNational[];
-extern const u8 gText_DexHoenn[];
+extern const u8 gText_DexJohto[];
 extern const u8 gText_PokedexDiploma[];
 
 static void MainCB2(void);
@@ -135,7 +135,7 @@ static void DisplayDiplomaText(void)
     else
     {
         SetGpuReg(REG_OFFSET_BG1HOFS, 0);
-        StringCopy(gStringVar1, gText_DexHoenn);
+        StringCopy(gStringVar1, gText_DexJohto);
     }
     StringExpandPlaceholders(gStringVar4, gText_PokedexDiploma);
     PrintDiplomaText(gStringVar4, 0, 1);
