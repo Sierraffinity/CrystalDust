@@ -3345,7 +3345,7 @@ Matchcall_Beth_Generic2::
 
 	.string "I was trying to catch it when I\l"
 
-	.string "noticed that I wa all out of BALLS.\p"
+	.string "noticed that I was all out of BALLS.\p"
 
 	.string "If you don't check your items,\n"
 

@@ -1599,17 +1599,19 @@ void Task_InitPokegearPhoneCall(u8 taskId)
     case 4:
         // Getting to this switch case means that the phone call was unsuccessful, due to being out of range, in the same map, or 
         // the phone contact not being available to talk.
-        if (IsTextPrinterActive(gPhoneCallWindowId))
-        {
-            if (JOY_HELD(A_BUTTON))
-                gTextFlags.canABSpeedUpPrint = 1;
-            else
-                gTextFlags.canABSpeedUpPrint = 0;
-        }
-        else if (JOY_NEW(A_BUTTON | B_BUTTON))
-        {
-            DestroyTask(taskId);
-        }
+
+		if (IsTextPrinterActive(gPhoneCallWindowId))
+		{
+			if (JOY_HELD(A_BUTTON))
+				gTextFlags.canABSpeedUpPrint = 1;
+			else
+				gTextFlags.canABSpeedUpPrint = 0;
+		}
+		else if (JOY_NEW(A_BUTTON | B_BUTTON))
+		{
+			DestroyTask(taskId);
+		}
+
         break;
     }
 }
@@ -1942,3 +1944,5 @@ static void InitPhoneCardData(void)
 #undef WIN_DIALOG
 #undef WIN_TOP
 #undef WIN_BOTTOM
+
+
