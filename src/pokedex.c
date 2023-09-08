@@ -219,6 +219,7 @@ static u8 ClearMonSprite(void);
 static u16 GetPokemonSpriteToDisplay(u16);
 static u32 ReplacePokedexMonSprite(u16, s16, s16);
 static void CreateInterfaceSprites(u8);
+static void SpriteCB_DisplayMonMosaic(struct Sprite *sprite);
 static void SpriteCB_MoveMonForInfoScreen(struct Sprite *sprite);
 static void SpriteCB_Scrollbar(struct Sprite *sprite);
 static void SpriteCB_ScrollArrow(struct Sprite *sprite);
@@ -2385,6 +2386,12 @@ static void ReplaceMonSpriteAtPos(u16 selectedMon, u16 ignored)
     {
         spriteId = ReplacePokedexMonSprite(dexNum, 0x30, 0x38);
         gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
+        gSprites[spriteId].data[5] = 0;
+        gSprites[spriteId].oam.mosaic = TRUE;
+        gSprites[spriteId].data[0] = 10;
+        gSprites[spriteId].data[1] = 1;
+        gSprites[spriteId].callback = SpriteCB_DisplayMonMosaic;
+        SetGpuReg(REG_OFFSET_MOSAIC, (gSprites[spriteId].data[0] << 12) | (gSprites[spriteId].data[0] << 8));
     }
 
     CreateMonListEntry(0, selectedMon, ignored);
@@ -2435,6 +2442,13 @@ static void CreateScrollingPokemonSprite(u8 direction, u16 selectedMon)
     {
         spriteId = ReplacePokedexMonSprite(dexNum, 0x30, 0x38);
         gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
+        gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
+        gSprites[spriteId].data[5] = 0;
+        gSprites[spriteId].oam.mosaic = TRUE;
+        gSprites[spriteId].data[0] = 10;
+        gSprites[spriteId].data[1] = 1;
+        gSprites[spriteId].callback = SpriteCB_DisplayMonMosaic;
+        SetGpuReg(REG_OFFSET_MOSAIC, (gSprites[spriteId].data[0] << 12) | (gSprites[spriteId].data[0] << 8));
     }
     gPaletteFade.bufferTransferDisabled = FALSE;
     switch (direction)
@@ -2452,6 +2466,7 @@ static void CreateScrollingPokemonSprite(u8 direction, u16 selectedMon)
             sPokedexView->listVOffset = 0;
         break;
     }
+    gPaletteFade.bufferTransferDisabled = FALSE;
 }
 
 // u16 ignored is passed but never used
@@ -2467,6 +2482,7 @@ static u16 TryDoPokedexScroll(u16 selectedMon, u16 ignored)
     {
         scrollDir = 1;
         selectedMon = GetNextPosition(1, selectedMon, 0, sPokedexView->pokemonListCount - 1);
+        ClearMonSprite();
         CreateScrollingPokemonSprite(1, selectedMon);
         CreateMonListEntry(1, selectedMon, ignored);
         PlaySE(SE_DEX_SCROLL);
@@ -2475,6 +2491,7 @@ static u16 TryDoPokedexScroll(u16 selectedMon, u16 ignored)
     {
         scrollDir = 2;
         selectedMon = GetNextPosition(0, selectedMon, 0, sPokedexView->pokemonListCount - 1);
+        ClearMonSprite();
         CreateScrollingPokemonSprite(2, selectedMon);
         CreateMonListEntry(2, selectedMon, ignored);
         PlaySE(SE_DEX_SCROLL);
@@ -2593,7 +2610,7 @@ static u32 ReplacePokedexMonSprite(u16 num, s16 x, s16 y)
 {
 	FreeAndDestroyMonPicSprite(sPokedexView->selectedMonSpriteId);
     sPokedexView->selectedMonSpriteId = CreateMonSpriteFromNationalDexNumberAutoPaletteSlot(num, x, y);
-    gSprites[sPokedexView->selectedMonSpriteId].oam.affineMode = ST_OAM_AFFINE_OFF;
+    gSprites[sPokedexView->selectedMonSpriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
     gSprites[sPokedexView->selectedMonSpriteId].oam.priority = 3;
     gSprites[sPokedexView->selectedMonSpriteId].data[0] = 0;
     gSprites[sPokedexView->selectedMonSpriteId].data[1] = 0;
@@ -2700,7 +2717,7 @@ static void CreateInterfaceSprites(u8 page)
             // Johto text
             CreateSprite(&sJohtoNationalTextSpriteTemplate, 20, 125, 1);
 
-            // National text 
+            // National text
             spriteId = CreateSprite(&sJohtoNationalTextSpriteTemplate, 20, 135, 1);
             StartSpriteAnim(&gSprites[spriteId], 1);
 
@@ -2820,10 +2837,33 @@ static void SpriteCB_SeenOwnInfo(struct Sprite *sprite)
         DestroySprite(sprite);
 }
 
+static void SpriteCB_DisplayMonMosaic(struct Sprite *sprite)
+{
+    sprite->data[0] -= sprite->data[1];
+    if (sprite->data[0] < 0)
+        sprite->data[0] = 0;
+    SetGpuReg(REG_OFFSET_MOSAIC, (sprite->data[0] << 12) | (sprite->data[0] << 8));
+    if (sprite->data[0] == 0)
+    {
+        sprite->oam.mosaic = FALSE;
+        sprite->callback = SpriteCallbackDummy;
+    }
+}
+
 void SpriteCB_MoveMonForInfoScreen(struct Sprite *sprite)
 {
+    //finish the mosiac
+    sprite->data[0] -= sprite->data[1];
+    if (sprite->data[0] < 0)
+        sprite->data[0] = 0;
+    SetGpuReg(REG_OFFSET_MOSAIC, (sprite->data[0] << 12) | (sprite->data[0] << 8));
+    if (sprite->data[0] == 0)
+    {
+        sprite->oam.affineMode = ST_OAM_AFFINE_OFF;
+        sprite->oam.mosaic = FALSE;
+    }
+
     sprite->oam.priority = 0;
-    sprite->oam.affineMode = ST_OAM_AFFINE_OFF;
     sprite->x2 = 0;
     sprite->y2 = 0;
     if (sprite->x != 44 || sprite->y != 48)
@@ -5020,7 +5060,7 @@ void SetSearchRectHighlight(u8 flags, u8 x, u8 y, u8 width)
         temp &= 0x0fff;
         temp |= (flags << 12);
         *(u16 *)(ptr + (y + 0) * 64 + (x + i) * 2) = temp;
-        
+
         temp = *(u16 *)(ptr + (y + 1) * 64 + (x + i) * 2);
         temp &= 0x0fff;
         temp |= (flags << 12);
