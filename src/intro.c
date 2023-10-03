@@ -1,6 +1,7 @@
 #include "global.h"
 #include "main.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "intro.h"
@@ -23,6 +24,7 @@
 #include "trig.h"
 #include "util.h"
 #include "constants/battle_anim.h"
+#include "constants/flags.h"
 #include "constants/pokemon.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -1480,7 +1482,7 @@ static void Task_IntroDoSuicuneRunAcrossScreen(u8 taskId)
     if (gIntroFrameCounter == 665)
     {
         DestroyTask(data[2]);
-        PlaySE(SE_M_SAND_ATTACK);
+        PlaySE(SE_INTRO_SUICUNE1);
         data[2] = CreateSprite(&gSpriteTemplate_SuicuneSilhouette, 272, 68, 0);
         gSprites[data[2]].data[0] = -10;
         gSprites[data[2]].data[1] = 0;
@@ -1488,7 +1490,7 @@ static void Task_IntroDoSuicuneRunAcrossScreen(u8 taskId)
     
     if (gIntroFrameCounter == 695)
     {
-        PlaySE(SE_M_WING_ATTACK);
+        PlaySE(SE_INTRO_SUICUNE2);
         CreateTask(Task_ShakeGrass, 0);
     }
     
@@ -1655,7 +1657,7 @@ static void SpriteCallback_PopUpPkmn(struct Sprite *sprite)
     switch (sprite->data[0])
     {
     case 0:
-        PlaySE(SE_BIKE_HOP);
+        PlaySE(SE_INTRO_PICHU_WOOPER);
         sprite->data[1] = 10;
         sprite->data[0]++;
     case 1:
@@ -1729,7 +1731,7 @@ static void Task_IntroStartPart3(u8 taskId)
                                 | DISPCNT_OBJ_ON
                                 | DISPCNT_WIN0_ON);
     gIntroFrameCounter = 0;
-    m4aSongNumStart(MUS_INTRO);
+    m4aSongNumStart(MUS_INTRO, FlagGet(FLAG_SYS_GBS_ENABLED));
 }
 
 static void Task_IntroDoSuicuneRunningInPlace(u8 taskId)
@@ -1743,7 +1745,7 @@ static void Task_IntroDoSuicuneRunningInPlace(u8 taskId)
     
     if (gIntroFrameCounter == 96)
     {
-        PlaySE(SE_M_HYPER_BEAM);
+        PlaySE(SE_INTRO_SUICUNE3);
         StartSpriteAnim(&gSprites[data[2]], 1);
         gSprites[data[2]].data[0] = -8;
         gSprites[data[2]].data[1] = -3;

@@ -17,6 +17,7 @@
 	.include "asm/macros/battle_frontier/battle_tower.inc"
 	.include "asm/macros/battle_frontier/frontier_util.inc"
 	.include "asm/macros/phone.inc"
+	.include "asm/macros/gbs.inc"
 
 	.macro region_map_entry x, y, width, height, name
 	.byte \x

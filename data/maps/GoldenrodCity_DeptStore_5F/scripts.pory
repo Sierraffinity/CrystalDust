@@ -178,7 +178,7 @@ script GoldenrodCity_DeptStore_5F_EventScript_MysteryGiftGirl {
     msgbox("MYSTERY GIFT.\p"
            "With just a little beep, you get\n"
            "a gift.\p"
-           "Use it to LINK TOGETHER WITH ALL!", MSGBOX_NPC)
+           "Use it to “LINK TOGETHER WITH ALL!”", MSGBOX_NPC)
 }
 
 script GoldenrodCity_DeptStore_5F_EventScript_FloorNumber {

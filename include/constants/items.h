@@ -508,8 +508,9 @@
 #define ITEM_RAINBOW_WING 404
 #define ITEM_RAGE_CANDY_BAR 405
 #define ITEM_SLOWPOKE_TAIL 406
+#define ITEM_GB_PLAYER 407
 
-#define ITEMS_COUNT 407
+#define ITEMS_COUNT 408
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // Range of berries given out by various NPCS

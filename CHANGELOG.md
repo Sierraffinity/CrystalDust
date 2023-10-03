@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Morning and night battle terrain variants for all outdoor terrain types.
 - Surfing animation from FireRed (credit to [@ShinyDragonHunter](https://github.com/ShinyDragonHunter)).
 - Flying animation from FireRed (credit to [@ShinyDragonHunter](https://github.com/ShinyDragonHunter)).
+- Game Boy Player/Sounds music engine, a port of Crystal's sound engine to GBA ([@Jambo51](https://github.com/Jambo51), [@ShantyTown](https://github.com/huderlem), and myself).
 
 ### Fixed
 
@@ -30,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed a typo with Youngster Samuel's defeat text ("Beaten by a pass**s**ing stranger!").
 - Fixed a bug with certain Pokémon floating after hatching.
 - Fixed phone service being available in certain areas where it shouldn't have been.
+- Fixed memory leak in Oak speech when entering/exiting naming screen.
 
 ## [v3.0.0-alpha.0.5] - 2021-01-04
 ### Changed

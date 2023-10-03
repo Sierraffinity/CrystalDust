@@ -105,6 +105,21 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RadioTower_1F_EventScript_RadioCardWoman",
       "flag": "FLAG_HIDE_GOLDENROD_CITY_CIVILIANS"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "in_connection": false,
+      "x": 0,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RadioTower_1F_EventScript_GBPlayerMan",
+      "flag": "0"
     }
   ],
   "warp_events": [

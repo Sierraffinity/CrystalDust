@@ -432,6 +432,7 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_RAINBOW_WING] = {gItemIcon_RainbowWing, gItemIconPalette_RainbowWing},
     [ITEM_RAGE_CANDY_BAR] = {gItemIcon_RageCandyBar, gItemIconPalette_RageCandyBar},
     [ITEM_SLOWPOKE_TAIL] = {gItemIcon_SlowpokeTail, gItemIconPalette_SlowpokeTail},
+    [ITEM_GB_PLAYER] = {gItemIcon_GBPlayer, gItemIconPalette_GBPlayer},
     // Return to field arrow
     [ITEM_FIELD_ARROW] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

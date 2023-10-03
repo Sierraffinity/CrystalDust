@@ -135,6 +135,18 @@
 	struct_field SoundChannel_size, 0
 
 	struct_begin
+	struct_field o_ToneData_type, 1
+	struct_field o_ToneData_key, 1
+	struct_field o_ToneData_length, 1
+	struct_field o_ToneData_pan_sweep, 1
+	struct_field o_ToneData_wav, 4
+	struct_field o_ToneData_attack, 1
+	struct_field o_ToneData_decay, 1
+	struct_field o_ToneData_sustain, 1
+	struct_field o_ToneData_release, 1
+	struct_field ToneData_size, 0
+
+	struct_begin
 	struct_field o_MusicPlayerTrack_flags, 1
 	struct_field o_MusicPlayerTrack_wait, 1
 	struct_field o_MusicPlayerTrack_patternLevel, 1
@@ -250,3 +262,11 @@
 	struct_field o_CgbChannel_nextChannelPointer, 4
 	struct_field o_CgbChannel_dummy4, 8
 	struct_field CgbChannel_size, 0
+
+	struct_begin
+	struct_field o_WaveData_type, 2
+	struct_field o_WaveData_status, 2
+	struct_field o_WaveData_freq, 4
+	struct_field o_WaveData_loopStart, 4
+	struct_field o_WaveData_size, 4
+	struct_field o_WaveData_data, 0

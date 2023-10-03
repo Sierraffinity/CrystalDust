@@ -143,6 +143,46 @@ If you're working on a large project, you may want to convert all of the existin
   Finally you can execute it in your `pokeemerald/` directory by running `./convert_inc.sh` or `bash convert_inc.sh` in the console. This script will iterate through all your `data/map/` directories and convert the `scripts.inc` files into `scripts.pory` files by adding a `raw` tag around the old scripts. `convert_inc.sh` will skip over any directories that already have `scripts.pory` files in them, so that it will not overwrite any maps that you have already switched over to Poryscript.
 </details>
 
+3. Update `make_tools.mk` with the same change:
+```diff
+-TOOLDIRS := $(filter-out tools/agbcc tools/binutils,$(wildcard tools/*))
++TOOLDIRS := $(filter-out tools/agbcc tools/binutils tools/poryscript,$(wildcard tools/*))
+```
+
+## Convert Existing Scripts
+If you're working on a large project, you may want to convert all of the existing `scripts.inc` files to their `scripts.pory` equivalents. Since there are a large number of script files in the Gen 3 projects, you can save yourself a lot of time by following these instructions. **Again, this is completely optional, and you would only want to perform this bulk conversion if you're emabarking on large project where it would be useful to have all the existing scripts setup as Poryscript files.**
+
+<details>
+  <summary>Click Here to View Instructions</summary>
+
+  Convert all of your projects old map `scripts.inc` files into new `scripts.pory` files while maintaining the old scripts:
+
+  1. Create a file in your `pokeemerald/` directory named `convert_inc.sh` with the following content:
+     ```
+     #!/bin/bash
+
+     for directory in data/maps/* ; do
+     	pory_exists=$(find $directory -name $"scripts.pory" | wc -l)
+     	if [[ $pory_exists -eq 0 ]]; 
+     	then
+     		inc_exists=$(find $directory -name $"scripts.inc" | wc -l)
+     		if [[ $inc_exists -ne 0 ]]; 
+     		then
+     			echo "Converting: $directory/scripts.inc"
+     			touch "$directory/scripts.pory"
+     			echo 'raw `' >> "$directory/scripts.pory"
+     			cat "$directory/scripts.inc" >> "$directory/scripts.pory"
+     			echo '`' >> "$directory/scripts.pory"
+     		fi
+     	fi 	
+     done
+     ```
+  
+  2. Run `chmod 777 convert_inc.sh` to ensure the script executable. 
+
+  Finally you can execute it in your `pokeemerald/` directory by running `./convert_inc.sh` or `bash convert_inc.sh` in the console. This script will iterate through all your `data/map/` directories and convert the `scripts.inc` files into `scripts.pory` files by adding a `raw` tag around the old scripts. `convert_inc.sh` will skip over any directories that already have `scripts.pory` files in them, so that it will not overwrite any maps that you have already switched over to Poryscript.
+</details>
+
 # Poryscript Syntax (How to Write Scripts)
 
 A single `.pory` file is composed of many top-level statements. The valid top-level statements are `script`, `text`, `movement`, `mart`, `mapscripts`, and `raw`.
@@ -426,6 +466,39 @@ The length of a line can optionally be specified as the third parameter to `form
 ```
 text MyText {
     format("Hello, are you the real-live legendary {PLAYER} that everyone talks about?\pAmazing!\pSo glad to meet you!", "1_latin_rse", 100)
+}
+```
+Becomes:
+```
+.string "Hello, are you the\n"
+.string "real-live\l"
+.string "legendary\l"
+.string "{PLAYER} that\l"
+.string "everyone talks\l"
+.string "about?\p"
+.string "Amazing!\p"
+.string "So glad to meet\n"
+.string "you!$"
+```
+
+### Custom Text Encoding
+When Poryscript compiles text, the resulting text content is rendered using the `.string` assembler directive. The decomp projects' build process then processes those `.string` directives and substituted the string characters with the game-specific text representation. It can be useful to specify different types of strings, though. For example, implementing print-debugging commands might make use of ASCII text. Poryscript allows you to specify which assembler directive to use for text. Simply add the directive as a prefix to the string content like this:
+```
+ascii"My ASCII string."
+custom"My Custom string."
+
+// compiles to...
+.ascii "My ASCII string.\0"
+.custom "My Custom string."
+```
+
+Note that Poryscript will automatically add the `\0` suffix character to ASCII strings. It will **not** add suffix to any other directives.
+
+The length of a line can optionally be specified as the third parameter to `format()` if a font id was specified as the second parameter.
+
+```
+text MyText {
+    format("Hello, are you the real-live legendary {PLAYER} that everyone talks about?\pAmazing!\pSo glad to meet you!", "1_latin", 100)
 }
 ```
 Becomes:

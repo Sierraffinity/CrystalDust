@@ -1,3 +1,5 @@
+#include "constants/songs.h"
+
 	.align 2
 
 gSongTable:: @ 86B49F0
@@ -271,18 +273,18 @@ gSongTable:: @ 86B49F0
 	song se_pike_curtain_close, 1, 1
 	song se_pike_curtain_open, 1, 1
 	song se_sudowoodo_shake, 1, 1
-	song se_intro_unown1, 1, 1
-	song se_intro_unown2, 1, 1
-	song se_intro_unown3, 1, 1
 	song se_intro_dittobounce1, 1, 1
 	song se_intro_dittobounce2, 1, 1
 	song se_intro_dittotransform, 1, 1
 	song se_intro_logo_ding, 1, 1
+	song se_intro_unown1, 1, 1
+	song se_intro_unown2, 1, 1
+	song se_intro_unown3, 1, 1
+	song se_bike_hop, 1, 1
+	song se_m_sand_attack, 1, 1
+	song se_m_wing_attack, 1, 1
+	song se_m_hyper_beam, 1, 1
 	song se_phone_beep, 1, 1
-	song dummy_song_header, 0, 0
-	song dummy_song_header, 0, 0
-	song dummy_song_header, 0, 0
-	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
@@ -615,3 +617,85 @@ gSongTable:: @ 86B49F0
 	.align 2
 dummy_song_header: @ 86B5D00
 	.byte 0, 0, 0, 0
+
+	.align 2
+gGBSSongTable::
+	@song_gbs SE_PHONE_CALL,				gbs_sfx_call_Header,			1, 1	@ Phone call
+	@song_gbs SE_PHONE_CLICK,			gbs_sfx_phoneclick_Header,		1, 1	@ Phone clck
+	song_gbs SE_INTRO_UNOWN1,			gbs_sfx_introunown1_Header,		1, 1	@ Intro Unown low pitch
+	song_gbs SE_INTRO_UNOWN2,			gbs_sfx_introunown2_Header,		1, 1	@ Intro Unown mid pitch
+	song_gbs SE_INTRO_UNOWN3,			gbs_sfx_introunown3_Header,		1, 1	@ Intro Unown hi pitch
+	song_gbs SE_INTRO_DITTOBOUNCE1,		gbs_sfx_dittobounce_Header,		1, 1	@ Intro Ditto bounce 1
+	song_gbs SE_INTRO_DITTOBOUNCE2,		gbs_sfx_dittopopup_Header,		1, 1	@ Intro Ditto bounce 2
+	song_gbs SE_INTRO_DITTOTRANSFORM,	gbs_sfx_dittotransform_Header,	1, 1	@ Intro Ditto transformation
+	song_gbs SE_INTRO_PICHU_WOOPER,		gbs_sfx_intropichu_Header,		1, 1	@ Intro Ditto transformation
+	song_gbs SE_INTRO_SUICUNE1,			gbs_sfx_introsuicune1_Header,	1, 1	@ Intro Ditto transformation
+	song_gbs SE_INTRO_SUICUNE2,			gbs_sfx_introsuicune2_Header,	1, 1	@ Intro Ditto transformation
+	song_gbs SE_INTRO_SUICUNE3,			gbs_sfx_introsuicune3_Header,	1, 1	@ Intro Ditto transformation
+	@song_gbs SE_PHONE_BEEP,				gbs_sfx_phonebeep_Header,		1, 1	@ Phone beep
+	song_gbs MUS_CAUGHT,				gbs_successfulcapture_Header,	0, 0	@ Victory! (Caught)
+	song_gbs MUS_VICTORY_WILD,			gbs_wildpokemonvictory_Header,	0, 0	@ Victory! (Wild Pokémon)
+	song_gbs MUS_VICTORY_GYM_LEADER,	gbs_gymleadervictory_Header,	0, 0	@ Victory! (Gym Leader)
+	song_gbs MUS_POKECOM_CENTER,		gbs_mobilecenter_Header,		0, 0	@ Pokécom Center
+	song_gbs MUS_ROUTE29,				gbs_route29_Header,				0, 0	@ Route 29
+	song_gbs MUS_ROUTE34,				gbs_route36_Header,				0, 0	@ Route 34
+	song_gbs MUS_VIOLET,				gbs_violetcity_Header,			0, 0	@ Violet City
+	song_gbs MUS_CHERRYGROVE,			gbs_cherrygrovecity_Header,		0, 0	@ Cherrygrove City
+	song_gbs MUS_GYM,					gbs_gym_Header,					0, 0	@ Gym Theme
+	song_gbs MUS_SURF,					gbs_surf_Header,				0, 0	@ Surfing
+	song_gbs MUS_ILEX_FOREST,			gbs_unioncave_Header,			0, 0	@ Union Cave
+	song_gbs MUS_LEVEL_UP,				gbs_levelup_Header,				2, 2	@ Level Up!
+	song_gbs MUS_HEAL,					gbs_healpokemon_Header,			2, 2	@ Healing
+	song_gbs MUS_OBTAIN_BADGE,			gbs_getbadge_Header,			2, 2	@ Got a Badge!
+	song_gbs MUS_OBTAIN_ITEM,			gbs_item_Header,				2, 2	@ Got an Item!
+	song_gbs MUS_EVOLVED,				gbs_caughtmon_Header,			2, 2	@ Your Pokémon Evolved!
+	song_gbs MUS_OBTAIN_TMHM,			gbs_gettm_Header,				2, 2	@ Got a TM/HM!
+	song_gbs MUS_RUINS_OF_ALPH,			gbs_ruinsofalphinterior_Header,	0, 0	@ Ruins of Alph
+	song_gbs MUS_ROUTE30,				gbs_route30_Header,				0, 0	@ Route 30
+	song_gbs MUS_BUENAS_THEME,			gbs_buenaspassword_Header,		0, 0	@ Buena's Password
+	song_gbs MUS_EVOLUTION_INTRO,		gbs_evolutionintro_Header,		2, 2	@ Evolution Start!
+	song_gbs MUS_EVOLUTION,				gbs_evolution_Header,			0, 0	@ Evolution
+	song_gbs MUS_ENCOUNTER_LASS,		gbs_looklass_Header,			0, 0	@ Trainers' Eyes Meet (Lass)
+	song_gbs MUS_ENCOUNTER_MALE,		gbs_lookyoungster_Header,		0, 0	@ Trainers' Eyes Meet (Male)
+	song_gbs MUS_DARK_CAVE,				gbs_darkcave_Header,			0, 0	@ Dark Cave
+	song_gbs MUS_ELMS_LAB,				gbs_elmslab_Header,				0, 0	@ Elm's Lab
+	song_gbs MUS_OBTAIN_EGG,			gbs_getegg_Header,				2, 2	@ Mysterious Egg
+	song_gbs MUS_PKMNCHANNEL_INTERLUDE,	gbs_pokemonchannel_Header,		2, 2	@ Pokémon Channel Interlude
+	song_gbs MUS_POKEMON_MARCH,			gbs_pokemonmarch_Header,		0, 0	@ Pokémon March
+	song_gbs MUS_GOLDENROD,				gbs_goldenrodcity_Header,		0, 0	@ Goldenrod City
+	song_gbs MUS_POKE_CENTER,			gbs_pokemoncenter_Header,		0, 0	@ Pokémon Center
+	song_gbs MUS_CYCLING,				gbs_bicycle_Header,				0, 0	@ Cycling Theme
+	song_gbs MUS_POKEMON_LULLABY,		gbs_pokemonlullaby_Header,		0, 0	@ Pokémon Lullaby
+	song_gbs MUS_NEW_BARK,				gbs_newbarktown_Header,			0, 0	@ New Bark Town
+	song_gbs MUS_ENCOUNTER_FEMALE,		gbs_lookbeauty_Header,			0, 0	@ Trainers' Eyes Meet (Female)
+	song_gbs MUS_MOMS_THEME,			gbs_mom_Header,					0, 0	@ Mom's Theme
+	song_gbs MUS_VICTORY_TRAINER,		gbs_trainervictory_Header,		0, 0	@ Victory! (Trainer)
+	song_gbs MUS_TITLE,					gbs_titlescreen_Header,			0, 0	@ Title Screen
+	song_gbs MUS_INTRO,					gbs_crystalopening_Header,		0, 0	@ Opening Movie
+	song_gbs MUS_ENCOUNTER_RIVAL,		gbs_lookrival_Header,			0, 0	@ Rival's Theme
+	song_gbs MUS_ENCOUNTER_SAGE,		gbs_lookmysticalman_Header,		0, 0	@ Trainers' Eyes Meet (Sage)
+	song_gbs MUS_ENCOUNTER_OFFICER,		gbs_lookofficer_Header,			0, 0	@ Trainers' Eyes Meet (Officer)
+	song_gbs MUS_MAIN_MENU,				gbs_mainmenu_Header,			0, 0	@ An Adventure Begins!
+	song_gbs MUS_ENCOUNTER_ROCKET,		gbs_lookrocket_Header,			0, 0	@ Trainers' Eyes Meet (Team Rocket)
+	song_gbs MUS_FOLLOW_ME,				gbs_showmearound_Header,		0, 0	@ Follow Me!
+	song_gbs MUS_RIVAL_EXIT,			gbs_aftertherivalfight_Header,	0, 0	@ Rival Exit
+	song_gbs MUS_ENCOUNTER_SUSPICIOUS,	gbs_lookpokemaniac_Header,		0, 0	@ Trainers' Eyes Meet (Suspicious)
+	song_gbs MUS_GAME_CORNER,			gbs_gamecorner_Header,			0, 0	@ Game Corner
+	song_gbs MUS_AZALEA,				gbs_azaleatown_Header,			0, 0	@ Azalea Town
+	song_gbs MUS_BUG_CATCHING_CONTEST,	gbs_bugcatchingcontest_Header,	0, 0	@ Bug-Catching Contest
+	song_gbs MUS_SPROUT_TOWER,			gbs_sprouttower_Header,			0, 0	@ Sprout Tower
+	song_gbs MUS_NATIONAL_PARK,			gbs_nationalpark_Header,		0, 0	@ National Park
+	song_gbs MUS_OAKS_THEME,			gbs_profoak_Header,				0, 0	@ Oak's Theme
+	song_gbs MUS_OAKS_LAB,				gbs_profoakspokemontalk_Header,	0, 0	@ Oak's Lab
+	song_gbs MUS_ROCKET_TAKEOVER,		gbs_rockettheme_Header,			0, 0	@ Rocket Takeover
+	song_gbs MUS_UNOWN_RADIO,			gbs_ruinsofalphradio_Header,	0, 0	@ Unown Signal
+	song_gbs MUS_BUG_CONTEST_PREP,		gbs_contestresults_Header,		0, 0	@ Preparing for the Bug-Catching Contest
+	song_gbs MUS_ENCOUNTER_KIMONO,		gbs_lookkimonogirl_Header,		0, 0	@ Trainers' Eyes Meet (Kimono Girl)
+	song_gbs MUS_REGISTER_PHONE,		gbs_registerphonenumber_Header,	2, 2	@ Phone Number Registered!
+	song_gbs MUS_VS_JOHTO_WILD,			gbs_johtowildbattle_Header,		0, 0	@ Battle! (Wild Pokémon - Johto)
+	song_gbs MUS_VS_ROCKET,				gbs_rocketbattle_Header,		0, 0	@ Battle! (Team Rocket)
+	song_gbs MUS_VS_JOHTO_TRAINER,		gbs_johtotrainerbattle_Header,	0, 0	@ Battle! (Trainer - Johto)
+	song_gbs MUS_VS_JOHTO_LEADER,		gbs_johtogymbattle_Header,		0, 0	@ Battle! (Gym Leader - Johto)
+	song_gbs MUS_VS_RIVAL,				gbs_rivalbattle_Header,			0, 0	@ Battle! (Rival)
+	song_gbs MUS_RG_CAUGHT_INTRO,		gbs_sfx_caughtmon_Header,		2, 2	@ You Caught a Pokémon!
+	.4byte 0xFFFFFFFF
