@@ -298,8 +298,8 @@ struct MusicPlayerTrack
     u8 lfoDelay;
     u8 lfoDelayC; // 0x1C
     u8 priority;
-    u8 echoVolume;
-    u8 echoLength;
+    u8 pseudoEchoVolume;
+    u8 pseudoEchoLength;
     struct SoundChannel *chan; // 0x20
     struct ToneData tone; // 0x24
     u8 gap[10]; // 0x30

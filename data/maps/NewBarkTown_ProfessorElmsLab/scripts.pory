@@ -501,7 +501,7 @@ script NewBarkTown_EventScript_PokeBallMain {
             waitmessage
             if (flag(FLAG_SYS_GBS_ENABLED))
             {
-                playfanfare(FANFARE_RG_CAUGHT_INTRO)
+                playfanfare(MUS_RG_CAUGHT_INTRO)
             }
             else
             {
