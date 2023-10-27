@@ -587,7 +587,7 @@ static void Task_DrawDriverTestMenu(u8 taskId) // sub_080E8AA0
     sSoundTestParams[CRY_TEST_CHORUS] = 0;
     sSoundTestParams[CRY_TEST_PRIORITY] = 2;
     PrintDriverTestMenuText();
-    sub_81983AC(WIN_INFO, 2, 0, 0, 16, 9, 0);
+    InitMenuNormal(WIN_INFO, 2, 0, 0, 16, 9, 0);
     gTasks[taskId].func = Task_ProcessDriverTestInput;
 }
 

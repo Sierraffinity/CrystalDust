@@ -802,7 +802,7 @@ static void CreateStartMenuForPokenavTutorial(void)
     AddTextPrinterParameterized(windowId, 2, gText_MenuOptionSave, 8, 89, TEXT_SPEED_FF, NULL);
     AddTextPrinterParameterized(windowId, 2, gText_MenuOptionOption, 8, 105, TEXT_SPEED_FF, NULL);
     AddTextPrinterParameterized(windowId, 2, gText_MenuOptionExit, 8, 121, TEXT_SPEED_FF, NULL);
-    sub_81983AC(windowId, 1, 0, 9, 16, ARRAY_COUNT(MultichoiceList_ForcedStartMenu), 0);
+    InitMenuNormal(windowId, 1, 0, 9, 16, ARRAY_COUNT(MultichoiceList_ForcedStartMenu), 0);
     InitMultichoiceNoWrap(FALSE, ARRAY_COUNT(MultichoiceList_ForcedStartMenu), windowId, MULTI_FORCED_START_MENU);
     CopyWindowToVram(windowId, 3);
 }

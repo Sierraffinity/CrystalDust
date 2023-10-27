@@ -595,10 +595,10 @@ u8 GetPlayerTextSpeedDelay(void)
     return sTextSpeedFrameDelays[speed];
 }
 
-u8 sub_81979C4(u8 a1)
+u8 AddStartMenuWindow(u8 numActions)
 {
     if (sStartMenuWindowId == WINDOW_NONE)
-        sStartMenuWindowId = sub_8198AA4(0, 0x15, 1, 8, (a1 * 2) + 2, 0xF, 0x139);
+        sStartMenuWindowId = AddWindowParameterized(0, 22, 1, 7, (numActions * 2) - 1, 15, 0x13D);
     return sStartMenuWindowId;
 }
 
@@ -1100,7 +1100,7 @@ u8 sub_8198348(u8 windowId, u8 fontId, u8 left, u8 top, u8 cursorHeight, u8 numC
     return sMenu.cursorPos;
 }
 
-u8 sub_81983AC(u8 windowId, u8 fontId, u8 left, u8 top, u8 cursorHeight, u8 numChoices, u8 initialCursorPos)
+u8 InitMenuNormal(u8 windowId, u8 fontId, u8 left, u8 top, u8 cursorHeight, u8 numChoices, u8 initialCursorPos)
 {
     return sub_8198348(windowId, fontId, left, top, cursorHeight, numChoices, initialCursorPos, 0);
 }
@@ -1108,7 +1108,7 @@ u8 sub_81983AC(u8 windowId, u8 fontId, u8 left, u8 top, u8 cursorHeight, u8 numC
 u8 sub_81983EC(u8 windowId, u8 fontId, u8 left, u8 top, u8 numChoices, u8 initialCursorPos)
 {
     u8 cursorHeight = GetMenuCursorDimensionByFont(fontId, 1);
-    return sub_81983AC(windowId, fontId, left, top, cursorHeight, numChoices, initialCursorPos);
+    return InitMenuNormal(windowId, fontId, left, top, cursorHeight, numChoices, initialCursorPos);
 }
 
 void RedrawMenuCursor(u8 oldPos, u8 newPos)
@@ -1350,7 +1350,7 @@ struct WindowTemplate CreateWindowTemplate(u8 bg, u8 left, u8 top, u8 width, u8 
     return template;
 }
 
-u16 sub_8198AA4(u8 bg, u8 left, u8 top, u8 width, u8 height, u8 paletteNum, u16 baseBlock)
+u16 AddWindowParameterized(u8 bg, u8 left, u8 top, u8 width, u8 height, u8 paletteNum, u16 baseBlock)
 {
     struct WindowTemplate template;
     SetWindowTemplateFields(&template, bg, left, top, width, height, paletteNum, baseBlock);
@@ -1380,7 +1380,7 @@ void sub_8198AF8(const struct WindowTemplate *window, u8 fontId, u8 left, u8 top
 
     AddTextPrinter(&printer, 0xFF, NULL);
 
-    sub_81983AC(sYesNoWindowId, fontId, left, top, GetFontAttribute(fontId, FONTATTR_MAX_LETTER_HEIGHT), 2, initialCursorPos);
+    InitMenuNormal(sYesNoWindowId, fontId, left, top, GetFontAttribute(fontId, FONTATTR_MAX_LETTER_HEIGHT), 2, initialCursorPos);
 }
 
 void sub_8198C34(const struct WindowTemplate *window, u8 fontId, u16 baseTileNum, u8 paletteNum)
