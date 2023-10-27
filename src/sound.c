@@ -232,7 +232,7 @@ void StopFanfareByFanfareNum(u8 fanfareNum)
 
 void PlayFanfare(u16 songNum)
 {
-    int i;
+    u32 i;
     for (i = 0; i < ARRAY_COUNT(sFanfares); i++)
     {
         if (sFanfares[i].songNum == songNum)

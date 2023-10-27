@@ -171,7 +171,7 @@ _081DCF54:
 
 _081DCF60:
 	ldrb r6, [r4, #o_SoundChannel_statusFlags]
-	movs r0, 0xC7
+	movs r0, SOUND_CHANNEL_SF_ON
 	tst r0, r6
 	bne _081DCF6A
 	b _081DD240

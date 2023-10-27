@@ -644,16 +644,12 @@ void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader
             track->flags = MPT_FLG_EXIST | MPT_FLG_START;
             track->chan = 0;
             track->cmdPtr = songHeader->part[i];
-            i++;
-            track++;
         }
 
-        while (i < mplayInfo->trackCount)
+        for (; i < mplayInfo->trackCount; i++, track++)
         {
             TrackStop(mplayInfo, track);
             track->flags = 0;
-            i++;
-            track++;
         }
 
         if (songHeader->reverb & SOUND_MODE_REVERB_SET)
@@ -674,14 +670,9 @@ void m4aMPlayStop(struct MusicPlayerInfo *mplayInfo)
     mplayInfo->ident++;
     mplayInfo->status |= MUSICPLAYER_STATUS_PAUSE;
 
-    i = mplayInfo->trackCount;
-    track = mplayInfo->tracks;
-
-    while (i > 0)
+    for (i = mplayInfo->trackCount, track = mplayInfo->tracks; i > 0; i--, track++)
     {
         TrackStop(mplayInfo, track);
-        i--;
-        track++;
     }
 
     mplayInfo->ident = ID_NUMBER;
@@ -932,7 +923,6 @@ void CgbSound(void)
     vu8 *nrx3ptr;
     vu8 *nrx4ptr;
     s32 envelopeStepTimeAndDir;
-    int i;
 
     // Most comparison operations that cast to s8 perform 'and' by 0xFF.
     int mask = 0xff;
@@ -951,6 +941,7 @@ void CgbSound(void)
 
         gUsedCGBChannels |= 1 << (ch - 1);
 
+        /* 1. determine hardware channel registers */
         switch (ch)
         {
         case 1:

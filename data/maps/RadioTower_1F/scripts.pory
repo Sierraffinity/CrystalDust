@@ -288,7 +288,7 @@ script RadioTower_1F_EventScript_GBPlayerMan {
     msgbox("The music here is fine, but I wish\n"
            "they played songs from the '90s.\p"
            "You know, they're giving away retro\n"
-           "music players at POKéMON MARTS if\l"
+           "music players at {POKEMON} MARTS if\l"
            "you know the right password.\p"
            "Uh… I think it was something like\n"
            "“GAME BOY WAS BETTER”.\p"
