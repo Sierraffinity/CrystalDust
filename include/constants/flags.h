@@ -146,7 +146,7 @@
 #define FLAG_RECEIVED_CHARCOAL_AZALEA        0x84
 #define FLAG_FETCHED_FARFETCHD               0x85
 #define FLAG_PENDING_DAYCARE_EGG             0x86
-#define FLAG_GOLDENROD_DEPT_STORE_SALE_HAPPENING 0x87
+#define FLAG_UNUSED_0x87					 0x87 // Unused Flag
 #define FLAG_KURT_GAVE_LURE_BALL             0x88
 #define FLAG_BUGGING_KURT_TOO_MUCH           0x89
 #define FLAG_FOREST_IS_RESTLESS              0x8A
@@ -371,39 +371,40 @@
 #define FLAG_MET_FRONTIER_SWIMMER_MOVE_TUTOR 0x15B
 
 // Registered Phone Card Contacts Flags.
-#define FLAG_PHONE_CARD_MOM             0x15C
-#define FLAG_PHONE_CARD_ELM             0x15D
-#define FLAG_PHONE_CARD_BILL            0x15E
-#define FLAG_PHONE_CARD_ANDRES          0x15F
-#define FLAG_PHONE_CARD_DUSTY           0x160
-#define FLAG_PHONE_CARD_LOLA            0x161
-#define FLAG_PHONE_CARD_RICKY           0x162
-#define FLAG_PHONE_CARD_LILA_AND_ROY    0x163
-#define FLAG_PHONE_CARD_CRISTIN         0x164
-#define FLAG_PHONE_CARD_BROOKE          0x165
-#define FLAG_PHONE_CARD_WILTON          0x166
-#define FLAG_PHONE_CARD_VALERIE         0x167
-#define FLAG_PHONE_CARD_CINDY           0x168
-#define FLAG_PHONE_CARD_THALIA          0x169
-#define FLAG_PHONE_CARD_JESSICA         0x16A
-#define FLAG_PHONE_CARD_WINSTON         0x16B
-#define FLAG_PHONE_CARD_STEVE           0x16C
-#define FLAG_PHONE_CARD_TONY            0x16D
-#define FLAG_PHONE_CARD_NOB             0x16E
-#define FLAG_PHONE_CARD_KOJI            0x16F
-#define FLAG_PHONE_CARD_FERNANDO        0x170
-#define FLAG_PHONE_CARD_DALTON          0x171
-#define FLAG_PHONE_CARD_BERNIE          0x172
-#define FLAG_PHONE_CARD_ETHAN           0x173
-#define FLAG_PHONE_CARD_JOHN_AND_JAY    0x174
-#define FLAG_PHONE_CARD_JEFFREY         0x175
-#define FLAG_PHONE_CARD_CAMERON         0x176
-#define FLAG_PHONE_CARD_JACKI           0x177
-#define FLAG_PHONE_CARD_WALTER          0x178
-#define FLAG_PHONE_CARD_KAREN           0x179
-#define FLAG_PHONE_CARD_JERRY           0x17A
-#define FLAG_PHONE_CARD_ANNA_AND_MEG    0x17B
-#define FLAG_PHONE_CARD_ISABEL          0x17C
+#define FLAG_PHONE_CARD_MOM 				0x15C //NEW BARK TOWN PLAYER HOUSE
+#define FLAG_PHONE_CARD_ELM 				0x15D //NEW BARK TOWN ELM'S LAB
+#define FLAG_PHONE_CARD_BILL 				0x15E //GOLDENROD CITY BILL'S HOUSE
+#define FLAG_PHONE_CARD_HIKER_ANTHONY 		0x15F //ROUTE 33
+#define FLAG_PHONE_CARD_FISHER_RALPH 		0x160 //ROUTE 32
+#define FLAG_PHONE_CARD_BUG_CATCHER_ARNIE 	0x161 //ROUTE 35
+#define FLAG_PHONE_CARD_LASS_DANA 			0x162 //ROUTE 38
+#define FLAG_PHONE_CARD_BUENA 				0x163 //GOLDENROD CITY RADIO TOWER
+#define FLAG_PHONE_CARD_YOUNGSTER_JOEY		0x164 //ROUTE 30
+#define FLAG_PHONE_CARD_BUG_CATCHER_WADE 	0x165 //ROUTE 31
+#define FLAG_PHONE_CARD_CAMPER_TODD 		0x166 //ROUTE 34
+#define FLAG_PHONE_CARD_PICNICKER_GINA		0x167 //ROUTE 34
+#define FLAG_PHONE_CARD_POKEFAN_BEVERLY 	0x168 //NATIONAL PARK
+#define FLAG_PHONE_CARD_SCHOOLBOY_ALAN		0x169 //ROUTE 36
+#define FLAG_PHONE_CARD_BIRD_KEEPER_VANCE 	0x16A //ROUTE 44
+#define FLAG_PHONE_CARD_FISHER_TULLY 		0x16B //ROUTE 42
+#define FLAG_PHONE_CARD_SAILOR_HUEY 		0x16C //OLIVINE CITY
+#define FLAG_PHONE_CARD_PICNICKER_TIFFANY	0x16D //ROUTE 43
+#define FLAG_PHONE_CARD_BLACKBELT_KENJI 	0x16E //ROUTE 45
+#define FLAG_PHONE_CARD_PICNICKER_ERIN		0x16F //ROUTE 46
+#define FLAG_PHONE_CARD_BIRD_KEEPER_JOSE 	0x170 //ROUTE 27
+#define FLAG_PHONE_CARD_SCHOOLBOY_JACK		0x171 //NATIONAL PARK
+#define FLAG_PHONE_CARD_COOLTRAINER_REENA 	0x172 //ROUTE 26
+#define FLAG_PHONE_CARD_COOLTRAINER_GAVEN 	0x173 //ROUTE 26
+#define FLAG_PHONE_CARD_COOLTRAINER_BETH 	0x174 //ROUTE 26
+#define FLAG_PHONE_CARD_PICNICKER_LIZ 		0x175 //ROUTE 32
+#define FLAG_PHONE_CARD_JUGGLER_IRWIN 		0x176 //ROUTE 35
+#define FLAG_PHONE_CARD_POKEFAN_DEREK 		0x177 //ROUTE 38
+#define FLAG_PHONE_CARD_POKEMANIAC_BRENT 	0x178 //ROUTE 43
+#define FLAG_PHONE_CARD_SCHOOLBOY_CHAD		0x179 //ROUTE 38
+#define FLAG_PHONE_CARD_FISHER_WILTON		0x17A //ROUTE 44
+#define FLAG_PHONE_CARD_HIKER_PARRY			0x17B //ROUTE 45
+//UNUSED PHONE CARD FLAGS AFTER THIS
+#define FLAG_PHONE_CARD_UNUSED          0x17C
 #define FLAG_PHONE_CARD_MIGUEL          0x17D
 #define FLAG_PHONE_CARD_TIMOTHY         0x17E
 #define FLAG_PHONE_CARD_SHELBY          0x17F
@@ -651,45 +652,50 @@
 #define FLAG_HIDDEN_ITEM_UNUSED_0x6E (FLAG_HIDDEN_ITEMS_START + 0x6E)
 #define FLAG_HIDDEN_ITEM_UNUSED_0x6F (FLAG_HIDDEN_ITEMS_START + 0x6F)
 
-#define FLAG_UNUSED_0x264  0x264 // Unused Flag
-#define FLAG_UNUSED_0x265  0x265 // Unused Flag
-#define FLAG_UNUSED_0x266  0x266 // Unused Flag
-#define FLAG_UNUSED_0x267  0x267 // Unused Flag
-#define FLAG_UNUSED_0x268  0x268 // Unused Flag
-#define FLAG_UNUSED_0x269  0x269 // Unused Flag
-#define FLAG_UNUSED_0x26A  0x26A // Unused Flag
-#define FLAG_UNUSED_0x26B  0x26B // Unused Flag
-#define FLAG_UNUSED_0x26C  0x26C // Unused Flag
-#define FLAG_UNUSED_0x26D  0x26D // Unused Flag
-#define FLAG_UNUSED_0x26E  0x26E // Unused Flag
-#define FLAG_UNUSED_0x26F  0x26F // Unused Flag
-#define FLAG_UNUSED_0x270  0x270 // Unused Flag
-#define FLAG_UNUSED_0x271  0x271 // Unused Flag
-#define FLAG_UNUSED_0x272  0x272 // Unused Flag
-#define FLAG_UNUSED_0x273  0x273 // Unused Flag
-#define FLAG_UNUSED_0x274  0x274 // Unused Flag
-#define FLAG_UNUSED_0x275  0x275 // Unused Flag
-#define FLAG_UNUSED_0x276  0x276 // Unused Flag
-#define FLAG_UNUSED_0x277  0x277 // Unused Flag
-#define FLAG_UNUSED_0x278  0x278 // Unused Flag
-#define FLAG_UNUSED_0x279  0x279 // Unused Flag
-#define FLAG_UNUSED_0x27A  0x27A // Unused Flag
-#define FLAG_UNUSED_0x27B  0x27B // Unused Flag
-#define FLAG_UNUSED_0x27C  0x27C // Unused Flag
-#define FLAG_UNUSED_0x27D  0x27D // Unused Flag
-#define FLAG_UNUSED_0x27E  0x27E // Unused Flag
-#define FLAG_UNUSED_0x27F  0x27F // Unused Flag
-#define FLAG_UNUSED_0x280  0x280 // Unused Flag
-#define FLAG_UNUSED_0x281  0x281 // Unused Flag
-#define FLAG_UNUSED_0x282  0x282 // Unused Flag
-#define FLAG_UNUSED_0x283  0x283 // Unused Flag
-#define FLAG_UNUSED_0x284  0x284 // Unused Flag
-#define FLAG_UNUSED_0x285  0x285 // Unused Flag
-#define FLAG_UNUSED_0x286  0x286 // Unused Flag
-#define FLAG_UNUSED_0x287  0x287 // Unused Flag
-#define FLAG_UNUSED_0x288  0x288 // Unused Flag
-#define FLAG_UNUSED_0x289  0x289 // Unused Flag
-#define FLAG_UNUSED_0x28A  0x28A // Unused Flag
+//Flags for when a trainer has already offered you their phone number
+#define FLAG_HIKER_ANTHONY_OFFERED_NUMBER		0x264
+#define FLAG_FISHER_RALPH_OFFERED_NUMBER		0x265
+#define FLAG_BUG_CATCHER_ARNIE_OFFERED_NUMBER	0x266
+#define FLAG_LASS_DANA_OFFERED_NUMBER			0x267
+#define FLAG_YOUNGSTER_JOEY_OFFERED_NUMBER		0x268
+#define FLAG_BUG_CATCHER_WADE_OFFERED_NUMBER	0x269
+#define FLAG_CAMPER_TODD_OFFERED_NUMBER			0x26A
+#define FLAG_PICNICKER_GINA_OFFERED_NUMBER		0x26B
+#define FLAG_POKEFAN_BEVERLY_OFFERED_NUMBER		0x26C
+#define FLAG_SCHOOLBOY_ALAN_OFFERED_NUMBER		0x26D
+#define FLAG_BIRD_KEEPER_VANCE_OFFERED_NUMBER	0x26E
+#define FLAG_FISHER_TULLY_OFFERED_NUMBER		0x26F
+#define FLAG_SAILOR_HUEY_OFFERED_NUMBER			0x270
+#define FLAG_PICNICKER_TIFFANY_OFFERED_NUMBER	0x271
+#define FLAG_BLACKBELT_KENJI_OFFERED_NUMBER		0x272
+#define FLAG_PICNICKER_ERIN_OFFERED_NUMBER		0x273
+#define FLAG_BIRD_KEEPER_JOSE_OFFERED_NUMBER	0x274
+#define FLAG_SCHOOLBOY_JACK_OFFERED_NUMBER		0x275
+#define FLAG_COOLTRAINER_REENA_OFFERED_NUMBER	0x276
+#define FLAG_COOLTRAINER_GAVEN_OFFERED_NUMBER	0x277
+#define FLAG_COOLTRAINER_BETH_OFFERED_NUMBER	0x278
+#define FLAG_PICNICKER_LIZ_OFFERED_NUMBER		0x279
+#define FLAG_JUGGLER_IRWIN_OFFERED_NUMBER		0x27A
+#define FLAG_POKEFAN_DEREK_OFFERED_NUMBER		0x27B
+#define FLAG_POKEMANIAC_BRENT_OFFERED_NUMBER	0x27C
+#define FLAG_SCHOOLBOY_CHAD_OFFERED_NUMBER		0x27D
+#define FLAG_FISHER_WILTON_OFFERED_NUMBER		0x27E
+#define FLAG_HIKER_PARRY_OFFERED_NUMBER			0x27F
+
+//Phone Calls for gift items
+#define FLAG_CALL_GINA_GIFT  			0x280
+#define FLAG_CALL_ALAN_GIFT  			0x281
+#define FLAG_CALL_DANA_GIFT  			0x282
+#define FLAG_CALL_DEREK_GIFT 			0x283
+#define FLAG_CALL_TULLY_GIFT  			0x284
+#define FLAG_CALL_TIFFANY_GIFT  		0x285
+#define FLAG_CALL_WILTON_GIFT  			0x286
+#define FLAG_CALL_JOSE_GIFT  			0x287
+#define FLAG_CALL_BEVERLY_GIFT			0x288
+#define FLAG_CALL_KENJI_GIFT			0x289
+#define FLAG_CALL_WADE_GIFT				0x28A
+
+//Unused Flags
 #define FLAG_UNUSED_0x28B  0x28B // Unused Flag
 #define FLAG_UNUSED_0x28C  0x28C // Unused Flag
 #define FLAG_UNUSED_0x28D  0x28D // Unused Flag
@@ -1254,10 +1260,11 @@
 #define FLAG_ITEM_ARTISAN_CAVE_B1F_HP_UP                            0x4A1
 #define FLAG_ITEM_ARTISAN_CAVE_1F_CARBOS                            0x4A2
 
-#define FLAG_UNUSED_0x4A3                                           0x4A3 // Unused Flag
-#define FLAG_UNUSED_0x4A4                                           0x4A4 // Unused Flag
-#define FLAG_UNUSED_0x4A5                                           0x4A5 // Unused Flag
-#define FLAG_UNUSED_0x4A6                                           0x4A6 // Unused Flag
+#define FLAG_IRWIN_FORCED_CALL										0x4A3
+#define FLAG_GOLDENROD_SALE_FORCED_CALL								0x4A4
+#define FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL					0x4A5
+#define FLAG_BUG_CATCHING_CONTEST_DEREK_FORCED_CALL                 0x4A6
+
 #define FLAG_UNUSED_0x4A7                                           0x4A7 // Unused Flag
 #define FLAG_UNUSED_0x4A8                                           0x4A8 // Unused Flag
 #define FLAG_UNUSED_0x4A9                                           0x4A9 // Unused Flag
@@ -1579,33 +1586,34 @@
 #define FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY       				(DAILY_FLAGS_START + 0x30)
 #define FLAG_DAILY_BERRY_MASTERS_WIFE               				(DAILY_FLAGS_START + 0x31)
 #define FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY        				(DAILY_FLAGS_START + 0x32)
-#define FLAG_UNUSED_0x933                           				(DAILY_FLAGS_START + 0x33) // Unused Flag
+#define FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING              (DAILY_FLAGS_START + 0x33)
 #define FLAG_DAILY_APPRENTICE_LEAVES                				(DAILY_FLAGS_START + 0x34)
 
-#define FLAG_UNUSED_0x935                           				(DAILY_FLAGS_START + 0x35) // Unused Flag
-#define FLAG_UNUSED_0x936                           				(DAILY_FLAGS_START + 0x36) // Unused Flag
-#define FLAG_UNUSED_0x937                           				(DAILY_FLAGS_START + 0x37) // Unused Flag
-#define FLAG_UNUSED_0x938                           				(DAILY_FLAGS_START + 0x38) // Unused Flag
-#define FLAG_UNUSED_0x939                           				(DAILY_FLAGS_START + 0x39) // Unused Flag
-#define FLAG_UNUSED_0x93A                           				(DAILY_FLAGS_START + 0x3A) // Unused Flag
-#define FLAG_UNUSED_0x93B                           				(DAILY_FLAGS_START + 0x3B) // Unused Flag
-#define FLAG_UNUSED_0x93C                           				(DAILY_FLAGS_START + 0x3C) // Unused Flag
-#define FLAG_UNUSED_0x93D                           				(DAILY_FLAGS_START + 0x3D) // Unused Flag
-#define FLAG_UNUSED_0x93E                           				(DAILY_FLAGS_START + 0x3E) // Unused Flag
-#define FLAG_UNUSED_0x93F                           				(DAILY_FLAGS_START + 0x3F) // Unused Flag
-#define FLAG_UNUSED_0x940                           				(DAILY_FLAGS_START + 0x40) // Unused Flag
-#define FLAG_UNUSED_0x941                           				(DAILY_FLAGS_START + 0x41) // Unused Flag
-#define FLAG_UNUSED_0x942                           				(DAILY_FLAGS_START + 0x42) // Unused Flag
-#define FLAG_UNUSED_0x943                           				(DAILY_FLAGS_START + 0x43) // Unused Flag
-#define FLAG_UNUSED_0x944                           				(DAILY_FLAGS_START + 0x44) // Unused Flag
-#define FLAG_UNUSED_0x945                           				(DAILY_FLAGS_START + 0x45) // Unused Flag
-#define FLAG_UNUSED_0x946                           				(DAILY_FLAGS_START + 0x46) // Unused Flag
-#define FLAG_UNUSED_0x947                           				(DAILY_FLAGS_START + 0x47) // Unused Flag
-#define FLAG_UNUSED_0x948                           				(DAILY_FLAGS_START + 0x48) // Unused Flag
-#define FLAG_UNUSED_0x949                           				(DAILY_FLAGS_START + 0x49) // Unused Flag
-#define FLAG_UNUSED_0x94A                           				(DAILY_FLAGS_START + 0x4A) // Unused Flag
-#define FLAG_UNUSED_0x94B                           				(DAILY_FLAGS_START + 0x4B) // Unused Flag
-#define FLAG_UNUSED_0x94C                           				(DAILY_FLAGS_START + 0x4C) // Unused Flag
+#define FLAG_ANTHONY_OFFERED_REMATCH                   				(DAILY_FLAGS_START + 0x35)
+#define FLAG_RALPH_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x36)
+#define FLAG_ARNIE_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x37)
+#define FLAG_DANA_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x38)
+#define FLAG_JOEY_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x39)
+#define FLAG_TODD_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3A)
+#define FLAG_GINA_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3B)
+#define FLAG_ALAN_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3C)
+#define FLAG_VANCE_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x3D)
+#define FLAG_TULLY_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x3E)
+#define FLAG_HUEY_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3F)
+#define FLAG_TIFFANY_OFFERED_REMATCH                   				(DAILY_FLAGS_START + 0x40)
+#define FLAG_ERIN_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x41)
+#define FLAG_JOSE_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x42)
+#define FLAG_JACK_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x43)
+#define FLAG_REENA_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x44)
+#define FLAG_GAVEN_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x45)
+#define FLAG_BETH_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x46)
+#define FLAG_WADE_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x47)
+#define FLAG_LIZ_OFFERED_REMATCH                       				(DAILY_FLAGS_START + 0x48)
+#define FLAG_BRENT_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x49)
+#define FLAG_CHAD_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x4A)
+#define FLAG_WILTON_OFFERED_REMATCH                    				(DAILY_FLAGS_START + 0x4B)
+#define FLAG_PARRY_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x4C)
+
 #define FLAG_UNUSED_0x94D                           				(DAILY_FLAGS_START + 0x4D) // Unused Flag
 #define FLAG_UNUSED_0x94E                           				(DAILY_FLAGS_START + 0x4E) // Unused Flag
 #define FLAG_UNUSED_0x94F                           				(DAILY_FLAGS_START + 0x4F) // Unused Flag

@@ -1,11 +1,8 @@
 mapscripts Route34_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
-        if (flag(FLAG_PENDING_DAYCARE_EGG))
-        {
+        if (flag(FLAG_PENDING_DAYCARE_EGG)) {
             clearflag(FLAG_HIDE_ROUTE_34_DAYCARE_MAN_OUTSIDE)
-        }
-        else
-        {
+        } else {
             setflag(FLAG_HIDE_ROUTE_34_DAYCARE_MAN_OUTSIDE)
         }
     }
@@ -13,7 +10,35 @@ mapscripts Route34_MapScripts {
 
 script Route34_EventScript_Todd {
     trainerbattle_single(TRAINER_TODD_1, "I'm confident in my ability to\nraise {POKEMON}.\pWant to see?", "Did I screw up my training?")
-    //TODO: Phone
+    // TODO: Check phone strings for textbox fit
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if(var(VAR_RESULT) == 1)
+    {
+        trainerbattle_rematch(TRAINER_TODD_1, "I waited for you!\pI even cut back my shopping to raise\nmy {POKEMON} better!", "Did I screw up my training?")
+        clearflag(FLAG_TODD_OFFERED_REMATCH)
+    }
+    if (!flag(FLAG_PHONE_CARD_CAMPER_TODD))
+    {
+        if (!flag(FLAG_CAMPER_TODD_OFFERED_NUMBER))
+        {
+            msgbox("From here, I can see\n GOLDENROD's DEPT.STORE.\lThey have bargain sales\lup on the rooftop every so often.\pCould I get your phone number?\nI'll call you when they have a sale.", MSGBOX_YESNO)
+            setflag(FLAG_CAMPER_TODD_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("If you give me your number, I'll\ncall you when they have a sale.", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_CAMPER_TODD)
+            msgbox("I check GOLDENROD DEPT.STORE\nevery day, so I know when there's\la sale.", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("Anyway… If you're short on money,\ntake down my number.\lI'll call you when there's a sale.", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
     msgbox("Maybe I should take one to the\nDAY-CARE nearby.\lOr maybe use some items…", MSGBOX_AUTOCLOSE)
 }
 
@@ -29,23 +54,61 @@ script Route34_EventScript_Ian {
 
 script Route34_EventScript_Gina {
     trainerbattle_single(TRAINER_GINA_1, "Are you a TRAINER?\nLet's have a practice battle.", "Oh, no!\nI just can't win…")
-    //TODO: Phone
-    msgbox("You're too strong to be a\npractice partner.", MSGBOX_AUTOCLOSE)
+    // TODO: Check phone strings for textbox fit
+    if(flag(FLAG_CALL_GINA_GIFT))
+    {
+        msgbox("So you're finally here!\nI think this will make you happy.", MSGBOX_AUTOCLOSE)
+        giveitem(ITEM_LEAF_STONE, 1)
+        if(var(VAR_0x8007) == FALSE)
+        {
+            msgbox("Your PACK looks completely full.\nI'll have to hold on to this.", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            clearflag(FLAG_CALL_GINA_GIFT)
+        }
+        end
+    }
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if(var(VAR_RESULT) == 1)
+    {
+        trainerbattle_rematch(TRAINER_GINA_1, "I've been waiting!\nI've gotten a bit better at this!", "Oh no!\nI just can't win…")
+        clearflag(FLAG_GINA_OFFERED_REMATCH)
+    }
+    if (!flag(FLAG_PHONE_CARD_PICNICKER_GINA))
+    {
+        if (!flag(FLAG_PICNICKER_GINA_OFFERED_NUMBER))
+        {
+            msgbox("Whenever I see a strong trainer,\nI want to be their cheerleader.\pWhen I'm on my walk,\nI sometimes pick up items.\lIf I get anything, you can have it!\pWant to give me your number?\nI'll call as soon as I get anything.", MSGBOX_YESNO)
+            setflag(FLAG_PICNICKER_GINA_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("If I find an item, you can have it!\nWant to give me your number?", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_PICNICKER_GINA)
+            msgbox("I'll call as soon as I get anything!", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("Is that so? Well, I'll still be\nrooting for you!", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
+    msgbox("You're too strong to be a practice\npartner.", MSGBOX_AUTOCLOSE)
 }
 
 script Route34_EventScript_Keith {
     lock
     faceplayer
     gettime
-    if (var(VAR_0x8002) == TIME_NIGHT)
-    {
+    if (var (VAR_0x8002) == TIME_NIGHT) {
         trainerbattle_single(TRAINER_KEITH, "Who goes there?\nWhat are you up to?", "You're a tough little kid.")
         msgbox("Yep, I see nothing wrong today.\nYou be good and stay out of trouble.")
-    }
-    else
-    {
-        msgbox("I'm on patrol for suspicious\n"
-               "individuals.")
+    } else {
+        msgbox("I'm on patrol for suspicious\nindividuals.")
     }
     release
 }
@@ -57,13 +120,9 @@ script Route34_EventScript_Brandon {
 
 script Route34_EventScript_Irene {
     trainerbattle_single(TRAINER_IRENE, "IRENE: Kyaaah!\nSomeone found us!", "IRENE: Ohhh!\nToo strong!")
-    if (!defeated(TRAINER_KATE))
-    {
-        msgbox("IRENE: My sister KATE will get\n"
-	           "you for this!")
-    }
-    else
-    {
+    if (!defeated(TRAINER_KATE)) {
+        msgbox("IRENE: My sister KATE will get\nyou for this!")
+    } else {
         msgbox("IRENE: Isn't this beach great?\nIt's our secret little getaway!")
     }
     release
@@ -71,13 +130,9 @@ script Route34_EventScript_Irene {
 
 script Route34_EventScript_Jenn {
     trainerbattle_single(TRAINER_JENN, "JENN: You can't stomp in here like\nthis and go unpunished!", "JENN: So sorry, IRENE!\nSis!")
-    if (!defeated(TRAINER_KATE))
-    {
-        msgbox("JENN: Don't get cocky!\n"
-	           "My sister KATE is tough!")
-    }
-    else
-    {
+    if (!defeated(TRAINER_KATE)) {
+        msgbox("JENN: Don't get cocky!\nMy sister KATE is tough!")
+    } else {
         msgbox("JENN: Sunlight makes your body\nstronger.")
     }
     release
@@ -85,16 +140,11 @@ script Route34_EventScript_Jenn {
 
 script Route34_EventScript_Kate {
     trainerbattle_single(TRAINER_KATE, "KATE: You sure were mean to my\nlittle sisters!", "KATE: No!\nI can't believe I lost.")
-    if (!flag(FLAG_RECEIVED_SOFT_SAND_FROM_KATE))
-    {
-        msgbox("KATE: You're too strong.\n"
-               "I didn't stand a chance.\p"
-               "Here.\n"
-               "You deserve this.")
+    if (!flag(FLAG_RECEIVED_SOFT_SAND_FROM_KATE)) {
+        msgbox("KATE: You're too strong.\nI didn't stand a chance.\pHere.\nYou deserve this.")
         giveitem(ITEM_SOFT_SAND)
-        if (!var(VAR_RESULT))
-        {
-			goto(Common_EventScript_ShowBagIsFull)
+        if (!var (VAR_RESULT)) {
+            goto(Common_EventScript_ShowBagIsFull)
         }
         setflag(FLAG_RECEIVED_SOFT_SAND_FROM_KATE)
     }
@@ -102,20 +152,13 @@ script Route34_EventScript_Kate {
 }
 
 script Route34_EventScript_DirectionsSign {
-    msgbox("ROUTE 34\n"
-           "GOLDENROD CITY - AZALEA TOWN\p"
-           "ILEX FOREST SOMEWHERE BETWEEN", MSGBOX_SIGN)
+  msgbox("ROUTE 34\nGOLDENROD CITY - AZALEA TOWN\pILEX FOREST SOMEWHERE BETWEEN", MSGBOX_SIGN)
 }
 
 script Route34_EventScript_TrainerTipsSign {
-    msgbox("TRAINER TIPS\p"
-           "BERRY trees grow new BERRIES\n"
-           "every day.\p"
-           "Make a note of which trees bear\n"
-           "which BERRIES.", MSGBOX_SIGN)
+    msgbox("TRAINER TIPS\pBERRY trees grow new BERRIES\nevery day.\pMake a note of which trees bear\nwhich BERRIES.", MSGBOX_SIGN)
 }
 
 script Route34_EventScript_DaycareSign {
-    msgbox("DAY-CARE\n"
-           "LET US RAISE YOUR {POKEMON} FOR YOU!", MSGBOX_SIGN)
+    msgbox("DAY-CARE\nLET US RAISE YOUR {POKEMON} FOR YOU!", MSGBOX_SIGN)
 }

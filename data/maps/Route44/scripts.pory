@@ -23,8 +23,54 @@ script Route44_Eventscript_FishermanEdgar { // lower one
 }
 
 script Route44_Eventscript_FishermanWilton { // upper one
-    // TODO: Phone
+    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_WILTON_1, "Aack! You made me lose a POLIWAG!\nWhat are you going to do about it?", "Just forget about it.")
+
+    if(flag(FLAG_CALL_WILTON_GIFT))
+    {
+        msgbox("So here you are!\nSee this?\pI snagged it just a little while\nago.\lIt's yours.", MSGBOX_AUTOCLOSE)
+        random(10)
+        addvar(VAR_RESULT,2)
+        giveitem(VAR_RESULT, 1)
+        if(var(VAR_0x8007) == FALSE)
+        {
+            msgbox("Your PACK's full?\nI'll give it to you later.", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            clearflag(FLAG_CALL_WILTON_GIFT)
+        }
+        end
+    }
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if(var(VAR_RESULT) == 1)
+    {
+        trainerbattle_rematch(TRAINER_WILTON_1, "Argh! You startled POLIWAG into\nfleeing again!", "Just forget about it.")
+        clearflag(FLAG_WILTON_OFFERED_REMATCH)
+    }
+
+    if (!flag(FLAG_PHONE_CARD_FISHER_WILTON))
+    {
+        if (!flag(FLAG_FISHER_WILTON_OFFERED_NUMBER))
+        {
+            msgbox("Eh, our battle was fun, I'd say…\pWhen I'm fishing, I sometimes\nsnag items that people have dropped.\lDo you want them? What's the number?", MSGBOX_YESNO)
+            setflag(FLAG_FISHER_WILTON_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("If I snag an item while I'm fishing,\nit's yours. What's your number?", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_FISHER_WILTON)
+            msgbox("If I snag anything good, I'll be\nsure to let you know.", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("All right… Come back if you have\na change of heart.", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
     msgbox("That POLIWAG that got away…\nIt was huge.\pI swear it must've been 16 feet long!", MSGBOX_AUTOCLOSE)
     end
 }
@@ -48,8 +94,36 @@ script Route44_Eventscript_PokemaniacZach {
 }
 
 script Route44_Eventscript_BirdKeeperVance {
-    // TODO: Phone
+    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_VANCE_1, "Do you know about the legendary\nbird {POKEMON}?", "Whew!\nYou're hot stuff.")
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if(var(VAR_RESULT) == 1)
+    {
+        trainerbattle_rematch(TRAINER_VANCE_1, "Am I happy to see you!\nI won't lose!", "Whew!\nYou're hot stuff.")
+        clearflag(FLAG_VANCE_OFFERED_REMATCH)
+    }
+    if (!flag(FLAG_PHONE_CARD_BIRD_KEEPER_VANCE))
+    {
+        if (!flag(FLAG_BIRD_KEEPER_VANCE_OFFERED_NUMBER))
+        {
+            msgbox("You know, you are really strong.\nBut I don't want to just slink off…\pI know! Could I get your number?\nLet's meet up for more battles!", MSGBOX_YESNO)
+            setflag(FLAG_BIRD_KEEPER_VANCE_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("I want to battle tough trainers\nas often as I can!\lCould I get your number?\lLet's meet up for more battles!", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_BIRD_KEEPER_VANCE)
+            msgbox("Don't forget to come see me when I\nchallenge you!", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("A bird-user friend isn't a bad thing\nto have, I think…\lWon't you reconsider?", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
     msgbox("ARTICUNO, ZAPDOS, and MOLTRES are\nthe three legendary bird {POKEMON}.\pI heard there are other legendary\nbirds, though.", MSGBOX_AUTOCLOSE)
     end
 }

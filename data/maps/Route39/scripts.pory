@@ -15,7 +15,7 @@ script Route39_Eventscript_TrainerTipsSign {
     end
 }
 
-script Route39_Eventscript_Miltank{
+script Route39_Eventscript_Miltank {
     lock
     faceplayer
     playmoncry(SPECIES_MILTANK, 0)
@@ -31,8 +31,52 @@ script Route39_Eventscript_PsychicNorman {
     end
 }
 
-script Route39_Eventscript_PokefanDerek { // Can this guy give out his phone number? Bulbapedia says yes if the player has a Pikachu in their party.
+script Route39_Eventscript_PokefanDerek {
+    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_DEREK, "This is a good time to brag about my\nPIKACHU!", "I had no time to show off PIKACHU…")
+        
+    if(flag(FLAG_CALL_DEREK_GIFT))
+    {
+        msgbox("I've been looking for you!\nHere, see this? This is it!\pI'm certain your PIKACHU will love\nmy gift too!", MSGBOX_AUTOCLOSE)
+        giveitem(ITEM_NUGGET, 1)
+        if(var(VAR_0x8007) == FALSE)
+        {
+            msgbox("Uh-oh, too bad.\nYou don't have any room.\pBe sure to get it later.", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            clearflag(FLAG_CALL_DEREK_GIFT)
+        }
+        end		
+    }
+
+    setvar(VAR_0x8004, SPECIES_PIKACHU)
+    special(IsPlayersMonOfSpeciesInParty)
+    if(var(VAR_RESULT) == 1)
+    {
+        if (!flag(FLAG_PHONE_CARD_POKEFAN_DEREK))
+        {
+            if (!flag(FLAG_POKEFAN_DEREK_OFFERED_NUMBER))
+            {
+                msgbox("Oh, wow! PIKACHU!\nIt's so soft and furry! How cute!\pLet's be friends!\nPIKACHU-lovers are never bad people!\lLet's chat about PIKACHU!\lCan I\nget your phone number?", MSGBOX_YESNO)
+                setflag(FLAG_POKEFAN_DEREK_OFFERED_NUMBER)
+            }
+            else
+            {
+                msgbox("Let's chat about PIKACHU! Can I\nget your phone number?", MSGBOX_YESNO)
+            }
+            if (var(VAR_RESULT) == 1)
+            {
+                registerphonecontact(FLAG_PHONE_CARD_POKEFAN_DEREK)
+                msgbox("PIKACHU is the one! If anything\ncomes up, I'll give you a jingle.", MSGBOX_AUTOCLOSE)
+            }
+            else
+            {
+                msgbox("You… I bet you don't even like\nPIKACHU…", MSGBOX_AUTOCLOSE)
+            }
+            end
+        }
+    }
     msgbox("PIKACHU is it!\nDon't you agree?", MSGBOX_AUTOCLOSE)
     end
 }
@@ -51,8 +95,7 @@ script Route39_Eventscript_SailorEugene {
 
 script Route39_Eventscript_PokefanJaime { // The one in the tall grass
     gettime
-    if(var(VAR_0x8002) == TIME_NIGHT)
-    {
+    if (var (VAR_0x8002) == TIME_NIGHT) {
         trainerbattle_single(TRAINER_JAIME, "You came at just the right time.\nLet's battle!", "Oh, how disappointing…")
         msgbox("I met my MEOWTH at night, right\nhere on Route 39.\pI'm not sure why, but it seems to\nlike it when I train here.\pIt seems to become friendlier by\ntraining here than anywhere else.", MSGBOX_AUTOCLOSE)
         end
@@ -60,4 +103,3 @@ script Route39_Eventscript_PokefanJaime { // The one in the tall grass
     msgbox("Ufufufu…\nI hope it gets dark soon.", MSGBOX_NPC)
     end
 }
-

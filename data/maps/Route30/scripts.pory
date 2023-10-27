@@ -1,108 +1,139 @@
-mapscripts Route30_MapScripts{}
+mapscripts Route30_MapScripts {}
 
-script Route30_EventScript_Directions{
+script Route30_EventScript_Directions {
     msgbox("ROUTE 30\nVIOLET CITY - CHERRYGROVE CITY", MSGBOX_SIGN)
     end
 }
 
-script Route30_EventScript_MrPokemonsHouseAhead{
+script Route30_EventScript_MrPokemonsHouseAhead {
     bufferstring(0, Route30_Text_MrPokemonsHouse)
-	msgbox("{STR_VAR_1}\nSTRAIGHT AHEAD!", MSGBOX_SIGN)
-	end
-}text(local) Route30_Text_MrPokemonsHouse{
+    msgbox("{STR_VAR_1}\nSTRAIGHT AHEAD!", MSGBOX_SIGN)
+    end
+}
+text(local) Route30_Text_MrPokemonsHouse {
     "MR. {POKEMON}'S HOUSE"
 }
 
-script Route30_EventScript_MrPokemonsHouse{
+script Route30_EventScript_MrPokemonsHouse {
     bufferstring(0, Route30_Text_MrPokemonsHouse)
-	msgbox("{STR_VAR_1}", MSGBOX_SIGN)
-	end
+    msgbox("{STR_VAR_1}", MSGBOX_SIGN)
+    end
 }
 
-script Route30_EventScript_TrainerTips{
-	msgbox("There's no stealing of other\npeople's {POKEMON}!\p{POKE} BALLS are to be thrown only\nat wild {POKEMON}!", MSGBOX_SIGN)
-	end
+script Route30_EventScript_TrainerTips {
+    msgbox("There's no stealing of other\npeople's {POKEMON}!\p{POKE} BALLS are to be thrown only\nat wild {POKEMON}!", MSGBOX_SIGN)
+    end
 }
 
-script Route30_EventScript_NotATrainerGirl{
-	msgbox("I'm not a TRAINER.\pBut if you look one in the eyes,\nprepare to battle.", MSGBOX_NPC)
-	end
+script Route30_EventScript_NotATrainerGirl {
+    msgbox("I'm not a TRAINER.\pBut if you look one in the eyes,\nprepare to battle.", MSGBOX_NPC)
+    end
 }
 
-script Route30_EventScript_DirectionsBoy{
-	lock
-	faceplayer
-    if(flag(FLAG_ADVENTURE_STARTED))
-    {
+script Route30_EventScript_DirectionsBoy {
+    lock
+    faceplayer
+    if (flag(FLAG_ADVENTURE_STARTED)) {
         msgbox("Everyone's having fun battling!\nYou should too!", MSGBOX_NPC)
         end
     }
-	msgbox("MR. {POKEMON}'s house?\nIt's a bit farther ahead.", MSGBOX_NPC)
-	end
+    msgbox("MR. {POKEMON}'s house?\nIt's a bit farther ahead.", MSGBOX_NPC)
+    end
 }
 
-script Route30_EventScript_BattlingYoungster{
-	lock
-	waitse
-	playbgm(MUS_VS_JOHTO_TRAINER, 0)
+script Route30_EventScript_BattlingYoungster {
+    lock
+    waitse
+    playbgm(MUS_VS_JOHTO_TRAINER, 0)
     bufferspeciesname(0, SPECIES_RATTATA)
-	msgbox("Go, {STR_VAR_1}!\nUse TACKLE!")
-	closemessage
-	delay(15)
-	applymovement(7, Route30_Movement_RattataTackle)
-	delay(5)
-	playse(SE_M_COMET_PUNCH)
-	waitmovement(0)
-	faceplayer
-	msgbox("What? This is a big battle!\nLeave me alone!")
-	closemessage
-	turnobject(VAR_LAST_TALKED, 2)
-	delay(10)
-	applymovement(6, Route30_Movement_PidgeyTackle)
-	delay(5)
-	playse(SE_M_COMET_PUNCH)
-	waitmovement(0)
-	savebgm(MUS_DUMMY)
-	fadedefaultbgm
-	release
-	end
-}movement(local) Route30_Movement_RattataTackle{
-	lock_facing_direction
-	set_fixed_priority
-	disable_jump_landing_ground_effect
-	jump_up
-	walk_fast_down
-	unlock_facing_direction
-	clear_fixed_priority
-	enable_jump_landing_ground_effect
-}movement(local) Route30_Movement_PidgeyTackle{
-	lock_facing_direction
-	set_fixed_priority
-	disable_jump_landing_ground_effect
-	jump_down
-	walk_fast_up
-	unlock_facing_direction
-	clear_fixed_priority
-	enable_jump_landing_ground_effect
+    msgbox("Go, {STR_VAR_1}!\nUse TACKLE!")
+    closemessage
+    delay(15)
+    applymovement(7, Route30_Movement_RattataTackle)
+    delay(5)
+    playse(SE_M_COMET_PUNCH)
+    waitmovement(0)
+    faceplayer
+    msgbox("What? This is a big battle!\nLeave me alone!")
+    closemessage
+    turnobject(VAR_LAST_TALKED, 2)
+    delay(10)
+    applymovement(6, Route30_Movement_PidgeyTackle)
+    delay(5)
+    playse(SE_M_COMET_PUNCH)
+    waitmovement(0)
+    savebgm(MUS_DUMMY)
+    fadedefaultbgm
+    release
+    end
+}
+movement(local) Route30_Movement_RattataTackle {
+    lock_facing_direction
+    set_fixed_priority
+    disable_jump_landing_ground_effect
+    jump_up
+    walk_fast_down
+    unlock_facing_direction
+    clear_fixed_priority
+    enable_jump_landing_ground_effect
+}
+movement(local) Route30_Movement_PidgeyTackle {
+    lock_facing_direction
+    set_fixed_priority
+    disable_jump_landing_ground_effect
+    jump_down
+    walk_fast_up
+    unlock_facing_direction
+    clear_fixed_priority
+    enable_jump_landing_ground_effect
 }
 
-script Route30_EventScript_Trainer_Joey{
-    //TODO: Phone
-	trainerbattle_single(TRAINER_JOEY_1,
+script Route30_EventScript_Trainer_Joey {
+    // TODO: Check phone strings for textbox fit
+    trainerbattle_single(TRAINER_JOEY_1,
     "I just lost, so I'm trying to find\nmore {POKEMON}.\pWait! You look weak!\nCome on, let's battle!", "Ack! I lost again!\nDoggone it!")
-	msgbox("Do I have to have more {POKEMON}\nin order to battle better?\pNo! I'm sticking with this one no\nmatter what!", MSGBOX_DEFAULT)
-	release
-	end
+
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if(var(VAR_RESULT) == 1)
+    {
+        trainerbattle_rematch(TRAINER_JOEY_1, "I've been waiting!\nLet's battle now!", "Ack! I lost again!\nDoggone it!")
+        clearflag(FLAG_JOEY_OFFERED_REMATCH)
+    }
+    if (!flag(FLAG_PHONE_CARD_YOUNGSTER_JOEY))
+    {
+        if (!flag(FLAG_YOUNGSTER_JOEY_OFFERED_NUMBER))
+        {
+            msgbox("Listen, can I\nget your phone number?\lI'll ring you for some battles.\pI'm a rookie too, so I think\nit'd be a good motivator.", MSGBOX_YESNO) 
+            setflag(FLAG_YOUNGSTER_JOEY_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("Can I get your phone number?\nI don't want to lose against you!\lWe have to battle again, OK?", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_YOUNGSTER_JOEY) 
+            msgbox("I'll ring you whenever I get the\nurge to battle!", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("Oh, all right… But I won't lose to\nyou again!", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
+    msgbox("Do I have to have more {POKEMON}\nin order to battle better?\pNo! I'm sticking with this one no\nmatter what!", MSGBOX_DEFAULT)
+    release
+    end
 }
 
-script Route30_EventScript_Trainer_Mikey{
-	trainerbattle_single(TRAINER_MIKEY, "You're a {POKEMON} TRAINER, right?\nThen you have to battle!", "That's strange.\nI won before.")
-	msgbox("Becoming a good TRAINER is really\ntough to do.\pI'm going to battle other people\nto get better.", MSGBOX_AUTOCLOSE)
-	end
+script Route30_EventScript_Trainer_Mikey {
+    trainerbattle_single(TRAINER_MIKEY, "You're a {POKEMON} TRAINER, right?\nThen you have to battle!", "That's strange.\nI won before.")
+    msgbox("Becoming a good TRAINER is really\ntough to do.\pI'm going to battle other people\nto get better.", MSGBOX_AUTOCLOSE)
+    end
 }
 
-script Route30_EventScript_Trainer_Don{
-	trainerbattle_single(TRAINER_DON, "Instead of a BUG {POKEMON},\nI found a TRAINER!", "Argh!\nYou're too strong!")
-	msgbox("I ran out of {POKE} BALLS while I was\ncatching {POKEMON}.\pI should've bought some more…", MSGBOX_AUTOCLOSE)
-	end
+script Route30_EventScript_Trainer_Don {
+    trainerbattle_single(TRAINER_DON, "Instead of a BUG {POKEMON},\nI found a TRAINER!", "Argh!\nYou're too strong!")
+    msgbox("I ran out of {POKE} BALLS while I was\ncatching {POKEMON}.\pI should've bought some more…", MSGBOX_AUTOCLOSE)
+    end
 }

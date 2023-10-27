@@ -22,6 +22,7 @@
 #include "task.h"
 #include "tv.h"
 #include "wild_encounter.h"
+#include "match_call.h"
 #include "constants/abilities.h"
 #include "constants/event_objects.h"
 #include "constants/event_object_movement.h"
@@ -1737,6 +1738,7 @@ static void Task_WaitStopSurfing(u8 taskId)
 #define tFrameCounter      data[1]
 #define tNumDots           data[2]
 #define tDotsRequired      data[3]
+#define tOutbreakCaught	   data[4]
 #define tRoundsPlayed      data[12]
 #define tMinRoundsRequired data[13]
 #define tPlayerGfxId       data[14]
@@ -1879,6 +1881,11 @@ static bool8 Fishing_CheckForBite(struct Task *task)
     }
     else
     {
+    	if(DoMassOutbreakEncounterTest() && gSaveBlock1Ptr->outbreakWildState == OUTBREAK_FISHING)
+    	{
+    		bite = TRUE;
+    		task->tOutbreakCaught = TRUE;
+    	}
         if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
         {
             u8 ability = GetMonAbility(&gPlayerParty[0]);
@@ -1942,7 +1949,7 @@ static bool8 Fishing_StartEncounter(struct Task *task)
     {
         gPlayerAvatar.preventStep = FALSE;
         ScriptContext2_Disable();
-        FishingWildEncounter(task->tFishingRod);
+        FishingWildEncounter(task->tFishingRod, task->tOutbreakCaught);
         RecordFishingAttemptForTV(TRUE);
         DestroyTask(FindTaskIdByFunc(Task_Fishing));
     }

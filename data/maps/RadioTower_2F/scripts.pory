@@ -141,7 +141,6 @@ script RadioTower_2F_EventScript_Buena {
                    "your BLUE CARD?\p"
                    "I can't give you points if you\n"
                    "don't have it.")
-            call(RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven)
         }
         elif (var(VAR_BLUE_CARD_BALANCE) >= BUENAS_PASSWORD_MAX_POINTS)
         {
@@ -301,6 +300,8 @@ script RadioTower_2F_EventScript_Buena_OfferNumber {
     else
     {
         // TODO: Registration
+        registerphonecontact(FLAG_PHONE_CARD_BUENA)
+        msgbox("I look forward to hearing\nfrom you!",MSGBOX_AUTOCLOSE)
     }
 }
 

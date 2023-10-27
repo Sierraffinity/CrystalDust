@@ -7,7 +7,7 @@
 static void UpdateGymLeaderRematchFromArray(const u16 *data, size_t size, u32 maxRematch);
 static s32 GetRematchIndex(u32 trainerIdx);
 
-static const u16 GymLeaderRematches_AfterNewMauville[] = {
+/*static const u16 GymLeaderRematches_AfterNewMauville[] = {
     REMATCH_ROXANNE,
     REMATCH_BRAWLY,
     REMATCH_WATTSON,
@@ -27,16 +27,18 @@ static const u16 GymLeaderRematches_BeforeNewMauville[] = {
     REMATCH_WINONA,
     REMATCH_TATE_AND_LIZA,
     REMATCH_JUAN
-};
+};*/
 
 void UpdateGymLeaderRematch(void)
 {
     if (FlagGet(FLAG_SYS_GAME_CLEAR) && (Random() % 100) <= 30)
     {
         if (FlagGet(FLAG_REFUSED_ELMS_EGG))
-            UpdateGymLeaderRematchFromArray(GymLeaderRematches_AfterNewMauville, ARRAY_COUNT(GymLeaderRematches_AfterNewMauville), 5);
+            //UpdateGymLeaderRematchFromArray(GymLeaderRematches_AfterNewMauville, ARRAY_COUNT(GymLeaderRematches_AfterNewMauville), 5);
+        	return;
         else
-            UpdateGymLeaderRematchFromArray(GymLeaderRematches_BeforeNewMauville, ARRAY_COUNT(GymLeaderRematches_BeforeNewMauville), 1);
+        	return;
+            //UpdateGymLeaderRematchFromArray(GymLeaderRematches_BeforeNewMauville, ARRAY_COUNT(GymLeaderRematches_BeforeNewMauville), 1);
     }
 }
 
@@ -80,7 +82,7 @@ static void UpdateGymLeaderRematchFromArray(const u16 *data, size_t size, u32 ma
                     {
                         if (whichLeader == 0)
                         {
-                            gSaveBlock1Ptr->trainerRematches[data[i]] = lowestRematchIndex;
+                            //gSaveBlock1Ptr->trainerRematches[data[i]] = lowestRematchIndex;
                             break;
                         }
                         whichLeader--;

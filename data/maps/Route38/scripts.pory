@@ -17,8 +17,50 @@ script Route38_Eventscript_SailorHarry {
 }
 
 script Route38_Eventscript_LassDana {
-    // TODO: Phone
+    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_DANA_1, "You seem to be good at {POKEMON}.\pIf you are, how about giving me\nsome advice?", "I see. So you can battle that way.")
+    if(flag(FLAG_CALL_DANA_GIFT))
+    {
+        msgbox("Hi! Are you here for your gift?\nThis should really make your day!", MSGBOX_AUTOCLOSE)
+        giveitem(ITEM_THUNDER_STONE, 1)
+        if(var(VAR_0x8007) == FALSE)
+        {
+            msgbox("Where are you going to put this?\nI'll keep it, so come get it later!", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            clearflag(FLAG_CALL_DANA_GIFT)
+        }
+        end
+    }
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if(var(VAR_RESULT) == 1)
+    {
+        trainerbattle_rematch(TRAINER_DANA_1, "You're really late!\nI'm eager to get going!", "I see. So you can battle that way.")
+        clearflag(FLAG_DANA_OFFERED_REMATCH)
+    }
+    if (!flag(FLAG_PHONE_CARD_LASS_DANA))
+    {
+        if (!flag(FLAG_LASS_DANA_OFFERED_NUMBER))
+        {
+            msgbox("You're really good at {POKEMON}!\pBoys give me items after battles, but\nsometimes they give me too much.\pNext time, I can share some if you\nwant.\pLet me get your phone number.", MSGBOX_YESNO)
+            setflag(FLAG_LASS_DANA_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("I'll share my gifts with you. Let me\nget your phone number.", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_LASS_DANA)
+            msgbox("Next time a boy gives me something\nafter a battle, I'll share some!\lDoes that make me bad?", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("Aww, you don't want anything? But it's\nall for free…", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
     msgbox("I know something good!\pThe MOOMOO FARM's milk is famous for\nits flavor.", MSGBOX_AUTOCLOSE)
     end
 }
@@ -36,8 +78,38 @@ script Route38_Eventscript_BirdKeeperToby {
 }
 
 script Route38_Eventscript_SchoolboyChad {
-    // TODO: Phone
+    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_CHAD_1, "Let me try something I learned today.", "I didn't study enough, I guess.")
+
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if(var(VAR_RESULT) == 1)
+    {
+        trainerbattle_rematch(TRAINER_CHAD_1, "I've been waiting!\nLet's battle now!", "I didn't study enough, I guess.")
+        clearflag(FLAG_CHAD_OFFERED_REMATCH)
+    }
+
+    if (!flag(FLAG_PHONE_CARD_SCHOOLBOY_CHAD))
+    {
+        if (!flag(FLAG_SCHOOLBOY_CHAD_OFFERED_NUMBER))
+        {
+            msgbox("Huh? Is that thing a {POKEDEX}?\nHave you met PROF.OAK?\lHuh?\lYou have? That's way cool!\pI have a dream of becoming a\n{POKEMON} researcher like PROF.OAK.\pMay I please have your phone\nnumber?\lWe should chat about PROF.OAK.\lI'm sure it will be loads of fun!", MSGBOX_YESNO)
+            setflag(FLAG_SCHOOLBOY_CHAD_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("May I please have your phone\nnumber?\lWe should chat about PROF.OAK.\lI'm sure it will be loads of fun!", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_SCHOOLBOY_CHAD)
+            msgbox("You must listen to PROF.OAK'S\n{POKEMON} TALK, right?", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("Oh… I wish I had a chance to meet\nPROF.OAK…", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
     msgbox("I have to take so many tests, I\ndon't have much time for {POKEMON}.\pSo when I do get to play, I really\nconcentrate.", MSGBOX_AUTOCLOSE)
     end
 }

@@ -322,8 +322,51 @@ script Route36_EventScript_Mark {
 }
 
 script Route36_EventScript_Alan {
-    // TODO: Phone
+    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_ALAN_1, "Thanks to my studies, I'm ready\nfor any {POKEMON}!", "Oops!\nComputation error?")
+    if(flag(FLAG_CALL_ALAN_GIFT))
+    {
+        msgbox("This, this! This is yours!\nTa-da!", MSGBOX_AUTOCLOSE)
+        giveitem(ITEM_FIRE_STONE, 1)
+        if(var(VAR_0x8007) == FALSE)
+        {
+            msgbox("Whoops!\nYou can't carry anymore items.\lI'll hold it until next time.", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            clearflag(FLAG_CALL_ALAN_GIFT)
+        }
+        end
+    }
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if(var(VAR_RESULT) == 1)
+    {
+        trainerbattle_rematch(TRAINER_ALAN_1, "Thanks to my studies, I'm ready\nfor any {POKEMON}!", "Oops!\nComputation error?")
+        clearflag(FLAG_ALAN_OFFERED_REMATCH)
+    }
+
+    if (!flag(FLAG_PHONE_CARD_SCHOOLBOY_ALAN))
+    {
+        if (!flag(FLAG_SCHOOLBOY_ALAN_OFFERED_NUMBER))
+        {
+            msgbox("Reading textbooks is worthwile every so often.\nWhen I'm reading and walking, I have to look down.\lSo I notice items on the ground.\pNext time I find something, I'll give it\nto you.\lMay I have your phone number?", MSGBOX_YESNO)
+            setflag(FLAG_SCHOOLBOY_ALAN_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("If I find something, it's yours.\nSo may I have your phone number?", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_SCHOOLBOY_ALAN)
+            msgbox("I'll call you as soon as I find\nsomething. You can count on it.", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("Oh, I thought it would be a good\nbreak to call you when I'm studying…", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
     msgbox("Darn.\nI study five hours a day too.\pThere's more to learning than just\nreading books.", MSGBOX_AUTOCLOSE)
 }
 

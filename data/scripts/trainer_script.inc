@@ -1,13 +1,11 @@
 Std_RegisteredInMatchCall::
-	buffertrainerclassname 0, VAR_0x8000
-	buffertrainername 1, VAR_0x8000
-	closemessage
-	delay 30
+	waitse
 	playfanfare MUS_REGISTER_PHONE
-	msgbox gText_RegisteredTrainerinPokeNav, MSGBOX_DEFAULT
+	textcolor MSG_COLOR_SYS
+	msgbox EventScript_Text_Trainer_Registered
 	waitfanfare
 	closemessage
-	delay 30
+	textcolor MSG_COLOR_PREV
 	return
 
 EventScript_TryGetTrainerScript::
@@ -21,3 +19,7 @@ EventScript_GotoTrainerScript::
 	gotobeatenscript
 	releaseall
 	end
+
+EventScript_Text_Trainer_Registered:
+	.string "{PLAYER} registered {STR_VAR_1}'s\n"
+	.string "phone number!$"

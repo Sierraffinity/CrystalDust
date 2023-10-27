@@ -21,6 +21,7 @@
 #include "script.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
+#include "match_call.h"
 #include "constants/abilities.h"
 #include "constants/battle.h"
 #include "constants/game_stat.h"
@@ -30,6 +31,7 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/weather.h"
+
 
 extern const u8 EventScript_RepelWoreOff[];
 
@@ -610,14 +612,18 @@ static bool8 SetUpMassOutbreakEncounter(u8 flags)
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(gSaveBlock1Ptr->outbreakPokemonLevel))
         return FALSE;
 
-    CreateWildMon(gSaveBlock1Ptr->outbreakPokemonSpecies, gSaveBlock1Ptr->outbreakPokemonLevel, FALSE);
-    for (i = 0; i < 4; i++)
-        SetMonMoveSlot(&gEnemyParty[0], gSaveBlock1Ptr->outbreakPokemonMoves[i], i);
+
+    CreateWildMon(gSaveBlock1Ptr->outbreakPokemonSpecies, (gSaveBlock1Ptr->outbreakPokemonLevel - (Random() % 3) - 1), FALSE);
+    if(gSaveBlock1Ptr->outbreakPokemonMoves[0])
+    {
+		for (i = 0; i < 4; i++)
+			SetMonMoveSlot(&gEnemyParty[0], gSaveBlock1Ptr->outbreakPokemonMoves[i], i);
+    }
 
     return TRUE;
 }
 
-static bool8 DoMassOutbreakEncounterTest(void)
+bool8 DoMassOutbreakEncounterTest(void)
 {
     if (gSaveBlock1Ptr->outbreakPokemonSpecies != 0
      && gSaveBlock1Ptr->location.mapNum == gSaveBlock1Ptr->outbreakLocationMapNum
@@ -756,7 +762,7 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
             }
             else
             {
-                if (DoMassOutbreakEncounterTest() == TRUE && SetUpMassOutbreakEncounter(WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
+                if (DoMassOutbreakEncounterTest() == TRUE && SetUpMassOutbreakEncounter(WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE && gSaveBlock1Ptr->outbreakWildState == OUTBREAK_WALKING)
                 {
                     BattleSetup_StartWildBattle(0);
                     return TRUE;
@@ -964,20 +970,41 @@ bool8 DoesCurrentMapHaveFishingMons(void)
         return FALSE;
 }
 
-void FishingWildEncounter(u8 rod)
+void FishingWildEncounter(u8 rod, s16 outbreakCaught)
 {
     u16 species;
 
+    u8 level;
     if (CheckFeebas() == TRUE)
     {
-        u8 level = ChooseWildMonLevel(&gWildFeebasRoute119Data);
+        level = ChooseWildMonLevel(&gWildFeebasRoute119Data);
 
         species = gWildFeebasRoute119Data.species;
         CreateWildMon(species, level, FALSE);
     }
+    else if (outbreakCaught)
+	{
+    	switch(rod)
+    	{
+    	case OLD_ROD:
+    		level = gSaveBlock1Ptr->outbreakSpecialLevel1;
+    		break;
+    	case GOOD_ROD:
+    		level = gSaveBlock1Ptr->outbreakPokemonLevel;
+    		break;
+    	case SUPER_ROD:
+    		level = gSaveBlock1Ptr->outbreakSpecialLevel2;
+    		break;
+    	default:
+    		level = gSaveBlock1Ptr->outbreakPokemonLevel;
+    		break;
+    	}
+    	CreateWildMon(gSaveBlock1Ptr->outbreakPokemonSpecies, level, FALSE);
+	}
     else
     {
-        species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);
+        species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod); //Can run outbreak data thru this function prob,
+        																										//or just recreate this function with outbreak data
     }
     IncrementGameStat(GAME_STAT_FISHING_CAPTURES);
     SetPokemonAnglerSpecies(species);

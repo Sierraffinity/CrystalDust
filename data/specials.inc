@@ -579,3 +579,4 @@ gSpecials::
 	def_special CloseMuseumFossilPic
 	def_special RooftopSaleShop
 	def_special HasMoreThanOnePokemon
+	def_special FindPhoneContactNameFromFlag

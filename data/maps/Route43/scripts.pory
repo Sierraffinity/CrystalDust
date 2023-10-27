@@ -17,15 +17,94 @@ script Route43_Eventscript_CamperSpencer {
 }
 
 script Route43_Eventscript_PicnickerTiffany {
-    // TODO: Phone
+    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_TIFFANY_1, "Are you going to the LAKE OF RAGE\ntoo? Let's play for a little while!", "I played too much!")
+
+    if(flag(FLAG_CALL_TIFFANY_GIFT))
+    {
+        msgbox("You took a long time!\nSee this?\pIsn't it cute?\nIt's a cute scarf!", MSGBOX_AUTOCLOSE)
+        giveitem(ITEM_SILK_SCARF, 1)
+        if(var(VAR_0x8007) == FALSE)
+        {
+            msgbox("Uh-oh, your PACK is crammed full!", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            clearflag(FLAG_CALL_TIFFANY_GIFT)
+        }
+        end
+    }
+		
+	specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	if(var(VAR_RESULT) == 1)
+	{
+        trainerbattle_rematch(TRAINER_TIFFANY_1, "There you are!\nCLEFAIRY, I want you to try hard!", "I played too much!")
+        clearflag(FLAG_TIFFANY_OFFERED_REMATCH)
+	}
+	setvar(VAR_0x8004, SPECIES_CLEFAIRY)
+	special(IsPlayersMonOfSpeciesInParty)
+    if(var(VAR_RESULT) == 1)
+    {
+        if (!flag(FLAG_PHONE_CARD_PICNICKER_TIFFANY))
+        {
+            if (!flag(FLAG_PICNICKER_TIFFANY_OFFERED_NUMBER))
+            {
+                msgbox("Hi! You like CLEFAIRY too?\nThey're so very cute, aren't they?\lI think we can be good friends!\pI want to know your phone number!\nLet's talk about CLEFAIRY!", MSGBOX_YESNO)
+                setflag(FLAG_PICNICKER_TIFFANY_OFFERED_NUMBER)
+            }
+            else
+            {
+                msgbox("I want to know your phone number!\nLet's talk about CLEFAIRY!", MSGBOX_YESNO)
+            }
+            if (var(VAR_RESULT) == 1)
+            {
+                registerphonecontact(FLAG_PHONE_CARD_PICNICKER_TIFFANY)
+                msgbox("Isn't my CLEFAIRY super-adorable?", MSGBOX_AUTOCLOSE)
+            }
+            else
+            {
+                msgbox("Aww… Oh well. Look for me if you\nwant to talk about CLEFAIRY.", MSGBOX_AUTOCLOSE)
+            }
+        end
+        }
+    }
     msgbox("Isn't my CLEFAIRY just the most\nadorable thing?", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route43_Eventscript_PokemaniacBrent {
-    // TODO: Phone
+    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_BRENT_1, "Hey! Do you have any rare {POKEMON}?", "Oh, my poor {POKEMON}!\nDarlings!")
+
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if(var(VAR_RESULT) == 1)
+    {
+        trainerbattle_rematch(TRAINER_BRENT_1, "I've been waiting!\nLook, check out my {POKEMON}!", "Oh, my poor {POKEMON}!\nDarlings!")
+        clearflag(FLAG_BRENT_OFFERED_REMATCH)
+    }
+		
+    if (!flag(FLAG_PHONE_CARD_POKEMANIAC_BRENT))
+    {
+        if (!flag(FLAG_POKEMANIAC_BRENT_OFFERED_NUMBER))
+        {
+            msgbox("By the way, you're a {POKE}MANIAC…\nI can tell. Yes, you are.\lBut your knowledge is shallow still!\pDo you know BILL?\nHe's an incredible {POKE}MANIAC.\lI revere him.\pI'll teach you all I know about BILL,\nso leave me your phone number.", MSGBOX_YESNO)
+            setflag(FLAG_POKEMANIAC_BRENT_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("I'll teach you all I know about\nBILL, so leave me your phone number.", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_POKEMANIAC_BRENT)
+            msgbox("BILL--he's more than amazing! To\nbe a {POKE}MANIAC like him someday…\lThat's my dream.", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("You're going to regret it… And I\nwon't care…", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
     msgbox("I'd be happy just to own a single\nrare {POKEMON}.", MSGBOX_AUTOCLOSE)
     end
 }

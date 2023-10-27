@@ -690,10 +690,10 @@ struct SaveBlock1 /* 0x02025734 */
     /*0x2AFE*/ u8 outbreakLocationMapNum;
     /*0x2AFF*/ u8 outbreakLocationMapGroup;
     /*0x2B00*/ u8 outbreakPokemonLevel;
-    /*0x2B01*/ u8 outbreakUnk1;
-    /*0x2B02*/ u16 outbreakUnk2;
+    /*0x2B01*/ u8 outbreakSpecialLevel1;
+    /*0x2B02*/ u16 outbreakWildState;
     /*0x2B04*/ u16 outbreakPokemonMoves[4];
-    /*0x2B0C*/ u8 outbreakUnk4;
+    /*0x2B0C*/ u8 outbreakSpecialLevel2;
     /*0x2B0D*/ u8 outbreakPokemonProbability;
     /*0x2B0E*/ u16 outbreakUnk5;
     /*0x2B10*/ struct GabbyAndTyData gabbyAndTyData;

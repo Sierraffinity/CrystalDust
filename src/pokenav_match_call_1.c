@@ -351,29 +351,12 @@ const u8 *GetMatchCallMessageText(int index, u8 *arg1)
         return gText_CallCantBeMadeHere;
 
     if (!state->matchCallEntries[index].isSpecialTrainer)
-        *arg1 = SelectMatchCallMessage(GetTrainerIdxByRematchIdx(state->matchCallEntries[index].headerId), gStringVar4, FALSE);
-    else
+        //*arg1 = SelectMatchCallMessage(GetTrainerIdxByRematchIdx(state->matchCallEntries[index].headerId), gStringVar4, FALSE);
+    	*arg1 = FALSE;
+    	else
         MatchCall_GetMessage(state->matchCallEntries[index].headerId, gStringVar4);
 
     return gStringVar4;
-}
-
-const u8 *GetMatchCallFlavorText(int index, int checkPageEntry)
-{
-    int rematchId;
-    struct Pokenav3Struct *state = GetSubstructPtr(POKENAV_SUBSTRUCT_MATCH_CALL_MAIN);
-    if (state->matchCallEntries[index].isSpecialTrainer)
-    {
-        rematchId = MatchCall_GetRematchTableIdx(state->matchCallEntries[index].headerId);
-        if (rematchId == REMATCH_TABLE_ENTRIES)
-            return MatchCall_GetOverrideFlavorText(state->matchCallEntries[index].headerId, checkPageEntry);
-    }
-    else
-    {
-        rematchId = state->matchCallEntries[index].headerId;
-    }
-
-    return gMatchCallFlavorTexts[rematchId][checkPageEntry];
 }
 
 u16 GetMatchCallOptionCursorPos(void)

@@ -1,4 +1,4 @@
-mapscripts Route35_MapScripts { }
+mapscripts Route35_MapScripts {}
 
 script Route35_EventScript_Ivan {
     trainerbattle_single(TRAINER_IVAN, "I've been getting {POKEMON} data off\nmy radio. I think I'm good.", "I give!")
@@ -31,14 +31,66 @@ script Route35_EventScript_Walt {
 }
 
 script Route35_EventScript_Arnie {
-    // TODO: Phone
+    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_ARNIE_1, "I'll go anywhere if BUG {POKEMON}\nappear there.", "Huh?\nI shouldn't have lost that…")
+
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if(var(VAR_RESULT) == 1)
+    {
+        trainerbattle_rematch(TRAINER_ARNIE_1, "It's my turn to win now!\nI've turned over a new leaf!", "Huh?\nI shouldn't have lost that…")
+        clearflag(FLAG_ARNIE_OFFERED_REMATCH)
+    }
+    if (!flag(FLAG_PHONE_CARD_BUG_CATCHER_ARNIE))
+    {
+        if (!flag(FLAG_BUG_CATCHER_ARNIE_OFFERED_NUMBER))
+        {
+            msgbox("Do you get the feeling that there are\nmore rare {POKEMON} around?\pI'm positive there are, so I look all\nthe time.\pIf I find one, I want to share the\ngood news with everyone I know.\lI know! Give me your phone number!", MSGBOX_YESNO)
+            setflag(FLAG_BUG_CATCHER_ARNIE_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("I want to let people know if\nI see rare {POKEMON}.\lPlease give me your phone number!", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_BUG_CATCHER_ARNIE)
+            msgbox("If I spot any awesome {POKEMON}\nI'll be sure to give you a call!", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("Aww! I want to tell someone about\nmy discoveries!", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
     msgbox("My VENONAT won me the Bug-Catching\nContest at the NATIONAL PARK.", MSGBOX_AUTOCLOSE)
 }
 
 script Route35_EventScript_Irwin {
-    // TODO: Phone
+    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_IRWIN, "Behold my graceful {POKE} BALL\ndexterity!", "Whew!\nThat was a jolt!")
+    if (!flag(FLAG_PHONE_CARD_JUGGLER_IRWIN))
+    {
+        if (!flag(FLAG_JUGGLER_IRWIN_OFFERED_NUMBER))
+        {
+            msgbox("You're the best I've ever battled!\pHuh? You're the one who saved all\nthe SLOWPOKE?\pWell, no wonder I couldn't\nbeat you!\pWould it be OK to get your number?\nI don't want to miss anything\lyou do from now on!", MSGBOX_YESNO)
+            setflag(FLAG_JUGGLER_IRWIN_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("You will tell me your phone\nnumber?", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_JUGGLER_IRWIN)
+            msgbox("Wow! Gee, thanks!\pNow I can call you anytime, whether\nanything's up or not.\lYou know, just to chat!", MSGBOX_AUTOCLOSE)
+            setflag(FLAG_IRWIN_FORCED_CALL)
+        }
+        else
+        {
+            msgbox("Oh, but… I'm not dangerous! I\njust want to call and chat about\leverything and nothing!", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
     msgbox("I was going to dazzle you with my\nprize {POKEMON}.\pBut your prowess electrified me!", MSGBOX_AUTOCLOSE)
 }
 
@@ -46,15 +98,12 @@ script Route35_EventScript_Dirk {
     lock
     faceplayer
     gettime
-    if (var(VAR_0x8002) == TIME_NIGHT)
-    {
+    if (var (VAR_0x8002) == TIME_NIGHT) {
         trainerbattle_single(TRAINER_DIRK, "Danger lurks in the night!", "Whoops!")
         msgbox("You know, nighttime is fun in its\nown ways.\lBut don't overdo it, okay?")
-    }
-    else
-    {
+    } else {
         msgbox("Your {POKEMON} look pretty tough.\n"
-               "You could go anywhere safely.")
+        "You could go anywhere safely.")
     }
     release
 }

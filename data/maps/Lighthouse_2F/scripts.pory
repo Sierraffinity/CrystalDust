@@ -1,14 +1,45 @@
 mapscripts Lighthouse_2F_MapScripts {}
 
 script Lighthouse_2F_EventScript_GentlemanAlfred {
-    trainerbattle_single(TRAINER_ALFRED,  "Hm? This is no place for playing.", "Ah! I can see that you're serious.")
+    trainerbattle_single(TRAINER_ALFRED, "Hm? This is no place for playing.", "Ah! I can see that you're serious.")
     msgbox("Up top is a {POKEMON} that keeps the\nLIGHTHOUSE lit.\pBut I hear that it's sick now and\ncan't be cured by ordinary medicine.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Lighthouse_2F_Eventscript_SailorHuey {
-    // TODO: Phone
+    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_HUEY_1, "Men of the sea are always spoiling\nfor a good fight!", "Urf!\nI lose!")
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if(var(VAR_RESULT) == 1)
+    {
+        trainerbattle_rematch(TRAINER_HUEY_1, "Hey!\nI'm tired of waiting for you!", "Urf!\nI lose!")
+        clearflag(FLAG_HUEY_OFFERED_REMATCH)
+    }
+    if (!flag(FLAG_PHONE_CARD_SAILOR_HUEY))
+    {
+        if (!flag(FLAG_SAILOR_HUEY_OFFERED_NUMBER))
+        {
+            bufferstring(0, Lighthouse_2F_Text_SailorHuey_Phone)
+            msgbox("Cool! That's the first time I've lost\nin a while!\l{STR_VAR_1}", MSGBOX_YESNO) 
+            setflag(FLAG_SAILOR_HUEY_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox(Lighthouse_2F_Text_SailorHuey_Phone, MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_SAILOR_HUEY) 
+            msgbox("Hey, let's battle again!", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("Looks like you're a wimp…", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
     msgbox("What power! How would you like\nto sail the seas with me?", MSGBOX_AUTOCLOSE)
     end
+}text(local) Lighthouse_2F_Text_SailorHuey_Phone{
+    "Hey, give me your phone number.\pYou'd be fun to battle, so I'll call\nyou when I get stronger!"
 }

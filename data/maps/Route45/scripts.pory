@@ -18,8 +18,38 @@ script Route45_Eventscript_CooltrainerRyan {
 }
 
 script Route44_Eventscript_HikerParry { // middle, above Cooltrainer Kelly
-    // TODO: Phone
+    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_PARRY_1, "My {POKEMON} are power packed!", "Wahahah!\nI'm the big loser!")
+
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if(var(VAR_RESULT) == 1)
+    {
+        trainerbattle_rematch(TRAINER_PARRY_1, "Hey, here comes the kid!\nLet's go!\pRead for my usual no-brainer\nall-out offense?", "Wahahah!\nI'm the big loser!")
+        clearflag(FLAG_PARRY_OFFERED_REMATCH)
+    }	
+
+    if (!flag(FLAG_PHONE_CARD_HIKER_PARRY))
+    {
+        if (!flag(FLAG_HIKER_PARRY_OFFERED_NUMBER))
+        {
+            msgbox("Sheesh, the way you attacked!\nThat was something!\lWe should meet again!\lHow about giving me your number?", MSGBOX_YESNO)
+            setflag(FLAG_HIKER_PARRY_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("So you want to register my phone\nnumber for a re- match, huh?", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_HIKER_PARRY)
+            msgbox("I'll call you whenever I feel like\nbattling!", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("No? That's fine. A definite no is\neasy to take!\pI'll be right here\nwhen you're ready for a rematch.", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
     msgbox("I'm not much good at thinking, see?\nSo, I just plow ahead with power!", MSGBOX_AUTOCLOSE)
     end
 }
@@ -31,9 +61,30 @@ script Route45_Eventscript_CooltrainerKelly {
 }
 
 script Route45_Eventscript_BlackBeltKenji {
-    // TODO: Phone
-    trainerbattle_single(TRAINER_KENJI, "I was training here alone.\nBehold the fruits of my labor!", "Waaaargh!")
-    msgbox("This calls for extreme measures.\pI must take to the hills and train\nin solitude.", MSGBOX_AUTOCLOSE)
+    // TODO: Check phone strings for textbox fit
+    if (!flag(FLAG_PHONE_CARD_BLACKBELT_KENJI))
+    {
+        if (!flag(FLAG_BLACKBELT_KENJI_OFFERED_NUMBER))
+        {
+            msgbox("Our battle was remarkable!\nI wish for some-thing to remember\lyou by!\lPerhaps your phone number will do?\pMy training makes it impossible to\nchat much, but…", MSGBOX_YESNO)
+            setflag(FLAG_BLACKBELT_KENJI_OFFERED_NUMBER)
+        }
+        else
+        {
+            msgbox("My training makes chatting tough,\nbut will you take down my number?", MSGBOX_YESNO)
+        }
+        if (var (VAR_RESULT) == 1)
+        {
+            registerphonecontact(FLAG_PHONE_CARD_BLACKBELT_KENJI)
+            msgbox("I must train harder to become the\nmightiest!", MSGBOX_AUTOCLOSE)
+        }
+        else
+        {
+            msgbox("If you decide you want my number,\ncome see me.", MSGBOX_AUTOCLOSE)
+        }
+        end
+    }
+    msgbox("This calls for extreme measures.\lI must take to the hills and train\lin solitude.", MSGBOX_AUTOCLOSE)
     end
 }
 

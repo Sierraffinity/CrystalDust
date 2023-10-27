@@ -750,7 +750,7 @@ static void PrintMatchCallFlavorText(struct MatchCallWindowState *a0, struct Pok
     };
 
     u32 r6 = (list->listWindow.unkA + lineOffsets[checkPageEntry]) & 0xF;
-    const u8 *str = GetMatchCallFlavorText(a0->windowTopIndex, checkPageEntry);
+    const u8 *str = NULL;
 
     if (str != NULL)
     {

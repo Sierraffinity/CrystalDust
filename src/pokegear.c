@@ -1568,7 +1568,7 @@ void Task_InitPokegearPhoneCall(u8 taskId)
 
             if (phoneContact->mapNum == gSaveBlock1Ptr->location.mapNum && phoneContact->mapGroup == gSaveBlock1Ptr->location.mapGroup)
                 str = sPhoneCallText_JustGoTalkToThem;
-            else if (!IsPhoneContactAvailable(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours))
+            else if (!DummiedOut_IsPhoneContactAvailable(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours))
                 str = sPhoneCallText_NobodyAnswered;
 
             if (str != NULL)
@@ -1599,17 +1599,19 @@ void Task_InitPokegearPhoneCall(u8 taskId)
     case 4:
         // Getting to this switch case means that the phone call was unsuccessful, due to being out of range, in the same map, or
         // the phone contact not being available to talk.
-        if (IsTextPrinterActive(gPhoneCallWindowId))
-        {
-            if (JOY_HELD(A_BUTTON))
-                gTextFlags.canABSpeedUpPrint = 1;
-            else
-                gTextFlags.canABSpeedUpPrint = 0;
-        }
-        else if (JOY_NEW(A_BUTTON | B_BUTTON))
-        {
-            DestroyTask(taskId);
-        }
+
+		if (IsTextPrinterActive(gPhoneCallWindowId))
+		{
+			if (JOY_HELD(A_BUTTON))
+				gTextFlags.canABSpeedUpPrint = 1;
+			else
+				gTextFlags.canABSpeedUpPrint = 0;
+		}
+		else if (JOY_NEW(A_BUTTON | B_BUTTON))
+		{
+			DestroyTask(taskId);
+		}
+
         break;
     }
 }
@@ -1942,3 +1944,5 @@ static void InitPhoneCardData(void)
 #undef WIN_DIALOG
 #undef WIN_TOP
 #undef WIN_BOTTOM
+
+

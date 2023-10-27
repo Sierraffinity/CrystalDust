@@ -2952,3 +2952,3156 @@ MatchCall_Text_MrStone11::
 	.string "I didn't recognize you right off!\p"
 	.string "Hm! You must come visit us at DEVON\n"
 	.string "sometime!$"
+
+Matchcall_Alan_Answer_Morn::
+	.string  "Yup, it's {STR_VAR_1}!\n"
+	.string "Is this {PLAYER}?\l"
+	.string "Good morning!$"
+
+Matchcall_Alan_Answer_Day::
+	.string  "Yup, it's {STR_VAR_1}!\n"
+	.string "Is that {PLAYER}?$"
+
+Matchcall_Alan_Answer_Night::
+	.string  "Yup, it's {STR_VAR_1}!\n"
+	.string "Is that {PLAYER}?\l"
+	.string "Good evening!$"
+
+Matchcall_Alan_Call::
+	.string "Hello! It's me, {STR_VAR_1}!$"
+
+Matchcall_Alan_Generic5::
+	.string "{PLAYER}, are you raising\n"
+	.string "your {POKEMON} properly?\p"
+	.string "I read in a book that you should raise\n"
+	.string "any {POKEMON} you catch with love\l"
+	.string "and care.$"
+
+Matchcall_Alan_Generic4::
+	.string "My {STR_VAR_2}'s getting stronger\n"
+	.string "exactly as I calculated!$"
+
+Matchcall_Alan_Generic3::
+	.string  "By the way, we knocked out a wild\n"
+	.string "{STR_VAR_2} just the other day.\l"
+	.string "Studying up in advance worked!$"
+
+Matchcall_Alan_Generic2::
+	.string  "By the way, a wild {STR_VAR_2}\n"
+	.string "escaped on me yesterday.\p"
+	.string "A computational error on my part…$"
+
+
+Matchcall_Alan_Rematch::
+	.string "I've studied quite a bit since then,\n"
+	.string "and I've gotten a lot better!\p"
+	.string "I'm hanging out on {STR_VAR_2}.\n"
+	.string "Can you come down for a battle?$"
+
+
+Matchcall_Alan_Hangup::
+	.string  "See you later!$"
+
+
+Matchcall_Alan_Gift::
+	.string "Hehehe, I picked up something nice!\n"
+	.string "You can have it!\p"
+	.string "Why don't you come to {STR_VAR_2}\n"
+	.string "and pick it up?$"
+
+Matchcall_Alan_Generic1::
+	.string  "I haven't picked up anything yet.\n"
+	.string "I'll call you if I find something.$"
+
+
+Matchcall_Alan_Remind_Rematch::
+	.string  "If we don't battle soon, I'll forget\n"
+	.string "my strategy!\p"
+	.string "I'm waiting on {STR_VAR_2}!$"
+
+
+Matchcall_Alan_Remind_Gift::
+	.string  "I have to do my homework, so can you\n"
+	.string "come get your gift right away?\p"
+
+	.string "I'm waiting on {STR_VAR_2}!$"
+
+
+Matchcall_Anthony_Answer_Morn::
+	.string  "Yeah, {STR_VAR_1} the HIKER here.\n"
+	.string "Ah, {PLAYER}!$"
+
+
+Matchcall_Anthony_Answer_Day::
+	.string  "Yeah, {STR_VAR_1} the HIKER here.\n"
+	.string "Ah, {PLAYER}, right?$"
+
+
+Matchcall_Anthony_Answer_Night::
+	.string  "Yeah, {STR_VAR_1} the HIKER here.\n"
+	.string "Ah, {PLAYER}, isn't it?$"
+
+
+Matchcall_Anthony_Call_Morn::
+	.string  "Yo, {PLAYER}?\n"
+	.string "This is {STR_VAR_1} the HIKER!$"
+
+
+Matchcall_Anthony_Call_Day::
+	.string  "Hey, is this {PLAYER}?\n"
+	.string "This is {STR_VAR_1} the HIKER!$"
+
+
+Matchcall_Anthony_Call_Night::
+	.string  "{PLAYER}, you still awake?\n"
+	.string "This is {STR_VAR_1} the HIKER!$"
+
+
+Matchcall_Anthony_Generic5::
+	.string  "Are your {POKEMON} as feisty as ever?\p"
+
+	.string "My {STR_VAR_2} and me, we have energy\n"
+	.string "to burn.\p"
+	.string "We hike up mountains every day\n"
+	.string "to work out all our energy.$"
+
+
+
+Matchcall_Anthony_Generic4::
+	.string  "The other day, I was watching\n"
+	.string "my {STR_VAR_2} eat some BERRIES.\p"
+
+	.string "It looked like it was enjoying\n"
+	.string "its meal, so I decided to try some.\p"
+
+	.string "I'm not sure if people should eat\n"
+
+	.string "that stuff, but it was delicious!$"
+
+
+Matchcall_Anthony_Generic3::
+	.string  "Lately, I've been running across\n"
+
+	.string "wild {STR_VAR_2} quite often.\l"
+
+	.string "They're easily taken care of.$"
+
+
+Matchcall_Anthony_Generic2::
+	.string  "Oh yeah, I was battling this\n"
+
+	.string "{STR_VAR_2} the other day…\l"
+
+	.string "It took off when I got distracted\l"
+	.string "by a passing BEAUTY.\p"
+
+	.string "Learn from my mistake, always always\n"
+	.string "stay focused on the job at hand!$"
+
+
+Matchcall_Anthony_Rematch::
+	.string  "Come on--let's battle right now!\n"
+
+	.string "{STR_VAR_2} is where I am.\l"
+
+	.string "Come on down if you feel up to it!$"
+
+
+Matchcall_Anthony_Hangup::
+	.string  "All right then!\n"
+	.string "Be good!$"
+
+
+Matchcall_Anthony_Swarm::
+	.string  "{PLAYER}! It's mind-blowing!\p"
+
+	.string "I took a hike in DARK CAVE yesterday,\n"
+	.string "see?\p"
+
+	.string "Well, there were tons of DUNSPARCE\n"
+	.string "around! You have to see it!\p"
+
+	.string "I get this feeling that DUNSPARCE\n"
+	.string "may be timid.\l"
+	.string "I didn't see any where there are\l"
+	.string "strong {POKEMON}.$"
+
+
+Matchcall_Anthony_Generic1::
+	.string  "Rare {POKEMON}?\n"
+	.string "Hey, sorry!\p"
+	.string "I was too focused on my hike, so I\n"
+
+	.string "wasn't paying attention.$"
+
+
+Matchcall_Anthony_Remind_Rematch::
+	.string  "Hello!\p"
+	.string "You haven't forgotten about our battle,\n"
+	.string "have you?\p"
+	.string "{STR_VAR_2}! I'm waiting!$"
+
+
+Matchcall_Anthony_Remind_Swarm::
+	.string  "Hello? What? Where is DUNSPARCE?\n"
+
+	.string "DARK CAVE! Hurry!\p"
+
+	.string "I know I've said it before, but\n"
+	.string "DUNSPARCE don't appear when there\l"
+
+	.string "are strong {POKEMON} around.$"
+
+
+Matchcall_Arnie_Answer_Morn::
+	.string  "Yeah, hello.\n"
+	.string "This is {STR_VAR_1}.\l"
+
+	.string "…Huh, {PLAYER}? Yo!$"
+
+
+Matchcall_Arnie_Answer_Day::
+	.string  "Yeah, hello, you got {STR_VAR_1}.\n"
+
+	.string "…Huh, {PLAYER}? Yo!$"
+
+
+Matchcall_Arnie_Answer_Night::
+	.string  "Yeah, hello, you got {STR_VAR_1}.\n"
+
+	.string "…Huh, {PLAYER}? Yo!$"
+
+
+Matchcall_Arnie_Call_Morn::
+	.string  "Yeah, hello?\n"
+	.string "{STR_VAR_1} calling.\l"
+
+	.string "What are you up to, {PLAYER}?$"
+
+
+Matchcall_Arnie_Call_Day::
+	.string  "Yeah, hello?\n"
+	.string "{STR_VAR_1} calling.\l"
+
+	.string "Where are you now, {PLAYER}?$"
+
+
+Matchcall_Arnie_Call_Night::
+	.string  "Yeah, hello?\n"
+	.string "{STR_VAR_1} calling.\l"
+
+	.string "Are you awake now, {PLAYER}?$"
+
+
+Matchcall_Arnie_Generic5::
+	.string  "I bet your {POKEMON} are a lot\n"
+	.string "stronger than before.$"
+
+
+Matchcall_Arnie_Generic4::
+	.string  "I'm always with my {STR_VAR_2}!\n"
+
+	.string "It's so cute!\l"
+	.string "I just love it!$"
+
+
+Matchcall_Arnie_Generic3::
+	.string  "Changing the topic here.\p"
+	.string "I saw this {STR_VAR_2} for the\n"
+	.string  "first time.\l"
+
+	.string "It was easy to beat, actually.$"
+
+
+Matchcall_Arnie_Generic2::
+	.string  "I was wondering, do you happen\n"
+	.string "to have {STR_VAR_2}?\p"
+
+	.string "I can't seem to catch one.\n"
+	.string "What is its weakness, I wonder.$"
+
+
+Matchcall_Arnie_Rematch::
+	.string  "Hey, let's battle our {POKEMON}!\n"
+
+	.string "I won't lose to you battling\l"
+
+	.string "or in the Bug-Catching Contest!\p"
+
+	.string "I'll be here on {STR_VAR_2}!$"
+
+
+Matchcall_Arnie_Hangup::
+	.string  "Let's talk again, huh?$"
+
+
+Matchcall_Arnie_Swarm::
+	.string  "Boy, am I glad I caught you!\p"
+
+	.string "A whole bunch of YANMA have appeared\n"
+
+	.string "around {STR_VAR_2}!\l"
+
+	.string "You have to see this!$"
+
+
+Matchcall_Arnie_Generic1::
+	.string  "I haven't had any luck seeing rare\n"
+	.string "{POKEMON} lately…\p"
+
+	.string "But I know they're out there!$"
+
+
+Matchcall_Arnie_Remind_Rematch::
+	.string  "Hey, where are you now?\n"
+
+	.string "Let's battle.\p"
+	.string "I'll be waiting for you on\n"
+	.string "{STR_VAR_2}!$"
+
+
+Matchcall_Arnie_Remind_Swarm::
+	.string  "Hello? Are you coming or what?\n"
+
+	.string "You're missing out on seeing YANMA!\l"
+
+	.string "Get down to {STR_VAR_2} right now!$"
+
+
+Matchcall_Beth_Answer_Morn::
+	.string  "Hello, this is {STR_VAR_1}.\n"
+
+	.string "Oh, {PLAYER}. Good morning.$"
+
+
+Matchcall_Beth_Answer_Day::
+	.string  "Hello, this is {STR_VAR_1}.\n"
+	.string  "Oh. Hi, {PLAYER}.$"
+
+
+Matchcall_Beth_Answer_Night::
+	.string  "Hello, this is {STR_VAR_1}.\n"
+	.string "Oh, {PLAYER}. Good evening.$"
+
+
+Matchcall_Beth_Call_Morn::
+	.string  "Good morning, {PLAYER}!\n"
+
+	.string "This is {STR_VAR_1}.\l"
+	.string "Were you sleeping?$"
+
+
+Matchcall_Beth_Call_Day::
+	.string  "{PLAYER}, hi!\n"
+	.string "This is {STR_VAR_1}.\l"
+
+	.string "Do you have some time?$"
+
+
+Matchcall_Beth_Call_Night::
+	.string  "Hi, {PLAYER}. Good evening.\n"
+
+	.string "This is {STR_VAR_1}.\l"
+
+	.string "I hope you were awake.$"
+
+
+Matchcall_Beth_Generic5::
+	.string  "Are you the kind of person\n"
+	.string "who goes to {POKEMON} CENTERS often?\l"
+
+	.string "I go every day.\p"
+	.string "Watching out for the health of your\n"
+	.string "{POKEMON} is a basic part of being\l"
+
+	.string "a {POKEMON} trainer.$"
+
+
+Matchcall_Beth_Generic4::
+	.string  "Do you remember my sweet {STR_VAR_2}?\n"
+
+	.string "{STR_VAR_2} runs very fast.\l"
+
+	.string "It's exhilarating to ride on its back\l"
+
+	.string "when it really gets going.$"
+
+
+Matchcall_Beth_Generic3::
+	.string  "Oh, have you ever seen a {STR_VAR_2}\n"
+	.string "before?\p"
+
+	.string "I just battled one…\n"
+
+	.string "It was much faster than I expected.\l"
+
+	.string "I was a little shocked.\l"
+
+	.string "I still won, of course.$"
+
+
+Matchcall_Beth_Generic2::
+	.string  "Oh, I just saw a wild {STR_VAR_2}.\n"
+
+	.string "I was trying to catch it when I\l"
+
+	.string "noticed that I was all out of BALLS.\p"
+
+	.string "If you don't check your items,\n"
+
+	.string "you may run out at the worst time.\l"
+
+	.string "I hope you learn from my mistake.$"
+
+
+Matchcall_Beth_Rematch::
+	.string  "Do you want to battle?\n"
+	.string "I'm going to win this time!\p"
+
+	.string "I'll be waiting for you around\n"
+
+	.string "{STR_VAR_2}.\l"
+	.string "Look for me, OK?$"
+
+
+Matchcall_Beth_Hangup::
+	.string  "OK, bye-bye!$"
+
+
+Matchcall_Beth_Generic1::
+	.string  "Let's battle again sometime!$"
+
+
+Matchcall_Beth_Remind_Gift::
+	.string  "Um… {PLAYER}? What's wrong?\n"
+
+	.string "Did you forget our deal?\l"
+
+	.string "{STR_VAR_2}.\l"
+
+	.string "That's where I'm waiting.$"
+
+
+Matchcall_Beverly_Answer_Morn::
+	.string  "Hello, this is {STR_VAR_1}.\n"
+
+	.string "Oh! Good morning, {PLAYER}.$"
+
+
+Matchcall_Beverly_Answer_Day::
+	.string  "Hello, this is {STR_VAR_1}.\n"
+
+	.string "Oh! Good day, {PLAYER}.$"
+
+
+Matchcall_Beverly_Answer_Night::
+	.string  "Hello, this is {STR_VAR_1}.\n"
+
+	.string "Oh! Good evening, {PLAYER}.$"
+
+
+Matchcall_Beverly_Call_Morn::
+	.string  "Hello, {PLAYER}. Good morning.\n"
+
+	.string "This is {STR_VAR_1}.\l"
+	.string "Were you asleep?$"
+
+
+Matchcall_Beverly_Call_Day::
+	.string  "Hi, {PLAYER}.\n"
+	.string "This is {STR_VAR_1}.\l"
+
+	.string "How are you doing?$"
+
+
+Matchcall_Beverly_Call_Night::
+	.string  "Hi, {PLAYER}.\n"
+	.string "This is {STR_VAR_1}.\l"
+
+	.string "Were you awake?$"
+
+
+Matchcall_Beverly_Generic5::
+	.string  "Keeping your {POKEMON} happy?\n"
+
+	.string "My {STR_VAR_2} is healthy.\l"
+	.string "It eats a lot every day.$"
+
+
+Matchcall_Beverly_Generic4::
+	.string  "I fancied up my {STR_VAR_2}\n"
+	.string "and made it even cuter than before!$"
+
+
+Matchcall_Beverly_Generic3::
+	.string  "I happened to come across a wild\n"
+	.string "{STR_VAR_2} recently.\p"
+
+	.string "My {STR_VAR_2}, I assure you,\n"
+
+	.string "was far cuter than the wild one.$"
+
+
+Matchcall_Beverly_Generic2::
+	.string  "I happened to see\n"
+	.string "a wild MARILL the other day.\l"
+	.string "Or so I thought.\p"
+
+	.string "A closer look showed it was\n"
+
+	.string "{STR_VAR_2}. I was quite miffed.$"
+
+
+Matchcall_Beverly_Hangup::
+	.string  "You can expect a call from me.$"
+
+
+Matchcall_Beverly_Gift::
+	.string  "My husband got some NUGGETS.\n"
+
+	.string "If you'd like, you could have one\l"
+	.string "as thanks for helping me out.\p"
+
+	.string "I'll be at {STR_VAR_2}.\n"
+
+	.string "Please come see me when you can.$"
+
+
+Matchcall_Beverly_Generic1::
+	.string  "Are your {POKEMON} in prime form?\n"
+
+	.string "Let's chat about {POKEMON} again.$"
+
+
+Matchcall_Beverly_Remind_Gift::
+	.string  "Pardon? Oh, the NUGGET?\n"
+
+	.string "There's no need to hurry.\p"
+	.string "Come see me in {STR_VAR_2} when\n"
+	.string "you can.$"
+
+
+Matchcall_Brent_Answer::
+	.string  "Yes? {STR_VAR_1} here…\n"
+
+	.string "Ah, {PLAYER}.\l"
+	.string "What can I do for you?$"
+
+Matchcall_Brent_Call::
+	.string  "Hiya, {PLAYER}. How are you doing?\n"
+
+	.string "Hey! It's me, {STR_VAR_1}.$"
+
+Matchcall_Brent_Generic15::
+	.string  "Oh yeah, I saw you coming out of a\n"
+
+	.string "{POKEMON} CENTER the other day.\p"
+
+	.string "You heal your {POKEMON} regularly,\n"
+	.string "don't you? I'm impressed.\p"
+
+	.string "Heh, my {STR_VAR_2} is so tough,\n"
+	.string "it doesn't need to go to {POKEMON}\l"
+	.string "CENTERS often. Heheh!$"
+
+
+Matchcall_Brent_Generic14::
+	.string  "Oh yeah, I got an extremely rare\n"
+
+	.string "{POKEMON} in a trade a while back.\l"
+
+	.string "Do you want to know what it is?\l"
+
+	.string "Hehe, I'm keeping it a secret!$"
+
+
+Matchcall_Brent_Generic13::
+	.string  "Oh yeah, I took down this wild\n"
+
+	.string "{STR_VAR_2}.\p"
+	.string "It wasn't rare enough to bother\ncatching.$"
+
+
+Matchcall_Brent_Generic12::
+	.string  "Oh yeah, I saw a rare {POKEMON} about\n"
+	.string "an hour ago.\l"
+
+	.string "It was my first sighting.\l"
+	.string "But I didn't have any BALLS…\l"
+
+	.string "Would BILL laugh at my mistakes?$"
+
+
+Matchcall_Brent_Rematch::
+	.string  "You've got time like usual, right?\n"
+
+	.string "Feel like having a battle?\p"
+
+	.string "It'll be a chance to see my rare\n"
+	.string "{POKEMON}.\l"
+	.string "It'll be worth your time!\p"
+
+	.string "You know where--{STR_VAR_2}.$"
+
+
+Matchcall_Brent_Hangup::
+	.string  "So that's it then.$"
+
+
+Matchcall_Brent_Generic11::
+	.string "Did you know…?\p"
+	.string "BILL's father is supposed to be\n"
+	.string "a great {POKE}MANIAC.$"
+
+
+Matchcall_Brent_Generic10::
+	.string  "Did you know…?\p"
+	.string "Apparently BILL's grandpa isn't a\n"
+	.string "{POKE}MANIAC.$"
+
+
+Matchcall_Brent_Generic9::
+	.string  "Did you know…?\p"
+	.string "BILL's originally from GOLDENROD.$"
+
+
+Matchcall_Brent_Generic8::
+	.string  "Did you know…?\p"
+	.string "BILL evidently lives on ROUTE 25\n"
+	.string "in KANTO.$"
+
+
+Matchcall_Brent_Generic7::
+	.string  "Did you know…?\p"
+	.string "ABRA was the first {POKEMON} that\n"
+
+	.string "BILL ostensibly caught.$"
+
+
+Matchcall_Brent_Generic6::
+	.string  "Did you know…?\p"
+	.string "BILL's younger sister apparently\n"
+	.string "can't wink.$"
+
+
+Matchcall_Brent_Generic5::
+	.string  "Did you know…?\p"
+	.string "BILL supposedly hates milk and\n"
+	.string "can't drink it.$"
+
+
+Matchcall_Brent_Generic4::
+	.string  "Did you know…?\p"
+	.string "Evidently, BILL isn't very good\n"
+	.string "at battling.$"
+
+
+Matchcall_Brent_Generic3::
+	.string  "Did you know…?\p"
+	.string "BILL appears to like the lady\n"
+
+	.string "at the FLOWER SHOP.$"
+
+
+Matchcall_Brent_Generic2::
+	.string  "Did you know…?\p"
+	.string "BILL's mother is said to have\n"
+
+	.string "been a KIMONO GIRL.$"
+
+
+Matchcall_Brent_Generic1::
+	.string  "You wanted to hear about BILL?\n"
+
+	.string "Sorry, but I'm too busy for you.\l"
+
+	.string "I'll call when I have time.$"
+
+
+Matchcall_Brent_Remind_Rematch::
+	.string  "You want to see my rare {POKEMON}?\n"
+
+	.string "Hurry over to {STR_VAR_2}.$"
+
+
+Matchcall_Chad_Answer_Morn::
+	.string  "Hello, this is {STR_VAR_1}…\n"
+
+	.string "Hi, {PLAYER}! Good morning!$"
+
+
+Matchcall_Chad_Answer_Day::
+	.string  "Hello, this is {STR_VAR_1}…\n"
+
+	.string "Hi, {PLAYER}, good day!$"
+
+
+Matchcall_Chad_Answer_Night::
+	.string  "Hello, this is {STR_VAR_1}…\n"
+
+	.string "Hi, {PLAYER}, good evening!$"
+
+
+Matchcall_Chad_Call_Morn::
+	.string  "Hi, {PLAYER}, good morning!\n"
+
+	.string "It's {STR_VAR_1}.\l"
+	.string "How are you?$"
+
+
+Matchcall_Chad_Call_Day::
+	.string  "Hi, {PLAYER}, good day!\n"
+
+	.string "It's {STR_VAR_1}.\l"
+	.string "How are you?$"
+
+
+Matchcall_Chad_Call_Night::
+	.string  "Hi, {PLAYER}, good evening!\n"
+
+	.string "It's {STR_VAR_1}.\l"
+	.string "How are you?$"
+
+
+Matchcall_Chad_Generic15::
+	.string  "How are your {POKEMON} doing?\n"
+
+	.string "You know PROF.OAK, so of course\l"
+	.string "your {POKEMON} are fine!\l"
+
+	.string "My {POKEMON} are doing well too.\p"
+
+	.string "But then, I am trying to become\n"
+	.string "become a {POKEMON} professor, so that\l"
+	.string "shouldn't be a big surprise.$"
+
+
+Matchcall_Chad_Generic14::
+	.string  "I recently began observing wild\n"
+	.string "{STR_VAR_2}.\p"
+
+	.string "I've been learning all sorts of new\n"
+
+	.string "things through my observations.\p"
+
+	.string "I wish I could become a {POKEMON}\n"
+
+	.string "researcher like PROF.OAK soon.$"
+
+
+Matchcall_Chad_Generic13::
+	.string  "Oh yes, I managed to knock out a\n"
+
+	.string "wild {STR_VAR_2} a while back.\p"
+
+	.string "Well, considering all the studying I\n"
+
+	.string "do every day, it was inevitable.$"
+
+
+Matchcall_Chad_Generic12::
+	.string  "Oh yes, I came close to catching\n"
+
+	.string "a wild {STR_VAR_2}, but it got away.\p"
+
+	.string "For the longest time, I've been\n"
+
+	.string "wanting to observe {STR_VAR_2}.\lRats…$"
+
+
+Matchcall_Chad_Rematch::
+	.string  "Want to battle?\n"
+	.string "I have to battle every so often\l"
+
+	.string "to avoid rusting out.\p"
+
+	.string "I'll be on {STR_VAR_2}!$"
+
+
+Matchcall_Chad_Hangup::
+	.string  "See you later!$"
+
+
+Matchcall_Chad_Generic11::
+	.string  "Do you know BLUE?\p"
+
+	.string "He's PROF.OAK's grandson and\n"
+	.string "a former {POKEMON} LEAGUE CHAMPION!\l"
+
+	.string "He's one super {POKEMON} trainer!$"
+
+
+Matchcall_Chad_Generic10::
+	.string  "PROF.OAK has a granddaughter\n"
+	.string "named DAISY.\p"
+
+	.string "When she's around, even the most\n"
+	.string "ferocious {POKEMON} calm right down.$"
+
+
+Matchcall_Chad_Generic9::
+	.string  "Everyone's talking about PROF.ELM.\p"
+
+	.string "He used to be an assistant to the\n"
+	.string "great PROF.OAK!\l"
+
+	.string "That is so cool!\l"
+	.string "I envy him!$"
+
+
+Matchcall_Chad_Generic8::
+	.string  "PROF.OAK's dream is to compile a\n"
+
+	.string "comprehensive {POKEDEX}.\p"
+
+	.string "I envy you for taking part in\n"
+	.string "that project…$"
+
+
+Matchcall_Chad_Generic7::
+	.string  "Do you know KURT, the BALL creator?\n"
+
+	.string "He and PROF.OAK go back a long way.\p"
+
+	.string "I guess great people attract\none another!$"
+
+
+Matchcall_Chad_Generic6::
+	.string  "{POKEMON} LEAGUE is the great\n"
+	.string "gathering place for all trainers\l"
+
+	.string "who wish to become CHAMP.\p"
+
+	.string "PROF.OAK acts as an advisor to the\n"
+
+	.string "{POKEMON} LEAGUE's headquarters.\l"
+
+	.string "He really is a great man.$"
+
+
+Matchcall_Chad_Generic5::
+	.string  "PROF.OAK'S {POKEMON} TALK is a popular\n"
+	.string "radio show, right?\p"
+
+	.string "Did you know that he was going to\n"
+
+	.string "turn down the show at first?\p"
+
+	.string "But MARY's energy and persistence\n"
+	.string "wore him down.\l"
+
+	.string "So we have MARY to thank for it!$"
+
+
+Matchcall_Chad_Generic4::
+	.string  "PROF.OAK used to be a trainer a\n"
+	.string "long time ago.\p"
+
+	.string "But rather than battling, he found\n"
+	.string "{POKEMON} themselves to be interesting.\p"
+
+	.string "So he abandoned his training to focus\n"
+
+	.string "on becoming a researcher.$"
+
+
+Matchcall_Chad_Generic3::
+	.string  "PROF.OAK has a granddaughter\nnamed DAISY.\p"
+
+	.string "She has tea every day for an hour\n"
+
+	.string "from three in the afternoon.\p"
+
+	.string "I wish I could join her for tea\n"
+
+	.string "and chat about PROF.OAK.$"
+
+
+Matchcall_Chad_Generic2::
+	.string  "Did you know?\p"
+	.string "PROF.OAK traveled all over the world\n"
+	.string "when he was young.\p"
+
+	.string "While traveling, he must've learned\n"
+
+	.string "about {POKEMON} naturally.\l"
+
+	.string "I envy him…\p"
+	.string "I'd like to travel and learn about\nthings too…$"
+
+
+Matchcall_Chad_Generic1::
+	.string  "I'm going to study hard so PROF.OAK\n"
+
+	.string "will make me his assistant!$"
+
+
+Matchcall_Chad_Remind_Rematch::
+	.string  "Do you remember about our battle?\n"
+
+	.string "The place is {STR_VAR_2}.\l"
+
+	.string "Hurry over--I'm waiting.$"
+
+
+Matchcall_Dana_Answer_Morn::
+	.string  "Hi, {STR_VAR_1} on the line.\n"
+
+	.string "Hey! It's {PLAYER}!$"
+
+
+Matchcall_Dana_Answer_Day::
+	.string  "Hi, {STR_VAR_1} on the line.\n"
+
+	.string "I know! It's {PLAYER}!$"
+
+
+Matchcall_Dana_Answer_Night::
+	.string  "Hi, {STR_VAR_1} on the line.\n"
+
+	.string "{PLAYER}? What's up?$"
+
+
+Matchcall_Dana_Call::
+	.string  "Uh, {PLAYER}?\n"
+
+	.string "It's me!\l"
+	.string "It's me, {STR_VAR_1}!$"
+
+
+Matchcall_Dana_Generic5::
+	.string  "My {STR_VAR_2} is so full of\n"
+	.string "energy, it's a little scary.\l"
+
+	.string "How are your {POKEMON} doing?$"
+
+
+Matchcall_Dana_Generic4::
+	.string  "My {STR_VAR_2} is getting prettier!\n"
+
+	.string "I've been taking photos galore!$"
+
+
+Matchcall_Dana_Generic3::
+	.string  "It took only an instant to KO a wild\n"
+	.string "{STR_VAR_2}.\p"
+
+	.string "It must be because you gave me some\n"
+
+	.string "battling tips last time.$"
+
+
+Matchcall_Dana_Generic2::
+	.string  "You know what?\p"
+	.string "A wild {STR_VAR_2} got away from me\n"
+	.string "again.\l"
+
+	.string "It was so close!\p"
+	.string "Really, just a little bit more, and\n"
+	.string "I would've…$"
+
+
+Matchcall_Dana_Rematch::
+	.string  "Right now, I'm on {STR_VAR_2}.\n"
+
+	.string "If you're close by, let's battle!\l"
+
+	.string "I'll be waiting for you!$"
+
+
+Matchcall_Dana_Hangup::
+	.string  "See you!$"
+
+
+Matchcall_Dana_Gift::
+	.string  "You know what?\n"
+	.string "I got a good gift!\l"
+
+	.string "As I promised, it's yours!\l"
+
+	.string "I'm sure you'd like it. Come get it!\l"
+
+	.string "I'm waiting on {STR_VAR_2}!$"
+
+
+Matchcall_Dana_Generic1::
+	.string  "Oh! You wanted a gift, right?\n"
+
+	.string "I got one, but I want to keep this.\l"
+
+	.string "Can you wait a bit longer?$"
+
+
+Matchcall_Dana_Remind_Rematch::
+	.string "Hi!\p"
+	.string "You haven't forgotten about your\n"
+
+	.string "promise to battle me?\l"
+
+	.string "I'm waiting on {STR_VAR_2}!$"
+
+
+Matchcall_Dana_Remind_Gift::
+	.string  "Hello?\p"
+
+	.string "If you don't come get your present\n"
+
+	.string "soon, I'll give it to someone else.\l"
+
+	.string "I'm waiting on {STR_VAR_2}!$"
+
+
+Matchcall_Derek_Answer_Morn::
+	.string  "Hi, {PLAYER}?\n"
+
+	.string "Good morning pika.\l"
+	.string "What's up pika?$"
+
+
+Matchcall_Derek_Answer_Day::
+	.string  "Hi, {PLAYER}?\p"
+	.string "Good day pika,\n"
+	.string "what's up pika?$"
+
+
+Matchcall_Derek_Answer_Night::
+	.string  "Hi, {PLAYER}?\p"
+
+	.string "Good evening pika,\n"
+	.string "what's up pika?$"
+
+
+Matchcall_Derek_Call_Morn::
+	.string  "{PLAYER} pika, good morning!\n"
+
+	.string "It's {STR_VAR_1}, how pika are you?$"
+
+
+Matchcall_Derek_Call_Day::
+	.string  "{PLAYER} pika, good pika day!\n"
+
+	.string "It's {STR_VAR_1}, how pika are you?$"
+
+
+Matchcall_Derek_Call_Night::
+	.string  "{PLAYER} pika, good evening!\n"
+
+	.string "It's {STR_VAR_1}. Were you pika awake?$"
+
+
+Matchcall_Derek_Generic5::
+	.string  "You have to hear this!\p"
+	.string "My lovable {STR_VAR_2} looked at me\n"
+	.string "and grinned!\p"
+
+	.string "It must be because our hearts\n"
+	.string "beat together as one!$"
+
+
+Matchcall_Derek_Generic4::
+	.string  "Listen to this.\p"
+	.string "My {STR_VAR_2} grins happily when I\n"
+	.string "pinch its cheek.\l"
+
+	.string "But it never grins for anyone else.\l"
+
+	.string "I must be special.$"
+
+
+Matchcall_Derek_Generic3::
+	.string  "Oh, and recently my PIKACHU beat a\n"
+	.string "wild {STR_VAR_2}!\l"
+
+	.string "A wild {STR_VAR_2}, I tell you!\l"
+
+	.string "Don't you think that's astounding?\l"
+
+	.string "My PIKACHU is awesome!\l"
+
+	.string "My PIKACHU is the greatest!$"
+
+
+Matchcall_Derek_Generic2::
+	.string  "Oh, and I saw a wild {STR_VAR_2}\n"
+	.string  "a little while ago.\l"
+
+	.string "But it wasn't very cute, so I left it…\l"
+	.string "{POKEMON} have to be cute.\l"
+	.string "They're no good otherwise.$"
+
+
+Matchcall_Derek_Hangup::
+	.string  "Well, let's talk again!$"
+
+Matchcall_Derek_Gift::
+	.string  "I'd like you to have a NUGGET.\n"
+
+	.string "My PIKACHU just loves it.\p"
+
+	.string "I'm certain your PIKACHU will love\n"
+	.string "it too!$"
+
+
+Matchcall_Derek_Generic1::
+	.string  "How is your PIKACHU doing?\p"
+
+	.string "Let's get together and brag about\n"
+	.string "our PIKACHU!$"
+
+
+Matchcall_Derek_Remind_Gift::
+	.string  "What's wrong?\n"
+
+	.string "I'm waiting on {STR_VAR_2}.\l"
+
+	.string "Come pick this up anytime.$"
+
+
+Matchcall_Erin_Answer_Morn::
+	.string  "Yes, this is {STR_VAR_2}…\n"
+
+	.string "Oh. Hi, {PLAYER}!\l"
+	.string "Good morning!$"
+
+
+Matchcall_Erin_Answer_Day::
+	.string  "Yes, this is {STR_VAR_1}…\n"
+
+	.string "Oh, hi, {PLAYER}!\l"
+	.string "Yahoo!$"
+
+
+Matchcall_Erin_Answer_Night::
+	.string  "Yes, this is {STR_VAR_1}…\n"
+
+	.string "Oh, hi, {PLAYER}!$"
+
+
+Matchcall_Erin_Call_Morn::
+	.string  "{PLAYER}!\n"
+
+	.string "It's {STR_VAR_1}!\l"
+	.string "Good morning!$"
+
+
+Matchcall_Erin_Call_Day::
+	.string  "{PLAYER}!\n"
+
+	.string "It's {STR_VAR_1}!\l"
+	.string "Working hard?$"
+
+
+Matchcall_Erin_Call_Night::
+	.string  "{PLAYER}!\n"
+
+	.string "It's {STR_VAR_1}!\l"
+	.string "Were you up?$"
+
+
+Matchcall_Erin_Generic5::
+	.string  "Are you raising your {POKEMON}?\n"
+
+	.string "Hey, {STR_VAR_1}'s {STR_VAR_2}\l"
+	.string  "is looking good!$"
+
+
+Matchcall_Erin_Generic4::
+	.string "{STR_VAR_1}'s {STR_VAR_2}\n"
+	.string "is much stronger than before!$"
+
+
+Matchcall_Erin_Generic3::
+	.string  "And, and…\n"
+	.string "I just battled and beat {STR_VAR_2}!\l"
+
+	.string "I've raised my {POKEMON} properly!$"
+
+
+Matchcall_Erin_Generic2::
+	.string  "But, but…\p"
+
+	.string "A wild {STR_VAR_2} got away from me\n"
+	.string "again.\l"
+
+	.string "It's just not fair!$"
+
+
+Matchcall_Erin_Rematch::
+	.string  "I'm {STR_VAR_1}. Want to battle me again?\n"
+
+	.string "I won't lose this time!\l"
+
+	.string "I'll be waiting on {STR_VAR_2}!$"
+
+
+Matchcall_Erin_Hangup::
+	.string  "See you. Bye-bye!$"
+
+
+Matchcall_Erin_Generic1::
+	.string  "I'm working hard to raise my {POKEMON}!\n"
+
+	.string "Come back for another battle!$"
+
+
+Matchcall_Erin_Remind_Rematch::
+	.string  "Oh, {PLAYER}!\n"
+	.string "Come battle {STR_VAR_1}!\l"
+
+	.string "I'll be waiting on {STR_VAR_2}!$"
+
+
+Matchcall_Gaven_Answer_Morn::
+	.string  "Hello, this is {STR_VAR_1} speaking…\n"
+
+	.string "Hi, {PLAYER}!\l"
+	.string "Good morning!$"
+
+
+Matchcall_Gaven_Answer_Day::
+	.string  "Hello, this is {STR_VAR_1} speaking…\n"
+
+	.string "Hi, {PLAYER}!$"
+
+
+Matchcall_Gaven_Answer_Night::
+	.string  "Hello, this is {STR_VAR_1} speaking…\n"
+
+	.string "Hi, {PLAYER}!\l"
+	.string "Good evening!$"
+
+
+Matchcall_Gaven_Call_Morn::
+	.string  "{PLAYER}, good morning!\n"
+
+	.string "It's me, {STR_VAR_1}.\l"
+	.string "How are you doing?$"
+
+
+Matchcall_Gaven_Call_Day::
+	.string  "Hi, {PLAYER}!\n"
+
+	.string "It's me, {STR_VAR_1}.\l"
+	.string "How are you doing?$"
+
+
+Matchcall_Gaven_Call_Night::
+	.string  "{PLAYER}, good evening!\n"
+
+	.string "It's me, {STR_VAR_1}.\l"
+	.string "How are you doing?$"
+
+
+Matchcall_Gaven_Generic5::
+	.string  "How are your {POKEMON} doing?\p"
+
+	.string "My {STR_VAR_2}'s doing as great\n"
+	.string "as ever.\p"
+
+	.string "Let's keep at it and become\n"
+	.string "{POKEMON} CHAMPS!$"
+
+
+Matchcall_Gaven_Generic4::
+	.string  "My {STR_VAR_2} might be greater\n"
+	.string "than I imagined.\p"
+
+	.string "I doubt I'll see a {STR_VAR_1}\n"
+	.string  "that's better than mine.$"
+
+
+Matchcall_Gaven_Generic3::
+	.string  "Oh, and I managed to barely defeat\n"
+
+	.string "{STR_VAR_2} the other day.\p"
+
+	.string "I've never seen a {STR_VAR_2}\n"
+	.string  "get that strong…\p"
+
+	.string "You shouldn't let your guard down\n"
+
+	.string "even against a {POKEMON} you're used\l"
+	.string "to seeing.$"
+
+
+Matchcall_Gaven_Generic2::
+	.string  "And a while back, I tried to catch\n"
+	.string "a wild {STR_VAR_2}.\l"
+
+	.string "But it managed to elude me.\p"
+
+	.string "One wrong decision could mean total\n"
+
+	.string "failure… You ought to be careful too.$"
+
+
+Matchcall_Gaven_Rematch::
+	.string  "Let's battle!\n"
+
+	.string "I'll be waiting on {STR_VAR_2}.\l"
+
+	.string "Give me a shout when you're close.$"
+
+
+Matchcall_Gaven_Hangup::
+	.string  "OK, I'll talk to you soon!$"
+
+
+Matchcall_Gaven_Generic1::
+	.string  "I obsess over how to beat you.$"
+
+
+Matchcall_Gaven_Remind_Rematch::
+	.string  "{PLAYER}, why aren't you here?\n"
+
+	.string "I'll take you down with {STR_VAR_2}!$"
+
+
+Matchcall_Gina_Answer_Morn::
+	.string  "Hello? This is {STR_VAR_1}…\n"
+
+	.string "Oh, {PLAYER}!\l"
+	.string "Good morning!$"
+
+
+Matchcall_Gina_Answer_Day::
+	.string  "Hello? This is {STR_VAR_1}…\n"
+
+	.string "Oh, {PLAYER}!\l"
+	.string "Hi, how are you?$"
+
+
+Matchcall_Gina_Answer_Night::
+	.string  "Hello? This is {STR_VAR_1}…\n"
+
+	.string "Oh, {PLAYER}!\l"
+	.string "Good evening!$"
+
+
+Matchcall_Gina_Call_Morn::
+	.string  "{PLAYER}?\n"
+
+	.string "It's {STR_VAR_1}.\l"
+	.string "Good morning!$"
+
+
+Matchcall_Gina_Call_Day::
+	.string  "{PLAYER}?\n"
+
+	.string "It's {STR_VAR_1}.\l"
+	.string "Is this a bad time?$"
+
+
+Matchcall_Gina_Call_Night::
+	.string  "{PLAYER}?\n"
+
+	.string "It's {STR_VAR_1}.\l"
+	.string "Got time to chat?$"
+
+
+Matchcall_Gina_Generic5::
+	.string  "Are your {POKEMON} still tough?\n"
+
+	.string "I train every day with {STR_VAR_2}.$"
+
+
+Matchcall_Gina_Generic4::
+	.string  "My {STR_VAR_2} and I are getting\n"
+	.string "more in sync with each other.$"
+
+
+Matchcall_Gina_Generic3::
+	.string  "We battled a wild {STR_VAR_2}\n"
+	.string "and managed to drop it in a\l"
+	.string "close match.\l"
+
+	.string "We're getting into the groove!$"
+
+
+Matchcall_Gina_Generic2::
+	.string  "But, you know?\n"
+
+	.string "I still haven't caught {STR_VAR_2}.\l"
+
+	.string "It's getting past frustrating…$"
+
+
+Matchcall_Gina_Rematch::
+	.string  "Would you be my practice partner\n"
+	.string "again sometime?\l"
+
+	.string "I'll be waiting on {STR_VAR_2}.\p"
+
+	.string "…Could you take it a little easier\n"
+	.string "on me next time?$"
+
+
+Matchcall_Gina_Hangup::
+	.string  "Bye! Let's chat again!$"
+
+Matchcall_Gina_Gift::
+	.string  "I picked up something nice today.\n"
+
+	.string "I want you to have it, so I called!\l"
+
+	.string "You will come for it, won't you?\l"
+
+	.string "{STR_VAR_2} is where I am.$"
+
+
+Matchcall_Gina_Generic1::
+	.string  "Sorry, I haven't found anything useful\n"
+
+	.string "yet…\p"
+	.string "I promise, if I find anything, you\n"
+	.string "can have it!$"
+
+
+Matchcall_Gina_Remind_Rematch::
+	.string  "Oh, {PLAYER}!\p"
+	.string "How soon can I expect to see you\n"
+	.string "for our battle?\l"
+
+	.string "Don't forget, {STR_VAR_1}!$"
+
+
+Matchcall_Gina_Remind_Gift::
+	.string  "I'm getting really impatient\n"
+	.string "waiting to give you my present!\l"
+
+	.string "Hurry over to {STR_VAR_2}!$"
+
+
+Matchcall_Huey_Answer::
+	.string  "Yeah, this is {STR_VAR_1}.\n"
+
+	.string "Huh? What's up, {PLAYER}?$"
+
+
+Matchcall_Huey_Call_Morn::
+	.string  "Yo, {PLAYER}!\n"
+	.string "You awake?\l"
+
+	.string "It's me, {STR_VAR_1}!\l"
+	.string "How's it going?$"
+
+
+Matchcall_Huey_Call_Day::
+	.string  "Yo, {PLAYER}!\n"
+	.string "You free right now?\l"
+
+	.string "It's me, {STR_VAR_1}!\l"
+	.string "How's it going?$"
+
+
+Matchcall_Huey_Call_Night::
+	.string  "Yo, {PLAYER}!\n"
+	.string "Were you asleep?\l"
+
+	.string "It's me, {STR_VAR_1}!\l"
+	.string "How's it going?$"
+
+
+Matchcall_Huey_Rematch::
+	.string  "Hey, I challenge you to a battle!\n"
+
+	.string "It won't be like last time!\p"
+
+	.string "{STR_VAR_2}'s where I'm waiting for you.\l"
+	.string "Hustle over here pronto!$"
+
+
+Matchcall_Huey_Hangup::
+	.string  "See ya!$"
+
+
+Matchcall_Huey_Generic1::
+	.string  "We have to battle again sometime.\p"
+
+	.string "You can bet I'm going to keep\n"
+
+	.string "challenging you till I win.$"
+
+
+Matchcall_Huey_Remind_Rematch::
+	.string  "Hey, you'd better not have forgotten\n"
+	.string "about our battle!\l"
+
+	.string "{STR_VAR_2}!\l"
+
+	.string "Hustle over quick!\l"
+	.string "I'm waiting!$"
+
+
+Matchcall_Jack_Answer_Morn::
+	.string  "Hello. This is {STR_VAR_1}…\n"
+
+	.string "Good morning, {PLAYER}!$"
+
+
+Matchcall_Jack_Answer_Day::
+	.string  "Hello. This is {STR_VAR_1}…\n"
+
+	.string "How's it going, {PLAYER}?$"
+
+
+Matchcall_Jack_Answer_Night::
+	.string  "Hello. This is {STR_VAR_1}…\n"
+
+	.string "Good evening, {PLAYER}!$"
+
+
+Matchcall_Jack_Call_Morn::
+	.string  "{PLAYER}, good morning!\n"
+
+	.string "It's me, {STR_VAR_1}.\l"
+	.string "How are you doing?$"
+
+
+Matchcall_Jack_Call_Day::
+	.string  "{PLAYER}, howdy!\n"
+
+	.string "It's me, {STR_VAR_1}.\l"
+	.string "Isn't it nice out?$"
+
+
+Matchcall_Jack_Call_Night::
+	.string  "{PLAYER}, good evening!\n"
+
+	.string "It's me, {STR_VAR_1}.\l"
+	.string "Got a minute?$"
+
+
+Matchcall_Jack_Generic16::
+	.string  "How are your {POKEMON} doing?\p"
+
+	.string "My {STR_VAR_2} is so curious, it's a\n"
+	.string "problem.\l"
+
+	.string "Maybe it's like me…$"
+
+
+Matchcall_Jack_Generic15::
+	.string  "My {STR_VAR_2}'s intelligence keeps\n"
+
+	.string "rising.\l"
+	.string "It might be smarter than yours!$"
+
+
+Matchcall_Jack_Generic14::
+	.string  "The other day, I easily defeated\n"
+	.string "a {STR_VAR_2}.\p"
+
+	.string "I think swapping tips with you is\n"
+	.string "starting to help.$"
+
+
+Matchcall_Jack_Generic13::
+	.string  "Oh, and listen.\p"
+	.string "I missed catching a {STR_VAR_2} by\n"
+	.string  "just a tiny bit.\p"
+
+	.string "If I'd been a bit more informed, I'm\n"
+
+	.string "sure I would've caught it…$"
+
+
+Matchcall_Jack_Rematch::
+	.string  "Do you want to battle?\p"
+	.string "I'll show you how to battle\n"
+	.string "logically.\l"
+
+	.string "I'll be in {STR_VAR_2}.\l"
+
+	.string "Give me a shout if you're nearby.$"
+
+
+Matchcall_Jack_Hangup::
+	.string  "See you later!$"
+
+
+Matchcall_Jack_Generic12::
+	.string  "Did you know?\p"
+
+	.string "When it's raining, THUNDER is\n"
+	.string "sure to strike.$"
+
+
+Matchcall_Jack_Generic11::
+	.string  "Did you know…?\p"
+
+	.string "If you use DEFENSE CURL, ROLLOUT's\n"
+	.string "power goes way up past normal.$"
+
+
+Matchcall_Jack_Generic10::
+	.string  "Did you know…?\p"
+
+	.string "If the sunlight is harsh, SOLARBEAM\n"
+	.string "doesn't need to be charged up.$"
+
+
+Matchcall_Jack_Generic9::
+	.string  "Did you know…?\p"
+
+	.string "If the opponent uses MINIMIZE, your\n"
+
+	.string "STOMP becomes more powerful.$"
+
+
+Matchcall_Jack_Generic8::
+	.string  "Did you know…?\p"
+
+	.string "If your opponent is FLYing, your\n"
+
+	.string "GUST becomes much more powerful.$"
+
+
+Matchcall_Jack_Generic7::
+	.string  "Did you know…?\p"
+
+	.string "If your opponent is FLYing, TWISTER\n"
+
+	.string "becomes more powerful.$"
+
+
+Matchcall_Jack_Generic6::
+	.string  "Did you know…?\p"
+
+	.string "If your opponent uses DIG, your\n"
+
+	.string "EARTHQUAKE becomes more powerful.$"
+
+
+Matchcall_Jack_Generic5::
+	.string  "Did you know…?\p"
+
+	.string "If your opponent uses DIG your\n"
+	.string "MAGNITUDE becomes more powerful.$"
+
+
+Matchcall_Jack_Generic4::
+	.string  "Did you know…?\p"
+
+	.string "The rock, ground, and steel types\n"
+	.string "can't be hurt by SANDSTORM.$"
+
+
+Matchcall_Jack_Generic3::
+	.string  "Did you know…?\p"
+
+	.string "If the sunlight is harsh, water-type\n"
+	.string "moves become much weaker.$"
+
+
+Matchcall_Jack_Generic2::
+	.string  "Did you know…?\p"
+
+	.string "When it's raining, fire-type moves\n"
+	.string "become much weaker than usual.$"
+
+
+Matchcall_Jack_Generic1::
+	.string  "My friend heard some great tips.\n"
+
+	.string "He's going to let me in on some.\p"
+
+	.string "When he tells me, I'll call right\n"
+	.string "away and tell you.$"
+
+
+Matchcall_Jack_Remind_Rematch::
+	.string  "Hey, {PLAYER}!\n"
+
+	.string "Do you remember your promise?\l"
+
+	.string "We have to battle soon!\l"
+
+	.string "I'll be at {STR_VAR_2}.$"
+
+
+Matchcall_Joey_Answer::
+	.string  "Hi, {STR_VAR_1} here!\n"
+
+	.string "Oh, {PLAYER}?\l"
+	.string "You doing well?$"
+
+
+Matchcall_Joey_Call_Morn::
+	.string  "Yo, {PLAYER}!\n"
+	.string "How're you doing?\l"
+
+	.string "This is {STR_VAR_1}, got a minute?$"
+
+
+Matchcall_Joey_Call_Day::
+	.string  "Yo, {PLAYER}!\n"
+	.string "How's it going?\l"
+
+	.string "This is {STR_VAR_1}, got a minute?$"
+
+
+Matchcall_Joey_Call_Night::
+	.string  "Yo, {PLAYER}!\n"
+	.string "How're you doing?\l"
+
+	.string "This is {STR_VAR_1}, got a minute?$"
+
+
+Matchcall_Joey_Generic5::
+	.string  "How are your {POKEMON} doing?\p"
+
+	.string "My {STR_VAR_2}'s raring to go, just\n"
+	.string "like always.\l"
+
+	.string "It's the only one I have.\p"
+
+	.string "I'm going to become a great trainer\n"
+	.string "with it!$"
+
+
+Matchcall_Joey_Generic4::
+	.string  "My {STR_VAR_2}'s looking sharper\n"
+	.string "than before!\p"
+
+	.string "I doubt there's a {POKEMON} as cool\n"
+	.string "as this guy in your party!$"
+
+
+Matchcall_Joey_Generic3::
+	.string  "Oh yeah, I took down a {STR_VAR_2}\n"
+	.string "in the wild the other day.\l"
+
+	.string "It was a cakewalk.\p"
+	.string "Well, I guess it can't be helped, us\n"
+	.string "being so tough.$"
+
+
+Matchcall_Joey_Generic2::
+	.string  "Oh yeah, I saw a wild {STR_VAR_2}!\p"
+
+	.string "I thought about going for it, but\n"
+
+	.string "I decided to work with my one-and-only\l"
+	.string "right to the extreme end.$"
+
+
+Matchcall_Joey_Rematch::
+	.string  "Let's get together and battle!\n"
+
+	.string "I promise things will be different!\l"
+
+	.string "{STR_VAR_2}'s where I'll be.\l"
+
+	.string "Give me a shout when you come.$"
+
+
+Matchcall_Joey_Hangup::
+	.string  "All right. Later!$"
+
+
+Matchcall_Joey_Generic1::
+	.string  "I'm checking out {STR_VAR_2}'s moves\n"
+
+	.string "and devising some strategies.\p"
+
+	.string "When I come up with a good one, let's\n"
+	.string "let's battle!$"
+
+
+Matchcall_Joey_Remind_Rematch::
+	.string  "What's keeping you, {PLAYER}!\n"
+
+	.string "Let's get down and battle already!\l"
+
+	.string "I'm waiting on {STR_VAR_2}!$"
+
+
+Matchcall_Jose_Answer_Morn::
+	.string  "Hello, this is {STR_VAR_1}…\n"
+
+	.string "Oh, {PLAYER}?\l"
+	.string "Good morning!$"
+
+
+Matchcall_Jose_Answer_Day::
+	.string  "Hello, this is {STR_VAR_1}…\n"
+
+	.string "Oh, {PLAYER}? Hi!$"
+
+
+Matchcall_Jose_Answer_Night::
+	.string  "Hello, this is {STR_VAR_1}…\n"
+
+	.string "Oh, {PLAYER}?\l"
+	.string "Good evening!$"
+
+
+Matchcall_Jose_Call::
+	.string  "Oh, {PLAYER}?\n"
+
+	.string "Tweet! Yeah, it's me, {STR_VAR_1}.$"
+
+
+Matchcall_Jose_Generic5::
+	.string  "Are your {POKEMON} still cooking?\n"
+
+	.string "My {STR_VAR_2} has too much energy.\p"
+
+	.string "Once it takes off, it won't come back\n"
+	.string "for a while.$"
+
+
+Matchcall_Jose_Generic4::
+	.string  "Hey listen, my FARFETCH'D's stick\n"
+
+	.string "has this really delicious aroma.\l"
+
+	.string "That aroma gets my appetite going!$"
+
+
+Matchcall_Jose_Generic3::
+	.string  "A while ago, my FARFETCH'D KO'd\n"
+	.string "this {STR_VAR_2}.\p"
+
+	.string "You should have seen FARFETCH'D\n"
+
+	.string "wield that stick.\l"
+	.string "Amazing stuff!$"
+
+
+Matchcall_Jose_Generic2::
+	.string  "I ran into a wild {STR_VAR_2}…\p"
+
+	.string "I was trying to catch it, but\n"
+
+	.string "but it took off faster than I thought\l"
+
+	.string "it would. It was a bit disappointing.$"
+
+
+Matchcall_Jose_Rematch::
+	.string  "Want to battle again?\p"
+
+	.string "For some reason, my FARFETCH'D is\n"
+
+	.string "all worked up and raring to go.\l"
+
+	.string "{STR_VAR_2}'s where I'm at.\l"
+
+	.string "Keep an eye out for me, OK?$"
+
+
+Matchcall_Jose_Hangup::
+	.string  "Be seeing you!$"
+
+
+Matchcall_Jose_Gift::
+	.string  "My FARFETCH'D had something pretty\n"
+	.string "in its beak.\l"
+
+	.string "Like I promised, you can have it.\p"
+
+	.string "Catch up to me on {STR_VAR_2}, and\n"
+	.string  "I'll let you have it.$"
+
+
+Matchcall_Jose_Generic1::
+	.string  "I haven't gotten what I promised you\n"
+	.string "yet.\p"
+
+	.string "I'll call you as soon as I get it, so\n"
+
+	.string "could you wait a little longer?$"
+
+
+Matchcall_Jose_Remind_Rematch::
+	.string  "{PLAYER}, could you hurry over?\n"
+
+	.string "FARFETCH'D is agitated.\p"
+
+	.string "If you don't come soon, it\n"
+	.string "might smack me with its stick!\l"
+
+	.string "{STR_VAR_2}!\l"
+
+	.string "Please come as soon as you can!$"
+
+
+Matchcall_Jose_Remind_Gift::
+	.string  "What's wrong?\n"
+
+	.string "Don't you want this gift?\p"
+
+	.string "Catch up to me on {STR_VAR_2}, and\n"
+
+	.string "I'll let you have it.$"
+
+Matchcall_Liz_Answer_Morn::
+	.string  "Hello, {STR_VAR_1} speaking.\n"
+
+	.string "Oh, {PLAYER}.\l"
+	.string "Good morning.$"
+
+
+Matchcall_Liz_Answer_Day::
+	.string  "Hello, {STR_VAR_1} speaking.\n"
+
+	.string "Oh, {PLAYER}.\l"
+	.string "How are you?$"
+
+
+Matchcall_Liz_Answer_Night::
+	.string  "Hello, {STR_VAR_1} speaking.\n"
+
+	.string "Oh, {PLAYER}.\l"
+	.string "Good evening.$"
+
+
+Matchcall_Liz_Call_Morn::
+	.string  "Good morning, {PLAYER}.\n"
+
+	.string "This is {STR_VAR_1}.\l"
+	.string "Were you sleeping?$"
+
+
+Matchcall_Liz_Call_Day::
+	.string  "Hi, {PLAYER}.\n"
+	.string "This is {STR_VAR_1}.\l"
+
+	.string "How are things going for you?$"
+
+
+Matchcall_Liz_Call_Night::
+	.string  "Good evening, {PLAYER}.\n"
+
+	.string "This is {STR_VAR_1}.\l"
+	.string "Are you awake?$"
+
+
+Matchcall_Liz_Generic16::
+	.string  "I had some time, so I called you.\n"
+
+	.string "So anyway, how are your {POKEMON}?\p"
+
+	.string "Me, I take my {STR_VAR_2} to the\n"
+
+	.string "{POKEMON} CENTER in VIOLET every day,\l"
+
+	.string "so it's doing just fantastic!\l"
+
+	.string "I'm friends with the receptionist!$"
+
+
+Matchcall_Liz_Generic15::
+	.string  "Oh, you have to hear this.\n"
+
+	.string "My {STR_VAR_2} is so adorable!\l"
+
+	.string "It always wants to nuzzle me!$"
+
+
+Matchcall_Liz_Generic14::
+	.string  "And, and! Um…\p"
+
+	.string "We beat a wild {STR_VAR_2} with just\n"
+
+	.string "one hit a little while ago.\l"
+
+	.string "We felt sorry for it, though.$"
+
+
+Matchcall_Liz_Generic13::
+	.string  "And, and! Uh…\p"
+
+	.string "We just saw a really gorgeous\n{STR_VAR_2}.\p"
+
+	.string "But I was on the phone, so it got\n"
+
+	.string "away.\l"
+	.string "It made us really angry!$"
+
+
+Matchcall_Liz_Rematch::
+	.string  "Hi! Do you have some free time?\n"
+
+	.string "I've got all sorts of time.\p"
+
+	.string "If you're free, would you like to\n"
+	.string "battle?\l"
+
+	.string "I'll be waiting on {STR_VAR_2}.\l"
+
+	.string "Let me know when you get here!$"
+
+
+Matchcall_Liz_Generic12::
+	.string  "Hi, TANIA. How are you?\n"
+	.string "This is {STR_VAR_1}.\l"
+
+	.string "I'm fine, but I'm bored silly!\l"
+
+	.string "Huh… Wrong number?\l"
+	.string "Oops! Sorry!$"
+
+
+Matchcall_Liz_Hangup::
+	.string  "OK, I'll call you later!$"
+
+
+Matchcall_Liz_Generic11::
+	.string  "Listen, listen!\p"
+
+	.string "I was listening to the radio in the\n"
+
+	.string "RUINS OF ALPH when an odd broadcast\l"
+
+	.string "suddenly cut it on the regular show.\l"
+
+	.string "I wonder what it was.\l"
+	.string "So strange!$"
+
+
+Matchcall_Liz_Generic10::
+	.string  "Listen, listen!\p"
+
+	.string "Don't you think FALKNER of VIOLET\n"
+	.string "GYM is cool and handsome?\p"
+
+	.string "But they say his dad, who's out\n"
+
+	.string "training on the road, is even more\l"
+
+	.string "cool and handsome than FALKNER.\l"
+
+	.string "I wish I could meet him!$"
+
+
+Matchcall_Liz_Generic9::
+	.string  "Listen, listen!\p"
+
+	.string "Do you know EARL, the teacher\n"
+	.string "who runs the {POKEMON} ACADEMY\l"
+	.string "in VIOLET?\p"
+
+	.string "I saw him doing pirouettes while he\n"
+
+	.string "was running.\l"
+	.string "It was wildly funny!$"
+
+
+Matchcall_Liz_Generic8::
+	.string "Listen, listen!\n"
+
+	.string "I collect {POKEMON} plush dolls.\p"
+
+	.string "But I can't seem to get a hold of a\n"
+
+	.string "SURF PIKACHU DOLL.\l"
+	.string "None of my friends have it.\l"
+
+	.string "It must be totally rare!\p"
+
+	.string "You could really brag about it if\n"
+	.string "you had one.$"
+
+
+Matchcall_Liz_Generic7::
+	.string "Listen, listen!\n"
+
+	.string "Do you know about MOOMOO MILK?\l"
+
+	.string "You can buy it at MOOMOO FARM.\l"
+
+	.string "It's supposed to be good for health\l"
+
+	.string "and beauty.\l"
+	.string "I really want to try some.\l"
+
+	.string "I bet it's delicious!$"
+
+
+Matchcall_Liz_Generic6::
+	.string "Listen, listen!\p"
+
+	.string "There's a {POKEMON} SALON in GOLDENROD\n"
+
+	.string "that's run by two brothers.\p"
+
+	.string "The older brother is good, but\n"
+
+	.string "but the younger one really isn't.\p"
+
+	.string "But sometimes the younger one does a\n"
+
+	.string "better job than his brother.\p"
+
+	.string "Every time I go, I have a hard time\n"
+
+	.string "trying to decide whom I should use…$"
+
+
+Matchcall_Liz_Generic5::
+	.string "Listen, listen!\p"
+
+	.string "GOLDENROD GYM's WHITNEY began\n"
+
+	.string "battling only a little while ago!\p"
+
+	.string "But the {POKEMON} LEAGUE chose her\n"
+	.string "as a GYM LEADER!\l"
+
+	.string "I bet she must be totally talented.$"
+
+
+Matchcall_Liz_Generic4::
+	.string "Listen, listen!\p"
+
+	.string "Have you ever taken part in the\n"
+
+	.string "Bug-Catching Contest at the\lNATIONAL PARK?\p"
+
+	.string "I did once, but all I could catch\n"
+	.string "was a CATERPIE.\l"
+
+	.string "But guess what!\l"
+
+	.string "I won with that CATERPIE.\l"
+	.string "Isn't that great?$"
+
+
+Matchcall_Liz_Generic3::
+	.string "Listen, listen!\n"
+
+	.string "I saw a beautiful {STR_VAR_2}!\l"
+
+	.string "I wish I could become a beautiful\l"
+	.string "{STR_VAR_2} too.$"
+
+
+Matchcall_Liz_Generic2::
+	.string "Listen, listen!\n"
+
+	.string "Uh… Um… Whoops!\l"
+
+	.string "I forgot what I was going to say!$"
+
+
+Matchcall_Liz_Generic1::
+	.string "Listen, listen!\n"
+
+	.string "My {STR_VAR_2}…\l"
+	.string "it… so pretty…\l"
+
+	.string "and… giggle… so awesome…\l"
+	.string "yes… but…\l"
+
+	.string "very much… eeek!\l"
+	.string "And… lovely…\l"
+
+	.string "Just ravishing…\l"
+	.string "Oh, too much!\l"
+
+	.string "…Hug it… sleeping… That's right…\l"
+
+	.string "pretty… sigh… So nice… Cute…\l"
+
+	.string "…Oops! Look at the time!\l"
+	.string "I chatted too long!\p"
+
+	.string "I'm sorry I took so much of your\n"
+
+	.string "time!\l"
+	.string "I love chatting!$"
+
+
+Matchcall_Liz_Remind_Rematch::
+	.string  "I've got too much time on my hands!\n"
+
+	.string "Let's battle right away!\l"
+
+	.string "I'll be waiting on {STR_VAR_2}!$"
+
+
+Matchcall_Parry_Answer::
+	.string  "Yup, yup!\n"
+	.string "It's {STR_VAR_1}!\l"
+
+	.string "Hah, and here's {PLAYER}!$"
+
+
+Matchcall_Parry_Call_Morn::
+	.string  "{PLAYER}, it's {STR_VAR_1}!\n"
+
+	.string "Have you had a proper breakfast?$"
+
+
+Matchcall_Parry_Call_Day::
+	.string  "{PLAYER}, it's {STR_VAR_1}!\n"
+
+	.string "Have you had a proper lunch?$"
+
+
+Matchcall_Parry_Call_Night::
+	.string  "{PLAYER}, it's {STR_VAR_1}!\n"
+
+	.string "Have you had a proper dinner?$"
+
+
+Matchcall_Parry_Generic5::
+	.string  "Are your {POKEMON} looking good?\p"
+
+	.string "My {STR_VAR_2} and me, we're\n"
+	.string "looking mighty dandy!\l"
+	.string "Hahahah!$"
+
+
+Matchcall_Parry_Generic4::
+	.string  "Nothing can match my {STR_VAR_2} now.$"
+
+
+Matchcall_Parry_Generic3::
+	.string  "Yeah, we KO'd a wild {STR_VAR_2}!\n"
+
+	.string "That was OK, but I wanted to get it…$"
+
+
+Matchcall_Parry_Generic2::
+	.string  "And yesterday, we spotted a wild\n"
+
+	.string "{STR_VAR_2}.\p"
+	.string "We were debating whether to catch it\n"
+	.string "or beat it.\p"
+
+	.string "When along came another guy who\ncaught it!\l"
+	.string "How about that!$"
+
+
+Matchcall_Parry_Rematch::
+	.string  "You're thinking you'd like to battle me.\n"
+
+	.string "Am I right or what?\l"
+
+	.string "Yep! We'll meet on {STR_VAR_2}!\l"
+
+
+Matchcall_Parry_Hangup::
+	.string  "OK, give me a call again!$"
+
+
+Matchcall_Parry_Generic1::
+	.string  "You'll battle with me again, right?$"
+
+
+Matchcall_Parry_Remind_Rematch::
+	.string  "Haven't you gotten to {STR_VAR_2}?\p"
+
+	.string "Waiting here isn't bad, but I'd sure\n"
+	.string "like to battle!$"
+
+
+Matchcall_Ralph_Answer::
+	.string  "Yes? Ah, {PLAYER}.\p"
+
+	.string "You're courteous enough to state\n"
+
+	.string "your name when you call on the\l"
+	.string "phone.$"
+
+Matchcall_Ralph_Call::
+	.string  "Hiya, it's Uncle {STR_VAR_1}.$"
+
+
+Matchcall_Ralph_Generic5::
+	.string  "Are you taking good care of your\n"
+
+	.string "{POKEMON}?\l"
+	.string "You have to be good to your partners!$"
+
+
+Matchcall_Ralph_Generic4::
+	.string  "I've been spending more time with\n"
+	.string "my {STR_VAR_2} than I have with my\l"
+	.string "kids.\l"
+
+	.string "That's a bit sad, actually.$"
+
+
+Matchcall_Ralph_Generic3::
+	.string  "I just beat a wild {STR_VAR_2}.\p"
+
+	.string "I told my kid, but he scoffed\n"
+	.string "that he could do the same thing\l"
+
+	.string "easily.\l"
+
+	.string "Boy, has he gotten cocky…$"
+
+
+Matchcall_Ralph_Generic2::
+	.string  "Yesterday a wild {STR_VAR_2} slipped\n"
+
+	.string "away from me, in front of my kid.\p"
+
+	.string "I was feeling down about it until he\n"
+
+	.string "shared his {POKE}BALLS with me.\l"
+
+	.string "Hahah, that sure made my day!$"
+
+
+Matchcall_Ralph_Rematch::
+	.string  "What do you say to a battle with me?\n"
+
+	.string "Good, you're going to do it!\l"
+
+	.string "For a kid, you're quite agreeable.\l"
+
+	.string "{STR_VAR_2} is the spot!$"
+
+
+Matchcall_Ralph_Hangup::
+	.string  "You call your mom sometimes too!$"
+
+
+Matchcall_Ralph_Swarm::
+	.string  "Listen, I… Yowch!\p"
+
+	.string "Uh, sorry! See, QWILFISH are\n"
+
+	.string "biting like there is no tomorrow\l"
+
+	.string "over here on {STR_VAR_2}!\l"
+
+	.string "Aiyee! Ouch!\l"
+	.string "One jabbed me!\l"
+
+	.string "Heh, they're some kind of feisty!\p"
+
+	.string "{PLAYER}, you have to see this rare\n"
+
+	.string "sight!\l"
+	.string "Get ready to fish!$"
+
+
+Matchcall_Ralph_Generic1::
+	.string  "Yeah, I know.\n"
+
+	.string "You're looking for rare {POKEMON}.\p"
+
+	.string "Recently, all I've been catching are\n"
+	.string "MAGIKARP, though…$"
+
+
+Matchcall_Ralph_Remind_Rematch::
+	.string  "So where are you?\p"
+	.string "I'm waiting for you to show up\n"
+	.string "on {STR_VAR_2}.\l"
+
+	.string "You shouldn't make your elders wait!$"
+
+
+Matchcall_Ralph_Remind_Swarm::
+	.string  "Hey, what's the matter with you?\p"
+
+	.string "Aren't you coming over to fish for\n"
+	.string "QWILFISH?\l"
+
+	.string "I'm on {STR_VAR_2}, so hurry up!$"
+
+
+Matchcall_Reena_Answer::
+	.string  "Hello, this is {STR_VAR_1}…\n"
+
+	.string "Oh. Hi, {PLAYER}.\l"
+	.string "What's up?$"
+
+Matchcall_Reena_Call::
+	.string  "You're slow!\n"
+	.string "Hurry up and answer!\l"
+
+	.string "It's me, {STR_VAR_1}!$"
+
+
+Matchcall_Reena_Generic5::
+	.string  "Hey, how are your {POKEMON} doing?\n"
+
+	.string "What? Great?\l"
+	.string "I see…\l"
+
+	.string "What? My {POKEMON}?\l"
+
+	.string "Of course they're doing great!\l"
+
+	.string "What kind of a question is that?$"
+
+
+Matchcall_Reena_Generic4::
+	.string  "Listen, dear…\n"
+
+	.string "Do you recall my {STR_VAR_2}?\l"
+
+	.string "Yes, exactly. That lovely {STR_VAR_2}.\p"
+
+	.string "Wouldn't you agree it's a perfect\n"
+	.string "match for me?$"
+
+
+Matchcall_Reena_Generic3::
+	.string  "Have I ever faced a wild {STR_VAR_2}?\n"
+
+	.string "You need to ask?\p"
+
+	.string "{STR_VAR_2} I've beaten on numerous\n"
+	.string "occasions!$"
+
+
+Matchcall_Reena_Generic2::
+	.string  "Have I ever failed to catch a wild\n"
+	.string "{POKEMON}?\l"
+
+	.string "You need to ask?\p"
+
+	.string "I would never fail to catch a wild\n"
+
+	.string "{STR_VAR_2}…\l"
+	.string "Oh! Never mind!$"
+
+
+Matchcall_Reena_Rematch::
+	.string  "We are going to battle\n"
+
+	.string "The place shall be {STR_VAR_2}!\l"
+
+	.string "Don't make me wait! Got it?$"
+
+
+Matchcall_Reena_Hangup::
+	.string  "Fine, you may go.$"
+
+
+Matchcall_Reena_Generic1::
+	.string  "Don't be too proud just because you\n"
+
+	.string "happened to beat me…\l"
+
+	.string "It was a fluke!$"
+
+
+Matchcall_Reena_Remind_Rematch::
+	.string  "What are you doing?\p"
+
+	.string "I told you that the place was\n"
+
+	.string "{STR_VAR_2}!\l"
+	.string "Don't try to run!$"
+
+
+Matchcall_Tiffany_Answer_Morn::
+	.string  "Yes? This is {STR_VAR_1}.\n"
+
+	.string "Oh, {PLAYER}.\l"
+	.string "Good morning.$"
+
+
+Matchcall_Tiffany_Answer_Day::
+	.string  "Yes? This is {STR_VAR_1}.\n"
+
+	.string "Oh, {PLAYER}.\l"
+	.string "Hello.$"
+
+
+Matchcall_Tiffany_Answer_Night::
+	.string  "Yes? This is {STR_VAR_1}.\n"
+
+	.string "Oh, {PLAYER}.\l"
+	.string "Good evening.$"
+
+
+Matchcall_Tiffany_Call_Morn::
+	.string  "Is this {PLAYER}?\n"
+
+	.string "Good morning.\l"
+	.string "This is {STR_VAR_1}.$"
+
+
+Matchcall_Tiffany_Call_Day::
+	.string  "Is this {PLAYER}?\n"
+
+	.string "Hi, it's {STR_VAR_1}.$"
+
+
+Matchcall_Tiffany_Call_Night::
+	.string  "Is this {PLAYER}?\n"
+
+	.string "Good evening. This is {STR_VAR_1}.$"
+
+
+Matchcall_Tiffany_Generic5::
+	.string  "Are your {POKEMON} doing well?\n"
+
+	.string "I hope you take them to a {POKEMON}\l"
+	.string "CENTER every day.\l"
+
+	.string "Don't push them too hard.\p"
+
+	.string "My {STR_VAR_2} is cute and lively\n"
+
+	.string "precisely because I take it to a\l"
+
+	.string "{POKEMON} CENTER every day.$"
+
+
+Matchcall_Tiffany_Generic4::
+	.string  "My {STR_VAR_2}'s adorable, don't\n"
+	.string "you think so?\p"
+	.string "I always sleep with it, it's\n"
+
+	.string "so fluffy and warm!$"
+
+
+Matchcall_Tiffany_Generic3::
+	.string  "Oh, and we had to battle a wild\n"
+
+	.string "{STR_VAR_2} a while ago…\l"
+
+	.string "My {STR_VAR_3} came close to fainting!\l"
+
+	.string "Isn't that awful?\l"
+
+	.string "I hate those nasty {STR_VAR_2}!$"
+
+Matchcall_Tiffany_Generic2::
+	.string  "Oh, and we had to battle a wild\n"
+
+	.string "{STR_VAR_2} a while ago…\p"
+
+	.string "My {STR_VAR_3} got frightened,\n"
+
+	.string "so we ran away as fast as we could!\p"
+
+	.string "I just can't help feeling protective\n"
+	.string "of my {STR_VAR_3}.$"
+
+
+Matchcall_Tiffany_Rematch::
+	.string  "I know this might surprise you,\n"
+	.string "but would you like to battle?\p"
+
+	.string "I'll be waiting with CLEFAIRY on\n{STR_VAR_2}.$"
+
+
+Matchcall_Tiffany_Generic1::
+	.string "{PLAYER}!\n"
+
+	.string "It's awful.\l"
+	.string "My {STR_VAR_2}…\l"
+
+	.string "Huh? {PLAYER}?\l"
+
+	.string "Oh, sorry!\l"
+	.string "I was in a hurry, and I…\l"
+
+	.string "I have to go!\l"
+	.string "Bye-bye!$"
+
+
+Matchcall_Tiffany_Hangup::
+	.string  "Bye-bye!$"
+
+
+Matchcall_Tiffany_Gift::
+	.string  "I bought some cute scarves at GOLDENROD\n"
+	.string "DEPT.STORE for my CLEFAIRY.\p"
+
+	.string "I got too many, so I'll give you\n"
+	.string "one!\l"
+
+	.string "Come collect it on {STR_VAR_2}.$"
+
+
+Matchcall_Tiffany_Generic6::
+	.string  "I love dressing up my CLEFAIRY!$"
+
+
+Matchcall_Tiffany_Remind_Battle::
+	.string  "What's wrong?\n"
+	.string "Can't you visit?\l"
+
+	.string "CLEFAIRY got tired and fell asleep.\l"
+
+	.string "I'm not sure if I can wake it up…\l"
+
+	.string "Please hurry to {STR_VAR_2}!$"
+
+
+Matchcall_Tiffany_Remind_Gift::
+	.string  "What's wrong?\n"
+	.string "Can't you visit?\p"
+
+	.string "I'm sure this will look good on your\n"
+	.string "CLEFAIRY.\l"
+
+	.string "Please hurry to {STR_VAR_2}!$"
+
+
+Matchcall_Tully_Answer_Morn::
+	.string  "Hello, this is {STR_VAR_1}…\n"
+
+	.string "Oh, Good morning, {PLAYER}.$"
+
+
+Matchcall_Tully_Answer_Day::
+	.string  "Hello, this is {STR_VAR_1}…\n"
+
+
+	.string "That voice…\l"
+	.string "{PLAYER}, right?$"
+
+
+Matchcall_Tully_Answer_Night::
+	.string  "Hello, this is {STR_VAR_1}…\n"
+
+
+	.string "This must be {PLAYER}!$"
+
+
+Matchcall_Tully_Call_Morn::
+	.string  "Hello! {STR_VAR_1} here…\n"
+
+	.string "Good morning! The weather's great!$"
+
+
+Matchcall_Tully_Call_Day::
+	.string  "Hello! {STR_VAR_1} here…\n"
+
+
+	.string "What a perfect day for fishing!$"
+
+
+Matchcall_Tully_Call_Night::
+	.string  "Hello! {STR_VAR_1} here…\n"
+
+
+	.string "It's a great night for fishing!$"
+
+
+Matchcall_Tully_Generic5::
+	.string  "How's your trip coming along?\n"
+
+	.string "I can't complain about my fishing!$"
+
+
+Matchcall_Tully_Generic4::
+	.string  "My {STR_VAR_2} has grown again.\p"
+
+	.string "It was only about so big when I\n"
+
+	.string "caught it, but now it's way bigger.$"
+
+
+Matchcall_Tully_Generic3::
+	.string  "Oh yeah, I KO'd a wild {STR_VAR_2}.\n"
+
+	.string "It was huge, like this big even.\p"
+
+	.string "Heh, I guess you can't tell over\n"
+	.string "the phone…$"
+
+
+Matchcall_Tully_Generic2::
+	.string  "Oh yeah, I lost a wild {STR_VAR_2}.\n"
+
+	.string "It was huge, like this big even.\l"
+
+	.string "Heh, I guess you can't tell\l"
+	.string "over the phone…$"
+
+
+Matchcall_Tully_Rematch::
+	.string  "We should get a battle going!\n"
+
+	.string "I'll be fishing on {STR_VAR_2}.\l"
+
+	.string "Swing by if you have the time.$"
+
+
+Matchcall_Tully_Hangup::
+	.string  "Well, I'll be seeing you.$"
+
+
+Matchcall_Tully_Gift::
+	.string  "I picked up a good little thing at\n"
+	.string "the water's edge.\l"
+
+	.string "Like I promised, it's yours.\l"
+
+	.string "I'll be waiting on {STR_VAR_2}.$"
+
+
+Matchcall_Tully_Generic1::
+	.string  "Have I found anything good?\n"
+
+	.string "Nope, not yet.\l"
+
+	.string "It's like fishing, you need patience.$"
+
+
+Matchcall_Tully_Remind_Rematch::
+	.string  "Yup, {STR_VAR_1} here…\n"
+
+	.string "{PLAYER}? What?\l"
+	.string "You're lost?\l"
+
+	.string "Our battle will be on {STR_VAR_2}.$"
+
+
+Matchcall_Tully_Remind_Gift::
+	.string  "I've got something good for you.\n"
+
+	.string "Hustle over to {STR_VAR_2}.$"
+
+
+Matchcall_Vance_Answer_Morn::
+	.string  "Yes, hello? {STR_VAR_1} here!\n"
+
+	.string "Morning, {PLAYER}!\l"
+
+	.string "Are you using bird {POKEMON}?$"
+
+
+Matchcall_Vance_Answer_Day::
+	.string  "Yes, hello? {STR_VAR_1} here!\n"
+
+
+	.string "Hi, {PLAYER}!\l"
+
+	.string "Are your bird {POKEMON} flying?$"
+
+
+Matchcall_Vance_Answer_Night::
+	.string  "Yes, hello? {STR_VAR_1} here!\n"
+
+
+	.string "Evening, {PLAYER}!\p"
+	.string "Are you letting your bird {POKEMON}\n"
+	.string "see some action?$"
+
+
+Matchcall_Vance_Call_Morn::
+	.string  "Good morning, {PLAYER}!\n"
+
+	.string "It's {STR_VAR_1}!\l"
+	.string "Good morning!$"
+
+
+Matchcall_Vance_Call_Day::
+	.string  "Hi, {PLAYER}!\n"
+
+	.string "It's {STR_VAR_1}!\l"
+
+	.string "Remember me?$"
+
+
+Matchcall_Vance_Call_Night::
+	.string  "Good evening, {PLAYER}!\n"
+
+	.string "It's {STR_VAR_1}!\l"
+
+	.string "Are you free now?$"
+
+
+Matchcall_Vance_Generic5::
+	.string  "Are you and your {POKEMON} fine?\p"
+
+	.string "My {STR_VAR_2} looks like it will\n"
+
+	.string "get tough enough to face and beat\l"
+
+	.string "the legendary bird {POKEMON}!$"
+
+
+Matchcall_Vance_Generic4::
+	.string  "My {STR_VAR_2}'s become tougher.\n"
+
+	.string "We've achieved liftoff!$"
+
+
+Matchcall_Vance_Generic3::
+	.string  "We can easily beat {STR_VAR_2}!\n"
+
+	.string "…Huh? You too?\l"
+	.string "Isn't that great?$"
+
+
+Matchcall_Vance_Generic2::
+	.string  "But get this, a wild {STR_VAR_2}\n"
+	.string "just barely eluded us.$"
+
+	.string "I wanted to FLY after it…$"
+
+
+Matchcall_Vance_Rematch::
+	.string  "Right now, I'm on {STR_VAR_2}.\n"
+
+	.string "You know, where I first met you?\l"
+
+	.string "Want to battle?\l"
+	.string "I'll wait here.$"
+
+
+Matchcall_Vance_Hangup::
+	.string  "OK, bye for now!$"
+
+
+Matchcall_Vance_Generic1::
+	.string  "I'll be looking forward to our next\nbattle!$"
+
+
+Matchcall_Vance_Remind_Rematch::
+	.string  "Oh, {PLAYER}!\n"
+	.string "Hurry, hurry!\l"
+
+	.string "{STR_VAR_2}!\l"
+	.string "FLY over now!$"
+
+
+Matchcall_Wade_Answer_Morn::
+	.string  "Hello? This is {STR_VAR_1} speaking.\n"
+
+	.string "Oh. Hi, {PLAYER}!\l"
+	.string "Good morning!$"
+
+
+Matchcall_Wade_Answer_Day::
+	.string  "Hello? This is {STR_VAR_1} speaking.\n"
+
+	.string "Oh. Hi, {PLAYER}!$"
+
+
+Matchcall_Wade_Answer_Night::
+	.string  "Hello? This is {STR_VAR_1} speaking.\n"
+
+	.string "Oh. Hi, {PLAYER}!\l"
+	.string "Good evening!$"
+
+
+Matchcall_Wade_Call_Morn::
+	.string  "{PLAYER}, good morning!\n"
+
+	.string "It's me, {STR_VAR_1}.\l"
+	.string "Isn't it nice out?$"
+
+
+Matchcall_Wade_Call_Day::
+	.string  "{PLAYER}, howdy!\n"
+
+	.string "It's me, {STR_VAR_1}.\l"
+	.string "Isn't it nice out?$"
+
+
+Matchcall_Wade_Call_Night::
+	.string  "Good evening, {PLAYER}!\n"
+
+	.string "It's me, {STR_VAR_1}.\l"
+	.string "Were you awake?$"
+
+
+Matchcall_Wade_Generic5::
+	.string  "How are your {POKEMON} doing?\p"
+
+	.string "My {POKEMON} have too much energy\nto burn.\l"
+
+	.string "It gets to be a problem.\p"
+
+	.string "Of all my {POKEMON}, {STR_VAR_2}\n"
+	.string "is the hardest to handle.\l"
+
+	.string "Working with it is exhausting.$"
+
+
+Matchcall_Wade_Generic4::
+	.string  "Are your {POKEMON} growing?\p"
+
+	.string "My {POKEMON} are growing a bit too\n"
+
+	.string "quickly for me.\l"
+	.string "It's overwhelming!\l"
+
+	.string "{STR_VAR_2}'s growing especially quickly.\l"
+
+	.string "I think it'll get tough.$"
+
+
+Matchcall_Wade_Generic3::
+	.string  "Oh yeah, we KO'd a wild {STR_VAR_2}\n"
+	.string "with one hit a while back.\p"
+
+	.string "It went down so easily, I felt a\n"
+	.string "little sorry for the poor thing.$"
+
+
+Matchcall_Wade_Generic2::
+	.string  "Oh yeah, a wild {STR_VAR_2} got\n"
+
+	.string "away from me at the last second.\l"
+
+	.string "I know it's a common {POKEMON}…\p"
+
+	.string "But it does annoy me that it got away\n"
+
+	.string "when I almost had it.$"
+
+
+Matchcall_Wade_Rematch::
+	.string  "Do you feel like a {POKEMON} battle?\n"
+
+	.string "It won't be like last time!\l"
+
+	.string "{STR_VAR_2}'s where I'll be.\l"
+
+	.string "Let me know when you get there.$"
+
+
+Matchcall_Wade_Hangup::
+	.string  "See you later!$"
+
+Matchcall_Wade_Gift::
+	.string  "I found all kinds of BERRIES.\n"
+	.string "If you want, I'll share some with you.\l"
+
+	.string "I'll be waiting on {STR_VAR_2}.$"
+
+
+Matchcall_Wade_Generic1::
+	.string  "Huh? BERRIES?\n"
+
+	.string "Sorry, I haven't found any yet.\l"
+
+	.string "I'll call you if I find any.\l"
+	.string "Will you please wait?$"
+
+
+Matchcall_Wade_Remind_Rematch::
+	.string  "Let's battle already!\n"
+
+	.string "{STR_VAR_2} is where I am.\l"
+
+	.string "Please get here as soon as you can!$"
+
+
+Matchcall_Wade_Remind_Gift::
+	.string  "How come you're not here yet?\n"
+
+	.string "{STR_VAR_2} is where I am.\l"
+
+	.string "Please get here as soon as you can!$"
+
+
+Matchcall_Wilton_Answer_Morn::
+	.string  "Hello, you have reached {STR_VAR_1}…\n"
+
+	.string "Ah, {PLAYER}.$"
+
+
+Matchcall_Wilton_Answer_Day::
+	.string  "Hello, you have reached {STR_VAR_1}…\n"
+
+
+	.string "Ah, {PLAYER}, is it?$"
+
+
+Matchcall_Wilton_Answer_Night::
+	.string  "Hello, you have reached {STR_VAR_1}…\n"
+
+
+	.string "Ah, if it isn't {PLAYER}.$"
+
+
+Matchcall_Wilton_Call_Morn::
+	.string  "Ah, it's {STR_VAR_1}…\n"
+
+	.string "Have you got a moment?$"
+
+
+Matchcall_Wilton_Call_Day::
+	.string  "Ah, it's {STR_VAR_1}…\n"
+
+
+	.string "Can you talk now?$"
+
+
+Matchcall_Wilton_Call_Night::
+	.string  "Ah, it's {STR_VAR_1}…\n"
+
+
+	.string "Sorry for calling so late.$"
+
+
+Matchcall_Wilton_Generic2::
+	.string  "Have your {POKEMON} grown any?\n"
+
+	.string "My {STR_VAR_2} has grown quite a bit.$"
+
+
+Matchcall_Wilton_Generic5::
+	.string  "My {STR_VAR_2}'s grown impressive!\n"
+
+	.string "My fishing skills have improved too!$"
+
+
+Matchcall_Wilton_Generic4::
+	.string  "We beat a wild {STR_VAR_2}…\p"
+
+	.string "You know, I have more fun fishing\n"
+
+	.string "than beating wild {POKEMON}.$"
+
+
+Matchcall_Wilton_Generic3::
+	.string  "But a while back, we came this close\n"
+	.string "to landing a wild {STR_VAR_2}.\l"
+
+	.string "I tell you, it was huge. Believe me.$"
+
+
+Matchcall_Wilton_Rematch::
+	.string  "I'm fishing on {STR_VAR_2}, but\n"
+
+	.string "nothing's biting today.\p"
+
+	.string "Help me while my time away, come\n"
+	.string "over for a battle.$"
+
+
+Matchcall_Wilton_Hangup::
+	.string  "All right, later.$"
+
+
+Matchcall_Wilton_Gift::
+	.string  "I snagged an item while fishing.\n"
+
+	.string "Come pick it up on {STR_VAR_2}.$"
+
+
+Matchcall_Wilton_Generic1::
+	.string  "Nah, I haven't found anything that's\n"
+
+	.string "worth your time.\l"
+
+	.string "You have to have patience.$"
+
+
+Matchcall_Wilton_Remind_Rematch::
+	.string  "Sigh…\p"
+	.string "They're not biting like before on\n"
+	.string "{STR_VAR_2}…\l"
+
+	.string "You have to come for a battle!$"
+
+
+Matchcall_Wilton_Remind_Gift::
+	.string  "Don't you want this item?\n"
+
+	.string "Hah? You don't know where?\l"
+
+	.string "{STR_VAR_2}…\p"
+	.string "Just head from MAHOGANY toward\n"
+	.string "BLACKTHORN!$"
+
+Matchcall_Todd_Answer_Morn::
+	.string "Yes? This is {STR_VAR_1} speaking.\n"
+
+
+	.string "Hey, {PLAYER}!$"
+
+
+Matchcall_Todd_Answer_Day::
+	.string "Yes? This is {STR_VAR_1} speaking.\n"
+
+
+	.string "This must be {PLAYER}.$"
+
+
+Matchcall_Todd_Answer_Night::
+	.string "Yes? This is {STR_VAR_1} speaking.\n"
+
+	.string "Ah, {PLAYER}!$"
+
+
+Matchcall_Todd_Call_Morn::
+	.string "Hello, this is {STR_VAR_1}.\n"
+
+	.string "{PLAYER}, right?$"
+
+
+Matchcall_Todd_Call_Day::
+	.string "Hello, this is {STR_VAR_1}.\n"
+
+	.string "{PLAYER}, what are you doing?$"
+
+
+Matchcall_Todd_Call_Night::
+	.string "Hello, this is {STR_VAR_1}.\n"
+
+	.string "{PLAYER}, sorry to call you so late.$"
+
+
+Matchcall_Todd_Generic1::
+	.string "How do you raise your {POKEMON}?\p"
+
+	.string "I do all sorts of things, like\n"
+	.string "leaving them in DAY-CARE and\l"
+	.string "toughening them up with items.$"
+
+
+Matchcall_Todd_Generic2::
+	.string "My {STR_VAR_2} is looking more\n"
+	.string "and more like me.\l"
+	.string "It's getting cuter!$"
+
+
+Matchcall_Todd_Generic3::
+	.string "And, you know?\n"
+
+	.string "Now we can KO {STR_VAR_2} easily.\p"
+
+	.string "I should challenge the GOLDENROD\nGYM.$"
+
+
+Matchcall_Todd_Generic4::
+	.string "And, you know?\p"
+	.string "We just failed to beat {STR_VAR_2}\n"
+	.string	"by a tiny margin.\p"
+
+	.string "I'm guessing my {POKEMON}'s levels\n"
+
+	.string "aren't high enough yet…$"
+
+
+Matchcall_Todd_Rematch::
+	.string "You must be a lot better now, huh?\n"
+
+	.string "How about showing me your technique\l"
+
+	.string "in a real battle with me?\l"
+
+	.string "I'll be waiting on {STR_VAR_2}.$"
+
+
+Matchcall_Todd_Hangup::
+	.string "See you later!$"
+
+Matchcall_Todd_Generic5::
+	.string "I'm saving up for the next bargain sale\n"
+
+	.string "When's the next one?$"
+
+
+Matchcall_Todd_Remind_Rematch::
+	.string "Where are you?\n"
+
+	.string "Let's have our battle soon!\l"
+
+	.string "I'll be waiting on {STR_VAR_2}.$"
+

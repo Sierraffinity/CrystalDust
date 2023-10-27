@@ -192,8 +192,8 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     if (gRunPreStepEvents)
     {
         gRunPreStepEvents = FALSE;
-        if (TryStartForcedMatchCall())
-            return TRUE;
+        //if (TryStartForcedMatchCall())
+            //return TRUE;
     }
 
     if (input->checkStandardWildEncounter)
