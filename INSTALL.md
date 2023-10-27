@@ -1,6 +1,6 @@
 # Instructions
 
-These instructions explain how to set up the tools required to build **pokeemerald**, which assembles the source files into a ROM.
+These instructions explain how to set up the tools required to build **CrystalDust**, which assembles the source files into a ROM.
 
 These instructions come with notes which can be expanded by clicking the "<i>Note...</i>" text.
 In general, you should not need to open these unless if you get an error or if you need additional clarification.
@@ -27,10 +27,10 @@ All of the Windows instructions assume that the default drive is C:\\. If this d
 **A note of caution**: As Windows 7 is officially unsupported by Microsoft and Windows 8 has very little usage, some maintainers are unwilling to maintain the Windows 7/8 instructions. Thus, these instructions may break in the future with fixes taking longer than fixes to the Windows 10 instructions.
 
 ## Windows 10 (WSL1)
-WSL1 is the preferred terminal to build **pokeemerald**. The following instructions will explain how to install WSL1 (referred to interchangeably as WSL).
+WSL1 is the preferred terminal to build **CrystalDust**. The following instructions will explain how to install WSL1 (referred to interchangeably as WSL).
 - If WSL (Debian or Ubuntu) is **not installed**, then go to [Installing WSL1](#Installing-WSL1).
 - Otherwise, if WSL is installed, but it **hasn't previously been set up for another decompilation project**, then go to [Setting up WSL1](#Setting-up-WSL1).
-- Otherwise, **open WSL** and go to [Choosing where to store pokeemerald (WSL1)](#Choosing-where-to-store-pokeemerald-WSL1).
+- Otherwise, **open WSL** and go to [Choosing where to store CrystalDust (WSL1)](#Choosing-where-to-store-crystaldust-WSL1).
 
 ### Installing WSL1
 1. Open [Windows Powershell **as Administrator**](https://i.imgur.com/QKmVbP9.png), and run the following command (Right Click or Shift+Insert is paste in the Powershell).
@@ -79,7 +79,7 @@ Some tips before proceeding:
 
 > Note: If the repository you plan to build has an **[older revision of the INSTALL.md](https://github.com/pret/pokeemerald/blob/571c598/INSTALL.md)**, then follow the [legacy WSL1 instructions](docs/legacy_WSL1_INSTALL.md) from here.
 
-4. Certain packages are required to build pokeemerald. Install these packages by running the following command:
+4. Certain packages are required to build CrystalDust. Install these packages by running the following command:
 
     ```bash
     sudo apt install build-essential binutils-arm-none-eabi git libpng-dev
@@ -90,10 +90,10 @@ Some tips before proceeding:
     >   If the above command does not work, try the above command but replacing `apt` with `apt-get`.
     </details>
 
-### Choosing where to store pokeemerald (WSL1)
-WSL has its own file system that's not natively accessible from Windows, but Windows files *are* accessible from WSL. So you're going to want to store pokeemerald within Windows.
+### Choosing where to store CrystalDust (WSL1)
+WSL has its own file system that's not natively accessible from Windows, but Windows files *are* accessible from WSL. So you're going to want to store CrystalDust within Windows.
 
-For example, say you want to store pokeemerald (and agbcc) in **C:\Users\\_\<user>_\Desktop\decomps**. First, ensure that the folder already exists. Then, enter this command to **change directory** to said folder, where *\<user>* is your **Windows** username:
+For example, say you want to store CrystalDust (and agbcc) in **C:\Users\\_\<user>_\Desktop\decomps**. First, ensure that the folder already exists. Then, enter this command to **change directory** to said folder, where *\<user>* is your **Windows** username:
 
 ```bash
 cd /mnt/c/Users/<user>/Desktop/decomps
@@ -115,7 +115,7 @@ Otherwise, ask for help on Discord or IRC (see [README.md](README.md)), or conti
 
 - If devkitARM is **not installed**, then go to [Installing devkitARM](#installing-devkitarm).
 - If devkitARM is installed, but msys2 **hasn't previously been set up for another decompilation project**, then go to [Setting up msys2](#setting-up-msys2).
-- Otherwise, **open msys2** and go to [Choosing where to store pokeemerald (msys2)](#choosing-where-to-store-pokeemerald-msys2).
+- Otherwise, **open msys2** and go to [Choosing where to store CrystalDust (msys2)](#choosing-where-to-store-crystaldust-msys2).
 
 ### Installing devkitARM
 1. Download the devkitPro installer [here](https://github.com/devkitPro/installer/releases).
@@ -127,7 +127,7 @@ Note that in msys2, Copy is Ctrl+Insert and Paste is Shift+Insert.
 
 1. Open msys2 at C:\devkitPro\msys2\msys2_shell.bat.
 
-2. Certain packages are required to build pokeemerald. Install these by running the following command:
+2. Certain packages are required to build CrystalDust. Install these by running the following command:
 
     ```bash
     pacman -S make gcc zlib-devel git
@@ -171,10 +171,10 @@ Note that in msys2, Copy is Ctrl+Insert and Paste is Shift+Insert.
     cd
     ```
 
-### Choosing where to store pokeemerald (msys2)
-At this point, you can choose a folder to store pokeemerald into. If you're okay with storing pokeemerald in the user profile folder, then proceed to [Installation](#installation). Otherwise, you'll need to account for where pokeemerald is stored when changing directory to the pokeemerald folder.
+### Choosing where to store CrystalDust (msys2)
+At this point, you can choose a folder to store CrystalDust into. If you're okay with storing CrystalDust in the user profile folder, then proceed to [Installation](#installation). Otherwise, you'll need to account for where CrystalDust is stored when changing directory to the CrystalDust folder.
 
-For example, if you want to store pokeemerald (and agbcc) in **C:\Users\\_\<user>_\Desktop\decomps** (where *\<user>* is your **Windows** username), enter this command:
+For example, if you want to store CrystalDust (and agbcc) in **C:\Users\\_\<user>_\Desktop\decomps** (where *\<user>* is your **Windows** username), enter this command:
 
 ```bash
 cd Desktop/decomps
@@ -190,7 +190,7 @@ Otherwise, ask for help on Discord or IRC (see [README.md](README.md)), or conti
 2.
     - If Cygwin is **not installed**, or does not have all of the required packages installed, then go to [Installing Cygwin](#installing-cygwin).
     - If Cygwin is installed, but **is not configured to work with devkitARM**, then go to [Configuring devkitARM for Cygwin](#configuring-devkitarm-for-cygwin).
-    - Otherwise, **open Cygwin** and go to [Choosing where to store pokeemerald (Cygwin)](#choosing-where-to-store-pokeemerald-cygwin)
+    - Otherwise, **open Cygwin** and go to [Choosing where to store CrystalDust (Cygwin)](#choosing-where-to-store-crystaldust-cygwin)
 
 ### Installing Cygwin
 1. Download [Cygwin](https://cygwin.com/install.html): setup-x86_64.exe for 64-bit Windows, setup-x86.exe for 32-bit.
@@ -233,15 +233,15 @@ Note that in Cygwin, Copy is Ctrl+Insert and Paste is Shift+Insert.
     >   Replace the drive letter c with the actual drive letter if it is not c.
     </details>
 
-### Choosing where to store pokeemerald (Cygwin)
+### Choosing where to store CrystalDust (Cygwin)
 
-Cygwin has its own file system that's within Windows, at **C:\cygwin64\home\\_\<user>_**. If you don't want to store pokeemerald there, you'll need to account for where pokeemerald is stored when **changing directory** to the pokeemerald folder.
+Cygwin has its own file system that's within Windows, at **C:\cygwin64\home\\_\<user>_**. If you don't want to store CrystalDust there, you'll need to account for where CrystalDust is stored when **changing directory** to the CrystalDust folder.
 
-For example, if you want to store pokeemerald (and agbcc) in **C:\Users\\_\<user>_\Desktop\decomps**, enter this command, where *\<user>* is your **Windows** username:
+For example, if you want to store CrystalDust (and agbcc) in **C:\Users\\_\<user>_\Desktop\decomps**, enter this command, where *\<user>* is your **Windows** username:
 ```bash
 cd c:/Users/<user>/Desktop/decomps
 ```
-Note that the directory **must exist** in Windows. If you want to store pokeemerald in a dedicated folder that doesn't exist (e.g. the example provided above), then create the folder (e.g. using Windows Explorer) before executing the `cd` command.
+Note that the directory **must exist** in Windows. If you want to store CrystalDust in a dedicated folder that doesn't exist (e.g. the example provided above), then create the folder (e.g. using Windows Explorer) before executing the `cd` command.
 
 <details>
     <summary><i>Notes...</i></summary>
@@ -261,7 +261,7 @@ If this works, then proceed to [Installation](#installation). Otherwise, ask for
 
 2.  - If libpng is **not installed**, then go to [Installing libpng (macOS)](#installing-libpng-macos).
     - If devkitARM is **not installed**, then go to [Installing devkitARM (macOS)](#installing-devkitarm-macos).
-    - Otherwise, **open the Terminal** and go to [Choosing where to store pokeemerald (macOS)](#choosing-where-to-store-pokeemerald-macos)
+    - Otherwise, **open the Terminal** and go to [Choosing where to store CrystalDust (macOS)](#choosing-where-to-store-crystaldust-macos)
 
 ### Installing libpng (macOS)
 <details>
@@ -279,7 +279,7 @@ If this works, then proceed to [Installation](#installation). Otherwise, ask for
     ```
     libpng is now installed.
 
-    Continue to [Installing devkitARM (macOS)](#installing-devkitarm-macos) if **devkitARM is not installed**, otherwise, go to [Choosing where to store pokeemerald (macOS)](#choosing-where-to-store-pokeemerald-macos).
+    Continue to [Installing devkitARM (macOS)](#installing-devkitarm-macos) if **devkitARM is not installed**, otherwise, go to [Choosing where to store CrystalDust (macOS)](#choosing-where-to-store-crystaldust-macos).
 
 ### Installing devkitARM (macOS)
 1. Download the `devkitpro-pacman-installer.pkg` package from [here](https://github.com/devkitPro/pacman/releases).
@@ -305,14 +305,14 @@ If this works, then proceed to [Installation](#installation). Otherwise, ask for
     echo "if [ -f ~/.bashrc ]; then . ~/.bashrc; fi" >> ~/.bash_profile
     ```
 
-### Choosing where to store pokeemerald (macOS)
-At this point, you can choose a folder to store pokeemerald into. If you're okay with storing pokeemerald in the user folder, then proceed to [Installation](#installation). Otherwise, you'll need to account for where pokeemerald is stored when changing directory to the pokeemerald folder.
+### Choosing where to store CrystalDust (macOS)
+At this point, you can choose a folder to store CrystalDust into. If you're okay with storing CrystalDust in the user folder, then proceed to [Installation](#installation). Otherwise, you'll need to account for where CrystalDust is stored when changing directory to the CrystalDust folder.
 
-For example, if you want to store pokeemerald (and agbcc) in **~/Desktop/decomps**, enter this command to **change directory** to the desired folder:
+For example, if you want to store CrystalDust (and agbcc) in **~/Desktop/decomps**, enter this command to **change directory** to the desired folder:
 ```bash
 cd Desktop/decomps
 ```
-Note that the directory **must exist** in the folder system. If you want to store pokeemerald in a dedicated folder that doesn't exist (e.g. the example provided above), then create the folder (e.g. using Finder) before executing the `cd` command.
+Note that the directory **must exist** in the folder system. If you want to store CrystalDust in a dedicated folder that doesn't exist (e.g. the example provided above), then create the folder (e.g. using Finder) before executing the `cd` command.
 
 <details>
     <summary><i>Note..</i>.</summary>
@@ -330,7 +330,7 @@ Run the following command to install the necessary packages:
 ```bash
 sudo apt install build-essential binutils-arm-none-eabi git libpng-dev
 ```
-Then proceed to [Choosing where to store pokeemerald (Linux)](#choosing-where-to-store-pokeemerald-linux).
+Then proceed to [Choosing where to store CrystalDust (Linux)](#choosing-where-to-store-crystaldust-linux).
 <details>
     <summary><i>Note for legacy repos...</i></summary>
 
@@ -359,8 +359,8 @@ _(Specific instructions for other distributions would be greatly appreciated!)_
 
     The last command will ask for the selection of packages to install. Just press Enter to install all of them, followed by entering Y to proceed with the installation.
 
-### Choosing where to store pokeemerald (Linux)
-At this point, you can choose a folder to store pokeemerald (and agbcc) into. If so, you'll have to account for the modified folder path when changing directory to the pokeemerald folder.
+### Choosing where to store CrystalDust (Linux)
+At this point, you can choose a folder to store CrystalDust (and agbcc) into. If so, you'll have to account for the modified folder path when changing directory to the CrystalDust folder.
 
 If this works, then proceed to [Installation](#installation). Otherwise, ask for help on Discord or IRC (see [README.md](README.md)).
 
@@ -369,15 +369,15 @@ If this works, then proceed to [Installation](#installation). Otherwise, ask for
 <details>
     <summary><i>Note for Windows users...</i></summary>
 
->   Consider adding an exception for the `pokeemerald` and/or `decomps` folder in Windows Security using
+>   Consider adding an exception for the `CrystalDust` and/or `decomps` folder in Windows Security using
 >   [these instructions](https://support.microsoft.com/help/4028485). This prevents Microsoft Defender from
 >   scanning them which might improve performance while building.
 </details>
 
-1. If pokeemerald is not already downloaded (some users may prefer to download pokeemerald via a git client like GitHub Desktop), run:
+1. If CrystalDust is not already downloaded (some users may prefer to download CrystalDust via a git client like GitHub Desktop), run:
 
     ```bash
-    git clone https://github.com/pret/pokeemerald
+    git clone https://github.com/Deokishisu/CrystalDust.git
     ```
 
     <details>
@@ -388,69 +388,78 @@ If this works, then proceed to [Installation](#installation). Otherwise, ask for
     >   cd
     >   sudo umount /mnt/c
     >   sudo mount -t drvfs C: /mnt/c -o metadata,noatime
-    >   cd <folder where pokeemerald is to be stored>
+    >   cd <folder where CrystalDust is to be stored>
     >   ```
-    >   Where *\<folder where pokeemerald is to be stored>* is the path of the folder [where you chose to store pokeemerald](#Choosing-where-to-store-pokeemerald-WSL1). Then run the `git clone` command again.
+    >   Where *\<folder where CrystalDust is to be stored>* is the path of the folder [where you chose to store CrystalDust](#Choosing-where-to-store-crystaldust-WSL1). Then run the `git clone` command again.
     </details>
 
-2. Install agbcc into pokeemerald. The commands to run depend on certain conditions. **You should only follow one of the listed instructions**:
-- If agbcc has **not been built before** in the folder where you chose to store pokeemerald, run the following commands to build and install it into pokeemerald:
+2. Install agbcc into CrystalDust. The commands to run depend on certain conditions. **You should only follow one of the listed instructions**:
+- If agbcc has **not been built before** in the folder where you chose to store CrystalDust, run the following commands to build and install it into CrystalDust:
 
     ```bash
     git clone https://github.com/pret/agbcc
     cd agbcc
     ./build.sh
-    ./install.sh ../pokeemerald
+    ./install.sh ../CrystalDust
     ```
 
-- **Otherwise**, if agbcc has been built before (e.g. if the git clone above fails), but was **last built on a different terminal** than the one currently used (only relevant to Windows, e.g. switching from msys2 to WSL1), then run the following commands to build and install it into pokeemerald:
+- **Otherwise**, if agbcc has been built before (e.g. if the git clone above fails), but was **last built on a different terminal** than the one currently used (only relevant to Windows, e.g. switching from msys2 to WSL1), then run the following commands to build and install it into CrystalDust:
 
     ```bash
     cd agbcc
     git clean -fX
     ./build.sh
-    ./install.sh ../pokeemerald
+    ./install.sh ../CrystalDust
     ```
 
-- **Otherwise**, if agbcc has been built before on the same terminal, run the following commands to install agbcc into pokeemerald:
+- **Otherwise**, if agbcc has been built before on the same terminal, run the following commands to install agbcc into CrystalDust:
 
     ```bash
     cd agbcc
-    ./install.sh ../pokeemerald
+    ./install.sh ../CrystalDust
     ```
 
     <details>
         <summary><i>Note...</i></summary>
 
-        > If building agbcc or pokeemerald results in an error, try deleting the agbcc folder and re-installing agbcc as if it has not been built before.
+        > If building agbcc or CrystalDust results in an error, try deleting the agbcc folder and re-installing agbcc as if it has not been built before.
     </details>
 
-3. Once agbcc is installed, change directory back to the base directory where pokeemerald and agbcc are stored:
+3. Install Poryscript into CrystalDust. The commands to run depend on several conditions. **You should only follow one of the listed instructions**
+- If you are on an x86-64 platform and you wish to use a pre-built binary, simply grab the binary from https://github.com/huderlem/poryscript/releases/ and extract it into `CrystalDust/tools/poryscript/`.
+- If you with to build from source, or are on a different platform (e.g. arm64), follow the instructions at https://github.com/huderlem/poryscript#building-from-source. The golang toolchain is required. The instructions boil down to:
+
+    ```bash
+    cd ..  # only needed if we're still in the CrystalDust directory
+    git clone https://github.com/huderlem/poryscript.git
+    cd poryscript
+    go build
+    ./install.sh ../CrystalDust
+    ```
+    
+5. Once agbcc and poryscript are installed, change directory back to the base directory where CrystalDust and agbcc are stored:
 
     ```bash
     cd ..
     ```
 
-Now you're ready to [build **pokeemerald**](#build-pokeemerald)
-## Build pokeemerald
-If you aren't in the pokeemerald directory already, then **change directory** to the pokeemerald folder:
+Now you're ready to [build **CrystalDust**](#build-crystaldust)
+## Build CrystalDust
+If you aren't in the CrystalDust directory already, then **change directory** to the CrystalDust folder:
 ```bash
-cd pokeemerald
+cd CrystalDust
 ```
-To build **pokeemerald.gba** for the first time and confirm it matches the official ROM image (Note: to speed up builds, see [Parallel builds](#parallel-builds)):
+To build **CrystalDust.gba** with your changes:
 ```bash
-make compare
+make modern
 ```
-If an OK is returned, then the installation went smoothly.
+**NOTE:** this project requires the `arm-none-eabi-gcc` compiler included with devkitARM. If devkitARM (a.k.a. gba-dev) has already been installed as part of the platform-specific instructions, this should run with no errors.
+Otherwise, follow the instructions below to install devkitARM.
 <details>
 <summary>Note for Windows...</summary>
 > If you switched terminals since the last build (e.g. from msys2 to WSL1), you must run `make clean-tools` once before any subsequent `make` commands.
 </details>
 
-To build **pokeemerald.gba** with your changes:
-```bash
-make
-```
 
 # Building guidance
 
@@ -464,7 +473,7 @@ nproc
 ```
 Builds can then be sped up by running the following command:
 ```bash
-make -j<output of nproc>
+make -j<output of nproc> modern
 ```
 Replace `<output of nproc>` with the number that the `nproc` command returned.
 
@@ -472,18 +481,11 @@ Replace `<output of nproc>` with the number that the `nproc` command returned.
 
 ## Debug info
 
-To build **pokeemerald.elf** with enhanced debug info:
+To build **CrystalDust.elf** with enhanced debug info:
 ```bash
-make DINFO=1
+make DINFO=1 modern
 ```
 
-## devkitARM's C compiler
-
-This project supports the `arm-none-eabi-gcc` compiler included with devkitARM. If devkitARM (a.k.a. gba-dev) has already been installed as part of the platform-specific instructions, simply run:
-```bash
-make modern
-```
-Otherwise, follow the instructions below to install devkitARM.
 ### Installing devkitARM on WSL1
 
 1. `gdebi-core` must be installed beforehand in order to install devkitPro pacman (which facilitates the installation of devkitARM). Install this with the following command:
