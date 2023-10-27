@@ -103,7 +103,7 @@ script Route30_EventScript_Trainer_Joey {
     {
         if (!flag(FLAG_YOUNGSTER_JOEY_OFFERED_NUMBER))
         {
-            msgbox("Listen, can I\nget your phone number?\lI'll ring you for some battles.\pI'm a rookie too, so I think\nit'd be a good motivator.", MSGBOX_YESNO) 
+            msgbox("Listen, can I get your phone number?\nI'll ring you for some battles.\pI'm a rookie too, so I think it'd\nbe a good motivator.", MSGBOX_YESNO) 
             setflag(FLAG_YOUNGSTER_JOEY_OFFERED_NUMBER)
         }
         else
