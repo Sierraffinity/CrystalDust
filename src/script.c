@@ -5,12 +5,16 @@
 #include "field_effect_helpers.h"
 #include "fieldmap.h"
 #include "field_player_avatar.h"
+#include "item.h"
 #include "mevent.h"
+#include "party_menu.h"
 #include "pokemon_storage_system.h"
+#include "script_pokemon_util.h"
 #include "string_util.h"
 #include "tv.h"
 #include "util.h"
 #include "constants/event_objects.h"
+#include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/map_scripts.h"
 #include "constants/moves.h"
@@ -1237,4 +1241,125 @@ void EnableMsgBoxWalkaway(void)
 bool8 IsMsgBoxWalkawayDisabled(void)
 {
     return sMsgBoxWalkawayDisabled;
+}
+
+void TeachTrappedTentacoolSurf(void)
+{
+    u32 i;
+    u32 move = MOVE_SURF;
+    u32 pp = 15;
+    if(gSpecialVar_0x8007 == 0) //party
+    {
+        i = CalculatePlayerPartyCount() - 1;
+        SetMonData(&gPlayerParty[i], MON_DATA_MOVE4, &move);
+        SetMonData(&gPlayerParty[i], MON_DATA_PP1 + 3, &pp);
+        return;
+    }
+    else //box
+    {
+        SetBoxMonDataAt(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos, MON_DATA_MOVE4, &move);
+        SetBoxMonDataAt(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos, MON_DATA_PP1 + 3, &pp);
+        return;
+    }
+}
+
+void CheckPlayerTrappedOnCianwoodOrCinnabar(void)
+{   //gSpecialVar_Result set to 0 if not trapped, 1 if trapped with HM03, and 2 if trapped without HM03
+    bool32 haveHM03 = CheckBagHasItem(ITEM_HM03, 1);
+    u32 canLearnHM03 = FALSE;
+    u32 i, j, k;
+    struct Pokemon tempMon;
+
+    //checking party for mon that can learn Surf
+    for(i = 0; i < PARTY_SIZE && !canLearnHM03; i++)
+    {
+        if(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
+            break;
+        else
+        {
+            if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && MonKnowsMove(&gPlayerParty[i], MOVE_SURF) == TRUE)
+            {   //party mon knows Surf, not trapped
+                gSpecialVar_Result = 0;
+                return;
+            }
+            if(haveHM03)
+            {
+                canLearnHM03 = CanMonLearnTMHM(&gPlayerParty[i], ITEM_HM03 - ITEM_TM01_FOCUS_PUNCH);
+                if(canLearnHM03 && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+                {   //check if it already knows 4 HM moves, can't learn Surf
+                    for(k = 0; k < 4; k++)
+                    {
+                        if(!IsHMMove2(GetMonData(&gPlayerParty[i], MON_DATA_MOVE1 + k, NULL)))
+                        {   //has free moveslot for Surf
+                            canLearnHM03 = TRUE;
+                            break;
+                        }
+                        else
+                        {
+                            canLearnHM03 = FALSE;
+                            continue;
+                        }
+                    }
+                }
+            }
+        }   
+    }
+    if(haveHM03 && canLearnHM03)
+    {   //have party mon that can learn Surf && have HM03
+        gSpecialVar_Result = 0;
+        return;
+    }
+    //no party Pokemon that can learn Surf && have HM03, check boxes
+    for (i = 0; i < TOTAL_BOXES_COUNT && !canLearnHM03; i++)
+    {
+        for (j = 0; j < IN_BOX_COUNT && !canLearnHM03; j++)
+        {
+            if (GetBoxMonDataAt(i, j, MON_DATA_SPECIES) == SPECIES_NONE)
+            {
+                continue;
+            }
+            else
+            {
+                BoxMonToMon(GetBoxedMonPtr(i, j), &tempMon);
+                if(MonKnowsMove(&tempMon, MOVE_SURF) == TRUE)
+                {   //box mon knows Surf, not trapped
+                    gSpecialVar_Result = 0;
+                    return;
+                }
+                if(haveHM03)
+                {
+                    canLearnHM03 = CanMonLearnTMHM(&tempMon, ITEM_HM03 - ITEM_TM01_FOCUS_PUNCH);
+                    if(canLearnHM03 && !GetMonData(&tempMon, MON_DATA_IS_EGG))
+                    {   //check if it already knows 4 HM moves, can't learn Surf
+                        for(k = 0; k < 4; k++)
+                        {
+                            if(!IsHMMove2(GetMonData(&tempMon, MON_DATA_MOVE1 + k, NULL)))
+                            {   //has free moveslot for Surf
+                                canLearnHM03 = TRUE;
+                                break;
+                            }
+                            else
+                            {
+                                canLearnHM03 = FALSE;
+                                continue;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if(haveHM03 && canLearnHM03)
+    {   //have box mon that can learn Surf && have HM03
+        gSpecialVar_Result = 0;
+        return;
+    }
+    if(haveHM03)
+    {
+        gSpecialVar_Result = 1; //trapped with HM03, give regular Tentacool.
+        return;
+    }
+    //trapped without HM03, give Tentacool with Surf
+    gSpecialVar_Result = 2;
+    return;
 }

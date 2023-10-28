@@ -7,7 +7,7 @@
 * Camera should be locked when the OW Fly field move animation happens.
 * Fishing encounter percentages are not accurate to Crystal.
 * Calling trainers on their own map shows the, "go talk to them," text, but then continues the phone call as normal with the trainer picking up and talking.
-* Force calls (such as Elm calling to inform the player that a Pokémon has been stolen) aren't happening immediately when they should.
+* Forced calls (such as Elm calling to inform the player that a Pokémon has been stolen) aren't happening immediately when they should.
 
 ### Johto
 * Azalea Town map name popup instantly dismisses in the outdoor town (Celebi event scripting mistake).
@@ -23,10 +23,10 @@
 * The phone call system is not 1:1 with Crystal and is behaving unexpectedly (based more on Emerald's PokeNav calls); it will likely need to be refactored. Eligible trainers do not offer their phone number immediately after battle, unlike Crystal.
 * The Pokédex cursor indicator on Area/Cry/Size is too dim and needs a more drastic color change to be visible on OG GBA screens.
 * New Johto tree tiles.
-* The softlock prevention in Cianwood and Cinnabar Island should use FRLG+'s more robust checks instead of the potentially destructive (and potentially impossible to satisfy) checks lifted from HGSS. (Note to self, [this is the FRLG+ commit.](https://github.com/Deokishisu/FRLG-Plus/commit/8058d0e44ec53da493d291213b965c493c18fe61))
 * The Bayleef OW sprite could use a quality control pass. It is in the Vermilion Pokémon Fan Club building.
 * Morty's OW sprite side frames look bad and should probably be redone.
 * Clair's OW sprite side frames look bad and should probably be redone.
+* Need to check to make sure the Bug Catching Contest doesn't try to give you a mon when your party and boxes are full.
 
 ## Content within the current playable areas that is unfinished:
 ### General
@@ -80,6 +80,7 @@
 * Determine the most common substrings in dialogue and make more string placeholders out of them. Examples:
   * The string, "phone number" would save 440 bytes if turned into one.
   * "TEAM ROCKET" has 48 occurrences and could save 432 bytes if turned into one.
+* A `buffermapname` scripting command has the potential to save hundreds of bytes.
 * Sierra expressed interest in porting the dynamic OW palette system. Such a system would simplify implementing the Battle Frontier and eliminate the need for OW palette workarounds in the Ecruteak Dance Theater (Kimono Girls), Burned Tower (Rival/Eusine and gray beasts), and Cianwood (Eusine).
 * Currently, all Pokémon OW sprites (save Clefairy for Mt. Moon Square) do not have walking frames, which is how FRLG did it. Perhaps make walking sprites for all of them. Most Pokémon do NOT walk around in the OW, as Crystal often used menu sprites which also did not have walking frames.
 * There are sprites in the [#graphics channel](https://discord.com/channels/237788642238660610/671823652341284865) (specifically some of the Trainer sprites) that I'm not sure if they're in Sierra's master or not or if I should add them to the progress branch and ignore Sierra's efforts there.

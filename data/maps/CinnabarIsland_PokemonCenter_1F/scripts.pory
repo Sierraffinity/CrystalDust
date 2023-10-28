@@ -15,8 +15,8 @@ script CinnabarIsland_PokemonCenter_1F_EventScript_CooltrainerF{
 }
 
 script CinnabarIsland_PokemonCenter_1F_EventScript_FatMan{
-    specialvar(VAR_RESULT, HasMoreThanOnePokemon)
-    if(var(VAR_RESULT) == TRUE)
+    callnative(CheckPlayerTrappedOnCianwoodOrCinnabar)
+    if(var(VAR_RESULT) == 0)
     {
         msgbox("It's been a year since the\nvolcano erupted.", MSGBOX_NPC)
         end

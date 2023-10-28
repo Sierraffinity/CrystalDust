@@ -228,7 +228,7 @@ script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
     special(GiveCaughtBugCatchingContestMon)
 	bufferspeciesname(0, VAR_0x8004)
     textcolor(MSG_COLOR_SYS)
-    if (var(VAR_RESULT) == 0)
+    if (var(VAR_RESULT) == MON_GIVEN_TO_PARTY)
     {
         msgbox(Route36_NationalParkGatehouse_Text_NicknameCaughtMon, MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
@@ -237,7 +237,7 @@ script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
             call(Common_EventScript_NameReceivedPartyMon)
         }
     }
-    elif (var(VAR_RESULT) == 1)
+    elif (var(VAR_RESULT) == MON_GIVEN_TO_PC)
     {
         msgbox(Route36_NationalParkGatehouse_Text_NicknameCaughtMon, MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)

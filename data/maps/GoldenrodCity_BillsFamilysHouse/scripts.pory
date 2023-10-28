@@ -32,7 +32,7 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_Bill {
                 goto(GoldenrodCity_BillsFamilysHouse_EventScript_Bill_PartyFull)
             }
             givemon(SPECIES_EEVEE, 20, ITEM_NONE)
-            if (var(VAR_RESULT) == 0)
+            if (var(VAR_RESULT) == MON_GIVEN_TO_PARTY)
             {
                 call(GoldenrodCity_BillsFamilysHouse_EventScript_ReceivedEeveeFanfare)
                 msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
@@ -42,7 +42,7 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_Bill {
                     call(Common_EventScript_NameReceivedPartyMon)
                 }
             }
-            elif (var(VAR_RESULT) == 1)
+            elif (var(VAR_RESULT) == MON_GIVEN_TO_PC)
             {
                 call(GoldenrodCity_BillsFamilysHouse_EventScript_ReceivedEeveeFanfare)
                 msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
@@ -52,7 +52,7 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_Bill {
                 }
                 call(Common_EventScript_TransferredToPC)
             }
-            else
+            else // MON_CANT_GIVE
             {
                 goto(GoldenrodCity_BillsFamilysHouse_EventScript_Bill_PartyFull)
             }

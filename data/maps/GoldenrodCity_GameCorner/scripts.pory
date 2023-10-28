@@ -309,7 +309,7 @@ script GoldenrodCity_GameCorner_EventScript_MonClerk_ConfirmPrize {
             copyvar(VAR_TEMP_3, VAR_RESULT)
             switch (var(VAR_TEMP_3))
             {
-                case 2: // no room anywhere
+                case MON_CANT_GIVE: // no room anywhere
                     call(Common_EventScript_NoMoreRoomForPokemon)
                     goto(GoldenrodCity_GameCorner_EventScript_MonClerk_ReturnToShowChoice)
                 default:
@@ -326,14 +326,14 @@ script GoldenrodCity_GameCorner_EventScript_MonClerk_ConfirmPrize {
                     msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
                     switch (var(VAR_TEMP_3))
                     {
-                        case 0: // party
+                        case MON_GIVEN_TO_PARTY: // party
                             if (var(VAR_RESULT) == YES)
                             {
                                 call(Common_EventScript_GetGiftMonPartySlot)
                                 call(Common_EventScript_NameReceivedPartyMon)
                                 showcoinsbox(0, 0)
                             }
-                        case 1: // PC
+                        case MON_GIVEN_TO_PC: // PC
                             if (var(VAR_RESULT) == YES)
                             {
                                 call(Common_EventScript_NameReceivedBoxMon)
