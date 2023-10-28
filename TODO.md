@@ -2,19 +2,18 @@
 
 ## Known Bugs:
 ### General
-* Occasional intense lag when returning from the nicknaming screen. (Could this be DN-related? Happens consistently in the grass patch just south of Goldenrod)
-* TMs at Marts have cut-off descriptions (Need to use the FRLG summary screen text here)
-* Camera should be locked when the OW Fly field move animation happens
+* Occasional intense lag when returning from the nicknaming screen. (Could this be DN-related? Happens consistently in the grass patch just south of Goldenrod.)
+* TMs at Marts have cut-off descriptions (Need to use the FRLG summary screen text here).
+* Camera should be locked when the OW Fly field move animation happens.
 * Fishing encounter percentages are not accurate to Crystal.
 * Calling trainers on their own map shows the, "go talk to them," text, but then continues the phone call as normal with the trainer picking up and talking.
 
 ### Johto
-* Azalea Town map name popup instantly dismisses in the outdoor town (Celebi event scripting mistake)
+* Azalea Town map name popup instantly dismisses in the outdoor town (Celebi event scripting mistake).
 * Prof. Elm should step back instead of jump back when given the Mystery Egg.
 * Cianwood Pharmacy counter incorrect layering.
 * Top-rightmost shutter in Goldenrod Underground bottom-right tile incorrect layering.
 * Bad collision near Route 27 Bird Keeper after whirlpool.
-* Typo in Goldenrod Underground Rival text: "waht."
 * If you change the station off of Oak's Pokémon Talk while it's in the middle of printing "POKéMON POKéMON\nPOKéMON CHANNEL", it'll clear the box when you change the channel but it'll print the rest of the string from where it left off. [Bug report with screenshot.](https://discord.com/channels/237788642238660610/789393113315409951/953906750988361788)
 
 ## Things that work, but need another pass or more testing for quality control:
@@ -83,7 +82,7 @@
 * Should Vermilion Gym have its gym puzzle restored? Would need new dialogue for some of the NPCs there.
 * Determine the most common substrings in dialogue and make more string placeholders out of them. Examples:
   * The string, "phone number" would save 440 bytes if turned into one.
-  * "TEAM ROCKET" has 48 occurances and could save 432 bytes if turned into one.
+  * "TEAM ROCKET" has 48 occurrences and could save 432 bytes if turned into one.
 * Sierra expressed interest in porting the dynamic OW palette system. Such a system would simplify implementing the Battle Frontier and eliminate the need for OW palette workarounds in the Ecruteak Dance Theater (Kimono Girls), Burned Tower (Rival/Eusine and gray beasts), and Cianwood (Eusine).
 * Currently, all Pokémon OW sprites (save Clefairy for Mt. Moon Square) do not have walking frames, which is how FRLG did it. Perhaps make walking sprites for all of them. Most Pokémon do NOT walk around in the OW, as Crystal often used menu sprites which also did not have walking frames.
 * There are sprites in the [#graphics channel](https://discord.com/channels/237788642238660610/671823652341284865) (specifically some of the Trainer sprites) that I'm not sure if they're in Sierra's master or not or if I should add them to the progress branch and ignore Sierra's efforts there.

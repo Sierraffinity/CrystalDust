@@ -61,7 +61,7 @@ script GoldenrodCity_Underground_SwitchRoom_EventScript_RivalTriggers {
         case STARTER_TOTODILE:
             trainerbattle_wintext(TRAINER_RIVAL_GOLDENROD_TUNNEL_TOTODILE, 0, GoldenrodCity_Underground_SwitchRoom_Text_RivalLost, GoldenrodCity_Underground_SwitchRoom_Text_RivalWon)
     }
-    msgbox("…I don't understand…\pIs what that LANCE guy said true?\nThat I don't treat {POKEMON}\lproperly?\pLove…\pTrust…\pAre they really waht I lack?\nAre they keeping me from winning?\pI… I just don't understand.\nBut it's not going to end here.\pNot now.\nNot because of this.\pI won't give up my dream of becoming\nthe world's best {POKEMON} trainer!", MSGBOX_DEFAULT)
+    msgbox("…I don't understand…\pIs what that LANCE guy said true?\nThat I don't treat {POKEMON}\lproperly?\pLove…\pTrust…\pAre they really what I lack?\nAre they keeping me from winning?\pI… I just don't understand.\nBut it's not going to end here.\pNot now.\nNot because of this.\pI won't give up my dream of becoming\nthe world's best {POKEMON} trainer!", MSGBOX_DEFAULT)
     closemessage
     getplayerxy(VAR_0x8008, VAR_RESULT)
     switch(var(VAR_RESULT))
