@@ -11,9 +11,6 @@
 ### Johto
 * Azalea Town map name popup instantly dismisses in the outdoor town (Celebi event scripting mistake).
 * Prof. Elm should step back instead of jump back when given the Mystery Egg.
-* Cianwood Pharmacy counter incorrect layering.
-* Top-rightmost shutter in Goldenrod Underground bottom-right tile incorrect layering.
-* Bad collision near Route 27 Bird Keeper after whirlpool.
 * If you change the station off of Oak's Pokémon Talk while it's in the middle of printing "POKéMON POKéMON\nPOKéMON CHANNEL", it'll clear the box when you change the channel but it'll print the rest of the string from where it left off. [Bug report with screenshot.](https://discord.com/channels/237788642238660610/789393113315409951/953906750988361788)
 
 ## Things that work, but need another pass or more testing for quality control:
