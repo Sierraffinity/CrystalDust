@@ -29,6 +29,18 @@ mapscripts IndigoPlateau_PokemonCenter_1F_MapScripts {
             setvar(VAR_TEMP_0, 1)
             setflag(FLAG_TEMP_2)
         }
+        if(flag(FLAG_SYS_GAME_CLEAR))
+        {
+            setflag(FLAG_TEMP_3) // hide old man and Abra
+            if(!flag(FLAG_FOUGHT_SNORLAX))
+            {
+                callnative(CheckPlayerTrappedAtIndigoPlateau)
+                if(var(VAR_RESULT) == 1) // trapped, show old man and Abra
+                {
+                    clearflag(FLAG_TEMP_3)
+                }
+            }
+        }
     }
     MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_TEMP_0, 0: EcruteakCity_PokemonCenter_1F_Eventscript_Bill

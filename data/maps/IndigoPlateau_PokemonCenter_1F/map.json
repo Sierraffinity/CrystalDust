@@ -59,7 +59,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_Eventscript_OldMan",
-      "flag": "FLAG_SYS_GAME_CLEAR"
+      "flag": "FLAG_TEMP_3"
     },
     {
       "type": "original",
@@ -74,7 +74,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_Eventscript_Abra",
-      "flag": "FLAG_SYS_GAME_CLEAR"
+      "flag": "FLAG_TEMP_3"
     },
     {
       "type": "original",
