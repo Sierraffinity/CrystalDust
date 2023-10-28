@@ -7,10 +7,10 @@
 * Camera should be locked when the OW Fly field move animation happens.
 * Fishing encounter percentages are not accurate to Crystal.
 * Calling trainers on their own map shows the, "go talk to them," text, but then continues the phone call as normal with the trainer picking up and talking.
+* Force calls (such as Elm calling to inform the player that a Pokémon has been stolen) aren't happening immediately when they should.
 
 ### Johto
 * Azalea Town map name popup instantly dismisses in the outdoor town (Celebi event scripting mistake).
-* Prof. Elm should step back instead of jump back when given the Mystery Egg.
 * If you change the station off of Oak's Pokémon Talk while it's in the middle of printing "POKéMON POKéMON\nPOKéMON CHANNEL", it'll clear the box when you change the channel but it'll print the rest of the string from where it left off. [Bug report with screenshot.](https://discord.com/channels/237788642238660610/789393113315409951/953906750988361788)
 
 ## Things that work, but need another pass or more testing for quality control:
