@@ -1,4 +1,4 @@
 EventScript_UseFlash::
-	animateflash 1
-	setflashradius 1
+	animateflash 0
+	setflashradius 0
 	end
