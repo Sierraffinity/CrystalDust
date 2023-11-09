@@ -3,7 +3,6 @@
 ## Known Bugs:
 ### General
 * Occasional intense lag when returning from the nicknaming screen. (Could this be DN-related? Happens consistently in the grass patch just south of Goldenrod.)
-* TMs at Marts have cut-off descriptions (Need to use the FRLG summary screen text here).
 * Camera should be locked when the OW Fly field move animation happens.
 * Fishing encounter percentages are not accurate to Crystal.
 * Calling trainers on their own map shows the, "go talk to them," text, but then continues the phone call as normal with the trainer picking up and talking.

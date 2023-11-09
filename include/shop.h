@@ -2,6 +2,7 @@
 #define GUARD_SHOP_H
 
 extern EWRAM_DATA struct ItemSlot gMartPurchaseHistory[3];
+extern const u8 *const gMoveDescriptionPointers[];
 
 enum
 {

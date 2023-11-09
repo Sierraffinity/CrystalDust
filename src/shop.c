@@ -700,6 +700,9 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
             description = ItemId_GetDescription(item);
         else
             description = gDecorations[item].description;
+        
+        if (sMartInfo.martType == MART_TYPE_TMHM)
+            description = gMoveDescriptionPointers[ItemIdToBattleMoveId(item) - 1];
     }
     else
     {
