@@ -5,7 +5,6 @@
 * Occasional intense lag when returning from the nicknaming screen. (Could this be DN-related? Happens consistently in the grass patch just south of Goldenrod.)
 * Camera should be locked when the OW Fly field move animation happens.
 * Fishing encounter percentages are not accurate to Crystal.
-* Calling trainers on their own map shows the, "go talk to them," text, but then continues the phone call as normal with the trainer picking up and talking.
 * Forced calls (such as Elm calling to inform the player that a Pokémon has been stolen) aren't happening immediately when they should.
 
 ### Johto

@@ -552,6 +552,8 @@ PhoneScript_Bill_JustRanOutOfRoom::
 
 PhoneScript_StandardMatchCallTrainer::
 	phone_initcall
+	phone_compare VAR_RESULT, 1 @ PHONE_CALL_FAIL && PHONE_CALL_FAIL_SILENT
+	phone_call_if_ge PhoneScript_HangUpEarly
 	phone_callnativecontext SelectMessage_StandardMatchCallTrainer_Opening
 	phone_message gStringVar4
 	phone_waitbuttonpress
@@ -561,6 +563,10 @@ PhoneScript_StandardMatchCallTrainer::
 	phone_callnativecontext SelectMessage_StandardMatchCallTrainer_Hangup
 	phone_message gStringVar4
 	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+PhoneScript_HangUpEarly::
 	phone_hangup
 	phone_end
 

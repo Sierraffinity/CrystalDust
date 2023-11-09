@@ -455,8 +455,15 @@ static void Task_HangupPhoneCall(u8 taskId)
     {
     case 0:
         FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(1));
-        AddTextPrinterParameterized5(gPhoneCallWindowId, 2, sHangUpText, 2, 1, 0, NULL, 1, 1);
-        tState++;
+        if(gSpecialVar_Result == PHONE_CALL_FAIL_SILENT)
+        {
+            tState = 2;
+        }
+        else
+        {
+            AddTextPrinterParameterized5(gPhoneCallWindowId, 2, sHangUpText, 2, 1, 0, NULL, 1, 1);
+            tState++;
+        }
         break;
     case 1:
         switch (ctx->data[0])

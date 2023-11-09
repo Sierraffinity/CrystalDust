@@ -21,5 +21,5 @@ EventScript_GotoTrainerScript::
 	end
 
 EventScript_Text_Trainer_Registered:
-	.string "{PLAYER} registered {STR_VAR_1}'s\n"
-	.string "phone number!$"
+	.string "{PLAYER} registered\n"
+	.string "{STR_VAR_1}'s phone number!$"
