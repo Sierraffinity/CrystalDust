@@ -5,6 +5,7 @@
 * Occasional intense lag when returning from the nicknaming screen. (Could this be DN-related? Happens consistently in the grass patch just south of Goldenrod.)
 * Camera should be locked when the OW Fly field move animation happens.
 * Fishing encounter percentages are not accurate to Crystal.
+* The GB Sounds table is not entirely filled out yet. Some songs that should have a GBS equivalent are not assigned.
 
 ### Johto
 * Azalea Town map name popup instantly dismisses in the outdoor town (Celebi event scripting mistake).
@@ -14,10 +15,10 @@
 * Gym Leader movesets need to be redone. Gyms 4-16 are using Crystal sets. Gyms 1-3 need another pass now that tutor moves are a thing (Bugsy should have Fury Cutter instead of Steel Wing).
 * Elite Four and Champion movesets should be redone. They are currently using Crystal sets.
 * Late Rival battles should probably have their movesets made custom, as they are laughable (Indigo Plateau Water Gun Feraligatr, for example).
-* All phone call-related text from trainers and Buena, both their OW NPC text and the phone call text themselves, need to be checked for placement in the textbox and textbox overflow.
+* All phone call-related text from trainers and Buena, both their OW NPC text and the phone call text themselves, need to be checked for placement in the textbox and textbox overflow. (OW NPC text for Joey, Wade, Liz, and Ralph has been checked)
 * The Trainer Card needs to be checked when filled out. Also need to check all Trainer Cards (RS, E, FRLG, CD) displayed in the link rooms to make sure they are correct.
 * Bill might not be always calling to unlock Sevii after unlocking Mt. Silver. Need to check again.
-* The phone call system is not 1:1 with Crystal and is behaving unexpectedly (based more on Emerald's PokeNav calls); it will likely need to be refactored. Eligible trainers do not offer their phone number immediately after battle, unlike Crystal.
+* The phone call system is not 1:1 with Crystal and is behaving unexpectedly (based more on Emerald's PokeNav calls); it will likely need to be refactored. Eligible trainers do not offer their phone number immediately after battle (save for Joey, Wade, Liz, and Ralph), unlike Crystal.
 * The Pokédex cursor indicator on Area/Cry/Size is too dim and needs a more drastic color change to be visible on OG GBA screens.
 * New Johto tree tiles.
 * The Bayleef OW sprite could use a quality control pass. It is in the Vermilion Pokémon Fan Club building.
