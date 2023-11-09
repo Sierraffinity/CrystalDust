@@ -943,7 +943,7 @@ static const struct MatchCallText sMatchCallGenericTexts[] =
 		{ .text = Matchcall_Jack_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Jack_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Jack_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Joey_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		{ .text = Matchcall_Joey_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
 		{ .text = Matchcall_Joey_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
 		{ .text = Matchcall_Joey_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Joey_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},

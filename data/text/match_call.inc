@@ -4651,10 +4651,8 @@ Matchcall_Joey_Call_Night::
 Matchcall_Joey_Generic5::
 	.string  "How are your {POKEMON} doing?\p"
 
-	.string "My {STR_VAR_2}'s raring to go, just\n"
-	.string "like always.\l"
-
-	.string "It's the only one I have.\p"
+	.string "My {STR_VAR_2}'s raring to go, just like\n"
+	.string "always. It's the only one I have.\p"
 
 	.string "I'm going to become a great trainer\n"
 	.string "with it!$"
@@ -4682,8 +4680,8 @@ Matchcall_Joey_Generic2::
 
 	.string "I thought about going for it, but\n"
 
-	.string "I decided to work with my one-and-only\l"
-	.string "right to the extreme end.$"
+	.string "I decided to work with my\l"
+	.string "one-and-only right to the extreme end.$"
 
 
 Matchcall_Joey_Rematch::
