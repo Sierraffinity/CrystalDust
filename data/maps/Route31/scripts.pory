@@ -115,8 +115,7 @@ script Route31_EventScript_Youngster {
 }
 
 script Route31_EventScript_Trainer_Wade {
-    trainerbattle_single(TRAINER_WADE_1, "I caught a bunch of {POKEMON}.\nLet me battle with you!", "Awwwww…")
-    // TODO: Check phone strings for textbox fit
+    trainerbattle_single(TRAINER_WADE_1, "I caught a bunch of {POKEMON}.\nLet me battle with you!", "Awwwww…", Route31_EventScript_Trainer_Wade_AfterBattle)
 
     if(flag(FLAG_CALL_WADE_GIFT))
     {
@@ -140,22 +139,23 @@ script Route31_EventScript_Trainer_Wade {
         trainerbattle_rematch(TRAINER_WADE_1, "I was waiting for you! Let's battle!", "Awwwww…")
         clearflag(FLAG_WADE_OFFERED_REMATCH)
     }
-
+    Route31_EventScript_Trainer_Wade_AfterBattle:
     if (!flag(FLAG_PHONE_CARD_BUG_CATCHER_WADE))
     {
         if (!flag(FLAG_BUG_CATCHER_WADE_OFFERED_NUMBER))
         {
-            msgbox("You're awesome! I like you! I look\nfor {POKEMON} here every day.\pWhen I'm in the grass,\nI find all kinds of BERRIES.\lIf you'd like, I'll share some.\pCould I get your phone number?", MSGBOX_YESNO)
+            bufferstring(0, Route31_Text_Trainer_Wade_AskForNumberEnd)
+            msgbox("You can catch {POKEMON} even if you\nhave six with you.\pIf you catch one, it'll go to your\nBOX automatically.\pYou're awesome! I like you! I look\nfor {POKEMON} here every day.\p{STR_VAR_1}", MSGBOX_YESNO)
             setflag(FLAG_BUG_CATCHER_WADE_OFFERED_NUMBER)
         }
         else
         {
-            msgbox("When I'm in the grass, I find all\nkinds of BERRIES.\lIf you'd like, I'll share some.\pCould I get your phone number?", MSGBOX_YESNO)
+            msgbox(Route31_Text_Trainer_Wade_AskForNumberEnd, MSGBOX_YESNO)
         }
         if (var (VAR_RESULT) == 1)
         {
             registerphonecontact(FLAG_PHONE_CARD_BUG_CATCHER_WADE)
-            msgbox("You'll hear from me as soon as I\nfind anything that you might like.", MSGBOX_AUTOCLOSE)
+            msgbox(Route31_Text_Trainer_WadeAfterRegistered, MSGBOX_AUTOCLOSE)
         }
         else
         {
@@ -163,8 +163,15 @@ script Route31_EventScript_Trainer_Wade {
         }
         end
     }
-    msgbox("You can catch {POKEMON} even if you\nhave six with you.\pIf you catch one, it'll go to your\nBOX automatically.", MSGBOX_DEFAULT)
+    else
+    {
+        msgbox(Route31_Text_Trainer_WadeAfterRegistered, MSGBOX_AUTOCLOSE)
+    }
     release
+}text(local) Route31_Text_Trainer_Wade_AskForNumberEnd{
+    "When I'm in the grass, I find all\nkinds of BERRIES.\lIf you'd like, I'll share some.\pCould I get your phone number?"
+}text(local) Route31_Text_Trainer_WadeAfterRegistered{
+    "You'll hear from me as soon as I\nfind anything that you might like."
 }
 
 script Route31_EventScript_Directions {

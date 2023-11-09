@@ -89,9 +89,8 @@ movement(local) Route30_Movement_PidgeyTackle {
 }
 
 script Route30_EventScript_Trainer_Joey {
-    // TODO: Check phone strings for textbox fit
     trainerbattle_single(TRAINER_JOEY_1,
-    "I just lost, so I'm trying to find\nmore {POKEMON}.\pWait! You look weak!\nCome on, let's battle!", "Ack! I lost again!\nDoggone it!")
+    "I just lost, so I'm trying to find\nmore {POKEMON}.\pWait! You look weak!\nCome on, let's battle!", "Ack! I lost again!\nDoggone it!", Route30_EventScript_Trainer_Joey_AfterBattle)
 
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
     if(var(VAR_RESULT) == 1)
@@ -99,11 +98,12 @@ script Route30_EventScript_Trainer_Joey {
         trainerbattle_rematch(TRAINER_JOEY_1, "I've been waiting!\nLet's battle now!", "Ack! I lost again!\nDoggone it!")
         clearflag(FLAG_JOEY_OFFERED_REMATCH)
     }
+    Route30_EventScript_Trainer_Joey_AfterBattle:
     if (!flag(FLAG_PHONE_CARD_YOUNGSTER_JOEY))
     {
         if (!flag(FLAG_YOUNGSTER_JOEY_OFFERED_NUMBER))
         {
-            msgbox("Listen, can I get your phone number?\nI'll ring you for some battles.\pI'm a rookie too, so I think it'd\nbe a good motivator.", MSGBOX_YESNO) 
+            msgbox("Do I have to have more {POKEMON}\nin order to battle better?\pNo! I'm sticking with this one no\nmatter what!\pListen, can I get your phone number?\nI'll ring you for some battles.\pI'm a rookie too, so I think it'd\nbe a good motivator.", MSGBOX_YESNO) 
             setflag(FLAG_YOUNGSTER_JOEY_OFFERED_NUMBER)
         }
         else
@@ -113,7 +113,7 @@ script Route30_EventScript_Trainer_Joey {
         if (var (VAR_RESULT) == 1)
         {
             registerphonecontact(FLAG_PHONE_CARD_YOUNGSTER_JOEY) 
-            msgbox("I'll ring you whenever I get the\nurge to battle!", MSGBOX_AUTOCLOSE)
+            msgbox(Route30_Text_Trainer_JoeyAfterRegister, MSGBOX_AUTOCLOSE)
         }
         else
         {
@@ -121,9 +121,14 @@ script Route30_EventScript_Trainer_Joey {
         }
         end
     }
-    msgbox("Do I have to have more {POKEMON}\nin order to battle better?\pNo! I'm sticking with this one no\nmatter what!", MSGBOX_DEFAULT)
+    else
+    {
+        msgbox(Route30_Text_Trainer_JoeyAfterRegister, MSGBOX_AUTOCLOSE)
+    }
     release
     end
+}text(local) Route30_Text_Trainer_JoeyAfterRegister{
+    "I'll ring you whenever I get the\nurge to battle!"
 }
 
 script Route30_EventScript_Trainer_Mikey {

@@ -251,8 +251,7 @@ script Route32_EventScript_Albert {
 }
 
 script Route32_EventScript_Liz {
-    trainerbattle_single(TRAINER_LIZ_1, "Uh-huh.\nYeah, and you know…\pPardon? You want to battle?\nI'm on the phone.\pOh, all right.\nBut let's make this fast.", "Oh!\nI've got to relieve my anger!")
-    // TODO: Check phone strings for textbox fit
+    trainerbattle_single(TRAINER_LIZ_1, "Uh-huh.\nYeah, and you know…\pPardon? You want to battle?\nI'm on the phone.\pOh, all right.\nBut let's make this fast.", "Oh!\nI've got to relieve my anger!", Route32_EventScript_Liz_AfterBattle)
 
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
     if(var(VAR_RESULT) == 1)
@@ -260,31 +259,40 @@ script Route32_EventScript_Liz {
         trainerbattle_rematch(TRAINER_LIZ_1, "You're late!\nLet's get started now!", "Oh!\nI've got to relieve my anger!")
         clearflag(FLAG_LIZ_OFFERED_REMATCH)
     }
-
+    Route32_EventScript_Liz_AfterBattle:
     if (!flag(FLAG_PHONE_CARD_PICNICKER_LIZ))
     {
         if (!flag(FLAG_PICNICKER_LIZ_OFFERED_NUMBER))
         {
-            msgbox("Oh? You're on a big journey to see\nthe sights?\lNeat! Let's be friends!\lCan I have your phone number?\pI want to hear about everything\nyou've seen!", MSGBOX_YESNO)
+            bufferstring(0, Route32_EventScript_Liz_AskForNumberEnd)
+            msgbox("I was having a nice chat, too.\pOh? You're on a big journey to see\nthe sights?\pNeat! Let's be friends!\nCan I have your {STR_VAR_1}", MSGBOX_YESNO)
             setflag(FLAG_PICNICKER_LIZ_OFFERED_NUMBER)
         }
         else
         {
-            msgbox("Let's be friends! Can I have your\nphone number?\pI want to hear about everything\nyou've seen!", MSGBOX_YESNO)
+            bufferstring(0, Route32_EventScript_Liz_AskForNumberEnd)
+            msgbox("Let's be friends! Can I have your\n{STR_VAR_1}", MSGBOX_YESNO)
         }
         if (var (VAR_RESULT) == 1)
         {
             registerphonecontact(FLAG_PHONE_CARD_PICNICKER_LIZ) 
-            msgbox("I'll telephone you if I hear\nanything interesting.", MSGBOX_AUTOCLOSE)
+            msgbox(Route31_Text_Trainer_LizAfterRegistered, MSGBOX_AUTOCLOSE)
         }
         else
         {
-            msgbox("Aww… You won't be my friend?", MSGBOX_AUTOCLOSE)
+            msgbox("Aww…\nYou won't be my friend?", MSGBOX_AUTOCLOSE)
         }
         end
     }
-    msgbox("I was having a nice chat, too.", MSGBOX_DEFAULT)
+    else
+    {
+        msgbox(Route31_Text_Trainer_LizAfterRegistered, MSGBOX_AUTOCLOSE)
+    }
     release
+}text(local) Route32_EventScript_Liz_AskForNumberEnd{
+    "phone number?\pI want to hear about everything\nyou've seen!"
+}text(local) Route31_Text_Trainer_LizAfterRegistered{
+    "I'll telephone you if I hear\nanything interesting."
 }
 
 script Route32_EventScript_Roland {
@@ -306,20 +314,20 @@ script Route32_EventScript_Justin {
 }
 
 script Route32_EventScript_Ralph {
-    trainerbattle_single(TRAINER_RALPH_1, "I'm really good at both fishing\nand {POKEMON}.\pI'm not about to lose to any kid!", "Tch!\nI tried to rush things…")
+    trainerbattle_single(TRAINER_RALPH_1, "I'm really good at both fishing\nand {POKEMON}.\pI'm not about to lose to any kid!", "Tch!\nI tried to rush things…", Route32_EventScript_Ralph_AfterBattle)
 
-    // TODO: Check phone strings for textbox fit
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_RALPH_1, "Hey kid!\nNo losing for me this day!", "Tch!\nI tried to rush things…")
         clearflag(FLAG_RALPH_OFFERED_REMATCH)
     }
+    Route32_EventScript_Ralph_AfterBattle:
     if (!flag(FLAG_PHONE_CARD_FISHER_RALPH))
     {
         if (!flag(FLAG_FISHER_RALPH_OFFERED_NUMBER))
         {
-            msgbox("Don't young people fish anymore?\pI've seen rare {POKEMON} while I've\nbeen fishing…\lYou young people like that, right?\pWant to trade phone numbers?\nI'll let you know if I see anything.", MSGBOX_YESNO) 
+            msgbox("Fishing is a lifelong passion.\n{POKEMON} are lifelong friends!\pDon't young people fish anymore?\pI've seen rare {POKEMON} while I've\nbeen fishing…\lYou young people like that, right?\pWant to trade phone numbers?\nI'll let you know if I see anything.", MSGBOX_YESNO) 
             setflag(FLAG_FISHER_RALPH_OFFERED_NUMBER)
         }
         else
@@ -329,7 +337,7 @@ script Route32_EventScript_Ralph {
         if (var (VAR_RESULT) == 1)
         {
             registerphonecontact(FLAG_PHONE_CARD_FISHER_RALPH) 
-            msgbox("Yep, phone if I see rare {POKEMON}.\nDon't worry, I won't forget!", MSGBOX_AUTOCLOSE)
+            msgbox(Route31_Text_Trainer_RalphAfterRegistered, MSGBOX_AUTOCLOSE)
         }
         else
         {
@@ -337,8 +345,13 @@ script Route32_EventScript_Ralph {
         }
         end
     }
-    msgbox("Fishing is a lifelong passion.\n{POKEMON} are lifelong friends!", MSGBOX_DEFAULT)
+    else
+    {
+        msgbox(Route31_Text_Trainer_RalphAfterRegistered, MSGBOX_AUTOCLOSE)
+    }
     release
+}text(local) Route31_Text_Trainer_RalphAfterRegistered{
+    "Yep, phone if I see rare {POKEMON}.\nDon't worry, I won't forget!"
 }
 
 script Route32_EventScript_Gordon {
