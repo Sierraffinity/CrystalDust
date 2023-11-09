@@ -113,7 +113,7 @@ struct ForcedPhoneCall
 {
     u16 flag;
     u16 phoneContactId;
-    bool8 (*callCondition)(void);
+    bool32 (*callCondition)(void);
     const u8 *script;
 };
 
@@ -1117,10 +1117,10 @@ static const struct MatchCallText *const sMatchCallGeneralTopics[] =
     [GEN_TOPIC_B_PYRAMID - 1]     = sMatchCallBattlePyramidTexts,
 };
 
-static bool8 ReceiveCallWhenOutside(void);
-static bool8 AlwaysTrue(void);
+static bool32 ReceiveCallWhenOutside(void);
+static bool32 AlwaysTrue(void);
 
-static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
+static const struct ForcedPhoneCall sForcedStoryPhoneCalls[] = {
     {
         .flag = FLAG_FORCED_CALL_ELM_STOLEN_MON,
         .phoneContactId = PHONE_CONTACT_ELM,
@@ -1164,7 +1164,11 @@ static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
         .phoneContactId = PHONE_CONTACT_MOM,
         .callCondition = AlwaysTrue, // MomTriesToBuySomething() in mom_item_calls.c makes sure the call conditions are right
         .script = PhoneScript_Mom_BoughtItem
-    },{
+    },
+};
+
+static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
+    {
 		.flag = FLAG_BUG_CATCHING_CONTEST_WADE_FORCED_CALL,
 		.phoneContactId = PHONE_CONTACT_BUG_CATCHER_WADE,
 		.callCondition = ReceiveCallWhenOutside,
@@ -1289,12 +1293,33 @@ static bool32 SelectForcedPhoneCall(void)
     return FALSE;
 }
 
-static bool8 ReceiveCallWhenOutside(void)
+static bool32 SelectForcedStoryPhoneCall(void)
+{
+    int i;
+
+    sMatchCallState.forcedPhoneCallId = 0;
+    for (i = 0; i < ARRAY_COUNT(sForcedStoryPhoneCalls); i++)
+    {
+        if (sForcedStoryPhoneCalls[i].callCondition() &&
+            FlagGet(sForcedStoryPhoneCalls[i].flag))
+        {
+            FlagClear(sForcedStoryPhoneCalls[i].flag);
+            sMatchCallState.callerId = sForcedStoryPhoneCalls[i].phoneContactId;
+            sMatchCallState.forcedPhoneCallId = i + 1;
+            sMatchCallState.triggeredFromScript = 0;
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+static bool32 ReceiveCallWhenOutside(void)
 {
     return IsMapTypeOutdoors(gMapHeader.mapType);
 }
 
-static bool8 AlwaysTrue(void)
+static bool32 AlwaysTrue(void)
 {
     return TRUE;
 }
@@ -1342,8 +1367,21 @@ bool32 TryStartForcedMatchCall(void)
     return FALSE;
 }
 
+bool32 TryStartForcedStoryMatchCall(void)
+{
+    if (MapAllowsMatchCall() && SelectForcedStoryPhoneCall())
+    {
+        StartMatchCall();
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 bool32 TryStartMatchCall(void)
 {
+    if (TryStartForcedStoryMatchCall())
+		return TRUE;
 
 	if(UpdateMatchCallStepCounter())
 	{
@@ -1377,7 +1415,11 @@ static void StartMatchCall(void)
         PlayerFreeze();
         sub_808BCF4();
 
-        if (sMatchCallState.forcedPhoneCallId != 0 && sForcedPhoneCalls[sMatchCallState.forcedPhoneCallId - 1].script != NULL)
+        if (sMatchCallState.forcedPhoneCallId != 0 && sForcedStoryPhoneCalls[sMatchCallState.forcedPhoneCallId - 1].script != NULL)
+        {
+            PhoneScriptContext_SetupCustomPhoneScript(sForcedStoryPhoneCalls[sMatchCallState.forcedPhoneCallId - 1].script, PHONE_SCRIPT_OVERWORLD);
+        }
+        else if (sMatchCallState.forcedPhoneCallId != 0 && sForcedPhoneCalls[sMatchCallState.forcedPhoneCallId - 1].script != NULL)
         {
             PhoneScriptContext_SetupCustomPhoneScript(sForcedPhoneCalls[sMatchCallState.forcedPhoneCallId - 1].script, PHONE_SCRIPT_OVERWORLD);
         }

@@ -28,6 +28,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
 void SelectMatchCallMessage_Hangup(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
 bool32 TryStartMatchCall(void);
 bool32 TryStartForcedMatchCall(void);
+bool32 TryStartForcedStoryMatchCall(void);
 u8 EndOverworldPhoneCall(void);
 bool32 ExecuteMatchCallTextPrinter(int windowId);
 void Task_InitOverworldPhoneCall(u8 taskId);
