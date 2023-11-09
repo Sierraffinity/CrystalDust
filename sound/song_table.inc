@@ -673,7 +673,7 @@ gGBSSongTable::
 	song_gbs MUS_TITLE,					gbs_titlescreen_Header,			0, 0	@ Title Screen
 	song_gbs MUS_INTRO,					gbs_crystalopening_Header,		0, 0	@ Opening Movie
 	song_gbs MUS_ENCOUNTER_RIVAL,		gbs_lookrival_Header,			0, 0	@ Rival's Theme
-	song_gbs MUS_ENCOUNTER_SAGE,		gbs_lookmysticalman_Header,		0, 0	@ Trainers' Eyes Meet (Sage)
+	song_gbs MUS_ENCOUNTER_SAGE,		gbs_looksage_Header,		    0, 0	@ Trainers' Eyes Meet (Sage)
 	song_gbs MUS_ENCOUNTER_OFFICER,		gbs_lookofficer_Header,			0, 0	@ Trainers' Eyes Meet (Officer)
 	song_gbs MUS_MAIN_MENU,				gbs_mainmenu_Header,			0, 0	@ An Adventure Begins!
 	song_gbs MUS_ENCOUNTER_ROCKET,		gbs_lookrocket_Header,			0, 0	@ Trainers' Eyes Meet (Team Rocket)
