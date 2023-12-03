@@ -157,7 +157,7 @@
     {
       "type": "hidden_item",
       "x": 23,
-      "y": 38,
+      "y": 37,
       "elevation": 3,
       "item": "ITEM_MAX_POTION",
       "flag": "FLAG_HIDDEN_ITEM_ICE_PATH_B1F_MAX_POTION"

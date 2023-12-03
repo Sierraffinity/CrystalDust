@@ -7,6 +7,7 @@
 * Fishing encounter percentages are not accurate to Crystal.
 * The GB Sounds table is not entirely filled out yet. Some songs that should have a GBS equivalent are not assigned.
 * Learning a TM cuts off the bag message box when you press yes.
+* Port FRLG Itemfinder field effects. The FRLG Itemfinder does **not** pick up regular items underfoot. In fact, if the player's on top of a hidden item, it'll show the arrows in their facing direction instead of printing any indication that they're right on top of it. Change this to mention that the player is on top of an item like in RSE when porting, since this is stupid.
 
 ### Johto
 * Azalea Town map name popup instantly dismisses in the outdoor town (Celebi event scripting mistake).
@@ -25,7 +26,7 @@
 * Morty's OW sprite side frames look bad and should probably be redone.
 * Clair's OW sprite side frames look bad and should probably be redone.
 * Need to check to make sure the Bug Catching Contest doesn't try to give you a mon when your party and boxes are full.
-## Phone Calls
+### Phone Calls
 * All phone call-related text from trainers and Buena, both their OW NPC text and the phone call text themselves, need to be checked for placement in the textbox and textbox overflow. (OW NPC text for Joey has been checked; Wade's rematch strings have to be checked.)
 * Script flow for registering a trainer in the OW needs to match Crystal. (Currently, only Joey and Wade are done.)
 * Have to prevent the player from being able to trigger multiple rematches by calling NPCs at the correct time. In Crystal, you can only force a rematch like this once per day. NPCs **can** call the player for multiple rematches on the same day in Crystal.
@@ -33,7 +34,7 @@
 * Ensure that rematch-related flags get reset daily.
 * Check that gifts, swarms, sales, etc. get triggered correctly (Wade's berry gifts have been checked).
 * Crystal has the initial roster as a rematch roster. The initial roster has to be beaten a second time to unlock the next roster up (at least for Youngster Joey). Should this be replicated?
-* Check that all the rematch flags gating the rosters are correct (Joey and Wade had Cianwood instead of Goldenrod).
+* Check that all the flags gating the rematch rosters are correct (Joey and Wade had Cianwood instead of Goldenrod).
 ## Content within the current playable areas that is unfinished:
 ### General
 * Lots of music is missing and instead plays placeholder tunes. Generally, unique songs past Sudowoodo are missing.
