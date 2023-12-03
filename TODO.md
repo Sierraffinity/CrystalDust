@@ -6,10 +6,12 @@
 * Camera should be locked when the OW Fly field move animation happens.
 * Fishing encounter percentages are not accurate to Crystal.
 * The GB Sounds table is not entirely filled out yet. Some songs that should have a GBS equivalent are not assigned.
+* Learning a TM cuts off the bag message box when you press yes.
 
 ### Johto
 * Azalea Town map name popup instantly dismisses in the outdoor town (Celebi event scripting mistake).
 * If you change the station off of Oak's Pokémon Talk while it's in the middle of printing "POKéMON POKéMON\nPOKéMON CHANNEL", it'll clear the box when you change the channel but it'll print the rest of the string from where it left off. [Bug report with screenshot.](https://discord.com/channels/237788642238660610/789393113315409951/953906750988361788)
+* The Rival is in Dragon's Den on the wrong days and before becoming Champion.
 
 ## Things that work, but need another pass or more testing for quality control:
 * Gym Leader movesets need to be redone. Gyms 4-16 are using Crystal sets. Gyms 1-3 need another pass now that tutor moves are a thing (Bugsy should have Fury Cutter instead of Steel Wing).

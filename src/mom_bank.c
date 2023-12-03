@@ -317,7 +317,7 @@ static void MomBank_AcceptTransaction(u8 taskId)
         {
             if (GetMoney(&gSaveBlock1Ptr->money) >= money)
             {
-                if (GetMoney(&gSaveBlock1Ptr->bankedMoney) < (MAX_MONEY - money))
+                if (GetMoney(&gSaveBlock1Ptr->bankedMoney) <= (MAX_MONEY - money))
                 {
                     // deposit success
                     RemoveMoney(&gSaveBlock1Ptr->money, money);
@@ -340,7 +340,7 @@ static void MomBank_AcceptTransaction(u8 taskId)
         {
             if (GetMoney(&gSaveBlock1Ptr->bankedMoney) >= money)
             {
-                if (GetMoney(&gSaveBlock1Ptr->money) < (MAX_MONEY - money))
+                if (GetMoney(&gSaveBlock1Ptr->money) <= (MAX_MONEY - money))
                 {
                     // withdraw success
                     RemoveMoney(&gSaveBlock1Ptr->bankedMoney, money);
