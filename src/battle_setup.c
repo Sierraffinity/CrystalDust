@@ -1575,6 +1575,7 @@ static s32 TrainerIdToRematchTableId(const struct RematchTrainer *table, u16 tra
 static void SetRematchIdForTrainer(const struct RematchTrainer *table, u32 tableId)
 {
     s32 i;
+    u32 matchCallId = GetTrainerMatchCallId(table[tableId].trainerIds[0]);
 
     for (i = 1; i < REMATCHES_COUNT; i++)
     {
@@ -1669,8 +1670,6 @@ static bool8 IsTrainerReadyForRematch_(const struct RematchTrainer *table, u16 t
     s32 tableId = TrainerIdToRematchTableId(table, trainerId);
     u32 matchCallId = GetTrainerMatchCallId(trainerId);
 
-    if(!FlagGet(gMatchCallTrainers[matchCallId].rematchOfferedFlag))
-        return FALSE;
     if (tableId == -1)
         return FALSE;
     if (tableId >= MAX_REMATCH_ENTRIES)
@@ -1686,6 +1685,7 @@ static u16 GetRematchTrainerIdFromTable(const struct RematchTrainer *table, u16 
     const struct RematchTrainer *trainerEntry;
     s32 i;
     s32 tableId = FirstBattleTrainerIdToRematchTableId(table, firstBattleTrainerId);
+    u32 matchCallId = GetTrainerMatchCallId(firstBattleTrainerId);
 
     if (tableId == -1)
         return FALSE;
@@ -1693,7 +1693,7 @@ static u16 GetRematchTrainerIdFromTable(const struct RematchTrainer *table, u16 
     trainerEntry = &table[tableId];
     for (i = 1; i < REMATCHES_COUNT; i++)
     {
-        if (trainerEntry->trainerIds[i] == 0) // previous entry was this trainer's last one
+        if (trainerEntry->trainerIds[i] == 0 || !FlagGet(gMatchCallTrainers[matchCallId].rematchCheckFlags[i-1])) // previous entry was this trainer's last one
             return trainerEntry->trainerIds[i - 1];
         if (!HasTrainerBeenFought(trainerEntry->trainerIds[i]))
             return trainerEntry->trainerIds[i];
@@ -1726,9 +1726,13 @@ static u16 GetLastBeatenRematchTrainerIdFromTable(const struct RematchTrainer *t
 static void ClearTrainerWantRematchState(const struct RematchTrainer *table, u16 firstBattleTrainerId)
 {
     s32 tableId = TrainerIdToRematchTableId(table, firstBattleTrainerId);
+    u32 matchCallId = GetTrainerMatchCallId(firstBattleTrainerId);
 
     if (tableId != -1)
+    {
         gSaveBlock1Ptr->trainerRematches[tableId] = 0;
+        FlagClear(gMatchCallTrainers[matchCallId].rematchOfferedFlag);
+    }
 }
 
 static u32 GetTrainerPhoneContactFlag(u32 trainerId)
@@ -1802,8 +1806,8 @@ static bool32 IsRematchStepCounterMaxed(void)
 
 void TryUpdateRandomTrainerRematches(u16 mapGroup, u16 mapNum)
 {
-    if (IsRematchStepCounterMaxed() && UpdateRandomTrainerRematches(gRematchTable, mapGroup, mapNum) == TRUE)
-        gSaveBlock1Ptr->trainerRematchStepCounter = 0;
+    //if (IsRematchStepCounterMaxed() && UpdateRandomTrainerRematches(gRematchTable, mapGroup, mapNum) == TRUE)
+    //    gSaveBlock1Ptr->trainerRematchStepCounter = 0;
 }
 
 bool32 DoesSomeoneWantRematchIn(u16 mapGroup, u16 mapNum)

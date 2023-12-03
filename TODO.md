@@ -17,17 +17,23 @@
 * Gym Leader movesets need to be redone. Gyms 4-16 are using Crystal sets. Gyms 1-3 need another pass now that tutor moves are a thing (Bugsy should have Fury Cutter instead of Steel Wing).
 * Elite Four and Champion movesets should be redone. They are currently using Crystal sets.
 * Late Rival battles should probably have their movesets made custom, as they are laughable (Indigo Plateau Water Gun Feraligatr, for example).
-* All phone call-related text from trainers and Buena, both their OW NPC text and the phone call text themselves, need to be checked for placement in the textbox and textbox overflow. (OW NPC text for Joey, Wade, Liz, and Ralph has been checked)
 * The Trainer Card needs to be checked when filled out. Also need to check all Trainer Cards (RS, E, FRLG, CD) displayed in the link rooms to make sure they are correct.
 * Bill might not be always calling to unlock Sevii after unlocking Mt. Silver. Need to check again.
-* The phone call system is not 1:1 with Crystal and is behaving unexpectedly (based more on Emerald's PokeNav calls); it will likely need to be refactored. Eligible trainers do not offer their phone number immediately after battle (save for Joey, Wade, Liz, and Ralph), unlike Crystal.
 * The Pokédex cursor indicator on Area/Cry/Size is too dim and needs a more drastic color change to be visible on OG GBA screens.
 * New Johto tree tiles.
 * The Bayleef OW sprite could use a quality control pass. It is in the Vermilion Pokémon Fan Club building.
 * Morty's OW sprite side frames look bad and should probably be redone.
 * Clair's OW sprite side frames look bad and should probably be redone.
 * Need to check to make sure the Bug Catching Contest doesn't try to give you a mon when your party and boxes are full.
-
+## Phone Calls
+* All phone call-related text from trainers and Buena, both their OW NPC text and the phone call text themselves, need to be checked for placement in the textbox and textbox overflow. (OW NPC text for Joey has been checked; Wade's rematch strings have to be checked.)
+* Script flow for registering a trainer in the OW needs to match Crystal. (Currently, only Joey and Wade are done.)
+* Have to prevent the player from being able to trigger multiple rematches by calling NPCs at the correct time. In Crystal, you can only force a rematch like this once per day. NPCs **can** call the player for multiple rematches on the same day in Crystal.
+  * **NOTE:** When a rematch is triggered in Crystal, there is no text after the battle. The script just ends.
+* Ensure that rematch-related flags get reset daily.
+* Check that gifts, swarms, sales, etc. get triggered correctly (Wade's berry gifts have been checked).
+* Crystal has the initial roster as a rematch roster. The initial roster has to be beaten a second time to unlock the next roster up (at least for Youngster Joey). Should this be replicated?
+* Check that all the rematch flags gating the rosters are correct (Joey and Wade had Cianwood instead of Goldenrod).
 ## Content within the current playable areas that is unfinished:
 ### General
 * Lots of music is missing and instead plays placeholder tunes. Generally, unique songs past Sudowoodo are missing.

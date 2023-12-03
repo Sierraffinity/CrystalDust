@@ -90,15 +90,12 @@ movement(local) Route30_Movement_PidgeyTackle {
 
 script Route30_EventScript_Trainer_Joey {
     trainerbattle_single(TRAINER_JOEY_1,
-    "I just lost, so I'm trying to find\nmore {POKEMON}.\pWait! You look weak!\nCome on, let's battle!", "Ack! I lost again!\nDoggone it!", Route30_EventScript_Trainer_Joey_AfterBattle)
-
+    "I just lost, so I'm trying to find\nmore {POKEMON}.\pWait! You look weak!\nCome on, let's battle!", Route30_EventScript_Trainer_JoeyLost)
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
-    if(var(VAR_RESULT) == 1)
+    if(var(VAR_RESULT) == TRUE)
     {
-        trainerbattle_rematch(TRAINER_JOEY_1, "I've been waiting!\nLet's battle now!", "Ack! I lost again!\nDoggone it!")
-        clearflag(FLAG_JOEY_OFFERED_REMATCH)
+        trainerbattle_rematch(TRAINER_JOEY_1, "I've been waiting!\nLet's battle now!", Route30_EventScript_Trainer_JoeyLost)
     }
-    Route30_EventScript_Trainer_Joey_AfterBattle:
     if (!flag(FLAG_PHONE_CARD_YOUNGSTER_JOEY))
     {
         if (!flag(FLAG_YOUNGSTER_JOEY_OFFERED_NUMBER))
@@ -113,22 +110,21 @@ script Route30_EventScript_Trainer_Joey {
         if (var (VAR_RESULT) == 1)
         {
             registerphonecontact(FLAG_PHONE_CARD_YOUNGSTER_JOEY) 
-            msgbox(Route30_Text_Trainer_JoeyAfterRegister, MSGBOX_AUTOCLOSE)
+            msgbox(Route30_EventScript_Trainer_JoeyAfterRegistered, MSGBOX_AUTOCLOSE)
         }
         else
         {
-            msgbox("Oh, all right… But I won't lose to\nyou again!", MSGBOX_AUTOCLOSE)
+            msgbox("Oh, all right… But I won't lose\nto you again!", MSGBOX_AUTOCLOSE)
         }
         end
     }
-    else
-    {
-        msgbox(Route30_Text_Trainer_JoeyAfterRegister, MSGBOX_AUTOCLOSE)
-    }
+    msgbox(Route30_EventScript_Trainer_JoeyAfterRegistered, MSGBOX_DEFAULT)
     release
     end
-}text(local) Route30_Text_Trainer_JoeyAfterRegister{
-    "I'll ring you whenever I get the\nurge to battle!"
+}text(local) Route30_EventScript_Trainer_JoeyAfterRegistered{
+    "I'll ring you whenever I get\nthe urge to battle!"
+}text(local) Route30_EventScript_Trainer_JoeyLost{
+    "Ack! I lost again!\nDoggone it!"
 }
 
 script Route30_EventScript_Trainer_Mikey {

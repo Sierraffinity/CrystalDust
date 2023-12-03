@@ -299,7 +299,7 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
         .unused = 4,
         .battleFrontierRecordStreakTextIndex = 1,
 	    .rematchOfferedFlag = FLAG_JOEY_OFFERED_REMATCH,
-		.rematchCheckFlags = {FLAG_VISITED_CIANWOOD_CITY, FLAG_VISITED_OLIVINE_CITY, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION},
+		.rematchCheckFlags = {FLAG_VISITED_GOLDENROD_CITY, FLAG_VISITED_OLIVINE_CITY, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION},
 	    .giftFlag = 0,
 	    .genericStartIndex = 97,
 	    .genericTextsAmount = 5,
@@ -649,7 +649,7 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 1,
 	    .rematchOfferedFlag = FLAG_WADE_OFFERED_REMATCH,
-		.rematchCheckFlags = {FLAG_VISITED_CIANWOOD_CITY, FLAG_VISITED_MAHOGANY_TOWN, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION},
+		.rematchCheckFlags = {FLAG_VISITED_GOLDENROD_CITY, FLAG_VISITED_MAHOGANY_TOWN, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION},
 	    .giftFlag = FLAG_CALL_WADE_GIFT,
 	    .genericStartIndex = 155,
 	    .genericTextsAmount = 5,
@@ -1829,9 +1829,9 @@ void SelectMatchCallMessage_Opening(int trainerId, u8 *str, bool8 isCallingPlaye
 	 BuildMatchCallString(matchCallId, matchCallText, str);
 }
 
-bool8 CanMatchCallIdAcceptRematch(int matchCallId, s8 dayOfWeek, s8 hour)
+bool8 CanMatchCallIdAcceptRematch(int matchCallId, s8 dayOfWeek, u8 timeOfDay)
 {
-	return (gMatchCallTrainers[matchCallId].rematchAvailability[0] == dayOfWeek) && (gMatchCallTrainers[matchCallId].rematchAvailability[1] == hour) &&
+	return (gMatchCallTrainers[matchCallId].rematchAvailability[0] == dayOfWeek) && (gMatchCallTrainers[matchCallId].rematchAvailability[1] == timeOfDay) &&
 			(!FlagGet(gMatchCallTrainers[matchCallId].rematchOfferedFlag));
 }
 
@@ -1860,7 +1860,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
     	matchCallText = &gMatchCallTrainers[matchCallId].remindoutbreakText;
     }
     else if(gMatchCallTrainers[matchCallId].rematchOfferedFlag &&
-    		((!isCallingPlayer && CanMatchCallIdAcceptRematch(matchCallId, gLocalTime.dayOfWeek, gLocalTime.hours)) ||
+    		((!isCallingPlayer && CanMatchCallIdAcceptRematch(matchCallId, gLocalTime.dayOfWeek, GetTimeOfDay(gLocalTime.hours))) ||
             (isCallingPlayer  && ShouldTrainerRequestBattle(rematchId, matchCallId))))
 	{
 		matchCallText = &gMatchCallTrainers[matchCallId].rematchText;
@@ -2162,14 +2162,13 @@ static int GetNumOwnedBadges(void)
 // Whether or not a trainer calling the player from a different route should request a battle
 static bool32 ShouldTrainerRequestBattle(u32 rematchId, u32 matchCallId)
 {
-	for(int i = 1; i < 4; i++)
-	{
-		if(!HasTrainerBeenFought(gRematchTable[rematchId].trainerIds[i]) && FlagGet(gMatchCallTrainers[matchCallId].rematchCheckFlags[i-1]) &&
-				!FlagGet(gMatchCallTrainers[matchCallId].rematchOfferedFlag))
-		{
-			return TRUE;
-		}
-	}
+
+    if(!FlagGet(gMatchCallTrainers[matchCallId].rematchOfferedFlag))
+    {
+        u32 i = Random() % 3;
+        if(i == 0 || i == 1)
+            return TRUE;
+    }
     return FALSE;
 }
 

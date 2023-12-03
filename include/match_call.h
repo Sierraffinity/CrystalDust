@@ -43,7 +43,7 @@ void MomTriesToBuySomething(void);
 void isPlayerBeingCalled(const struct PhoneContact *, bool8);
 void UpdateForcedCallsPerDay();
 u32 getRematchIdFromTrainerId(int trainerId);
-bool8 CanMatchCallIdAcceptRematch(int matchCallId, s8 dayOfWeek, s8 hour);
+bool8 CanMatchCallIdAcceptRematch(int matchCallId, s8 dayOfWeek, u8 timeOfDay);
 int GetTrainerMatchCallId(int);
 
 #define OUTBREAK_WALKING 1
