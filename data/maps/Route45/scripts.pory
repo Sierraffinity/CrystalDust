@@ -62,6 +62,7 @@ script Route45_Eventscript_CooltrainerKelly {
 
 script Route45_Eventscript_BlackBeltKenji {
     // TODO: Check phone strings for textbox fit
+    trainerbattle_single(TRAINER_KENJI, "I was training here alone.\nBehold the fruits of my labor!", "Waaaargh!")
     if (!flag(FLAG_PHONE_CARD_BLACKBELT_KENJI))
     {
         if (!flag(FLAG_BLACKBELT_KENJI_OFFERED_NUMBER))
