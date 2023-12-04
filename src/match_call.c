@@ -1907,7 +1907,7 @@ int GetTrainerMatchCallId(int trainerId)
 
 static const struct MatchCallText *GetGenericMatchCallText(int matchCallId, u8 *str)
 {
-	u32 randomNumber = Random() % (gMatchCallTrainers[matchCallId].genericTextsAmount - 1);
+	u32 randomNumber = Random() % (gMatchCallTrainers[matchCallId].genericTextsAmount);
 
 	return &sMatchCallGenericTexts[gMatchCallTrainers[matchCallId].genericStartIndex + randomNumber];
 }

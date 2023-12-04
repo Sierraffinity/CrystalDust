@@ -89,12 +89,11 @@ movement(local) Route30_Movement_PidgeyTackle {
 }
 
 script Route30_EventScript_Trainer_Joey {
-    trainerbattle_single(TRAINER_JOEY_1,
-    "I just lost, so I'm trying to find\nmore {POKEMON}.\pWait! You look weak!\nCome on, let's battle!", Route30_EventScript_Trainer_JoeyLost)
+    trainerbattle_single(TRAINER_JOEY_1, "I just lost, so I'm trying to find\nmore {POKEMON}.\pWait! You look weak!\nCome on, let's battle!", Route30_Text_Trainer_JoeyLost)
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
     if(var(VAR_RESULT) == TRUE)
     {
-        trainerbattle_rematch(TRAINER_JOEY_1, "I've been waiting!\nLet's battle now!", Route30_EventScript_Trainer_JoeyLost)
+        trainerbattle_rematch(TRAINER_JOEY_1, "I've been waiting!\nLet's battle now!", Route30_Text_Trainer_JoeyLost)
     }
     if (!flag(FLAG_PHONE_CARD_YOUNGSTER_JOEY))
     {
@@ -107,10 +106,10 @@ script Route30_EventScript_Trainer_Joey {
         {
             msgbox("Can I get your phone number?\nI don't want to lose against you!\lWe have to battle again, OK?", MSGBOX_YESNO)
         }
-        if (var (VAR_RESULT) == 1)
+        if (var (VAR_RESULT) == YES)
         {
             registerphonecontact(FLAG_PHONE_CARD_YOUNGSTER_JOEY) 
-            msgbox(Route30_EventScript_Trainer_JoeyAfterRegistered, MSGBOX_AUTOCLOSE)
+            msgbox(Route30_Text_Trainer_JoeyAfterRegistered, MSGBOX_AUTOCLOSE)
         }
         else
         {
@@ -118,12 +117,12 @@ script Route30_EventScript_Trainer_Joey {
         }
         end
     }
-    msgbox(Route30_EventScript_Trainer_JoeyAfterRegistered, MSGBOX_DEFAULT)
+    msgbox(Route30_Text_Trainer_JoeyAfterRegistered, MSGBOX_DEFAULT)
     release
     end
-}text(local) Route30_EventScript_Trainer_JoeyAfterRegistered{
+}text(local) Route30_Text_Trainer_JoeyAfterRegistered{
     "I'll ring you whenever I get\nthe urge to battle!"
-}text(local) Route30_EventScript_Trainer_JoeyLost{
+}text(local) Route30_Text_Trainer_JoeyLost{
     "Ack! I lost again!\nDoggone it!"
 }
 

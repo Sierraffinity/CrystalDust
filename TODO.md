@@ -27,14 +27,16 @@
 * Clair's OW sprite side frames look bad and should probably be redone.
 * Need to check to make sure the Bug Catching Contest doesn't try to give you a mon when your party and boxes are full.
 ### Phone Calls
-* All phone call-related text from trainers and Buena, both their OW NPC text and the phone call text themselves, need to be checked for placement in the textbox and textbox overflow. (OW NPC text for Joey has been checked; Wade's rematch strings have to be checked.)
-* Script flow for registering a trainer in the OW needs to match Crystal. (Currently, only Joey and Wade are done.)
+* All phone call-related text from trainers and Buena, both their OW NPC text and the phone call text themselves, need to be checked for placement in the textbox and textbox overflow. (OW NPC and phone call text for Joey, Wade, Liz, & Ralph have been checked.)
+* Script flow for registering a trainer in the OW needs to match Crystal. (Currently, only Joey, Wade, Liz, & Ralph are done.)
   * **NOTE:** When a rematch is triggered in Crystal, there is no text after the battle. The script just ends.
-* Have to prevent the player from being able to trigger multiple rematches by calling NPCs at the correct time. In Crystal, you can only force a rematch like this once per day. NPCs **can** call the player for multiple rematches on the same day in Crystal. The daily flags are in place, but not used.
-* Ensure that rematch-related flags get reset daily.
+* Have to prevent the player from being able to trigger multiple rematches by calling NPCs at the correct time. In Crystal, you can only force a rematch like this once per day. NPCs **can** call the player for multiple rematches on the same day in Crystal. The daily flags are in place, but not yet used.
+* Ensure that rematch-related flags get reset daily. There may be a flag in the table itself that should be cleared, see `ClearTrainerWantRematchState()` in `battle_setup.c`. 
 * Check that gifts, swarms, sales, etc. get triggered correctly (Wade's berry gifts have been checked).
 * Crystal has the initial roster as a rematch roster. The initial roster has to be beaten a second time to unlock the next roster up (at least for Youngster Joey). Should this be replicated?
 * In Crystal, contacts are ordered by when the player acquired the number. In CD, they're in a fixed order (i.e. Bug Catcher Wade is always before Camper Todd).
+* In Crystal, NPCs with a rematched queued can use their generic text in their calls instead of always calling to remind the player about the pending rematch.
+* Phone calls are more complicated than randomly selecting generic text in Crystal. [See this Discord message](https://discord.com/channels/237788642238660610/789393113315409951/1181042716365312030). Should the generic texts stuff be refactored into just a regular script so that the Crystal phone scripts can be converted 1-to-1?
 ## Content within the current playable areas that is unfinished:
 ### General
 * Lots of music is missing and instead plays placeholder tunes. Generally, unique songs past Sudowoodo are missing.

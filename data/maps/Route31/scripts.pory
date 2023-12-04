@@ -150,7 +150,7 @@ script Route31_EventScript_Trainer_Wade {
         {
             msgbox(Route31_Text_Trainer_Wade_AskForNumberEnd, MSGBOX_YESNO)
         }
-        if (var (VAR_RESULT) == 1)
+        if (var (VAR_RESULT) == YES)
         {
             registerphonecontact(FLAG_PHONE_CARD_BUG_CATCHER_WADE)
             msgbox(Route31_Text_Trainer_WadeAfterRegistered, MSGBOX_AUTOCLOSE)
