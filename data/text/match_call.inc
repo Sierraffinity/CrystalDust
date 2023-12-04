@@ -3372,7 +3372,7 @@ Matchcall_Beth_Generic1::
 	.string  "Let's battle again sometime!$"
 
 
-Matchcall_Beth_Remind_Gift::
+Matchcall_Beth_Remind_Rematch::
 	.string  "Um… {PLAYER}? What's wrong?\n"
 
 	.string "Did you forget our deal?\l"
@@ -5522,7 +5522,7 @@ Matchcall_Tiffany_Generic6::
 	.string  "I love dressing up my CLEFAIRY!$"
 
 
-Matchcall_Tiffany_Remind_Battle::
+Matchcall_Tiffany_Remind_Rematch::
 	.string  "What's wrong?\n"
 	.string "Can't you visit?\l"
 

@@ -21,37 +21,35 @@ static const u8 sPhoneContactName_Mom[] = _("MOM");
 static const u8 sPhoneContactName_ProfessorElm[] = _("PROF. ELM");
 static const u8 sPhoneContactName_BikeShop[] = _("BIKE SHOP");
 static const u8 sPhoneContactName_Bill[] = _("BILL");
-static const u8 sphonecontactname_Hiker_Anthony[] = _("HIKER ANTHONY");
-static const u8 sphonecontactname_Fisher_Ralph[] = _("FISHERMAN RALPH");
-static const u8 sphonecontactname_Bug_Catcher_Arnie[] = _("BUG CATCHER ARNIE");
-static const u8 sphonecontactname_Lass_Dana[] = _("LASS DANA");
 static const u8 sphonecontactname_Buena[] = _("BUENA");
 static const u8 sphonecontactname_Youngster_Joey[] = _("YOUNGSTER JOEY");
 static const u8 sphonecontactname_Bug_Catcher_Wade[] = _("BUG CATCHER WADE");
+static const u8 sphonecontactname_Picnicker_Liz[] = _("PICNICKER LIZ");
+static const u8 sphonecontactname_Fisher_Ralph[] = _("FISHERMAN RALPH");
+static const u8 sphonecontactname_Hiker_Anthony[] = _("HIKER ANTHONY");
 static const u8 sphonecontactname_Camper_Todd[] = _("CAMPER TODD");
 static const u8 sphonecontactname_Picnicker_Gina[] = _("PICNICKER GINA");
+static const u8 sphonecontactname_Bug_Catcher_Arnie[] = _("BUG CATCHER ARNIE");
+static const u8 sphonecontactname_Juggler_Irwin[] = _("JUGGLER IRWIN");
+static const u8 sphonecontactname_Schoolboy_Jack[] = _("SCHOOLBOY JACK");
 static const u8 sphonecontactname_Pokefan_Beverly[] = _("POKEFAN BEVERLY");
 static const u8 sphonecontactname_Schoolboy_Alan[] = _("SCHOOLBOY ALAN");
-static const u8 sphonecontactname_Bird_Keeper_Vance[] = _("BIRD KEEPER VANCE");
-static const u8 sphonecontactname_Fisher_Tully[] = _("FISHERMAN TULLY");
+static const u8 sphonecontactname_Lass_Dana[] = _("LASS DANA");
+static const u8 sphonecontactname_Schoolboy_Chad[] = _("SCHOOLBOY CHAD");
+static const u8 sphonecontactname_Pokefan_Derek[] = _("POKEFAN DEREK");
 static const u8 sphonecontactname_Sailor_Huey[] = _("SAILOR HUEY");
+static const u8 sphonecontactname_Fisher_Tully[] = _("FISHERMAN TULLY");
 static const u8 sphonecontactname_Picnicker_Tiffany[] = _("PICNICKER TIFFANY");
+static const u8 sphonecontactname_Pokemaniac_Brent[] = _("POKEMANIAC BRENT");
+static const u8 sphonecontactname_Fisher_Wilton[] = _("FISHERMAN WILTON");
+static const u8 sphonecontactname_Bird_Keeper_Vance[] = _("BIRD KEEPER VANCE");
+static const u8 sphonecontactname_Hiker_Parry[] = _("HIKER PARRY");
 static const u8 sphonecontactname_Blackbelt_Kenji[] = _("BLACKBELT KENJI");
 static const u8 sphonecontactname_Picnicker_Erin[] = _("PICNICKER ERIN");
 static const u8 sphonecontactname_Bird_Keeper_Jose[] = _("BIRD KEEPER JOSE");
-static const u8 sphonecontactname_Schoolboy_Jack[] = _("SCHOOLBOY JACK");
 static const u8 sphonecontactname_Cooltrainer_Reena[] = _("COOLTRAINER REENA");
 static const u8 sphonecontactname_Cooltrainer_Gaven[] = _("COOLTRAINER GAVEN");
 static const u8 sphonecontactname_Cooltrainer_Beth[] = _("COOLTRAINER BETH");
-static const u8 sphonecontactname_Picnicker_Liz[] = _("PICNICKER LIZ");
-static const u8 sphonecontactname_Juggler_Irwin[] = _("JUGGLER IRWIN");
-static const u8 sphonecontactname_Pokefan_Derek[] = _("POKEFAN DEREK");
-static const u8 sphonecontactname_Pokemaniac_Brent[] = _("POKEMANIAC BRENT");
-static const u8 sphonecontactname_Schoolboy_Chad[] = _("SCHOOLBOY CHAD");
-static const u8 sphonecontactname_Fisher_Wilton[] = _("FISHERMAN WILTON");
-static const u8 sphonecontactname_Hiker_Parry[] = _("HIKER PARRY");
-
-
 
 const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
 {
@@ -105,14 +103,34 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
 		.trainerId = TRAINER_NONE,
         .isPermanent = FALSE,
     },
-    [PHONE_CONTACT_HIKER_ANTHONY] = {
-        .customDisplayName = sphonecontactname_Hiker_Anthony,
+    [PHONE_CONTACT_YOUNGSTER_JOEY] = {
+        .customDisplayName = sphonecontactname_Youngster_Joey,
         .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(ROUTE33),
-        .mapGroup = MAP_GROUP(ROUTE33),
-        .registeredFlag = FLAG_PHONE_CARD_HIKER_ANTHONY,
-        .rematchTrainerId = REMATCH_ANTHONY,
-		.trainerId = TRAINER_ANTHONY_1,
+        .mapNum = MAP_NUM(ROUTE30),
+        .mapGroup = MAP_GROUP(ROUTE30),
+        .registeredFlag = FLAG_PHONE_CARD_YOUNGSTER_JOEY,
+        .rematchTrainerId = REMATCH_JOEY,
+		.trainerId = TRAINER_JOEY_1,
+        .isPermanent = FALSE,
+    },
+    [PHONE_CONTACT_BUG_CATCHER_WADE] = {
+		.customDisplayName = sphonecontactname_Bug_Catcher_Wade,
+		.phoneScript = PhoneScript_StandardMatchCallTrainer,
+		.mapNum = MAP_NUM(ROUTE31),
+		.mapGroup = MAP_GROUP(ROUTE31),
+		.registeredFlag = FLAG_PHONE_CARD_BUG_CATCHER_WADE,
+		.rematchTrainerId = REMATCH_WADE,
+		.trainerId = TRAINER_WADE_1,
+		.isPermanent = FALSE,
+	    },
+    [PHONE_CONTACT_PICNICKER_LIZ] = {
+        .customDisplayName = sphonecontactname_Picnicker_Liz,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .mapNum = MAP_NUM(ROUTE32),
+        .mapGroup = MAP_GROUP(ROUTE32),
+        .registeredFlag = FLAG_PHONE_CARD_PICNICKER_LIZ,
+        .rematchTrainerId = REMATCH_LIZ,
+		.trainerId = TRAINER_LIZ_1,
         .isPermanent = FALSE,
     },
     [PHONE_CONTACT_FISHER_RALPH] = {
@@ -125,34 +143,14 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
 		.trainerId = TRAINER_RALPH_1,
         .isPermanent = FALSE,
     },
-    [PHONE_CONTACT_BUG_CATCHER_ARNIE] = {
-        .customDisplayName = sphonecontactname_Bug_Catcher_Arnie,
+    [PHONE_CONTACT_HIKER_ANTHONY] = {
+        .customDisplayName = sphonecontactname_Hiker_Anthony,
         .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(ROUTE35),
-        .mapGroup = MAP_GROUP(ROUTE35),
-        .registeredFlag = FLAG_PHONE_CARD_BUG_CATCHER_ARNIE,
-        .rematchTrainerId = REMATCH_ARNIE,
-		.trainerId = TRAINER_ARNIE_1,
-        .isPermanent = FALSE,
-    },
-    [PHONE_CONTACT_LASS_DANA] = {
-        .customDisplayName = sphonecontactname_Lass_Dana,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(ROUTE38),
-        .mapGroup = MAP_GROUP(ROUTE38),
-        .registeredFlag = FLAG_PHONE_CARD_LASS_DANA,
-        .rematchTrainerId = REMATCH_DANA,
-		.trainerId = TRAINER_DANA_1,
-        .isPermanent = FALSE,
-    },
-    [PHONE_CONTACT_YOUNGSTER_JOEY] = {
-        .customDisplayName = sphonecontactname_Youngster_Joey,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(ROUTE30),
-        .mapGroup = MAP_GROUP(ROUTE30),
-        .registeredFlag = FLAG_PHONE_CARD_YOUNGSTER_JOEY,
-        .rematchTrainerId = REMATCH_JOEY,
-		.trainerId = TRAINER_JOEY_1,
+        .mapNum = MAP_NUM(ROUTE33),
+        .mapGroup = MAP_GROUP(ROUTE33),
+        .registeredFlag = FLAG_PHONE_CARD_HIKER_ANTHONY,
+        .rematchTrainerId = REMATCH_ANTHONY,
+		.trainerId = TRAINER_ANTHONY_1,
         .isPermanent = FALSE,
     },
     [PHONE_CONTACT_CAMPER_TODD] = {
@@ -175,6 +173,46 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
 		.trainerId = TRAINER_GINA_1,
         .isPermanent = FALSE,
     },
+    [PHONE_CONTACT_BUG_CATCHER_ARNIE] = {
+        .customDisplayName = sphonecontactname_Bug_Catcher_Arnie,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .mapNum = MAP_NUM(ROUTE35),
+        .mapGroup = MAP_GROUP(ROUTE35),
+        .registeredFlag = FLAG_PHONE_CARD_BUG_CATCHER_ARNIE,
+        .rematchTrainerId = REMATCH_ARNIE,
+		.trainerId = TRAINER_ARNIE_1,
+        .isPermanent = FALSE,
+    },
+    [PHONE_CONTACT_JUGGLER_IRWIN] = {
+        .customDisplayName = sphonecontactname_Juggler_Irwin,
+        .phoneScript = PhoneScript_Irwin,
+        .mapNum = MAP_NUM(ROUTE35),
+        .mapGroup = MAP_GROUP(ROUTE35),
+        .registeredFlag = FLAG_PHONE_CARD_JUGGLER_IRWIN,
+        .rematchTrainerId = 0xFF,
+		.trainerId = TRAINER_IRWIN,
+        .isPermanent = FALSE,
+    },
+    [PHONE_CONTACT_SCHOOLBOY_JACK] = {
+        .customDisplayName = sphonecontactname_Schoolboy_Jack,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .mapNum = MAP_NUM(NATIONAL_PARK),
+        .mapGroup = MAP_GROUP(NATIONAL_PARK),
+        .registeredFlag = FLAG_PHONE_CARD_SCHOOLBOY_JACK,
+        .rematchTrainerId = REMATCH_JACK,
+		.trainerId = TRAINER_JACK_1,
+        .isPermanent = FALSE,
+    },
+    [PHONE_CONTACT_POKEFAN_BEVERLY] = {
+        .customDisplayName = sphonecontactname_Pokefan_Beverly,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .mapNum = MAP_NUM(NATIONAL_PARK),
+        .mapGroup = MAP_GROUP(NATIONAL_PARK),
+        .registeredFlag = FLAG_PHONE_CARD_POKEFAN_BEVERLY,
+        .rematchTrainerId = 0xFF,
+		.trainerId = TRAINER_BEVERLY,
+        .isPermanent = FALSE,
+    },
     [PHONE_CONTACT_SCHOOLBOY_ALAN] = {
         .customDisplayName = sphonecontactname_Schoolboy_Alan,
         .phoneScript = PhoneScript_StandardMatchCallTrainer,
@@ -185,24 +223,34 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
 		.trainerId = TRAINER_ALAN_1,
         .isPermanent = FALSE,
     },
-    [PHONE_CONTACT_BIRD_KEEPER_VANCE] = {
-        .customDisplayName = sphonecontactname_Bird_Keeper_Vance,
+    [PHONE_CONTACT_LASS_DANA] = {
+        .customDisplayName = sphonecontactname_Lass_Dana,
         .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(ROUTE44),
-        .mapGroup = MAP_GROUP(ROUTE44),
-        .registeredFlag = FLAG_PHONE_CARD_BIRD_KEEPER_VANCE,
-        .rematchTrainerId = REMATCH_VANCE,
-		.trainerId = TRAINER_VANCE_1,
+        .mapNum = MAP_NUM(ROUTE38),
+        .mapGroup = MAP_GROUP(ROUTE38),
+        .registeredFlag = FLAG_PHONE_CARD_LASS_DANA,
+        .rematchTrainerId = REMATCH_DANA,
+		.trainerId = TRAINER_DANA_1,
         .isPermanent = FALSE,
     },
-    [PHONE_CONTACT_FISHER_TULLY] = {
-        .customDisplayName = sphonecontactname_Fisher_Tully,
+    [PHONE_CONTACT_SCHOOLBOY_CHAD] = {
+        .customDisplayName = sphonecontactname_Schoolboy_Chad,
         .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(ROUTE42),
-        .mapGroup = MAP_GROUP(ROUTE42),
-        .registeredFlag = FLAG_PHONE_CARD_FISHER_TULLY,
-        .rematchTrainerId = REMATCH_TULLY,
-		.trainerId = TRAINER_TULLY_1,
+        .mapNum = MAP_NUM(ROUTE38),
+        .mapGroup = MAP_GROUP(ROUTE38),
+        .registeredFlag = FLAG_PHONE_CARD_SCHOOLBOY_CHAD,
+        .rematchTrainerId = REMATCH_CHAD,
+		.trainerId = TRAINER_CHAD_1,
+        .isPermanent = FALSE,
+    },
+    [PHONE_CONTACT_POKEFAN_DEREK] = {
+        .customDisplayName = sphonecontactname_Pokefan_Derek,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .mapNum = MAP_NUM(ROUTE38),
+        .mapGroup = MAP_GROUP(ROUTE38),
+        .registeredFlag = FLAG_PHONE_CARD_POKEFAN_DEREK,
+        .rematchTrainerId = 0xFF,
+		.trainerId = TRAINER_DEREK,
         .isPermanent = FALSE,
     },
     [PHONE_CONTACT_SAILOR_HUEY] = {
@@ -215,6 +263,16 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
 		.trainerId = TRAINER_HUEY_1,
         .isPermanent = FALSE,
     },
+    [PHONE_CONTACT_FISHER_TULLY] = {
+        .customDisplayName = sphonecontactname_Fisher_Tully,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .mapNum = MAP_NUM(ROUTE42),
+        .mapGroup = MAP_GROUP(ROUTE42),
+        .registeredFlag = FLAG_PHONE_CARD_FISHER_TULLY,
+        .rematchTrainerId = REMATCH_TULLY,
+		.trainerId = TRAINER_TULLY_1,
+        .isPermanent = FALSE,
+    },
     [PHONE_CONTACT_PICNICKER_TIFFANY] = {
         .customDisplayName = sphonecontactname_Picnicker_Tiffany,
         .phoneScript = PhoneScript_StandardMatchCallTrainer,
@@ -223,6 +281,56 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
         .registeredFlag = FLAG_PHONE_CARD_PICNICKER_TIFFANY,
         .rematchTrainerId = REMATCH_TIFFANY,
 		.trainerId = TRAINER_TIFFANY_1,
+        .isPermanent = FALSE,
+    },
+    [PHONE_CONTACT_POKEMANIAC_BRENT] = {
+        .customDisplayName = sphonecontactname_Pokemaniac_Brent,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .mapNum = MAP_NUM(ROUTE43),
+        .mapGroup = MAP_GROUP(ROUTE43),
+        .registeredFlag = FLAG_PHONE_CARD_POKEMANIAC_BRENT,
+        .rematchTrainerId = REMATCH_BRENT,
+		.trainerId = TRAINER_BRENT_1,
+        .isPermanent = FALSE,
+    },
+    [PHONE_CONTACT_FISHER_WILTON] = {
+        .customDisplayName = sphonecontactname_Fisher_Wilton,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .mapNum = MAP_NUM(ROUTE44),
+        .mapGroup = MAP_GROUP(ROUTE44),
+        .registeredFlag = FLAG_PHONE_CARD_FISHER_WILTON,
+        .rematchTrainerId = REMATCH_WILTON,
+		.trainerId = TRAINER_WILTON_1,
+        .isPermanent = FALSE,
+    },
+    [PHONE_CONTACT_BIRD_KEEPER_VANCE] = {
+        .customDisplayName = sphonecontactname_Bird_Keeper_Vance,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .mapNum = MAP_NUM(ROUTE44),
+        .mapGroup = MAP_GROUP(ROUTE44),
+        .registeredFlag = FLAG_PHONE_CARD_BIRD_KEEPER_VANCE,
+        .rematchTrainerId = REMATCH_VANCE,
+		.trainerId = TRAINER_VANCE_1,
+        .isPermanent = FALSE,
+    },
+    [PHONE_CONTACT_HIKER_PARRY] = {
+        .customDisplayName = sphonecontactname_Hiker_Parry,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .mapNum = MAP_NUM(ROUTE45),
+        .mapGroup = MAP_GROUP(ROUTE45),
+        .registeredFlag = FLAG_PHONE_CARD_HIKER_PARRY,
+        .rematchTrainerId = REMATCH_PARRY,
+		.trainerId = TRAINER_PARRY_1,
+        .isPermanent = FALSE,
+    },
+    [PHONE_CONTACT_BLACKBELT_KENJI] = {
+        .customDisplayName = sphonecontactname_Blackbelt_Kenji,
+        .phoneScript = PhoneScript_Kenji,
+        .mapNum = MAP_NUM(ROUTE45),
+        .mapGroup = MAP_GROUP(ROUTE45),
+        .registeredFlag = FLAG_PHONE_CARD_BLACKBELT_KENJI,
+        .rematchTrainerId = 0xFF,
+		.trainerId = TRAINER_KENJI,
         .isPermanent = FALSE,
     },
     [PHONE_CONTACT_PICNICKER_ERIN] = {
@@ -243,16 +351,6 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
         .registeredFlag = FLAG_PHONE_CARD_BIRD_KEEPER_JOSE,
         .rematchTrainerId = REMATCH_JOSE,
 		.trainerId = TRAINER_JOSE_1,
-        .isPermanent = FALSE,
-    },
-    [PHONE_CONTACT_SCHOOLBOY_JACK] = {
-        .customDisplayName = sphonecontactname_Schoolboy_Jack,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(NATIONAL_PARK),
-        .mapGroup = MAP_GROUP(NATIONAL_PARK),
-        .registeredFlag = FLAG_PHONE_CARD_SCHOOLBOY_JACK,
-        .rematchTrainerId = REMATCH_JACK,
-		.trainerId = TRAINER_JACK_1,
         .isPermanent = FALSE,
     },
     [PHONE_CONTACT_COOLTRAINER_REENA] = {
@@ -283,106 +381,6 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
         .registeredFlag = FLAG_PHONE_CARD_COOLTRAINER_BETH,
         .rematchTrainerId = REMATCH_BETH,
 		.trainerId = TRAINER_BETH_1,
-        .isPermanent = FALSE,
-    },
-	[PHONE_CONTACT_BUG_CATCHER_WADE] = {
-		.customDisplayName = sphonecontactname_Bug_Catcher_Wade,
-		.phoneScript = PhoneScript_StandardMatchCallTrainer,
-		.mapNum = MAP_NUM(ROUTE31),
-		.mapGroup = MAP_GROUP(ROUTE31),
-		.registeredFlag = FLAG_PHONE_CARD_BUG_CATCHER_WADE,
-		.rematchTrainerId = REMATCH_WADE,
-		.trainerId = TRAINER_WADE_1,
-		.isPermanent = FALSE,
-	    },
-    [PHONE_CONTACT_PICNICKER_LIZ] = {
-        .customDisplayName = sphonecontactname_Picnicker_Liz,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(ROUTE32),
-        .mapGroup = MAP_GROUP(ROUTE32),
-        .registeredFlag = FLAG_PHONE_CARD_PICNICKER_LIZ,
-        .rematchTrainerId = REMATCH_LIZ,
-		.trainerId = TRAINER_LIZ_1,
-        .isPermanent = FALSE,
-    },
-    [PHONE_CONTACT_POKEMANIAC_BRENT] = {
-        .customDisplayName = sphonecontactname_Pokemaniac_Brent,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(ROUTE43),
-        .mapGroup = MAP_GROUP(ROUTE43),
-        .registeredFlag = FLAG_PHONE_CARD_POKEMANIAC_BRENT,
-        .rematchTrainerId = REMATCH_BRENT,
-		.trainerId = TRAINER_BRENT_1,
-        .isPermanent = FALSE,
-    },
-    [PHONE_CONTACT_SCHOOLBOY_CHAD] = {
-        .customDisplayName = sphonecontactname_Schoolboy_Chad,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(ROUTE38),
-        .mapGroup = MAP_GROUP(ROUTE38),
-        .registeredFlag = FLAG_PHONE_CARD_SCHOOLBOY_CHAD,
-        .rematchTrainerId = REMATCH_CHAD,
-		.trainerId = TRAINER_CHAD_1,
-        .isPermanent = FALSE,
-    },
-    [PHONE_CONTACT_FISHER_WILTON] = {
-        .customDisplayName = sphonecontactname_Fisher_Wilton,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(ROUTE44),
-        .mapGroup = MAP_GROUP(ROUTE44),
-        .registeredFlag = FLAG_PHONE_CARD_FISHER_WILTON,
-        .rematchTrainerId = REMATCH_WILTON,
-		.trainerId = TRAINER_WILTON_1,
-        .isPermanent = FALSE,
-    },
-    [PHONE_CONTACT_HIKER_PARRY] = {
-        .customDisplayName = sphonecontactname_Hiker_Parry,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(ROUTE45),
-        .mapGroup = MAP_GROUP(ROUTE45),
-        .registeredFlag = FLAG_PHONE_CARD_HIKER_PARRY,
-        .rematchTrainerId = REMATCH_PARRY,
-		.trainerId = TRAINER_PARRY_1,
-        .isPermanent = FALSE,
-    },
-    [PHONE_CONTACT_POKEFAN_BEVERLY] = {
-        .customDisplayName = sphonecontactname_Pokefan_Beverly,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(NATIONAL_PARK),
-        .mapGroup = MAP_GROUP(NATIONAL_PARK),
-        .registeredFlag = FLAG_PHONE_CARD_POKEFAN_BEVERLY,
-        .rematchTrainerId = 0xFF,
-		.trainerId = TRAINER_BEVERLY,
-        .isPermanent = FALSE,
-    },
-    [PHONE_CONTACT_POKEFAN_DEREK] = {
-        .customDisplayName = sphonecontactname_Pokefan_Derek,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
-        .mapNum = MAP_NUM(ROUTE38),
-        .mapGroup = MAP_GROUP(ROUTE38),
-        .registeredFlag = FLAG_PHONE_CARD_POKEFAN_DEREK,
-        .rematchTrainerId = 0xFF,
-		.trainerId = TRAINER_DEREK,
-        .isPermanent = FALSE,
-    },
-    [PHONE_CONTACT_BLACKBELT_KENJI] = {
-        .customDisplayName = sphonecontactname_Blackbelt_Kenji,
-        .phoneScript = PhoneScript_Kenji,
-        .mapNum = MAP_NUM(ROUTE45),
-        .mapGroup = MAP_GROUP(ROUTE45),
-        .registeredFlag = FLAG_PHONE_CARD_BLACKBELT_KENJI,
-        .rematchTrainerId = 0xFF,
-		.trainerId = TRAINER_KENJI,
-        .isPermanent = FALSE,
-    },
-    [PHONE_CONTACT_JUGGLER_IRWIN] = {
-        .customDisplayName = sphonecontactname_Juggler_Irwin,
-        .phoneScript = PhoneScript_Irwin,
-        .mapNum = MAP_NUM(ROUTE35),
-        .mapGroup = MAP_GROUP(ROUTE35),
-        .registeredFlag = FLAG_PHONE_CARD_JUGGLER_IRWIN,
-        .rematchTrainerId = 0xFF,
-		.trainerId = TRAINER_IRWIN,
         .isPermanent = FALSE,
     },
 };

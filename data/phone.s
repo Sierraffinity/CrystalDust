@@ -1704,7 +1704,7 @@ PhoneScript_Gina::
 	phone_goto PhoneScript_StandardMatchCallTrainer
 
 PhoneScript_Todd::
-	phone_goto_if_set FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING, PhoneScript_Gina_Rocket_Tower
+	phone_goto_if_set FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING, Matchcall_Todd_Remind_Goldenrod_Dept_Sale
 	phone_goto PhoneScript_StandardMatchCallTrainer
 
 PhoneScript_Todd_Remind_Sale:

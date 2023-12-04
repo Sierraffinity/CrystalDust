@@ -374,35 +374,37 @@
 #define FLAG_PHONE_CARD_MOM 				0x15C //NEW BARK TOWN PLAYER HOUSE
 #define FLAG_PHONE_CARD_ELM 				0x15D //NEW BARK TOWN ELM'S LAB
 #define FLAG_PHONE_CARD_BILL 				0x15E //GOLDENROD CITY BILL'S HOUSE
-#define FLAG_PHONE_CARD_HIKER_ANTHONY 		0x15F //ROUTE 33
-#define FLAG_PHONE_CARD_FISHER_RALPH 		0x160 //ROUTE 32
-#define FLAG_PHONE_CARD_BUG_CATCHER_ARNIE 	0x161 //ROUTE 35
-#define FLAG_PHONE_CARD_LASS_DANA 			0x162 //ROUTE 38
-#define FLAG_PHONE_CARD_BUENA 				0x163 //GOLDENROD CITY RADIO TOWER
-#define FLAG_PHONE_CARD_YOUNGSTER_JOEY		0x164 //ROUTE 30
-#define FLAG_PHONE_CARD_BUG_CATCHER_WADE 	0x165 //ROUTE 31
-#define FLAG_PHONE_CARD_CAMPER_TODD 		0x166 //ROUTE 34
-#define FLAG_PHONE_CARD_PICNICKER_GINA		0x167 //ROUTE 34
-#define FLAG_PHONE_CARD_POKEFAN_BEVERLY 	0x168 //NATIONAL PARK
-#define FLAG_PHONE_CARD_SCHOOLBOY_ALAN		0x169 //ROUTE 36
-#define FLAG_PHONE_CARD_BIRD_KEEPER_VANCE 	0x16A //ROUTE 44
-#define FLAG_PHONE_CARD_FISHER_TULLY 		0x16B //ROUTE 42
-#define FLAG_PHONE_CARD_SAILOR_HUEY 		0x16C //OLIVINE CITY
-#define FLAG_PHONE_CARD_PICNICKER_TIFFANY	0x16D //ROUTE 43
-#define FLAG_PHONE_CARD_BLACKBELT_KENJI 	0x16E //ROUTE 45
-#define FLAG_PHONE_CARD_PICNICKER_ERIN		0x16F //ROUTE 46
-#define FLAG_PHONE_CARD_BIRD_KEEPER_JOSE 	0x170 //ROUTE 27
-#define FLAG_PHONE_CARD_SCHOOLBOY_JACK		0x171 //NATIONAL PARK
-#define FLAG_PHONE_CARD_COOLTRAINER_REENA 	0x172 //ROUTE 26
-#define FLAG_PHONE_CARD_COOLTRAINER_GAVEN 	0x173 //ROUTE 26
-#define FLAG_PHONE_CARD_COOLTRAINER_BETH 	0x174 //ROUTE 26
-#define FLAG_PHONE_CARD_PICNICKER_LIZ 		0x175 //ROUTE 32
-#define FLAG_PHONE_CARD_JUGGLER_IRWIN 		0x176 //ROUTE 35
-#define FLAG_PHONE_CARD_POKEFAN_DEREK 		0x177 //ROUTE 38
-#define FLAG_PHONE_CARD_POKEMANIAC_BRENT 	0x178 //ROUTE 43
-#define FLAG_PHONE_CARD_SCHOOLBOY_CHAD		0x179 //ROUTE 38
-#define FLAG_PHONE_CARD_FISHER_WILTON		0x17A //ROUTE 44
-#define FLAG_PHONE_CARD_HIKER_PARRY			0x17B //ROUTE 45
+#define FLAG_PHONE_CARD_BUENA 				0x15F //GOLDENROD CITY RADIO TOWER
+
+#define FLAG_PHONE_CARD_YOUNGSTER_JOEY		0x160 //ROUTE 30
+#define FLAG_PHONE_CARD_BUG_CATCHER_WADE 	0x161 //ROUTE 31
+#define FLAG_PHONE_CARD_PICNICKER_LIZ 		0x162 //ROUTE 32
+#define FLAG_PHONE_CARD_FISHER_RALPH 		0x163 //ROUTE 32
+#define FLAG_PHONE_CARD_HIKER_ANTHONY 		0x164 //ROUTE 33
+#define FLAG_PHONE_CARD_CAMPER_TODD 		0x165 //ROUTE 34
+#define FLAG_PHONE_CARD_PICNICKER_GINA		0x166 //ROUTE 34
+#define FLAG_PHONE_CARD_BUG_CATCHER_ARNIE 	0x167 //ROUTE 35
+#define FLAG_PHONE_CARD_JUGGLER_IRWIN 		0x168 //ROUTE 35
+#define FLAG_PHONE_CARD_SCHOOLBOY_JACK		0x169 //NATIONAL PARK
+#define FLAG_PHONE_CARD_POKEFAN_BEVERLY 	0x16A //NATIONAL PARK
+#define FLAG_PHONE_CARD_SCHOOLBOY_ALAN		0x16B //ROUTE 36
+#define FLAG_PHONE_CARD_LASS_DANA 			0x16C //ROUTE 38
+#define FLAG_PHONE_CARD_SCHOOLBOY_CHAD		0x16D //ROUTE 38
+#define FLAG_PHONE_CARD_POKEFAN_DEREK 		0x16E //ROUTE 38
+#define FLAG_PHONE_CARD_SAILOR_HUEY 		0x16F //OLIVINE CITY LIGHTHOUSE
+#define FLAG_PHONE_CARD_FISHER_TULLY 		0x170 //ROUTE 42
+#define FLAG_PHONE_CARD_PICNICKER_TIFFANY	0x171 //ROUTE 43
+#define FLAG_PHONE_CARD_POKEMANIAC_BRENT 	0x172 //ROUTE 43
+#define FLAG_PHONE_CARD_FISHER_WILTON		0x173 //ROUTE 44
+#define FLAG_PHONE_CARD_BIRD_KEEPER_VANCE 	0x174 //ROUTE 44
+#define FLAG_PHONE_CARD_HIKER_PARRY			0x175 //ROUTE 45
+#define FLAG_PHONE_CARD_BLACKBELT_KENJI 	0x176 //ROUTE 45
+#define FLAG_PHONE_CARD_PICNICKER_ERIN		0x177 //ROUTE 46
+#define FLAG_PHONE_CARD_BIRD_KEEPER_JOSE 	0x178 //ROUTE 27
+#define FLAG_PHONE_CARD_COOLTRAINER_REENA 	0x179 //ROUTE 26
+#define FLAG_PHONE_CARD_COOLTRAINER_GAVEN 	0x17A //ROUTE 26
+#define FLAG_PHONE_CARD_COOLTRAINER_BETH 	0x17B //ROUTE 26
+
 //UNUSED PHONE CARD FLAGS AFTER THIS
 #define FLAG_PHONE_CARD_UNUSED          0x17C
 #define FLAG_PHONE_CARD_MIGUEL          0x17D
@@ -1565,73 +1567,78 @@
 // These flags are cleared once per day
 // The start and end are byte-aligned because the flags are cleared in byte increments
 #define DAILY_FLAGS_START                           0x900
-#define DAILY_FRUIT_TREES_START                     DAILY_FLAGS_START
+#define DAILY_FRUIT_TREES_START                     DAILY_FLAGS_START // Fruit trees go to 0x91D
 
-#define FLAG_BUENAS_PASSWORD_SET                                    (DAILY_FLAGS_START + 0x20)
-#define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY                     (DAILY_FLAGS_START + 0x21)
-#define FLAG_DAILY_SECRET_BASE                                      (DAILY_FLAGS_START + 0x22)
-#define FLAG_DAILY_BUG_CATCHING_CONTEST                             (DAILY_FLAGS_START + 0x23)
-#define FLAG_DAILY_KURT_MAKING_BALLS                                (DAILY_FLAGS_START + 0x24)
-#define FLAG_DAILY_PLAYED_BUENAS_PASSWORD                           (DAILY_FLAGS_START + 0x25)
-#define FLAG_DAILY_GOLDENROD_UNDERGROUND_BARGAINS                   (DAILY_FLAGS_START + 0x26)
-#define FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT                    (DAILY_FLAGS_START + 0x27)
-#define FLAG_DAILY_GOLDENROD_DEPT_STORE_RETURN_FRUSTRATION_EVENT    (DAILY_FLAGS_START + 0x28)
-#define FLAG_DAILY_MOOMOO_MILK                                      (DAILY_FLAGS_START + 0x29)
-#define FLAG_DAILY_PICKED_LOTO_TICKET                               (DAILY_FLAGS_START + 0x2A)
-#define FLAG_DAILY_FOUGHT_LAPRAS                                    (DAILY_FLAGS_START + 0x2B)
-#define FLAG_DAILY_DAISYS_GROOMING                                  (DAILY_FLAGS_START + 0x2C)
-#define FLAG_DAILY_MT_MOON_SQUARE_CLEFAIRY          				(DAILY_FLAGS_START + 0x2D)
-#define FLAG_DAILY_GOLDENROD_GAME_CORNER_TUTOR         				(DAILY_FLAGS_START + 0x2E)
-#define FLAG_DAILY_LILYCOVE_RECEIVED_BERRY          				(DAILY_FLAGS_START + 0x2F)
-#define FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY       				(DAILY_FLAGS_START + 0x30)
-#define FLAG_DAILY_BERRY_MASTERS_WIFE               				(DAILY_FLAGS_START + 0x31)
-#define FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY        				(DAILY_FLAGS_START + 0x32)
-#define FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING              (DAILY_FLAGS_START + 0x33)
-#define FLAG_DAILY_APPRENTICE_LEAVES                				(DAILY_FLAGS_START + 0x34)
+#define FLAG_BUENAS_PASSWORD_SET                                    (DAILY_FLAGS_START + 0x1E)
+#define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY                     (DAILY_FLAGS_START + 0x1F) // Berry given when no berries & try to berry blend
+#define FLAG_DAILY_SECRET_BASE                                      (DAILY_FLAGS_START + 0x20)
+#define FLAG_DAILY_BUG_CATCHING_CONTEST                             (DAILY_FLAGS_START + 0x21)
+#define FLAG_DAILY_KURT_MAKING_BALLS                                (DAILY_FLAGS_START + 0x22)
+#define FLAG_DAILY_PLAYED_BUENAS_PASSWORD                           (DAILY_FLAGS_START + 0x23)
+#define FLAG_DAILY_GOLDENROD_UNDERGROUND_BARGAINS                   (DAILY_FLAGS_START + 0x24)
+#define FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT                    (DAILY_FLAGS_START + 0x25)
+#define FLAG_DAILY_GOLDENROD_DEPT_STORE_RETURN_FRUSTRATION_EVENT    (DAILY_FLAGS_START + 0x26)
+#define FLAG_DAILY_MOOMOO_MILK                                      (DAILY_FLAGS_START + 0x27)
+#define FLAG_DAILY_PICKED_LOTO_TICKET                               (DAILY_FLAGS_START + 0x28)
+#define FLAG_DAILY_FOUGHT_LAPRAS                                    (DAILY_FLAGS_START + 0x29)
+#define FLAG_DAILY_DAISYS_GROOMING                                  (DAILY_FLAGS_START + 0x2A)
+#define FLAG_DAILY_MT_MOON_SQUARE_CLEFAIRY                          (DAILY_FLAGS_START + 0x2B)
+#define FLAG_DAILY_GOLDENROD_GAME_CORNER_TUTOR                      (DAILY_FLAGS_START + 0x2C)
+#define FLAG_DAILY_GOLDENROD_DEPT_STORE_SALE_HAPPENING          	(DAILY_FLAGS_START + 0x2D)
+#define FLAG_DAILY_APPRENTICE_LEAVES         				        (DAILY_FLAGS_START + 0x2E)
 
-#define FLAG_ANTHONY_OFFERED_REMATCH                   				(DAILY_FLAGS_START + 0x35)
-#define FLAG_RALPH_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x36)
-#define FLAG_ARNIE_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x37)
-#define FLAG_DANA_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x38)
-#define FLAG_JOEY_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x39)
-#define FLAG_TODD_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3A)
-#define FLAG_GINA_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3B)
-#define FLAG_ALAN_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3C)
-#define FLAG_VANCE_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x3D)
-#define FLAG_TULLY_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x3E)
-#define FLAG_HUEY_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3F)
-#define FLAG_TIFFANY_OFFERED_REMATCH                   				(DAILY_FLAGS_START + 0x40)
-#define FLAG_ERIN_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x41)
-#define FLAG_JOSE_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x42)
-#define FLAG_JACK_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x43)
+// These indicate whether a rematch offer is currently active
+#define FLAG_JOEY_OFFERED_REMATCH          				            (DAILY_FLAGS_START + 0x2F)
+#define FLAG_WADE_OFFERED_REMATCH       			            	(DAILY_FLAGS_START + 0x30)
+#define FLAG_LIZ_OFFERED_REMATCH               	    			    (DAILY_FLAGS_START + 0x31)
+#define FLAG_RALPH_OFFERED_REMATCH        			            	(DAILY_FLAGS_START + 0x32)
+#define FLAG_ANTHONY_OFFERED_REMATCH                                (DAILY_FLAGS_START + 0x33)
+#define FLAG_TODD_OFFERED_REMATCH                		    		(DAILY_FLAGS_START + 0x34)
+#define FLAG_GINA_OFFERED_REMATCH                   				(DAILY_FLAGS_START + 0x35)
+#define FLAG_ARNIE_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x36)
+#define FLAG_JACK_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x37)
+#define FLAG_ALAN_OFFERED_REMATCH                      			    (DAILY_FLAGS_START + 0x38)
+#define FLAG_DANA_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x39)
+#define FLAG_CHAD_OFFERED_REMATCH                      			    (DAILY_FLAGS_START + 0x3A)
+#define FLAG_HUEY_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x3B)
+#define FLAG_TULLY_OFFERED_REMATCH                      			(DAILY_FLAGS_START + 0x3C)
+#define FLAG_TIFFANY_OFFERED_REMATCH                     			(DAILY_FLAGS_START + 0x3D)
+#define FLAG_BRENT_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x3E)
+#define FLAG_WILTON_OFFERED_REMATCH                      			(DAILY_FLAGS_START + 0x3F)
+#define FLAG_VANCE_OFFERED_REMATCH                   				(DAILY_FLAGS_START + 0x40)
+#define FLAG_PARRY_OFFERED_REMATCH                      			(DAILY_FLAGS_START + 0x41)
+#define FLAG_ERIN_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x42)
+#define FLAG_JOSE_OFFERED_REMATCH                      			    (DAILY_FLAGS_START + 0x43)
 #define FLAG_REENA_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x44)
-#define FLAG_GAVEN_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x45)
-#define FLAG_BETH_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x46)
-#define FLAG_WADE_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x47)
-#define FLAG_LIZ_OFFERED_REMATCH                       				(DAILY_FLAGS_START + 0x48)
-#define FLAG_BRENT_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x49)
-#define FLAG_CHAD_OFFERED_REMATCH                      				(DAILY_FLAGS_START + 0x4A)
-#define FLAG_WILTON_OFFERED_REMATCH                    				(DAILY_FLAGS_START + 0x4B)
-#define FLAG_PARRY_OFFERED_REMATCH                     				(DAILY_FLAGS_START + 0x4C)
+#define FLAG_GAVEN_OFFERED_REMATCH                     			    (DAILY_FLAGS_START + 0x45)
+#define FLAG_BETH_OFFERED_REMATCH                      		        (DAILY_FLAGS_START + 0x46)
 
-#define FLAG_UNUSED_0x94D                           				(DAILY_FLAGS_START + 0x4D) // Unused Flag
-#define FLAG_UNUSED_0x94E                           				(DAILY_FLAGS_START + 0x4E) // Unused Flag
-#define FLAG_UNUSED_0x94F                           				(DAILY_FLAGS_START + 0x4F) // Unused Flag
-#define FLAG_UNUSED_0x950                           				(DAILY_FLAGS_START + 0x50) // Unused Flag
-#define FLAG_UNUSED_0x951                           				(DAILY_FLAGS_START + 0x51) // Unused Flag
-#define FLAG_UNUSED_0x952                           				(DAILY_FLAGS_START + 0x52) // Unused Flag
-#define FLAG_UNUSED_0x953                           				(DAILY_FLAGS_START + 0x53) // Unused Flag
-#define FLAG_UNUSED_0x954                           				(DAILY_FLAGS_START + 0x54) // Unused Flag
-#define FLAG_UNUSED_0x955                           				(DAILY_FLAGS_START + 0x55) // Unused Flag
-#define FLAG_UNUSED_0x956                           				(DAILY_FLAGS_START + 0x56) // Unused Flag
-#define FLAG_UNUSED_0x957                           				(DAILY_FLAGS_START + 0x57) // Unused Flag
-#define FLAG_UNUSED_0x958                           				(DAILY_FLAGS_START + 0x58) // Unused Flag
-#define FLAG_UNUSED_0x959                           				(DAILY_FLAGS_START + 0x59) // Unused Flag
-#define FLAG_UNUSED_0x95A                           				(DAILY_FLAGS_START + 0x5A) // Unused Flag
-#define FLAG_UNUSED_0x95B                           				(DAILY_FLAGS_START + 0x5B) // Unused Flag
-#define FLAG_UNUSED_0x95C                           				(DAILY_FLAGS_START + 0x5C) // Unused Flag
-#define FLAG_UNUSED_0x95D                           				(DAILY_FLAGS_START + 0x5D) // Unused Flag
-#define FLAG_UNUSED_0x95E                           				(DAILY_FLAGS_START + 0x5E) // Unused Flag
+// These are rematches triggered by the player and can only occur once per day
+#define FLAG_JOEY_CALLED_FORCED_REMATCH          				    (DAILY_FLAGS_START + 0x47)
+#define FLAG_WADE_CALLED_FORCED_REMATCH       			          	(DAILY_FLAGS_START + 0x48)
+#define FLAG_LIZ_CALLED_FORCED_REMATCH               	    	    (DAILY_FLAGS_START + 0x49)
+#define FLAG_RALPH_CALLED_FORCED_REMATCH        			        (DAILY_FLAGS_START + 0x4A)
+#define FLAG_ANTHONY_CALLED_FORCED_REMATCH                          (DAILY_FLAGS_START + 0x4B)
+#define FLAG_TODD_CALLED_FORCED_REMATCH                		        (DAILY_FLAGS_START + 0x4C)
+#define FLAG_GINA_CALLED_FORCED_REMATCH                   		    (DAILY_FLAGS_START + 0x4D)
+#define FLAG_ARNIE_CALLED_FORCED_REMATCH                     		(DAILY_FLAGS_START + 0x4E)
+#define FLAG_JACK_CALLED_FORCED_REMATCH                     		(DAILY_FLAGS_START + 0x4F)
+#define FLAG_ALAN_CALLED_FORCED_REMATCH                      	    (DAILY_FLAGS_START + 0x50)
+#define FLAG_DANA_CALLED_FORCED_REMATCH                      		(DAILY_FLAGS_START + 0x51)
+#define FLAG_CHAD_CALLED_FORCED_REMATCH                      		(DAILY_FLAGS_START + 0x52)
+#define FLAG_HUEY_CALLED_FORCED_REMATCH                      		(DAILY_FLAGS_START + 0x53)
+#define FLAG_TULLY_CALLED_FORCED_REMATCH                      		(DAILY_FLAGS_START + 0x54)
+#define FLAG_TIFFANY_CALLED_FORCED_REMATCH                     		(DAILY_FLAGS_START + 0x55)
+#define FLAG_BRENT_CALLED_FORCED_REMATCH                     		(DAILY_FLAGS_START + 0x56)
+#define FLAG_WILTON_CALLED_FORCED_REMATCH                      		(DAILY_FLAGS_START + 0x57)
+#define FLAG_VANCE_CALLED_FORCED_REMATCH                   		    (DAILY_FLAGS_START + 0x58)
+#define FLAG_PARRY_CALLED_FORCED_REMATCH                      		(DAILY_FLAGS_START + 0x59)
+#define FLAG_ERIN_CALLED_FORCED_REMATCH                      		(DAILY_FLAGS_START + 0x5A)
+#define FLAG_JOSE_CALLED_FORCED_REMATCH                      		(DAILY_FLAGS_START + 0x5B)
+#define FLAG_REENA_CALLED_FORCED_REMATCH                     		(DAILY_FLAGS_START + 0x5C)
+#define FLAG_GAVEN_CALLED_FORCED_REMATCH                     		(DAILY_FLAGS_START + 0x5D)
+#define FLAG_BETH_CALLED_FORCED_REMATCH                      		(DAILY_FLAGS_START + 0x5E)
+
 #define FLAG_UNUSED_0x95F                           				(DAILY_FLAGS_START + 0x5F) // Unused Flag
 #define DAILY_FLAGS_END                             				(FLAG_UNUSED_0x95F + (7 - FLAG_UNUSED_0x95F % 8))
 

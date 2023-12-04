@@ -29,12 +29,12 @@
 ### Phone Calls
 * All phone call-related text from trainers and Buena, both their OW NPC text and the phone call text themselves, need to be checked for placement in the textbox and textbox overflow. (OW NPC text for Joey has been checked; Wade's rematch strings have to be checked.)
 * Script flow for registering a trainer in the OW needs to match Crystal. (Currently, only Joey and Wade are done.)
-* Have to prevent the player from being able to trigger multiple rematches by calling NPCs at the correct time. In Crystal, you can only force a rematch like this once per day. NPCs **can** call the player for multiple rematches on the same day in Crystal.
   * **NOTE:** When a rematch is triggered in Crystal, there is no text after the battle. The script just ends.
+* Have to prevent the player from being able to trigger multiple rematches by calling NPCs at the correct time. In Crystal, you can only force a rematch like this once per day. NPCs **can** call the player for multiple rematches on the same day in Crystal. The daily flags are in place, but not used.
 * Ensure that rematch-related flags get reset daily.
 * Check that gifts, swarms, sales, etc. get triggered correctly (Wade's berry gifts have been checked).
 * Crystal has the initial roster as a rematch roster. The initial roster has to be beaten a second time to unlock the next roster up (at least for Youngster Joey). Should this be replicated?
-* Check that all the flags gating the rematch rosters are correct (Joey and Wade had Cianwood instead of Goldenrod).
+* In Crystal, contacts are ordered by when the player acquired the number. In CD, they're in a fixed order (i.e. Bug Catcher Wade is always before Camper Todd).
 ## Content within the current playable areas that is unfinished:
 ### General
 * Lots of music is missing and instead plays placeholder tunes. Generally, unique songs past Sudowoodo are missing.
