@@ -23,7 +23,7 @@ script Route34_DayCare_EventScript_DaycareManCommon {
                "called the TRADE CORNER.\p"
                "I was given an EGG TICKET that can\n"
                "be traded in for an ODD EGG.\p"
-               "But as we run a DAY-CARE, we don't\n"
+               "But as we run a DAY CARE, we don't\n"
                "need it. You may as well have it.")
         giveitem(ITEM_EGG_TICKET)
         setflag(FLAG_RECEIVED_EGG_TICKET)

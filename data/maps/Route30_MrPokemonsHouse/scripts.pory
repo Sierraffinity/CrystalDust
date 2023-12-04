@@ -21,7 +21,7 @@ script Route30_MrPokemonsHouse_MapScript_MrPokemonIntro{
 	msgbox("This is what I want PROF. ELM to\nexamine.")
 	giveitem(ITEM_MYSTERY_EGG)
 	setflag(FLAG_RECEIVED_MYSTERY_EGG)
-	msgbox("I know a couple who run a DAY-CARE\nservice. They gave me that EGG.\pI was intrigued, so I sent mail to\nPROF. ELM.\pFor {POKEMON} evolution, PROF. ELM is\nthe authority.")
+	msgbox("I know a couple who run a DAY CARE\nservice. They gave me that EGG.\pI was intrigued, so I sent mail to\nPROF. ELM.\pFor {POKEMON} evolution, PROF. ELM is\nthe authority.")
 	applymovement(1, Common_Movement_WalkInPlaceFastestRight)
 	waitmovement(0)
 	msgbox("Even PROF. OAK here recognizes that.")

@@ -195,6 +195,6 @@ script FastShip_Cabins_SE_SSE_Captains_EventScript_PokefanMJeremy{
 
 script FastShip_Cabins_SE_SSE_Captains_EventScript_PokefanFGeorgia{
     trainerbattle_single(TRAINER_GEORGIA, "I'm going to shop at the DEPT.\nSTORE and then…", "What was I going to do?")
-    msgbox("Oh yes! I have to get my {POKEMON}\nout of DAY-CARE!", MSGBOX_AUTOCLOSE)
+    msgbox("Oh yes! I have to get my {POKEMON}\nout of DAY CARE!", MSGBOX_AUTOCLOSE)
     end
 }

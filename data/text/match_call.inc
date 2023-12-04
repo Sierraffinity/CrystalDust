@@ -3028,71 +3028,68 @@ Matchcall_Alan_Remind_Gift::
 
 
 Matchcall_Anthony_Answer_Morn::
-	.string  "Yeah, {STR_VAR_1} the HIKER here.\n"
+	.string "Yeah, {STR_VAR_1} the HIKER here.\n"
 	.string "Ah, {PLAYER}!$"
 
 
 Matchcall_Anthony_Answer_Day::
-	.string  "Yeah, {STR_VAR_1} the HIKER here.\n"
+	.string "Yeah, {STR_VAR_1} the HIKER here.\n"
 	.string "Ah, {PLAYER}, right?$"
 
 
 Matchcall_Anthony_Answer_Night::
-	.string  "Yeah, {STR_VAR_1} the HIKER here.\n"
+	.string "Yeah, {STR_VAR_1} the HIKER here.\n"
 	.string "Ah, {PLAYER}, isn't it?$"
 
 
 Matchcall_Anthony_Call_Morn::
-	.string  "Yo, {PLAYER}?\n"
+	.string "Yo, {PLAYER}?\n"
 	.string "This is {STR_VAR_1} the HIKER!$"
 
 
 Matchcall_Anthony_Call_Day::
-	.string  "Hey, is this {PLAYER}?\n"
+	.string "Hey, is this {PLAYER}?\n"
 	.string "This is {STR_VAR_1} the HIKER!$"
 
 
 Matchcall_Anthony_Call_Night::
-	.string  "{PLAYER}, you still awake?\n"
+	.string "{PLAYER}, you still awake?\n"
 	.string "This is {STR_VAR_1} the HIKER!$"
 
 
 Matchcall_Anthony_Generic5::
-	.string  "Are your {POKEMON} as feisty as ever?\p"
+	.string "Are your {POKEMON} as feisty as ever?\p"
 
-	.string "My {STR_VAR_2} and me, we have energy\n"
-	.string "to burn.\p"
+	.string "My {STR_VAR_2} and me, we have\n"
+	.string "energy to burn.\p"
+
 	.string "We hike up mountains every day\n"
 	.string "to work out all our energy.$"
 
 
 
 Matchcall_Anthony_Generic4::
-	.string  "The other day, I was watching\n"
+	.string "The other day, I was watching\n"
 	.string "my {STR_VAR_2} eat some BERRIES.\p"
 
 	.string "It looked like it was enjoying\n"
 	.string "its meal, so I decided to try some.\p"
 
 	.string "I'm not sure if people should eat\n"
-
 	.string "that stuff, but it was delicious!$"
 
 
 Matchcall_Anthony_Generic3::
-	.string  "Lately, I've been running across\n"
-
+	.string "Lately, I've been running across\n"
 	.string "wild {STR_VAR_2} quite often.\l"
-
 	.string "They're easily taken care of.$"
 
 
 Matchcall_Anthony_Generic2::
-	.string  "Oh yeah, I was battling this\n"
+	.string "Oh yeah, I was battling this\n"
+	.string "{STR_VAR_2} the other day…\p"
 
-	.string "{STR_VAR_2} the other day…\l"
-
-	.string "It took off when I got distracted\l"
+	.string "It took off when I got distracted\n"
 	.string "by a passing BEAUTY.\p"
 
 	.string "Learn from my mistake, always always\n"
@@ -3100,20 +3097,19 @@ Matchcall_Anthony_Generic2::
 
 
 Matchcall_Anthony_Rematch::
-	.string  "Come on--let's battle right now!\n"
-
+	.string "Come on--let's battle right now!\n"
 	.string "{STR_VAR_2} is where I am.\l"
-
 	.string "Come on down if you feel up to it!$"
 
 
 Matchcall_Anthony_Hangup::
-	.string  "All right then!\n"
+	.string "All right then!\n"
 	.string "Be good!$"
 
 
 Matchcall_Anthony_Swarm::
-	.string  "{PLAYER}! It's mind-blowing!\p"
+	.string "{PLAYER}!\n"
+	.string "It's mind-blowing!\p"
 
 	.string "I took a hike in DARK CAVE yesterday,\n"
 	.string "see?\p"
@@ -3122,34 +3118,39 @@ Matchcall_Anthony_Swarm::
 	.string "around! You have to see it!\p"
 
 	.string "I get this feeling that DUNSPARCE\n"
-	.string "may be timid.\l"
-	.string "I didn't see any where there are\l"
+	.string "may be timid.\p"
+
+	.string "I didn't see any where there are\n"
 	.string "strong {POKEMON}.$"
 
 
 Matchcall_Anthony_Generic1::
-	.string  "Rare {POKEMON}?\n"
+	.string "Rare {POKEMON}?\n"
 	.string "Hey, sorry!\p"
-	.string "I was too focused on my hike, so I\n"
 
+	.string "I was too focused on my hike, so I\n"
 	.string "wasn't paying attention.$"
 
 
 Matchcall_Anthony_Remind_Rematch::
-	.string  "Hello!\p"
+	.string "Hello!\p"
+
 	.string "You haven't forgotten about our battle,\n"
 	.string "have you?\p"
-	.string "{STR_VAR_2}! I'm waiting!$"
+
+	.string "{STR_VAR_2}!\n"
+	.string "I'm waiting!$"
 
 
 Matchcall_Anthony_Remind_Swarm::
-	.string  "Hello? What? Where is DUNSPARCE?\n"
+	.string "Hello?\n"
+	.string "What? Where is DUNSPARCE?\p"
 
-	.string "DARK CAVE! Hurry!\p"
+	.string "DARK CAVE!\n"
+	.string "Hurry!\p"
 
 	.string "I know I've said it before, but\n"
 	.string "DUNSPARCE don't appear when there\l"
-
 	.string "are strong {POKEMON} around.$"
 
 
@@ -4258,77 +4259,62 @@ Matchcall_Gaven_Remind_Rematch::
 
 
 Matchcall_Gina_Answer_Morn::
-	.string  "Hello? This is {STR_VAR_1}…\n"
-
-	.string "Oh, {PLAYER}!\l"
-	.string "Good morning!$"
+	.string "Hello? This is {STR_VAR_1}…\n"
+	.string "Oh, {PLAYER}! Good morning!$"
 
 
 Matchcall_Gina_Answer_Day::
-	.string  "Hello? This is {STR_VAR_1}…\n"
-
-	.string "Oh, {PLAYER}!\l"
-	.string "Hi, how are you?$"
+	.string "Hello? This is {STR_VAR_1}…\n"
+	.string "Oh, {PLAYER}! Hi, how are you?$"
 
 
 Matchcall_Gina_Answer_Night::
-	.string  "Hello? This is {STR_VAR_1}…\n"
-
-	.string "Oh, {PLAYER}!\l"
-	.string "Good evening!$"
+	.string "Hello? This is {STR_VAR_1}…\n"
+	.string "Oh, {PLAYER}! Good evening!$"
 
 
 Matchcall_Gina_Call_Morn::
-	.string  "{PLAYER}?\n"
-
-	.string "It's {STR_VAR_1}.\l"
+	.string "{PLAYER}? It's {STR_VAR_1}.\n"
 	.string "Good morning!$"
 
 
 Matchcall_Gina_Call_Day::
-	.string  "{PLAYER}?\n"
-
-	.string "It's {STR_VAR_1}.\l"
+	.string "{PLAYER}? It's {STR_VAR_1}.\n"
 	.string "Is this a bad time?$"
 
 
 Matchcall_Gina_Call_Night::
-	.string  "{PLAYER}?\n"
-
-	.string "It's {STR_VAR_1}.\l"
+	.string "{PLAYER}? It's {STR_VAR_1}.\n"
 	.string "Got time to chat?$"
 
 
 Matchcall_Gina_Generic5::
-	.string  "Are your {POKEMON} still tough?\n"
-
+	.string "Are your {POKEMON} still tough?\n"
 	.string "I train every day with {STR_VAR_2}.$"
 
 
 Matchcall_Gina_Generic4::
-	.string  "My {STR_VAR_2} and I are getting\n"
+	.string "My {STR_VAR_2} and I are getting\n"
 	.string "more in sync with each other.$"
 
 
 Matchcall_Gina_Generic3::
-	.string  "We battled a wild {STR_VAR_2}\n"
-	.string "and managed to drop it in a\l"
-	.string "close match.\l"
+	.string "We battled a wild {STR_VAR_2} and\n"
+	.string "managed to drop it in a close match.\p"
 
 	.string "We're getting into the groove!$"
 
 
 Matchcall_Gina_Generic2::
-	.string  "But, you know?\n"
+	.string "But, you know?\p"
 
-	.string "I still haven't caught {STR_VAR_2}.\l"
-
+	.string "I still haven't caught {STR_VAR_2}.\n"
 	.string "It's getting past frustrating…$"
 
 
 Matchcall_Gina_Rematch::
-	.string  "Would you be my practice partner\n"
-	.string "again sometime?\l"
+	.string "Would you be my practice partner\n"
+	.string "again sometime?\p"
 
 	.string "I'll be waiting on {STR_VAR_2}.\p"
 
@@ -4337,37 +4323,36 @@ Matchcall_Gina_Rematch::
 
 
 Matchcall_Gina_Hangup::
-	.string  "Bye! Let's chat again!$"
+	.string "Bye!\n"
+	.string "Let's chat again!$"
 
 Matchcall_Gina_Gift::
-	.string  "I picked up something nice today.\n"
+	.string "I picked up something nice today.\n"
+	.string "I want you to have it, so I called!\p"
 
-	.string "I want you to have it, so I called!\l"
-
-	.string "You will come for it, won't you?\l"
-
+	.string "You will come for it, won't you?\n"
 	.string "{STR_VAR_2} is where I am.$"
 
 
 Matchcall_Gina_Generic1::
-	.string  "Sorry, I haven't found anything useful\n"
+	.string "Sorry, I haven't found anything\n"
+	.string "useful yet…\p"
 
-	.string "yet…\p"
-	.string "I promise, if I find anything, you\n"
-	.string "can have it!$"
+	.string "I promise, if I find anything,\n"
+	.string "you can have it!$"
 
 
 Matchcall_Gina_Remind_Rematch::
-	.string  "Oh, {PLAYER}!\p"
+	.string "Oh, {PLAYER}!\p"
+
 	.string "How soon can I expect to see you\n"
 	.string "for our battle?\l"
-
 	.string "Don't forget, {STR_VAR_1}!$"
 
 
 Matchcall_Gina_Remind_Gift::
-	.string  "I'm getting really impatient\n"
-	.string "waiting to give you my present!\l"
+	.string "I'm getting really impatient\n"
+	.string "waiting to give you my present!\p"
 
 	.string "Hurry over to {STR_VAR_2}!$"
 
@@ -5926,39 +5911,31 @@ Matchcall_Wilton_Remind_Gift::
 
 Matchcall_Todd_Answer_Morn::
 	.string "Yes? This is {STR_VAR_1} speaking.\n"
-
-
 	.string "Hey, {PLAYER}!$"
 
 
 Matchcall_Todd_Answer_Day::
 	.string "Yes? This is {STR_VAR_1} speaking.\n"
-
-
 	.string "This must be {PLAYER}.$"
 
 
 Matchcall_Todd_Answer_Night::
 	.string "Yes? This is {STR_VAR_1} speaking.\n"
-
 	.string "Ah, {PLAYER}!$"
 
 
 Matchcall_Todd_Call_Morn::
 	.string "Hello, this is {STR_VAR_1}.\n"
-
 	.string "{PLAYER}, right?$"
 
 
 Matchcall_Todd_Call_Day::
 	.string "Hello, this is {STR_VAR_1}.\n"
-
 	.string "{PLAYER}, what are you doing?$"
 
 
 Matchcall_Todd_Call_Night::
 	.string "Hello, this is {STR_VAR_1}.\n"
-
 	.string "{PLAYER}, sorry to call you so late.$"
 
 
@@ -5966,7 +5943,7 @@ Matchcall_Todd_Generic1::
 	.string "How do you raise your {POKEMON}?\p"
 
 	.string "I do all sorts of things, like\n"
-	.string "leaving them in DAY-CARE and\l"
+	.string "leaving them in DAY CARE and\l"
 	.string "toughening them up with items.$"
 
 
@@ -5977,29 +5954,27 @@ Matchcall_Todd_Generic2::
 
 
 Matchcall_Todd_Generic3::
-	.string "And, you know?\n"
+	.string "And, you know?\p"
 
-	.string "Now we can KO {STR_VAR_2} easily.\p"
-
-	.string "I should challenge the GOLDENROD\nGYM.$"
+	.string "Now we can KO {STR_VAR_2} easily.\n"
+	.string "I should challenge the GOLDENROD GYM.$"
 
 
 Matchcall_Todd_Generic4::
 	.string "And, you know?\p"
+
 	.string "We just failed to beat {STR_VAR_2}\n"
 	.string	"by a tiny margin.\p"
 
 	.string "I'm guessing my {POKEMON}'s levels\n"
-
 	.string "aren't high enough yet…$"
 
 
 Matchcall_Todd_Rematch::
-	.string "You must be a lot better now, huh?\n"
+	.string "You must be a lot better now, huh?\p"
 
-	.string "How about showing me your technique\l"
-
-	.string "in a real battle with me?\l"
+	.string "How about showing me your technique\n"
+	.string "in a real battle with me?\p"
 
 	.string "I'll be waiting on {STR_VAR_2}.$"
 
@@ -6008,15 +5983,13 @@ Matchcall_Todd_Hangup::
 	.string "See you later!$"
 
 Matchcall_Todd_Generic5::
-	.string "I'm saving up for the next bargain sale\n"
-
+	.string "I'm saving up for the next bargain sale.\n"
 	.string "When's the next one?$"
 
 
 Matchcall_Todd_Remind_Rematch::
-	.string "Where are you?\n"
+	.string "Where are you?\p"
 
-	.string "Let's have our battle soon!\l"
-
+	.string "Let's have our battle soon!\n"
 	.string "I'll be waiting on {STR_VAR_2}.$"
 

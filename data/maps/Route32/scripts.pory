@@ -251,25 +251,23 @@ script Route32_EventScript_Albert {
 }
 
 script Route32_EventScript_Liz {
-    trainerbattle_single(TRAINER_LIZ_1, "Uh-huh.\nYeah, and you know…\pPardon? You want to battle?\nI'm on the phone.\pOh, all right.\nBut let's make this fast.", Route32_EventScript_Trainer_LizLost)
-    // TODO: Check phone strings for textbox fit
-
+    trainerbattle_single(TRAINER_LIZ_1, "Uh-huh.\nYeah, and you know…\pPardon? You want to battle?\nI'm on the phone.\pOh, all right.\nBut let's make this fast.", Route32_Text_Trainer_LizLost)
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
     if(var(VAR_RESULT) == TRUE)
     {
-        trainerbattle_rematch(TRAINER_LIZ_1, "You're late!\nLet's get started now!", Route32_EventScript_Trainer_LizLost)
+        trainerbattle_rematch(TRAINER_LIZ_1, "You're late!\nLet's get started now!", Route32_Text_Trainer_LizLost)
     }
     if (!flag(FLAG_PHONE_CARD_PICNICKER_LIZ))
     {
         if (!flag(FLAG_PICNICKER_LIZ_OFFERED_NUMBER))
         {
-            bufferstring(0, Route32_EventScript_Liz_AskForNumberEnd)
+            bufferstring(0, Route32_Text_Liz_AskForNumberEnd)
             msgbox("I was having a nice chat, too.\pOh? You're on a big journey to see\nthe sights?\pNeat! Let's be friends!\nCan I have your {STR_VAR_1}", MSGBOX_YESNO)
             setflag(FLAG_PICNICKER_LIZ_OFFERED_NUMBER)
         }
         else
         {
-            bufferstring(0, Route32_EventScript_Liz_AskForNumberEnd)
+            bufferstring(0, Route32_Text_Liz_AskForNumberEnd)
             msgbox("Let's be friends! Can I have your\n{STR_VAR_1}", MSGBOX_YESNO)
         }
         if (var (VAR_RESULT) == YES)
@@ -285,9 +283,9 @@ script Route32_EventScript_Liz {
     }
     msgbox(Route31_Text_Trainer_LizAfterRegistered, MSGBOX_DEFAULT)
     release
-}text(local) Route32_EventScript_Trainer_LizLost {
+}text(local) Route32_Text_Trainer_LizLost {
     "Oh!\nI've got to relieve my anger!"
-}text(local) Route32_EventScript_Liz_AskForNumberEnd{
+}text(local) Route32_Text_Liz_AskForNumberEnd{
     "phone number?\pI want to hear about everything\nyou've seen!"
 }text(local) Route31_Text_Trainer_LizAfterRegistered{
     "I'll telephone you if I hear\nanything interesting."
@@ -313,8 +311,6 @@ script Route32_EventScript_Justin {
 
 script Route32_EventScript_Ralph {
     trainerbattle_single(TRAINER_RALPH_1, "I'm really good at both fishing\nand {POKEMON}.\pI'm not about to lose to any kid!", Route32_Text_Trainer_RalphLost)
-
-    // TODO: Check phone strings for textbox fit
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
     if(var(VAR_RESULT) == TRUE)
     {

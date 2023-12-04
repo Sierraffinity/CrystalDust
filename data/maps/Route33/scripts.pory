@@ -5,29 +5,29 @@ script Route33_EventScript_Girl {
 }
 
 script Route33_EventScript_Anthony {
-    trainerbattle_single(TRAINER_ANTHONY_1, "I came through the tunnel, but I\nstill have plenty of energy left!", "Whoa!\nYou've got more zip than me!")
-    // TODO: Check phone strings for textbox fit
+    trainerbattle_single(TRAINER_ANTHONY_1, "I came through the tunnel, but I\nstill have plenty of energy left!", Route33_Text_Trainer_AnthonyLost)
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
     if(var(VAR_RESULT) == 1)
     {
-        trainerbattle_rematch(TRAINER_ANTHONY_1, "All righty, then!\nMy {POKEMON} and I are raring to go!", "Whoa!\nYou've got more zip than me!")
-        clearflag(FLAG_ANTHONY_OFFERED_REMATCH)
+        trainerbattle_rematch(TRAINER_ANTHONY_1, "All righty, then!\nMy {POKEMON} and I are raring to go!", Route33_Text_Trainer_AnthonyLost)
     }		  
     if (!flag(FLAG_PHONE_CARD_HIKER_ANTHONY))
     {
         if (!flag(FLAG_HIKER_ANTHONY_OFFERED_NUMBER))
         {
-            msgbox("By the way, I'm a HIKER, so\nI often go to mountains and caves.\pI occasionally see rare {POKEMON}.\lI could call you\lthe next time I see one.\lFeel like swapping phone numbers?", MSGBOX_YESNO)
+            bufferstring(0, Route33_Text_Trainer_Anthony_AskForNumberEnd)
+            msgbox("We HIKERS are at our best in\nthe mountains.\pBy the way, I'm a HIKER, so\nI often go to mountains and caves.\lI occasionally see rare {POKEMON}.\pI could call you the next time\nI see one{STR_VAR_1}", MSGBOX_YESNO)
             setflag(FLAG_HIKER_ANTHONY_OFFERED_NUMBER)
         }
         else
         {
-            msgbox("I could call you when I see some\nrare {POKEMON}.\pFeel like swapping phone numbers?", MSGBOX_YESNO)
+            bufferstring(0, Route33_Text_Trainer_Anthony_AskForNumberEnd)
+            msgbox("I could call you when I see some\nrare {POKEMON}{STR_VAR_1}", MSGBOX_YESNO)
         }
         if (var (VAR_RESULT) == 1)
         {
             registerphonecontact(FLAG_PHONE_CARD_HIKER_ANTHONY)
-            msgbox("Be patient. I'll find some rare\n{POKEMON} for you!", MSGBOX_AUTOCLOSE)
+            msgbox(Route33_Text_Trainer_AnthonyAfterRegistered, MSGBOX_AUTOCLOSE)
         }
         else
         {
@@ -35,8 +35,14 @@ script Route33_EventScript_Anthony {
         }
         end
     }
-    msgbox("We HIKERS are at our best in\nthe mountains.")
+    msgbox(Route33_Text_Trainer_AnthonyAfterRegistered)
     release
+}text(local) Route33_Text_Trainer_AnthonyLost {
+    "Whoa!\nYou've got more zip than me!"
+}text(local) Route33_Text_Trainer_Anthony_AskForNumberEnd {
+    ".\pFeel like swapping phone numbers?"
+}text(local) Route33_Text_Trainer_AnthonyAfterRegistered{
+    "Be patient. I'll find some rare\n{POKEMON} for you!"
 }
 
 script Route33_EventScript_DirectionsSign {
