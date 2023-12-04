@@ -457,6 +457,7 @@ $(ELF): $(OBJ_DIR)/ld_script.ld $(OBJS) berry_fix libagbsyscall
 
 $(ROM): $(ELF)
 	$(OBJCOPY) -O binary $< $@
+	@echo "current ROM size:" $$(stat -c "%s" $(ROM))
 ifneq ($(RELEASE_ID),0)
 	$(eval EncryptedAddrStart := $(shell grep \\bIntrMain\\b $(MAP) | awk '{ print strtonum($$1) - 0x8000000 }'))
 	$(eval EncryptedAddrEnd := $(shell grep \\bIntrMain_End\\b $(MAP) | awk '{ print strtonum($$1) - 0x8000000 }'))
