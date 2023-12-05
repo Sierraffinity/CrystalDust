@@ -73,7 +73,6 @@ script Route42_Eventscript_FishermanTully {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_TULLY_1, "I've been doing more than just fishing\nsine we last met.\lYou're in for a big surprise!", "What? That's not right.")
-        clearflag(FLAG_TULLY_OFFERED_REMATCH)
     }
     if (!flag(FLAG_PHONE_CARD_FISHER_TULLY))
     {

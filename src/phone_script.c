@@ -760,3 +760,30 @@ bool8 PhoneScrCmd_bufferboxname(struct ScriptContext *ctx)
     StringCopy(gScriptStringVars[stringVarIndex], GetBoxNamePtr(boxId));
     return FALSE;
 }
+
+bool8 PhoneScrCmd_traineriseligibleforrematch(struct ScriptContext *ctx)
+{
+    u32 matchCallId = GetTrainerMatchCallId(gSpecialVar_0x800A);
+
+    ctx->comparisonResult = TrainerIsEligibleForRematch(matchCallId);
+    
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_checkforcedrematch(struct ScriptContext *ctx)
+{
+    u32 matchCallId = GetTrainerMatchCallId(gSpecialVar_0x800A);
+
+    ctx->comparisonResult = FlagGet(gMatchCallTrainers[matchCallId].rematchForcedFlag);
+    
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_setforcedrematch(struct ScriptContext *ctx)
+{
+    u32 matchCallId = GetTrainerMatchCallId(gSpecialVar_0x800A);
+
+    FlagSet(gMatchCallTrainers[matchCallId].rematchForcedFlag);
+    
+    return FALSE;
+}

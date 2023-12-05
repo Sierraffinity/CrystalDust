@@ -8,6 +8,7 @@
 #include "constants/field_effects.h"
 #include "constants/flags.h"
 #include "constants/fruit_trees.h"
+#include "constants/gym_leader_rematch.h"
 #include "constants/decorations.h"
 #include "constants/items.h"
 #include "constants/heal_locations.h"
@@ -550,21 +551,130 @@ PhoneScript_Bill_JustRanOutOfRoom::
 	phone_stdcall Text_Bill_JustRanOutOfRoom
 	phone_end
 
-PhoneScript_StandardMatchCallTrainer::
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@ All these scripts assume VAR_0x800A holds the REMATCH_[NAME] for the trainer.
+@ This is because phone_traineriseligibleforrematch, phone_checkforcedrematch,
+@ and phone_setforcedrematch use VAR_0x800A internally.
+
+PhoneScript_Youngster_Joey::
+	phone_setvar VAR_0x800A, REMATCH_JOEY
+	phone_goto PhoneScript_TrainersLikeJoey
+
+PhoneScript_TrainersLikeJoey::
+	phone_call PhoneScript_StandardMatchCallTrainer_BeginCall
+	phone_callnativecontext isPlayerBeingCalled
+	phone_compare VAR_RESULT, 0
+	phone_goto_if_eq PhoneScript_Call_Outgoing
+	@ fallthrough
+PhoneScript_Call_Incoming:
+	phone_call PhoneScript_StandardMatchCallTrainer_OpeningWords
+	phone_traineriseligibleforrematch
+	phone_goto_if 1, PhoneScript_StandardMatchCallTrainer_GenericCall
+	phone_checkforcedrematch
+	phone_goto_if 1, PhoneScript_StandardMatchCallTrainer_GenericCall
+	phone_random 3
+	phone_compare VAR_RESULT, 0
+	phone_goto_if_eq PhoneScript_LikeJoey_WantsBattle
+	phone_compare VAR_RESULT, 1
+	phone_goto_if_eq PhoneScript_LikeJoey_WantsBattle
+	phone_goto PhoneScript_StandardMatchCallTrainer_GenericCall
+   @end
+
+PhoneScript_Call_Outgoing:
+	phone_traineriseligibleforrematch
+	phone_goto_if 1, PhoneScript_StandardMatchCallTrainer_RemindRematch
+	phone_call PhoneScript_StandardMatchCallTrainer_OpeningWords
+	phone_checkforcedrematch
+	phone_goto_if 1, PhoneScript_LikeJoey_NotRightDay
+	phone_callnativecontext IsAvailabileForRematch
+	phone_compare VAR_RESULT, TRUE
+	phone_goto_if_eq PhoneScript_LikeJoey_ForceRematch
+    @ fallthrough
+PhoneScript_LikeJoey_NotRightDay:
+	phone_goto PhoneScript_StandardMatchCallTrainer_HangupOutgoing
+   @end
+
+PhoneScript_LikeJoey_ForceRematch:
+	phone_setforcedrematch
+	@ fallthrough
+PhoneScript_LikeJoey_WantsBattle:
+	phone_goto PhoneScript_StandardMatchCallTrainer_OfferRematch
+   @end
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+PhoneScript_StandardMatchCallTrainer_BeginCall:
 	phone_initcall
 	phone_compare VAR_RESULT, 1 @ PHONE_CALL_FAIL && PHONE_CALL_FAIL_SILENT
 	phone_call_if_ge PhoneScript_HangUpEarly
+	phone_return
+
+PhoneScript_StandardMatchCallTrainer_HangupOutgoing:
+	phone_callnativecontext SelectMessage_StandardMatchCallTrainer_HangupOutgoing
+	phone_message gStringVar4
+	phone_waitbuttonpress
+	phone_goto PhoneScript_StandardMatchCallTrainer_HangUp
+   @end
+
+PhoneScript_StandardMatchCallTrainer_RemindRematch:
+	phone_callnativecontext SelectMessage_StandardMatchCallTrainer_RemindRematch
+	phone_message gStringVar4
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+PhoneScript_StandardMatchCallTrainer_OpeningWords:
 	phone_callnativecontext SelectMessage_StandardMatchCallTrainer_Opening
 	phone_message gStringVar4
 	phone_waitbuttonpress
-	phone_callnativecontext SelectMessage_StandardMatchCallTrainer
-	phone_message gStringVar4
-	phone_waitbuttonpress
+	phone_return
+
+PhoneScript_StandardMatchCallTrainer_HangUp:
 	phone_callnativecontext SelectMessage_StandardMatchCallTrainer_Hangup
 	phone_message gStringVar4
 	phone_waitbuttonpress
 	phone_hangup
 	phone_end
+
+PhoneScript_StandardMatchCallTrainer_OfferRematch:
+	phone_callnativecontext SelectMessage_StandardMatchCallTrainer_Rematch
+	phone_message gStringVar4
+	phone_waitbuttonpress
+	phone_goto PhoneScript_StandardMatchCallTrainer_HangUp
+   @end
+
+PhoneScript_StandardMatchCallTrainer_GenericCall:
+	phone_random 2
+	phone_compare VAR_RESULT, 0
+	phone_goto_if_eq PhoneScript_StandardMatchCallTrainer_BraggingCall
+	phone_callnativecontext SelectMessage_StandardMatchCallTrainer @ Generic Text, Only one for Joey? Or all?
+	phone_message gStringVar4
+	phone_waitbuttonpress
+	phone_goto PhoneScript_StandardMatchCallTrainer_FoundAMon
+   @end
+
+PhoneScript_StandardMatchCallTrainer_BraggingCall:
+	phone_callnativecontext SelectMessage_StandardMatchCallTrainer_Bragging
+	phone_message gStringVar4
+	phone_waitbuttonpress
+    @ fallthrough
+PhoneScript_StandardMatchCallTrainer_FoundAMon:
+    phone_callnativecontext SelectMessage_StandardMatchCallTrainer_FoundAMon
+	phone_message gStringVar4
+	phone_waitbuttonpress
+	phone_goto PhoneScript_StandardMatchCallTrainer_HangUp
+   @end
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+PhoneScript_StandardMatchCallTrainer::
+	phone_call PhoneScript_StandardMatchCallTrainer_BeginCall
+	phone_call PhoneScript_StandardMatchCallTrainer_OpeningWords
+	phone_callnativecontext SelectMessage_StandardMatchCallTrainer
+	phone_message gStringVar4
+	phone_waitbuttonpress
+	phone_goto PhoneScript_StandardMatchCallTrainer_HangUp
 
 PhoneScript_HangUpEarly::
 	phone_hangup

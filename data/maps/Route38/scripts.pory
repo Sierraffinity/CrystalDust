@@ -37,7 +37,6 @@ script Route38_Eventscript_LassDana {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_DANA_1, "You're really late!\nI'm eager to get going!", "I see. So you can battle that way.")
-        clearflag(FLAG_DANA_OFFERED_REMATCH)
     }
     if (!flag(FLAG_PHONE_CARD_LASS_DANA))
     {
@@ -85,7 +84,6 @@ script Route38_Eventscript_SchoolboyChad {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_CHAD_1, "I've been waiting!\nLet's battle now!", "I didn't study enough, I guess.")
-        clearflag(FLAG_CHAD_OFFERED_REMATCH)
     }
 
     if (!flag(FLAG_PHONE_CARD_SCHOOLBOY_CHAD))

@@ -1651,10 +1651,7 @@ static bool32 IsRematchTrainerIn_(const struct RematchTrainer *table, u16 mapGro
 static bool8 IsFirstTrainerIdReadyForRematch(const struct RematchTrainer *table, u16 firstBattleTrainerId)
 {
     s32 tableId = FirstBattleTrainerIdToRematchTableId(table, firstBattleTrainerId);
-    u32 matchCallId = GetTrainerMatchCallId(firstBattleTrainerId);
 
-    if(!FlagGet(gMatchCallTrainers[matchCallId].rematchOfferedFlag))
-    	return FALSE;
     if (tableId == -1)
         return FALSE;
     if (tableId >= MAX_REMATCH_ENTRIES)
@@ -1668,7 +1665,6 @@ static bool8 IsFirstTrainerIdReadyForRematch(const struct RematchTrainer *table,
 static bool8 IsTrainerReadyForRematch_(const struct RematchTrainer *table, u16 trainerId)
 {
     s32 tableId = TrainerIdToRematchTableId(table, trainerId);
-    u32 matchCallId = GetTrainerMatchCallId(trainerId);
 
     if (tableId == -1)
         return FALSE;
@@ -1731,7 +1727,19 @@ static void ClearTrainerWantRematchState(const struct RematchTrainer *table, u16
     if (tableId != -1)
     {
         gSaveBlock1Ptr->trainerRematches[tableId] = 0;
-        FlagClear(gMatchCallTrainers[matchCallId].rematchOfferedFlag);
+    }
+}
+
+void ClearAllTrainerWantRematchStates(void)
+{
+    s32 tableId;
+    u32 i;
+
+    for(i = 0; i < REMATCH_TABLE_ENTRIES; i++)
+    {
+        tableId = TrainerIdToRematchTableId(gRematchTable, i);
+
+        gSaveBlock1Ptr->trainerRematches[tableId] = 0;
     }
 }
 

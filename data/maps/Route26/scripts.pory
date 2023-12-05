@@ -31,7 +31,6 @@ script Route26_Eventscript_CooltrainerGaven {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_GAVEN_1, "Hi! I've been waiting for you!\nThis time, I'm going to win!", "Gaah!\nLife is even tougher!")
-        clearflag(FLAG_GAVEN_OFFERED_REMATCH)
     }
 
     if (!flag(FLAG_PHONE_CARD_COOLTRAINER_GAVEN))
@@ -75,7 +74,6 @@ script Route26_Eventscript_CooltrainerBeth {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_BETH_1, "You sure kept me waiting!\nLet's go!", "{POKEMON} aren't tools of war.")
-        clearflag(FLAG_BETH_OFFERED_REMATCH)
     }
 
     if (!flag(FLAG_PHONE_CARD_COOLTRAINER_BETH))

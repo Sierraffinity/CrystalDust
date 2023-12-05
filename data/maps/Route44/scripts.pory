@@ -46,7 +46,6 @@ script Route44_Eventscript_FishermanWilton { // upper one
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_WILTON_1, "Argh! You startled POLIWAG into\nfleeing again!", "Just forget about it.")
-        clearflag(FLAG_WILTON_OFFERED_REMATCH)
     }
 
     if (!flag(FLAG_PHONE_CARD_FISHER_WILTON))
@@ -100,7 +99,6 @@ script Route44_Eventscript_BirdKeeperVance {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_VANCE_1, "Am I happy to see you!\nI won't lose!", "Whew!\nYou're hot stuff.")
-        clearflag(FLAG_VANCE_OFFERED_REMATCH)
     }
     if (!flag(FLAG_PHONE_CARD_BIRD_KEEPER_VANCE))
     {

@@ -342,7 +342,6 @@ script Route36_EventScript_Alan {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_ALAN_1, "Thanks to my studies, I'm ready\nfor any {POKEMON}!", "Oops!\nComputation error?")
-        clearflag(FLAG_ALAN_OFFERED_REMATCH)
     }
 
     if (!flag(FLAG_PHONE_CARD_SCHOOLBOY_ALAN))

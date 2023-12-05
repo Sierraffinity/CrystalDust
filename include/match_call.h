@@ -26,6 +26,11 @@ void InitMatchCallCounters(void);
 void SelectMatchCallMessage_Opening(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
 bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
 void SelectMatchCallMessage_Hangup(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
+void SelectMatchCallMessage_HangupOutgoing(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
+void SelectMatchCallMessage_Rematch(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
+void SelectMatchCallMessage_RemindRematch(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
+void SelectMatchCallMessage_Bragging(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
+void SelectMatchCallMessage_FoundAMon(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact);
 bool32 TryStartMatchCall(void);
 bool32 TryStartForcedMatchCall(void);
 bool32 TryStartForcedStoryMatchCall(void);
@@ -43,8 +48,10 @@ void MomTriesToBuySomething(void);
 void isPlayerBeingCalled(const struct PhoneContact *, bool8);
 void UpdateForcedCallsPerDay();
 u32 getRematchIdFromTrainerId(int trainerId);
+bool32 IsMatchCallRematchTime(int trainerId);
 bool8 CanMatchCallIdAcceptRematch(int matchCallId, s8 dayOfWeek, u8 timeOfDay);
 int GetTrainerMatchCallId(int);
+bool32 TrainerIsEligibleForRematch(int);
 
 #define OUTBREAK_WALKING 1
 #define OUTBREAK_SURFING 2
@@ -74,7 +81,7 @@ struct MatchCallTrainerTextInfo
     u16 trainerId;
     u16 unused;
     u8 battleFrontierRecordStreakTextIndex;
-    u16 rematchOfferedFlag;
+    u16 rematchForcedFlag;
     u16 rematchCheckFlags[4];
     u16 giftFlag;
     u8 genericStartIndex;
@@ -89,6 +96,10 @@ struct MatchCallTrainerTextInfo
     struct MatchCallText remindRematchText;
     struct MatchCallText remindoutbreakText;
     struct MatchCallText hangupText;
+    struct MatchCallText hangupOutgoingText;
+    struct MatchCallText braggingText;
+    struct MatchCallText defeatedMonText;
+    struct MatchCallText lostMonText;
     s8 rematchAvailability[2];
 };
 

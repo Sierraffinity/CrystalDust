@@ -105,7 +105,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_YOUNGSTER_JOEY] = {
         .customDisplayName = sPhoneContactName_Youngster_Joey,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_Youngster_Joey,
         .mapNum = MAP_NUM(ROUTE30),
         .mapGroup = MAP_GROUP(ROUTE30),
         .registeredFlag = FLAG_PHONE_CARD_YOUNGSTER_JOEY,
@@ -385,6 +385,11 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
 };
 
+void IsAvailabileForRematch(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
+{
+    gSpecialVar_Result = IsMatchCallRematchTime(phoneContact->trainerId);
+}
+
 void SelectMessage_StandardMatchCallTrainer_Opening(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
 {
 	SelectMatchCallMessage_Opening(phoneContact->trainerId, gStringVar4, isCallingPlayer, phoneContact);
@@ -393,6 +398,31 @@ void SelectMessage_StandardMatchCallTrainer_Opening(const struct PhoneContact *p
 void SelectMessage_StandardMatchCallTrainer_Hangup(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
 {
 	SelectMatchCallMessage_Hangup(phoneContact->trainerId, gStringVar4, isCallingPlayer, phoneContact);
+}
+
+void SelectMessage_StandardMatchCallTrainer_HangupOutgoing(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
+{
+	SelectMatchCallMessage_HangupOutgoing(phoneContact->trainerId, gStringVar4, isCallingPlayer, phoneContact);
+}
+
+void SelectMessage_StandardMatchCallTrainer_Rematch(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
+{
+	SelectMatchCallMessage_Rematch(phoneContact->trainerId, gStringVar4, isCallingPlayer, phoneContact);
+}
+
+void SelectMessage_StandardMatchCallTrainer_RemindRematch(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
+{
+	SelectMatchCallMessage_RemindRematch(phoneContact->trainerId, gStringVar4, isCallingPlayer, phoneContact);
+}
+
+void SelectMessage_StandardMatchCallTrainer_Bragging(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
+{
+	SelectMatchCallMessage_Bragging(phoneContact->trainerId, gStringVar4, isCallingPlayer, phoneContact);
+}
+
+void SelectMessage_StandardMatchCallTrainer_FoundAMon(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
+{
+	SelectMatchCallMessage_FoundAMon(phoneContact->trainerId, gStringVar4, isCallingPlayer, phoneContact);
 }
 
 void SelectMessage_StandardMatchCallTrainer(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)

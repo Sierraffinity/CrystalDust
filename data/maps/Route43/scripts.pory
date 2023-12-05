@@ -39,7 +39,6 @@ script Route43_Eventscript_PicnickerTiffany {
 	if(var(VAR_RESULT) == 1)
 	{
         trainerbattle_rematch(TRAINER_TIFFANY_1, "There you are!\nCLEFAIRY, I want you to try hard!", "I played too much!")
-        clearflag(FLAG_TIFFANY_OFFERED_REMATCH)
 	}
 	setvar(VAR_0x8004, SPECIES_CLEFAIRY)
 	special(IsPlayersMonOfSpeciesInParty)
@@ -80,7 +79,6 @@ script Route43_Eventscript_PokemaniacBrent {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_BRENT_1, "I've been waiting!\nLook, check out my {POKEMON}!", "Oh, my poor {POKEMON}!\nDarlings!")
-        clearflag(FLAG_BRENT_OFFERED_REMATCH)
     }
 		
     if (!flag(FLAG_PHONE_CARD_POKEMANIAC_BRENT))

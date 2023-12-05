@@ -82,7 +82,6 @@ script Route27_Eventscript_BirdKeeperJose {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_JOSE_1, "Tweet! Tweeeeet!\nKept me waiting!\pGo, FARFETCH'D!", "Tweet!")
-        clearflag(FLAG_JOSE_OFFERED_REMATCH)
     }
 
     if (!flag(FLAG_PHONE_CARD_BIRD_KEEPER_JOSE))
@@ -126,7 +125,6 @@ script Route27_Eventscript_CooltrainerReena {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_REENA_1, "What took you?\nStart right away!", "Oh!\nYou're much too strong!")
-        clearflag(FLAG_REENA_OFFERED_REMATCH)
     }	
 
     if (!flag(FLAG_PHONE_CARD_COOLTRAINER_REENA))

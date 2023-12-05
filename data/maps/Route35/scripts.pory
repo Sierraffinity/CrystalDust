@@ -38,7 +38,6 @@ script Route35_EventScript_Arnie {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_ARNIE_1, "It's my turn to win now!\nI've turned over a new leaf!", "Huh?\nI shouldn't have lost that…")
-        clearflag(FLAG_ARNIE_OFFERED_REMATCH)
     }
     if (!flag(FLAG_PHONE_CARD_BUG_CATCHER_ARNIE))
     {

@@ -67,6 +67,7 @@ void ClearDailyFlags(void)
     {   // clear the six Mt. Moon hidden mushroom flags
         FlagClear(i);
     }
+    ClearAllTrainerWantRematchStates();
 }
 
 void DisableNationalPokedex(void)

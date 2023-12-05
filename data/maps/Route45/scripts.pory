@@ -25,7 +25,6 @@ script Route44_Eventscript_HikerParry { // middle, above Cooltrainer Kelly
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_PARRY_1, "Hey, here comes the kid!\nLet's go!\pRead for my usual no-brainer\nall-out offense?", "Wahahah!\nI'm the big loser!")
-        clearflag(FLAG_PARRY_OFFERED_REMATCH)
     }	
 
     if (!flag(FLAG_PHONE_CARD_HIKER_PARRY))

@@ -123,7 +123,6 @@ EWRAM_DATA struct BattleFrontierStreakInfo sBattleFrontierStreakInfo = {0};
 static u32 GetNumRegisteredNPCs(void);
 static u32 GetActiveMatchCallPhoneContactId(u32);
 static u16 GetRematchTrainerLocation(int);
-static bool32 TrainerIsEligibleForRematch(int);
 static void StartMatchCall(void);
 static const struct MatchCallText *GetGenericMatchCallText(int, u8 *);
 static bool32 ShouldTrainerRequestBattle(u32, u32);
@@ -197,11 +196,11 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
         .trainerId = TRAINER_JOEY_1,
         .unused = 4,
         .battleFrontierRecordStreakTextIndex = 1,
-	    .rematchOfferedFlag = FLAG_JOEY_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_1,
 		.rematchCheckFlags = {FLAG_VISITED_GOLDENROD_CITY, FLAG_VISITED_OLIVINE_CITY, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION},
 	    .giftFlag = 0,
 	    .genericStartIndex = 0,
-	    .genericTextsAmount = 5,
+	    .genericTextsAmount = 1,
 		.outbreakData = outbreakNone,
 	    .callTexts = {{Matchcall_Joey_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Joey_Call_Day, STRS_NORMAL_MSG},
@@ -216,13 +215,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Joey_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Joey_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Joey_HangupOutgoing, STRS_BATTLE_POSITIVE},
 		.rematchAvailability = {DAY_MONDAY, TIME_DAY},
+        .braggingText = {Matchcall_Joey_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Joey_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Joey_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_WADE_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 1,
-	    .rematchOfferedFlag = FLAG_WADE_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_1,
 		.rematchCheckFlags = {FLAG_VISITED_GOLDENROD_CITY, FLAG_VISITED_MAHOGANY_TOWN, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION},
 	    .giftFlag = FLAG_CALL_WADE_GIFT,
 	    .genericStartIndex = 5,
@@ -241,13 +244,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Wade_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Wade_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Wade_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_TUESDAY, TIME_NIGHT},
+        .braggingText = {Matchcall_Wade_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Wade_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Wade_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_LIZ_1,
         .unused = 3,
         .battleFrontierRecordStreakTextIndex = 12,
-	    .rematchOfferedFlag = FLAG_LIZ_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_1,
 		.rematchCheckFlags = {FLAG_VISITED_ECRUTEAK_CITY, FLAG_TRAINER_MAHOGANY_EXECUTIVE_F, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION},
 	    .giftFlag = 0,
 	    .genericStartIndex = 10,
@@ -266,13 +273,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Liz_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Liz_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Liz_HangupOutgoing, STRS_BATTLE_POSITIVE},
 		.rematchAvailability = {DAY_THURSDAY, TIME_DAY},
+        .braggingText = {Matchcall_Liz_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Liz_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Liz_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_RALPH_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 12,
-	    .rematchOfferedFlag = FLAG_RALPH_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_1,
 		.rematchCheckFlags = {FLAG_VISITED_ECRUTEAK_CITY, FLAG_LANDMARK_LAKE_OF_RAGE, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART},
 	    .giftFlag = 0,
 	    .genericStartIndex = 26,
@@ -291,14 +302,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Ralph_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = {Matchcall_Ralph_Remind_Swarm, STRS_SWARM_MSG},
 		.hangupText = {Matchcall_Ralph_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Ralph_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_WEDNESDAY, TIME_MORNING},
-
+        .braggingText = {Matchcall_Ralph_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Ralph_DefeatedMon, STRS_BATTLE_POSITIVE},
+        .lostMonText = {Matchcall_Ralph_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_ANTHONY_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 12,
-	    .rematchOfferedFlag = FLAG_ANTHONY_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_1,
 		.rematchCheckFlags = {FLAG_VISITED_OLIVINE_CITY, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART},
 	    .giftFlag = 0,
 	    .genericStartIndex = 31,
@@ -317,13 +331,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Anthony_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = {Matchcall_Anthony_Remind_Swarm, STRS_SWARM_MSG},
 		.hangupText = {Matchcall_Anthony_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Anthony_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_FRIDAY, TIME_NIGHT},
+        .braggingText = {Matchcall_Anthony_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Anthony_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Anthony_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_TODD_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 10,
-	    .rematchOfferedFlag = FLAG_TODD_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_1,
 		.rematchCheckFlags = {FLAG_VISITED_CIANWOOD_CITY, FLAG_VISITED_BLACKTHORN_CITY, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART},
 	    .giftFlag = 0,
 	    .genericStartIndex = 36,
@@ -342,13 +360,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Todd_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Todd_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Todd_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_SUNDAY, TIME_MORNING},
+        .braggingText = {Matchcall_Todd_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Todd_DefeatedMon, STRS_BATTLE_POSITIVE},
+        .lostMonText = {Matchcall_Todd_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_GINA_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 9,
-	    .rematchOfferedFlag = FLAG_GINA_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_2,
 		.rematchCheckFlags = {FLAG_VISITED_MAHOGANY_TOWN, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART},
 	    .giftFlag = FLAG_CALL_GINA_GIFT,
 	    .genericStartIndex = 41,
@@ -367,13 +389,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Gina_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Gina_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Gina_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_SUNDAY, TIME_DAY},
+        .braggingText = {Matchcall_Gina_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Gina_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Gina_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_ARNIE_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 2,
-	    .rematchOfferedFlag = FLAG_ARNIE_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_2,
 		.rematchCheckFlags = {FLAG_LANDMARK_LAKE_OF_RAGE, FLAG_VISITED_BLACKTHORN_CITY, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART},
 	    .giftFlag = 0,
 	    .genericStartIndex = 46,
@@ -392,13 +418,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Arnie_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = {Matchcall_Arnie_Remind_Swarm, STRS_SWARM_MSG},
 		.hangupText = {Matchcall_Arnie_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Arnie_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_TUESDAY, TIME_MORNING},
+        .braggingText = {Matchcall_Arnie_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Arnie_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Arnie_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_JACK_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 3,
-	    .rematchOfferedFlag = FLAG_JACK_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_2,
 		.rematchCheckFlags = {FLAG_VISITED_OLIVINE_CITY, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART},
 	    .giftFlag = 0,
 	    .genericStartIndex = 51,
@@ -417,13 +447,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Jack_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Jack_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Jack_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_MONDAY, TIME_MORNING},
+        .braggingText = {Matchcall_Jack_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Jack_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Jack_LostMon, STRS_WILD_BATTLE},
     },
     {
 		.trainerId = TRAINER_BEVERLY,
 		.unused = 0,
 		.battleFrontierRecordStreakTextIndex = 6,
-		.rematchOfferedFlag = 0,
+		.rematchForcedFlag = 0,
 		.rematchCheckFlags = 0,
 		.giftFlag = FLAG_CALL_BEVERLY_GIFT,
 		.genericStartIndex = 67,
@@ -442,13 +476,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 		.remindRematchText = 0,
 		.remindoutbreakText = 0,
 		.hangupText = {Matchcall_Beverly_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Beverly_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_NEVER, TIME_NEVER},
+        .braggingText = {Matchcall_Beverly_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Beverly_DefeatedMon, STRS_BATTLE_POSITIVE},
+        .lostMonText = {Matchcall_Beverly_LostMon, STRS_WILD_BATTLE},
 	},
     {
         .trainerId = TRAINER_ALAN_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 8,
-	    .rematchOfferedFlag = FLAG_ALAN_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_2,
 		.rematchCheckFlags = {FLAG_VISITED_OLIVINE_CITY, FLAG_VISITED_BLACKTHORN_CITY, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART},
 	    .giftFlag = FLAG_CALL_ALAN_GIFT,
 	    .genericStartIndex = 72,
@@ -467,13 +505,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Alan_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Alan_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Alan_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_WEDNESDAY, TIME_DAY},
+        .braggingText = {Matchcall_Alan_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Alan_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Alan_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_DANA_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 1,
-	    .rematchOfferedFlag = FLAG_DANA_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_2,
 		.rematchCheckFlags = {FLAG_VISITED_CIANWOOD_CITY, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART},
 	    .giftFlag = FLAG_CALL_DANA_GIFT,
 	    .genericStartIndex = 77,
@@ -492,13 +534,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Anthony_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Dana_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Dana_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_THURSDAY, TIME_NIGHT},
+        .braggingText = {Matchcall_Dana_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Dana_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Dana_LostMon, STRS_WILD_BATTLE},
     },
     {
 	    .trainerId = TRAINER_CHAD_1,
 	    .unused = 0,
 	    .battleFrontierRecordStreakTextIndex = 8,
-	    .rematchOfferedFlag = FLAG_CHAD_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_2,
 		.rematchCheckFlags = {FLAG_VISITED_MAHOGANY_TOWN, FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART},
 	    .giftFlag = 0,
 	    .genericStartIndex = 82,
@@ -517,13 +563,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Chad_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Chad_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Chad_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_FRIDAY, TIME_MORNING},
+        .braggingText = {Matchcall_Chad_Bragging, STRS_WILD_BATTLE},
+        .defeatedMonText = {Matchcall_Chad_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Chad_LostMon, STRS_WILD_BATTLE},
 	},
     {
 		.trainerId = TRAINER_DEREK,
 		.unused = 0,
 		.battleFrontierRecordStreakTextIndex = 1,
-		.rematchOfferedFlag = 0,
+		.rematchForcedFlag = 0,
 		.rematchCheckFlags = 0,
 		.giftFlag = FLAG_CALL_DEREK_GIFT,
 		.genericStartIndex = 97,
@@ -542,16 +592,20 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 		.remindRematchText = 0,
 		.remindoutbreakText =  0,
 		.hangupText = {Matchcall_Derek_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Derek_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_NEVER, TIME_NEVER},
+        .braggingText = {Matchcall_Derek_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Derek_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Derek_LostMon, STRS_WILD_BATTLE},
 	},
     {
         .trainerId = TRAINER_HUEY_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 10,
-	    .rematchOfferedFlag = FLAG_HUEY_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_3,
 		.rematchCheckFlags = {FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE},
 	    .giftFlag = 0,
-	    .genericStartIndex = 102,
+	    .genericStartIndex = 0,
 	    .genericTextsAmount = 1,
 		.outbreakData = outbreakNone,
 	    .callTexts = {{Matchcall_Huey_Call_Morn, STRS_NORMAL_MSG},
@@ -567,13 +621,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Huey_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Huey_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Huey_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_WEDNESDAY, TIME_NIGHT},
+        .braggingText = 0,
+        .defeatedMonText = 0,
+        .lostMonText = 0,
     },
     {
         .trainerId = TRAINER_TULLY_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 10,
-	    .rematchOfferedFlag = FLAG_TULLY_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_3,
 		.rematchCheckFlags = {FLAG_TRAINER_MAHOGANY_EXECUTIVE_F, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE},
 	    .giftFlag = FLAG_CALL_TULLY_GIFT,
 	    .genericStartIndex = 103,
@@ -592,13 +650,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Tully_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Tully_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Tully_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_SUNDAY, TIME_NIGHT},
+        .braggingText = {Matchcall_Tully_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Tully_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Tully_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_TIFFANY_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 4,
-	    .rematchOfferedFlag = FLAG_TIFFANY_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_3,
 		.rematchCheckFlags = {FLAG_CLEARED_RADIO_TOWER, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE},
 	    .giftFlag = FLAG_CALL_TIFFANY_GIFT,
 	    .genericStartIndex = 108,
@@ -617,13 +679,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Tiffany_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Tiffany_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Tiffany_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_TUESDAY, TIME_DAY},
+        .braggingText = {Matchcall_Tiffany_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Tiffany_DefeatedMon, {STR_TRAINER_NAME, STR_SPECIES_IN_ROUTE, STR_SPECIES_IN_PARTY}},
+        .lostMonText = {Matchcall_Tiffany_LostMon, {STR_TRAINER_NAME, STR_SPECIES_IN_ROUTE, STR_SPECIES_IN_PARTY}},
     },
     {
         .trainerId = TRAINER_BRENT_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 12,
-	    .rematchOfferedFlag = FLAG_BRENT_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_3,
 		.rematchCheckFlags = {FLAG_TRAINER_MAHOGANY_EXECUTIVE_F, FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE},
 	    .giftFlag = 0,
 	    .genericStartIndex = 114,
@@ -642,13 +708,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Brent_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Brent_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Brent_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_MONDAY, TIME_MORNING},
+        .braggingText = {Matchcall_Brent_Bragging, STRS_NORMAL_MSG},
+        .defeatedMonText = {Matchcall_Brent_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Brent_LostMon, STRS_NORMAL_MSG},
     },
     {
         .trainerId = TRAINER_WILTON_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 2,
-	    .rematchOfferedFlag = FLAG_WILTON_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_3,
 		.rematchCheckFlags = {FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE, FALSE},
 	    .giftFlag = FLAG_CALL_WILTON_GIFT,
 	    .genericStartIndex = 129,
@@ -667,13 +737,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Wilton_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Wilton_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Wilton_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_THURSDAY, TIME_MORNING},
+        .braggingText = {Matchcall_Wilton_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Wilton_DefeatedMon, STRS_BATTLE_POSITIVE},
+        .lostMonText = {Matchcall_Wilton_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_VANCE_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 8,
-	    .rematchOfferedFlag = FLAG_VANCE_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_4,
 		.rematchCheckFlags = {FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE, FALSE},
 	    .giftFlag = 0,
 	    .genericStartIndex = 134,
@@ -692,13 +766,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Vance_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Vance_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Vance_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_WEDNESDAY, TIME_NIGHT},
+        .braggingText = {Matchcall_Vance_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Vance_DefeatedMon, STRS_BATTLE_POSITIVE},
+        .lostMonText = {Matchcall_Vance_LostMon, STRS_BATTLE_POSITIVE},
     },
     {
         .trainerId = TRAINER_PARRY_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 1,
-	    .rematchOfferedFlag = FLAG_PARRY_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_3,
 		.rematchCheckFlags = {FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE, FALSE},
 	    .giftFlag = 0,
 	    .genericStartIndex = 139,
@@ -717,13 +795,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Parry_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Parry_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Parry_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_FRIDAY, TIME_DAY},
+        .braggingText = {Matchcall_Parry_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Parry_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Parry_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_ERIN_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 5,
-	    .rematchOfferedFlag = FLAG_ERIN_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_1,
 		.rematchCheckFlags = {FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE, FALSE},
 	    .giftFlag = 0,
 	    .genericStartIndex = 144,
@@ -742,13 +824,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Erin_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Erin_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Erin_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_SATURDAY, TIME_NIGHT},
+        .braggingText = {Matchcall_Erin_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Erin_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Erin_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_JOSE_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 3,
-	    .rematchOfferedFlag = FLAG_JOSE_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_2,
 		.rematchCheckFlags = {FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE, FALSE},
 	    .giftFlag = FLAG_CALL_JOSE_GIFT,
 	    .genericStartIndex = 149,
@@ -767,13 +853,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Jose_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Jose_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Jose_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_SATURDAY, TIME_NIGHT},
+        .braggingText = {Matchcall_Jose_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Jose_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Jose_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_REENA_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 6,
-	    .rematchOfferedFlag = FLAG_REENA_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_4,
 		.rematchCheckFlags = {FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE, FALSE},
 	    .giftFlag = 0,
 	    .genericStartIndex = 154,
@@ -792,13 +882,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Reena_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Reena_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Reena_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_SUNDAY, TIME_MORNING},
+        .braggingText = {Matchcall_Reena_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Reena_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Reena_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_GAVEN_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 4,
-	    .rematchOfferedFlag = FLAG_GAVEN_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_4,
 		.rematchCheckFlags = {FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE, FALSE},
 	    .giftFlag = 0,
 	    .genericStartIndex = 159,
@@ -817,13 +911,17 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Gaven_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Gaven_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Gaven_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_THURSDAY, TIME_MORNING},
+        .braggingText = {Matchcall_Gaven_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Gaven_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Gaven_LostMon, STRS_WILD_BATTLE},
     },
     {
         .trainerId = TRAINER_BETH_1,
         .unused = 0,
         .battleFrontierRecordStreakTextIndex = 11,
-	    .rematchOfferedFlag = FLAG_BETH_OFFERED_REMATCH,
+	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_4,
 		.rematchCheckFlags = {FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE, FALSE},
 	    .giftFlag = 0,
 	    .genericStartIndex = 164,
@@ -842,26 +940,30 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .remindRematchText = {Matchcall_Beth_Remind_Rematch, STRS_BATTLE_REQUEST},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Beth_Hangup, STRS_NORMAL_MSG},
+        .hangupOutgoingText = {Matchcall_Beth_HangupOutgoing, STRS_NORMAL_MSG},
 		.rematchAvailability = {DAY_FRIDAY, TIME_DAY},
+        .braggingText = {Matchcall_Beth_Bragging, STRS_BATTLE_POSITIVE},
+        .defeatedMonText = {Matchcall_Beth_DefeatedMon, STRS_WILD_BATTLE},
+        .lostMonText = {Matchcall_Beth_LostMon, STRS_WILD_BATTLE},
     }
 };
 
 static const struct MatchCallText sMatchCallGenericTexts[] =
 {
-        { .text = Matchcall_Joey_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Joey_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Joey_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Joey_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Joey_Generic1,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+        { .text = Matchcall_Joey_Generic,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Joey_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Joey_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Joey_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Joey_HangupOutgoing,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
         { .text = Matchcall_Wade_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Wade_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Wade_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Wade_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Wade_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Wade_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Wade_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Wade_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Wade_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Liz_Generic16,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Liz_Generic15,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Liz_Generic14,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Liz_Generic13,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Liz_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Liz_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Liz_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Liz_Generic12,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Liz_Generic11,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Liz_Generic10,    .stringVarFuncIds = STRS_NORMAL_MSG},
@@ -873,36 +975,36 @@ static const struct MatchCallText sMatchCallGenericTexts[] =
 		{ .text = Matchcall_Liz_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Liz_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Liz_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Liz_Generic1,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Liz_HangupOutgoing,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
 		{ .text = Matchcall_Ralph_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Ralph_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Ralph_Generic3,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Ralph_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Ralph_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Ralph_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Ralph_DefeatedMon,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Ralph_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Ralph_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Anthony_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Anthony_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Anthony_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Anthony_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Anthony_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-        { .text = Matchcall_Todd_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Todd_Generic4,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Todd_Generic3,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Todd_Generic2,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Anthony_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Anthony_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Anthony_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Anthony_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
+        //{ .text = Matchcall_Todd_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Todd_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Todd_DefeatedMon,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Todd_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
 		{ .text = Matchcall_Todd_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Gina_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Gina_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Gina_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Gina_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Gina_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Gina_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Gina_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Gina_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Gina_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Arnie_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Arnie_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Arnie_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Arnie_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Arnie_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Arnie_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Arnie_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Arnie_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Arnie_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
         { .text = Matchcall_Jack_Generic16,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Jack_Generic15,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Jack_Generic14,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Jack_Generic13,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Jack_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Jack_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Jack_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Jack_Generic12,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Jack_Generic11,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Jack_Generic10,    .stringVarFuncIds = STRS_NORMAL_MSG},
@@ -914,26 +1016,26 @@ static const struct MatchCallText sMatchCallGenericTexts[] =
 		{ .text = Matchcall_Jack_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Jack_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Jack_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Jack_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Jack_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Beverly_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Beverly_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Beverly_Generic3,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Beverly_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Beverly_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Beverly_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Beverly_DefeatedMon,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Beverly_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Beverly_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
         { .text = Matchcall_Alan_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Alan_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Alan_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Alan_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Alan_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Alan_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Alan_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Alan_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Alan_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Dana_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Dana_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Dana_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Dana_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Dana_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Dana_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Dana_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Dana_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Dana_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
         { .text = Matchcall_Chad_Generic15,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Chad_Generic14,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Chad_Generic13,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Chad_Generic12,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Chad_Bragging,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Chad_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Chad_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		{ .text = Matchcall_Chad_Generic11,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Chad_Generic10,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Chad_Generic9,    .stringVarFuncIds = STRS_NORMAL_MSG},
@@ -944,28 +1046,28 @@ static const struct MatchCallText sMatchCallGenericTexts[] =
 		{ .text = Matchcall_Chad_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Chad_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Chad_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Chad_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Chad_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Derek_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Derek_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Derek_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Derek_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Derek_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
-        { .text = Matchcall_Huey_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Derek_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Derek_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Derek_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Derek_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
+        //{ .text = Matchcall_Huey_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
         { .text = Matchcall_Tully_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Tully_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Tully_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Tully_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Tully_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Tully_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Tully_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Tully_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Tully_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
         { .text = Matchcall_Tiffany_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Tiffany_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Tiffany_Generic3,    .stringVarFuncIds = {STR_TRAINER_NAME, STR_SPECIES_IN_ROUTE, STR_SPECIES_IN_PARTY}},
-		{ .text = Matchcall_Tiffany_Generic2,    .stringVarFuncIds = {STR_TRAINER_NAME, STR_SPECIES_IN_ROUTE, STR_SPECIES_IN_PARTY}},
+		//{ .text = Matchcall_Tiffany_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Tiffany_DefeatedMon,    .stringVarFuncIds = {STR_TRAINER_NAME, STR_SPECIES_IN_ROUTE, STR_SPECIES_IN_PARTY}},
+		//{ .text = Matchcall_Tiffany_LostMon,    .stringVarFuncIds = {STR_TRAINER_NAME, STR_SPECIES_IN_ROUTE, STR_SPECIES_IN_PARTY}},
 		{ .text = Matchcall_Tiffany_Generic1,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Tiffany_Generic6,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Tiffany_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Brent_Generic15,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Brent_Generic14,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Brent_Generic13,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Brent_Generic12,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Brent_Bragging,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Brent_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Brent_LostMon,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Brent_Generic11,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Brent_Generic10,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Brent_Generic9,    .stringVarFuncIds = STRS_NORMAL_MSG},
@@ -976,47 +1078,47 @@ static const struct MatchCallText sMatchCallGenericTexts[] =
 		{ .text = Matchcall_Brent_Generic4,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Brent_Generic3,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Brent_Generic2,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Brent_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Brent_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
         { .text = Matchcall_Wilton_Generic2,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Wilton_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Wilton_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Wilton_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Wilton_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Wilton_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Wilton_DefeatedMon,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Wilton_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Wilton_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Vance_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Vance_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Vance_Generic3,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Vance_Generic2,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Vance_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Vance_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Vance_DefeatedMon,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Vance_LostMon,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Vance_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Parry_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Parry_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Parry_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Parry_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Parry_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Parry_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Parry_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Parry_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Parry_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Erin_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Erin_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Erin_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Erin_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Erin_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Erin_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Erin_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Erin_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Erin_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Jose_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Jose_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Jose_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Jose_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Jose_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Jose_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Jose_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Jose_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Jose_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Reena_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Reena_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Reena_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Reena_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Reena_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Reena_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Reena_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Reena_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Reena_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Gaven_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Gaven_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Gaven_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Gaven_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Gaven_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Gaven_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Gaven_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Gaven_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Gaven_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
         { .text = Matchcall_Beth_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		{ .text = Matchcall_Beth_Generic4,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		{ .text = Matchcall_Beth_Generic3,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Beth_Generic2,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		{ .text = Matchcall_Beth_Generic1,    .stringVarFuncIds = STRS_NORMAL_MSG},
+		//{ .text = Matchcall_Beth_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
+		//{ .text = Matchcall_Beth_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Beth_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
+		//{ .text = Matchcall_Beth_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 };
 
 static const struct MatchCallText sMatchCallBattleFrontierStreakTexts[] =
@@ -1717,7 +1819,7 @@ bool32 ExecuteMatchCallTextPrinter(int windowId)
     return IsTextPrinterActive(windowId);
 }
 
-static bool32 TrainerIsEligibleForRematch(int matchCallId)
+bool32 TrainerIsEligibleForRematch(int matchCallId)
 {
     return gSaveBlock1Ptr->trainerRematches[matchCallId] > 0;
 }
@@ -1785,6 +1887,78 @@ void SelectMatchCallMessage_Hangup(int trainerId, u8 *str, bool8 isCallingPlayer
 	 BuildMatchCallString(matchCallId, matchCallText, str);
 }
 
+void SelectMatchCallMessage_HangupOutgoing(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)
+{
+	 u32 matchCallId;
+	 u32 rematchId;
+	 const struct MatchCallText *matchCallText;
+
+	 matchCallId = GetTrainerMatchCallId(trainerId);
+
+	 matchCallText = &gMatchCallTrainers[matchCallId].hangupOutgoingText;
+
+	 BuildMatchCallString(matchCallId, matchCallText, str);
+}
+
+void SelectMatchCallMessage_Rematch(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)
+{
+	u32 matchCallId;
+	u32 rematchId;
+	const struct MatchCallText *matchCallText;
+
+	matchCallId = GetTrainerMatchCallId(trainerId);
+    rematchId = getRematchIdFromTrainerId(trainerId);
+
+	gSaveBlock1Ptr->trainerRematches[rematchId] = 1;
+    UpdateRematchIfDefeated(rematchId);
+
+	matchCallText = &gMatchCallTrainers[matchCallId].rematchText;
+
+	BuildMatchCallString(matchCallId, matchCallText, str);
+}
+
+void SelectMatchCallMessage_RemindRematch(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)
+{
+	 u32 matchCallId;
+	 u32 rematchId;
+	 const struct MatchCallText *matchCallText;
+
+	 matchCallId = GetTrainerMatchCallId(trainerId);
+
+	 matchCallText = &gMatchCallTrainers[matchCallId].remindRematchText;
+
+	 BuildMatchCallString(matchCallId, matchCallText, str);
+}
+
+void SelectMatchCallMessage_Bragging(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)
+{
+	 u32 matchCallId;
+	 u32 rematchId;
+	 const struct MatchCallText *matchCallText;
+
+	 matchCallId = GetTrainerMatchCallId(trainerId);
+
+	 matchCallText = &gMatchCallTrainers[matchCallId].braggingText;
+
+	 BuildMatchCallString(matchCallId, matchCallText, str);
+}
+
+void SelectMatchCallMessage_FoundAMon(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)
+{
+	 u32 matchCallId;
+	 u32 rematchId;
+	 const struct MatchCallText *matchCallText;
+
+	 matchCallId = GetTrainerMatchCallId(trainerId);
+
+    if(Random() % 2 == 0)
+        matchCallText = &gMatchCallTrainers[matchCallId].lostMonText;
+    else
+        matchCallText = &gMatchCallTrainers[matchCallId].defeatedMonText;
+
+	 BuildMatchCallString(matchCallId, matchCallText, str);
+}
+
 void SelectMatchCallMessage_Opening(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)
 {
 	 u32 matchCallId;
@@ -1830,10 +2004,19 @@ void SelectMatchCallMessage_Opening(int trainerId, u8 *str, bool8 isCallingPlaye
 	 BuildMatchCallString(matchCallId, matchCallText, str);
 }
 
+bool32 IsMatchCallRematchTime(int trainerId)
+{
+    u32 matchCallId = GetTrainerMatchCallId(trainerId);
+    s8 dayOfWeek = gLocalTime.dayOfWeek;
+    u8 timeOfDay = GetTimeOfDay(gLocalTime.hours);
+
+    return ((gMatchCallTrainers[matchCallId].rematchAvailability[0] == dayOfWeek) && (gMatchCallTrainers[matchCallId].rematchAvailability[1] == timeOfDay));
+}
+
 bool8 CanMatchCallIdAcceptRematch(int matchCallId, s8 dayOfWeek, u8 timeOfDay)
 {
 	return (gMatchCallTrainers[matchCallId].rematchAvailability[0] == dayOfWeek) && (gMatchCallTrainers[matchCallId].rematchAvailability[1] == timeOfDay) &&
-			(!FlagGet(gMatchCallTrainers[matchCallId].rematchOfferedFlag));
+			(!FlagGet(gMatchCallTrainers[matchCallId].rematchForcedFlag));
 }
 
 bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, const struct PhoneContact *phoneContact)
@@ -1848,11 +2031,11 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
     rematchId = getRematchIdFromTrainerId(trainerId);
     sBattleFrontierStreakInfo.facilityId = 0;
 
-    if (FlagGet(gMatchCallTrainers[matchCallId].rematchOfferedFlag))
+    /*if (FlagGet(gMatchCallTrainers[matchCallId].rematchForcedFlag))
     {
     	matchCallText = &gMatchCallTrainers[matchCallId].remindRematchText;
     }
-    else if (FlagGet(gMatchCallTrainers[matchCallId].giftFlag))
+    else */if (FlagGet(gMatchCallTrainers[matchCallId].giftFlag))
     {
     	matchCallText = &gMatchCallTrainers[matchCallId].remindGiftText;
     }
@@ -1860,16 +2043,16 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
     {
     	matchCallText = &gMatchCallTrainers[matchCallId].remindoutbreakText;
     }
-    else if(gMatchCallTrainers[matchCallId].rematchOfferedFlag &&
+    /*else if(gMatchCallTrainers[matchCallId].rematchForcedFlag &&
     		((!isCallingPlayer && CanMatchCallIdAcceptRematch(matchCallId, gLocalTime.dayOfWeek, GetTimeOfDay(gLocalTime.hours))) ||
             (isCallingPlayer  && ShouldTrainerRequestBattle(rematchId, matchCallId))))
 	{
 		matchCallText = &gMatchCallTrainers[matchCallId].rematchText;
 		retVal = TRUE;
-		FlagSet(gMatchCallTrainers[matchCallId].rematchOfferedFlag);
+		FlagSet(gMatchCallTrainers[matchCallId].rematchForcedFlag);
 		gSaveBlock1Ptr->trainerRematches[rematchId] = 1;
 		UpdateRematchIfDefeated(rematchId);
-	}
+	}*/
     else if (gMatchCallTrainers[matchCallId].giftFlag && (randomNumber == 1 || randomNumber == 2 || randomNumber == 3) && !FlagGet(gMatchCallTrainers[matchCallId].giftFlag) && isCallingPlayer)
     {
     	FlagSet(gMatchCallTrainers[matchCallId].giftFlag);
@@ -2164,7 +2347,7 @@ static int GetNumOwnedBadges(void)
 static bool32 ShouldTrainerRequestBattle(u32 rematchId, u32 matchCallId)
 {
 
-    if(!FlagGet(gMatchCallTrainers[matchCallId].rematchOfferedFlag))
+    if(!FlagGet(gMatchCallTrainers[matchCallId].rematchForcedFlag))
     {
         u32 i = Random() % 3;
         if(i == 0 || i == 1)
