@@ -616,17 +616,13 @@ void PatchMurkrowPaletteToSlot10(void)
     LoadPaletteDayNight(&gObjectEventPal_Murkrow, 16 * 10 + 0x100, 0x20);
 }
 
-static bool32 MonHasPlayersOT(struct Pokemon mon)
+static bool32 MonHasPlayersOT(struct Pokemon *mon, u32 playerID)
 {
-    if (GetMonData(&mon, MON_DATA_LANGUAGE) != GAME_LANGUAGE)
+    if (playerID != GetMonData(mon, MON_DATA_OT_ID, NULL))
         return FALSE;
 
-    GetMonData(&mon, MON_DATA_OT_NAME, gStringVar1);
-
+    GetMonData(mon, MON_DATA_OT_NAME, gStringVar1);
     if (StringCompare(gSaveBlock2Ptr->playerName, gStringVar1))
-        return FALSE;
-
-    if (GetPlayerIDAsU32() != GetMonData(&mon, MON_DATA_OT_ID, NULL))
         return FALSE;
 
     return TRUE;
@@ -635,32 +631,25 @@ static bool32 MonHasPlayersOT(struct Pokemon mon)
 void CheckOwnAllBeasts(void)
 {
     u32 i, j, k;
-    u16 species = SPECIES_BLISSEY; //incremented in k loop to Raikou to start
-    bool32 hasRaikou = FALSE;
-    bool32 hasEntei = FALSE;
-    bool32 hasSuicune = FALSE;
-    bool32 hasMon = FALSE;
     struct Pokemon tempMon;
+    u32 species = SPECIES_RAIKOU;
+    bool32 hasBeasts[3] = {FALSE, FALSE, FALSE}; // array to store the values of hasRaikou, hasEntei, hasSuicune
+    bool32 hasMon = FALSE;
+    u32 playerID = GetPlayerIDAsU32();
 
-    for(k = 0; k < 3; k++)
+    for(k = 0; k < 3; k++, species++)
     {
-        if(k == 1)
-            hasRaikou = hasMon;
-        if(k == 2)
-            hasEntei = hasMon;
-        species++;
         hasMon = FALSE;
 
         // check party for species
         for(i = 0; i < PARTY_SIZE && !hasMon; i++)
         {
-
             if(species == GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, 0))
             {
-                hasMon = MonHasPlayersOT(gPlayerParty[i]);
+                hasMon = MonHasPlayersOT(&gPlayerParty[i], playerID);
             }
         }
-        // check boxes for species
+        // check boxes for species; doesn't run if mon with playerOT found in party
         for(i = 0; i < TOTAL_BOXES_COUNT && !hasMon; i++)
         {
             for(j = 0; j < IN_BOX_COUNT && !hasMon; j++)
@@ -668,27 +657,16 @@ void CheckOwnAllBeasts(void)
                 if(GetBoxMonDataAt(i, j, MON_DATA_SPECIES) == species)
                 {
                     BoxMonToMon(GetBoxedMonPtr(i, j), &tempMon);
-                    hasMon = MonHasPlayersOT(tempMon);
+                    hasMon = MonHasPlayersOT(&tempMon, playerID);
                 }
             }
         }
+        hasBeasts[k] = hasMon;
     }
-    hasSuicune = hasMon;
-    gSpecialVar_0x800B = FALSE;
-    if(hasSuicune)
-    {
-        gSpecialVar_0x800B = TRUE;
-    }
-    if(hasRaikou && hasEntei && hasSuicune)
-    {
-        gSpecialVar_Result = TRUE;
-        return;
-    }
-    else
-    {
-        gSpecialVar_Result = FALSE;
-        return;
-    }  
+    
+    gSpecialVar_0x800B = hasBeasts[2]; // Player has Suicune
+    gSpecialVar_Result = hasBeasts[0] && hasBeasts[1] && hasBeasts[2]; // Player has all three
+    return;
 }
 
 void SetLandmarkFlagIfEnteredFromNorth(void)
@@ -709,46 +687,29 @@ void CheckHasFossils(void)
     bool8 haveRootFossil = gSpecialVar_0x800B;
     bool8 haveClawFossil = gSpecialVar_Result;
 
-    if(haveClawFossil)
-        multichoiceCase |= 1 << 4;
-    if(haveRootFossil)
-        multichoiceCase |= 1 << 3;
-    if(haveOldAmber)
-        multichoiceCase |= 1 << 2;
-    if(haveDomeFossil)
-        multichoiceCase |= 1 << 1;
-    if(haveHelixFossil)
-        multichoiceCase |= 1 << 0;
+    multichoiceCase = (haveClawFossil << 4) | (haveRootFossil << 3) | (haveOldAmber << 2) | (haveDomeFossil << 1) | haveHelixFossil;
 
     gSpecialVar_Result = multichoiceCase;
 }
 
 void CheckShouldForceBike(void)
 {
-    if(gMapHeader.mapLayoutId == LAYOUT_ROUTE18)
+    if ((gMapHeader.mapLayoutId == LAYOUT_ROUTE18) && (gSaveBlock1Ptr->pos.x <= 41) && (gSaveBlock1Ptr->pos.y <= 11))
     {
-        if(gSaveBlock1Ptr->pos.x <= 41 && gSaveBlock1Ptr->pos.y <= 11)
+        FlagSet(FLAG_SYS_CYCLING_ROAD);
+        if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
         {
-            FlagSet(FLAG_SYS_CYCLING_ROAD);
-            if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
-            {
-                if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
-                    SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_BIKE);
-                return;
-            }
+            SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_BIKE);
+            return;
         }
     }
-    if(gMapHeader.mapLayoutId == LAYOUT_ROUTE16)
+    if ((gMapHeader.mapLayoutId == LAYOUT_ROUTE16) && (gSaveBlock1Ptr->pos.x <= 20) && (gSaveBlock1Ptr->pos.y >= 10))
     {
-        if(gSaveBlock1Ptr->pos.x <= 20 && gSaveBlock1Ptr->pos.y >= 10)
+        FlagSet(FLAG_SYS_CYCLING_ROAD);
+        if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
         {
-            FlagSet(FLAG_SYS_CYCLING_ROAD);
-            if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
-            {
-                if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
-                    SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_BIKE);
-                return;
-            }
+            SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_BIKE);
+            return;
         }
     }
 }
@@ -1031,157 +992,91 @@ static void SetUpRoomDecorCushion(void)
 static void SetUpRoomDecorBigDoll(void)
 {
     FlagSet(FLAG_TEMP_3);
-    if(VarGet(VAR_ROOM_BIG_DOLL) <= BIG_DOLL_REGISTEEL && VarGet(VAR_ROOM_BIG_DOLL) != BIG_DOLL_NONE)
+    u32 bigDoll = VarGet(VAR_ROOM_BIG_DOLL);
+    if(bigDoll <= BIG_DOLL_REGISTEEL && bigDoll != BIG_DOLL_NONE)
     {
         FlagClear(FLAG_TEMP_3);
-        switch(VarGet(VAR_ROOM_BIG_DOLL))
+        static const u32 lookupTable[] = {
+            BIG_DOLL_SNORLAX, OBJ_EVENT_GFX_BIG_SNORLAX_DOLL,
+            BIG_DOLL_ONIX, OBJ_EVENT_GFX_ZBIG_ONIX_DOLL,
+            BIG_DOLL_LAPRAS, OBJ_EVENT_GFX_BIG_LAPRAS_DOLL,
+            BIG_DOLL_RHYDON, OBJ_EVENT_GFX_ZBIG_RHYDON_DOLL,
+            BIG_DOLL_VENUSAUR, OBJ_EVENT_GFX_ZBIG_VENUSAUR_DOLL,
+            BIG_DOLL_CHARIZARD, OBJ_EVENT_GFX_ZBIG_CHARIZARD_DOLL,
+            BIG_DOLL_BLASTOISE, OBJ_EVENT_GFX_ZBIG_BLASTOISE_DOLL,
+            BIG_DOLL_WAILMER, OBJ_EVENT_GFX_ZBIG_WAILMER_DOLL,
+            BIG_DOLL_REGIROCK, OBJ_EVENT_GFX_ZBIG_REGIROCK_DOLL,
+            BIG_DOLL_REGICE, OBJ_EVENT_GFX_ZBIG_REGICE_DOLL,
+            BIG_DOLL_REGISTEEL, OBJ_EVENT_GFX_ZBIG_REGISTEEL_DOLL
+        };
+        u32 i;
+        for (i = 0; i < sizeof(lookupTable) / sizeof(lookupTable[0]); i += 2)
         {
-            case BIG_DOLL_SNORLAX:
-                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_BIG_SNORLAX_DOLL);
+            if (bigDoll == lookupTable[i])
+            {
+                VarSet(VAR_OBJ_GFX_ID_3, lookupTable[i + 1]);
                 break;
-            case BIG_DOLL_ONIX:
-                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_ONIX_DOLL);
-                break;
-            case BIG_DOLL_LAPRAS:
-                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_BIG_LAPRAS_DOLL);
-                break;
-            case BIG_DOLL_RHYDON:
-                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_RHYDON_DOLL);
-                break;
-            case BIG_DOLL_VENUSAUR:
-                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_VENUSAUR_DOLL);
-                break;
-            case BIG_DOLL_CHARIZARD:
-                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_CHARIZARD_DOLL);
-                break;
-            case BIG_DOLL_BLASTOISE:
-                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_BLASTOISE_DOLL);
-                break;
-            case BIG_DOLL_WAILMER:
-                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_WAILMER_DOLL);
-                break;
-            case BIG_DOLL_REGIROCK:
-                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_REGIROCK_DOLL);
-                break;
-            case BIG_DOLL_REGICE:
-                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_REGICE_DOLL);
-                break;
-            case BIG_DOLL_REGISTEEL:
-                VarSet(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_ZBIG_REGISTEEL_DOLL);
-                break;
+            }
         }
     }
 }
 
 static u16 MapOrnamentConstantsToObjectEventGfx(u16 ornament)
 {
-    switch(ornament)
-    {
-        case DOLL_PIKACHU:
-            return OBJ_EVENT_GFX_PIKACHU_DOLL;
-        case DOLL_SURF_PIKACHU:
-            return OBJ_EVENT_GFX_ZSURFING_PIKACHU_DOLL;
-        case DOLL_CLEFAIRY:
-            return OBJ_EVENT_GFX_CLEFAIRY_DOLL;
-        case DOLL_JIGGLYPUFF:
-            return OBJ_EVENT_GFX_JIGGLYPUFF_DOLL;
-        case DOLL_BULBASAUR:
-            return OBJ_EVENT_GFX_ZBULBASAUR_DOLL;
-        case DOLL_ODDISH:
-            return OBJ_EVENT_GFX_ZODDISH_DOLL;
-        case DOLL_GENGAR:
-            return OBJ_EVENT_GFX_ZGENGAR_DOLL;
-        case DOLL_SHELLDER:
-            return OBJ_EVENT_GFX_ZSHELLDER_DOLL;
-        case DOLL_GRIMER:
-            return OBJ_EVENT_GFX_ZGRIMER_DOLL;
-        case DOLL_VOLTORB:
-            return OBJ_EVENT_GFX_ZVOLTORB_DOLL;
-        case DOLL_WEEDLE:
-            return OBJ_EVENT_GFX_ZWEEDLE_DOLL;
-        case DOLL_MAGIKARP:
-            return OBJ_EVENT_GFX_ZMAGIKARP_DOLL;
-        case DOLL_CHARMANDER:
-            return OBJ_EVENT_GFX_ZCHARMANDER_DOLL;
-        case DOLL_SQUIRTLE:
-            return OBJ_EVENT_GFX_ZSQUIRTLE_DOLL;
-        case DOLL_POLIWAG:
-            return OBJ_EVENT_GFX_ZPOLIWAG_DOLL;
-        case DOLL_DIGLETT:
-            return OBJ_EVENT_GFX_ZDIGLETT_DOLL;
-        case DOLL_STARYU:
-            return OBJ_EVENT_GFX_ZSTARYU_DOLL;
-        case DOLL_TENTACOOL:
-            return OBJ_EVENT_GFX_ZTENTACOOL_DOLL;
-        case DOLL_UNOWN:
-            return OBJ_EVENT_GFX_ZUNOWN_DOLL;
-        case DOLL_GEODUDE:
-            return OBJ_EVENT_GFX_ZGEODUDE_DOLL;
-        case DOLL_MACHOP:
-            return OBJ_EVENT_GFX_ZMACHOP_DOLL;
-        case DOLL_SILVER_TROPHY:
-            return OBJ_EVENT_GFX_ZSILVER_TROPHY;
-        case DOLL_GOLD_TROPHY:
-            return OBJ_EVENT_GFX_ZGOLD_TROPHY;
-        case DOLL_MAGNEMITE:
-            return OBJ_EVENT_GFX_ZMAGNEMITE_DOLL;
-        case DOLL_NATU:
-            return OBJ_EVENT_GFX_ZNATU_DOLL;
-        case DOLL_PORYGON2:
-            return OBJ_EVENT_GFX_ZPORYGON2_DOLL;
-        case DOLL_WOOPER:
-            return OBJ_EVENT_GFX_ZWOOPER_DOLL;
-        case DOLL_PICHU:
-            return OBJ_EVENT_GFX_ZPICHU_DOLL;
-        case DOLL_MARILL:
-            return OBJ_EVENT_GFX_ZMARILL_DOLL;
-        case DOLL_TOGEPI:
-            return OBJ_EVENT_GFX_ZTOGEPI_DOLL;
-        case DOLL_CYNDAQUIL:
-            return OBJ_EVENT_GFX_ZCYNDAQUIL_DOLL;
-        case DOLL_CHIKORITA:
-            return OBJ_EVENT_GFX_ZCHIKORITA_DOLL;
-        case DOLL_TOTODILE:
-            return OBJ_EVENT_GFX_ZTOTODILE_DOLL;
-        case DOLL_MEOWTH:
-            return OBJ_EVENT_GFX_ZMEOWTH_DOLL;
-        case DOLL_DITTO:
-            return OBJ_EVENT_GFX_ZDITTO_DOLL;
-        case DOLL_SMOOCHUM:
-            return OBJ_EVENT_GFX_ZSMOOCHUM_DOLL;
-        case DOLL_TREECKO:
-            return OBJ_EVENT_GFX_ZTREECKO_DOLL;
-        case DOLL_TORCHIC:
-            return OBJ_EVENT_GFX_ZTORCHIC_DOLL;
-        case DOLL_MUDKIP:
-            return OBJ_EVENT_GFX_ZMUDKIP_DOLL;
-        case DOLL_DUSKULL:
-            return OBJ_EVENT_GFX_ZDUSKULL_DOLL;
-        case DOLL_WYNAUT:
-            return OBJ_EVENT_GFX_ZWYNAUT_DOLL;
-        case DOLL_BALTOY:
-            return OBJ_EVENT_GFX_ZBALTOY_DOLL;
-        case DOLL_KECLEON:
-            return OBJ_EVENT_GFX_ZKECLEON_DOLL;
-        case DOLL_AZURILL:
-            return OBJ_EVENT_GFX_ZAZURILL_DOLL;
-        case DOLL_SKITTY:
-            return OBJ_EVENT_GFX_ZSKITTY_DOLL;
-        case DOLL_SWABLU:
-            return OBJ_EVENT_GFX_ZSWABLU_DOLL;
-        case DOLL_GULPIN:
-            return OBJ_EVENT_GFX_ZGULPIN_DOLL;
-        case DOLL_LOTAD:
-            return OBJ_EVENT_GFX_ZLOTAD_DOLL;
-        case DOLL_SEEDOT:
-            return OBJ_EVENT_GFX_ZSEEDOT_DOLL;
-        case DOLL_SILVER_SHIELD:
-            return OBJ_EVENT_GFX_ZSILVER_SHIELD;
-        case DOLL_GOLD_SHIELD:
-            return OBJ_EVENT_GFX_ZGOLD_SHIELD;
-        default:
-            return OBJ_EVENT_GFX_ZUNOWN_DOLL;
-    }
+    static const u16 ornamentToGfx[] = {
+        [DOLL_PIKACHU] = OBJ_EVENT_GFX_PIKACHU_DOLL,
+        [DOLL_SURF_PIKACHU] = OBJ_EVENT_GFX_ZSURFING_PIKACHU_DOLL,
+        [DOLL_CLEFAIRY] = OBJ_EVENT_GFX_CLEFAIRY_DOLL,
+        [DOLL_JIGGLYPUFF] = OBJ_EVENT_GFX_JIGGLYPUFF_DOLL,
+        [DOLL_BULBASAUR] = OBJ_EVENT_GFX_ZBULBASAUR_DOLL,
+        [DOLL_ODDISH] = OBJ_EVENT_GFX_ZODDISH_DOLL,
+        [DOLL_GENGAR] = OBJ_EVENT_GFX_ZGENGAR_DOLL,
+        [DOLL_SHELLDER] = OBJ_EVENT_GFX_ZSHELLDER_DOLL,
+        [DOLL_GRIMER] = OBJ_EVENT_GFX_ZGRIMER_DOLL,
+        [DOLL_VOLTORB] = OBJ_EVENT_GFX_ZVOLTORB_DOLL,
+        [DOLL_WEEDLE] = OBJ_EVENT_GFX_ZWEEDLE_DOLL,
+        [DOLL_MAGIKARP] = OBJ_EVENT_GFX_ZMAGIKARP_DOLL,
+        [DOLL_CHARMANDER] = OBJ_EVENT_GFX_ZCHARMANDER_DOLL,
+        [DOLL_SQUIRTLE] = OBJ_EVENT_GFX_ZSQUIRTLE_DOLL,
+        [DOLL_POLIWAG] = OBJ_EVENT_GFX_ZPOLIWAG_DOLL,
+        [DOLL_DIGLETT] = OBJ_EVENT_GFX_ZDIGLETT_DOLL,
+        [DOLL_STARYU] = OBJ_EVENT_GFX_ZSTARYU_DOLL,
+        [DOLL_TENTACOOL] = OBJ_EVENT_GFX_ZTENTACOOL_DOLL,
+        [DOLL_UNOWN] = OBJ_EVENT_GFX_ZUNOWN_DOLL,
+        [DOLL_GEODUDE] = OBJ_EVENT_GFX_ZGEODUDE_DOLL,
+        [DOLL_MACHOP] = OBJ_EVENT_GFX_ZMACHOP_DOLL,
+        [DOLL_SILVER_TROPHY] = OBJ_EVENT_GFX_ZSILVER_TROPHY,
+        [DOLL_GOLD_TROPHY] = OBJ_EVENT_GFX_ZGOLD_TROPHY,
+        [DOLL_MAGNEMITE] = OBJ_EVENT_GFX_ZMAGNEMITE_DOLL,
+        [DOLL_NATU] = OBJ_EVENT_GFX_ZNATU_DOLL,
+        [DOLL_PORYGON2] = OBJ_EVENT_GFX_ZPORYGON2_DOLL,
+        [DOLL_WOOPER] = OBJ_EVENT_GFX_ZWOOPER_DOLL,
+        [DOLL_PICHU] = OBJ_EVENT_GFX_ZPICHU_DOLL,
+        [DOLL_MARILL] = OBJ_EVENT_GFX_ZMARILL_DOLL,
+        [DOLL_TOGEPI] = OBJ_EVENT_GFX_ZTOGEPI_DOLL,
+        [DOLL_CYNDAQUIL] = OBJ_EVENT_GFX_ZCYNDAQUIL_DOLL,
+        [DOLL_CHIKORITA] = OBJ_EVENT_GFX_ZCHIKORITA_DOLL,
+        [DOLL_TOTODILE] = OBJ_EVENT_GFX_ZTOTODILE_DOLL,
+        [DOLL_MEOWTH] = OBJ_EVENT_GFX_ZMEOWTH_DOLL,
+        [DOLL_DITTO] = OBJ_EVENT_GFX_ZDITTO_DOLL,
+        [DOLL_SMOOCHUM] = OBJ_EVENT_GFX_ZSMOOCHUM_DOLL,
+        [DOLL_TREECKO] = OBJ_EVENT_GFX_ZTREECKO_DOLL,
+        [DOLL_TORCHIC] = OBJ_EVENT_GFX_ZTORCHIC_DOLL,
+        [DOLL_MUDKIP] = OBJ_EVENT_GFX_ZMUDKIP_DOLL,
+        [DOLL_DUSKULL] = OBJ_EVENT_GFX_ZDUSKULL_DOLL,
+        [DOLL_WYNAUT] = OBJ_EVENT_GFX_ZWYNAUT_DOLL,
+        [DOLL_BALTOY] = OBJ_EVENT_GFX_ZBALTOY_DOLL,
+        [DOLL_KECLEON] = OBJ_EVENT_GFX_ZKECLEON_DOLL,
+        [DOLL_AZURILL] = OBJ_EVENT_GFX_ZAZURILL_DOLL,
+        [DOLL_SKITTY] = OBJ_EVENT_GFX_ZSKITTY_DOLL,
+        [DOLL_SWABLU] = OBJ_EVENT_GFX_ZSWABLU_DOLL,
+        [DOLL_GULPIN] = OBJ_EVENT_GFX_ZGULPIN_DOLL,
+        [DOLL_LOTAD] = OBJ_EVENT_GFX_ZLOTAD_DOLL,
+        [DOLL_SEEDOT] = OBJ_EVENT_GFX_ZSEEDOT_DOLL,
+        [DOLL_SILVER_SHIELD] = OBJ_EVENT_GFX_ZSILVER_SHIELD,
+        [DOLL_GOLD_SHIELD] = OBJ_EVENT_GFX_ZGOLD_SHIELD,
+    };
+    return ornamentToGfx[ornament];
 }
 
 extern const u16 gObjectEventPal_ShieldDecorations;
@@ -1196,19 +1091,24 @@ void PatchShieldPaletteToSlot11(void)
 
 static void SetUpRoomDecorOrnaments(void)
 {
+    u32 roomTable = VarGet(VAR_ROOM_TABLE);
+    u32 leftOrnament = VarGet(VAR_ROOM_LEFT_ORNAMENT);
+    u32 rightOrnament = VarGet(VAR_ROOM_RIGHT_ORNAMENT);
+
     FlagSet(FLAG_TEMP_1);
     FlagSet(FLAG_TEMP_2);
-    if(VarGet(VAR_ROOM_TABLE) <= DESK_HARD && VarGet(VAR_ROOM_TABLE) != DESK_NONE) // no ornament if no table
+
+    if(roomTable <= DESK_HARD && roomTable != DESK_NONE) // no ornament if no table
     {
-        if(VarGet(VAR_ROOM_LEFT_ORNAMENT) <= DOLL_GOLD_SHIELD && VarGet(VAR_ROOM_LEFT_ORNAMENT) != DOLL_NONE)
+        if(leftOrnament <= DOLL_GOLD_SHIELD && leftOrnament != DOLL_NONE)
         {
             FlagClear(FLAG_TEMP_1);
-            VarSet(VAR_OBJ_GFX_ID_0, MapOrnamentConstantsToObjectEventGfx(VarGet(VAR_ROOM_LEFT_ORNAMENT)));
+            VarSet(VAR_OBJ_GFX_ID_0, MapOrnamentConstantsToObjectEventGfx(leftOrnament));
         }
-        if(VarGet(VAR_ROOM_RIGHT_ORNAMENT) <= DOLL_GOLD_SHIELD && VarGet(VAR_ROOM_RIGHT_ORNAMENT) != DOLL_NONE)
+        if(rightOrnament <= DOLL_GOLD_SHIELD && rightOrnament != DOLL_NONE)
         {
             FlagClear(FLAG_TEMP_2);
-            VarSet(VAR_OBJ_GFX_ID_1, MapOrnamentConstantsToObjectEventGfx(VarGet(VAR_ROOM_RIGHT_ORNAMENT)));
+            VarSet(VAR_OBJ_GFX_ID_1, MapOrnamentConstantsToObjectEventGfx(rightOrnament));
         }
         PatchShieldPaletteToSlot11();
     }
