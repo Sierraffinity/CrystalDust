@@ -721,15 +721,9 @@ static void Task_WarpAndLoadMap(u8 taskId)
         task->tState++;
         break;
     case 1:
-        if (!PaletteFadeActive())
+        if (!PaletteFadeActive() && BGMusicStopped())
         {
-            if (task->data[1] == 0)
-            {
-                ClearMirageTowerPulseBlendEffect();
-                task->data[1] = 1;
-            }
-            if (BGMusicStopped())
-                task->tState++;
+            task->tState++;
         }
         break;
     case 2:

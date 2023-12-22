@@ -1075,39 +1075,31 @@ static bool32 BerryTreeGrow(struct BerryTree *tree)
 
 void BerryTreeTimeUpdate(s32 minutes)
 {
-    int i;
-    struct BerryTree *tree;
+    struct BerryTree *tree = gSaveBlock1Ptr->berryTrees;
 
-    for (i = 0; i < BERRY_TREES_COUNT; i++)
+    while (tree && tree->berry && tree->stage && !tree->stopGrowth)
     {
-        tree = &gSaveBlock1Ptr->berryTrees[i];
-
-        if (tree->berry && tree->stage && !tree->stopGrowth)
+        if (minutes >= GetStageDurationByBerryType(tree->berry) * 71)
         {
-            if (minutes >= GetStageDurationByBerryType(tree->berry) * 71)
+            *tree = gBlankBerryTree;
+        }
+        else
+        {
+            s32 time = minutes;
+            u8 stagesToIncrease = time / tree->minutesUntilNextStage;
+            u8 remainingMinutes = time % tree->minutesUntilNextStage;
+            tree->stage += stagesToIncrease;
+            tree->minutesUntilNextStage -= remainingMinutes;
+            if (tree->minutesUntilNextStage <= 0)
             {
-                *tree = gBlankBerryTree;
-            }
-            else
-            {
-                s32 time = minutes;
-
-                while (time != 0)
-                {
-                    if (tree->minutesUntilNextStage > time)
-                    {
-                        tree->minutesUntilNextStage -= time;
-                        break;
-                    }
-                    time -= tree->minutesUntilNextStage;
-                    tree->minutesUntilNextStage = GetStageDurationByBerryType(tree->berry);
-                    if (!BerryTreeGrow(tree))
-                        break;
-                    if (tree->stage == BERRY_STAGE_BERRIES)
-                        tree->minutesUntilNextStage *= 4;
-                }
+                tree->minutesUntilNextStage = GetStageDurationByBerryType(tree->berry);
+                if (!BerryTreeGrow(tree))
+                    return;
+                if (tree->stage == BERRY_STAGE_BERRIES)
+                    tree->minutesUntilNextStage *= 4;
             }
         }
+        tree++;
     }
 }
 

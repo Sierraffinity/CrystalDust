@@ -25,7 +25,7 @@ u16 GetBehaviorByMetatileId(u16 metatileId);
 void GetCameraFocusCoords(u16 *x, u16 *y);
 u8 MapGridGetMetatileLayerTypeAt(int x, int y);
 u8 MapGridGetZCoordAt(int x, int y);
-bool8 CameraMove(int deltaX, int deltaY);
+bool32 CameraMove(int deltaX, int deltaY);
 void SaveMapView(void);
 void SetCameraFocusCoords(u16 x, u16 y);
 void InitMap(void);

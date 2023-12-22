@@ -1150,7 +1150,7 @@ static void ClearObjectEvent(struct ObjectEvent *objectEvent)
 
 static void ClearAllObjectEvents(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
         ClearObjectEvent(&gObjectEvents[i]);
@@ -1671,7 +1671,7 @@ u8 AddPseudoObjectEvent(u16 graphicsId, void (*callback)(struct Sprite *), s16 x
     struct SpriteTemplate *spriteTemplate;
     const struct SubspriteTable *subspriteTables;
     struct Sprite *sprite;
-    u8 spriteId;
+    u32 spriteId;
 
     spriteTemplate = malloc(sizeof(struct SpriteTemplate));
     MakeObjectTemplateFromObjectEventGraphicsInfo(graphicsId, callback, spriteTemplate, &subspriteTables);
@@ -1695,7 +1695,7 @@ u8 AddPseudoObjectEvent(u16 graphicsId, void (*callback)(struct Sprite *), s16 x
 // Used when resources are limiting, e.g. for the audience in contests or group members in Union Room
 u8 CreateObjectSprite(u16 graphicsId, u8 objectEventId, s16 x, s16 y, u8 z, u8 direction)
 {
-    u8 spriteId;
+    u32 spriteId;
     struct Sprite *sprite;
     struct SpriteTemplate spriteTemplate;
     const struct SubspriteTable *subspriteTables;
@@ -1744,15 +1744,15 @@ u8 CreateObjectSprite(u16 graphicsId, u8 objectEventId, s16 x, s16 y, u8 z, u8 d
 
 void TrySpawnObjectEvents(s16 cameraX, s16 cameraY)
 {
-    u8 i;
-    u8 objectCount;
+    u32 i;
+    u32 objectCount;
 
     if (gMapHeader.events != NULL)
     {
-        s16 left = gSaveBlock1Ptr->pos.x - 2;
-        s16 right = gSaveBlock1Ptr->pos.x + 17;
-        s16 top = gSaveBlock1Ptr->pos.y;
-        s16 bottom = gSaveBlock1Ptr->pos.y + 16;
+        s32 left = gSaveBlock1Ptr->pos.x - 2;
+        s32 right = gSaveBlock1Ptr->pos.x + 17;
+        s32 top = gSaveBlock1Ptr->pos.y;
+        s32 bottom = gSaveBlock1Ptr->pos.y + 16;
 
         if (InBattlePyramid())
             objectCount = GetNumBattlePyramidObjectEvents();
@@ -1764,8 +1764,8 @@ void TrySpawnObjectEvents(s16 cameraX, s16 cameraY)
         for (i = 0; i < objectCount; i++)
         {
             struct ObjectEventTemplate *template = &gSaveBlock1Ptr->objectEventTemplates[i];
-            s16 npcX = template->x + 7;
-            s16 npcY = template->y + 7;
+            s32 npcX = template->x + 7;
+            s32 npcY = template->y + 7;
 
             if (top <= npcY && bottom >= npcY && left <= npcX && right >= npcX
                 && !FlagGet(template->flagId))
@@ -1776,8 +1776,8 @@ void TrySpawnObjectEvents(s16 cameraX, s16 cameraY)
 
 void RemoveObjectEventsOutsideView(void)
 {
-    u8 i, j;
-    bool8 isActiveLinkPlayer;
+    u32 i, j;
+    bool32 isActiveLinkPlayer;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
@@ -1817,7 +1817,7 @@ static void RemoveObjectEventIfOutsideView(struct ObjectEvent *objectEvent)
 
 void SpawnObjectEventsOnReturnToField(s16 x, s16 y)
 {
-    u8 i;
+    u32 i;
 
     ClearPlayerAvatarInfo();
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
@@ -1830,7 +1830,7 @@ void SpawnObjectEventsOnReturnToField(s16 x, s16 y)
 
 static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
 {
-    u8 i;
+    u32 i;
     u8 paletteSlot;
     struct Sprite *sprite;
     struct ObjectEvent *objectEvent;
@@ -2282,9 +2282,9 @@ void ShiftStillObjectEventCoords(struct ObjectEvent *objectEvent)
 
 void UpdateObjectEventCoordsForCameraUpdate(void)
 {
-    u8 i;
-    s16 dx;
-    s16 dy;
+    u32 i;
+    s32 dx;
+    s32 dy;
 
     if (gCamera.active)
     {
@@ -2307,7 +2307,7 @@ void UpdateObjectEventCoordsForCameraUpdate(void)
 
 u8 GetObjectEventIdByXYZ(u16 x, u16 y, u8 z)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
@@ -8520,7 +8520,7 @@ bool8 FreezeObjectEvent(struct ObjectEvent *objectEvent)
 
 void FreezeObjectEvents(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
         if (gObjectEvents[i].active && i != gPlayerAvatar.objectEventId)
             FreezeObjectEvent(&gObjectEvents[i]);
@@ -8528,7 +8528,7 @@ void FreezeObjectEvents(void)
 
 void FreezeObjectEventsExceptOne(u8 objectEventId)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
         if (i != objectEventId && gObjectEvents[i].active && i != gPlayerAvatar.objectEventId)
             FreezeObjectEvent(&gObjectEvents[i]);
@@ -8546,7 +8546,7 @@ void UnfreezeObjectEvent(struct ObjectEvent *objectEvent)
 
 void UnfreezeObjectEvents(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
         if (gObjectEvents[i].active)
             UnfreezeObjectEvent(&gObjectEvents[i]);

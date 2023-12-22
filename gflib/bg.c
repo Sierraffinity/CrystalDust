@@ -371,8 +371,8 @@ void SetBgMode(u8 bgMode)
 
 u16 LoadBgTiles(u8 bg, const void* src, u16 size, u16 destOffset)
 {
-    u16 tileOffset;
-    u8 cursor;
+    u32 tileOffset;
+    u32 cursor;
 
     if (GetBgControlAttribute(bg, BG_CTRL_ATTR_PALETTEMODE) == 0)
     {
@@ -392,17 +392,12 @@ u16 LoadBgTiles(u8 bg, const void* src, u16 size, u16 destOffset)
 
     sDmaBusyBitfield[cursor / 0x20] |= (1 << (cursor % 0x20));
 
-    if (gUnneededFireRedVariable == 1)
-    {
-        DummiedOutFireRedLeafGreenTileAllocFunc(bg, tileOffset / 0x20, size / 0x20, 1);
-    }
-
     return cursor;
 }
 
 u16 LoadBgTilemap(u8 bg, const void *src, u16 size, u16 destOffset)
 {
-    u8 cursor = LoadBgVram(bg, src, size, destOffset * 2, DISPCNT_MODE_2);
+    u32 cursor = LoadBgVram(bg, src, size, destOffset * 2, DISPCNT_MODE_2);
 
     if (cursor == 0xFF)
     {
@@ -444,8 +439,8 @@ bool8 IsDma3ManagerBusyWithBgCopy(void)
 
     for (i = 0; i < 0x80; i++)
     {
-        u8 div = i / 0x20;
-        u8 mod = i % 0x20;
+        u32 div = i / 0x20;
+        u32 mod = i % 0x20;
 
         if ((sDmaBusyBitfield[div] & (1 << mod)))
         {

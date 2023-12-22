@@ -118,20 +118,24 @@ void TransferPlttBuffer(void)
 u8 UpdatePaletteFade(void)
 {
     u8 result;
-    u8 dummy = 0;
 
     if (sPlttBufferTransferPending)
         return PALETTE_FADE_STATUS_LOADING;
 
-    if (gPaletteFade.mode == NORMAL_FADE)
-        result = UpdateNormalPaletteFade();
-    else if (gPaletteFade.mode == FAST_FADE)
-        result = UpdateFastPaletteFade();
-    else
-        result = UpdateHardwarePaletteFade();
+    switch (gPaletteFade.mode)
+    {
+        case NORMAL_FADE:
+            result = UpdateNormalPaletteFade();
+            break;
+        case FAST_FADE:
+            result = UpdateFastPaletteFade();
+            break;
+        default:
+            result = UpdateHardwarePaletteFade();
+            break;
+    }
 
-    sPlttBufferTransferPending = gPaletteFade.multipurpose1 | dummy;
-
+    sPlttBufferTransferPending = gPaletteFade.multipurpose1;
     return result;
 }
 
@@ -160,48 +164,42 @@ void ReadPlttIntoBuffers(void)
 
 bool8 BeginNormalPaletteFade(u32 selectedPalettes, s8 delay, u8 startY, u8 targetY, u16 blendColor)
 {
-    u8 temp;
-    u16 color = blendColor;
-
+    u8 bufferTransferState;
+    
     if (gPaletteFade.active)
     {
         return FALSE;
     }
-    else
+
+    gPaletteFade.deltaY = 2;
+
+    if (delay < 0)
     {
-        gPaletteFade.deltaY = 2;
-
-        if (delay < 0)
-        {
-            gPaletteFade.deltaY += (delay * -1);
-            delay = 0;
-        }
-
-        gPaletteFade_selectedPalettes = selectedPalettes;
-        gPaletteFade.delayCounter = delay;
-        gPaletteFade_delay = delay;
-        gPaletteFade.y = startY;
-        gPaletteFade.targetY = targetY;
-        gPaletteFade.blendColor = color;
-        gPaletteFade.active = 1;
-        gPaletteFade.mode = NORMAL_FADE;
-
-        if (startY < targetY)
-            gPaletteFade.yDec = 0;
-        else
-            gPaletteFade.yDec = 1;
-
-        UpdatePaletteFade();
-
-        temp = gPaletteFade.bufferTransferDisabled;
-        gPaletteFade.bufferTransferDisabled = 0;
-        CpuCopy32(gPlttBufferFaded, (void *)PLTT, PLTT_SIZE);
-        sPlttBufferTransferPending = 0;
-        if (gPaletteFade.mode == HARDWARE_FADE && gPaletteFade.active)
-            UpdateBlendRegisters();
-        gPaletteFade.bufferTransferDisabled = temp;
-        return TRUE;
+        gPaletteFade.deltaY += (delay * -1);
+        delay = 0;
     }
+
+    gPaletteFade_selectedPalettes = selectedPalettes;
+    gPaletteFade.delayCounter = delay;
+    gPaletteFade_delay = delay;
+    gPaletteFade.y = startY;
+    gPaletteFade.targetY = targetY;
+    gPaletteFade.blendColor = blendColor;
+    gPaletteFade.active = 1;
+    gPaletteFade.mode = NORMAL_FADE;
+
+    gPaletteFade.yDec = startY >= targetY;
+
+    UpdatePaletteFade();
+
+    bufferTransferState = gPaletteFade.bufferTransferDisabled;
+    gPaletteFade.bufferTransferDisabled = 0;
+    CpuCopy32(gPlttBufferFaded, (void *)PLTT, PLTT_SIZE);
+    sPlttBufferTransferPending = 0;
+    if (gPaletteFade.mode == HARDWARE_FADE && gPaletteFade.active)
+        UpdateBlendRegisters();
+    gPaletteFade.bufferTransferDisabled = bufferTransferState;
+    return TRUE;
 }
 
 bool8 unref_sub_80A1C1C(u32 a1, u8 a2, u8 a3, u8 a4, u16 a5)
@@ -375,7 +373,6 @@ void ResetPaletteFadeControl(void)
     gPaletteFade.targetY = 0;
     gPaletteFade.blendColor = 0;
     gPaletteFade.active = 0;
-    gPaletteFade.multipurpose2 = 0; // assign same value twice
     gPaletteFade.yDec = 0;
     gPaletteFade.bufferTransferDisabled = 0;
     gPaletteFade.shouldResetBlendRegisters = 0;
@@ -821,18 +818,14 @@ static bool8 IsSoftwarePaletteFadeFinishing(void)
             gPaletteFade.active = 0;
             gPaletteFade.softwareFadeFinishing = 0;
             gPaletteFade.softwareFadeFinishingCounter = 0;
+            return TRUE;
         }
         else
         {
             gPaletteFade.softwareFadeFinishingCounter++;
         }
-
-        return TRUE;
     }
-    else
-    {
-        return FALSE;
-    }
+    return FALSE;
 }
 
 void BlendPalettes(u32 selectedPalettes, u8 coeff, u16 color)

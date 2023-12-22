@@ -828,15 +828,20 @@ void SetPlayerAvatarTransitionFlags(u16 transitionFlags)
 
 static void DoPlayerAvatarTransition(void)
 {
-    u8 i;
     u8 flags = gPlayerAvatar.transitionFlags;
 
     if (flags != 0)
     {
-        for (i = 0; i < ARRAY_COUNT(sPlayerAvatarTransitionFuncs); i++, flags >>= 1)
+        u32 index = 0;
+        while (flags != 0)
         {
             if (flags & 1)
-                sPlayerAvatarTransitionFuncs[i](&gObjectEvents[gPlayerAvatar.objectEventId]);
+            {
+                void (*transitionFunc)(struct ObjectEvent*) = sPlayerAvatarTransitionFuncs[index];
+                transitionFunc(&gObjectEvents[gPlayerAvatar.objectEventId]);
+            }
+            flags >>= 1;
+            index++;
         }
         gPlayerAvatar.transitionFlags = 0;
     }

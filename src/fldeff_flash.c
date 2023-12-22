@@ -153,9 +153,9 @@ void CB2_DoChangeMap(void)
 
 static bool8 TryDoMapTransition(void)
 {
-    u8 i;
-    u8 fromType = GetLastUsedWarpMapType();
-    u8 toType = GetCurrentMapType();
+    u32 i;
+    u32 fromType = GetLastUsedWarpMapType();
+    u32 toType = GetCurrentMapType();
 
     for (i = 0; sTransitionTypes[i].fromType; i++)
     {
@@ -245,8 +245,8 @@ static void Task_ExitCaveTransition2(u8 taskId)
 
 static void Task_ExitCaveTransition3(u8 taskId)
 {
-    u16 count = gTasks[taskId].data[1];
-    u16 blend = count + 0x1000;
+    u32 count = gTasks[taskId].data[1];
+    u32 blend = count + 0x1000;
 
     SetGpuReg(REG_OFFSET_BLDALPHA, blend);
     if (count <= 0x10)
@@ -262,7 +262,7 @@ static void Task_ExitCaveTransition3(u8 taskId)
 
 static void Task_ExitCaveTransition4(u8 taskId)
 {
-    u16 count;
+    u32 count;
 
     SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 16));
     count = gTasks[taskId].data[2];
@@ -325,7 +325,7 @@ static void Task_EnterCaveTransition2(u8 taskId)
 
 static void Task_EnterCaveTransition3(u8 taskId)
 {
-    u16 count = gTasks[taskId].data[2];
+    u32 count = gTasks[taskId].data[2];
 
     if (count < 16)
     {
@@ -349,8 +349,8 @@ static void Task_EnterCaveTransition3(u8 taskId)
 
 static void Task_EnterCaveTransition4(u8 taskId)
 {
-    u16 count = 16 - gTasks[taskId].data[1];
-    u16 blend = count + 0x1000;
+    u32 count = 16 - gTasks[taskId].data[1];
+    u32 blend = count + 0x1000;
 
     SetGpuReg(REG_OFFSET_BLDALPHA, blend);
     if (count)

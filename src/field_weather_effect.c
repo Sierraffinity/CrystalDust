@@ -2540,18 +2540,6 @@ void ResumePausedWeather(void)
 {
     u8 weather = GetSav1Weather();
 
-    if (weather == WEATHER_ABNORMAL)
-    {
-        if (!FuncIsActiveTask(Task_DoAbnormalWeather))
-            CreateAbnormalWeatherTask();
-        weather = gCurrentAbnormalWeather;
-    }
-    else
-    {
-        if (FuncIsActiveTask(Task_DoAbnormalWeather))
-            DestroyTask(FindTaskIdByFunc(Task_DoAbnormalWeather));
-        gCurrentAbnormalWeather = WEATHER_DOWNPOUR;
-    }
     SetCurrentAndNextWeather(weather);
 }
 

@@ -902,9 +902,7 @@ void FieldEffectFreePaletteIfUnused(u8 paletteNum)
 
 void FieldEffectActiveListClear(void)
 {
-    u8 i;
-    for (i = 0; i < ARRAY_COUNT(sActiveList); i++)
-        sActiveList[i] = 0xFF;
+    memset(sActiveList, 0xFF, sizeof(sActiveList));
 }
 
 void FieldEffectActiveListAdd(u8 id)

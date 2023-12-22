@@ -4,13 +4,13 @@
 
 static bool32 IsCurMapInLocationList(const u16 *list)
 {
-    s32 i;
-    u16 locSum = (gSaveBlock1Ptr->location.mapGroup << 8) + (gSaveBlock1Ptr->location.mapNum);
+    u16 locSum = (gSaveBlock1Ptr->location.mapGroup << 8) | (gSaveBlock1Ptr->location.mapNum);
 
-    for (i = 0; list[i] != 0xFFFF; i++)
+    while (*list != 0xFFFF)
     {
-        if (list[i] == locSum)
+        if (*list == locSum)
             return TRUE;
+        list++;
     }
 
     return FALSE;
@@ -103,7 +103,6 @@ void TrySetMapSaveWarpStatus(void)
 {
     TrySetPokeCenterWarpStatus();
     TrySetReloadWarpStatus();
-    sub_81AFD5C();
 }
 
 // In FRLG, only 0x1, 0x10, and 0x20 are set when the pokedex is received

@@ -48,15 +48,15 @@ static void UpdatePerDay(struct Time *localTime)
         daysSince = localTime->days - *days;
         ClearDailyFlags();
         SetFruitTreeMetatiles(TRUE);
-        UpdateDewfordTrendPerDay(daysSince);
-        UpdateTVShowsPerDay(daysSince);
+        //UpdateDewfordTrendPerDay(daysSince);
+        //UpdateTVShowsPerDay(daysSince);
         UpdateWeatherPerDay(daysSince);
         UpdatePartyPokerusTime(daysSince);
         UpdateMirageRnd(daysSince);
         //UpdateBirchState(daysSince);
         UpdateFrontierManiac(daysSince);
         UpdateFrontierGambler(daysSince);
-        SetShoalItemFlag(daysSince);
+        //SetShoalItemFlag(daysSince);
         SetRandomLotteryNumber(daysSince);
         UpdateForcedCallsPerDay();
         MatchCall_TryEndMassOutbreak(daysSince);
@@ -77,13 +77,10 @@ static void UpdatePerMinute(struct Time *localTime)
 
     CalcTimeDifference(&difference, &gSaveBlock2Ptr->lastBerryTreeUpdate, localTime);
     minutes = 24 * 60 * difference.days + 60 * difference.hours + difference.minutes;
-    if (minutes != 0)
+    if (minutes > 0)
     {
-        if (minutes >= 0)
-        {
-            BerryTreeTimeUpdate(minutes);
-            gSaveBlock2Ptr->lastBerryTreeUpdate = *localTime;
-        }
+        BerryTreeTimeUpdate(minutes);
+        gSaveBlock2Ptr->lastBerryTreeUpdate = *localTime;
     }
 }
 

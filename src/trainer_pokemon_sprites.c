@@ -54,10 +54,7 @@ static void DummyPicSpriteCallback(struct Sprite *sprite)
 
 bool16 ResetAllPicSprites(void)
 {
-    int i;
-
-    for (i = 0; i < PICS_COUNT; i ++)
-        sSpritePics[i] = sDummyPicData;
+    memset(sSpritePics, 0, sizeof(sSpritePics));
 
     return FALSE;
 }

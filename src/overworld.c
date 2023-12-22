@@ -545,25 +545,26 @@ void LoadObjEventTemplatesFromHeader(void)
               gSaveBlock1Ptr->objectEventTemplates,
               gMapHeader.events->objectEventCount * sizeof(struct ObjectEventTemplate));*/
 
-    u8 i;
+    u32 i;
 
     for (i = 0; i < gMapHeader.events->objectEventCount; i++)
     {
+        struct ObjectEventTemplate* currentTemplate = &gSaveBlock1Ptr->objectEventTemplates[i];
         if (gMapHeader.events->objectEvents[i].inConnection == 0xFF)
         {
-            gSaveBlock1Ptr->objectEventTemplates[i] = Overworld_GetMapHeaderByGroupAndId(gMapHeader.events->objectEvents[i].trainerRange_berryTreeId, gMapHeader.events->objectEvents[i].trainerType)->events->objectEvents[gMapHeader.events->objectEvents[i].elevation - 1];
-            gSaveBlock1Ptr->objectEventTemplates[i].localId = gMapHeader.events->objectEvents[i].localId;
-            gSaveBlock1Ptr->objectEventTemplates[i].x = gMapHeader.events->objectEvents[i].x;
-            gSaveBlock1Ptr->objectEventTemplates[i].y = gMapHeader.events->objectEvents[i].y;
+            *currentTemplate = Overworld_GetMapHeaderByGroupAndId(gMapHeader.events->objectEvents[i].trainerRange_berryTreeId, gMapHeader.events->objectEvents[i].trainerType)->events->objectEvents[gMapHeader.events->objectEvents[i].elevation - 1];
+            currentTemplate->localId = gMapHeader.events->objectEvents[i].localId;
+            currentTemplate->x = gMapHeader.events->objectEvents[i].x;
+            currentTemplate->y = gMapHeader.events->objectEvents[i].y;
             // set up object for seamless map transitions
-            gSaveBlock1Ptr->objectEventTemplates[i].elevation = gMapHeader.events->objectEvents[i].elevation;
-            gSaveBlock1Ptr->objectEventTemplates[i].trainerType = gMapHeader.events->objectEvents[i].trainerType;
-            gSaveBlock1Ptr->objectEventTemplates[i].trainerRange_berryTreeId = gMapHeader.events->objectEvents[i].trainerRange_berryTreeId;
-            gSaveBlock1Ptr->objectEventTemplates[i].inConnection = 0xFF;
+            currentTemplate->elevation = gMapHeader.events->objectEvents[i].elevation;
+            currentTemplate->trainerType = gMapHeader.events->objectEvents[i].trainerType;
+            currentTemplate->trainerRange_berryTreeId = gMapHeader.events->objectEvents[i].trainerRange_berryTreeId;
+            currentTemplate->inConnection = 0xFF;
         }
         else
         {
-            gSaveBlock1Ptr->objectEventTemplates[i] = gMapHeader.events->objectEvents[i];
+            *currentTemplate = gMapHeader.events->objectEvents[i];
         }
     }
 }
@@ -915,8 +916,8 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
 
 static void LoadMapFromWarp(bool32 a1)
 {
-    bool8 isOutdoors;
-    bool8 isIndoors;
+    bool32 isOutdoors;
+    bool32 isIndoors;
 
     LoadCurrentMapData();
     if (!(sObjectEventLoadFlag & SKIP_OBJECT_EVENT_LOAD))
@@ -935,12 +936,12 @@ static void LoadMapFromWarp(bool32 a1)
     isOutdoors = IsMapTypeOutdoors(gMapHeader.mapType);
     isIndoors = IsMapTypeIndoors(gMapHeader.mapType);
 
-    CheckLeftFriendsSecretBase();
+    //CheckLeftFriendsSecretBase();
     TrySetMapSaveWarpStatus();
     ClearTempFieldEventData();
-    ResetCyclingRoadChallengeData();
+    //ResetCyclingRoadChallengeData();
     RestartWildEncounterImmunitySteps();
-    TryUpdateRandomTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
+    //TryUpdateRandomTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
     if (a1 != TRUE)
         DoTimeBasedEvents();
     SetSav1WeatherFromCurrMapHeader();
@@ -1278,6 +1279,7 @@ void Overworld_ChangeMusicTo(u16 newMusic)
         FadeOutAndPlayNewMapMusic(newMusic, 8);
 }
 
+// rendered unused as a QoL feature. Warps are almost instant without the artificial music delay.
 u8 GetMapMusicFadeoutSpeed(void)
 {
     const struct MapHeader *mapHeader = GetDestinationWarpMapHeader();
@@ -1302,7 +1304,7 @@ void TryFadeOutOldMapMusic(void)
             && sWarpDestination.x == 29
             && sWarpDestination.y == 53)
             return;*/
-        FadeOutMapMusic(GetMapMusicFadeoutSpeed());
+        FadeOutMapMusic(1);
     }
 }
 
@@ -2204,7 +2206,6 @@ static void ResumeMap(bool32 a1)
     if (!a1)
         SetUpFieldTasks();
     RunOnResumeMapScript();
-    TryStartMirageTowerPulseBlendEffect();
     gRunPreStepEvents = TRUE;
 }
 
