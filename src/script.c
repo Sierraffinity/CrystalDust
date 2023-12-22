@@ -19,8 +19,6 @@
 #include "constants/map_scripts.h"
 #include "constants/moves.h"
 #include "constants/room_decor.h"
-#include "union_room.h"
-#include "link.h"
 
 #define RAM_SCRIPT_MAGIC 51
 
@@ -1263,17 +1261,4 @@ void CheckPlayerTrappedAtIndigoPlateau(void)
     }
 
     gSpecialVar_Result = 1; // trapped
-}
-
-void CableClub_OnResumeFunc(void)
-{
-    if(FlagGet(FLAG_SYS_ON_RESUME))
-        return;
-    FlagSet(FLAG_SYS_ON_RESUME);
-    if(!IsWirelessAdapterConnected())
-    {
-        FlagSet(FLAG_NURSE_UNION_ROOM_REMINDER);
-        return;
-    }
-    InitUnionRoom();
 }

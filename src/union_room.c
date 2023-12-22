@@ -4511,3 +4511,16 @@ static void IntlConvPartnerUname7(u8 *dest, struct UnkStruct_x20 *arg1)
     StringCopy7(dest, arg1->gname_uname.playerName);
     ConvertInternationalString(dest, arg1->gname_uname.gname.unk_00.language);
 }
+
+void CableClub_OnResumeFunc(void)
+{
+    if(FlagGet(FLAG_SYS_ON_RESUME))
+        return;
+    FlagSet(FLAG_SYS_ON_RESUME);
+    if(!IsWirelessAdapterConnected())
+    {
+        FlagSet(FLAG_NURSE_UNION_ROOM_REMINDER);
+        return;
+    }
+    InitUnionRoom();
+}
