@@ -609,7 +609,12 @@ void DestroySprite(struct Sprite *sprite)
 
 void ResetOamRange(u8 a, u8 b)
 {
-    memset(&gMain.oamBuffer[a], 0, (b - a) * sizeof(struct OamData));
+    u32 i;
+
+    for (i = a; i < b; i++)
+    {
+        gMain.oamBuffer[i] = *(struct OamData *)&gDummyOamData;
+    }
 }
 
 void LoadOam(void)
