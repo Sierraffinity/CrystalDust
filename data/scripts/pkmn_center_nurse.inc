@@ -63,6 +63,7 @@ EventScript_PkmnCenterNurse_TakeAndHealPkmn::
     applymovement VAR_0x800B, Common_Movement_WalkInPlaceFastestLeft
     waitmovement 0
     dofieldeffect FLDEFF_POKECENTER_HEAL
+    callnative CableClub_OnResumeFunc
     waitfieldeffect FLDEFF_POKECENTER_HEAL
     applymovement VAR_0x800B, Common_Movement_WalkInPlaceFastestDown
     waitmovement 0

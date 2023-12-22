@@ -2,7 +2,6 @@
 
 BattleFrontier_PokemonCenter_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_PokemonCenter_1F_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
 
 BattleFrontier_PokemonCenter_1F_OnTransition:
@@ -11,6 +10,7 @@ BattleFrontier_PokemonCenter_1F_OnTransition:
 
 BattleFrontier_PokemonCenter_1F_EventScript_Nurse::
 	setvar VAR_0x800B, LOCALID_NURSE
+	@callnative CableClub_OnResumeFunc
 	call Common_EventScript_PkmnCenterNurse
 	waitmessage
 	waitbuttonpress

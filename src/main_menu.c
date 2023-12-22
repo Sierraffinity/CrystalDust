@@ -1142,7 +1142,7 @@ static void Task_HandleMainMenuInput(u8 taskId)
 
 static void Task_HandleMainMenuAPressed(u8 taskId)
 {
-    bool8 wirelessAdapterConnected;
+    bool32 wirelessAdapterConnected;
     u8 action = ACTION_NEW_GAME;
 
     wirelessAdapterConnected = IsWirelessAdapterConnected();

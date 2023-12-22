@@ -2,7 +2,6 @@ mapscripts Route10_PokemonCenter_1F_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setrespawn(HEAL_LOCATION_ROUTE10)
     }
-    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
 }
 
 script Route10_PokemonCenter_1F_EventScripts_Gentleman {

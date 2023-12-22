@@ -6,7 +6,6 @@ mapscripts CinnabarIsland_PokemonCenter_1F_MapScripts {
             setflag(FLAG_TEMP_1)
         }
     }
-    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
 }
 
 script CinnabarIsland_PokemonCenter_1F_EventScript_CooltrainerF{

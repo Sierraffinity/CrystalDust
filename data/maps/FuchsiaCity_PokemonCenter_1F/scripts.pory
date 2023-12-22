@@ -3,7 +3,6 @@ mapscripts FuchsiaCity_PokemonCenter_1F_MapScripts {
         setrespawn(HEAL_LOCATION_FUCHSIA_CITY)
         setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PICNICKER)
     }
-    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
 }
 
 script FuchsiaCity_PokemonCenter_1F_EventScript_CooltrainerM{

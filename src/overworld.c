@@ -755,7 +755,7 @@ void SetWarpDestinationToLastHealLocation(void)
     sWarpDestination = gSaveBlock1Ptr->lastHealLocation;
 }
 
-void SetLastHealLocationWarp(u8 healLocationId)
+void SetLastHealLocationWarp(u32 healLocationId)
 {
     const struct HealLocation *healLocation = GetHealLocation(healLocationId);
     if (healLocation)

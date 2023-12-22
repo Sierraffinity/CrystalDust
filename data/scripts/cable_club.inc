@@ -1383,17 +1383,6 @@ EventScript_CloseMossdeepGameCornerBarrier::
 	setmetatile 5, 3, METATILE_MossdeepGameCorner_CounterClosed_Bottom, 1
 	return
 
-CableClub_OnResume:
-    specialvar VAR_RESULT, IsWirelessAdapterConnected
-	compare VAR_RESULT, FALSE
-    goto_if_eq CableClub_OnResume_DisableUnionRoomNurseText
-	special InitUnionRoom
-	end
-
-CableClub_OnResume_DisableUnionRoomNurseText:
-    setflag FLAG_NURSE_UNION_ROOM_REMINDER
-    end
-
 MossdeepCity_GameCorner_1F_EventScript_InfoMan2::
 	lock
 	faceplayer

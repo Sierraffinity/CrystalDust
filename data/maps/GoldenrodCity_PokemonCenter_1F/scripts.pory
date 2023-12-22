@@ -31,7 +31,6 @@ mapscripts GoldenrodCity_PokemonCenter_1F_MapScripts {
             setvar(VAR_TEMP_1, 0)
         }
     }
-    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
 }
 
 script GoldenrodCity_PokemonCenter_1F_EventScript_Nurse {
@@ -46,6 +45,7 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse {
     lock
     faceplayer
     setvar(VAR_0x8004, 0)
+    //callnative(CableClub_OnResumeFunc)
     specialvar(VAR_RESULT, CountPlayerTrainerStars)
     if (var(VAR_RESULT) == 4)
     {

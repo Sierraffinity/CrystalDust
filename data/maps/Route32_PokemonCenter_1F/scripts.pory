@@ -3,15 +3,6 @@ mapscripts Route32_PokemonCenter_1F_MapScripts {
         setflag(FLAG_LANDMARK_ROUTE_32_POKEMON_CENTER)
         setrespawn(HEAL_LOCATION_ROUTE32)
     }
-    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
-}
-
-script Route32_PokemonCenter_1F_EventScript_Nurse {
-	setvar(VAR_0x800B, 1)
-	call(Common_EventScript_PkmnCenterNurse)
-	waitmessage
-	waitbuttonpress
-	release
 }
 
 script Route32_PokemonCenter_1F_EventScript_FishingGuru {

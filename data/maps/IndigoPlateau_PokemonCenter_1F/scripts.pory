@@ -45,7 +45,6 @@ mapscripts IndigoPlateau_PokemonCenter_1F_MapScripts {
     MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_TEMP_0, 0: EcruteakCity_PokemonCenter_1F_Eventscript_Bill
     ]
-    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
 }
 
 script IndigoPlateau_PokemonCenter_1F_Eventscript_RivalRematchTriggers{

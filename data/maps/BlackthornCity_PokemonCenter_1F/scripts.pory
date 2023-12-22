@@ -2,7 +2,6 @@ mapscripts BlackthornCity_PokemonCenter_1F_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setrespawn(HEAL_LOCATION_BLACKTHORN_CITY)
     }
-    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
 }
 
 script BlackthornCity_PokemonCenter_1F_Eventscript_Gentleman{

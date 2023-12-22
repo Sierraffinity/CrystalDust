@@ -4,15 +4,6 @@ mapscripts VioletCity_PokemonCenter_1F_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setrespawn(HEAL_LOCATION_VIOLET_CITY)
     }
-    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
-}
-
-script VioletCity_PokemonCenter_1F_EventScript_Nurse {
-    setvar(VAR_0x800B, 1)
-	call(Common_EventScript_PkmnCenterNurse)
-	waitmessage
-	waitbuttonpress
-	release
 }
 
 script VioletCity_PokemonCenter_1F_EventScript_Gameboy_Kid {

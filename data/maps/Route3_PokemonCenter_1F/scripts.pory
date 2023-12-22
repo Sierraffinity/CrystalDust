@@ -2,7 +2,6 @@ mapscripts Route3_PokemonCenter_1F_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setrespawn(HEAL_LOCATION_ROUTE3)
     }
-    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
 }
 
 script Route3_PokemonCenter_1F_EventScript_Hiker{
