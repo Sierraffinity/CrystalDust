@@ -416,13 +416,15 @@ static void IntrDummy(void)
 
 static void WaitForVBlank(void)
 {
-    // Emerald's loop is way less efficient than Ruby's, so why not replace it?
-    // TODO: Find out if this breaks anything or if GF just hated batteries.
     gMain.intrCheck &= ~INTR_FLAG_VBLANK;
+    if(!gWirelessCommType)
+    {
+        asm("swi 0x5");
+        return;
+    }
 
-    /*while (!(gMain.intrCheck & INTR_FLAG_VBLANK))
-        ;*/
-    VBlankIntrWait();
+    while (!(gMain.intrCheck & INTR_FLAG_VBLANK))
+        ;
 }
 
 void SetTrainerHillVBlankCounter(u32 *counter)
