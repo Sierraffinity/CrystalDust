@@ -303,7 +303,7 @@ static void BufferMenuWindowTiles(void)
 
 static bool8 BufferMenuFrameTiles(void)
 {
-    u16 i;
+    u32 i;
     u8 *dest = sMenu->windowSpriteTiles + sMenu->tileLoadState * 0x100;
 
     switch (sMenu->tileLoadState)
@@ -347,7 +347,7 @@ void BufferMonMarkingsMenuTiles(void)
 
 void OpenMonMarkingsMenu(u8 markings, s16 x, s16 y)
 {
-    u16 i;
+    u32 i;
     sMenu->cursorPos = 0;
     sMenu->markings = markings;
     for (i = 0; i < NUM_MON_MARKINGS; i++)
@@ -357,7 +357,7 @@ void OpenMonMarkingsMenu(u8 markings, s16 x, s16 y)
 
 void FreeMonMarkingsMenu(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < 2; i++)
     {
@@ -392,7 +392,7 @@ void FreeMonMarkingsMenu(void)
 
 bool8 HandleMonMarkingsMenuInput(void)
 {
-    u16 i;
+    u32 i;
 
     if (JOY_NEW(DPAD_UP))
     {
@@ -447,7 +447,7 @@ bool8 HandleMonMarkingsMenuInput(void)
 
 static void CreateMonMarkingsMenuSprites(s16 x, s16 y, u16 baseTileTag, u16 basePaletteTag)
 {
-    u16 i;
+    u32 i;
     u8 spriteId;
 
     struct SpriteSheet sheets[] =

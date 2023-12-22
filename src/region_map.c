@@ -502,7 +502,7 @@ void InitRegionMap(struct RegionMap *regionMap, u8 mode, s8 xOffset, s8 yOffset)
 
 void InitRegionMapData(struct RegionMap *regionMap, const struct BgTemplate *template, u8 mapMode, s8 xOffset, s8 yOffset)
 {
-    u8 i;
+    u32 i;
 
     gRegionMap = regionMap;
     gRegionMap->initStep = 0;
@@ -568,7 +568,7 @@ bool8 ChangeDecompressedRegionMapGfx(u16* ptr, bool8* permissions)
 bool8 LoadRegionMapGfx(bool8 shouldBuffer)
 {
     const u8 *regionTilemap;
-    u8 i;
+    u32 i;
     u16 *ptr;
 
     switch (gRegionMap->initStep)
@@ -748,7 +748,7 @@ void BlendRegionMap(u16 color, u32 coeff)
 
 void FreeRegionMapResources(void)
 {
-    u8 i;
+    u32 i;
 
     if (gRegionMap->spriteIds[0] != 0xFF)
     {
@@ -1675,7 +1675,7 @@ void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain)
 
 void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag)
 {
-    u8 i = 0;
+    u32 i = 0;
     u16 x, y, newX, newY;
 
     struct SpriteSheet sheet = {sRegionMapDots_Gfx, sizeof(sRegionMapDots_Gfx), tileTag};
@@ -1745,7 +1745,7 @@ void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag)
 u8 *GetMapName(u8 *dest, u16 regionMapId, u16 padLength)
 {
     u8 *str;
-    u16 i;
+    u32 i;
 
     if (regionMapId == MAPSEC_SECRET_BASE || regionMapId == MAPSECEM_SECRET_BASE)
     {
@@ -2066,7 +2066,7 @@ static void CreateFlyDestIcons(void)
 // Only used for Battle Frontier, but set up to handle more
 static void TryCreateRedOutlineFlyDestIcons(void)
 {
-    u16 i;
+    u32 i;
     u16 x;
     u16 y;
     u16 width;

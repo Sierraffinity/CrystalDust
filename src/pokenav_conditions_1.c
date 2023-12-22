@@ -451,7 +451,7 @@ void CopyMonNameGenderLocation(s16 id, u8 arg1)
 
 void InitPartyConditionListParameters(void)
 {
-    u16 i, count;
+    u32 i, count;
     struct PokenavSub11 *structPtr = GetSubstructPtr(POKENAV_SUBSTRUCT_CONDITION_GRAPH);
     struct PokenavSub18 *monListPtr = AllocSubstruct(POKENAV_SUBSTRUCT_MON_LIST, sizeof(struct PokenavSub18));
 

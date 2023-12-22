@@ -1536,7 +1536,7 @@ static void SetOpponentsBerryData(u16 playerBerryItemId, u8 playersNum, struct B
     u16 opponentSetId = 0;
     u16 opponentBerryId;
     u16 berryMasterDiff;
-    u16 i;
+    u32 i;
 
     if (playerBerryItemId == ITEM_ENIGMA_BERRY)
     {
@@ -2556,7 +2556,7 @@ static void SendContinuePromptResponse(u16 *cmd)
 
 static void CB2_EndBlenderGame(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     if (sBerryBlender->gameEndState < 3)
         UpdateBlenderCenter();
@@ -3036,7 +3036,7 @@ static void ProcessLinkPlayerCmds(void)
             && sBerryBlender->playerContinueResponses[0] != LINKCMD_BLENDER_STOP 
             && sBerryBlender->playerContinueResponses[0] != LINKCMD_SEND_LINK_TYPE)
         {
-            u8 i;
+            u32 i;
 
             // Try to gather responses
             for (i = 0; i < GetLinkPlayerCount(); i++)
@@ -3354,7 +3354,7 @@ static u32 ArrowSpeedToRPM(u16 speed)
 
 static void UpdateRPM(u16 speed)
 {
-    u8 i;
+    u32 i;
     u8 digits[5];
 
     // Check if new max RPM has been reached
@@ -3457,7 +3457,7 @@ static void TryUpdateBerryBlenderRecord(void)
 
 static bool8 PrintBlendingResults(void)
 {
-    u16 i;
+    u32 i;
     s32 xPos, yPos;
 
     struct Pokeblock pokeblock;
@@ -3637,7 +3637,7 @@ static void SortBasedOnPoints(u8 *places, u8 playersNum, u32 *scores)
 static void SortScores(void)
 {
     u8 playerId;
-    u8 i;
+    u32 i;
     u8 places[BLENDER_MAX_PLAYERS];
     u32 points[BLENDER_MAX_PLAYERS];
 
@@ -3667,7 +3667,7 @@ static void SortScores(void)
 
 static bool8 PrintBlendingRanking(void)
 {
-    u16 i;
+    u32 i;
     s32 xPos, yPos;
 
     switch (sBerryBlender->mainState)

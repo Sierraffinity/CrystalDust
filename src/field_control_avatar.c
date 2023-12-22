@@ -1146,7 +1146,7 @@ u8 *GetCoordEventScriptAtMapPosition(struct MapPosition *position)
 
 static struct BgEvent *GetBackgroundEventAtPosition(struct MapHeader *mapHeader, u16 x, u16 y, u8 elevation)
 {
-    u8 i;
+    u32 i;
     struct BgEvent *bgEvents = mapHeader->events->bgEvents;
     u8 bgEventCount = mapHeader->events->bgEventCount;
 

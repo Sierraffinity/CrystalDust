@@ -31,7 +31,7 @@ static void CB2_ReturnFromChooseBattleFrontierParty(void);
 
 void HealPlayerParty(void)
 {
-    u8 i, j;
+    u32 i, j;
     u8 ppBonuses;
     u8 arg[4];
 

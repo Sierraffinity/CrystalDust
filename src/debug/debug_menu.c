@@ -463,7 +463,7 @@ static int GetMaxWidthInDebugMenuTable(const struct DebugMenuAction *str, int ar
 
 static void MultichoiceList_PrintDebugItems(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 itemCount, const struct DebugMenuAction *strs, u8 letterSpacing, u8 lineSpacing)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < itemCount; i++)
         AddTextPrinterParameterized5(windowId, fontId, strs[i].text, left, (lineHeight * i) + top, 0xFF, NULL, letterSpacing, lineSpacing);

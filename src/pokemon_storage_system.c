@@ -1412,7 +1412,7 @@ static void PrintStringToBufferCopyNow(const u8 *string, void *dst, u16 rise, u8
 
 u8 CountMonsInBox(u8 boxId)
 {
-    u16 i, count;
+    u32 i, count;
 
     for (i = 0, count = 0; i < IN_BOX_COUNT; i++)
     {
@@ -1425,7 +1425,7 @@ u8 CountMonsInBox(u8 boxId)
 
 s16 GetFirstFreeBoxSpot(u8 boxId)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < IN_BOX_COUNT; i++)
     {
@@ -1438,7 +1438,7 @@ s16 GetFirstFreeBoxSpot(u8 boxId)
 
 u8 CountPartyNonEggMons(void)
 {
-    u16 i, count;
+    u32 i, count;
 
     for (i = 0, count = 0; i < PARTY_SIZE; i++)
     {
@@ -1454,7 +1454,7 @@ u8 CountPartyNonEggMons(void)
 
 u8 CountPartyAliveNonEggMonsExcept(u8 slotToIgnore)
 {
-    u16 i, count;
+    u32 i, count;
 
     for (i = 0, count = 0; i < PARTY_SIZE; i++)
     {
@@ -1477,7 +1477,7 @@ u16 CountPartyAliveNonEggMons_IgnoreVar0x8004Slot(void)
 
 u8 CountPartyMons(void)
 {
-    u16 i, count;
+    u32 i, count;
 
     for (i = 0, count = 0; i < PARTY_SIZE; i++)
     {
@@ -1504,7 +1504,7 @@ u8 *StringCopyAndFillWithSpaces(u8 *dst, const u8 *src, u16 n)
 // Unused
 static void UnusedWriteRectCpu(u16 *dest, u16 dest_left, u16 dest_top, const u16 *src, u16 src_left, u16 src_top, u16 dest_width, u16 dest_height, u16 src_width)
 {
-    u16 i;
+    u32 i;
 
     dest_width *= 2;
     dest += dest_top * 0x20 + dest_left;
@@ -1520,7 +1520,7 @@ static void UnusedWriteRectCpu(u16 *dest, u16 dest_left, u16 dest_top, const u16
 // Unused
 static void UnusedWriteRectDma(u16 *dest, u16 dest_left, u16 dest_top, u16 width, u16 height)
 {
-    u16 i;
+    u32 i;
 
     dest += dest_top * 0x20 + dest_left;
     width *= 2;
@@ -1715,7 +1715,7 @@ static void CB2_ExitPokeStorage(void)
 // Unused
 static s16 StorageSystemGetNextMonIndex(struct BoxPokemon *box, s8 startIdx, u8 stopIdx, u8 mode)
 {
-    s16 i;
+    s32 i;
     s16 direction;
     if (mode == 0 || mode == 1)
     {
@@ -1846,7 +1846,7 @@ static u8 HandleChooseBoxMenuInput(void)
 
 static void ChooseBoxMenu_CreateSprites(u8 curBox)
 {
-    u16 i;
+    u32 i;
     u8 spriteId;
     static const u8 outOf30[] = _("/30");
     struct SpriteTemplate template;
@@ -1902,7 +1902,7 @@ static void ChooseBoxMenu_CreateSprites(u8 curBox)
 
 static void ChooseBoxMenu_DestroySprites(void)
 {
-    u16 i;
+    u32 i;
     if (sChooseBoxMenu->menuSprite)
     {
         DestroySprite(sChooseBoxMenu->menuSprite);
@@ -3898,7 +3898,7 @@ static void CreateMarkingComboSprite(void)
 
 static void CreateWaveformSprites(void)
 {
-    u16 i;
+    u32 i;
     struct SpriteSheet sheet = sSpriteSheet_Waveform;
 
     LoadSpriteSheet(&sheet);
@@ -3950,7 +3950,7 @@ static void SpriteCB_DisplayMonMosaic(struct Sprite *sprite)
 
 static void CreateDisplayMonSprite(void)
 {
-    u16 i;
+    u32 i;
     u16 tileStart;
     u8 palSlot;
     u8 spriteId;
@@ -4043,7 +4043,7 @@ static void PrintDisplayMonInfo(void)
 // Turn the wave animation on the sides of "Pkmn Data" on/off
 static void UpdateWaveformAnimation(void)
 {
-    u16 i;
+    u32 i;
 
     if (sStorage->displayMonSpecies != SPECIES_NONE)
     {
@@ -4203,7 +4203,7 @@ static void UpdateCloseBoxButtonFlash(void)
 
 static void SetPartySlotTilemaps(void)
 {
-    u8 i;
+    u32 i;
 
     // Skips first party slot, it should always be drawn
     // as if it has a Pokémon in it
@@ -4216,7 +4216,7 @@ static void SetPartySlotTilemaps(void)
 
 static void SetPartySlotTilemap(u8 partyId, bool8 hasMon)
 {
-    u16 i, j, index;
+    u32 i, j, index;
     const u16 *data;
 
     if (hasMon)
@@ -4427,7 +4427,7 @@ static void InitCursorItemIcon(void)
 
 static void InitMonIconFields(void)
 {
-    u16 i;
+    u32 i;
 
     LoadMonIconPalettes();
     for (i = 0; i < MAX_MON_ICONS; i++)
@@ -4461,7 +4461,7 @@ static void CreateMovingMonIcon(void)
 static void InitBoxMonSprites(u8 boxId)
 {
     u8 boxPosition;
-    u16 i, j, count;
+    u32 i, j, count;
     u16 species;
     u32 personality;
 
@@ -4523,7 +4523,7 @@ static void CreateBoxMonIconAtPos(u8 boxPosition)
 
 static void StartBoxMonIconsScrollOut(s16 speed)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < IN_BOX_COUNT; i++)
     {
@@ -4762,7 +4762,7 @@ static void SetBoxMonIconObjMode(u8 boxPosition, u8 objMode)
 
 static void CreatePartyMonsSprites(bool8 visible)
 {
-    u16 i, count;
+    u32 i, count;
     u16 species = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES2);
     u32 personality = GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY);
 
@@ -4804,7 +4804,7 @@ static void CreatePartyMonsSprites(bool8 visible)
 
 static void CompactPartySprites(void)
 {
-    u16 i, targetSlot;
+    u32 i, targetSlot;
 
     sStorage->numPartyToCompact = 0;
     for (i = 0, targetSlot = 0; i < PARTY_SIZE; i++)
@@ -4898,7 +4898,7 @@ static void DestroyMovingMonIcon(void)
 
 static void MovePartySprites(s16 yDelta)
 {
-    u16 i, posY;
+    u32 i, posY;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -4926,7 +4926,7 @@ static void DestroyPartyMonIcon(u8 partyId)
 
 static void DestroyAllPartyMonIcons(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -5113,7 +5113,7 @@ static void SpriteCB_HeldMon(struct Sprite *sprite)
 
 static u16 TryLoadMonIconTiles(u16 species)
 {
-    u16 i, offset;
+    u32 i, offset;
 
     // Search icon list for this species
     for (i = 0; i < MAX_MON_ICONS; i++)
@@ -5148,7 +5148,7 @@ static u16 TryLoadMonIconTiles(u16 species)
 
 static void RemoveSpeciesFromIconList(u16 species)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < MAX_MON_ICONS; i++)
     {
@@ -5317,7 +5317,7 @@ static bool8 ScrollToBox(void)
 
 static s8 DetermineBoxScrollDirection(u8 boxId)
 {
-    u8 i;
+    u32 i;
     u8 currentBox = StorageGetCurrentBox();
 
     for (i = 0; currentBox != boxId; i++)
@@ -5465,7 +5465,7 @@ static void DrawWallpaper(const void *tilemap, s8 direction, u8 offset)
 
 static void TrimOldWallpaper(void *tilemap)
 {
-    u16 i;
+    u32 i;
     u16 *dest = tilemap;
     s16 r3 = ((sStorage->bg2_X / 8) + 30) & 0x3F;
 
@@ -5495,7 +5495,7 @@ static void InitBoxTitle(u8 boxId)
 {
     u8 tagIndex;
     s16 x;
-    u16 i;
+    u32 i;
 
     struct SpriteSheet spriteSheet = {sStorage->boxTitleTiles, 0x200, GFXTAG_BOX_TITLE};
     struct SpritePalette palettes[] = {
@@ -5549,7 +5549,7 @@ static void CreateIncomingBoxTitle(u8 boxId, s8 direction)
 {
     u16 palOffset;
     s16 x, adjustedX;
-    u16 i;
+    u32 i;
     struct SpriteSheet spriteSheet = {sStorage->boxTitleTiles, 0x200, GFXTAG_BOX_TITLE};
     struct SpriteTemplate template = sSpriteTemplate_BoxTitle;
 
@@ -5661,7 +5661,7 @@ static s16 GetBoxTitleBaseX(const u8 *string)
 
 static void CreateBoxScrollArrows(void)
 {
-    u16 i;
+    u32 i;
 
     LoadSpriteSheet(&sSpriteSheet_Arrow);
     for (i = 0; i < 2; i++)
@@ -5682,7 +5682,7 @@ static void CreateBoxScrollArrows(void)
 // Slide box scroll arrows horizontally for box change
 static void StartBoxScrollArrowsSlide(s8 direction)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < 2; i++)
     {
@@ -5710,7 +5710,7 @@ static void StartBoxScrollArrowsSlide(s8 direction)
 // New box's scroll arrows have entered, stop sliding and set their position
 static void StopBoxScrollArrowsSlide(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < 2; i++)
     {
@@ -5724,7 +5724,7 @@ static void StopBoxScrollArrowsSlide(void)
 // Bounce scroll arrows while title is selected
 static void AnimateBoxScrollArrows(bool8 animate)
 {
-    u16 i;
+    u32 i;
 
     if (animate)
     {
@@ -6628,7 +6628,7 @@ static bool32 AtLeastThreeUsableMons(void)
 
 static s8 RunCanReleaseMon(void)
 {
-    u16 i;
+    u32 i;
     u16 knownMoves;
 
     if (sStorage->releaseStatusResolved)
@@ -6759,7 +6759,7 @@ static void SetSelectionAfterSummaryScreen(void)
 s16 CompactPartySlots(void)
 {
     s16 retVal = -1;
-    u16 i, last;
+    u32 i, last;
 
     for (i = 0, last = 0; i < PARTY_SIZE; i++)
     {
@@ -7614,7 +7614,7 @@ static u8 HandleInput(void)
         {},
     };
 
-    u16 i = 0;
+    u32 i = 0;
     while (inputFuncs[i].func != NULL)
     {
         if (inputFuncs[i].area == sCursorArea)
@@ -9023,7 +9023,7 @@ static u16 GetMovingItemId(void)
 
 static u8 GetNewItemIconIdx(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_ITEM_ICONS; i++)
     {
@@ -9052,7 +9052,7 @@ static bool32 IsItemIconAtPosition(u8 cursorArea, u8 cursorPos)
 
 static u8 GetItemIconIdxByPosition(u8 cursorArea, u8 cursorPos)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_ITEM_ICONS; i++)
     {
@@ -9066,7 +9066,7 @@ static u8 GetItemIconIdxByPosition(u8 cursorArea, u8 cursorPos)
 
 static u8 GetItemIconIdxBySprite(struct Sprite *sprite)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_ITEM_ICONS; i++)
     {
@@ -9569,7 +9569,7 @@ static void SetBoxWallpaper(u8 boxId, u8 wallpaperId)
 // For moving to the next Pokémon while viewing the summary screen
 s16 AdvanceStorageMonIndex(struct BoxPokemon *boxMons, u8 currIndex, u8 maxIndex, u8 mode)
 {
-    s16 i;
+    s32 i;
     s16 direction = -1;
 
     if (mode == 0 || mode == 1)
@@ -9815,7 +9815,7 @@ EWRAM_DATA static u16 sNumTilemapUtilIds = 0;
 
 static void TilemapUtil_Init(u8 count)
 {
-    u16 i;
+    u32 i;
 
     sTilemapUtil = Alloc(sizeof(*sTilemapUtil) * count);
     sNumTilemapUtilIds = (sTilemapUtil == NULL) ? 0 : count;
@@ -10035,7 +10035,7 @@ static void UnkUtil_Init(struct UnkUtil *util, struct UnkUtilData *data, u32 max
 
 static void UnkUtil_Run(void)
 {
-    u16 i;
+    u32 i;
     if (sUnkUtil->numActive)
     {
         for (i = 0; i < sUnkUtil->numActive; i++)
@@ -10068,7 +10068,7 @@ static bool8 UnkUtil_CpuAdd(u8 *dest, u16 dLeft, u16 dTop, const u8 *src, u16 sL
 // Functionally unused
 static void UnkUtil_CpuRun(struct UnkUtilData *data)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < data->height; i++)
     {
@@ -10097,7 +10097,7 @@ static bool8 UnkUtil_DmaAdd(void *dest, u16 dLeft, u16 dTop, u16 width, u16 heig
 // Functionally unused
 static void UnkUtil_DmaRun(struct UnkUtilData *data)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < data->height; i++)
     {

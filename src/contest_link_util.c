@@ -77,7 +77,7 @@ static void Task_LinkContest_StartCommunicateCategoryEm(u8 taskId)
 
 static void Task_LinkContest_SetUpContestEm(u8 taskId)
 {
-    u8 i;
+    u32 i;
     u8 rank;
     int gameCleared;
     u8 categories[CONTESTANT_COUNT];

@@ -208,7 +208,7 @@ static void Task_StaticCountdown(u8 taskId)
 
 static void StaticCountdown_CreateSprites(u8 taskId, s16 *data)
 {
-    u8 i;
+    u32 i;
     struct Sprite *sprite;
 
     LoadCompressedSpriteSheet(&sSpriteSheet_321Start_Static[tSpriteSheetId]);
@@ -250,7 +250,7 @@ static void Task_StaticCountdown_Init(u8 taskId)
 
 static void Task_StaticCountdown_Free(u8 taskId)
 {
-    u8 i = 0;
+    u32 i = 0;
     s16 *data = gTasks[taskId].data;
 
     for (i = 0; i < tNumSprites; i++)

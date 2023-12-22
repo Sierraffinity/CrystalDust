@@ -706,7 +706,7 @@ static void RotatingGate_LoadPuzzleConfig(void)
 
 static void RotatingGate_CreateGatesWithinViewport(s16 deltaX, s16 deltaY)
 {
-    u8 i;
+    u32 i;
 
     // Calculate the bounding box of the camera
     // Same as RotatingGate_DestroyGatesOutsideViewport

@@ -136,7 +136,7 @@ bool32 ShouldSetTintToNight(void)
 
 static void LoadPaletteOverrides(void)
 {
-    u8 i, j;
+    u32 i, j;
     const u16* src;
     u16* dest;
     s8 hour;

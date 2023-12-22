@@ -1821,7 +1821,7 @@ static void FillFactoryTrainerParty(void)
 
 static void FillFactoryFrontierTrainerParty(u16 trainerId, u8 firstMonId)
 {
-    u8 i, j;
+    u32 i, j;
     u8 friendship;
     u8 level;
     u8 fixedIV;
@@ -1877,7 +1877,7 @@ static void FillFactoryFrontierTrainerParty(u16 trainerId, u8 firstMonId)
 
 static void FillFactoryTentTrainerParty(u16 trainerId, u8 firstMonId)
 {
-    u8 i, j;
+    u32 i, j;
     u8 friendship;
     u8 level = 30;
     u8 fixedIV = 0;
@@ -3465,7 +3465,7 @@ static void FillTentTrainerParty_(u16 trainerId, u8 firstMonId, u8 monCount)
 u16 FacilityClassToGraphicsId(u8 facilityClass)
 {
     u16 trainerObjectGfxId;
-    u8 i;
+    u32 i;
 
     // Search male classes.
     for (i = 0; i < ARRAY_COUNT(gTowerMaleFacilityClasses); i++)

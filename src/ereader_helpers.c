@@ -793,7 +793,7 @@ void EReaderHelper_Timer3Callback(void)
 
 void EReaderHelper_SerialCallback(void)
 {
-    u16 i, cnt1, cnt2;
+    u32 i, cnt1, cnt2;
     u32 recv32;
     u16 recv[4];
 

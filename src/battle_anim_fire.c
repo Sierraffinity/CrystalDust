@@ -899,7 +899,7 @@ static void AnimTask_EruptionLaunchRocks_Step(u8 taskId)
 
 static void CreateEruptionLaunchRocks(u8 spriteId, u8 taskId, u8 a3)
 {
-    u16 i, j;
+    u32 i, j;
     s8 sign;
 
     u16 y = GetEruptionLaunchRockInitialYPos(spriteId);

@@ -461,7 +461,7 @@ void ItemMenuIcons_MoveInsertIndicatorBar(s16 x, s16 y)
 
 static void sub_80D5018(void *mem0, void *mem1)
 {
-    u8 i, j;
+    u32 i, j;
 
     memset(mem1, 0, 0x800);
     mem1 += 0x100;

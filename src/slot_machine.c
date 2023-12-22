@@ -1051,7 +1051,7 @@ static void SlotMachineSetup_InitGpuRegs(void)
 // set up initial state of slot machine
 static void SlotMachineSetup_InitSlotMachineStruct(void)
 {
-    u8 i;
+    u32 i;
 
     SlotMachineInitDummyTask();  // assigns sSlotMachine->machineId, etc.
     sSlotMachine->state = 0;
@@ -1204,7 +1204,7 @@ static bool8 SlotAction_AskInsertBet(struct Task *task)
 // SLOT_ACTION_BET_INPUT
 static bool8 SlotAction_HandleBetInput(struct Task *task)
 {
-    s16 i;
+    s32 i;
 
     if (JOY_NEW(SELECT_BUTTON))
     {
@@ -1680,7 +1680,7 @@ static void SetLuckySpins(void)
 
 static u8 GetBiasTag(u8 luckyFlags)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 8; i++)
     {
@@ -1768,7 +1768,7 @@ static void GetReeltimeDraw(void)
     sSlotMachine->reelTimeDraw = reelTimeDraw;
 }
 
-static bool8 ShouldReelTimeMachineExplode(u16 i)
+static bool8 ShouldReelTimeMachineExplode(u32 i)
 {
     u16 rval = Random() & 0xff;
     if (rval < sReelTimeExplodeProbability[i])
@@ -1779,7 +1779,7 @@ static bool8 ShouldReelTimeMachineExplode(u16 i)
 
 static u16 SlowReelSpeed(void)
 {
-    u8 i = 0;
+    u32 i = 0;
     u8 rval;
     u8 value;
     if (sSlotMachine->netCoinLoss >= 300)
@@ -2052,7 +2052,7 @@ s16 AdvanceReeltimeReelToNextTag(s16 value)
 
 static void CreateSlotReelTasks(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NUM_REELS; i++)
     {
         u8 taskId = CreateTask(Task_RunSlotReelActions, 2);
@@ -2202,7 +2202,7 @@ static bool8 IsBiasTowardsCherryOr7s(void)
 
 static bool8 DecideReelTurns_BiasTag_Reel1_Bet1(u8 tag1, u8 tag2)
 {
-    s16 i;
+    s32 i;
 
     for (i = 0; i < 5; i++)
     {
@@ -2219,7 +2219,7 @@ static bool8 DecideReelTurns_BiasTag_Reel1_Bet1(u8 tag1, u8 tag2)
 
 static bool8 DecideReelTurns_BiasTag_Reel1_Bet2or3(u8 tag1, u8 tag2)
 {
-    s16 i;
+    s32 i;
     bool8 biased = IsBiasTowardsCherryOr7s();
     // if lucky numbers or no cherries are currently on screen in reel 1...
     if (biased || !AreCherriesOnScreen_Reel1(0))
@@ -2275,7 +2275,7 @@ static bool8 DecideReelTurns_BiasTag_Reel2(void)
 
 static bool8 DecideReelTurns_BiasTag_Reel2_Bet1or2(void)
 {
-    s16 i;
+    s32 i;
     s16 biasTagLocation_Reel1 = sSlotMachine->winnerRows[0];
 
     for (i = 0; i < 5; i++)
@@ -2293,7 +2293,7 @@ static bool8 DecideReelTurns_BiasTag_Reel2_Bet1or2(void)
 
 static bool8 DecideReelTurns_BiasTag_Reel2_Bet3(void)
 {
-    s16 i;
+    s32 i;
     // if biasTag appears in the same row within 4 turns...
     if (DecideReelTurns_BiasTag_Reel2_Bet1or2())
     {
@@ -2346,7 +2346,7 @@ static bool8 DecideReelTurns_BiasTag_Reel3(void)
 
 static bool8 DecideReelTurns_BiasTag_Reel3_Bet1or2(u8 biasTag)
 {
-    s16 i;
+    s32 i;
     s16 biasTagLocation_Reel2 = sSlotMachine->winnerRows[1];
 
     for (i = 0; i < 5; i++)
@@ -2364,7 +2364,7 @@ static bool8 DecideReelTurns_BiasTag_Reel3_Bet1or2(u8 biasTag)
 
 static bool8 DecideReelTurns_BiasTag_Reel3_Bet3(u8 biasTag)
 {
-    s16 i;
+    s32 i;
     s16 biasTagFinalPos;
     // if the final position of the biasTag matches in reel 1 and reel 2...
     if (sSlotMachine->winnerRows[0] == sSlotMachine->winnerRows[1])
@@ -2392,7 +2392,7 @@ static bool8 DecideReelTurns_BiasTag_Reel3_Bet3(u8 biasTag)
 
 static void DecideReelTurns_NoBiasTag_Reel1(void)
 {
-    s16 i = 0;
+    s32 i = 0;
 
     while (AreCherriesOnScreen_Reel1(i) != 0)
         i++;
@@ -2429,7 +2429,7 @@ static void DecideReelTurns_NoBiasTag_Reel2_Bet1(void)
         if (IsBiasTag777_SwitchColor(&biasTag))
         //...swap color of biasTag...
         {
-            s16 i;
+            s32 i;
             for (i = 0; i < 5; i++)
             {
                 //...and if the biasTag appears within 4 turns
@@ -2453,7 +2453,7 @@ static void DecideReelTurns_NoBiasTag_Reel2_Bet2(void)
         if (IsBiasTag777_SwitchColor(&biasTag))
         //...swap color of biasTag...
         {
-            s16 i;
+            s32 i;
             for (i = 0; i < 5; i++)
             {
                 //...and if the biasTag appears in same row in reel 2 within 4 turns
@@ -2470,8 +2470,8 @@ static void DecideReelTurns_NoBiasTag_Reel2_Bet2(void)
 
 static void DecideReelTurns_NoBiasTag_Reel2_Bet3(void)
 {
-    s16 i;
-    s16 j;
+    s32 i;
+    s32 j;
     // if reel 1 has a biasTag and bit 7 is set in luckyFlags...
     if (sSlotMachine->winnerRows[0] != 0 && sSlotMachine->luckyFlags & LUCKY_BIAS_777)
     {
@@ -2574,7 +2574,7 @@ static void DecideReelTurns_NoBiasTag_Reel3(void)
 
 static void DecideReelTurns_NoBiasTag_Reel3_Bet1(void)
 {
-    s16 i = 0;
+    s32 i = 0;
     u8 tag1 = GetTag(LEFT_REEL, 2 - sSlotMachine->reelExtraTurns[0]);
     u8 tag2 = GetTag(MIDDLE_REEL, 2 - sSlotMachine->reelExtraTurns[1]);
     // if tags match in first 2 reels...
@@ -2618,7 +2618,7 @@ static void DecideReelTurns_NoBiasTag_Reel3_Bet1(void)
 static void DecideReelTurns_NoBiasTag_Reel3_Bet2(void)
 {
     s16 extraTurns = 0;
-    s16 i;
+    s32 i;
     u8 tag1;
     u8 tag2;
     u8 tag3;
@@ -2670,8 +2670,8 @@ static void DecideReelTurns_NoBiasTag_Reel3_Bet3(void)
     u8 tag1;
     u8 tag2;
     u8 tag3;
-    s16 j;
-    s16 i;
+    s32 j;
+    s32 i;
 
     DecideReelTurns_NoBiasTag_Reel3_Bet2();
     if (sSlotMachine->winnerRows[1] != 0 && sSlotMachine->winnerRows[0] != sSlotMachine->winnerRows[1] && sSlotMachine->luckyFlags & LUCKY_BIAS_777)
@@ -2758,14 +2758,14 @@ static void DarkenMatchLine(u8 matchLineId)
 // light up the match line for each bet by the player
 static void LightenBetTiles(u8 betVal)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < sMatchLinesPerBet[betVal]; i++)
         LightenMatchLine(sBetToMatchLineIds[betVal][i]);
 }
 
 static void DarkenBetTiles(u8 betVal)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < sMatchLinesPerBet[betVal]; i++)
         DarkenMatchLine(sBetToMatchLineIds[betVal][i]);
 }
@@ -2782,7 +2782,7 @@ static void DarkenBetTiles(u8 betVal)
 // 5 are created, 1 for each possible match line (3 rows, 2 diagonals)
 static void CreateInvisibleFlashMatchLineSprites(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < ARRAY_COUNT(sSlotMachine->flashMatchLineSpriteIds); i++)
     {
         u8 spriteId = CreateInvisibleSprite(SpriteCB_FlashMatchingLines);
@@ -2806,7 +2806,7 @@ static void FlashMatchLine(u8 matchLineId)
 // After this it does half-brightness flashes until the payout finishes
 static bool8 IsMatchLineDoneFlashingBeforePayout(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < ARRAY_COUNT(sSlotMachine->flashMatchLineSpriteIds); i++)
     {
         struct Sprite *sprite = &gSprites[sSlotMachine->flashMatchLineSpriteIds[i]];
@@ -2819,7 +2819,7 @@ static bool8 IsMatchLineDoneFlashingBeforePayout(void)
 // When payout is finished, stop lines flashing (but not if they're in the middle of a flash)
 static bool8 TryStopMatchLinesFlashing(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < ARRAY_COUNT(sSlotMachine->flashMatchLineSpriteIds); i++)
     {
         if (!TryStopMatchLineFlashing(sSlotMachine->flashMatchLineSpriteIds[i]))
@@ -3014,7 +3014,7 @@ static void PikaPowerBolt_ClearAll(struct Task *task)
 
 static void ResetPikaPowerBoltTask(struct Task *task)
 {
-    u8 i;
+    u32 i;
 
     for (i = 2; i < NUM_TASK_DATA; i++)
         task->data[i] = 0;
@@ -3022,7 +3022,7 @@ static void ResetPikaPowerBoltTask(struct Task *task)
 
 static void LoadPikaPowerMeter(u8 pikaPower)
 {
-    s16 i;
+    s32 i;
     s16 r3 = 0, r1 = 0;
     s16 r4 = 3;
     for (i = 0; i < pikaPower; i++, r4++)
@@ -3377,7 +3377,7 @@ static void ReelTime_EndFailure(struct Task *task)
 
 static void LoadReelTimeWindowTilemap(s16 a0, s16 a1)
 {
-    s16 i;
+    s32 i;
 
     for (i = 4; i < 15; i++)
     {
@@ -3387,7 +3387,7 @@ static void LoadReelTimeWindowTilemap(s16 a0, s16 a1)
 
 static void ClearReelTimeWindowTilemap(s16 a0)
 {
-    u8 i;
+    u32 i;
 
     for (i = 4; i < 15; i++)
     {
@@ -3494,7 +3494,7 @@ static void InfoBox_FreeTask(struct Task *task)
 
 static void CreateDigitalDisplayTask(void)
 {
-    u8 i;
+    u32 i;
     struct Task *task;
     i = CreateTask(Task_DigitalDisplay, 3);
     sSlotMachine->digDisplayTaskId = i;
@@ -3507,7 +3507,7 @@ static void CreateDigitalDisplayTask(void)
 // For the panel on the right side of the slot screen
 static void CreateDigitalDisplayScene(u8 id)
 {
-    u8 i;
+    u32 i;
     struct Task *task;
 
     DestroyDigitalDisplayScene();
@@ -3529,7 +3529,7 @@ static void CreateDigitalDisplayScene(u8 id)
 
 static void AddDigitalDisplaySprite(u8 templateIdx, SpriteCallback callback, s16 x, s16 y, s16 spriteId)
 {
-    u8 i;
+    u32 i;
     struct Task *task = &gTasks[sSlotMachine->digDisplayTaskId];
     for (i = 4; i < NUM_TASK_DATA; i++)
     {
@@ -3543,7 +3543,7 @@ static void AddDigitalDisplaySprite(u8 templateIdx, SpriteCallback callback, s16
 
 static void DestroyDigitalDisplayScene(void)
 {
-    u8 i;
+    u32 i;
     struct Task *task = &gTasks[sSlotMachine->digDisplayTaskId];
 
     if ((u16)task->data[1] != 0xFFFF)
@@ -3561,7 +3561,7 @@ static void DestroyDigitalDisplayScene(void)
 
 static bool8 IsDigitalDisplayAnimFinished(void)
 {
-    u8 i;
+    u32 i;
     struct Task *task = &gTasks[sSlotMachine->digDisplayTaskId];
     for (i = 4; i < NUM_TASK_DATA; i++)
     {
@@ -3585,8 +3585,8 @@ static void DigitalDisplay_Idle(struct Task *task)
 
 static void CreateReelSymbolSprites(void)
 {
-    s16 i;
-    s16 j;
+    s32 i;
+    s32 j;
     s16 x;
     for (i = 0, x = 0x30; i < 3; i++, x += 0x28)
     {
@@ -3612,7 +3612,7 @@ static void SpriteCB_ReelSymbol(struct Sprite *sprite)
 
 static void CreateCreditPayoutNumberSprites(void)
 {
-    s16 i;
+    s32 i;
     s16 x;
 
     // Credit number sprite
@@ -3759,7 +3759,7 @@ static void CreateBrokenReelTimeMachineSprite(void)
 
 static void CreateReelTimeNumberSprites(void)
 {
-    u8 i;
+    u32 i;
     s16 r5;
     for (i = 0, r5 = 0; i < ARRAY_COUNT(sSlotMachine->reelTimeNumberSpriteIds); i++, r5 += 20)
     {
@@ -3810,7 +3810,7 @@ static void CreateReelTimeNumberGapSprite(void)
 
 static void DestroyReelTimeMachineSprites(void)
 {
-    u8 i;
+    u32 i;
 
     DestroySprite(&gSprites[sSlotMachine->reelTimeNumberGapSpriteId]);
     for (i = 0; i < ARRAY_COUNT(sSlotMachine->reelTimeMachineSpriteIds); i++)
@@ -3827,7 +3827,7 @@ static void DestroyReelTimeMachineSprites(void)
 
 static void DestroyReelTimeShadowSprites(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < ARRAY_COUNT(sSlotMachine->reelTimeShadowSpriteIds); i++)
         DestroySprite(&gSprites[sSlotMachine->reelTimeShadowSpriteIds[i]]);
@@ -3897,7 +3897,7 @@ static void SetReelTimeBoltDelay(s16 delay)
 
 static void DestroyReelTimeBoltSprites(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < ARRAY_COUNT(sSlotMachine->reelTimeBoltSpriteIds); i++)
         DestroySprite(&gSprites[sSlotMachine->reelTimeBoltSpriteIds[i]]);
@@ -3951,7 +3951,7 @@ static void SetReelTimePikachuAuraFlashDelay(s16 delay)
 
 static void DestroyReelTimePikachuAuraSprites(void)
 {
-    u8 i;
+    u32 i;
     MultiplyInvertedPaletteRGBComponents((IndexOfSpritePaletteTag(PALTAG_PIKA_AURA) << 4) + 0x103, 0, 0, 0);
     for (i = 0; i < ARRAY_COUNT(sSlotMachine->reelTimePikachuAuraSpriteIds); i++)
         DestroySprite(&gSprites[sSlotMachine->reelTimePikachuAuraSpriteIds[i]]);
@@ -3982,7 +3982,7 @@ static void DestroyReelTimeExplosionSprite(void)
 // The "confusion" ducks that circle Pikachu if the Reel Time machine explodes
 static void CreateReelTimeDuckSprites(void)
 {
-    u8 i;
+    u32 i;
     u16 sp[] = {0x0, 0x40, 0x80, 0xC0};
     for (i = 0; i < ARRAY_COUNT(sSlotMachine->reelTimeDuckSpriteIds); i++)
     {
@@ -4015,7 +4015,7 @@ static void SpriteCB_ReelTimeDuck(struct Sprite *sprite)
 
 static void DestroyReelTimeDuckSprites(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < ARRAY_COUNT(sSlotMachine->reelTimeDuckSpriteIds); i++)
     {
         DestroySprite(&gSprites[sSlotMachine->reelTimeDuckSpriteIds[i]]);
@@ -4518,7 +4518,7 @@ static void EndDigitalDisplayScene_InsertBet(void)
 
 static void LoadSlotMachineGfx(void)
 {
-    u8 i;
+    u32 i;
 
     LoadReelBackground();
     sDigitalDisplayGfxPtr = Alloc(0x3200);
@@ -4543,7 +4543,7 @@ static void LoadSlotMachineGfx(void)
 static void LoadReelBackground(void)
 {
     u8 *dest;
-    u8 i, j;
+    u32 i, j;
 
     sReelBackgroundSpriteSheet = AllocZeroed(sizeof(struct SpriteSheet));
     sReelBackground_Gfx = AllocZeroed(0x2000); // Background is plain white

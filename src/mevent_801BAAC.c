@@ -293,7 +293,7 @@ s32 FadeOutFromWonderCard(bool32 flag)
 
 void sub_801BEF8(void)
 {
-    u16 i = 0;
+    u32 i = 0;
     u16 r6;
     u16 sp0[3] = {0, 0, 0};
 
@@ -765,7 +765,7 @@ u32 MENews_GetInput(u16 input)
 
 void sub_801CDCC(void)
 {
-    u8 i = 0;
+    u32 i = 0;
     memcpy(sWonderNewsData->unk_01CE, sWonderNewsData->unk_0000.unk_04, 40);
     sWonderNewsData->unk_01CE[40] = EOS;
     for (; i < 10; ++i)
@@ -781,7 +781,7 @@ void sub_801CDCC(void)
 
 void sub_801CE7C(void)
 {
-    u8 i = 0;
+    u32 i = 0;
     s32 x;
     PutWindowTilemap(sWonderNewsData->unk_01C8[0]);
     PutWindowTilemap(sWonderNewsData->unk_01C8[1]);

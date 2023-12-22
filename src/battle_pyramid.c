@@ -1930,7 +1930,7 @@ static u8 GetPyramidFloorTemplateId(void)
 
 u8 GetNumBattlePyramidObjectEvents(void)
 {
-    u8 i;
+    u32 i;
     struct ObjectEventTemplate *events = gSaveBlock1Ptr->objectEventTemplates;
 
     for (i = 0; i < 16; i++)

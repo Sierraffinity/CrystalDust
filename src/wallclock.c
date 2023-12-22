@@ -199,7 +199,7 @@ void CB2_StartWallClock(void)
 {
     u8 taskId;
     u8 spriteId;
-    u8 i;
+    u32 i;
 
     static const u8 clockX[6] = {
         89, 103, 111, 120, 134, 146

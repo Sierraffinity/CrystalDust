@@ -660,7 +660,7 @@ void CreateMonMarkingsOrPokeballIndicators(void)
     struct SpritePalette sprPals[3];
     struct SpriteSheet sprSheet;
     struct Sprite *sprite;
-    u16 i, spriteId;
+    u32 i, spriteId;
     struct Pokenav7Struct *structPtr = GetSubstructPtr(POKENAV_SUBSTRUCT_MON_MARK_MENU);
 
     LoadConditionSelectionIcons(sprSheets, &sprTemplate, sprPals);
@@ -737,7 +737,7 @@ void CreateMonMarkingsOrPokeballIndicators(void)
 
 void sub_81CEBF4(struct Pokenav7Struct *structPtr)
 {
-    u8 i;
+    u32 i;
 
     if (IsConditionMenuSearchMode() == TRUE)
     {

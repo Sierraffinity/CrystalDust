@@ -1080,7 +1080,7 @@ static void UpdateMonAnim(void)
 static bool8 InitMonAnimStage(void)
 {
     struct PokeblockFeed *pokeblockFeed = sPokeblockFeed;
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NUM_ANIMDATA; i++)
         pokeblockFeed->animData[i] = sMonPokeblockAnims[pokeblockFeed->animId][i];
@@ -1131,7 +1131,7 @@ static bool8 FreeMonSpriteOamMatrix(void)
 static void CalculateMonAnimMovementEnd(void)
 {
     struct PokeblockFeed *pokeblockFeed = sPokeblockFeed;
-    u16 i;
+    u32 i;
     u16 approachTime = pokeblockFeed->animData[ANIMDATA_APPR_TIME];
     u16 time = pokeblockFeed->maxAnimStageTime - approachTime;
     s16 x = pokeblockFeed->monX + pokeblockFeed->animData[ANIMDATA_TARGET_X];

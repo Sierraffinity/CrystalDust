@@ -1641,7 +1641,7 @@ static s8 AdvanceMultiBattleMonIndex(s8 delta)
 {
     struct Pokemon *mons = sMonSummaryScreen->monList.mons;
     s8 index, arrId = 0;
-    u8 i;
+    u32 i;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -1679,7 +1679,7 @@ static bool8 IsValidToViewInMulti(struct Pokemon* mon)
 
 static void ChangePage(u8 taskId, s8 delta)
 {
-    u8 i;
+    u32 i;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     s16 *data = gTasks[taskId].data;
 
@@ -1919,7 +1919,7 @@ void Task_SwitchPageInMoveSelect(u8 taskId)
 
 static bool8 HasMoreThanOneMove(void)
 {
-    u8 i;
+    u32 i;
     for (i = 1; i < MAX_MON_MOVES; i++)
         if (sMonSummaryScreen->summary.moves[i] != 0)
             return TRUE;
@@ -1928,7 +1928,7 @@ static bool8 HasMoreThanOneMove(void)
 
 static void ChangeSelectedMove(s16 *taskData, s8 direction, u8 *moveIndexPtr)
 {
-    s8 i, newMoveIndex;
+    s32 i, newMoveIndex;
     u16 move;
 
     PlaySE(SE_SELECT);
@@ -2314,7 +2314,7 @@ static void PrintTextOnWindowSmall(u8 windowId, const u8 *string, u8 x, u8 y, u8
 
 static void SetSmallMonPicBackgroundPalette(void)
 {
-    u8 i;
+    u32 i;
     u16 left = 0x13;
     u16 middle = 0xA9;
     u16 right = 0xAA;
@@ -2422,11 +2422,11 @@ u8 GetMoveSlotToReplace(void)
 static void DrawPagination(bool8 currentPagePressed) // Updates the pagination dots at the top of the summary screen
 {
     u16 *alloced = Alloc(32);
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 4; i++)
     {
-        u8 j = i * 2;
+        u32 j = i * 2;
 
         if (i < sMonSummaryScreen->minPageIndex)
         {
@@ -2992,7 +2992,7 @@ static void SwapMovesNamesPP(u8 moveIndex1, u8 moveIndex2)
 
 static void ResetSpriteIds(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < ARRAY_COUNT(sMonSummaryScreen->spriteIds); i++)
         sMonSummaryScreen->spriteIds[i] = SPRITE_NONE;
 }
@@ -3014,7 +3014,7 @@ static void SetSpriteInvisibility(u8 spriteArrayId, bool8 invisible)
 static void HidePageSpecificSprites(void)
 {
     // Keeps Pokémon, caught ball and status sprites visible.
-    u8 i;
+    u32 i;
 
     for (i = SPRITE_ARR_ID_BEGIN_TRANSIENT; i < ARRAY_COUNT(sMonSummaryScreen->spriteIds); i++)
         if (sMonSummaryScreen->spriteIds[i] != SPRITE_NONE)
@@ -3047,7 +3047,7 @@ static void SetTypeIcons(void)
 
 static void CreateMoveTypeIcons(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = SPRITE_ARR_ID_TYPE; i < SPRITE_ARR_ID_TYPE + 7; i++)
     {
@@ -3085,7 +3085,7 @@ static void SetMonTypeIcons(void)
 
 static void SetMoveTypeIcons(void)
 {
-    u8 i;
+    u32 i;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
@@ -3101,7 +3101,7 @@ static void SetMoveTypeIcons(void)
 
 static void SetContestMoveTypeIcons(void)
 {
-    u8 i;
+    u32 i;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -3251,7 +3251,7 @@ static void SummaryScreen_DestroyAnimDelayTask(void)
 
 static void StopPokemonAnimations(void)  // A subtle effect, this function stops pokemon animations when leaving the PSS
 {
-    u16 i;
+    u32 i;
     u16 paletteIndex = (gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].oam.paletteNum * 16) | 0x100;
     gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].animPaused = TRUE;
     gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].callback = SpriteCallbackDummy;
@@ -3323,7 +3323,7 @@ static void CreateSetStatusSprite(void)
 
 static void CreateMoveSelectorSprites(u8 idArrayStart)
 {
-    u8 i;
+    u32 i;
     u8 *spriteIds = &sMonSummaryScreen->spriteIds[idArrayStart];
 
     if (sMonSummaryScreen->currPageIndex >= PSS_PAGE_BATTLE_MOVES)
@@ -3372,7 +3372,7 @@ static void SpriteCb_MoveSelector(struct Sprite *sprite)
 
 static void DestroyMoveSelectorSprites(u8 firstArrayId)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MOVE_SELECTOR_SPRITES_COUNT; i++)
         DestroySpriteInArray(firstArrayId + i);
@@ -3380,7 +3380,7 @@ static void DestroyMoveSelectorSprites(u8 firstArrayId)
 
 static void SetMainMoveSelectorColor(u8 which)
 {
-    u8 i;
+    u32 i;
     u8 *spriteIds = &sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MOVE_SELECTOR1];
     which *= 3;
     StartSpriteAnim(&gSprites[spriteIds[0]], which);
@@ -3391,7 +3391,7 @@ static void SetMainMoveSelectorColor(u8 which)
 
 static void KeepMoveSelectorVisible(u8 firstSpriteId)
 {
-    u8 i;
+    u32 i;
     u8 *spriteIds = &sMonSummaryScreen->spriteIds[firstSpriteId];
 
     for (i = 0; i < MOVE_SELECTOR_SPRITES_COUNT; i++)
@@ -3463,7 +3463,7 @@ static void DestroyShinyIconSprite(void)
 
 static void CreateHealthBarSprites(u16 tileTag, u16 palTag)
 {
-    u8 i;
+    u32 i;
     u8 spriteId;
     u32 curHp = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP);
     u32 maxHp = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MAX_HP);
@@ -3517,7 +3517,7 @@ static void CreateHealthBarSprites(u16 tileTag, u16 palTag)
 
 static void ConfigureHealthBarSprites(void)
 {
-    u8 i;
+    u32 i;
     u8 animNum;
     u32 curHp;
     u32 maxHp;
@@ -3578,7 +3578,7 @@ static void ConfigureHealthBarSprites(void)
 
 static void DestroyHealthBarSprites(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < HP_BAR_SPRITES_COUNT; i++)
         if (sHealthBar->sprites[i] != NULL)
@@ -3589,7 +3589,7 @@ static void DestroyHealthBarSprites(void)
 
 static void SetHealthBarSprites(void)
 {
-    u8 i;
+    u32 i;
 
     if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
         for (i = 0; i < HP_BAR_SPRITES_COUNT; i++)
@@ -3598,7 +3598,7 @@ static void SetHealthBarSprites(void)
 
 static void CreateExpBarSprites(u16 tileTag, u16 palTag)
 {
-    u8 i;
+    u32 i;
     u8 spriteId;
     void *gfxBufferPtr = AllocZeroed(0x20 * 12);
     sExpBar = AllocZeroed(sizeof(struct ExpBar));
@@ -3646,7 +3646,7 @@ static void CreateExpBarSprites(u16 tileTag, u16 palTag)
 static void ConfigureExpBarSprites(void)
 {
     u8 numWholeExpBarTiles = 0;
-    u8 i;
+    u32 i;
     u32 totalExpToNextLevel;
     u32 curExpToNextLevel;
     s64 v0;
@@ -3702,7 +3702,7 @@ static void ConfigureExpBarSprites(void)
 
 static void DestroyExpBarSprites(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < EXP_BAR_SPRITES_COUNT; i++)
         if (sExpBar->sprites[i] != NULL)
@@ -3713,7 +3713,7 @@ static void DestroyExpBarSprites(void)
 
 static void SetExpBarSprites(void)
 {
-    u8 i;
+    u32 i;
 
     if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
         for (i = 0; i < EXP_BAR_SPRITES_COUNT; i++)

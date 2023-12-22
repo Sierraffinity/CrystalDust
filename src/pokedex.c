@@ -1450,7 +1450,7 @@ static const struct WindowTemplate sSearchMenu_WindowTemplate[] =
 
 void ResetPokedex(void)
 {
-    u16 i;
+    u32 i;
 
     sLastSelectedPokemon = 0;
     gUnusedPokedexU8 = 0;
@@ -1485,7 +1485,7 @@ static void VBlankCB_Pokedex(void)
 
 static void ResetPokedexView(struct PokedexView *pokedexView)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < NATIONAL_DEX_COUNT; i++)
     {
@@ -2092,7 +2092,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
 #define temp_dexCount   vars[0]
 #define temp_isJohtoDex vars[1]
 #define temp_dexNum     vars[2]
-    s16 i;
+    s32 i;
 
     sPokedexView->pokemonListCount = 0;
 
@@ -2246,7 +2246,7 @@ static void PrintMonDexNumAndName(u8 windowId, u8 fontId, const u8* str, u8 left
 static void CreateMonListEntry(u8 position, u16 b, u16 ignored)
 {
     s16 entryNum;
-    u16 i;
+    u32 i;
     u16 vOffset;
 
     switch (position)
@@ -2374,7 +2374,7 @@ static void ClearMonListEntry(u8 x, u8 y, u16 unused)
 // u16 ignored is passed but never used
 static void ReplaceMonSpriteAtPos(u16 selectedMon, u16 ignored)
 {
-    u8 i;
+    u32 i;
     u16 dexNum;
     u8 spriteId;
     gPaletteFade.bufferTransferDisabled = TRUE;
@@ -2405,7 +2405,7 @@ static void ReplaceMonSpriteAtPos(u16 selectedMon, u16 ignored)
 
 static bool8 UpdateDexListScroll(u8 direction, u8 monMoveIncrement, u8 scrollTimerMax)
 {
-    u16 i;
+    u32 i;
     u8 step;
 
     if (sPokedexView->scrollTimer)
@@ -2474,7 +2474,7 @@ static u16 TryDoPokedexScroll(u16 selectedMon, u16 ignored)
 {
     u8 scrollTimer;
     u8 scrollMonIncrement;
-    u8 i;
+    u32 i;
     u16 startingPos;
     u8 scrollDir = 0;
 
@@ -3682,8 +3682,8 @@ static void LoadScreenSelectBarSubmenu(u16 unused)
 
 static void HighlightScreenSelectBarItem(u8 selectedScreen, u16 unused)
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     u16* ptr = GetBgTilemapBuffer(1);
 
     for (i = 0; i < SCREEN_COUNT; i++)
@@ -3709,8 +3709,8 @@ static void HighlightScreenSelectBarItem(u8 selectedScreen, u16 unused)
 
 static void HighlightSubmenuScreenSelectBarItem(u8 a, u16 b)
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     u16* ptr = GetBgTilemapBuffer(1);
 
     for (i = 0; i < 4; i++)
@@ -3987,7 +3987,7 @@ static void PrintMonHeight(u16 height, u8 left, u8 top)
 {
     u8 buffer[16];
     u32 inches, feet;
-    u8 i = 0;
+    u32 i = 0;
 
     inches = (height * 10000) / 254;
     if (inches % 10 >= 5)
@@ -4020,7 +4020,7 @@ static void PrintMonWeight(u16 weight, u8 left, u8 top)
 {
     u8 buffer[16];
     bool8 output;
-    u8 i;
+    u32 i;
     u32 lbs = (weight * 100000) / 4536;
 
     if (lbs % 10u >= 5)
@@ -4153,7 +4153,7 @@ s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
 u16 GetNationalPokedexCount(u8 caseID)
 {
     u16 count = 0;
-    u16 i;
+    u32 i;
 
     for (i = 0; i < NATIONAL_DEX_COUNT; i++)
     {
@@ -4175,7 +4175,7 @@ u16 GetNationalPokedexCount(u8 caseID)
 u16 GetJohtoPokedexCount(u8 caseID)
 {
     u16 count = 0;
-    u16 i;
+    u32 i;
 
     for (i = 0; i < JOHTO_DEX_COUNT; i++)
     {
@@ -4196,7 +4196,7 @@ u16 GetJohtoPokedexCount(u8 caseID)
 
 bool16 HasAllJohtoMons(void)
 {
-    u16 i;
+    u32 i;
 
     // excludes Celebi
     for (i = 1; i < JOHTO_DEX_CELEBI; i++)
@@ -4209,7 +4209,7 @@ bool16 HasAllJohtoMons(void)
 
 bool16 HasAllMons(void)
 {
-    u16 i;
+    u32 i;
 
     // excludes Mew
     for (i = 1; i < NATIONAL_DEX_MEW; i++)
@@ -4297,7 +4297,7 @@ static void UnusedPrintNum(u8 windowId, u16 num, u8 left, u8 top)
 static u8 PrintCryScreenSpeciesName(u8 windowId, u16 num, u8 left, u8 top)
 {
     u8 str[POKEMON_NAME_LENGTH + 1];
-    u8 i;
+    u32 i;
 
     for (i = 0; i < ARRAY_COUNT(str); i++)
         str[i] = EOS;
@@ -4320,7 +4320,7 @@ static u8 PrintCryScreenSpeciesName(u8 windowId, u16 num, u8 left, u8 top)
 static void UnusedPrintMonName(u8 windowId, const u8* name, u8 left, u8 top)
 {
     u8 str[POKEMON_NAME_LENGTH + 1];
-    u8 i;
+    u32 i;
     u8 nameLength;
 
     for (i = 0; i < ARRAY_COUNT(str); i++)
@@ -4379,8 +4379,8 @@ static void PrintFootprint(u8 windowId, u16 dexNum)
     u8 image[32 * 4];
     const u8 * r12 = gMonFootprintTable[NationalPokedexNumToSpecies(dexNum)];
     u16 r5 = 0;
-    u16 i;
-    u16 j;
+    u32 i;
+    u32 j;
 
     for (i = 0; i < 32; i++)
     {
@@ -4471,7 +4471,7 @@ static u16 CreateSizeScreenTrainerPic(u16 species, s16 x, s16 y, s8 paletteSlot)
 static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 type1, u8 type2)
 {
     u16 species;
-    u16 i;
+    u32 i;
     u16 resultsCount;
     u8 types[2];
 
@@ -4622,7 +4622,7 @@ static void ClearSearchMenuRect(u32 x, u32 y, u32 width, u32 height)
 
 static void Task_LoadSearchMenu(u8 taskId)
 {
-    u16 i;
+    u32 i;
 
     switch (gMain.state)
     {
@@ -5050,7 +5050,7 @@ static void Task_ExitSearchWaitForFade(u8 taskId)
 
 void SetSearchRectHighlight(u8 flags, u8 x, u8 y, u8 width)
 {
-    u16 i;
+    u32 i;
     u16 temp; //should be a pointer, but does not match as one
     u32 ptr = (u32)GetBgTilemapBuffer(3); //same as above
 
@@ -5228,8 +5228,8 @@ static void PrintSelectedSearchParameters(u8 taskId)
 
 static void DrawOrEraseSearchParameterBox(bool8 erase)
 {
-    u16 i;
-    u16 j;
+    u32 i;
+    u32 j;
     u16* ptr = GetBgTilemapBuffer(3);
 
     if (!erase)
@@ -5266,8 +5266,8 @@ static void PrintSearchParameterText(u8 taskId)
     const struct SearchOptionText *texts = sSearchOptions[gTasks[taskId].tMenuItem].texts;
     const u16 *cursorPos = &gTasks[taskId].data[sSearchOptions[gTasks[taskId].tMenuItem].taskDataCursorPos];
     const u16 *scrollOffset = &gTasks[taskId].data[sSearchOptions[gTasks[taskId].tMenuItem].taskDataScrollOffset];
-    u16 i;
-    u16 j;
+    u32 i;
+    u32 j;
 
     ClearSearchParameterBoxText();
 

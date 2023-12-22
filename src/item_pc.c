@@ -206,7 +206,7 @@ static const struct WindowTemplate sSubwindowTemplates[] = {
 
 void ItemPc_Init(u8 kind, MainCallback callback)
 {
-    u8 i;
+    u32 i;
 
     if (kind >= 2)
     {
@@ -468,7 +468,7 @@ static bool8 ItemPc_AllocateResourcesForListMenu(void)
 
 static void ItemPc_BuildListMenuTemplate(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < sStateDataPtr->nItems; i++)
     {
@@ -667,7 +667,7 @@ static u16 ItemPc_GetItemQuantityBySlotId(u16 idx)
 
 static void ItemPc_CountPcItems(void)
 {
-    u16 i;
+    u32 i;
 
     CompactPCItems();
     sStateDataPtr->nItems = 0;
@@ -681,7 +681,7 @@ static void ItemPc_CountPcItems(void)
 
 static void ItemPc_SetScrollPosition(void)
 {
-    u8 i;
+    u32 i;
 
     if (sListMenuState.row > 3)
     {
@@ -1049,7 +1049,7 @@ static void Task_ItemPcCancel(u8 taskId)
 
 static void ItemPc_InitWindows(void)
 {
-    u8 i;
+    u32 i;
 
     InitWindows(sWindowTemplates);
     DeactivateAllTextPrinters();

@@ -252,7 +252,7 @@ void CableCar(void)
 static void CB2_LoadCableCar(void)
 {
     u16 imebak;
-    u8 i = 0;
+    u32 i = 0;
     u32 sizeOut = 0;
 
     switch (gMain.state)
@@ -382,7 +382,7 @@ static void CB2_CableCar(void)
 
 static void CB2_EndCableCar(void)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     HideBg(0);
     HideBg(1);
@@ -418,7 +418,7 @@ static void CB2_EndCableCar(void)
 
 static void Task_CableCar(u8 taskId)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     sCableCar->timer++;
     switch (sCableCar->state)
@@ -797,7 +797,7 @@ static void SetBgRegs(bool8 active)
 static void CreateCableCarSprites(void)
 {
     u8 spriteId;
-    u8 i;
+    u32 i;
 
     u16 playerGraphicsIds[2] = {
         [MALE]   = OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL,
@@ -937,7 +937,7 @@ static void CreateCableCarSprites(void)
 
 static void BufferNextGroundSegment(void)
 {
-    u8 i, j, k;
+    u32 i, j, k;
     u8 offset;
 
     for (i = 0, k = 0, offset = 0x24 * (sCableCar->groundTilemapOffset + 2); i < 3; i++)
@@ -982,7 +982,7 @@ static void AnimateGroundGoingDown(void)
 
 static void DrawNextGroundSegmentGoingUp(void)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     sCableCar->groundXOffset = sCableCar->groundYOffset = 0;
     sCableCar->groundXBase = sCableCar->bg0HorizontalOffset;
@@ -1016,7 +1016,7 @@ static void DrawNextGroundSegmentGoingUp(void)
 
 static void DrawNextGroundSegmentGoingDown(void)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     sCableCar->groundXOffset = sCableCar->groundYOffset = 0;
     sCableCar->groundXBase = sCableCar->bg0HorizontalOffset;

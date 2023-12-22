@@ -1754,7 +1754,7 @@ void AnimTask_RapinSpinMonElevation(u8 taskId)
     s16 var2;
     int var3;
     int var4;
-    s16 i;
+    s32 i;
     struct ScanlineEffectParams scanlineParams;
     struct Task *task = &gTasks[taskId];
 
@@ -1833,7 +1833,7 @@ void AnimTask_RapinSpinMonElevation(u8 taskId)
 
 static void RapinSpinMonElevation_Step(u8 taskId)
 {
-    s16 i;
+    s32 i;
     struct Task *task = &gTasks[taskId];
 
     task->data[0] -= task->data[5];
@@ -1909,7 +1909,7 @@ static void TormentAttacker_Step(u8 taskId)
 {
     int var0, var1;
     s16 x, y;
-    u16 i, j;
+    u32 i, j;
     u8 spriteId;
     struct Task *task = &gTasks[taskId];
 
@@ -3364,7 +3364,7 @@ static void AnimTask_AcidArmor_Step(u8 taskId)
     s16 bgX, bgY;
     s16 offset;
     s16 var0;
-    s16 i;
+    s32 i;
     s16 sineIndex;
     s16 var3;
 
@@ -3781,7 +3781,7 @@ static void AnimTask_SquishAndSweatDroplets_Step(u8 taskId)
 
 static void CreateSweatDroplets(u8 taskId, bool8 arg1)
 {
-    u8 i;
+    u32 i;
     s8 xOffset, yOffset;
     struct Task *task;
     s16 xCoords[4];
@@ -3959,7 +3959,7 @@ void AnimTask_GlareEyeDots(u8 taskId)
 
 static void AnimTask_GlareEyeDots_Step(u8 taskId)
 {
-    u8 i;
+    u32 i;
     s16 x, y;
     struct Task *task = &gTasks[taskId];
 

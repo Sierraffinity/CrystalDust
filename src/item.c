@@ -124,7 +124,7 @@ u8 *GetBerryCountString(u8 *dst, const u8 *berryName, u32 quantity)
 
 bool8 IsBagPocketNonEmpty(u8 pocket)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < gBagPockets[pocket - 1].capacity; i++)
     {
@@ -136,7 +136,7 @@ bool8 IsBagPocketNonEmpty(u8 pocket)
 
 bool8 CheckBagHasItem(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
     u8 pocket;
 
     if (ItemId_GetPocket(itemId) == 0)
@@ -165,7 +165,7 @@ bool8 CheckBagHasItem(u16 itemId, u16 count)
 
 bool8 HasAtLeastOneBerry(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = FIRST_BERRY_INDEX; i < ITEM_BRIGHT_POWDER; i++)
     {
@@ -181,7 +181,7 @@ bool8 HasAtLeastOneBerry(void)
 
 bool8 CheckBagHasSpace(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
     u8 pocket;
     u16 slotCapacity;
     u16 ownedCount;
@@ -245,7 +245,7 @@ bool8 CheckBagHasSpace(u16 itemId, u16 count)
 
 bool8 AddBagItem(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
 
     if (ItemId_GetPocket(itemId) == POCKET_NONE)
         return FALSE;
@@ -352,7 +352,7 @@ bool8 AddBagItem(u16 itemId, u16 count)
 
 bool8 RemoveBagItem(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
     u16 totalQuantity = 0;
 
     if (ItemId_GetPocket(itemId) == POCKET_NONE || itemId == ITEM_NONE)
@@ -445,7 +445,7 @@ u8 GetPocketByItemId(u16 itemId)
 
 void ClearItemSlots(struct ItemSlot *itemSlots, u8 itemCount)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < itemCount; i++)
     {
@@ -456,7 +456,7 @@ void ClearItemSlots(struct ItemSlot *itemSlots, u8 itemCount)
 
 static s32 FindFreePCItemSlot(void)
 {
-    s8 i;
+    s32 i;
 
     for (i = 0; i < PC_ITEMS_COUNT; i++)
     {
@@ -469,7 +469,7 @@ static s32 FindFreePCItemSlot(void)
 u8 CountUsedPCItemSlots(void)
 {
     u8 usedSlots = 0;
-    u8 i;
+    u32 i;
 
     for (i = 0; i < PC_ITEMS_COUNT; i++)
     {
@@ -481,7 +481,7 @@ u8 CountUsedPCItemSlots(void)
 
 bool8 CheckPCHasItem(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < PC_ITEMS_COUNT; i++)
     {
@@ -493,7 +493,7 @@ bool8 CheckPCHasItem(u16 itemId, u16 count)
 
 bool8 AddPCItem(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
     s8 freeSlot;
     u16 ownedCount;
     struct ItemSlot *newItems;
@@ -573,8 +573,8 @@ void RemovePCItem(u16 itemId, u16 count)
 
 void CompactPCItems(void)
 {
-    u16 i;
-    u16 j;
+    u32 i;
+    u32 j;
 
     for (i = 0; i < PC_ITEMS_COUNT - 1; i++)
     {
@@ -621,7 +621,7 @@ static void SwapItemSlots(struct ItemSlot *a, struct ItemSlot *b)
 
 void CompactItemsInBagPocket(struct BagPocket *bagPocket)
 {
-    u16 i, j;
+    u32 i, j;
 
     for (i = 0; i < bagPocket->capacity - 1; i++)
     {
@@ -635,7 +635,7 @@ void CompactItemsInBagPocket(struct BagPocket *bagPocket)
 
 void SortBerriesOrTMHMs(struct BagPocket *bagPocket)
 {
-    u16 i, j;
+    u32 i, j;
 
     for (i = 0; i < bagPocket->capacity - 1; i++)
     {
@@ -661,7 +661,7 @@ void MoveItemSlotInList(struct ItemSlot* itemSlots_, u32 from, u32 to_)
 
     if (from != to)
     {
-        s16 i, count;
+        s32 i, count;
         struct ItemSlot firstSlot = itemSlots[from];
 
         if (to > from)
@@ -681,7 +681,7 @@ void MoveItemSlotInList(struct ItemSlot* itemSlots_, u32 from, u32 to_)
 
 void ClearBag(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < POCKETS_COUNT; i++)
     {
@@ -691,7 +691,7 @@ void ClearBag(void)
 
 u16 CountTotalItemQuantityInBag(u16 itemId)
 {
-    u16 i;
+    u32 i;
     u16 ownedCount = 0;
     struct BagPocket *bagPocket = &gBagPockets[ItemId_GetPocket(itemId) - 1];
 
@@ -706,7 +706,7 @@ u16 CountTotalItemQuantityInBag(u16 itemId)
 
 static bool8 CheckPyramidBagHasItem(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
     u16 *items = gSaveBlock2Ptr->frontier.pyramidBag.itemId[gSaveBlock2Ptr->frontier.lvlMode];
     u8 *quantities = gSaveBlock2Ptr->frontier.pyramidBag.quantity[gSaveBlock2Ptr->frontier.lvlMode];
 
@@ -728,7 +728,7 @@ static bool8 CheckPyramidBagHasItem(u16 itemId, u16 count)
 
 static bool8 CheckPyramidBagHasSpace(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
     u16 *items = gSaveBlock2Ptr->frontier.pyramidBag.itemId[gSaveBlock2Ptr->frontier.lvlMode];
     u8 *quantities = gSaveBlock2Ptr->frontier.pyramidBag.quantity[gSaveBlock2Ptr->frontier.lvlMode];
 
@@ -750,7 +750,7 @@ static bool8 CheckPyramidBagHasSpace(u16 itemId, u16 count)
 
 bool8 AddPyramidBagItem(u16 itemId, u16 count)
 {
-    u16 i;
+    u32 i;
 
     u16 *items = gSaveBlock2Ptr->frontier.pyramidBag.itemId[gSaveBlock2Ptr->frontier.lvlMode];
     u8 *quantities = gSaveBlock2Ptr->frontier.pyramidBag.quantity[gSaveBlock2Ptr->frontier.lvlMode];
@@ -823,7 +823,7 @@ bool8 AddPyramidBagItem(u16 itemId, u16 count)
 
 bool8 RemovePyramidBagItem(u16 itemId, u16 count)
 {
-    u16 i;
+    u32 i;
 
     u16 *items = gSaveBlock2Ptr->frontier.pyramidBag.itemId[gSaveBlock2Ptr->frontier.lvlMode];
     u8 *quantities = gSaveBlock2Ptr->frontier.pyramidBag.quantity[gSaveBlock2Ptr->frontier.lvlMode];

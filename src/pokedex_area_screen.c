@@ -331,7 +331,7 @@ static bool8 DrawAreaGlow(void)
 
 static void FindMapsWithMon(u16 species)
 {
-    u16 i;
+    u32 i;
     struct Roamer *roamer;
 
     sPokedexAreaScreen->unk6E2 = 0;
@@ -488,7 +488,7 @@ static bool8 MapHasMon(const struct WildPokemonHeader *info, u16 species)
 
 static bool8 MonListHasMon(const struct WildPokemonInfo *info, u16 species, u16 size)
 {
-    u16 i;
+    u32 i;
     int timeOfDay;
 
     if (info == NULL)
@@ -534,7 +534,7 @@ static u16 GetRegionMapGlowSectionIdAt(u16 x, u16 y, u8 region)
 
 static void BuildAreaGlowTilemap(void)
 {
-    u16 i, y, x, j;
+    u32 i, y, x, j;
     u8 currentRegion = sPokedexAreaScreen->regionMap.currentRegion;
 
     for (i = 0; i < ARRAY_COUNT(sPokedexAreaScreen->areaGlowTilemap); i++)
@@ -638,7 +638,7 @@ static void StartAreaGlow(void)
 static void DoAreaGlow(void)
 {
     u16 x, y;
-    u16 i;
+    u32 i;
 
     if (sPokedexAreaScreen->whichMarkersFlashing == 0)
     {
@@ -880,7 +880,7 @@ static void CreateAreaMarkerSprites(void)
     u8 spriteId;
     static s16 x;
     static s16 y;
-    static s16 i;
+    static s32 i;
     static s16 mapSecId;
     static s16 numSprites;
 
@@ -907,7 +907,7 @@ static void CreateAreaMarkerSprites(void)
 
 static void DestroyAreaMarkerSprites(void)
 {
-    u16 i;
+    u32 i;
     FreeSpriteTilesByTag(2);
     FreeSpritePaletteByTag(2);
     for (i = 0; i < sPokedexAreaScreen->numAreaMarkerSprites; i++)
@@ -936,7 +936,7 @@ static void LoadAreaUnknownGraphics(void)
 
 static void CreateAreaUnknownSprites(void)
 {
-    u16 i;
+    u32 i;
     u8 spriteId;
 
     if (sPokedexAreaScreen->numOverworldAreas || sPokedexAreaScreen->numSpecialAreas)

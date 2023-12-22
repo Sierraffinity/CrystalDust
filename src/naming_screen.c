@@ -489,7 +489,7 @@ static void NamingScreen_Init(void)
 
 static void SetSpritesVisible(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < MAX_SPRITES; i++)
     {
         if (gSprites[i].inUse)
@@ -500,7 +500,7 @@ static void SetSpritesVisible(void)
 
 static void NamingScreen_InitBGs(void)
 {
-    u8 i;
+    u32 i;
 
     DmaClearLarge16(3, (void *)VRAM, VRAM_SIZE, 0x1000);
     DmaClear32(3, (void *)OAM, OAM_SIZE);
@@ -1352,7 +1352,7 @@ static void CreateTextEntrySprites(void)
 {
     u8 spriteId;
     s16 xPos;
-    u8 i;
+    u32 i;
 
     xPos = sNamingScreen->inputCharBaseXPos - 5;
     spriteId = CreateSprite(&sSpriteTemplate_InputArrow, xPos, 56, 0);
@@ -1790,7 +1790,7 @@ static u8 GetCharAtKeyboardPos(s16 x, s16 y)
 
 static u8 GetTextEntryPosition(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < sNamingScreen->template->maxChars; i++)
     {
@@ -1802,7 +1802,7 @@ static u8 GetTextEntryPosition(void)
 
 static u8 GetPreviousTextCaretPosition(void)
 {
-    s8 i;
+    s32 i;
 
     for (i = sNamingScreen->template->maxChars - 1; i > 0; i--)
     {
@@ -1857,7 +1857,7 @@ static void BufferCharacter(u8 ch)
 
 static void SaveInputText(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < sNamingScreen->template->maxChars; i++)
     {
@@ -1904,7 +1904,7 @@ static void NamingScreen_Dummy(u8 bg, u8 page)
 
 static void DrawTextEntry(void)
 {
-    u8 i;
+    u32 i;
     u8 temp[2];
     u16 extraWidth;
     u8 maxChars = sNamingScreen->template->maxChars;
@@ -1956,7 +1956,7 @@ static const u8 *const sKeyboardTextColors[KBPAGE_COUNT] =
 
 static void PrintKeyboardKeys(u8 window, u8 page)
 {
-    u8 i;
+    u32 i;
 
     FillWindowPixelBuffer(window, sFillValues[page]);
 
@@ -2055,7 +2055,7 @@ static void NamingScreen_ShowBgs(void)
 // Always false (presumably for non-latin languages)
 static bool8 IsWideLetter(u8 character)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; sText_AlphabetUpperLower[i] != EOS; i++)
     {

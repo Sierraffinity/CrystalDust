@@ -113,7 +113,7 @@ u8 *GetBoxMonNickname(struct BoxPokemon *mon, u8 *dest)
 
 u8 CountPokemonInDaycare(struct DayCare *daycare)
 {
-    u8 i, count;
+    u32 i, count;
     count = 0;
 
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
@@ -127,7 +127,7 @@ u8 CountPokemonInDaycare(struct DayCare *daycare)
 
 void InitDaycareMailRecordMixing(struct DayCare *daycare, struct RecordMixingDaycareMail *daycareMail)
 {
-    u8 i;
+    u32 i;
     u8 numDaycareMons = 0;
 
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
@@ -151,7 +151,7 @@ void InitDaycareMailRecordMixing(struct DayCare *daycare, struct RecordMixingDay
 
 static s8 Daycare_FindEmptySpot(struct DayCare *daycare)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
     {
@@ -371,7 +371,7 @@ static void ClearDaycareMon(struct DaycareMon *daycareMon)
 
 static void ClearAllDaycareData(struct DayCare *daycare)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
         ClearDaycareMon(&daycare->mons[i]);
@@ -532,7 +532,7 @@ static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv)
 
 static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
 {
-    u8 i;
+    u32 i;
     u8 selectedIvs[INHERITED_IV_COUNT];
     u8 availableIVs[NUM_STATS];
     u8 whichParents[INHERITED_IV_COUNT];
@@ -609,7 +609,7 @@ static u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves)
     u16 eggMoveIdx;
     u16 numEggMoves;
     u16 species;
-    u16 i;
+    u32 i;
 
     numEggMoves = 0;
     eggMoveIdx = 0;
@@ -640,7 +640,7 @@ static void BuildEggMoveset(struct Pokemon *egg, struct BoxPokemon *father, stru
     u16 numSharedParentMoves;
     u32 numLevelUpMoves;
     u16 numEggMoves;
-    u16 i, j;
+    u32 i, j;
 
     numSharedParentMoves = 0;
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -767,7 +767,7 @@ static void GiveVoltTackleIfLightBall(struct Pokemon *mon, struct DayCare *dayca
 
 static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parentSlots)
 {
-    u16 i;
+    u32 i;
     u16 species[DAYCARE_MON_COUNT];
     u16 eggSpecies;
 
@@ -1132,7 +1132,7 @@ void SetDaycareCompatibilityString(void)
 
 bool8 NameHasGenderSymbol(const u8 *name, u8 genderRatio)
 {
-    u8 i;
+    u32 i;
     u8 symbolsCount[GENDER_COUNT];
     symbolsCount[MALE] = symbolsCount[FEMALE] = 0;
 
@@ -1176,7 +1176,7 @@ static u8 *AppendMonGenderSymbol(u8 *name, struct BoxPokemon *boxMon)
 static void GetDaycareLevelMenuText(struct DayCare *daycare, u8 *dest)
 {
     u8 monNames[DAYCARE_MON_COUNT][20];
-    u8 i;
+    u32 i;
 
     *dest = EOS;
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
@@ -1194,7 +1194,7 @@ static void GetDaycareLevelMenuText(struct DayCare *daycare, u8 *dest)
 
 static void GetDaycareLevelMenuLevelText(struct DayCare *daycare, u8 *dest)
 {
-    u8 i;
+    u32 i;
     u8 level;
     u8 text[20];
 

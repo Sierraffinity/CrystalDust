@@ -141,7 +141,7 @@ u8 UpdatePaletteFade(void)
 
 void ResetPaletteFade(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 16; i++)
         ResetPaletteStruct(i);
@@ -151,7 +151,7 @@ void ResetPaletteFade(void)
 
 void ReadPlttIntoBuffers(void)
 {
-    u16 i;
+    u32 i;
     u16 *pltt = (u16 *)PLTT;
 
     for (i = 0; i < PLTT_SIZE / 2; i++)
@@ -210,7 +210,7 @@ bool8 unref_sub_80A1C1C(u32 a1, u8 a2, u8 a3, u8 a4, u16 a5)
 
 void unref_sub_80A1C64(u8 a1, u32 *a2)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 16; i++)
     {
@@ -242,7 +242,7 @@ static void unused_sub_80A1CDC(struct PaletteStruct *a1, u32 *a2)
 {
     s32 srcIndex;
     s32 srcCount;
-    u8 i = 0;
+    u32 i = 0;
     u16 srcOffset = a1->srcIndex * a1->base->size;
 
     if (!a1->base->pst_field_8_0)
@@ -307,7 +307,7 @@ static void unused_sub_80A1E40(struct PaletteStruct *a1, u32 *a2)
                 if (a1->ps_field_8 != a1->base->pst_field_A)
                 {
                     u32 srcOffset = a1->srcIndex * a1->base->size;
-                    u8 i;
+                    u32 i;
 
                     for (i = 0; i < a1->base->size; i++)
                         gPlttBufferFaded[a1->baseDestOffset + i] = a1->base->src[srcOffset + i];
@@ -399,7 +399,7 @@ void unref_sub_80A2074(u16 uid)
 
 static u8 GetPaletteNumByUid(u16 uid)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 16; i++)
         if (sPaletteStructs[i].base->uid == uid)
@@ -502,7 +502,7 @@ void InvertPlttBuffer(u32 selectedPalettes)
     {
         if (selectedPalettes & 1)
         {
-            u8 i;
+            u32 i;
             for (i = 0; i < 16; i++)
                 gPlttBufferFaded[paletteOffset + i] = ~gPlttBufferFaded[paletteOffset + i];
         }
@@ -519,7 +519,7 @@ void TintPlttBuffer(u32 selectedPalettes, s8 r, s8 g, s8 b)
     {
         if (selectedPalettes & 1)
         {
-            u8 i;
+            u32 i;
             for (i = 0; i < 16; i++)
             {
                 struct PlttData *data = (struct PlttData *)&gPlttBufferFaded[paletteOffset + i];
@@ -541,7 +541,7 @@ void UnfadePlttBuffer(u32 selectedPalettes)
     {
         if (selectedPalettes & 1)
         {
-            u8 i;
+            u32 i;
             for (i = 0; i < 16; i++)
                 gPlttBufferFaded[paletteOffset + i] = gPlttBufferUnfaded[paletteOffset + i];
         }
@@ -574,7 +574,7 @@ static void BeginFastPaletteFadeInternal(u8 submode)
 
 static u8 UpdateFastPaletteFade(void)
 {
-    u16 i;
+    u32 i;
     u16 paletteOffsetStart;
     u16 paletteOffsetEnd;
     s8 r0;

@@ -394,7 +394,7 @@ static u8 CreateShopMenuSkipOptions(u8 martType)
 
 static u8 GetMartTypeFromItemList(u32 martType)
 {    
-    u16 i;
+    u32 i;
     
     if (martType != MART_TYPE_NORMAL)
         return martType;
@@ -625,7 +625,7 @@ static void BuyMenuFreeMemory(void)
 
 static bool8 BuyMenuBuildListMenuTemplate(void)
 {
-    u16 i, max;
+    u32 i, max;
     u16 itemCount;
 
     sListMenuItems = Alloc((sMartInfo.itemCount + 1) * sizeof(*sListMenuItems));
@@ -983,7 +983,8 @@ static void BuyMenuDrawMapGraphics(void)
 
 static void BuyMenuDrawMapBg(void)
 {
-    s16 i, j, x, y;
+    s32 i, j;
+    s16 x, y;
     const struct MapLayout *mapLayout;
     u16 metatile;
     u8 metatileLayerType;
@@ -1091,7 +1092,7 @@ static void BuyMenuCollectObjectEventData(void)
 
 static void BuyMenuDrawObjectEvents(void)
 {
-    u8 i;
+    u32 i;
     u8 spriteId;
     const struct ObjectEventGraphicsInfo *graphicsInfo;
 
@@ -1115,7 +1116,7 @@ static void BuyMenuDrawObjectEvents(void)
 
 static void BuyMenuCopyMenuBgToBg1TilemapBuffer(void)
 {
-    s16 i;
+    s32 i;
     u16 *dest = sShopData->tilemapBuffers[1];
     const u16 *src = sShopData->tilemapBuffers[0];
 
@@ -1487,7 +1488,7 @@ static void RecordItemPurchase(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    u16 i;
+    u32 i;
 
     for (i = 0; i < ARRAY_COUNT(gMartPurchaseHistory); i++)
     {

@@ -1126,7 +1126,7 @@ void DoSwapBugContestMonScreen(struct Pokemon *newMon, MainCallback returnCallba
 
 static void Task_SwapScreen_ScrollBackground(u8 taskId)
 {
-    s16 i;
+    s32 i;
     u16 *data = gTasks[taskId].data;
 
     sVBlank_DMA = FALSE;

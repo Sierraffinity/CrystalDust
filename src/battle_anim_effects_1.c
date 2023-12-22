@@ -4921,7 +4921,7 @@ void AnimTask_Conversion2AlphaBlend(u8 taskId)
 // Unused
 static void AnimTask_HideBattlersHealthbox(u8 taskId)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < gBattlersCount; i++)
     {
         if (gBattleAnimArgs[0] == TRUE && GetBattlerSide(i) == B_SIDE_PLAYER)
@@ -4937,7 +4937,7 @@ static void AnimTask_HideBattlersHealthbox(u8 taskId)
 // Unused
 static void AnimTask_ShowBattlersHealthbox(u8 taskId)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < gBattlersCount; i++)
         SetHealthboxSpriteVisible(gHealthboxSpriteIds[i]);
 
@@ -5035,8 +5035,8 @@ static void AnimTask_MoonlightEndFade_Step(u8 taskId)
             u16 color;
             u16 bitmask;
             u16 r3;
-            u16 i;
-            u16 j;
+            u32 i;
+            u32 j;
             task->data[1] = 0;
             if (++task->data[2] <= 15)
             {
@@ -5167,7 +5167,7 @@ static void AnimHornHit_Step(struct Sprite* sprite)
 
 void AnimTask_DoubleTeam(u8 taskId)
 {
-    u16 i;
+    u32 i;
     int obj;
     u16 r3;
     u16 r4;
@@ -5245,8 +5245,8 @@ static void AnimSuperFang(struct Sprite* sprite)
 
 void AnimTask_MusicNotesRainbowBlend(u8 taskId)
 {
-    u16 i;
-    u16 j;
+    u32 i;
+    u32 j;
     u16 index;
 
     index = IndexOfSpritePaletteTag(gParticlesColorBlendTable[0][0]);
@@ -5273,7 +5273,7 @@ void AnimTask_MusicNotesRainbowBlend(u8 taskId)
 // clears the rainbow effect for musical notes.
 void AnimTask_MusicNotesClearRainbowBlend(u8 taskId)
 {
-    u16 i;
+    u32 i;
     for (i = 1; i < ARRAY_COUNT(gParticlesColorBlendTable); i++)
         FreeSpritePaletteByTag(gParticlesColorBlendTable[i][0]);
 

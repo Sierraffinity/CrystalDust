@@ -481,7 +481,7 @@ static void PrintSoundNumber(u16 soundIndex, u8 windowId) // sub_080E8928
 
 static void PrintPaddedString(const u8 *const string, u8 windowId) // sub_080E8978
 {
-    u8 i;
+    u32 i;
     u8 str[32];
 
     for (i = 0; i < 31; i++)
@@ -758,7 +758,7 @@ static void PrintSignedNumber(int n, u16 x, u16 y, u8 digits) // sub_080E90C0
     };
 
     u8 str[8];
-    s8 i;
+    s32 i;
     s8 negative;
     s8 someVar2;
 

@@ -120,7 +120,7 @@ static void ShiftSavedApprentices(void);
 
 void BufferApprenticeChallengeText(u8 saveApprenticeId)
 {
-    u8 i, num;
+    u32 i, num;
     const u8 *challengeText;
 
     num = gSaveBlock2Ptr->apprentices[saveApprenticeId].number;
@@ -141,7 +141,7 @@ void Apprentice_EnableBothScriptContexts(void)
 
 void ResetApprenticeStruct(struct Apprentice *apprentice)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < ARRAY_COUNT(apprentice->speechWon); i++)
         apprentice->speechWon[i] = EC_EMPTY_WORD;
@@ -152,7 +152,7 @@ void ResetApprenticeStruct(struct Apprentice *apprentice)
 
 void ResetAllApprenticeData(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     PLAYER_APPRENTICE.saveId = 0;
     for (i = 0; i < APPRENTICE_COUNT; i++)
@@ -204,7 +204,7 @@ static void SetPlayersApprenticeLvlMode(u8 mode)
 static void ShuffleApprenticeSpecies(void)
 {
     u8 species[APPRENTICE_SPECIES_COUNT];
-    u8 i;
+    u32 i;
 
     for (i = 0; i < ARRAY_COUNT(species); i++)
         species[i] = i;
@@ -226,7 +226,7 @@ static void ShuffleApprenticeSpecies(void)
 // Picking a move chooses a random mon, picking a held item is sequential (so that none are repeated)
 static u8 GetMonIdForQuestion(u8 questionId, u8 *party, u8 *partySlot)
 {
-    u8 i, count;
+    u32 i, count;
     u8 monId = 0;
 
     if (questionId == QUESTION_ID_WHICH_MOVE)
@@ -256,7 +256,7 @@ static void SetRandomQuestionData(void)
     u8 questionOrder[APPRENTICE_MAX_QUESTIONS + 1];
     u8 partyOrder[MULTI_PARTY_SIZE];
     u8 partySlot;
-    u8 i, j;
+    u32 i, j;
     u8 rand1, rand2;
     u8 id;
 
@@ -333,7 +333,7 @@ static void SetRandomQuestionData(void)
 // Unlike the first move choice, this can be either a level up move or a TM/HM move
 static u16 GetRandomAlternateMove(u8 monId)
 {
-    u8 i, j;
+    u32 i, j;
     u8 id;
     u8 numLearnsetMoves;
     u16 species;
@@ -447,7 +447,7 @@ static u16 GetRandomAlternateMove(u8 monId)
 
 static bool8 TrySetMove(u8 monId, u16 moveId)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NUM_WHICH_MOVE_QUESTIONS; i++)
     {
@@ -461,7 +461,7 @@ static bool8 TrySetMove(u8 monId, u16 moveId)
 
 static void GetLatestLearnedMoves(u16 species, u16 *moves)
 {
-    u8 i, j;
+    u32 i, j;
     u8 level, numLearnsetMoves;
     const u16 *learnset;
 
@@ -490,7 +490,7 @@ static void GetLatestLearnedMoves(u16 species, u16 *moves)
 static u16 GetDefaultMove(u8 monId, u8 speciesArrayId, u8 moveSlot)
 {
     u16 moves[MAX_MON_MOVES];
-    u8 i, numQuestions;
+    u32 i, numQuestions;
 
     if (PLAYER_APPRENTICE.questionsAnswered < NUM_WHICH_MON_QUESTIONS)
         return MOVE_NONE;
@@ -516,7 +516,7 @@ static u16 GetDefaultMove(u8 monId, u8 speciesArrayId, u8 moveSlot)
 static void SaveApprenticeParty(u8 numQuestions)
 {
     struct ApprenticeMon *apprenticeMons[MULTI_PARTY_SIZE];
-    u8 i, j;
+    u32 i, j;
     u32 speciesTableId;
 
     for (i = 0; i < MULTI_PARTY_SIZE; i++)
@@ -566,7 +566,7 @@ static void SaveApprenticeParty(u8 numQuestions)
 
 static void CreateApprenticeMenu(u8 menu)
 {
-    u8 i;
+    u32 i;
     u8 windowId;
     const u8 *strings[3];
     u8 count = 2;
@@ -725,7 +725,7 @@ void CallApprenticeFunction(void)
 
 static void Script_ResetPlayerApprentice(void)
 {
-    u8 i;
+    u32 i;
 
     SetApprenticeId();
     PLAYER_APPRENTICE.lvlMode = 0;
@@ -975,7 +975,7 @@ static void SetApprenticeMonMove(void)
 
 static void InitQuestionData(void)
 {
-    u8 i;
+    u32 i;
     u8 count = 0;
     u8 id1, id2;
 
@@ -1102,7 +1102,7 @@ static void Script_ApprenticeOpenBagMenu(void)
 
 static void TrySetApprenticeHeldItem(void)
 {
-    u8 i, j;
+    u32 i, j;
     u8 count;
 
     if (PLAYER_APPRENTICE.questionsAnswered < NUM_WHICH_MON_QUESTIONS)
@@ -1175,7 +1175,7 @@ static void ShiftSavedApprentices(void)
 // Apprentice is always saved in the first slot. Pre-existing Apprentices are moved by ShiftSavedApprentices
 static void SaveApprentice(void)
 {
-    u8 i;
+    u32 i;
 
     gSaveBlock2Ptr->apprentices[0].id = PLAYER_APPRENTICE.id;
     gSaveBlock2Ptr->apprentices[0].lvlMode = PLAYER_APPRENTICE.lvlMode;
@@ -1200,7 +1200,7 @@ static void SaveApprentice(void)
 // Never called, APPRENTICE_FUNC_SET_GFX_SAVED is unused
 static void SetSavedApprenticeTrainerGfxId(void)
 {
-    u8 i;
+    u32 i;
     u16 objectEventGfxId;
     u8 class = gApprentices[gSaveBlock2Ptr->apprentices[0].id].facilityClass;
 
@@ -1224,7 +1224,7 @@ static void SetSavedApprenticeTrainerGfxId(void)
 
 static void SetPlayerApprenticeTrainerGfxId(void)
 {
-    u8 i;
+    u32 i;
     u16 objectEventGfxId;
     u8 class = gApprentices[PLAYER_APPRENTICE.id].facilityClass;
 

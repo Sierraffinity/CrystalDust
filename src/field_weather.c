@@ -568,7 +568,7 @@ static void ApplyDroughtGammaShiftWithBlend(s8 gammaIndex, u8 blendCoeff, u16 bl
     u8 bBlend;
     u16 curPalIndex;
     u16 palOffset;
-    u16 i;
+    u32 i;
 
     gammaIndex = -gammaIndex - 1;
     color = *(struct RGBColor *)&blendColor;
@@ -673,7 +673,7 @@ static void MarkFogSpritePalToLighten(u8 paletteIndex)
 
 static bool8 LightenSpritePaletteInFog(u8 paletteIndex)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < gWeatherPtr->lightenedFogSpritePalsCount; i++)
     {
@@ -782,7 +782,7 @@ bool8 IsWeatherNotFadingIn(void)
 void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex)
 {
     u16 paletteIndex = 16 + spritePaletteIndex;
-    u16 i;
+    u32 i;
 
     switch (gWeatherPtr->palProcessingState)
     {

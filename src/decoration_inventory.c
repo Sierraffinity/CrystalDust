@@ -25,7 +25,7 @@ void SetDecorationInventoriesPointers(void)
 
 static void ClearDecorationInventory(u8 category)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < gDecorationInventories[category].size; i ++)
         gDecorationInventories[category].items[i] = DECOR_NONE;
 }
@@ -39,7 +39,7 @@ void ClearDecorationInventories(void)
 
 s8 GetFirstEmptyDecorSlot(u8 category)
 {
-    s8 i;
+    s32 i;
     for (i = 0; i < (s8)gDecorationInventories[category].size; i++)
     {
         if (gDecorationInventories[category].items[i] == DECOR_NONE)
@@ -51,7 +51,7 @@ s8 GetFirstEmptyDecorSlot(u8 category)
 
 bool8 CheckHasDecoration(u8 decor)
 {
-    u8 i;
+    u32 i;
     u8 category;
 
     category = gDecorations[decor].category;
@@ -90,7 +90,7 @@ bool8 DecorationCheckSpace(u8 decor)
 
 s8 DecorationRemove(u8 decor)
 {
-    u8 i;
+    u32 i;
     u8 category;
 
     i = 0;
@@ -113,8 +113,8 @@ s8 DecorationRemove(u8 decor)
 
 void CondenseDecorationsInCategory(u8 category)
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     u8 tmp;
 
     for (i = 0; i < gDecorationInventories[category].size; i ++)
@@ -133,7 +133,7 @@ void CondenseDecorationsInCategory(u8 category)
 
 u8 GetNumOwnedDecorationsInCategory(u8 category)
 {
-    u8 i;
+    u32 i;
     u8 ct;
 
     ct = 0;

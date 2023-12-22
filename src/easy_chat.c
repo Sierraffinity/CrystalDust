@@ -2318,7 +2318,7 @@ static void SetSelectedWord(u16 easyChatWord)
 // Compare current phrase to the original saved phrase
 static bool8 DidPhraseChange(void)
 {
-    u16 i;
+    u32 i;
     for (i = 0; i < sEasyChatScreen->maxWords; i++)
     {
         if (sEasyChatScreen->currentPhrase[i] != sEasyChatScreen->savedPhrase[i])
@@ -2836,7 +2836,7 @@ static int FooterHasFourOptions_(void)
 
 static bool8 IsPhraseDifferentThanPlayerInput(const u16 *phrase, u8 phraseLength)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < phraseLength; i++)
     {
@@ -3179,7 +3179,7 @@ static bool8 ReprintPhrase(void)
 
 static bool8 UpdateMainCursor(void)
 {
-    u8 i;
+    u32 i;
     u16 *currentPhrase;
     u16 *ecWord;
     u8 frameId;
@@ -5149,7 +5149,7 @@ u16 EasyChat_GetNumWordsInGroup(u8 groupId)
 
 static bool8 IsEasyChatWordInvalid(u16 easyChatWord)
 {
-    u16 i;
+    u32 i;
     u8 groupId;
     u32 index;
     u16 numWords;
@@ -5252,7 +5252,7 @@ u8 *CopyEasyChatWord(u8 *dest, u16 easyChatWord)
 
 u8 *ConvertEasyChatWordsToString(u8 *dest, const u16 *src, u16 columns, u16 rows)
 {
-    u16 i, j;
+    u32 i, j;
     u16 numColumns = columns - 1;
 
     for (i = 0; i < rows; i++)
@@ -5281,7 +5281,7 @@ u8 *ConvertEasyChatWordsToString(u8 *dest, const u16 *src, u16 columns, u16 rows
 
 static u8 *UnusedConvertEasyChatWordsToString(u8 *dest, const u16 *src, u16 columns, u16 rows)
 {
-    u16 i, j, k;
+    u32 i, j, k;
     u16 numColumns;
     int notEmpty, lineNumber;
 
@@ -5350,7 +5350,7 @@ static u16 GetEasyChatWordStringLength(u16 easyChatWord)
 
 static bool8 CanPhraseFitInXRowsYCols(const u16 *easyChatWords, u8 numRows, u8 numColumns, u16 maxLength)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (i = 0; i < numColumns; i++)
     {
@@ -5459,7 +5459,7 @@ void UnlockAdditionalPhrase(u8 additionalPhraseId)
 
 static u8 GetNumAdditionalPhrasesUnlocked(void)
 {
-    u8 i;
+    u32 i;
     u8 numAdditionalPhrasesUnlocked;
 
     for (i = 0, numAdditionalPhrasesUnlocked = 0; i < NUM_ADDITIONAL_PHRASES; i++)
@@ -5473,7 +5473,7 @@ static u8 GetNumAdditionalPhrasesUnlocked(void)
 
 u16 GetNewHipsterPhraseToTeach(void)
 {
-    u16 i;
+    u32 i;
     u16 additionalPhraseId;
     u8 numAdditionalPhrasesUnlocked = GetNumAdditionalPhrasesUnlocked();
     if (numAdditionalPhrasesUnlocked == NUM_ADDITIONAL_PHRASES)
@@ -5502,7 +5502,7 @@ u16 GetNewHipsterPhraseToTeach(void)
 // Unused
 u16 GetRandomTaughtHipsterPhrase(void)
 {
-    u16 i;
+    u32 i;
     u16 additionalPhraseId = GetNumAdditionalPhrasesUnlocked();
     if (additionalPhraseId == 0)
         return EC_EMPTY_WORD;
@@ -5529,7 +5529,7 @@ static bool8 EasyChatIsNationalPokedexEnabled(void)
 
 static u16 GetRandomUnlockedEasyChatPokemon(void)
 {
-    u16 i;
+    u32 i;
     u16 numWords;
     const u16 *species;
     u16 index = EasyChat_GetNumWordsInGroup(EC_GROUP_POKEMON);
@@ -5558,7 +5558,7 @@ static u16 GetRandomUnlockedEasyChatPokemon(void)
 
 void InitEasyChatPhrases(void)
 {
-    u16 i, j;
+    u32 i, j;
 
     for (i = 0; i < ARRAY_COUNT(sDefaultProfileWords); i++)
         gSaveBlock1Ptr->easyChatProfile[i] = sDefaultProfileWords[i];
@@ -5650,7 +5650,7 @@ static u8 GetUnlockedEasyChatGroupId(u8 index)
 // Unused
 static u8 *BufferEasyChatWordGroupName(u8 *dest, u8 groupId, u16 totalChars)
 {
-    u16 i;
+    u32 i;
     u8 *str = StringCopy(dest, sEasyChatGroupNamePointers[groupId]);
     for (i = str - dest; i < totalChars; i++)
     {
@@ -5669,7 +5669,7 @@ static const u8 *GetEasyChatWordGroupName(u8 groupId)
 
 static u8 *CopyEasyChatWordPadded(u8 *dest, u16 easyChatWord, u16 totalChars)
 {
-    u16 i;
+    u32 i;
     u8 *str = CopyEasyChatWord(dest, easyChatWord);
     for (i = str - dest; i < totalChars; i++)
     {
@@ -5781,7 +5781,7 @@ static u16 SetSelectedWordGroup_GroupMode(u16 groupId)
 
 static u16 SetSelectedWordGroup_AlphabetMode(u16 groupId)
 {
-    u16 i;
+    u32 i;
     u16 totalWords;
 
     for (i = 0, totalWords = 0; i < sWordData->numUnlockedAlphabetWords[groupId]; i++)

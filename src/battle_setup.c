@@ -700,7 +700,7 @@ static u16 GetSumOfPlayerPartyLevel(u8 numMons)
 
 static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
 {
-    u8 i;
+    u32 i;
     u8 sum;
     u32 count = numMons;
 

@@ -762,7 +762,7 @@ static s32 DummiedOutFunction(s16 unused1, s16 unused2, s32 unused3)
 }
 void sub_8072308(s16 number, u16 *dest, bool8 unk)
 {
-    s8 i, j;
+    s32 i, j;
     u8 buff[4];
 
     for (i = 0; i < 4; i++)
@@ -1175,7 +1175,7 @@ void UpdateHpTextInHealthbox(u8 healthboxSpriteId, s16 value, u8 maxOrCurrent)
         else
         {
             u32 var;
-            u8 i;
+            u32 i;
 
             if (GetBattlerSide(gSprites[healthboxSpriteId].data[6]) == B_SIDE_PLAYER)
             {
@@ -1253,7 +1253,7 @@ static void UpdateHpTextInHealthboxInDoubles(u8 healthboxSpriteId, s16 value, u8
             u8 var = 4;
             u8 r7;
             u8 *txtPtr;
-            u8 i;
+            u32 i;
 
             if (maxOrCurrent == HP_CURRENT)
                 var = 0;
@@ -1306,7 +1306,7 @@ static void PrintSafariMonInfo(u8 healthboxSpriteId, struct Pokemon *mon)
     u8 text[20];
     s32 j, spriteTileNum;
     u8 *barFontGfx;
-    u8 i, var, nature, healthBarSpriteId;
+    u32 i, var, nature, healthBarSpriteId;
 
     memcpy(text, sUnknown_0832C3C4, sizeof(sUnknown_0832C3C4));
     barFontGfx = &gMonSpritesGfxPtr->barFontGfx[0x520 + (GetBattlerPosition(gSprites[healthboxSpriteId].hMain_Battler) * 384)];
@@ -2254,7 +2254,7 @@ static void MoveBattleBarGraphically(u8 battlerId, u8 whichBar)
     u8 array[8];
     u8 filledPixelsCount, level;
     u8 barElementId;
-    u8 i;
+    u32 i;
 
     switch (whichBar)
     {
@@ -2390,7 +2390,7 @@ static s32 CalcNewBarValue(s32 maxValue, s32 oldValue, s32 receivedValue, s32 *c
 static u8 CalcBarFilledPixels(s32 maxValue, s32 oldValue, s32 receivedValue, s32 *currValue, u8 *arg4, u8 scale)
 {
     u8 pixels, filledPixels, totalPixels;
-    u8 i;
+    u32 i;
 
     s32 newValue = oldValue - receivedValue;
     if (newValue < 0)
@@ -2460,7 +2460,7 @@ static void sub_8074F88(struct TestingBar *barInfo, s32 *currValue, u16 *arg2)
 {
     u8 sp8[6];
     u16 sp10[6];
-    u8 i;
+    u32 i;
 
     CalcBarFilledPixels(barInfo->maxValue, barInfo->oldValue,
                 barInfo->receivedValue, currValue, sp8, B_HEALTHBAR_PIXELS / 8);

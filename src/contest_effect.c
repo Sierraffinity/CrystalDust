@@ -49,9 +49,9 @@ static void ContestEffect_BadlyStartleMonsWithGoodAppeals(void);
 static void ContestEffect_BetterWhenAudienceExcited(void);
 static void ContestEffect_DontExciteAudience(void);
 static void JamByMoveCategory(u8);
-static bool8 CanUnnerveContestant(u8);
+static bool8 CanUnnerveContestant(u32);
 static u8 WasAtLeastOneOpponentJammed(void);
-static void JamContestant(u8, u8);
+static void JamContestant(u32, u8);
 static s16 RoundTowardsZero(s16);
 static s16 RoundUp(s16);
 
@@ -642,7 +642,7 @@ static void ContestEffect_QualityDependsOnTiming(void)
 static void ContestEffect_BetterIfSameType(void)
 {
     s8 turnOrder = eContestAppealResults.turnOrder[eContestAppealResults.contestant];
-    s8 i = turnOrder - 1, j;
+    s32 i = turnOrder - 1, j;
     u16 move;
 
     if (turnOrder == 0)
@@ -749,8 +749,8 @@ static void ContestEffect_BetterWithGoodCondition(void)
 // The next appeal can be made earlier next turn.
 static void ContestEffect_NextAppealEarlier(void)
 {
-    s8 i;
-    s8 j;
+    s32 i;
+    s32 j;
     u8 turnOrder[CONTESTANT_COUNT];
 
     if (eContest.appealNumber != CONTEST_LAST_APPEAL)
@@ -791,8 +791,8 @@ static void ContestEffect_NextAppealEarlier(void)
 // The next appeal can be made later next turn.
 static void ContestEffect_NextAppealLater(void)
 {
-    s8 i;
-    s8 j;
+    s32 i;
+    s32 j;
     u8 turnOrder[CONTESTANT_COUNT];
 
     if (eContest.appealNumber != CONTEST_LAST_APPEAL)
@@ -839,8 +839,8 @@ static void ContestEffect_MakeScramblingTurnOrderEasier(void)
 // Scrambles the order of appeals on the next turn.
 static void ContestEffect_ScrambleNextTurnOrder(void)
 {
-    s8 i;
-    s8 j;
+    s32 i;
+    s32 j;
     u8 turnOrder[CONTESTANT_COUNT];
     u8 unselectedContestants[CONTESTANT_COUNT];
 
@@ -987,7 +987,7 @@ static void JamByMoveCategory(u8 category)
         SetContestantEffectStringID2(eContestAppealResults.contestant, CONTEST_STRING_MESSED_UP2);
 }
 
-static bool8 CanUnnerveContestant(u8 i)
+static bool8 CanUnnerveContestant(u32 i)
 {
     eContestAppealResults.unnervedPokes[i] = 1;
     if (eContestantStatus[i].immune)
@@ -1055,7 +1055,7 @@ static bool8 WasAtLeastOneOpponentJammed(void)
     return FALSE;
 }
 
-static void JamContestant(u8 i, u8 jam)
+static void JamContestant(u32 i, u8 jam)
 {
     eContestantStatus[i].appeal -= jam;
     eContestantStatus[i].jam += jam;

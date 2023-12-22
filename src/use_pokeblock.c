@@ -822,7 +822,7 @@ static void ShowPokeblockResults(void)
 
 static void CloseUsePokeblockMenu(void)
 {
-    u8 i;
+    u32 i;
 
     switch (sInfo->mainState)
     {
@@ -990,7 +990,7 @@ static void BufferEnhancedStatText(u8 *dest, u8 statId, s16 enhancement)
 
 static void GetMonConditions(struct Pokemon *mon, u8 *data)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < FLAVOR_COUNT; i++)
         data[i] = GetMonData(mon, sMonDataConditions[i]);
@@ -998,7 +998,7 @@ static void GetMonConditions(struct Pokemon *mon, u8 *data)
 
 static void AddPokeblockToConditions(struct Pokeblock *pokeblock, struct Pokemon *mon)
 {
-    u16 i;
+    u32 i;
     s16 cstat;
     u8 data;
 
@@ -1028,7 +1028,7 @@ static void AddPokeblockToConditions(struct Pokeblock *pokeblock, struct Pokemon
 
 static void CalculateConditionEnhancements(void)
 {
-    u16 i;
+    u32 i;
     struct Pokemon *mon = gPlayerParty;
     mon += sMenu->party[sMenu->info.curSelection].monId;
 
@@ -1041,7 +1041,7 @@ static void CalculateConditionEnhancements(void)
 
 static void CalculatePokeblockEffectiveness(struct Pokeblock *pokeblock, struct Pokemon *mon)
 {
-    s8 i, direction, taste;
+    s32 i, direction, taste;
 
     sInfo->pokeblockStatBoosts[0] = pokeblock->spicy;
     sInfo->pokeblockStatBoosts[1] = pokeblock->sour;
@@ -1083,7 +1083,7 @@ static bool8 IsSheenMaxed(void)
 
 static u8 GetPartyIdFromSelectionId(u8 selectionId)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -1101,7 +1101,7 @@ static u8 GetPartyIdFromSelectionId(u8 selectionId)
 // Eggs are not viewable on the condition screen, so count how many are skipped over to reach the party id
 static u8 GetSelectionIdFromPartyId(u8 partyId)
 {
-    u8 i, numEggs;
+    u32 i, numEggs;
     for (i = 0, numEggs = 0; i < partyId; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
@@ -1119,7 +1119,7 @@ static u8 GetPartyIdFromSelectionId_(u8 selectionId)
 
 static void LoadAndCreateUpDownSprites(void)
 {
-    u16 i, spriteId;
+    u32 i, spriteId;
 
     LoadSpriteSheet(&sSpriteSheet_UpDown);
     LoadSpritePalette(&sSpritePalette_UpDown);
@@ -1156,7 +1156,7 @@ static void SpriteCB_UpDown(struct Sprite *sprite)
 
 static void LoadPartyInfo(void)
 {
-    u16 i;
+    u32 i;
     u16 numMons;
 
     for (i = 0, numMons = 0; i < CalculatePlayerPartyCount(); i++)
@@ -1248,7 +1248,7 @@ static void UpdateMonPic(u8 loadId)
 
 static void LoadAndCreateSelectionIcons(void)
 {
-    u16 i, spriteId;
+    u32 i, spriteId;
     struct SpriteSheet spriteSheets[4];
     struct SpriteTemplate spriteTemplate;
     struct SpritePalette spritePals[3];
@@ -1620,7 +1620,7 @@ static void LoadConditionGfx(void)
 
 static void CreateConditionSprite(void)
 {
-    u16 i;
+    u32 i;
     s16 xDiff, xStart;
     int yStart = 17;
     int var = 8;

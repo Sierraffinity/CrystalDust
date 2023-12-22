@@ -238,7 +238,7 @@ static u8 GetRecordedBattleMode(void)
 
 u8 RecordedBattle_BufferNewBattlerData(u8 *dst)
 {
-    u8 i, j;
+    u32 i, j;
     u8 idx = 0;
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)

@@ -415,7 +415,7 @@ static void Task_TitleScreenDoIntro(u8 taskId)
 
 static bool8 LogoComb_Func1(struct Task *task)
 {
-    u16 i;
+    u32 i;
 
     ScanlineEffect_Clear();
 
@@ -441,7 +441,7 @@ static bool8 LogoComb_Func1(struct Task *task)
 
 static bool8 LogoComb_Func2(struct Task *task)
 {
-    u16 i;
+    u32 i;
 
     sVBlank_DMA = FALSE;
 

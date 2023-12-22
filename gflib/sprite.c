@@ -352,7 +352,7 @@ void BuildOamBuffer(void)
 {
     bool32 oamLoadDisabled;
     u32 i, stride;
-    u8 oamIndex;
+    u32 oamIndex;
 
     // All attributes which affect sorting packed into a single u32:
     // { priority:2, subpriority:8, y:9, :5, index:8 }.
@@ -361,7 +361,7 @@ void BuildOamBuffer(void)
     // bottom 6 bits.
     u32 spritePriorities[MAX_SPRITES];
     s32 toSort = 0;
-    u8 skippedSprites[MAX_SPRITES];
+    u32 skippedSprites[MAX_SPRITES];
     u32 skippedSpritesN = 0;
     u32 matrices = 0;
 
@@ -1619,7 +1619,7 @@ void SetSubspriteTables(struct Sprite *sprite, const struct SubspriteTable *subs
     sprite->subspriteMode = SUBSPRITES_ON;
 }
 
-bool8 AddSpriteToOamBuffer(struct Sprite *sprite, u8 *oamIndex)
+bool8 AddSpriteToOamBuffer(struct Sprite *sprite, u32 *oamIndex)
 {
     if (*oamIndex >= gOamLimit)
         return 1;
@@ -1636,7 +1636,7 @@ bool8 AddSpriteToOamBuffer(struct Sprite *sprite, u8 *oamIndex)
     }
 }
 
-bool8 AddSubspritesToOamBuffer(struct Sprite *sprite, struct OamData *destOam, u8 *oamIndex)
+bool8 AddSubspritesToOamBuffer(struct Sprite *sprite, struct OamData *destOam, u32 *oamIndex)
 {
     const struct SubspriteTable *subspriteTable;
     struct OamData *oam;

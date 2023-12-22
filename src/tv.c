@@ -105,7 +105,7 @@ static void Script_FindFirstEmptyNormalTVShowSlot(void);
 static void CompactTVShowArray(TVShow *);
 static s8 GetFirstEmptyPokeNewsSlot(PokeNews *);
 static bool8 IsAddingPokeNewsDisallowed(u8);
-static void ClearPokeNewsBySlot(u8);
+static void ClearPokeNewsBySlot(u32);
 static void TranslateRubyShows(TVShow *);
 static void TranslateJapaneseEmeraldShows(TVShow *);
 static void SetMixedTVShows(TVShow *, TVShow *, TVShow *, TVShow *);
@@ -761,7 +761,7 @@ const u8 sTVSecretBaseSecretsActions[NUM_SECRET_BASE_FLAGS] =
 
 void ClearTVShowData(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (i = 0; i < ARRAY_COUNT(gSaveBlock1Ptr->tvShows); i++)
     {
@@ -775,8 +775,8 @@ void ClearTVShowData(void)
 
 u8 GetRandomActiveShowIdx(void)
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     u8 selIdx;
     TVShow *show;
 
@@ -864,7 +864,7 @@ u8 GetSelectedTVShow(void)
 
 static u8 FindFirstActiveTVShowThatIsNotAMassOutbreak(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < ARRAY_COUNT(gSaveBlock1Ptr->tvShows) - 1; i++)
     {
@@ -912,7 +912,7 @@ void ResetGabbyAndTy(void)
 
 void GabbyAndTyBeforeInterview(void)
 {
-    u8 i;
+    u32 i;
 
     gSaveBlock1Ptr->gabbyAndTyData.mon1 = gBattleResults.playerMon1Species;
     gSaveBlock1Ptr->gabbyAndTyData.mon2 = gBattleResults.playerMon2Species;
@@ -1083,7 +1083,7 @@ void InterviewAfter(void)
 
 void TryPutPokemonTodayOnAir(void)
 {
-    u8 i;
+    u32 i;
     u16 ballsUsed;
     TVShow *show;
     u32 language2;
@@ -1169,7 +1169,7 @@ static void InitWorldOfMastersShowAttempt(void)
 static void TryPutPokemonTodayFailedOnTheAir(void)
 {
     u16 ballsUsed;
-    u8 i;
+    u32 i;
     TVShow *show;
 
     if (!rbernoulli(1, 1))
@@ -1490,7 +1490,7 @@ static void InterviewAfter_BravoTrainerBattleTowerProfile(void)
 void TryPutSmartShopperOnAir(void)
 {
     TVShow *show;
-    u8 i;
+    u32 i;
 
     if (!(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(TRAINER_HILL_ENTRANCE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(TRAINER_HILL_ENTRANCE))
      && !(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BATTLE_FRONTIER_MART) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(BATTLE_FRONTIER_MART))
@@ -1632,7 +1632,7 @@ static void InterviewAfter_Dummy(void)
 
 static void TryStartRandomMassOutbreak(void)
 {
-    u8 i;
+    u32 i;
     u16 outbreakIdx;
     TVShow *show;
 
@@ -1702,7 +1702,7 @@ void UpdateTVShowsPerDay(u16 days)
 
 static void UpdateMassOutbreakTimeLeft(u16 days)
 {
-    u8 i;
+    u32 i;
     TVShow *show;
 
     if (gSaveBlock1Ptr->outbreakPokemonSpecies == SPECIES_NONE)
@@ -1971,8 +1971,8 @@ void AlertTVThatPlayerPlayedRoulette(u16 nCoinsSpent)
 
 static void SecretBaseVisit_CalculateDecorationData(TVShow *show)
 {
-    u8 i, j;
-    u16 k;
+    u32 i, j;
+    u32 k;
     u8 n;
     u8 decoration;
 
@@ -2028,9 +2028,9 @@ static void SecretBaseVisit_CalculateDecorationData(TVShow *show)
 
 static void SecretBaseVisit_CalculatePartyData(TVShow *show)
 {
-    u8 i;
+    u32 i;
     u16 move;
-    u16 j;
+    u32 j;
     u8 nMoves;
     u8 nPokemon;
     u16 sum;
@@ -2101,7 +2101,7 @@ void TryPutSecretBaseVisitOnAir(void)
 void TryPutBreakingNewsOnAir(void)
 {
     TVShow *show;
-    u8 i;
+    u32 i;
     u16 balls;
 
     sCurTVShowSlot = FindFirstEmptyRecordMixTVShowSlot(gSaveBlock1Ptr->tvShows);
@@ -2185,8 +2185,8 @@ void TryPutLotteryWinnerReportOnAir(void)
 void TryPutBattleSeminarOnAir(u16 foeSpecies, u16 species, u8 moveIdx, const u16 *movePtr, u16 betterMove)
 {
     TVShow *show;
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
 
     sCurTVShowSlot = FindFirstEmptyRecordMixTVShowSlot(gSaveBlock1Ptr->tvShows);
     if (sCurTVShowSlot != -1 && IsRecordMixShowAlreadySpawned(TVSHOW_BATTLE_SEMINAR, FALSE) != TRUE)
@@ -2447,7 +2447,7 @@ void TryPutSecretBaseSecretsOnAir(void)
 // The vars are reset afterwards regardless
 static void ResolveNumberOneShow(u16 days)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < ARRAY_COUNT(sNumberOneVarsAndThresholds); i++)
     {
@@ -2538,7 +2538,7 @@ static void TryPutRandomPokeNewsOnAir(void)
 
 static s8 GetFirstEmptyPokeNewsSlot(PokeNews *pokeNews)
 {
-    s8 i;
+    s32 i;
 
     for (i = 0; i < POKE_NEWS_COUNT; i++)
     {
@@ -2550,13 +2550,13 @@ static s8 GetFirstEmptyPokeNewsSlot(PokeNews *pokeNews)
 
 static void ClearPokeNews(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < POKE_NEWS_COUNT; i++)
         ClearPokeNewsBySlot(i);
 }
 
-static void ClearPokeNewsBySlot(u8 i)
+static void ClearPokeNewsBySlot(u32 i)
 {
     gSaveBlock1Ptr->pokeNews[i].kind = POKENEWS_NONE;
     gSaveBlock1Ptr->pokeNews[i].state = FALSE;
@@ -2565,8 +2565,8 @@ static void ClearPokeNewsBySlot(u8 i)
 
 static void CompactPokeNews(void)
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
 
     for (i = 0; i < POKE_NEWS_COUNT - 1; i++)
     {
@@ -2587,7 +2587,7 @@ static void CompactPokeNews(void)
 
 static u8 FindAnyPokeNewsOnTheAir(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < POKE_NEWS_COUNT; i++)
     {
@@ -2601,7 +2601,7 @@ static u8 FindAnyPokeNewsOnTheAir(void)
 
 void DoPokeNews(void)
 {
-    u8 i;
+    u32 i;
     u16 n;
 
     i = FindAnyPokeNewsOnTheAir();
@@ -2632,7 +2632,7 @@ void DoPokeNews(void)
 
 bool8 GetPriceReduction(u8 newsKind)
 {
-    u8 i;
+    u32 i;
 
     if (newsKind == POKENEWS_NONE)
         return FALSE;
@@ -2672,7 +2672,7 @@ static bool8 IsPriceDiscounted(u8 newsKind)
 
 static bool8 IsAddingPokeNewsDisallowed(u8 newsKind)
 {
-    u8 i;
+    u32 i;
     if (newsKind == POKENEWS_NONE)
         return TRUE;
 
@@ -2687,7 +2687,7 @@ static bool8 IsAddingPokeNewsDisallowed(u8 newsKind)
 
 static void UpdatePokeNewsTimeLeft(u16 days)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < POKE_NEWS_COUNT; i++)
     {
@@ -2780,7 +2780,7 @@ size_t CountDigits(int value)
 
 static void SmartShopper_BufferPurchaseTotal(u8 varIdx, TVShow *show)
 {
-    u8 i;
+    u32 i;
     int price;
 
     price = 0;
@@ -2800,7 +2800,7 @@ static bool8 IsRecordMixShowAlreadySpawned(u8 kind, bool8 delete)
 {
     u32 playerId;
     TVShow *shows;
-    u8 i;
+    u32 i;
 
     shows = gSaveBlock1Ptr->tvShows;
     playerId = GetPlayerIDAsU32();
@@ -2823,7 +2823,7 @@ static bool8 IsRecordMixShowAlreadySpawned(u8 kind, bool8 delete)
 
 static void SortPurchasesByQuantity(void)
 {
-    u8 i, j;
+    u32 i, j;
     u16 tmpId;
     u16 tmpQn;
 
@@ -2846,7 +2846,7 @@ static void SortPurchasesByQuantity(void)
 
 static void TryReplaceOldTVShowOfKind(u8 kind)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NUM_NORMAL_TVSHOW_SLOTS; i++)
     {
         if (gSaveBlock1Ptr->tvShows[i].common.kind == kind)
@@ -3002,7 +3002,7 @@ bool8 IsLeadMonNicknamedOrNotEnglish(void)
 
 static void DeleteTVShowInArrayByIdx(TVShow *shows, u8 idx)
 {
-    u8 i;
+    u32 i;
 
     shows[idx].commonInit.kind = TVSHOW_OFF_AIR;
     shows[idx].commonInit.active = FALSE;
@@ -3012,8 +3012,8 @@ static void DeleteTVShowInArrayByIdx(TVShow *shows, u8 idx)
 
 static void CompactTVShowArray(TVShow *shows)
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
 
     // Compact normal TV shows
     for (i = 0; i < NUM_NORMAL_TVSHOW_SLOTS - 1; i++)
@@ -3094,7 +3094,7 @@ static void Script_FindFirstEmptyNormalTVShowSlot(void)
 
 static s8 FindFirstEmptyNormalTVShowSlot(TVShow *shows)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NUM_NORMAL_TVSHOW_SLOTS; i++)
     {
@@ -3106,7 +3106,7 @@ static s8 FindFirstEmptyNormalTVShowSlot(TVShow *shows)
 
 static s8 FindFirstEmptyRecordMixTVShowSlot(TVShow *shows)
 {
-    s8 i;
+    s32 i;
 
     for (i = NUM_NORMAL_TVSHOW_SLOTS; i < LAST_TVSHOW_IDX; i++)
     {
@@ -3128,7 +3128,7 @@ static bool8 BernoulliTrial(u16 ratio)
 // Both are assumed to have the same struct layout
 static void GetRandomWordFromShow(TVShow *show)
 {
-    u8 i;
+    u32 i;
 
     i = Random() % ARRAY_COUNT(show->fanclubLetter.words);
     
@@ -3147,7 +3147,7 @@ static void GetRandomWordFromShow(TVShow *show)
 
 static u8 GetRandomNameRaterStateFromName(TVShow *show)
 {
-    u8 i;
+    u32 i;
     u16 nameSum;
 
     nameSum = 0;
@@ -3164,7 +3164,7 @@ static u8 GetRandomNameRaterStateFromName(TVShow *show)
 static void GetNicknameSubstring(u8 varIdx, u8 whichPosition, u8 charParam, u16 whichString, u16 species, TVShow *show)
 {
     u8 buff[16];
-    u8 i;
+    u32 i;
     u16 strlen;
 
     for (i = 0; i < 3; i++)
@@ -3244,7 +3244,7 @@ static void GetNicknameSubstring(u8 varIdx, u8 whichPosition, u8 charParam, u16 
 // Unused script special
 bool8 IsTVShowAlreadyInQueue(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NUM_NORMAL_TVSHOW_SLOTS; i++)
     {
@@ -3429,7 +3429,7 @@ void HideBattleTowerReporter(void)
 
 void ReceiveTvShowsData(void *src, u32 size, u8 playersLinkId)
 {
-    u8 i;
+    u32 i;
     u16 version;
     TVShow (*rmBuffer2)[MAX_LINK_PLAYERS][TV_SHOWS_COUNT];
     TVShow (*rmBuffer)[MAX_LINK_PLAYERS][TV_SHOWS_COUNT];
@@ -3478,8 +3478,8 @@ void ReceiveTvShowsData(void *src, u32 size, u8 playersLinkId)
 
 static void SetMixedTVShows(TVShow player1[TV_SHOWS_COUNT], TVShow player2[TV_SHOWS_COUNT], TVShow player3[TV_SHOWS_COUNT], TVShow player4[TV_SHOWS_COUNT])
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     TVShow **tvShows[MAX_LINK_PLAYERS];
 
     tvShows[0] = &player1;
@@ -3606,7 +3606,7 @@ static bool8 TryMixOutbreakTVShow(TVShow *dest, TVShow *src, u8 idx)
 
 static s8 FindInactiveShowInArray(TVShow *tvShows)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < LAST_TVSHOW_IDX; i++)
     {
@@ -3619,7 +3619,7 @@ static s8 FindInactiveShowInArray(TVShow *tvShows)
 
 static void DeactivateShowsWithUnseenSpecies(void)
 {
-    u16 i;
+    u32 i;
     u16 species;
 
     for (i = 0; i < LAST_TVSHOW_IDX; i++)
@@ -3774,7 +3774,7 @@ static void DeactivateShowIfNotSeenSpecies(u16 species, u8 showIdx)
 
 static void DeactivateGameCompleteShowsIfNotUnlocked(void)
 {
-    u16 i;
+    u32 i;
 
     if (FlagGet(FLAG_SYS_GAME_CLEAR) != TRUE)
     {
@@ -3790,7 +3790,7 @@ static void DeactivateGameCompleteShowsIfNotUnlocked(void)
 
 void DeactivateAllNormalTVShows(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NUM_NORMAL_TVSHOW_SLOTS; i++)
     {
@@ -3802,7 +3802,7 @@ void DeactivateAllNormalTVShows(void)
 // Ensures a minimum of 5 empty mixed show slots
 static void DeleteExcessMixedShows(void)
 {
-    s8 i;
+    s32 i;
     s8 numEmptyMixSlots = 0;
     for (i = NUM_NORMAL_TVSHOW_SLOTS; i < LAST_TVSHOW_IDX; i++)
     {
@@ -3815,7 +3815,7 @@ static void DeleteExcessMixedShows(void)
 
 void ReceivePokeNewsData(void *src, u32 size, u8 playersLinkId)
 {
-    u8 i;
+    u32 i;
     PokeNews (*rmBuffer2)[MAX_LINK_PLAYERS][POKE_NEWS_COUNT];
     PokeNews (*rmBuffer)[MAX_LINK_PLAYERS][POKE_NEWS_COUNT];
 
@@ -3851,7 +3851,7 @@ void ReceivePokeNewsData(void *src, u32 size, u8 playersLinkId)
 
 static void SetMixedPokeNews(PokeNews player1[POKE_NEWS_COUNT], PokeNews player2[POKE_NEWS_COUNT], PokeNews player3[POKE_NEWS_COUNT], PokeNews player4[POKE_NEWS_COUNT])
 {
-    u8 i, j, k;
+    u32 i, j, k;
     PokeNews **pokeNews[MAX_LINK_PLAYERS];
 
     pokeNews[0] = &player1;
@@ -3887,7 +3887,7 @@ static void InitTryMixPokeNewsShow(PokeNews *dest[POKE_NEWS_COUNT], PokeNews *sr
 
 static bool8 TryMixPokeNewsShow(PokeNews *dest, PokeNews *src, s8 slot)
 {
-    u8 i;
+    u32 i;
 
     if (src->kind == POKENEWS_NONE)
         return FALSE;
@@ -3913,7 +3913,7 @@ static s8 GetPokeNewsSlotIfActive(PokeNews *pokeNews, u8 idx)
 
 static void ClearInvalidPokeNews(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < POKE_NEWS_COUNT; i++)
     {
@@ -3925,7 +3925,7 @@ static void ClearInvalidPokeNews(void)
 
 static void ClearPokeNewsIfGameNotComplete(void)
 {
-    u8 i;
+    u32 i;
 
     if (FlagGet(FLAG_SYS_GAME_CLEAR) != TRUE)
     {
@@ -6527,7 +6527,7 @@ static void DoTVShowWhatsNo1InHoennToday(void)
 
 u8 SecretBaseSecrets_GetNumActionsTaken(TVShow *show)
 {
-    u8 i;
+    u32 i;
     u8 flagsSet;
 
     for (i = 0, flagsSet = 0; i < NUM_SECRET_BASE_FLAGS; i++)
@@ -6540,7 +6540,7 @@ u8 SecretBaseSecrets_GetNumActionsTaken(TVShow *show)
 
 static u8 SecretBaseSecrets_GetStateByFlagNumber(TVShow *show, u8 flagId)
 {
-    u8 i;
+    u32 i;
     u8 flagsSet;
 
     for (i = 0, flagsSet = 0; i < NUM_SECRET_BASE_FLAGS; i++)
@@ -6561,7 +6561,7 @@ static void DoTVShowSecretBaseSecrets(void)
     TVShow *show;
     u8 state;
     u8 numActions;
-    u16 i;
+    u32 i;
 
     show = &gSaveBlock1Ptr->tvShows[gSpecialVar_0x8004];
     gSpecialVar_Result = FALSE;

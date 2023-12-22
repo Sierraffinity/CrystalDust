@@ -57,7 +57,7 @@ bool8 LinkContest_GetBlockReceivedFromAllPlayers(void)
 
 void Task_LinkContest_Init(u8 taskId)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < CONTESTANT_COUNT; i++)
         gBlockRecvBuffer[i][0] = 0xFF;

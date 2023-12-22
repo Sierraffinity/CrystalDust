@@ -600,7 +600,7 @@ static bool8 LoadPyramidBagGfx(void)
 
 static void SetBagItemsListTemplate(void)
 {
-    u16 i;
+    u32 i;
     u16 *itemIds = gSaveBlock2Ptr->frontier.pyramidBag.itemId[gSaveBlock2Ptr->frontier.lvlMode];
 
     for (i = 0; i < gPyramidBagMenu->listMenuCount - 1; i++)
@@ -740,7 +740,7 @@ static void MovePyramidBagItemSlotInList(u8 from, u8 to)
 
     if (from != to)
     {
-        s16 i;
+        s32 i;
         u16 firstSlotItemId = itemIds[from];
         u8 firstSlotQuantity = quantities[from];
 
@@ -768,7 +768,7 @@ static void MovePyramidBagItemSlotInList(u8 from, u8 to)
 
 static void CompactItems(void)
 {
-    u8 i, j;
+    u32 i, j;
     u16 *itemIds = gSaveBlock2Ptr->frontier.pyramidBag.itemId[gSaveBlock2Ptr->frontier.lvlMode];
     u8 *quantities = gSaveBlock2Ptr->frontier.pyramidBag.quantity[gSaveBlock2Ptr->frontier.lvlMode];
 
@@ -792,7 +792,7 @@ static void CompactItems(void)
 
 void UpdatePyramidBagList(void)
 {
-    u16 i;
+    u32 i;
     u16 *itemIds = gSaveBlock2Ptr->frontier.pyramidBag.itemId[gSaveBlock2Ptr->frontier.lvlMode];
 
     CompactItems();
@@ -825,7 +825,7 @@ void UpdatePyramidBagCursorPos(void)
 
 static void InitPyramidBagScroll(void)
 {
-    u8 i;
+    u32 i;
 
     if (gPyramidBagMenuState.cursorPosition > 4)
     {
@@ -1402,7 +1402,7 @@ static void CancelItemSwap(u8 taskId)
 
 void TryStoreHeldItemsInPyramidBag(void)
 {
-    u8 i;
+    u32 i;
     struct Pokemon *party = gPlayerParty;
     u16 *newItems = Alloc(PYRAMID_BAG_ITEMS_COUNT * sizeof(u16));
     u8 *newQuantities = Alloc(PYRAMID_BAG_ITEMS_COUNT * sizeof(u8));
@@ -1437,7 +1437,7 @@ void TryStoreHeldItemsInPyramidBag(void)
 
 static void InitPyramidBagWindows(void)
 {
-    u8 i;
+    u32 i;
 
     InitWindows(sWindowTemplates);
     DeactivateAllTextPrinters();

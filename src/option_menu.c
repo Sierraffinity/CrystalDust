@@ -284,7 +284,7 @@ void CB2_InitOptionMenu(void)
         break;
     case 10:
     {
-        u8 i;
+        u32 i;
         u8 taskId = CreateTask(Task_OptionMenuFadeIn, 0);
         gTasks[taskId].data[TD_STATE] = 0;
         gTasks[taskId].data[TD_MENUSELECTION] = 0;
@@ -463,7 +463,7 @@ static void HighlightOptionMenuItem(u8 index)
 static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style)
 {
     u8 dst[16];
-    u16 i;
+    u32 i;
 
     for (i = 0; *text != EOS && i <= 14; i++)
         dst[i] = *(text++);
@@ -530,7 +530,7 @@ static void DrawTextOption(void)
 
 static void DrawOptionMenuTexts(void)
 {
-    u8 i;
+    u32 i;
 
     FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));
     for (i = 0; i < MENUITEM_COUNT; i++)

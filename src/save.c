@@ -90,7 +90,7 @@ EWRAM_DATA static u8 sUnusedVar = 0;
 
 void ClearSaveData(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < NUM_SECTORS_PER_SLOT; i++)
     {
@@ -130,7 +130,7 @@ static bool32 SetDamagedSectorBits(u8 op, u8 bit)
 static u8 SaveWriteToFlash(u16 a1, const struct SaveSectionLocation *location)
 {
     u32 status;
-    u16 i;
+    u32 i;
 
     gFastSaveSection = &gSaveDataBuffer;
 
@@ -163,7 +163,7 @@ static u8 SaveWriteToFlash(u16 a1, const struct SaveSectionLocation *location)
 
 static u8 HandleWriteSector(u16 sectorId, const struct SaveSectionLocation *location)
 {
-    u16 i;
+    u32 i;
     u16 sector;
     u8 *data;
     u16 size;
@@ -192,7 +192,7 @@ static u8 HandleWriteSector(u16 sectorId, const struct SaveSectionLocation *loca
 
 static u8 HandleWriteSectorNBytes(u8 sector, u8 *data, u16 size)
 {
-    u16 i;
+    u32 i;
     struct SaveSection *section = &gSaveDataBuffer;
 
     for (i = 0; i < sizeof(struct SaveSection); i++)
@@ -285,7 +285,7 @@ static u8 sub_8152A34(u16 sectorId, const struct SaveSectionLocation *location)
 
 static u8 ClearSaveData_2(u16 sectorId, const struct SaveSectionLocation *location)
 {
-    u16 i;
+    u32 i;
     u16 sector;
     u8 *data;
     u16 size;
@@ -458,7 +458,7 @@ static u8 sub_8152DD0(u16 a1, const struct SaveSectionLocation *location)
 
 static u8 sub_8152E10(u16 a1, const struct SaveSectionLocation *location)
 {
-    u16 i;
+    u32 i;
     u16 checksum;
     u16 v3 = SECTOR_SAVE_SLOT_LENGTH * (gSaveCounter % 2);
     u16 id;
@@ -473,7 +473,7 @@ static u8 sub_8152E10(u16 a1, const struct SaveSectionLocation *location)
         if (gFastSaveSection->security == UNKNOWN_CHECK_VALUE
          && gFastSaveSection->checksum == checksum)
         {
-            u16 j;
+            u32 j;
             for (j = 0; j < location[id].size; j++)
                 ((u8 *)location[id].data)[j] = gFastSaveSection->data[j];
         }
@@ -484,7 +484,7 @@ static u8 sub_8152E10(u16 a1, const struct SaveSectionLocation *location)
 
 static u8 GetSaveValidStatus(const struct SaveSectionLocation *location)
 {
-    u16 i;
+    u32 i;
     u16 checksum;
     u32 saveSlot1Counter = 0;
     u32 saveSlot2Counter = 0;
@@ -601,7 +601,7 @@ static u8 GetSaveValidStatus(const struct SaveSectionLocation *location)
 
 static u8 sub_81530DC(u8 sectorId, u8 *data, u16 size)
 {
-    u16 i;
+    u32 i;
     struct SaveSection *section = &gSaveDataBuffer;
     DoReadFlashWholeSection(sectorId, section);
     if (section->security == UNKNOWN_CHECK_VALUE)
@@ -633,7 +633,7 @@ static bool8 DoReadFlashWholeSection(u8 sector, struct SaveSection *section)
 
 static u16 CalculateChecksum(void *data, u16 size)
 {
-    u16 i;
+    u32 i;
     u32 checksum = 0;
 
     for (i = 0; i < (size / 4); i++)
@@ -667,7 +667,7 @@ static void UpdateSaveAddresses(void)
 
 u8 HandleSavingData(u8 saveType)
 {
-    u8 i;
+    u32 i;
     u32 *backupVar = gTrainerHillVBlankCounter;
     u8 *tempAddr;
 
@@ -840,7 +840,7 @@ u8 Save_LoadGameData(u8 saveType)
 
 u16 sub_815355C(void)
 {
-    u16 i, v3;
+    u32 i, v3;
     struct SaveSection* savSection;
 
     savSection = gFastSaveSection = &gSaveDataBuffer;

@@ -1021,7 +1021,7 @@ static void AcroBike_TryHistoryUpdate(u16 newKeys, u16 heldKeys) // newKeys is u
 
 static bool8 HasPlayerInputTakenLongerThanList(const u8 *dirTimerList, const u8 *abStartSelectTimerList)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; dirTimerList[i] != 0; i++)
     {
@@ -1056,7 +1056,7 @@ static u8 AcroBike_GetJumpDirection(void)
 
 static void Bike_UpdateDirTimerHistory(u8 dir)
 {
-    u8 i;
+    u32 i;
 
     gPlayerAvatar.directionHistory = (gPlayerAvatar.directionHistory << 4) | (dir & 0xF);
 
@@ -1067,7 +1067,7 @@ static void Bike_UpdateDirTimerHistory(u8 dir)
 
 static void Bike_UpdateABStartSelectHistory(u8 input)
 {
-    u8 i;
+    u32 i;
 
     gPlayerAvatar.abStartSelectHistory = (gPlayerAvatar.abStartSelectHistory << 4) | (input & 0xF);
 
@@ -1226,7 +1226,7 @@ void GetOnOffBike(u8 transitionFlags)
 
 void BikeClearState(int newDirHistory, int newAbStartHistory)
 {
-    u8 i;
+    u32 i;
 
     gPlayerAvatar.bikeState = ACRO_STATE_NORMAL;
     gPlayerAvatar.newDirBackup = DIR_NONE;

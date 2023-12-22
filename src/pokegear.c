@@ -732,7 +732,7 @@ static void Task_Pokegear1(u8 taskId)
 
 static void Task_Pokegear1_1(u8 taskId)
 {
-    u8 i;
+    u32 i;
     s16 *data = gTasks[taskId].data;
     tCurrentPos -= CARD_SLIDE_SPEED;
 
@@ -761,7 +761,7 @@ static void Task_Pokegear2(u8 taskId)
 
 static void LoadCardSprites(u8 taskId)
 {
-    u8 i, spriteId;
+    u32 i, spriteId;
 
     LoadSpriteSheet(&sSpriteSheet_IconTiles);
     LoadSpritePalette(&gSpritePalette_PokegearMenuSprites);

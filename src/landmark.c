@@ -416,7 +416,7 @@ const u8 *GetLandmarkName(u8 mapSection, u8 id, u8 count)
 
 static const struct Landmark *const *GetLandmarks(u8 mapSection, u8 id)
 {
-    u16 i = 0;
+    u32 i = 0;
 
     for (; gLandmarkLists[i].mapSection != MAPSEC_NONE; i++)
     {

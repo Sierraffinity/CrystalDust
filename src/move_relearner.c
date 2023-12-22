@@ -922,7 +922,7 @@ static void CreateLearnableMovesList(void)
 void MoveRelearnerShowHideHearts(s32 moveId)
 {
     u16 numHearts;
-    u16 i;
+    u32 i;
 
     if (!sMoveRelearnerMenuSate.showContestInfo || moveId == LIST_CANCEL)
     {

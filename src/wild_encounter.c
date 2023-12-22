@@ -97,7 +97,7 @@ static u16 GetRoute119WaterTileNum(s16 x, s16 y, u8 section)
 
 static bool8 CheckFeebas(void)
 {
-    u8 i;
+    u32 i;
     u16 feebasSpots[NUM_FEEBAS_SPOTS];
     s16 x;
     s16 y;
@@ -306,7 +306,7 @@ u8 ChooseWildMonLevelWithAbility(const struct WildPokemon *wildPokemon, bool8 us
 
 static u16 GetCurrentMapWildMonHeaderId(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; ; i++)
     {
@@ -336,8 +336,8 @@ static u16 GetCurrentMapWildMonHeaderId(void)
 
 static u8 PickWildMonNature(void)
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     struct Pokeblock *safariPokeblock;
     u8 natures[NUM_NATURES];
 
@@ -607,7 +607,7 @@ static void GenerateHeadbuttWildMon(const struct WildPokemonInfo *wildMonInfo, b
 
 static bool8 SetUpMassOutbreakEncounter(u8 flags)
 {
-    u16 i;
+    u32 i;
 
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(gSaveBlock1Ptr->outbreakPokemonLevel))
         return FALSE;
@@ -1111,7 +1111,7 @@ bool8 UpdateRepelCounter(void)
 
 static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
 {
-    u8 i;
+    u32 i;
 
     if (!VarGet(VAR_REPEL_STEP_COUNT))
         return TRUE;
@@ -1153,7 +1153,7 @@ static bool8 IsAbilityAllowingEncounter(u8 level)
 static bool8 TryGetRandomWildMonIndexByType(const struct WildPokemon *wildMon, u8 type, u8 numMon, u8 *monIndex)
 {
     u8 validIndexes[numMon]; // variable length array, an interesting feature
-    u8 i, validMonCount;
+    u32 i, validMonCount;
 
     for (i = 0; i < numMon; i++)
         validIndexes[i] = 0;
@@ -1227,7 +1227,7 @@ static void ApplyMusicEncounterRateMod(u32 *encRate)
 
 u16 GetMapWildMonFromIndex(u8 mapGroup, u8 mapNum, u8 index)
 {
-    u16 i = 0xFFFF;
+    u32 i = 0xFFFF;
     u8 timeOfDay;
 
     RtcCalcLocalTime();

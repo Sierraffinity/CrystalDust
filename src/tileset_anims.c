@@ -816,25 +816,25 @@ static void TilesetAnim_Building(u16 timer)
 
 static void QueueAnimTiles_General_WaterFast(u16 timer)
 {
-    u16 i = timer % 8;
+    u32 i = timer % 8;
     AppendTilesetAnimToBuffer(gTilesetAnims_General_WaterFast[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(464)), 0x240);
 }
 
 static void QueueAnimTiles_General_Water(u16 timer)
 {
-    u8 i = timer % 8;
+    u32 i = timer % 8;
     AppendTilesetAnimToBuffer(gTilesetAnims_General_Water[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(416)), 0x600);
 }
 
 static void QueueAnimTiles_General_Flower(u16 timer)
 {
-    u16 i = timer % 5;
+    u32 i = timer % 5;
     AppendTilesetAnimToBuffer(gTilesetAnims_General_Flower[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(508)), 0x80);
 }
 
 static void QueueAnimTiles_General_Whirlpool(u16 timer)
 {
-    u16 i = timer % 4;
+    u32 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_General_Whirlpool[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(488)), 0x80);
 }
 
@@ -1160,7 +1160,7 @@ static void TilesetAnim_BattleFrontierOutsideEast(u16 timer)
 
 static void QueueAnimTiles_Lavaridge_Steam(u8 timer)
 {
-    u8 i = timer % 4;
+    u32 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_Lavaridge_Steam[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 288)), 0x80);
 
     i = (timer + 2) % 4;
@@ -1169,19 +1169,19 @@ static void QueueAnimTiles_Lavaridge_Steam(u8 timer)
 
 static void QueueAnimTiles_Pacifidlog_LogBridges(u8 timer)
 {
-    u8 i = timer % 4;
+    u32 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_Pacifidlog_LogBridges[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 464)), 0x3C0);
 }
 
 static void QueueAnimTiles_Underwater_Seaweed(u8 timer)
 {
-    u8 i = timer % 4;
+    u32 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_Underwater_Seaweed[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 496)), 0x80);
 }
 
 static void QueueAnimTiles_Pacifidlog_WaterCurrents(u8 timer)
 {
-    u8 i = timer % 8;
+    u32 i = timer % 8;
     AppendTilesetAnimToBuffer(gTilesetAnims_Pacifidlog_WaterCurrents[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 496)), 0x100);
 }
 
@@ -1212,19 +1212,19 @@ static void QueueAnimTiles_Rustboro_WindyWater(u16 timer_div, u8 timer_mod)
 
 static void QueueAnimTiles_Rustboro_Fountain(u16 timer)
 {
-    u16 i = timer % 2;
+    u32 i = timer % 2;
     AppendTilesetAnimToBuffer(gTilesetAnims_Rustboro_Fountain[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 448)), 0x80);
 }
 
 static void QueueAnimTiles_BlackthornGym_Lava(u16 timer)
 {
-    u16 i = timer % 4;
+    u32 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_BlackthornCity_Gym_Lava[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 16)), 0x80);
 }
 
 static void QueueAnimTiles_PokemonLeague_Lava(u16 timer)
 {
-    u16 i = timer % 4;
+    u32 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_PokemonLeague_Lava[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 352)), 0x80);
 }
 
@@ -1244,31 +1244,31 @@ static void QueueAnimTiles_Dewford_Flag(u16 timer)
 
 static void QueueAnimTiles_BattleFrontierOutsideWest_Flag(u16 timer)
 {
-    u16 i = timer % 4;
+    u32 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_BattleFrontierOutsideWest_Flag[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x300)), 0xC0);
 }
 
 static void QueueAnimTiles_BattleFrontierOutsideEast_Flag(u16 timer)
 {
-    u16 i = timer % 4;
+    u32 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_BattleFrontierOutsideEast_Flag[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x300)), 0xC0);
 }
 
 static void QueueAnimTiles_BattleFrontierOutsideWest_Flower(u16 timer)
 {
-    u16 i = timer % 4;
+    u32 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_BattleFrontierOutsideWest_Flower[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x312)), 0x80);
 }
 
 static void QueueAnimTiles_BattleFrontierOutsideEast_Flower(u16 timer)
 {
-    u16 i = timer % 4;
+    u32 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_BattleFrontierOutsideEast_Flower[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x312)), 0x80);
 }
 
 static void QueueAnimTiles_Slateport_Balloons(u16 timer)
 {
-    u16 i = timer % 4;
+    u32 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_Slateport_Balloons[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 224)), 0x80);
 }
 
@@ -1398,92 +1398,92 @@ void InitTilesetAnim_CeladonCity(void)
 
 static void QueueAnimTiles_Building_TVTurnedOn(u16 timer)
 {
-    u16 i = timer % 2;
+    u32 i = timer % 2;
     AppendTilesetAnimToBuffer(gTilesetAnims_Building_TvTurnedOn[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(496)), 0x80);
 }
 
 static void QueueAnimTiles_SootopolisGym_Waterfalls(u16 timer)
 {
-    u16 i = timer % 3;
+    u32 i = timer % 3;
     AppendTilesetAnimToBuffer(gTilesetAnims_SootopolisGym_SideWaterfall[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 496)), 0x180);
     AppendTilesetAnimToBuffer(gTilesetAnims_SootopolisGym_FrontWaterfall[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 464)), 0x280);
 }
 
 static void QueueAnimTiles_EliteFour_WallLights(u16 timer)
 {
-    u16 i = timer % 4;
+    u32 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_EliteFour_WallLights[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 504)), 0x20);
 }
 
 static void QueueAnimTiles_EliteFour_GroundLights(u16 timer)
 {
-    u16 i = timer % 2;
+    u32 i = timer % 2;
     AppendTilesetAnimToBuffer(gTilesetAnims_EliteFour_FloorLight[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 480)), 0x80);
 }
 
 static void QueueAnimTiles_AzaleaGym_Flowers(u16 timer)
 {
-    u16 i = timer % NELEMS(gTilesetAnims_AzaleaGym_Flowers);
+    u32 i = timer % NELEMS(gTilesetAnims_AzaleaGym_Flowers);
     AppendTilesetAnimToBuffer(gTilesetAnims_AzaleaGym_Flowers[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 99)), 0x80);
 }
 
 static void QueueAnimTiles_GoldenrodGym_Flowers(u16 timer)
 {
-    u16 i = timer % NELEMS(gTilesetAnims_GoldenrodGym_Flowers);
+    u32 i = timer % NELEMS(gTilesetAnims_GoldenrodGym_Flowers);
     AppendTilesetAnimToBuffer(gTilesetAnims_GoldenrodGym_Flowers[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 90)), 0x80);
 }
 
 static void QueueAnimTiles_MauvilleGym_ElectricGates(u16 timer)
 {
-    u16 i = timer % 2;
+    u32 i = timer % 2;
     AppendTilesetAnimToBuffer(gTilesetAnims_MauvilleGym_ElectricGates[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 144)), 0x200);
 }
 
 static void QueueAnimTiles_PagodaTower_SproutTowerPillar(u16 timer)
 {
-    u16 i = timer % 8;
+    u32 i = timer % 8;
     AppendTilesetAnimToBuffer(gTilesetAnims_PagodaTower_SproutTowerPillar[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 89)), 0x300);
 }
 
 static void QueueAnimTiles_PokemonDayCare_RedFlower(u16 timer)
 {
-    u16 i = timer % NELEMS(gTilesetAnims_PokemonDayCare_RedFlower);
+    u32 i = timer % NELEMS(gTilesetAnims_PokemonDayCare_RedFlower);
     AppendTilesetAnimToBuffer(gTilesetAnims_PokemonDayCare_RedFlower[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 88)), 0x80);
 }
 
 static void QueueAnimTiles_PokemonDayCare_YellowFlower(u16 timer)
 {
-    u16 i = timer % NELEMS(gTilesetAnims_PokemonDayCare_YellowFlower);
+    u32 i = timer % NELEMS(gTilesetAnims_PokemonDayCare_YellowFlower);
     AppendTilesetAnimToBuffer(gTilesetAnims_PokemonDayCare_YellowFlower[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 92)), 0x80);
 }
 
 static void QueueAnimTiles_Sootopolis_StormyWater(u16 timer)
 {
-    u16 i = timer % 8;
+    u32 i = timer % 8;
     AppendTilesetAnimToBuffer(gTilesetAnims_Sootopolis_StormyWater[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 240)), 0xc00);
 }
 
 static void QueueAnimTiles_BattlePyramid_Torch(u16 timer)
 {
-    u16 i = timer % 3;
+    u32 i = timer % 3;
     AppendTilesetAnimToBuffer(gTilesetAnims_BattlePyramid_Torch[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 151)), 0x100);
 }
 
 static void QueueAnimTiles_DragonsDen_Shrine_Torch(u16 timer)
 {
-    u16 i = timer % 3;
+    u32 i = timer % 3;
     AppendTilesetAnimToBuffer(gTilesetAnims_DragonsDen_Shrine_Torch[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 74)), 0xC0);
 }
 
 static void QueueAnimTiles_DragonsDen_Shrine_TorchShadow(u16 timer)
 {
-    u16 i = timer % 3;
+    u32 i = timer % 3;
     AppendTilesetAnimToBuffer(gTilesetAnims_DragonsDen_Shrine_TorchShadow[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 128)), 0x200);
 }
 
 static void QueueAnimTiles_BattlePyramid_StatueShadow(u16 timer)
 {
-    u16 i = timer % 3;
+    u32 i = timer % 3;
     AppendTilesetAnimToBuffer(gTilesetAnims_BattlePyramid_StatueShadow[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 135)), 0x100);
 }
 

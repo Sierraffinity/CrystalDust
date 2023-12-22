@@ -437,7 +437,7 @@ void CB2_DoHallOfFameScreenDontSaveData(void)
 
 static void Task_Hof_InitMonData(u8 taskId)
 {
-    u16 i, j;
+    u32 i, j;
 
     gTasks[taskId].tMonNumber = 0; // valid pokes
 
@@ -484,7 +484,7 @@ static void Task_Hof_InitMonData(u8 taskId)
 
 static void Task_Hof_InitTeamSaveData(u8 taskId)
 {
-    u16 i;
+    u32 i;
     struct HallofFameTeam* lastSavedTeam = (struct HallofFameTeam*)(gDecompressionBuffer);
 
     if (!gHasHallOfFameRecords)
@@ -642,7 +642,7 @@ static void Task_Hof_TryDisplayAnotherMon(u8 taskId)
 
 static void Task_Hof_PaletteFadeAndPrintWelcomeText(u8 taskId)
 {
-    u16 i;
+    u32 i;
 
     BeginNormalPaletteFade(PALETTES_OBJECTS, 0, 0, 0, RGB_BLACK);
     for (i = 0; i < PARTY_SIZE; i++)
@@ -670,7 +670,7 @@ static void Task_Hof_DoConfetti(u8 taskId)
     }
     else
     {
-        u16 i;
+        u32 i;
         for (i = 0; i < PARTY_SIZE; i++)
         {
             if (gTasks[taskId].tMonSpriteId(i) != SPRITE_NONE)
@@ -871,7 +871,7 @@ static void Task_HofPC_CopySaveData(u8 taskId)
     }
     else
     {
-        u16 i;
+        u32 i;
         struct HallofFameTeam* savedTeams;
 
         CpuCopy16(gDecompressionBuffer, sHofMonPtr, 0x2000);
@@ -897,7 +897,7 @@ static void Task_HofPC_DrawSpritesPrintText(u8 taskId)
 {
     struct HallofFameTeam* savedTeams = sHofMonPtr;
     struct HallofFameMon* currMon;
-    u16 i;
+    u32 i;
 
     for (i = 0; i < gTasks[taskId].tCurrTeamNo; i++)
         savedTeams++;
@@ -963,7 +963,7 @@ static void Task_HofPC_PrintMonInfo(u8 taskId)
 {
     struct HallofFameTeam* savedTeams = sHofMonPtr;
     struct HallofFameMon* currMon;
-    u16 i;
+    u32 i;
     u16 currMonID;
 
     for (i = 0; i < gTasks[taskId].tCurrTeamNo; i++)
@@ -994,7 +994,7 @@ static void Task_HofPC_PrintMonInfo(u8 taskId)
 
 static void Task_HofPC_HandleInput(u8 taskId)
 {
-    u16 i;
+    u32 i;
 
     if (JOY_NEW(A_BUTTON))
     {
@@ -1060,7 +1060,7 @@ static void Task_HofPC_HandleExit(u8 taskId)
 {
     if (!IsComputerScreenCloseEffectActive())
     {
-        u8 i;
+        u32 i;
 
         for (i = 0; i < PARTY_SIZE; i++)
         {

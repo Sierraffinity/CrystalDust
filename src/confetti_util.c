@@ -12,8 +12,8 @@ static EWRAM_DATA struct
 
 static void sub_81520A8(void *dest, u16 value, u8 left, u8 top, u8 width, u8 height) // Unused.
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     u8 x;
     u8 y;
 
@@ -30,8 +30,8 @@ static void sub_81520A8(void *dest, u16 value, u8 left, u8 top, u8 width, u8 hei
 
 static void sub_8152134(void *dest, const u16 *src, u8 left, u8 top, u8 width, u8 height) // Unused.
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     u8 x;
     u8 y;
     const u16 *_src;
@@ -49,7 +49,7 @@ static void sub_8152134(void *dest, const u16 *src, u8 left, u8 top, u8 width, u
 
 bool32 ConfettiUtil_Init(u8 count)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     if (count == 0)
         return FALSE;
@@ -78,7 +78,7 @@ bool32 ConfettiUtil_Init(u8 count)
 
 bool32 ConfettiUtil_Free(void)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     if (sWork == NULL)
         return FALSE;
@@ -96,7 +96,7 @@ bool32 ConfettiUtil_Free(void)
 
 bool32 ConfettiUtil_Update(void)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     if (sWork == NULL || sWork->array == NULL)
         return FALSE;
@@ -167,7 +167,7 @@ u8 ConfettiUtil_SetData(u8 id, u8 dataArrayId, s16 dataValue)
 u8 ConfettiUtil_AddNew(const struct OamData *oam, u16 tileTag, u16 palTag, s16 x, s16 y, u8 animNum, u8 priority)
 {
     struct ConfettiUtil *structPtr = NULL;
-    u8 i;
+    u32 i;
 
     if (sWork == NULL || oam == NULL)
         return 0xFF;

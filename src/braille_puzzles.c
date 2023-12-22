@@ -417,7 +417,7 @@ bool8 FldEff_UsePuzzleEffect(void)
 
 bool8 ShouldDoBrailleRegicePuzzle(void)
 {
-    u8 i;
+    u32 i;
 
     if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(NONE)
         && gSaveBlock1Ptr->location.mapNum == MAP_NUM(NONE))

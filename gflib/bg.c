@@ -949,7 +949,7 @@ void CopyRectToBgTilemapBufferRect(u8 bg, const void *src, u8 srcX, u8 srcY, u8 
     u16 screenWidth, screenHeight, screenSize;
     u16 var;
     const void *srcPtr;
-    u16 i, j;
+    u32 i, j;
 
     if (!IsInvalidBg32(bg) && !IsTileMapOutsideWram(bg))
     {

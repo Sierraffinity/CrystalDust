@@ -1635,7 +1635,7 @@ static void Task_DuoFightAnim(u8 taskId)
 
 static void Task_DuoFight_AnimateClouds(u8 taskId)
 {
-    s16 i;
+    s32 i;
     u16 *data = gTasks[taskId].data;
 
     for (i = 24; i < 92; i++)

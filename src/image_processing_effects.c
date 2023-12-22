@@ -123,7 +123,7 @@ void ApplyImageProcessingEffects(struct ImageProcessingContext *context)
 
 static void ApplyImageEffect_RedChannelGrayscale(u8 delta)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (j = 0; j < gCanvasRowEnd; j++)
     {
@@ -148,7 +148,7 @@ static void ApplyImageEffect_RedChannelGrayscale(u8 delta)
 
 static void ApplyImageEffect_RedChannelGrayscaleHighlight(u8 highlight)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (j = 0; j < gCanvasRowEnd; j++)
     {
@@ -177,7 +177,7 @@ static void ApplyImageEffect_Pointillism(void)
 
 static void ApplyImageEffect_Grayscale(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (j = 0; j < gCanvasRowEnd; j++)
     {
@@ -193,7 +193,7 @@ static void ApplyImageEffect_Grayscale(void)
 
 static void ApplyImageEffect_Blur(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (i = 0; i < gCanvasColumnEnd; i++)
     {
@@ -219,7 +219,7 @@ static void ApplyImageEffect_Blur(void)
 
 static void ApplyImageEffect_PersonalityColor(u8 personality)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (j = 0; j < gCanvasRowEnd; j++)
     {
@@ -235,7 +235,7 @@ static void ApplyImageEffect_PersonalityColor(u8 personality)
 
 static void ApplyImageEffect_BlackAndWhite(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (j = 0; j < gCanvasRowEnd; j++)
     {
@@ -251,7 +251,7 @@ static void ApplyImageEffect_BlackAndWhite(void)
 
 static void ApplyImageEffect_BlackOutline(void)
 {
-    u8 i, j;
+    u32 i, j;
     u16 *pixel;
 
     // Handle top row of pixels first.
@@ -287,7 +287,7 @@ static void ApplyImageEffect_BlackOutline(void)
 
 static void ApplyImageEffect_Invert(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (j = 0; j < gCanvasRowEnd; j++)
     {
@@ -303,7 +303,7 @@ static void ApplyImageEffect_Invert(void)
 
 static void ApplyImageEffect_Shimmer(void)
 {
-    u8 i, j;
+    u32 i, j;
     u16 *pixel;
     u16 prevPixel;
 
@@ -365,7 +365,7 @@ static void ApplyImageEffect_Shimmer(void)
 
 static void ApplyImageEffect_BlurRight(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (j = 0; j < gCanvasRowEnd; j++)
     {
@@ -385,7 +385,7 @@ static void ApplyImageEffect_BlurRight(void)
 
 static void ApplyImageEffect_BlurDown(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (i = 0; i < gCanvasColumnEnd; i++)
     {
@@ -412,7 +412,7 @@ struct PointillismPoint
 
 static void AddPointillismPoints(u16 point)
 {
-    u8 i;
+    u32 i;
     bool8 offsetDownLeft;
     u8 colorType;
     struct PointillismPoint points[6];
@@ -621,7 +621,7 @@ static u16 QuantizePixel_MotionBlur(u16 *prevPixel, u16 *curPixel)
 {
     u16 pixelChannels[2][3];
     u16 diffs[3];
-    u8 i;
+    u32 i;
     u16 largestDiff;
     u16 red, green, blue;
 
@@ -765,7 +765,7 @@ static u16 QuantizePixel_BlurHard(u16 *prevPixel, u16 *curPixel, u16 *nextPixel)
 
 void ConvertImageProcessingToGBA(struct ImageProcessingContext *context)
 {
-    u16 i, j, k;
+    u32 i, j, k;
     u16 *src, *dest, *src_, *dest_;
     u16 width, height;
 
@@ -880,7 +880,7 @@ static void SetPresetPalette_BlackAndWhite(void)
 
 static void SetPresetPalette_GrayscaleSmall(void)
 {
-    u8 i;
+    u32 i;
 
     gCanvasPalette[0] = RGB_BLACK;
     gCanvasPalette[1] = RGB_BLACK;
@@ -890,7 +890,7 @@ static void SetPresetPalette_GrayscaleSmall(void)
 
 static void SetPresetPalette_Grayscale(void)
 {
-    u8 i;
+    u32 i;
 
     gCanvasPalette[0] = RGB_BLACK;
     for (i = 0; i < 32; i++)
@@ -899,7 +899,7 @@ static void SetPresetPalette_Grayscale(void)
 
 static void QuantizePalette_Standard(bool8 useLimitedPalette)
 {
-    u8 i, j;
+    u32 i, j;
     u16 maxIndex;
 
     maxIndex = 0xDF;
@@ -976,7 +976,7 @@ static void QuantizePalette_Standard(bool8 useLimitedPalette)
 
 static void QuantizePalette_BlackAndWhite(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (j = 0; j < gCanvasRowEnd; j++)
     {
@@ -1007,7 +1007,7 @@ static void QuantizePalette_BlackAndWhite(void)
 
 static void QuantizePalette_GrayscaleSmall(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (j = 0; j < gCanvasRowEnd; j++)
     {
@@ -1025,7 +1025,7 @@ static void QuantizePalette_GrayscaleSmall(void)
 
 static void QuantizePalette_Grayscale(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (j = 0; j < gCanvasRowEnd; j++)
     {
@@ -1043,7 +1043,7 @@ static void QuantizePalette_Grayscale(void)
 
 static void QuantizePalette_PrimaryColors(void)
 {
-    u8 i, j;
+    u32 i, j;
 
     for (j = 0; j < gCanvasRowEnd; j++)
     {

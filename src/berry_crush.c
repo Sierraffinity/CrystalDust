@@ -1148,7 +1148,7 @@ static void MainTask(u8 taskId)
 
 static void SetNamesAndTextSpeed(struct BerryCrushGame *game)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < game->playerCount; i++)
         StringCopy(game->players[i].name, gLinkPlayers[i].name);
     for (; i < MAX_RFU_PLAYERS; i++)
@@ -1369,7 +1369,7 @@ static void ResetCrusherPos(struct BerryCrushGame *game)
 
 static void CreateBerrySprites(struct BerryCrushGame *game, struct BerryCrushGame_Gfx *gfx)
 {
-    u8 i;
+    u32 i;
     u8 spriteId;
     s16 distance, var1;
     s16 *data;
@@ -1455,7 +1455,7 @@ static void SpriteCB_DropBerryIntoCrusher(struct Sprite *sprite)
 
 static void BerryCrushFreeBerrySpriteGfx(struct BerryCrushGame *game, struct BerryCrushGame_Gfx *gfx)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < game->playerCount; i++)
     {
         FreeSpritePaletteByTag(sPlayerBerrySpriteTags[i]);
@@ -1467,7 +1467,7 @@ static void UpdateInputEffects(struct BerryCrushGame *game, struct BerryCrushGam
 {
     u8 numPlayersPressed;
     struct BerryCrushGame_LinkState *linkState;
-    u8 i;
+    u32 i;
     u16 temp1, xModifier;
 
     numPlayersPressed = 0;
@@ -1548,7 +1548,7 @@ static void UpdateInputEffects(struct BerryCrushGame *game, struct BerryCrushGam
 
 static bool32 AreEffectsFinished(struct BerryCrushGame *game, struct BerryCrushGame_Gfx *gfx)
 {
-    u8 i;
+    u32 i;
 
     // Are any impact sprites active
     for (i = 0; i < game->playerCount; i++)
@@ -1572,7 +1572,7 @@ static bool32 AreEffectsFinished(struct BerryCrushGame *game, struct BerryCrushG
 
 static void FramesToMinSec(struct BerryCrushGame_Gfx *gfx, u16 frames)
 {
-    u8 i = 0;
+    u32 i = 0;
     u32 fractionalFrames = 0;
     s16 r3 = 0;
 
@@ -1597,7 +1597,7 @@ static void PrintTextCentered(u8 windowId, u8 left, u8 colorId, const u8 *string
 
 static void PrintResultsText(struct BerryCrushGame * game, u8 page, u8 sp14, u8 baseY)
 {
-    u8 i, j;
+    u32 i, j;
     u8 playerId = 0;
     u8 ranking = 0;
     s32 x;
@@ -1667,7 +1667,7 @@ static void PrintResultsText(struct BerryCrushGame * game, u8 page, u8 sp14, u8 
 
 static void PrintCrushingResults(struct BerryCrushGame *game)
 {
-    u8 i = 0;
+    u32 i = 0;
     u8 x = 0;
     u32 pressingSpeedFrac = 0;
     struct BerryCrushGame_Results *results = &game->results;
@@ -1799,7 +1799,7 @@ static void CloseResultsWindow(struct BerryCrushGame *game)
 
 static void Task_ShowRankings(u8 taskId)
 {
-    u8 i = 0, j, xPos, yPos;
+    u32 i = 0, j, xPos, yPos;
     u32 score = 0;
     s16 *data = gTasks[taskId].data;
     
@@ -1892,7 +1892,7 @@ static void HideTimer(struct BerryCrushGame_Gfx *gfx)
 
 static void CreatePlayerNameWindows(struct BerryCrushGame *game)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < game->playerCount; i++)
     {
         game->gfx.playerCoords[i] = &sPlayerCoords[sPlayerIdToPosId[game->playerCount - 2][i]];
@@ -1904,7 +1904,7 @@ static void CreatePlayerNameWindows(struct BerryCrushGame *game)
 
 static void DrawPlayerNameWindows(struct BerryCrushGame *game)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < game->playerCount; i++)
     {
         PutWindowTilemap(game->gfx.nameWindowIds[i]);
@@ -1946,7 +1946,7 @@ static void DrawPlayerNameWindows(struct BerryCrushGame *game)
 // Each player name window border uses a color that corresponds to a slot of the crusher lid
 static void CopyPlayerNameWindowGfxToBg(struct BerryCrushGame *game)
 {
-    u8 i = 0;
+    u32 i = 0;
     u8 * crusherGfx;
 
     LZ77UnCompWram(gBerryCrush_Crusher_Tilemap, gDecompressionBuffer);
@@ -1967,7 +1967,7 @@ static void CopyPlayerNameWindowGfxToBg(struct BerryCrushGame *game)
 
 static void CreateGameSprites(struct BerryCrushGame *game)
 {
-    u8 i = 0;
+    u32 i = 0;
     u8 spriteId;
 
     game->depth = CRUSHER_START_Y;
@@ -2036,7 +2036,7 @@ static void CreateGameSprites(struct BerryCrushGame *game)
 
 static void DestroyGameSprites(struct BerryCrushGame *game)
 {
-    u8 i = 0;
+    u32 i = 0;
     FreeSpriteTilesByTag(TAG_TIMER_DIGITS);
     FreeSpriteTilesByTag(GFXTAG_SPARKLE);
     FreeSpriteTilesByTag(GFXTAG_IMPACT);
@@ -2068,7 +2068,7 @@ static void SpriteCB_Impact(struct Sprite *sprite)
 
 static void SpriteCB_Sparkle_End(struct Sprite *sprite)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < ARRAY_COUNT(sprite->data); i++)
         sprite->data[i] = 0;
     sprite->x2 = 0;
@@ -2357,7 +2357,7 @@ static u32 Cmd_GoToBerryPouch(struct BerryCrushGame *game, u8 *args)
 
 static u32 Cmd_WaitForOthersToPickBerries(struct BerryCrushGame *game, u8 *args)
 {
-    u8 i;
+    u32 i;
 
     switch (game->cmdState)
     {
@@ -2555,7 +2555,7 @@ static u32 Cmd_Countdown(struct BerryCrushGame *game,  u8 *args)
 static void HandlePartnerInput(struct BerryCrushGame *game)
 {
     u8 numPlayersPressed = 0;
-    u8 i = 0;
+    u32 i = 0;
     u16 timeDiff;
     s32 temp = 0;
     struct BerryCrushGame_LinkState *linkState;
@@ -2647,7 +2647,7 @@ static void UpdateLeaderGameState(struct BerryCrushGame *game)
     u8 numPlayersPressed = 0;
     u16 flags = 0;
     u16 temp = 0;
-    u8 i = 0;
+    u32 i = 0;
     
     for (i = 0; i < game->playerCount; i++)
     {
@@ -2799,7 +2799,7 @@ static void HandlePlayerInput(struct BerryCrushGame *game)
 
 static void RecvLinkData(struct BerryCrushGame *game)
 {
-    u8 i = 0;
+    u32 i = 0;
     struct BerryCrushGame_LinkState *linkState = NULL;
 
     for (i = 0; i < game->playerCount; i++)
@@ -2990,7 +2990,7 @@ static u32 Cmd_HandleTimeUp(struct BerryCrushGame *game, u8 *args)
 
 static u32 Cmd_TabulateResults(struct BerryCrushGame *game, u8 *args)
 {
-    u8 i, j, tempPlayerId;
+    u32 i, j, tempPlayerId;
     s32 temp1, temp2;
     u16 tempStat;
 
@@ -3309,7 +3309,7 @@ static u32 Cmd_AskPlayAgain(struct BerryCrushGame *game, u8 *args)
 
 static u32 Cmd_CommunicatePlayAgainResponses(struct BerryCrushGame *game, u8 *args)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     switch (game->cmdState)
     {
@@ -3447,7 +3447,7 @@ static u32 Cmd_Quit(struct BerryCrushGame *game, u8 *args)
 
 static void ResetGame(struct BerryCrushGame *game)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     IncrementGameStat(GAME_STAT_PLAYED_BERRY_CRUSH);
     game->unused = 0;

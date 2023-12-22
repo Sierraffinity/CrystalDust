@@ -77,7 +77,7 @@ void FreeItemIconTemporaryBuffers(void)
 
 void CopyItemIconPicTo4x4Buffer(const void *src, void *dest)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 3; i++)
         CpuCopy16(src + i * 96, dest + i * 128, 0x60);

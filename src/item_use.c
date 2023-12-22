@@ -312,7 +312,7 @@ static void Task_UseItemfinder(u8 taskId)
 {
     u8 playerDir;
     u8 playerDirToItem;
-    u8 i;
+    u32 i;
     s16* data = gTasks[taskId].data;
     if (tCounter == 0)
     {

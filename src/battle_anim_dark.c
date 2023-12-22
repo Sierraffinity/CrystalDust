@@ -400,7 +400,7 @@ void AnimTask_MoveAttackerMementoShadow(u8 taskId)
 {
     struct ScanlineEffectParams scanlineParams;
     struct BattleAnimBgData animBg;
-    u16 i;
+    u32 i;
     u8 pos;
     int var0;
     struct Task *task = &gTasks[taskId];
@@ -530,7 +530,7 @@ void AnimTask_MoveTargetMementoShadow(u8 taskId)
     struct BattleAnimBgData animBg;
     struct ScanlineEffectParams scanlineParams;
     u8 x;
-    u16 i;
+    u32 i;
     struct Task *task = &gTasks[taskId];
 
     switch (task->data[0])
@@ -710,7 +710,7 @@ static void DoMementoShadowEffect(struct Task *task)
 {
     int var0, var1;
     s16 var2;
-    s16 i;
+    s32 i;
     int var4;
 
     var2 = task->data[5] - task->data[4];
@@ -759,7 +759,7 @@ static void DoMementoShadowEffect(struct Task *task)
 
 static void SetAllBattlersSpritePriority(u8 priority)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {

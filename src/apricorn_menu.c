@@ -119,7 +119,7 @@ void SelectApricornForKurt(void)
 
 static void InitApricornMenu(u8 taskId)
 {
-    u8 i, curIdx;
+    u32 i, curIdx;
 
     VarSet(VAR_KURT_GIVEN_APRICORN, 0);
     VarSet(VAR_KURT_GIVEN_APRICORN_QTY, 0);
@@ -194,7 +194,7 @@ static void RemoveAllWindows(void)
 
 static void ApricornMenu_RefreshListMenu(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < sApricornMenu->count; i++)
     {

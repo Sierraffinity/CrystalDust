@@ -131,7 +131,7 @@ static void ClearAllPokeblockFeeders(void)
 void GetPokeblockFeederInFront(void)
 {
     s16 x, y;
-    u16 i;
+    u32 i;
 
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
 
@@ -153,7 +153,7 @@ void GetPokeblockFeederInFront(void)
 void GetPokeblockFeederWithinRange(void)
 {
     s16 x, y;
-    u16 i;
+    u32 i;
 
     PlayerGetDestCoords(&x, &y);
 
@@ -203,7 +203,7 @@ struct Pokeblock *SafariZoneGetActivePokeblock(void)
 void SafariZoneActivatePokeblockFeeder(u8 pkblId)
 {
     s16 x, y;
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NUM_POKEBLOCK_FEEDERS; i++)
     {
@@ -226,7 +226,7 @@ void SafariZoneActivatePokeblockFeeder(u8 pkblId)
 
 static void DecrementFeederStepCounters(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NUM_POKEBLOCK_FEEDERS; i++)
     {

@@ -107,7 +107,7 @@ static void CoordEventWeather_Route123Cycle(void)
 
 void DoCoordEventWeather(u8 coordEventWeather)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < ARRAY_COUNT(sCoordEventWeatherFuncs); i++)
     {
         if (sCoordEventWeatherFuncs[i].coordEventWeather == coordEventWeather)

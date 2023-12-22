@@ -1059,7 +1059,7 @@ static void SpriteCB_MovingScenery(struct Sprite *sprite)
 
 static void CreateMovingScenerySprites(bool8 hasVerticalMove, const struct IntroCreditsSpriteMetadata *metadata, const union AnimCmd *const *anims, u8 numSprites)
 {
-    u8 i;
+    u32 i;
 
     for(i = 0; i < numSprites; i++)
     {

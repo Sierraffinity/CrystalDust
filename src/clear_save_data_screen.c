@@ -122,7 +122,7 @@ static void VBlankCB(void)
 
 static bool8 SetupClearSaveDataScreen(void)
 {
-    u16 i;
+    u32 i;
 
     switch(gMain.state)
     {

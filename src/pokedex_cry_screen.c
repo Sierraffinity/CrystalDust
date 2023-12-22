@@ -225,7 +225,7 @@ static const struct SpritePalette sCryMeterNeedleSpritePalettes[] =
 
 bool8 LoadCryWaveformWindow(struct CryScreenWindow *window, u8 windowId)
 {
-    u8 i;
+    u32 i;
     u8 finished = FALSE;
 
     switch (gDexCryScreenState)
@@ -351,7 +351,7 @@ static void PlayCryScreenCry(u16 species)
 
 static void BufferCryWaveformSegment(void)
 {
-    u8 i;
+    u32 i;
     s8 *baseBuffer;
     s8 *buffer;
 
@@ -373,7 +373,7 @@ static void DrawWaveformFlatline(void)
 
 static void AdvancePlayhead(u8 windowId)
 {
-    u8 i;
+    u32 i;
     u16 offset;
 
     ShiftWaveformOver(windowId, sDexCryScreen->playhead, FALSE);
@@ -485,7 +485,7 @@ void FreeCryScreen(void)
 
 static void SpriteCB_CryMeterNeedle(struct Sprite *sprite)
 {
-    u16 i;
+    u32 i;
     s8 peakAmplitude;
     s16 x;
     s16 y;

@@ -53,7 +53,7 @@ static u8 RouletteFlash_Remove(struct RouletteFlashUtil *flash, u8 id)
 
 static u8 RouletteFlash_FadePalette(struct RouletteFlashPalette *pal)
 {
-    u8 i;
+    u32 i;
     u8 returnval;
 
     for (i = 0; i < pal->settings.numColors; i++)
@@ -114,7 +114,7 @@ static u8 RouletteFlash_FadePalette(struct RouletteFlashPalette *pal)
 
 static u8 RouletteFlash_FlashPalette(struct RouletteFlashPalette *pal)
 {
-    u8 i = 0;
+    u32 i = 0;
     switch (pal->state)
     {
     case 1:
@@ -135,7 +135,7 @@ static u8 RouletteFlash_FlashPalette(struct RouletteFlashPalette *pal)
 
 void RouletteFlash_Run(struct RouletteFlashUtil *flash)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     if (flash->enabled)
     {
@@ -159,7 +159,7 @@ void RouletteFlash_Run(struct RouletteFlashUtil *flash)
 
 void RouletteFlash_Enable(struct RouletteFlashUtil *flash, u16 flags)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     flash->enabled++;
     for (i = 0; i < ARRAY_COUNT(flash->palettes); i++)
@@ -177,7 +177,7 @@ void RouletteFlash_Enable(struct RouletteFlashUtil *flash, u16 flags)
 
 void RouletteFlash_Stop(struct RouletteFlashUtil *flash, u16 flags)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < ARRAY_COUNT(flash->palettes); i++)
     {
@@ -217,7 +217,7 @@ void RouletteFlash_Stop(struct RouletteFlashUtil *flash, u16 flags)
 
 void InitPulseBlend(struct PulseBlend *pulseBlend)
 {
-    u8 i = 0;
+    u32 i = 0;
     pulseBlend->usedPulseBlendPalettes = 0;
     memset(&pulseBlend->pulseBlendPalettes, 0, sizeof(pulseBlend->pulseBlendPalettes));
     for (; i < 16; i++)
@@ -226,7 +226,7 @@ void InitPulseBlend(struct PulseBlend *pulseBlend)
 
 int InitPulseBlendPaletteSettings(struct PulseBlend *pulseBlend, const struct PulseBlendSettings *settings)
 {
-    u8 i = 0;
+    u32 i = 0;
     struct PulseBlendPalette *pulseBlendPalette = NULL;
 
     if (!pulseBlend->pulseBlendPalettes[0].inUse)
@@ -260,7 +260,7 @@ int InitPulseBlendPaletteSettings(struct PulseBlend *pulseBlend, const struct Pu
 
 static void ClearPulseBlendPalettesSettings(struct PulseBlendPalette *pulseBlendPalette)
 {
-    u16 i;
+    u32 i;
 
     if (!pulseBlendPalette->available && pulseBlendPalette->pulseBlendSettings.restorePaletteOnUnload)
     {
@@ -280,7 +280,7 @@ static void ClearPulseBlendPalettesSettings(struct PulseBlendPalette *pulseBlend
 
 void UnloadUsedPulseBlendPalettes(struct PulseBlend *pulseBlend, u16 pulseBlendPaletteSelector, u8 multiSelection)
 {
-    u16 i = 0;
+    u32 i = 0;
 
     if (!multiSelection)
     {
@@ -300,7 +300,7 @@ void UnloadUsedPulseBlendPalettes(struct PulseBlend *pulseBlend, u16 pulseBlendP
 
 void MarkUsedPulseBlendPalettes(struct PulseBlend *pulseBlend, u16 pulseBlendPaletteSelector, u8 multiSelection)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     if (!multiSelection)
     {
@@ -327,9 +327,9 @@ void MarkUsedPulseBlendPalettes(struct PulseBlend *pulseBlend, u16 pulseBlendPal
 
 void UnmarkUsedPulseBlendPalettes(struct PulseBlend *pulseBlend, u16 pulseBlendPaletteSelector, u8 multiSelection)
 {
-    u16 i;
+    u32 i;
     struct PulseBlendPalette *pulseBlendPalette;
-    u8 j = 0;
+    u32 j = 0;
 
     if (!multiSelection)
     {
@@ -373,7 +373,7 @@ void UnmarkUsedPulseBlendPalettes(struct PulseBlend *pulseBlend, u16 pulseBlendP
 void UpdatePulseBlend(struct PulseBlend *pulseBlend)
 {
     struct PulseBlendPalette *pulseBlendPalette;
-    u8 i = 0;
+    u32 i = 0;
 
     if (pulseBlend->usedPulseBlendPalettes)
     {
@@ -442,8 +442,8 @@ void UpdatePulseBlend(struct PulseBlend *pulseBlend)
 void ClearTilemapRect(u16 *dest, u16 src, u8 left, u8 top, u8 width, u8 height)
 {
     u16 *_dest;
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     i = 0;
     dest = &dest[top * 32 + left];
     for (; i < height; i++)
@@ -460,8 +460,8 @@ void SetTilemapRect(u16 *dest, u16 *src, u8 left, u8 top, u8 width, u8 height)
 {
     u16 *_dest;
     u16 *_src = src;
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     i = 0;
     dest = &dest[top * 32 + left];
     for (; i < height; i++)

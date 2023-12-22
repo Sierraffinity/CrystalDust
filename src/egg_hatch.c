@@ -299,7 +299,7 @@ static void CreateHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
 {
     u16 species;
     u32 personality, pokerus;
-    u8 i, friendship, language, gameMet, markings, isEventLegal;
+    u32 i, friendship, language, gameMet, markings, isEventLegal;
     u16 moves[MAX_MON_MOVES];
     u32 ivs[NUM_STATS];
 
@@ -813,7 +813,7 @@ static void SpriteCB_Egg_3(struct Sprite* sprite)
 
 static void SpriteCB_Egg_4(struct Sprite* sprite)
 {
-    s16 i;
+    s32 i;
     if (sprite->data[0] == 0)
         BeginNormalPaletteFade(PALETTES_ALL, -1, 0, 0x10, RGB_WHITEALPHA);
     if (sprite->data[0] < 4u)

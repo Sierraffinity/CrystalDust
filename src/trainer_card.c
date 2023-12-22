@@ -825,7 +825,7 @@ static u32 GetCappedGameStat(u8 statId, u32 maxValue)
 
 static bool8 HasAllFrontierSymbols(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NUM_FRONTIER_FACILITIES; i++)
     {
         if (!FlagGet(FLAG_SYS_TOWER_SILVER + 2 * i) || !FlagGet(FLAG_SYS_TOWER_GOLD + 2 * i))
@@ -869,7 +869,7 @@ static u8 GetRubyTrainerStars(struct TrainerCard *trainerCard)
 static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
 {
     u32 playTime;
-    u8 i;
+    u32 i;
 
     trainerCard->gender = gSaveBlock2Ptr->playerGender;
     trainerCard->playTimeHours = gSaveBlock2Ptr->playTimeHours;
@@ -1013,7 +1013,7 @@ void CopyTrainerCardData(struct TrainerCard *dst, u16 *src, u8 gameVersion)
 
 static void SetDataFromTrainerCard(void)
 {
-    u8 i;
+    u32 i;
     u32 badgeFlag;
 
     sData->hasPokedex = FALSE;
@@ -1618,7 +1618,7 @@ static void PrintBattleTowerStringOnCard(u8 slot)
 
 static void PrintPokemonIconsOnCard(void)
 {
-    u8 i;
+    u32 i;
     u8 paletteSlots[PARTY_SIZE] = {5, 6, 7, 8, 9, 10};
     u8 xOffsets[PARTY_SIZE] = {0, 4, 8, 12, 16, 20};
 
@@ -1637,7 +1637,7 @@ static void PrintPokemonIconsOnCard(void)
 
 static void LoadMonIconGfx(void)
 {
-    u8 i;
+    u32 i;
 
     CpuSet(gMonIconPalettes, sData->monIconPal, 0x60);
     switch (sData->trainerCard.monIconTint)
@@ -1665,7 +1665,7 @@ static void LoadMonIconGfx(void)
 
 static void PrintStickersOnCard(void)
 {
-    u8 i;
+    u32 i;
     u8 paletteSlots[4] = {11, 12, 13, 14};
 
     if ((sData->cardType == CARD_TYPE_CRYSTALDUST || sData->cardType == CARD_TYPE_FRLG) && sData->trainerCard.shouldDrawStickers == TRUE)
@@ -1745,7 +1745,7 @@ static u8 SetCardBgsAndPals(void)
 
 static void DrawCardScreenBackground(u16 *ptr)
 {
-    s16 i, j;
+    s32 i, j;
     u16 *dst = sData->bgTilemapBuffer;
 
     for (i = 0; i < 20; i++)
@@ -1763,7 +1763,7 @@ static void DrawCardScreenBackground(u16 *ptr)
 
 static void DrawCardFrontOrBack(u16* ptr)
 {
-    s16 i, j;
+    s32 i, j;
     u16 *dst = sData->cardTilemapBuffer;
 
     for (i = 0; i < 20; i++)
@@ -1784,7 +1784,7 @@ static void DrawStarsAndBadgesOnCard(void)
     static const u8 starYOffsets[] = {7, 6, 7, 7};
     static const u8 badgeYOffsets[] = {16, 15, 16};
 
-    s16 i, x;
+    s32 i, x;
     u16 tileNum = 704;
     u8 palNum = 3;
 
@@ -1871,7 +1871,7 @@ static bool8 Task_BeginCardFlip(struct Task* task)
 static bool8 Task_AnimateCardFlipDown(struct Task* task)
 {
     u32 cardHeight, r5, r10, cardTop, r6, var_24, cardBottom, var;
-    s16 i;
+    s32 i;
 
     sData->allowDMACopy = FALSE;
     if (task->tCardTop >= CARD_FLIP_Y)
@@ -1990,7 +1990,7 @@ static bool8 Task_SetCardFlipped(struct Task* task)
 static bool8 Task_AnimateCardFlipUp(struct Task* task)
 {
     u32 cardHeight, r5, r10, cardTop, r6, var_24, cardBottom, var;
-    s16 i;
+    s32 i;
 
     sData->allowDMACopy = FALSE;
     if (task->tCardTop <= 5)
@@ -2072,7 +2072,7 @@ void ShowTrainerCardInLink(u8 cardId, void (*callback)(void))
 
 static void InitTrainerCardData(void)
 {
-    u8 i;
+    u32 i;
 
     sData->mainState = 0;
     sData->timeColonBlinkTimer = gSaveBlock2Ptr->playTimeVBlanks;
