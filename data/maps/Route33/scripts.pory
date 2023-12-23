@@ -10,6 +10,7 @@ script Route33_EventScript_Anthony {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_ANTHONY_1, "All righty, then!\nMy {POKEMON} and I are raring to go!", Route33_Text_Trainer_AnthonyLost)
+        end
     }		  
     if (!flag(FLAG_PHONE_CARD_HIKER_ANTHONY))
     {

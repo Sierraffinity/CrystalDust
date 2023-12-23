@@ -13,6 +13,7 @@ script Lighthouse_2F_Eventscript_SailorHuey {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_HUEY_1, "Hey!\nI'm tired of waiting for you!", "Urf!\nI lose!")
+        end
     }
     if (!flag(FLAG_PHONE_CARD_SAILOR_HUEY))
     {

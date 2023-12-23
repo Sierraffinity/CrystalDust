@@ -56,8 +56,6 @@ const u8 *GetTrainerBLoseText(void);
 const u8 *GetTrainerWonSpeech(void);
 void UpdateRematchIfDefeated(s32 rematchTableId);
 void IncrementRematchStepCounter(void);
-void TryUpdateRandomTrainerRematches(u16 mapGroup, u16 mapNum);
-bool32 DoesSomeoneWantRematchIn(u16 mapGroup, u16 mapNum);
 bool32 IsRematchTrainerIn(u16 mapGroup, u16 mapNum);
 u16 GetLastBeatenRematchTrainerId(u16 trainerId);
 bool8 ShouldTryRematchBattle(void);
@@ -66,5 +64,9 @@ void ShouldTryGetTrainerScript(void);
 u16 CountBattledRematchTeams(u16 trainerId);
 bool32 IsPlayerDefeated(u32 battleOutcome);
 void ClearAllTrainerWantRematchStates(void);
+bool32 CheckRematchTrainerFlag(u16 flag);
+void SetRematchTrainerFlag(u16 flag);
+void ClearRematchTrainerFlag(u16 flag);
+bool8 IsFirstTrainerIdReadyForRematch(const struct RematchTrainer *table, u16 firstBattleTrainerId);
 
 #endif // GUARD_BATTLE_SETUP_H

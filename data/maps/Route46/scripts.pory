@@ -17,6 +17,7 @@ script Route46_EventScript_Erin {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_ERIN_1, "Yay! I waited!\nLet's start now!", "Oh, rats!")
+        end
     }
     if (!flag(FLAG_PHONE_CARD_PICNICKER_ERIN))
     {

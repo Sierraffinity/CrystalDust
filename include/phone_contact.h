@@ -6,6 +6,7 @@
 struct PhoneContact;
 typedef const u8 *(*PhoneContactSelectMessage)(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
 u32 GetPhoneContactFromTrainerId(int trainerId);
+u32 GetPhoneContactFromRematchTrainerId(int trainerId);
 
 #define DAY_ALWAYS 7
 #define TIME_ALWAYS 7

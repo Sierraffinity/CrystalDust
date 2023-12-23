@@ -14,6 +14,7 @@ script Route34_EventScript_Todd {
     if(var(VAR_RESULT) == TRUE)
     {
         trainerbattle_rematch(TRAINER_TODD_1, "I waited for you!\pI even cut back my shopping to\nraise my {POKEMON} better!", Route34_Text_Trainer_ToddLost)
+        end
     }
     if (!flag(FLAG_PHONE_CARD_CAMPER_TODD))
     {
@@ -85,6 +86,7 @@ script Route34_EventScript_Gina {
     if(var(VAR_RESULT) == TRUE)
     {
         trainerbattle_rematch(TRAINER_GINA_1, "I've been waiting!\nI've gotten a bit better at this!", Route34_Text_Trainer_GinaLost)
+        end
     }
     if (!flag(FLAG_PHONE_CARD_PICNICKER_GINA))
     {

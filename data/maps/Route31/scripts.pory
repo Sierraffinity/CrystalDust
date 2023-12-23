@@ -136,6 +136,7 @@ script Route31_EventScript_Trainer_Wade {
     if(var(VAR_RESULT) == TRUE)
     {
         trainerbattle_rematch(TRAINER_WADE_1, "I was waiting for you!\nLet's battle!", Route31_Text_Trainer_WadeLost)
+        end
     }
 
     if (!flag(FLAG_PHONE_CARD_BUG_CATCHER_WADE))

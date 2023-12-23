@@ -320,21 +320,6 @@ static const struct ScanlineEffectParams sPokenavMainMenuScanlineEffectParams =
         0
 };
 
-static bool32 PlayerHasTrainerRematches(void)
-{
-    s32 i;
-
-    for (i = 0; i < REMATCH_TABLE_ENTRIES; i++)
-    {
-        if (GetMatchTableMapSectionId(i) == gMapHeader.regionMapSectionId
-            && IsRematchEntryRegistered(i)
-            && gSaveBlock1Ptr->trainerRematches[i])
-            return TRUE;
-    }
-
-    return FALSE;
-}
-
 bool32 OpenPokenavMenuInitial(void)
 {
     struct Pokenav2Struct * state = OpenPokenavMenu();
@@ -1096,10 +1081,7 @@ static void CreateMatchCallBlueLightSprite(void)
     struct Pokenav2Struct * ptr = GetSubstructPtr(POKENAV_SUBSTRUCT_MENU_ICONS);
     u8 spriteId = CreateSprite(&sMatchCallBlueLightSpriteTemplate, 0x10, 0x60, 4);
     ptr->blueLightSpriteId = &gSprites[spriteId];
-    if (PlayerHasTrainerRematches())
-        ptr->blueLightSpriteId->callback = SpriteCB_BlinkingBlueLight;
-    else
-        ptr->blueLightSpriteId->invisible = TRUE;
+    ptr->blueLightSpriteId->invisible = TRUE;
 }
 
 static void DestroyRematchBlueLightSpriteId(void)

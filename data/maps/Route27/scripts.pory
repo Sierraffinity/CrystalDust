@@ -82,6 +82,7 @@ script Route27_Eventscript_BirdKeeperJose {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_JOSE_1, "Tweet! Tweeeeet!\nKept me waiting!\pGo, FARFETCH'D!", "Tweet!")
+        end
     }
 
     if (!flag(FLAG_PHONE_CARD_BIRD_KEEPER_JOSE))
@@ -118,37 +119,39 @@ script Route27_Eventscript_PsychicGilbert {
 }
 
 script Route27_Eventscript_CooltrainerReena {
-    // TODO: Check phone strings for textbox fit
-    trainerbattle_single(TRAINER_REENA_1, "You shouldn't underestimate the wild\n{POKEMON} in these parts.", "Oh!\nYou're much too strong!")
-
+    trainerbattle_single(TRAINER_REENA_1, "You shouldn't underestimate the\nwild {POKEMON} in these parts.", Route27_Text_CooltrainerReenaLost)
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
-    if(var(VAR_RESULT) == 1)
+    if(var(VAR_RESULT) == TRUE)
     {
-        trainerbattle_rematch(TRAINER_REENA_1, "What took you?\nStart right away!", "Oh!\nYou're much too strong!")
+        trainerbattle_rematch(TRAINER_REENA_1, "What took you?\nStart right away!", Route27_Text_CooltrainerReenaLost)
+        end
     }	
-
     if (!flag(FLAG_PHONE_CARD_COOLTRAINER_REENA))
     {
         if (!flag(FLAG_COOLTRAINER_REENA_OFFERED_NUMBER))
         {
-            msgbox("Not bad… It's something to beat\nme, even by an unlikely fluke…\pI like you! Give me your number!\nYou can be my practice partner!", MSGBOX_YESNO)
+            msgbox("You're just a kid, but you're not\nto be underestimated either.\pNot bad… It's something to beat\nme, even by an unlikely fluke…\pI like you! Give me your number!\nYou can be my practice partner!", MSGBOX_YESNO)
             setflag(FLAG_COOLTRAINER_REENA_OFFERED_NUMBER)
         }
         else
         {
             msgbox("Give me your phone number! You are\ngoing to be my practice partner!", MSGBOX_YESNO)
         }
-        if (var (VAR_RESULT) == 1)
+        if (var (VAR_RESULT) == YES)
         {
             registerphonecontact(FLAG_PHONE_CARD_COOLTRAINER_REENA)
-            msgbox("Don't be too proud about beating\nme! It was a fluke!", MSGBOX_AUTOCLOSE)
+            msgbox(Route27_Text_CooltrainerReenaAfterRegistered, MSGBOX_AUTOCLOSE)
         }
         else
         {
-            msgbox("I don't believe it! You're going to\nregret this!", MSGBOX_AUTOCLOSE)
+            msgbox("I don't believe it!\nYou're going to regret this!", MSGBOX_AUTOCLOSE)
         }
         end
     }
-    msgbox("You're just a kid, but you're not\nto be underestimated either.", MSGBOX_AUTOCLOSE)
+    msgbox(Route27_Text_CooltrainerReenaAfterRegistered, MSGBOX_AUTOCLOSE)
     end
+}text(local) Route27_Text_CooltrainerReenaLost{
+    "Oh!\nYou're much too strong!"
+}text(local) Route27_Text_CooltrainerReenaAfterRegistered{
+    "Don't be too proud about beating\nme! It was a fluke!"
 }

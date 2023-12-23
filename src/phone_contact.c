@@ -305,7 +305,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_BIRD_KEEPER_VANCE] = {
         .customDisplayName = sPhoneContactName_Bird_Keeper_Vance,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_BirdKeeper_Vance,
         .mapNum = MAP_NUM(ROUTE44),
         .mapGroup = MAP_GROUP(ROUTE44),
         .registeredFlag = FLAG_PHONE_CARD_BIRD_KEEPER_VANCE,
@@ -315,7 +315,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_HIKER_PARRY] = {
         .customDisplayName = sPhoneContactName_Hiker_Parry,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_Hiker_Parry,
         .mapNum = MAP_NUM(ROUTE45),
         .mapGroup = MAP_GROUP(ROUTE45),
         .registeredFlag = FLAG_PHONE_CARD_HIKER_PARRY,
@@ -335,7 +335,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_PICNICKER_ERIN] = {
         .customDisplayName = sPhoneContactName_Picnicker_Erin,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_Picnicker_Erin,
         .mapNum = MAP_NUM(ROUTE46),
         .mapGroup = MAP_GROUP(ROUTE46),
         .registeredFlag = FLAG_PHONE_CARD_PICNICKER_ERIN,
@@ -355,7 +355,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_COOLTRAINER_REENA] = {
         .customDisplayName = sPhoneContactName_Cooltrainer_Reena,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_Cooltrainer_Reena,
         .mapNum = MAP_NUM(ROUTE26),
         .mapGroup = MAP_GROUP(ROUTE26),
         .registeredFlag = FLAG_PHONE_CARD_COOLTRAINER_REENA,
@@ -365,7 +365,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_COOLTRAINER_GAVEN] = {
         .customDisplayName = sPhoneContactName_Cooltrainer_Gaven,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_Cooltrainer_Gaven,
         .mapNum = MAP_NUM(ROUTE26),
         .mapGroup = MAP_GROUP(ROUTE26),
         .registeredFlag = FLAG_PHONE_CARD_COOLTRAINER_GAVEN,
@@ -375,7 +375,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_COOLTRAINER_BETH] = {
         .customDisplayName = sPhoneContactName_Cooltrainer_Beth,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_Cooltrainer_Beth,
         .mapNum = MAP_NUM(ROUTE26),
         .mapGroup = MAP_GROUP(ROUTE26),
         .registeredFlag = FLAG_PHONE_CARD_COOLTRAINER_BETH,
@@ -457,6 +457,18 @@ u32 GetPhoneContactFromTrainerId(int trainerId)
 
 	for(i=0;i<PHONE_CONTACT_COUNT;i++){
 		if(gPhoneContacts[i].trainerId == trainerId){
+			return i;
+		}
+	}
+	return 0;
+}
+
+u32 GetPhoneContactFromRematchTrainerId(int trainerId)
+{
+	int i;
+
+	for(i=0;i<PHONE_CONTACT_COUNT;i++){
+		if(gPhoneContacts[i].rematchTrainerId == trainerId){
 			return i;
 		}
 	}

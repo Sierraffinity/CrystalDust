@@ -48,10 +48,11 @@ void MomTriesToBuySomething(void);
 void isPlayerBeingCalled(const struct PhoneContact *, bool8);
 void UpdateForcedCallsPerDay();
 u32 getRematchIdFromTrainerId(int trainerId);
-bool32 IsMatchCallRematchTime(int trainerId);
+bool8 IsMatchCallRematchTime(int trainerId);
 bool8 CanMatchCallIdAcceptRematch(int matchCallId, s8 dayOfWeek, u8 timeOfDay);
 int GetTrainerMatchCallId(int);
-bool32 TrainerIsEligibleForRematch(int);
+bool8 TrainerIsEligibleForRematch(int);
+void Script_PopulateRareSpeciesFromTrainerLocation(void);
 
 #define OUTBREAK_WALKING 1
 #define OUTBREAK_SURFING 2

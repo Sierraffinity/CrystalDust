@@ -94,6 +94,7 @@ script Route30_EventScript_Trainer_Joey {
     if(var(VAR_RESULT) == TRUE)
     {
         trainerbattle_rematch(TRAINER_JOEY_1, "I've been waiting!\nLet's battle now!", Route30_Text_Trainer_JoeyLost)
+        end
     }
     if (!flag(FLAG_PHONE_CARD_YOUNGSTER_JOEY))
     {

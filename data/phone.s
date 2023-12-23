@@ -554,14 +554,38 @@ PhoneScript_Bill_JustRanOutOfRoom::
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 @ All these scripts assume VAR_0x800A holds the REMATCH_[NAME] for the trainer.
-@ This is because phone_traineriseligibleforrematch, phone_checkforcedrematch,
-@ and phone_setforcedrematch use VAR_0x800A internally.
+@ This is because phone_istrainerrematchactive, phone_checkforcedrematch,
+@ phone_isavailableforrematch, and phone_setforcedrematch use VAR_0x800A internally.
 
 PhoneScript_Youngster_Joey::
 	phone_setvar VAR_0x800A, REMATCH_JOEY
-	phone_goto PhoneScript_TrainersLikeJoey
+	phone_goto PhoneScript_StandardRematchTrainers
 
-PhoneScript_TrainersLikeJoey::
+PhoneScript_BirdKeeper_Vance::
+	phone_setvar VAR_0x800A, REMATCH_VANCE
+	phone_goto PhoneScript_StandardRematchTrainers
+
+PhoneScript_Hiker_Parry::
+	phone_setvar VAR_0x800A, REMATCH_PARRY
+	phone_goto PhoneScript_StandardRematchTrainers
+
+PhoneScript_Picnicker_Erin::
+	phone_setvar VAR_0x800A, REMATCH_ERIN
+	phone_goto PhoneScript_StandardRematchTrainers
+
+PhoneScript_Cooltrainer_Reena::
+	phone_setvar VAR_0x800A, REMATCH_REENA
+	phone_goto PhoneScript_StandardRematchTrainers
+
+PhoneScript_Cooltrainer_Gaven::
+	phone_setvar VAR_0x800A, REMATCH_GAVEN
+	phone_goto PhoneScript_StandardRematchTrainers
+
+PhoneScript_Cooltrainer_Beth::
+	phone_setvar VAR_0x800A, REMATCH_BETH
+	phone_goto PhoneScript_StandardRematchTrainers
+
+PhoneScript_StandardRematchTrainers::
 	phone_call PhoneScript_StandardMatchCallTrainer_BeginCall
 	phone_callnativecontext isPlayerBeingCalled
 	phone_compare VAR_RESULT, 0
@@ -569,36 +593,57 @@ PhoneScript_TrainersLikeJoey::
 	@ fallthrough
 PhoneScript_Call_Incoming:
 	phone_call PhoneScript_StandardMatchCallTrainer_OpeningWords
-	phone_traineriseligibleforrematch
-	phone_goto_if 1, PhoneScript_StandardMatchCallTrainer_GenericCall
+	phone_istrainerrematchactive
+	phone_goto_if TRUE, PhoneScript_StandardMatchCallTrainer_GenericCall
 	phone_checkforcedrematch
-	phone_goto_if 1, PhoneScript_StandardMatchCallTrainer_GenericCall
+	phone_goto_if TRUE, PhoneScript_StandardMatchCallTrainer_GenericCall
+	phone_switch VAR_0x800A
+	phone_case REMATCH_REENA, PhoneScript_RollForRematch_Cooltrainer
+	phone_case REMATCH_GAVEN, PhoneScript_RollForRematch_Cooltrainer
+	phone_case REMATCH_BETH, PhoneScript_RollForRematch_Cooltrainer
+	@ fallthrough
+PhoneScript_RollForRematch_Standard:
 	phone_random 3
 	phone_compare VAR_RESULT, 0
-	phone_goto_if_eq PhoneScript_LikeJoey_WantsBattle
+	phone_goto_if_eq PhoneScript_StandardRematchTrainers_WantsBattle
 	phone_compare VAR_RESULT, 1
-	phone_goto_if_eq PhoneScript_LikeJoey_WantsBattle
+	phone_goto_if_eq PhoneScript_StandardRematchTrainers_WantsBattle
+	phone_goto PhoneScript_StandardMatchCallTrainer_GenericCall
+   @end
+
+Test_B4:
+	.string "B4 phone-istrainerrematchactive$"
+
+Test_B42:
+	.string "B4 phone-checkforcedrematch$"
+
+Test_B43:
+	.string "B4 switch statement$"
+
+PhoneScript_RollForRematch_Cooltrainer:
+	phone_random 2
+	phone_compare VAR_RESULT, 0
+	phone_goto_if_eq PhoneScript_StandardRematchTrainers_WantsBattle
 	phone_goto PhoneScript_StandardMatchCallTrainer_GenericCall
    @end
 
 PhoneScript_Call_Outgoing:
-	phone_traineriseligibleforrematch
-	phone_goto_if 1, PhoneScript_StandardMatchCallTrainer_RemindRematch
+	phone_istrainerrematchactive
+	phone_goto_if TRUE, PhoneScript_StandardMatchCallTrainer_RemindRematch
 	phone_call PhoneScript_StandardMatchCallTrainer_OpeningWords
 	phone_checkforcedrematch
-	phone_goto_if 1, PhoneScript_LikeJoey_NotRightDay
-	phone_callnativecontext IsAvailabileForRematch
-	phone_compare VAR_RESULT, TRUE
-	phone_goto_if_eq PhoneScript_LikeJoey_ForceRematch
+	phone_goto_if TRUE, PhoneScript_StandardRematchTrainers_NotRightDay
+	phone_isavailableforrematch
+	phone_goto_if TRUE, PhoneScript_StandardRematchTrainers_ForceRematch
     @ fallthrough
-PhoneScript_LikeJoey_NotRightDay:
+PhoneScript_StandardRematchTrainers_NotRightDay:
 	phone_goto PhoneScript_StandardMatchCallTrainer_HangupOutgoing
    @end
 
-PhoneScript_LikeJoey_ForceRematch:
+PhoneScript_StandardRematchTrainers_ForceRematch:
 	phone_setforcedrematch
 	@ fallthrough
-PhoneScript_LikeJoey_WantsBattle:
+PhoneScript_StandardRematchTrainers_WantsBattle:
 	phone_goto PhoneScript_StandardMatchCallTrainer_OfferRematch
    @end
 
@@ -645,6 +690,10 @@ PhoneScript_StandardMatchCallTrainer_OfferRematch:
    @end
 
 PhoneScript_StandardMatchCallTrainer_GenericCall:
+	phone_compare VAR_0x800A, REMATCH_GAVEN @@@ Others too, should this be a switch?
+	phone_call_if_eq PhoneScript_StandardMatchCallTrainer_CheckFoundRare
+	@ fallthrough
+PhoneScript_StandardMatchCallTrainer_InnerGenericCall:
 	phone_random 2
 	phone_compare VAR_RESULT, 0
 	phone_goto_if_eq PhoneScript_StandardMatchCallTrainer_BraggingCall
@@ -653,6 +702,32 @@ PhoneScript_StandardMatchCallTrainer_GenericCall:
 	phone_waitbuttonpress
 	phone_goto PhoneScript_StandardMatchCallTrainer_FoundAMon
    @end
+
+PhoneScript_StandardMatchCallTrainer_CheckFoundRare:
+	phone_random 3
+	phone_compare VAR_RESULT, 0
+	phone_goto_if_eq PhoneScript_StandardMatchCallTrainer_FoundRare
+	phone_return
+
+@@ Calls RandomUnseenWildMon in pokecrystal. This function should determine a rare wild mon and load its name into a string buffer.
+@@ If the player has already seen the selected mon, return false
+@@ Text for all is _JustSawSomeRareMonText in pokecrystal
+@@ Seems to return to a generic call text if RandomUnseenWildMon is false
+@@ Gaven seems to only talk about Arbok in the morning, Quagsire at Night, so it obeys time of day.
+PhoneScript_StandardMatchCallTrainer_FoundRare:
+	phone_callnativecontext Script_PopulateRareSpeciesFromTrainerLocation
+	phone_compare VAR_RESULT, FALSE
+	phone_goto_if_eq PhoneScript_StandardMatchCallTrainer_InnerGenericCall
+	phone_message Text_Generic_JustSawSomeRareMon
+	phone_waitbuttonpress
+	phone_goto PhoneScript_StandardMatchCallTrainer_HangUp
+   @end
+
+Text_Generic_JustSawSomeRareMon:
+	.string "I just saw some rare {STR_VAR_1}\n"
+	.string "in {STR_VAR_2}.\p"
+	.string "I'll call you if I see another\n"
+	.string "rare {POKEMON}, OK?$"
 
 PhoneScript_StandardMatchCallTrainer_BraggingCall:
 	phone_callnativecontext SelectMessage_StandardMatchCallTrainer_Bragging

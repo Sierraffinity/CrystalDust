@@ -285,7 +285,7 @@
 	.endm
 
 	@ Puts whether a trainer can be rematched into ctx->comparisonResult, NEEDS VAR_0x800A SET WITH REMATCH_[NAME]
-	.macro phone_traineriseligibleforrematch
+	.macro phone_istrainerrematchactive
 	.byte 0x2c
 	.endm
 
@@ -297,6 +297,11 @@
 	@ Sets the trainer's FLAG_FORCED_REMATCH_# flag, NEEDS VAR_0x800A SET WITH REMATCH_[NAME]
 	.macro phone_setforcedrematch
 	.byte 0x2e
+	.endm
+
+	@ Puts whether a trainer's gSaveBlock1Ptr->trainerRematches[matchCallId] > 0 into ctx->comparisonResult, NEEDS VAR_0x800A SET WITH REMATCH_[NAME]
+	.macro phone_isavailableforrematch
+	.byte 0x2f
 	.endm
 
 	

@@ -3270,8 +3270,7 @@ Matchcall_Arnie_Remind_Swarm::
 
 
 Matchcall_Beth_Answer_Morn::
-	.string  "Hello, this is {STR_VAR_1}.\n"
-
+	.string "Hello, this is {STR_VAR_1}.\n"
 	.string "Oh, {PLAYER}. Good morning.$"
 
 
@@ -3281,105 +3280,87 @@ Matchcall_Beth_Answer_Day::
 
 
 Matchcall_Beth_Answer_Night::
-	.string  "Hello, this is {STR_VAR_1}.\n"
+	.string "Hello, this is {STR_VAR_1}.\n"
 	.string "Oh, {PLAYER}. Good evening.$"
 
 
 Matchcall_Beth_Call_Morn::
-	.string  "Good morning, {PLAYER}!\n"
-
-	.string "This is {STR_VAR_1}.\l"
-	.string "Were you sleeping?$"
+	.string "Good morning, {PLAYER}!\n"
+	.string "This is {STR_VAR_1}. Were you sleeping?$"
 
 
 Matchcall_Beth_Call_Day::
-	.string  "{PLAYER}, hi!\n"
-	.string "This is {STR_VAR_1}.\l"
-
+	.string "{PLAYER}, hi! This is {STR_VAR_1}.\n"
 	.string "Do you have some time?$"
 
 
 Matchcall_Beth_Call_Night::
-	.string  "Hi, {PLAYER}. Good evening.\n"
-
-	.string "This is {STR_VAR_1}.\l"
-
-	.string "I hope you were awake.$"
+	.string "Hi, {PLAYER}. Good evening.\n"
+	.string "This is {STR_VAR_1}. I hope you were awake.$"
 
 
 Matchcall_Beth_Generic5::
-	.string  "Are you the kind of person\n"
-	.string "who goes to {POKEMON} CENTERS often?\l"
+	.string "Are you the kind of person who goes\n"
+	.string "to {POKEMON} CENTERS often?\p"
 
 	.string "I go every day.\p"
-	.string "Watching out for the health of your\n"
-	.string "{POKEMON} is a basic part of being\l"
 
-	.string "a {POKEMON} trainer.$"
+	.string "Watching out for the health of your\n"
+	.string "{POKEMON} is a basic part of being a\l"
+	.string "{POKEMON} trainer.$"
 
 
 Matchcall_Beth_Bragging::
-	.string  "Do you remember my sweet {STR_VAR_2}?\n"
+	.string "Do you remember my sweet {STR_VAR_2}?\n"
+	.string "{STR_VAR_2} runs very fast.\p"
 
-	.string "{STR_VAR_2} runs very fast.\l"
-
-	.string "It's exhilarating to ride on its back\l"
-
+	.string "It's exhilarating to ride on its back\n"
 	.string "when it really gets going.$"
 
 
 Matchcall_Beth_DefeatedMon::
-	.string  "Oh, have you ever seen a {STR_VAR_2}\n"
-	.string "before?\p"
+	.string "Oh, have you ever seen a\n"
+	.string "{STR_VAR_2} before?\p"
 
 	.string "I just battled one…\n"
-
 	.string "It was much faster than I expected.\l"
-
-	.string "I was a little shocked.\l"
-
+	.string "I was a little shocked.\p"
+	
 	.string "I still won, of course.$"
 
 
 Matchcall_Beth_LostMon::
-	.string  "Oh, I just saw a wild {STR_VAR_2}.\n"
+	.string "Oh, I just saw a wild {STR_VAR_2}.\p"
 
-	.string "I was trying to catch it when I\l"
-
-	.string "noticed that I was all out of {POKE} BALLS.\p"
+	.string "I was trying to catch it when I noticed\n"
+	.string "that I was all out of {POKE} BALLS.\p"
 
 	.string "If you don't check your items,\n"
-
 	.string "you may run out at the worst time.\l"
-
 	.string "I hope you learn from my mistake.$"
 
 
 Matchcall_Beth_Rematch::
-	.string  "Do you want to battle?\n"
+	.string "Do you want to battle?\n"
 	.string "I'm going to win this time!\p"
 
 	.string "I'll be waiting for you around\n"
-
-	.string "{STR_VAR_2}.\l"
-	.string "Look for me, OK?$"
+	.string "{STR_VAR_2}. Look for me, OK?$"
 
 
 Matchcall_Beth_Hangup::
-	.string  "OK, bye-bye!$"
+	.string "OK, bye-bye!$"
 
 
 Matchcall_Beth_HangupOutgoing::
-	.string  "Let's battle again sometime!$"
+	.string "Let's battle again sometime!$"
 
 
 Matchcall_Beth_Remind_Rematch::
-	.string  "Um… {PLAYER}? What's wrong?\n"
+	.string "Um… {PLAYER}? What's wrong?\n"
+	.string "Did you forget our deal?\p"
 
-	.string "Did you forget our deal?\l"
-
-	.string "{STR_VAR_2}.\l"
-
+	.string "{STR_VAR_2}.\n"
 	.string "That's where I'm waiting.$"
 
 
@@ -4148,48 +4129,37 @@ Matchcall_Erin_Remind_Rematch::
 
 
 Matchcall_Gaven_Answer_Morn::
-	.string  "Hello, this is {STR_VAR_1} speaking…\n"
-
-	.string "Hi, {PLAYER}!\l"
-	.string "Good morning!$"
+	.string "Hello, this is {STR_VAR_1} speaking…\n"
+	.string "Hi, {PLAYER}! Good morning!$"
 
 
 Matchcall_Gaven_Answer_Day::
-	.string  "Hello, this is {STR_VAR_1} speaking…\n"
-
+	.string "Hello, this is {STR_VAR_1} speaking…\n"
 	.string "Hi, {PLAYER}!$"
 
 
 Matchcall_Gaven_Answer_Night::
-	.string  "Hello, this is {STR_VAR_1} speaking…\n"
-
-	.string "Hi, {PLAYER}!\l"
-	.string "Good evening!$"
+	.string "Hello, this is {STR_VAR_1} speaking…\n"
+	.string "Hi, {PLAYER}! Good evening!$"
 
 
 Matchcall_Gaven_Call_Morn::
-	.string  "{PLAYER}, good morning!\n"
-
-	.string "It's me, {STR_VAR_1}.\l"
-	.string "How are you doing?$"
+	.string "{PLAYER}, good morning!\n"
+	.string "It's me, {STR_VAR_1}. How are you doing?$"
 
 
 Matchcall_Gaven_Call_Day::
-	.string  "Hi, {PLAYER}!\n"
-
-	.string "It's me, {STR_VAR_1}.\l"
-	.string "How are you doing?$"
+	.string "Hi, {PLAYER}!\n"
+	.string "It's me, {STR_VAR_1}. How are you doing?$"
 
 
 Matchcall_Gaven_Call_Night::
-	.string  "{PLAYER}, good evening!\n"
-
-	.string "It's me, {STR_VAR_1}.\l"
-	.string "How are you doing?$"
+	.string "{PLAYER}, good evening!\n"
+	.string "It's me, {STR_VAR_1}. How are you doing?$"
 
 
 Matchcall_Gaven_Generic5::
-	.string  "How are your {POKEMON} doing?\p"
+	.string "How are your {POKEMON} doing?\p"
 
 	.string "My {STR_VAR_2}'s doing as great\n"
 	.string "as ever.\p"
@@ -4199,57 +4169,50 @@ Matchcall_Gaven_Generic5::
 
 
 Matchcall_Gaven_Bragging::
-	.string  "My {STR_VAR_2} might be greater\n"
+	.string "My {STR_VAR_2} might be greater\n"
 	.string "than I imagined.\p"
 
-	.string "I doubt I'll see a {STR_VAR_1}\n"
-	.string  "that's better than mine.$"
+	.string "I doubt I'll see a {STR_VAR_2}\n"
+	.string "that's better than mine.$"
 
 
 Matchcall_Gaven_DefeatedMon::
-	.string  "Oh, and I managed to barely defeat\n"
-
+	.string "Oh, and I managed to barely defeat\n"
 	.string "{STR_VAR_2} the other day.\p"
 
 	.string "I've never seen a {STR_VAR_2}\n"
-	.string  "get that strong…\p"
+	.string "get that strong…\p"
 
 	.string "You shouldn't let your guard down\n"
-
 	.string "even against a {POKEMON} you're used\l"
 	.string "to seeing.$"
 
 
 Matchcall_Gaven_LostMon::
-	.string  "And a while back, I tried to catch\n"
+	.string "And a while back, I tried to catch\n"
 	.string "a wild {STR_VAR_2}.\l"
-
 	.string "But it managed to elude me.\p"
 
 	.string "One wrong decision could mean total\n"
-
 	.string "failure… You ought to be careful too.$"
 
 
 Matchcall_Gaven_Rematch::
-	.string  "Let's battle!\n"
-
+	.string "Let's battle!\n"
 	.string "I'll be waiting on {STR_VAR_2}.\l"
-
 	.string "Give me a shout when you're close.$"
 
 
 Matchcall_Gaven_Hangup::
-	.string  "OK, I'll talk to you soon!$"
+	.string "OK, I'll talk to you soon!$"
 
 
 Matchcall_Gaven_HangupOutgoing::
-	.string  "I obsess over how to beat you.$"
+	.string "I obsess over how to beat you.$"
 
 
 Matchcall_Gaven_Remind_Rematch::
-	.string  "{PLAYER}, why aren't you here?\n"
-
+	.string "{PLAYER}, why aren't you here?\n"
 	.string "I'll take you down with {STR_VAR_2}!$"
 
 
@@ -5226,36 +5189,31 @@ Matchcall_Ralph_Remind_Swarm::
 
 
 Matchcall_Reena_Answer::
-	.string  "Hello, this is {STR_VAR_1}…\n"
+	.string "Hello, this is {STR_VAR_1}…\n"
+	.string "Oh. Hi, {PLAYER}. What's up?$"
 
-	.string "Oh. Hi, {PLAYER}.\l"
-	.string "What's up?$"
 
 Matchcall_Reena_Call::
-	.string  "You're slow!\n"
-	.string "Hurry up and answer!\l"
-
+	.string "You're slow! Hurry up and answer!\n"
 	.string "It's me, {STR_VAR_1}!$"
 
 
 Matchcall_Reena_Generic5::
-	.string  "Hey, how are your {POKEMON} doing?\n"
+	.string "Hey, how are your {POKEMON} doing?\p"
 
-	.string "What? Great?\l"
-	.string "I see…\l"
+	.string "What? Great?\n"
+	.string "I see…\p"
 
-	.string "What? My {POKEMON}?\l"
+	.string "What?\n"
+	.string "My {POKEMON}?\p"
 
-	.string "Of course they're doing great!\l"
-
+	.string "Of course they're doing great!\n"
 	.string "What kind of a question is that?$"
 
 
 Matchcall_Reena_Bragging::
-	.string  "Listen, dear…\n"
-
+	.string "Listen, dear…\n"
 	.string "Do you recall my {STR_VAR_2}?\l"
-
 	.string "Yes, exactly. That lovely {STR_VAR_2}.\p"
 
 	.string "Wouldn't you agree it's a perfect\n"
@@ -5263,8 +5221,7 @@ Matchcall_Reena_Bragging::
 
 
 Matchcall_Reena_DefeatedMon::
-	.string  "Have I ever faced a wild {STR_VAR_2}?\n"
-
+	.string "Have I ever faced a wild {STR_VAR_2}?\n"
 	.string "You need to ask?\p"
 
 	.string "{STR_VAR_2} I've beaten on numerous\n"
@@ -5272,42 +5229,40 @@ Matchcall_Reena_DefeatedMon::
 
 
 Matchcall_Reena_LostMon::
-	.string  "Have I ever failed to catch a wild\n"
-	.string "{POKEMON}?\l"
+	.string "Have I ever failed to catch a wild\n"
+	.string "{POKEMON}? You need to ask?\p"
 
-	.string "You need to ask?\p"
+	.string "I would never fail to catch\n"
+	.string "a wild {STR_VAR_2}…\p"
 
-	.string "I would never fail to catch a wild\n"
-
-	.string "{STR_VAR_2}…\l"
-	.string "Oh! Never mind!$"
+	.string "Oh!\n"
+	.string "Never mind!$"
 
 
 Matchcall_Reena_Rematch::
-	.string  "We are going to battle\n"
+	.string "We are going to battle!\n"
+	.string "The place shall be {STR_VAR_2}!\p"
 
-	.string "The place shall be {STR_VAR_2}!\l"
-
-	.string "Don't make me wait! Got it?$"
+	.string "Don't make me wait!\n"
+	.string "Got it?$"
 
 
 Matchcall_Reena_Hangup::
-	.string  "Fine, you may go.$"
+	.string "Fine, you may go.$"
 
 
 Matchcall_Reena_HangupOutgoing::
 	.string "Don't be too proud just because you\n"
-	.string "happened to beat me…\l"
+	.string "happened to beat me…\p"
+
 	.string "It was a fluke!$"
 
 
 Matchcall_Reena_Remind_Rematch::
-	.string  "What are you doing?\p"
+	.string "What are you doing?\p"
 
 	.string "I told you that the place was\n"
-
-	.string "{STR_VAR_2}!\l"
-	.string "Don't try to run!$"
+	.string "{STR_VAR_2}! Don't try to run!$"
 
 
 Matchcall_Tiffany_Answer_Morn::

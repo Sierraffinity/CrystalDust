@@ -24,40 +24,52 @@ script Route26_Eventscript_CooltrainerJoyce {
 }
 
 script Route26_Eventscript_CooltrainerGaven {
-    // TODO: Check phone strings for textbox fit
-    trainerbattle_single(TRAINER_GAVEN_1, "By experiencing tough battles,\nyou gain power.", "Gaah!\nLife is even tougher!")
-
+    trainerbattle_single(TRAINER_GAVEN_1, "By experiencing tough battles,\nyou gain power.", Route26_Text_CooltrainerGavenLost)
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
-    if(var(VAR_RESULT) == 1)
+    if(var(VAR_RESULT) == TRUE)
     {
-        trainerbattle_rematch(TRAINER_GAVEN_1, "Hi! I've been waiting for you!\nThis time, I'm going to win!", "Gaah!\nLife is even tougher!")
+        trainerbattle_rematch(TRAINER_GAVEN_1, "Hi! I've been waiting for you!\nThis time, I'm going to win!", Route26_Text_CooltrainerGavenLost)
+        end
     }
 
     if (!flag(FLAG_PHONE_CARD_COOLTRAINER_GAVEN))
     {
-        bufferspeciesname(0, SPECIES_VICTREEBEL)
+        random(3)
+        switch(var(VAR_RESULT))
+        {
+            case 0:
+                bufferspeciesname(0, SPECIES_FLAREON)
+            case 1:
+                bufferspeciesname(0, SPECIES_KINGLER)
+            case 2:
+                bufferspeciesname(0, SPECIES_VICTREEBEL)
+        }
         if (!flag(FLAG_COOLTRAINER_GAVEN_OFFERED_NUMBER))
         {
-            msgbox("Wow, you're tough. I haven't battled\nthat seriously in a long time.\pCould I get your phone number?\nI'd like to battle again when I\lheal {STR_VAR_1} and the rest\lof my team.", MSGBOX_YESNO)
+            msgbox("To get to the {POKEMON} LEAGUE, you\nhave to get through VICTORY ROAD.\pBut VICTORY ROAD is tough.\nPractically nobody goes there!\pWow, you're tough. I haven't battled\nthat seriously in a long time.\pCould I get your phone number?\pI'd like to battle again when I heal\n{STR_VAR_1} and the rest of my team.", MSGBOX_YESNO)
             setflag(FLAG_COOLTRAINER_GAVEN_OFFERED_NUMBER)
         }
         else
         {
             msgbox("Could I get your phone number?\pI'd like to battle again when I heal\n{STR_VAR_1} and the rest of my team.", MSGBOX_YESNO)
         }
-        if (var (VAR_RESULT) == 1)
+        if (var (VAR_RESULT) == YES)
         {
             registerphonecontact(FLAG_PHONE_CARD_COOLTRAINER_GAVEN)
-            msgbox("How should I beat you?\pI'm tormented by those thoughts\nall the time…", MSGBOX_AUTOCLOSE)
+            msgbox(Route26_Text_CooltrainerGavenAfterRegistered, MSGBOX_AUTOCLOSE)
         }
         else
         {
-            msgbox("OK… I understand… But if you\nchange your mind, give me a shout\lanytime.", MSGBOX_AUTOCLOSE)
+            msgbox("OK…\nI understand…\pBut if you change your mind,\ngive me a shout anytime.", MSGBOX_AUTOCLOSE)
         }
         end
     }
-    msgbox("To get to the {POKEMON} LEAGUE, you\nhave to get through VICTORY ROAD.\pBut VICTORY ROAD is tough.\nPractically nobody goes there!", MSGBOX_AUTOCLOSE)
+    msgbox(Route26_Text_CooltrainerGavenAfterRegistered, MSGBOX_AUTOCLOSE)
     end
+}text(local) Route26_Text_CooltrainerGavenLost{
+    "Gaah!\nLife is even tougher!"
+}text(local) Route26_Text_CooltrainerGavenAfterRegistered{
+    "How should I beat you?\pI'm tormented by those thoughts\nall the time…"
 }
 
 script Route26_Eventscript_CooltrainerJake {
@@ -67,30 +79,30 @@ script Route26_Eventscript_CooltrainerJake {
 }
 
 script Route26_Eventscript_CooltrainerBeth {
-    // TODO: Check phone strings for textbox fit
-    trainerbattle_single(TRAINER_BETH_1, "I lost to a TRAINER named {RIVAL}.\nHe was really strong, but…\pIt was as if he absolutely had to\nwin at any cost.\pI feel sorry for his {POKEMON}.", "{POKEMON} aren't tools of war.")
-
+    trainerbattle_single(TRAINER_BETH_1, "I lost to a TRAINER named {RIVAL}.\nHe was really strong, but…\pIt was as if he absolutely had to\nwin at any cost.\pI feel sorry for his {POKEMON}.", Route26_Text_CooltrainerBethLost)
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
-    if(var(VAR_RESULT) == 1)
+    if(var(VAR_RESULT) == TRUE)
     {
-        trainerbattle_rematch(TRAINER_BETH_1, "You sure kept me waiting!\nLet's go!", "{POKEMON} aren't tools of war.")
+        trainerbattle_rematch(TRAINER_BETH_1, "You sure kept me waiting!\nLet's go!", Route26_Text_CooltrainerBethLost)
+        end
     }
 
     if (!flag(FLAG_PHONE_CARD_COOLTRAINER_BETH))
     {
         if (!flag(FLAG_COOLTRAINER_BETH_OFFERED_NUMBER))
         {
-            msgbox("It's been a while since I lost…\pYou're very good at battling.\nWe should battle again sometime.\pBy challenging a tough trainer like\nyou, I think I can get better too.\pSo how about it?\nWould you give me your phone number?", MSGBOX_YESNO)
+            bufferstring(0, Route26_Text_CooltrainerBethfterAskForNumber)
+            msgbox("{POKEMON} are invaluable, lifelong\npartners.\pIt's been a while since I lost…\pYou're very good at battling.\nWe should battle again sometime.\p{STR_VAR_1}", MSGBOX_YESNO)
             setflag(FLAG_COOLTRAINER_BETH_OFFERED_NUMBER)
         }
         else
         {
-            msgbox("By challenging a tough trainer like\nyou, I think I can get better too.\lSo how about it?\lWould you give me your phone number?", MSGBOX_YESNO)
+            msgbox(Route26_Text_CooltrainerBethfterAskForNumber, MSGBOX_YESNO)
         }
-        if (var (VAR_RESULT) == 1)
+        if (var (VAR_RESULT) == YES)
         {
             registerphonecontact(FLAG_PHONE_CARD_COOLTRAINER_BETH)
-            msgbox("Let's battle again sometime!", MSGBOX_AUTOCLOSE)
+            msgbox(Route26_Text_CooltrainerBethfterRegistered, MSGBOX_AUTOCLOSE)
         }
         else
         {
@@ -98,6 +110,12 @@ script Route26_Eventscript_CooltrainerBeth {
         }
         end
     }
-    msgbox("{POKEMON} are invaluable, lifelong\npartners.", MSGBOX_AUTOCLOSE)
+    msgbox(Route26_Text_CooltrainerBethfterRegistered, MSGBOX_AUTOCLOSE)
     end
+}text(local) Route26_Text_CooltrainerBethLost{
+    "{POKEMON} aren't tools of war."
+}text(local) Route26_Text_CooltrainerBethfterRegistered{
+    "Let's battle again sometime!"
+}text(local) Route26_Text_CooltrainerBethfterAskForNumber{
+    "By challenging a tough trainer like\nyou, I think I can get better too.\pSo how about it? Would you give me\nyour phone number?"
 }

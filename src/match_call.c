@@ -23,6 +23,7 @@
 #include "phone_scripts.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "pokenav.h"
 #include "random.h"
 #include "region_map.h"
 #include "rtc.h"
@@ -141,6 +142,7 @@ static void PopulateSpeciesFromTrainerLocation(int, u8 *);
 static void PopulateSpeciesFromTrainerParty(int, u8 *);
 static void PopulateBattleFrontierFacilityName(int, u8 *);
 static void PopulateBattleFrontierStreak(int, u8 *);
+static bool32 PopulateRareSpeciesFromTrainerLocation(void);
 
 
 
@@ -866,8 +868,8 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_4,
 		.rematchCheckFlags = {FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE, FALSE},
 	    .giftFlag = 0,
-	    .genericStartIndex = 154,
-	    .genericTextsAmount = 5,
+	    .genericStartIndex = 65,
+	    .genericTextsAmount = 1,
 		.outbreakData = outbreakNone,
 	    .callTexts = {{Matchcall_Reena_Call, STRS_NORMAL_MSG},
 	    				 {Matchcall_Reena_Call, STRS_NORMAL_MSG},
@@ -895,8 +897,8 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_4,
 		.rematchCheckFlags = {FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE, FALSE},
 	    .giftFlag = 0,
-	    .genericStartIndex = 159,
-	    .genericTextsAmount = 5,
+	    .genericStartIndex = 66,
+	    .genericTextsAmount = 1,
 		.outbreakData = outbreakNone,
 	    .callTexts = {{Matchcall_Gaven_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Gaven_Call_Day, STRS_NORMAL_MSG},
@@ -908,7 +910,7 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .rematchText = {Matchcall_Gaven_Rematch, STRS_BATTLE_REQUEST},
 	    .outbreakText = 0,
 	    .remindGiftText = 0,
-	    .remindRematchText = {Matchcall_Gaven_Remind_Rematch, STRS_BATTLE_REQUEST},
+	    .remindRematchText = {Matchcall_Gaven_Remind_Rematch, STRS_BATTLE_POSITIVE},
 	    .remindoutbreakText = 0,
 		.hangupText = {Matchcall_Gaven_Hangup, STRS_NORMAL_MSG},
         .hangupOutgoingText = {Matchcall_Gaven_HangupOutgoing, STRS_NORMAL_MSG},
@@ -924,8 +926,8 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 	    .rematchForcedFlag = FLAG_CALLED_FORCED_REMATCH_4,
 		.rematchCheckFlags = {FLAG_IS_CHAMPION, FLAG_RETURNED_MACHINE_PART, FALSE, FALSE},
 	    .giftFlag = 0,
-	    .genericStartIndex = 164,
-	    .genericTextsAmount = 5,
+	    .genericStartIndex = 67,
+	    .genericTextsAmount = 1,
 		.outbreakData = outbreakNone,
 	    .callTexts = {{Matchcall_Beth_Call_Morn, STRS_NORMAL_MSG},
 	    				 {Matchcall_Beth_Call_Day, STRS_NORMAL_MSG},
@@ -951,10 +953,6 @@ const struct MatchCallTrainerTextInfo gMatchCallTrainers[MATCH_CALL_COUNT] =
 static const struct MatchCallText sMatchCallGenericTexts[] =
 {
         { .text = Matchcall_Joey_Generic,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		//{ .text = Matchcall_Joey_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		//{ .text = Matchcall_Joey_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		//{ .text = Matchcall_Joey_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		//{ .text = Matchcall_Joey_HangupOutgoing,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
         { .text = Matchcall_Wade_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
 		//{ .text = Matchcall_Wade_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
 		//{ .text = Matchcall_Wade_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
@@ -1105,20 +1103,8 @@ static const struct MatchCallText sMatchCallGenericTexts[] =
 		//{ .text = Matchcall_Jose_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
 		//{ .text = Matchcall_Jose_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Reena_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		//{ .text = Matchcall_Reena_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		//{ .text = Matchcall_Reena_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		//{ .text = Matchcall_Reena_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		//{ .text = Matchcall_Reena_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 		{ .text = Matchcall_Gaven_Generic5,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		//{ .text = Matchcall_Gaven_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		//{ .text = Matchcall_Gaven_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		//{ .text = Matchcall_Gaven_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		//{ .text = Matchcall_Gaven_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
         { .text = Matchcall_Beth_Generic5,    .stringVarFuncIds = STRS_NORMAL_MSG},
-		//{ .text = Matchcall_Beth_Bragging,    .stringVarFuncIds = STRS_BATTLE_POSITIVE},
-		//{ .text = Matchcall_Beth_DefeatedMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		//{ .text = Matchcall_Beth_LostMon,    .stringVarFuncIds = STRS_WILD_BATTLE},
-		//{ .text = Matchcall_Beth_HangupOutgoing,    .stringVarFuncIds = STRS_NORMAL_MSG},
 };
 
 static const struct MatchCallText sMatchCallBattleFrontierStreakTexts[] =
@@ -1819,9 +1805,9 @@ bool32 ExecuteMatchCallTextPrinter(int windowId)
     return IsTextPrinterActive(windowId);
 }
 
-bool32 TrainerIsEligibleForRematch(int matchCallId)
+bool8 TrainerIsEligibleForRematch(int matchCallId)
 {
-    return gSaveBlock1Ptr->trainerRematches[matchCallId] > 0;
+    return CheckRematchTrainerFlag(matchCallId);
 }
 
 static u16 GetRematchTrainerLocation(int matchCallId)
@@ -1904,12 +1890,24 @@ void SelectMatchCallMessage_Rematch(int trainerId, u8 *str, bool8 isCallingPlaye
 {
 	u32 matchCallId;
 	u32 rematchId;
+    //s32 i;
+    u32 tableId;
 	const struct MatchCallText *matchCallText;
 
-	matchCallId = GetTrainerMatchCallId(trainerId);
+	tableId = matchCallId = GetTrainerMatchCallId(trainerId);
     rematchId = getRematchIdFromTrainerId(trainerId);
 
-	gSaveBlock1Ptr->trainerRematches[rematchId] = 1;
+    /*for (i = 1; i < REMATCHES_COUNT; i++)
+    {
+        u16 trainerId2 = gRematchTable[tableId].trainerIds[i];
+
+        if (trainerId2 == 0)
+            break;
+        if (!HasTrainerBeenFought(trainerId2))
+            break;
+    }*/
+
+    SetRematchTrainerFlag(tableId);
     UpdateRematchIfDefeated(rematchId);
 
 	matchCallText = &gMatchCallTrainers[matchCallId].rematchText;
@@ -2004,7 +2002,7 @@ void SelectMatchCallMessage_Opening(int trainerId, u8 *str, bool8 isCallingPlaye
 	 BuildMatchCallString(matchCallId, matchCallText, str);
 }
 
-bool32 IsMatchCallRematchTime(int trainerId)
+bool8 IsMatchCallRematchTime(int trainerId)
 {
     u32 matchCallId = GetTrainerMatchCallId(trainerId);
     s8 dayOfWeek = gLocalTime.dayOfWeek;
@@ -2035,7 +2033,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
     {
     	matchCallText = &gMatchCallTrainers[matchCallId].remindRematchText;
     }
-    else */if (FlagGet(gMatchCallTrainers[matchCallId].giftFlag))
+    else if (FlagGet(gMatchCallTrainers[matchCallId].giftFlag))
     {
     	matchCallText = &gMatchCallTrainers[matchCallId].remindGiftText;
     }
@@ -2043,16 +2041,16 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
     {
     	matchCallText = &gMatchCallTrainers[matchCallId].remindoutbreakText;
     }
-    /*else if(gMatchCallTrainers[matchCallId].rematchForcedFlag &&
+    else if(gMatchCallTrainers[matchCallId].rematchForcedFlag &&
     		((!isCallingPlayer && CanMatchCallIdAcceptRematch(matchCallId, gLocalTime.dayOfWeek, GetTimeOfDay(gLocalTime.hours))) ||
             (isCallingPlayer  && ShouldTrainerRequestBattle(rematchId, matchCallId))))
 	{
 		matchCallText = &gMatchCallTrainers[matchCallId].rematchText;
 		retVal = TRUE;
 		FlagSet(gMatchCallTrainers[matchCallId].rematchForcedFlag);
-		gSaveBlock1Ptr->trainerRematches[rematchId] = 1;
+		gSaveBlock1Ptr->trainerRematches[rematchId] = 1; // commented out
 		UpdateRematchIfDefeated(rematchId);
-	}*/
+	}
     else if (gMatchCallTrainers[matchCallId].giftFlag && (randomNumber == 1 || randomNumber == 2 || randomNumber == 3) && !FlagGet(gMatchCallTrainers[matchCallId].giftFlag) && isCallingPlayer)
     {
     	FlagSet(gMatchCallTrainers[matchCallId].giftFlag);
@@ -2066,10 +2064,10 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer, con
         MatchCall_StartMassOutbreak(outbreakData);
     }
     else
-    {
+    {*/
         // Message talking about something else
         matchCallText = GetGenericMatchCallText(matchCallId, str);
-    }
+    //}
 
     BuildMatchCallString(matchCallId, matchCallText, str);
     return retVal;
@@ -2203,6 +2201,60 @@ static u8 GetWaterEncounterSlot(void)
         return 3;
     else
         return 4;
+}
+
+void Script_PopulateRareSpeciesFromTrainerLocation(void)
+{
+    PopulateMapName(GetTrainerMatchCallId(GetTrainerIdxByRematchIdx(gSpecialVar_0x800A)), gStringVar2);
+    gSpecialVar_Result = PopulateRareSpeciesFromTrainerLocation();
+}
+
+static bool32 PopulateRareSpeciesFromTrainerLocation(void)
+{
+    u16 species[2];
+    u8 timeOfDay;
+    int i = 0;
+
+    RtcCalcLocalTime();
+    timeOfDay = GetCurrentTimeOfDay();
+
+    u32 phoneContactId = GetPhoneContactFromRematchTrainerId(gSpecialVar_0x800A);
+
+    if (gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED)) // ??? This check is nonsense.
+    {
+        while (gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED))
+        {
+            if (gWildMonHeaders[i].mapGroup == gPhoneContacts[phoneContactId].mapGroup
+             && gWildMonHeaders[i].mapNum == gPhoneContacts[phoneContactId].mapNum)
+                break;
+
+            i++;
+        }
+
+        if (gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED))
+        {
+            if (gWildMonHeaders[i].landMonsInfo)
+            {
+                u32 slot = (Random() % 4) + 8;
+
+                species[0] = gWildMonHeaders[i].landMonsInfo->wildPokemon[timeOfDay][slot].species; // One of the last four slots
+                species[1] = gWildMonHeaders[i].landMonsInfo->wildPokemon[timeOfDay][0].species;    // Most common slot
+                
+                if(species[0] == species[1])
+                {   // common mon was selected
+                    return FALSE;
+                }
+                
+                if(GetSetPokedexFlag(SpeciesToNationalPokedexNum(species[0]), FLAG_GET_SEEN))
+                {  // rare mon was already seen
+                    return FALSE;
+                }
+
+                StringCopy(gStringVar1, gSpeciesNames[species[0]]);
+                return TRUE;
+            }
+        }
+    }
 }
 
 static void PopulateSpeciesFromTrainerLocation(int matchCallId, u8 *destStr)

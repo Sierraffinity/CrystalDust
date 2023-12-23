@@ -44,8 +44,9 @@ gPhoneScriptCmdTable::
 	.4byte PhoneScrCmd_bufferbankedmoney
 	.4byte PhoneScrCmd_buffernumberstring
 	.4byte PhoneScrCmd_bufferboxname
-	.4byte PhoneScrCmd_traineriseligibleforrematch
+	.4byte PhoneScrCmd_istrainerrematchactive
 	.4byte PhoneScrCmd_checkforcedrematch
 	.4byte PhoneScrCmd_setforcedrematch
+	.4byte PhoneScrCmd_isavailableforrematch
 gPhoneScriptCmdTableEnd::
 	.4byte PhoneScrCmd_nop

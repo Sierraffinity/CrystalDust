@@ -60,6 +60,7 @@ script NationalPark_EventScript_Jack {
     if(var(VAR_RESULT) == 1)
     {
         trainerbattle_rematch(TRAINER_JACK_1, "Hi! I was waiting for you to show!\nLet's get started right away!", "Wha-what-what?")
+        end
     }
 
     if (!flag(FLAG_PHONE_CARD_SCHOOLBOY_JACK))

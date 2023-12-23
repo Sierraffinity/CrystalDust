@@ -256,6 +256,7 @@ script Route32_EventScript_Liz {
     if(var(VAR_RESULT) == TRUE)
     {
         trainerbattle_rematch(TRAINER_LIZ_1, "You're late!\nLet's get started now!", Route32_Text_Trainer_LizLost)
+        end
     }
     if (!flag(FLAG_PHONE_CARD_PICNICKER_LIZ))
     {
@@ -315,6 +316,7 @@ script Route32_EventScript_Ralph {
     if(var(VAR_RESULT) == TRUE)
     {
         trainerbattle_rematch(TRAINER_RALPH_1, "Hey kid!\nNo losing for me this day!", Route32_Text_Trainer_RalphLost)
+        end
     }
     if (!flag(FLAG_PHONE_CARD_FISHER_RALPH))
     {
