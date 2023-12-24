@@ -279,23 +279,23 @@ u32 CalcByteArraySum(const u8* data, u32 length)
     return sum;
 }
 
-void BlendPalette(u16 palOffset, u16 numEntries, u8 coeff, u16 blendColor)
+void BlendPalette(u32 palOffset, u32 numEntries, u32 coeff, u32 blendColor)
 {
     u32 i;
-    s8 r2 = ((struct PlttData *)&blendColor)->r;
-    s8 g2 = ((struct PlttData *)&blendColor)->g;
-    s8 b2 = ((struct PlttData *)&blendColor)->b;
-    const struct PlttData *data2 = (const struct PlttData *)&blendColor;
+    const s32 r2 = ((const struct PlttData *)&blendColor)->r;
+    const s32 g2 = ((const struct PlttData *)&blendColor)->g;
+    const s32 b2 = ((const struct PlttData *)&blendColor)->b;
+    u32 index = palOffset;  // Move calculation of `index` outside the loop
     for (i = 0; i < numEntries; i++)
     {
-        u16 index = i + palOffset;
         struct PlttData *data1 = (struct PlttData *)&gPlttBufferUnfaded[index];
-        s8 r = data1->r;
-        s8 g = data1->g;
-        s8 b = data1->b;
+        s32 r = data1->r;
+        s32 g = data1->g;
+        s32 b = data1->b;
         gPlttBufferFaded[index] = RGB(r + (((r2 - r) * coeff) >> 4),
                                       g + (((g2 - g) * coeff) >> 4),
                                       b + (((b2 - b) * coeff) >> 4));
+        index++;  // Increment `index` for the next iteration
     }
 }
 

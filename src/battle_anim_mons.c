@@ -665,12 +665,6 @@ void sub_80A6760(struct Sprite *sprite)
     sprite->callback = sub_80A64D0;
 }
 
-void sub_80A67A4(struct Sprite *sprite)
-{
-    ResetPaletteStructByUid(sprite->data[5]);
-    DestroySpriteAndMatrix(sprite);
-}
-
 void RunStoredCallbackWhenAffineAnimEnds(struct Sprite *sprite)
 {
     if (sprite->affineAnimEnded)
