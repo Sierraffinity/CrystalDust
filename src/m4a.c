@@ -123,7 +123,7 @@ const struct Song *GetSong(int songID, bool32 gbsEnabled)
     return &gSongTable[songID];
 }
 
-void m4aSongNumStart(u16 n, bool32 gbsEnabled)
+void m4aSongNumStart(u32 n, bool32 gbsEnabled)
 {
     const struct MusicPlayer *mplayTable = gMPlayTable;
     const struct Song *song = GetSong(n, gbsEnabled);

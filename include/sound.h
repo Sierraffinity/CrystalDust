@@ -58,7 +58,7 @@ void StopCry(void);
 bool8 IsCryPlayingOrClearCrySongs(void);
 bool8 IsCryPlaying(void);
 void PlayBGM(u16 songNum);
-void PlaySE(u16 songNum);
+void PlaySE(u32 songNum);
 void PlaySE12WithPanning(u16 songNum, s8 pan);
 void PlaySE1WithPanning(u16 songNum, s8 pan);
 void PlaySE2WithPanning(u16 songNum, s8 pan);

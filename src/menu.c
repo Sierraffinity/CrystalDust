@@ -1121,7 +1121,7 @@ void RedrawMenuCursor(u8 oldPos, u8 newPos)
     AddTextPrinterParameterized(sMenu.windowId, sMenu.fontId, gText_SelectorArrow3, sMenu.left, sMenu.optionHeight * newPos + sMenu.top, 0, 0);
 }
 
-u8 Menu_MoveCursor(s8 cursorDelta)
+u8 Menu_MoveCursor(s32 cursorDelta)
 {
     u8 oldPos = sMenu.cursorPos;
     int newPos = sMenu.cursorPos + cursorDelta;

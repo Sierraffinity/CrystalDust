@@ -2494,7 +2494,7 @@ u8 CreateCopySpriteAt(struct Sprite *sprite, s16 x, s16 y, u8 subpriority)
 
 void SetObjectEventDirection(struct ObjectEvent *objectEvent, u8 direction)
 {
-    s8 d2;
+    s32 d2;
     objectEvent->previousMovementDirection = objectEvent->facingDirection;
     if (!objectEvent->facingDirectionLocked)
     {
@@ -4871,7 +4871,7 @@ static u8 GetCollisionInDirection(struct ObjectEvent *objectEvent, u8 direction)
 
 u8 GetCollisionAtCoords(struct ObjectEvent *objectEvent, s16 x, s16 y, u32 dir)
 {
-    u8 direction = dir;
+    u32 direction = dir;
     if (IsCoordOutsideObjectEventMovementRange(objectEvent, x, y))
         return COLLISION_OUTSIDE_RANGE;
     else if (MapGridIsImpassableAt(x, y) || GetMapBorderIdAt(x, y) == -1 || IsMetatileDirectionallyImpassable(objectEvent, x, y, direction))
@@ -8070,9 +8070,9 @@ static void SetObjectEventSpriteOamTableForLongGrass(struct ObjectEvent *objEven
         sprite->subspriteTableNum = 5;
 }
 
-bool8 IsZCoordMismatchAt(u8 z, s16 x, s16 y)
+bool32 IsZCoordMismatchAt(u8 z, s16 x, s16 y)
 {
-    u8 mapZ;
+    u32 mapZ;
 
     if (z == 0)
         return FALSE;
@@ -8501,7 +8501,7 @@ static void DoGroundEffects_OnFinishStep(struct ObjectEvent *objEvent, struct Sp
     }
 }
 
-bool8 FreezeObjectEvent(struct ObjectEvent *objectEvent)
+bool32 FreezeObjectEvent(struct ObjectEvent *objectEvent)
 {
     if (objectEvent->heldMovementActive || objectEvent->frozen)
     {
@@ -8509,11 +8509,12 @@ bool8 FreezeObjectEvent(struct ObjectEvent *objectEvent)
     }
     else
     {
+        struct Sprite *temp = &gSprites[objectEvent->spriteId];
         objectEvent->frozen = 1;
-        objectEvent->spriteAnimPausedBackup = gSprites[objectEvent->spriteId].animPaused;
-        objectEvent->spriteAffineAnimPausedBackup = gSprites[objectEvent->spriteId].affineAnimPaused;
-        gSprites[objectEvent->spriteId].animPaused = 1;
-        gSprites[objectEvent->spriteId].affineAnimPaused = 1;
+        objectEvent->spriteAnimPausedBackup = temp->animPaused;
+        objectEvent->spriteAffineAnimPausedBackup = temp->affineAnimPaused;
+        temp->animPaused = 1;
+        temp->affineAnimPaused = 1;
         return FALSE;
     }
 }

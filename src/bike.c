@@ -1196,7 +1196,7 @@ bool8 IsBikingDisallowedByPlayer(void)
     return TRUE;
 }
 
-bool8 IsPlayerNotUsingAcroBikeOnBumpySlope(void)
+bool32 IsPlayerNotUsingAcroBikeOnBumpySlope(void)
 {
     if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE) 
         && MetatileBehavior_IsBumpySlope(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior))
@@ -1242,7 +1242,7 @@ void BikeClearState(int newDirHistory, int newAbStartHistory)
         gPlayerAvatar.abStartSelectTimerHistory[i] = 0;
 }
 
-void Bike_UpdateBikeCounterSpeed(u8 counter)
+void Bike_UpdateBikeCounterSpeed(u32 counter)
 {
     gPlayerAvatar.bikeFrameCounter = counter;
     gPlayerAvatar.bikeSpeed = gPlayerAvatar.bikeFrameCounter + (gPlayerAvatar.bikeFrameCounter >> 1); // lazy way of multiplying by 1.5.

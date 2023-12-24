@@ -110,7 +110,7 @@ u8 InitMenuActionGrid(u8 windowId, u8 optionWidth, u8 columns, u8 rows, u8 initi
 u8 ChangeListMenuCursorPosition(s8 deltaX, s8 deltaY);
 u8 GetStartMenuWindowId(void);
 void ListMenuLoadStdPalAt(u8, u8);
-u8 Menu_MoveCursor(s8 cursorDelta);
+u8 Menu_MoveCursor(s32 cursorDelta);
 u8 Menu_MoveCursorNoWrapAround(s8 cursorDelta);
 void DrawStdWindowFrame(u8 windowId, bool8 CopyToVram);
 u8 AddStartMenuWindow(u8 numActions);
