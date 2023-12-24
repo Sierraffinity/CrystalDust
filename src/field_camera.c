@@ -103,21 +103,15 @@ void DrawWholeMapView(void)
 
 static void DrawWholeMapViewInternal(int x, int y, const struct MapLayout *mapLayout)
 {
-    const int yOffset = (sFieldCameraOffset.yTileOffset & 31) * 32;
-    const int xOffset = (sFieldCameraOffset.xTileOffset & 31);
-
-    int tempYOffset = yOffset;
-    int metatileOffset = tempYOffset + xOffset;
-
-    for (int i = 0; i < 32; i += 2)
+    for (u32 i = 0; i < 32; i += 2)
     {
-        for (int j = 0; j < 32; j += 2)
-        {
-            DrawMetatileAt(mapLayout, metatileOffset + j, x + j / 2, y + i / 2);
-        }
+        u32 yOffset = ((sFieldCameraOffset.yTileOffset + i) & 31) * 32;
 
-        tempYOffset += 64; // Increment y offset by 2 rows (2 * 32)
-        metatileOffset += 64; // Increment metatile offset by 2 rows (2 * 32)
+        for (u32 j = 0; j < 32; j += 2)
+        {
+            u32 xOffset = (sFieldCameraOffset.xTileOffset + j) & 31;
+            DrawMetatileAt(mapLayout, yOffset + xOffset, x + (j >> 1), y + (i >> 1));
+        }
     }
 }
 
