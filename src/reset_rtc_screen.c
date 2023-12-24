@@ -351,14 +351,14 @@ static void FreeCursorPalette(void)
     FreeSpritePaletteByTag(sSpritePalette_Arrow.tag);
 }
 
-static void HideChooseTimeWindow(u8 windowId)
+static void HideChooseTimeWindow(u32 windowId)
 {
     ClearStdWindowAndFrameToTransparent(windowId, FALSE);
     RemoveWindow(windowId);
     ScheduleBgCopyTilemapToVram(0);
 }
 
-static void PrintTime(u8 windowId, u8 x, u8 y, u16 days, u8 hours, u8 minutes, u8 seconds)
+static void PrintTime(u32 windowId, u8 x, u8 y, u16 days, u8 hours, u8 minutes, u8 seconds)
 {
     u8 *dest = gStringVar4;
 
@@ -384,7 +384,7 @@ static void PrintTime(u8 windowId, u8 x, u8 y, u16 days, u8 hours, u8 minutes, u
     AddTextPrinterParameterized(windowId, 2, gStringVar4, x, y, TEXT_SPEED_FF, NULL);
 }
 
-static void ShowChooseTimeWindow(u8 windowId, u16 days, u8 hours, u8 minutes, u8 seconds)
+static void ShowChooseTimeWindow(u32 windowId, u16 days, u8 hours, u8 minutes, u8 seconds)
 {
     DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x214, 0xE);
     PrintTime(windowId, 0, 1, days, hours, minutes, seconds);

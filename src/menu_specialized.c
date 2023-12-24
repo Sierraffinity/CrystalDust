@@ -222,22 +222,22 @@ bool8 MailboxMenu_Alloc(u8 count)
     return TRUE;
 }
 
-u8 MailboxMenu_AddWindow(u8 windowIndex)
+u8 MailboxMenu_AddWindow(u32 windowIdx)
 {
-    if (sMailboxWindowIds[windowIndex] == 0xFF)
+    if (sMailboxWindowIds[windowIdx] == 0xFF)
     {
-        sMailboxWindowIds[windowIndex] = AddWindow(&sWindowTemplates_MailboxMenu[windowIndex]);
-        SetStandardWindowBorderStyle(sMailboxWindowIds[windowIndex], 0);
+        sMailboxWindowIds[windowIdx] = AddWindow(&sWindowTemplates_MailboxMenu[windowIdx]);
+        SetStandardWindowBorderStyle(sMailboxWindowIds[windowIdx], 0);
     }
-    return sMailboxWindowIds[windowIndex];
+    return sMailboxWindowIds[windowIdx];
 }
 
-void MailboxMenu_RemoveWindow(u8 windowIndex)
+void MailboxMenu_RemoveWindow(u32 windowIdx)
 {
-    ClearStdWindowAndFrameToTransparent(sMailboxWindowIds[windowIndex], 0);
-    ClearWindowTilemap(sMailboxWindowIds[windowIndex]);
-    RemoveWindow(sMailboxWindowIds[windowIndex]);
-    sMailboxWindowIds[windowIndex] = 0xFF;
+    ClearStdWindowAndFrameToTransparent(sMailboxWindowIds[windowIdx], 0);
+    ClearWindowTilemap(sMailboxWindowIds[windowIdx]);
+    RemoveWindow(sMailboxWindowIds[windowIdx]);
+    sMailboxWindowIds[windowIdx] = 0xFF;
 }
 
 static u8 MailboxMenu_GetWindowId(u8 windowIndex) // unused
@@ -245,7 +245,7 @@ static u8 MailboxMenu_GetWindowId(u8 windowIndex) // unused
     return sMailboxWindowIds[windowIndex];
 }
 
-static void MailboxMenu_ItemPrintFunc(u8 windowId, u16 index, s32 itemId, u8 y)
+static void MailboxMenu_ItemPrintFunc(u32 windowId, u16 index, s32 itemId, u8 y)
 {
     u8 buffer[30];
     u16 length;

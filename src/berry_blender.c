@@ -212,7 +212,7 @@ static void SetPlayerIdMaps(void);
 static void PrintPlayerNames(void);
 static void InitBlenderBgs(void);
 static void SetPlayerBerryData(u8, u16);
-static void Blender_AddTextPrinter(u8, const u8 *, u8, u8, s32, s32);
+static void Blender_AddTextPrinter(u32, const u8 *, u8, u8, s32, s32);
 static void ResetLinkCmds(void);
 static void CreateParticleSprites(void);
 static void ShakeBgCoordForHit(s16*, u16);
@@ -3849,7 +3849,7 @@ static bool32 TryAddContestLinkTvShow(struct Pokeblock *pokeblock, struct TvBlen
     return FALSE;
 }
 
-static void Blender_AddTextPrinter(u8 windowId, const u8 *string, u8 x, u8 y, s32 speed, s32 caseId)
+static void Blender_AddTextPrinter(u32 windowId, const u8 *string, u8 x, u8 y, s32 speed, s32 caseId)
 {
     u8 txtColor[3];
     u32 letterSpacing = 0;

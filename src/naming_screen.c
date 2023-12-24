@@ -1979,7 +1979,7 @@ static void DrawKeyboardPageOnDeck(void)
 {
     u8 bg;
     u8 bg_;
-    u8 windowId;
+    u32 windowId;
     u8 bg1Priority = GetGpuReg(REG_OFFSET_BG1CNT) & 3;
     u8 bg2Priority = GetGpuReg(REG_OFFSET_BG2CNT) & 3;
 

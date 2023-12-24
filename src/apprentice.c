@@ -84,9 +84,9 @@ void (*gApprenticeFunc)(void);
 // This file's functions.
 static u16 GetRandomAlternateMove(u8 monId);
 static bool8 TrySetMove(u8 monId, u16 moveId);
-static void CreateChooseAnswerTask(bool8 noBButton, u8 itemsCount, u8 windowId);
+static void CreateChooseAnswerTask(bool8 noBButton, u8 itemsCount, u32 windowId);
 static u8 CreateAndShowWindow(u8 left, u8 top, u8 width, u8 height);
-static void RemoveAndHideWindow(u8 windowId);
+static void RemoveAndHideWindow(u32 windowId);
 static void ExecuteFuncAfterButtonPress(void (*func)(void));
 
 static void Script_GivenApprenticeLvlMode(void);
@@ -567,7 +567,7 @@ static void SaveApprenticeParty(u8 numQuestions)
 static void CreateApprenticeMenu(u8 menu)
 {
     u32 i;
-    u8 windowId;
+    u32 windowId;
     const u8 *strings[3];
     u8 count = 2;
     u8 width;
@@ -686,7 +686,7 @@ static void Task_ChooseAnswer(u8 taskId)
 
 static u8 CreateAndShowWindow(u8 left, u8 top, u8 width, u8 height)
 {
-    u8 windowId;
+    u32 windowId;
     struct WindowTemplate winTemplate = CreateWindowTemplate(0, left + 1, top + 1, width, height, 15, 100);
 
     windowId = AddWindow(&winTemplate);
@@ -695,13 +695,13 @@ static u8 CreateAndShowWindow(u8 left, u8 top, u8 width, u8 height)
     return windowId;
 }
 
-static void RemoveAndHideWindow(u8 windowId)
+static void RemoveAndHideWindow(u32 windowId)
 {
     ClearStdWindowAndFrameToTransparent(windowId, TRUE);
     RemoveWindow(windowId);
 }
 
-static void CreateChooseAnswerTask(bool8 noBButton, u8 answers, u8 windowId)
+static void CreateChooseAnswerTask(bool8 noBButton, u8 answers, u32 windowId)
 {
     u8 taskId = CreateTask(Task_ChooseAnswer, 80);
     gTasks[taskId].tNoBButton = noBButton;

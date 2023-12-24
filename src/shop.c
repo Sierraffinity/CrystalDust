@@ -69,7 +69,7 @@ static void BuyMenuDecompressBgGraphics(void);
 static void BuyMenuSetListEntry(struct ListMenuItem*, u16, u8*);
 static void BuyMenuAddItemIcon(u16, u8);
 static void BuyMenuRemoveItemIcon(u16, u8);
-static void BuyMenuPrint(u8 windowId, u8 font, const u8 *text, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, s8 speed, u8 colorSet);
+static void BuyMenuPrint(u32 windowId, u8 font, const u8 *text, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, s8 speed, u8 colorSet);
 static void BuyMenuDrawMapGraphics(void);
 static void BuyMenuCopyMenuBgToBg1TilemapBuffer(void);
 static void BuyMenuCollectObjectEventData(void);
@@ -92,12 +92,12 @@ static void Task_ReturnToItemListAfterDecorationPurchase(u8 taskId);
 static void Task_HandleShopMenuBuy(u8 taskId);
 static void Task_HandleShopMenuSell(u8 taskId);
 static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, struct ListMenu *list);
-static void BuyMenuPrintPriceInList(u8 windowId, u16 index, s32 item, u8 y);
+static void BuyMenuPrintPriceInList(u32 windowId, u16 index, s32 item, u8 y);
 static u8 GetMartTypeFromItemList(u32 martType);
 static bool8 InitShopData(void);
 static void BuyMenuFreeMemory(void);
-static void BuyMenuQuantityBoxNormalBorder(u8 windowId, bool8 copyToVram);
-static void BuyMenuQuantityBoxThinBorder(u8 windowId, bool8 copyToVram);
+static void BuyMenuQuantityBoxNormalBorder(u32 windowId, bool8 copyToVram);
+static void BuyMenuQuantityBoxThinBorder(u32 windowId, bool8 copyToVram);
 static void LoadTmHmNameInMart(s32 item);
 
 static const struct YesNoFuncTable sShopPurchaseYesNoFuncs =
@@ -729,7 +729,7 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
     }
 }
 
-static void BuyMenuPrintPriceInList(u8 windowId, u16 index, s32 item, u8 y)
+static void BuyMenuPrintPriceInList(u32 windowId, u16 index, s32 item, u8 y)
 {
     s32 x;
     u8 *loc;
@@ -941,7 +941,7 @@ static void BuyMenuInitWindows(u8 martType)
         PutWindowTilemap(6);
 }
 
-static void BuyMenuPrint(u8 windowId, u8 font, const u8 *text, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, s8 speed, u8 colorSet)
+static void BuyMenuPrint(u32 windowId, u8 font, const u8 *text, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, s8 speed, u8 colorSet)
 {
     AddTextPrinterParameterized4(windowId, font, x, y, letterSpacing, lineSpacing, sShopBuyMenuTextColors[colorSet], speed, text);
 }
@@ -952,12 +952,12 @@ static void BuyMenuDisplayMessage(u8 taskId, const u8 *text, TaskFunc callback)
     ScheduleBgCopyTilemapToVram(0);
 }
 
-static void BuyMenuQuantityBoxNormalBorder(u8 windowId, bool8 copyToVram)
+static void BuyMenuQuantityBoxNormalBorder(u32 windowId, bool8 copyToVram)
 {
     DrawStdFrameWithCustomTileAndPalette(windowId, copyToVram, 0x1, 0xD);
 }
 
-static void BuyMenuQuantityBoxThinBorder(u8 windowId, bool8 copyToVram)
+static void BuyMenuQuantityBoxThinBorder(u32 windowId, bool8 copyToVram)
 {
     DrawStdFrameWithCustomTileAndPalette(windowId, copyToVram, 0xA, 0xF);
 }

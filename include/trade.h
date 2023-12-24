@@ -22,6 +22,6 @@ int CanSpinTradeMon(struct Pokemon*, u16);
 void InitTradeSequenceBgGpuRegs(void);
 void LinkTradeDrawWindow(void);
 void InitTradeBg(void);
-void DrawTextOnTradeWindow(u8, const u8 *, u8);
+void DrawTextOnTradeWindow(u32, const u8 *, u8);
 
 #endif //GUARD_TRADE_H

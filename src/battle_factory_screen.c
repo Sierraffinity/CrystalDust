@@ -186,7 +186,7 @@ static void Select_Task_HandleMenu(u8);
 static void CreateFrontierFactorySelectableMons(u8);
 static void CreateSlateportTentSelectableMons(u8);
 static void Select_SetBallSpritePaletteNum(u8);
-static void Select_ErasePopupMenu(u8);
+static void Select_ErasePopupMenu(u32);
 static u8 Select_RunMenuOptionFunc(void);
 static u8 Select_DeclineChosenMons(void);
 static u8 Select_OptionSummary(void);
@@ -202,7 +202,7 @@ static void Swap_HideActionButtonHighlights(void);
 static void Swap_EraseSpeciesWindow(void);
 static void Swap_UpdateYesNoCursorPosition(s8);
 static void Swap_UpdateMenuCursorPosition(s8);
-static void Swap_ErasePopupMenu(u8);
+static void Swap_ErasePopupMenu(u32);
 static void Swap_Task_ScreenInfoTransitionIn(u8);
 static void Swap_Task_HandleChooseMons(u8);
 static void Swap_Task_ScreenInfoTransitionOut(u8);
@@ -1849,7 +1849,7 @@ static void Select_ShowYesNoOptions(void)
     Select_PrintYesNoOptions();
 }
 
-static void Select_ErasePopupMenu(u8 windowId)
+static void Select_ErasePopupMenu(u32 windowId)
 {
     gSprites[sFactorySelectScreen->menuCursor1SpriteId].invisible = TRUE;
     gSprites[sFactorySelectScreen->menuCursor2SpriteId].invisible = TRUE;
@@ -3719,7 +3719,7 @@ static void Swap_ShowYesNoOptions(void)
     Swap_PrintYesNoOptions();
 }
 
-static void Swap_ErasePopupMenu(u8 windowId)
+static void Swap_ErasePopupMenu(u32 windowId)
 {
     gSprites[sFactorySwapScreen->menuCursor1SpriteId].invisible = TRUE;
     gSprites[sFactorySwapScreen->menuCursor2SpriteId].invisible = TRUE;

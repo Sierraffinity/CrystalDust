@@ -1389,7 +1389,7 @@ void DrawTextWindowAndBufferTiles(const u8 *string, void *dst, u8 zero1, u8 zero
 static void PrintStringToBufferCopyNow(const u8 *string, void *dst, u16 rise, u8 bgClr, u8 fgClr, u8 shClr, u8 *buffer)
 {
     u32 tileSize;
-    u8 windowId;
+    u32 windowId;
     u8 txtColor[3];
     u8 *tileData1, *tileData2;
     struct WindowTemplate winTemplate = {0};
@@ -1940,7 +1940,7 @@ static void ChooseBoxMenu_PrintInfo(void)
 {
     u8 numBoxMonsText[16];
     struct WindowTemplate template;
-    u8 windowId;
+    u32 windowId;
     u8 *boxName = GetBoxNamePtr(sChooseBoxMenu->curBox);
     u8 numInBox = CountMonsInBox(sChooseBoxMenu->curBox);
     u32 winTileData;

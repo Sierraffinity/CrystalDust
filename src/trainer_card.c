@@ -99,7 +99,7 @@ static void BlinkTimeColon(void);
 static void CB2_TrainerCard(void);
 static void CloseTrainerCard(u8 task);
 static bool8 PrintAllOnCardFront(void);
-static void DrawTrainerCardWindow(u8);
+static void DrawTrainerCardWindow(u32);
 static void CreateTrainerCardTrainerPic(void);
 static void DrawCardScreenBackground(u16*);
 static void DrawCardFrontOrBack(u16*);
@@ -1688,7 +1688,7 @@ static void LoadStickerGfx(void)
     LoadBgTiles(3, sData->stickerTiles, 1024, 128);
 }
 
-static void DrawTrainerCardWindow(u8 windowId)
+static void DrawTrainerCardWindow(u32 windowId)
 {
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);

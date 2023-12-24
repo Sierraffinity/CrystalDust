@@ -147,7 +147,7 @@ static void ReturnToActionsMenuFromCategories(u8 taskId);
 static void ExitTraderDecorationMenu(u8 taskId);
 static void CopyDecorationMenuItemName(u8 *dest, u16 decoration);
 static void DecorationItemsMenu_OnCursorMove(s32 itemIndex, bool8 flag, struct ListMenu *menu);
-static void DecorationItemsMenu_PrintDecorationInUse(u8 windowId, u16 index, s32 itemIndex, u8 y);
+static void DecorationItemsMenu_PrintDecorationInUse(u32 windowId, u16 index, s32 itemIndex, u8 y);
 static void ShowDecorationItemsWindow(u8 taskId);
 static void HandleDecorationItemsMenuInput(u8 taskId);
 static void PrintDecorationItemDescription(s32 itemIndex);
@@ -555,7 +555,7 @@ static void RemoveDecorationWindow(u8 windowIndex)
 
 static void AddDecorationActionsWindow(void)
 {
-    u8 windowId = AddDecorationWindow(WINDOW_MAIN_MENU);
+    u32 windowId = AddDecorationWindow(WINDOW_MAIN_MENU);
     PrintTextArray(windowId, 2, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(sDecorationMainMenuActions), sDecorationMainMenuActions);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 1, 16, ARRAY_COUNT(sDecorationMainMenuActions), sDecorationActionsCursorPos);
 }
@@ -695,7 +695,7 @@ static void SecretBasePC_PrepMenuForSelectingStoredDecors(u8 taskId)
 
 static void InitDecorationCategoriesWindow(u8 taskId)
 {
-    u8 windowId = AddDecorationWindow(WINDOW_DECORATION_CATEGORIES);
+    u32 windowId = AddDecorationWindow(WINDOW_DECORATION_CATEGORIES);
     PrintDecorationCategoryMenuItems(taskId);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 1, 16, DECORCAT_COUNT + 1, sCurDecorationCategory);
     gTasks[taskId].func = HandleDecorationCategoriesMenuInput;
@@ -713,7 +713,7 @@ static void PrintDecorationCategoryMenuItems(u8 taskId)
 {
     u32 i;
     s16 *data = gTasks[taskId].data;
-    u8 windowId = sDecorMenuWindowIds[WINDOW_DECORATION_CATEGORIES];
+    u32 windowId = sDecorMenuWindowIds[WINDOW_DECORATION_CATEGORIES];
     bool8 isPlayerRoom = sDecorationContext.isPlayerRoom;
     bool8 shouldDisable = FALSE;
     if (isPlayerRoom == TRUE && tDecorationMenuCommand == DECOR_MENU_PLACE)
@@ -912,7 +912,7 @@ static void DecorationItemsMenu_OnCursorMove(s32 itemIndex, bool8 flag, struct L
     PrintDecorationItemDescription(itemIndex);
 }
 
-static void DecorationItemsMenu_PrintDecorationInUse(u8 windowId, u16 index, s32 itemIndex, u8 y)
+static void DecorationItemsMenu_PrintDecorationInUse(u32 windowId, u16 index, s32 itemIndex, u8 y)
 {
     if (itemIndex != LIST_CANCEL)
     {
@@ -1014,7 +1014,7 @@ static void ShowDecorationCategorySummaryWindow(u8 category)
 
 static void PrintDecorationItemDescription(s32 itemIndex)
 {
-    u8 windowId;
+    u32 windowId;
     const u8 *str;
 
     windowId = sDecorMenuWindowIds[WINDOW_DECORATION_CATEGORY_ITEMS];

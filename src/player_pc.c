@@ -460,7 +460,7 @@ static void PCMailCompaction(void)
 
 static void Task_DrawMailboxPcMenu(u8 taskId)
 {
-    u8 windowId = MailboxMenu_AddWindow(0);
+    u32 windowId = MailboxMenu_AddWindow(0);
     s32 width = GetStringWidth(2, gText_Mailbox, 0);
     MailboxMenu_AddWindow(1);
     AddTextPrinterParameterized(windowId, 2, gText_Mailbox, (80 - width) / 2, 2, 0, NULL);
@@ -536,7 +536,7 @@ static void Task_DestroyMailboxPcViewAndCancel(u8 taskId)
 
 static void Task_DrawMailSubmenu(u8 taskId)
 {
-    u8 windowId = MailboxMenu_AddWindow(2);
+    u32 windowId = MailboxMenu_AddWindow(2);
     PrintTextArray(windowId, 2, GetMenuCursorDimensionByFont(2, 0), 2, 16, 4, gMenuActions_MailSubmenu);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 2, 16, 4, 0);
     ScheduleBgCopyTilemapToVram(0);

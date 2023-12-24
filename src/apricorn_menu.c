@@ -43,7 +43,7 @@ static EWRAM_DATA struct {
 static void InitApricornMenu(u8 taskId);
 static u8 AddWindowIfNotPresent(u8 whichWindow);
 static void ApricornMenu_Main_ProcessInput(u8 taskId);
-static void ApricornMenu_ItemPrint(u8 windowId, u16 index, s32 id, u8 yOffset);
+static void ApricornMenu_ItemPrint(u32 windowId, u16 index, s32 id, u8 yOffset);
 static void ApricornMenu_RefreshListMenu(void);
 static void ApricornMenu_AddMainScrollIndicator(void);
 static void ApricornMenu_Exit(u8 taskId);
@@ -276,7 +276,7 @@ static void ApricornMenu_Main_ProcessInput(u8 taskId)
     }
 }
 
-static void ApricornMenu_ItemPrint(u8 windowId, u16 index, s32 id, u8 yOffset)
+static void ApricornMenu_ItemPrint(u32 windowId, u16 index, s32 id, u8 yOffset)
 {
     if (id != LIST_CANCEL)
     {
@@ -309,7 +309,7 @@ static void ApricornMenu_KurtAsksQuantity(u8 taskId, s32 whichApricorn)
 
 static void ApricornMenu_InitQuantityBox(u8 taskId)
 {
-    u8 windowId = AddWindowIfNotPresent(WIN_QUANTITY);
+    u32 windowId = AddWindowIfNotPresent(WIN_QUANTITY);
     ApricornMenu_AddQuantityScrollIndicator();
     ApricornMenu_PrintQuantity(windowId, gTasks[taskId].tItemCount);
     gTasks[taskId].func = ApricornMenu_ChangeQuantityToGive;

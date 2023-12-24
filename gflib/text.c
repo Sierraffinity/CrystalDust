@@ -230,7 +230,7 @@ void DeactivateAllTextPrinters(void)
         gTextPrinters[printer].active = 0;
 }
 
-u16 AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16))
+u16 AddTextPrinterParameterized(u32 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16))
 {
     struct TextPrinterTemplate printerTemplate;
 
@@ -926,7 +926,7 @@ bool16 TextPrinterWait(struct TextPrinter *textPrinter)
     return result;
 }
 
-void DrawDownArrow(u8 windowId, u16 x, u16 y, u8 bgColor, bool8 drawArrow, u8 *counter, u8 *xCoordIndex)
+void DrawDownArrow(u32 windowId, u16 x, u16 y, u8 bgColor, bool8 drawArrow, u8 *counter, u8 *xCoordIndex)
 {
     const u8 *arrowTiles;
 
@@ -1645,7 +1645,7 @@ u8 RenderTextFont9(u8 *pixels, u8 fontId, u8 *str)
     return 1;
 }
 
-u8 DrawKeypadIcon(u8 windowId, u8 keypadIconId, u16 x, u16 y)
+u8 DrawKeypadIcon(u32 windowId, u8 keypadIconId, u16 x, u16 y)
 {
     BlitBitmapRectToWindow(
         windowId,

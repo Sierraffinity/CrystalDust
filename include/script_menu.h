@@ -11,7 +11,7 @@ bool8 ScriptMenu_ShowPokemonPic(u16 species, u8 x, u8 y, bool8 isShiny);
 bool8 (*ScriptMenu_GetPicboxWaitFunc(void))(void);
 int ConvertPixelWidthToTileWidth(int width);
 u8 CreateWindowFromRect(u8 x, u8 y, u8 width, u8 height);
-void ClearToTransparentAndRemoveWindow(u8 windowId);
+void ClearToTransparentAndRemoveWindow(u32 windowId);
 int DisplayTextAndGetWidth(const u8* str, int width);
 int ScriptMenu_AdjustLeftCoordFromWidth(int left, int width);
 void ForceClearPokemonPicWindow(void);
