@@ -207,6 +207,7 @@ void StartWeather(void)
     {
         u8 index = AllocSpritePalette(TAG_WEATHER_START);
         CpuCopy32(gFogPalette, &gPlttBufferUnfaded[0x100 + index * 16], 32);
+        sPaletteColorMapTypes = sBasePaletteColorMapTypes;
         gWeatherPtr->altGammaSpritePalIndex = index;
         gWeatherPtr->weatherPicSpritePalIndex = AllocSpritePalette(PALTAG_WEATHER_2);
         gWeatherPtr->rainSpriteCount = 0;

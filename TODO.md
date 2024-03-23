@@ -8,6 +8,7 @@
 * The GB Sounds table is not entirely filled out yet. Some songs that should have a GBS equivalent are not assigned.
 * Learning a TM cuts off the bag message box when you press yes.
 * Port FRLG Itemfinder field effects. The FRLG Itemfinder does **not** pick up regular items underfoot. In fact, if the player's on top of a hidden item, it'll show the arrows in their facing direction instead of printing any indication that they're right on top of it. Change this to mention that the player is on top of an item like in RSE when porting, since this is stupid.
+* Mart clerks need to be a consistent localid because of the GB Sounds questionnaire. In Olivine Mart, the female Cooltrainer has what should be the clerk's localid.
 
 ### Johto
 * Azalea Town map name popup instantly dismisses in the outdoor town (Celebi event scripting mistake).

@@ -699,4 +699,5 @@ gGBSSongTable::
 	song_gbs MUS_VS_RIVAL,				gbs_rivalbattle_Header,			0, 0	@ Battle! (Rival)
 	song_gbs MUS_RG_CAUGHT_INTRO,		gbs_sfx_caughtmon_Header,		2, 2	@ You Caught a Pokémon!
 	song_gbs MUS_ENCOUNTER_FISHERMAN    gbs_lookhiker_Header,           0, 0    @ Encounter music for Fisherman, Hiker, Will, Cal, Karen, Koga, CooltrainerM, Gentleman, Fisherman, SwimmerM, Sailor, Guitarist, Hiker, Biker, Firebreather, Black Belt, Boarder, PokefanM, Red, Officer
+	song_gbs MUS_RG_SEVII_ROUTE         gbs_lakeofrage_Header,          0, 0    @ Route 40
 	.4byte 0xFFFFFFFF
