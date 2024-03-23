@@ -33,7 +33,7 @@ void SetRandomLotteryNumber(u32 i)
 {
     u32 var = Random();
 
-    while (--i != 0xFFFF)
+    while (i-- > 0)
         var = ISO_RANDOMIZE2(var);
 
     SetLotteryNumber(var);
