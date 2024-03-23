@@ -399,7 +399,7 @@ static u32 Min(u32, u32);
 static u32 GetScore(u8);
 static void Task_ShowDodrioBerryPickingRecords(u8);
 static void Task_TryRunGfxFunc(u8);
-static void PrintRecordsText(u8, s32);
+static void PrintRecordsText(u32, s32);
 static void SpriteCB_Status(struct Sprite *);
 static void SpriteCB_Dodrio(struct Sprite *);
 static u32 DoDodrioMissedAnim(struct Sprite *);
@@ -2997,7 +2997,7 @@ static void Task_ShowDodrioBerryPickingRecords(u8 taskId)
 #undef tState
 #undef tWindowId
 
-static void PrintRecordsText(u8 windowId, s32 width)
+static void PrintRecordsText(u32 windowId, s32 width)
 {
     s32 i, x, numWidth;
     s32 recordNums[NUM_RECORD_TYPES];

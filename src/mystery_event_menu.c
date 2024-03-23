@@ -22,7 +22,7 @@
 
 // this file's functions
 static void CB2_MysteryEventMenu(void);
-static void PrintMysteryMenuText(u8 windowId, const u8 *text, u8 x, u8 y, s32 speed);
+static void PrintMysteryMenuText(u32 windowId, const u8 *text, u8 x, u8 y, s32 speed);
 
 // EWRAM vars
 static EWRAM_DATA u8 sUnknown_0203BCF8 = 0; // set but unused
@@ -305,7 +305,7 @@ static void CB2_MysteryEventMenu(void)
     UpdatePaletteFade();
 }
 
-static void PrintMysteryMenuText(u8 windowId, const u8 *text, u8 x, u8 y, s32 speed)
+static void PrintMysteryMenuText(u32 windowId, const u8 *text, u8 x, u8 y, s32 speed)
 {
     u8 textColor[3];
     u8 letterSpacing = 0;

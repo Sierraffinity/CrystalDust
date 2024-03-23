@@ -218,7 +218,7 @@ static void Task_NewGameOakSpeech_WaitToShowBirch(u8);
 static void NewGameOakSpeech_StartFadeInTarget1OutTarget2(u8, u8);
 static void NewGameOakSpeech_StartFadePlatformOut(u8, u8);
 static void Task_NewGameOakSpeech_WaitForTextToStart(u8);
-static void NewGameOakSpeech_ShowDialogueWindow(u8, u8);
+static void NewGameOakSpeech_ShowDialogueWindow(u32, u32);
 static void Task_NewGameOakSpeech_PrintThisEllipsis(u8);
 static void Task_NewGameOakSpeech_CreatePokeBallToReleaseWooper(u8);
 static void Task_NewGameOakSpeech_PrintIsPokemonWaitForAnimation(u8);
@@ -242,7 +242,7 @@ static void Task_NewGameOakSpeech_WaitToShowGenderMenu(u8);
 static void Task_NewGameOakSpeech_ChooseGender(u8);
 static void NewGameOakSpeech_ShowGenderMenu(void);
 static s8 NewGameOakSpeech_ProcessGenderMenuInput(void);
-static void NewGameOakSpeech_ClearGenderWindow(u8, u8);
+static void NewGameOakSpeech_ClearGenderWindow(u32, u32);
 static void Task_NewGameOakSpeech_WhatsYourName(u8);
 static void Task_NewGameOakSpeech_SlideOutOldGenderSprite(u8);
 static void Task_NewGameOakSpeech_SlideInNewGenderSprite(u8);
@@ -2706,7 +2706,7 @@ static void NewGameOakSpeech_ClearGenderWindowTilemap(u8 a, u8 b, u8 c, u8 d, u8
     FillBgTilemapBufferRect(a, 0, b + 0xFF, c + 0xFF, d + 2, e + 2, 2);
 }
 
-static void NewGameOakSpeech_ClearGenderWindow(u8 windowId, u8 copyToVram)
+static void NewGameOakSpeech_ClearGenderWindow(u32 windowId, u32 copyToVram)
 {
     CallWindowFunction(windowId, NewGameOakSpeech_ClearGenderWindowTilemap);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
@@ -2723,7 +2723,7 @@ void CreateYesNoMenuParameterized(u8 x, u8 y, u16 borderTileNum, u16 windowTileN
     CreateYesNoMenu(&sp, 2, 0, 2, borderTileNum, borderPalette, 0);
 }
 
-static void NewGameOakSpeech_ShowDialogueWindow(u8 windowId, u8 copyToVram)
+static void NewGameOakSpeech_ShowDialogueWindow(u32 windowId, u32 copyToVram)
 {
     CallWindowFunction(windowId, NewGameOakSpeech_CreateDialogueWindowBorder);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));

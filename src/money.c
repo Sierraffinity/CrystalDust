@@ -72,7 +72,7 @@ void SubtractMoneyFromVar0x8005(void)
     RemoveMoney(&gSaveBlock1Ptr->money, gSpecialVar_0x8005);
 }
 
-void PrintMoneyAmountInMoneyBox(u8 windowId, int amount, u8 speed)
+void PrintMoneyAmountInMoneyBox(u32 windowId, int amount, u8 speed)
 {
     u8 *txtPtr;
     s32 strLength;
@@ -89,7 +89,7 @@ void PrintMoneyAmountInMoneyBox(u8 windowId, int amount, u8 speed)
     AddTextPrinterParameterized(windowId, 0, gStringVar4, 64 - GetStringWidth(0, gStringVar4, 0), 0xC, speed, NULL);
 }
 
-void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
+void PrintMoneyAmount(u32 windowId, u8 x, u8 y, int amount, u8 speed)
 {
     u8 *txtPtr;
     s32 strLength;
@@ -106,7 +106,7 @@ void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
     AddTextPrinterParameterized(windowId, 0, gStringVar4, x, y, speed, NULL);
 }
 
-void PrintMoneyAmountInMoneyBoxWithBorder(u8 windowId, u16 tileStart, u8 palette, int amount)
+void PrintMoneyAmountInMoneyBoxWithBorder(u32 windowId, u16 tileStart, u8 palette, int amount)
 {
     DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, tileStart, palette);
     AddTextPrinterParameterized(windowId, 2, gText_TrainerCardMoney, 0, 0, 0xFF, 0);

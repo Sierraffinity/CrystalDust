@@ -12,10 +12,10 @@ struct CryScreenWindow
 
 extern u8 gDexCryScreenState;
 
-bool8 LoadCryWaveformWindow(struct CryScreenWindow*, u8);
-void UpdateCryWaveformWindow(u8);
+bool8 LoadCryWaveformWindow(struct CryScreenWindow*, u32);
+void UpdateCryWaveformWindow(u32);
 void CryScreenPlayButton(u16);
-bool8 LoadCryMeter(struct CryScreenWindow*, u8);
+bool8 LoadCryMeter(struct CryScreenWindow*, u32);
 void FreeCryScreen(void);
 
 #endif

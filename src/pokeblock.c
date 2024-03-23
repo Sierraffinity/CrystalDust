@@ -694,7 +694,7 @@ static void HandleInitWindows(void)
     ScheduleBgCopyTilemapToVram(1);
 }
 
-static void PrintOnPokeblockWindow(u8 windowId, const u8 *string, s32 x)
+static void PrintOnPokeblockWindow(u32 windowId, const u8 *string, s32 x)
 {
     AddTextPrinterParameterized4(windowId, 2, x, 1, 0, 0, sTextColor, 0, string);
 }

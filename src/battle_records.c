@@ -28,7 +28,7 @@
 static void Task_CloseTrainerHillRecordsOnButton(u8 taskId);
 static void Task_BeginPaletteFade(u8 taskId);
 static void Task_ExitTrainerHillRecords(u8 taskId);
-static void RemoveTrainerHillRecordsWindow(u8 windowId);
+static void RemoveTrainerHillRecordsWindow(u32 windowId);
 static void CB2_ShowTrainerHillRecords(void);
 
 // EWRAM variables
@@ -381,7 +381,7 @@ static void Task_ExitTrainerHillRecords(u8 taskId)
     }
 }
 
-static void RemoveTrainerHillRecordsWindow(u8 windowId)
+static void RemoveTrainerHillRecordsWindow(u32 windowId)
 {
     FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
     ClearWindowTilemap(windowId);

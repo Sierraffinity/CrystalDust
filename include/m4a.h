@@ -8,7 +8,7 @@ void m4aSoundVSyncOn(void);
 
 void m4aSoundInit(void);
 void m4aSoundMain(void);
-void m4aSongNumStart(u16 n, bool32 gbsEnabled);
+void m4aSongNumStart(u32 n, bool32 gbsEnabled);
 void m4aSongNumStartOrChange(u16 n, bool32 gbsEnabled);
 void m4aSongNumStop(u16 n, bool32 gbsEnabled);
 void m4aMPlayAllStop(void);

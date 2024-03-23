@@ -50,10 +50,10 @@ struct PokedexCryScreen
 static void PlayCryScreenCry(u16);
 static void BufferCryWaveformSegment(void);
 static void DrawWaveformFlatline(void);
-static void AdvancePlayhead(u8);
+static void AdvancePlayhead(u32);
 static void DrawWaveformSegment(u8, u8);
-static void DrawWaveformWindow(u8);
-static void ShiftWaveformOver(u8, s16, bool8);
+static void DrawWaveformWindow(u32);
+static void ShiftWaveformOver(u32, s16, bool8);
 static void SpriteCB_CryMeterNeedle(struct Sprite *);
 static void SetCryMeterNeedleTarget(s8);
 
@@ -223,7 +223,7 @@ static const struct SpritePalette sCryMeterNeedleSpritePalettes[] =
     {}
 };
 
-bool8 LoadCryWaveformWindow(struct CryScreenWindow *window, u8 windowId)
+bool8 LoadCryWaveformWindow(struct CryScreenWindow *window, u32 windowId)
 {
     u32 i;
     u8 finished = FALSE;
@@ -266,7 +266,7 @@ bool8 LoadCryWaveformWindow(struct CryScreenWindow *window, u8 windowId)
     return finished;
 }
 
-void UpdateCryWaveformWindow(u8 windowId)
+void UpdateCryWaveformWindow(u32 windowId)
 {
     u8 waveformIdx;
 
@@ -371,7 +371,7 @@ static void DrawWaveformFlatline(void)
     DrawWaveformSegment(sDexCryScreen->playStartPos * 8 + sDexCryScreen->playhead - 1, 0);
 }
 
-static void AdvancePlayhead(u8 windowId)
+static void AdvancePlayhead(u32 windowId)
 {
     u32 i;
     u16 offset;
@@ -430,7 +430,7 @@ static void DrawWaveformSegment(u8 position, u8 amplitude)
     sDexCryScreen->waveformPreviousY = currentPointY;
 }
 
-static void DrawWaveformWindow(u8 windowId)
+static void DrawWaveformWindow(u32 windowId)
 {
     CopyWindowToVram(windowId, 2);
 }
@@ -438,7 +438,7 @@ static void DrawWaveformWindow(u8 windowId)
 // rsVertical is leftover from a very different version of this function in RS
 // In RS, when TRUE it would use VOFS and when FALSE it would use HOFS (only FALSE was used)
 // Here when TRUE it does nothing
-static void ShiftWaveformOver(u8 windowId, s16 offset, bool8 rsVertical)
+static void ShiftWaveformOver(u32 windowId, s16 offset, bool8 rsVertical)
 {
     if (!rsVertical)
     {
@@ -447,7 +447,7 @@ static void ShiftWaveformOver(u8 windowId, s16 offset, bool8 rsVertical)
     }
 }
 
-bool8 LoadCryMeter(struct CryScreenWindow *window, u8 windowId)
+bool8 LoadCryMeter(struct CryScreenWindow *window, u32 windowId)
 {
     bool8 finished = FALSE;
 

@@ -172,7 +172,7 @@ static void PasswordMenu_Exit(u8 taskId, s32 chosenIndex)
 
 void PrintPointsString(u32 pointAmount)
 {
-    u8 windowId;
+    u32 windowId;
     int width;
 
     ConvertIntToDecimalStringN(gStringVar1, pointAmount, STR_CONV_MODE_RIGHT_ALIGN, 4);

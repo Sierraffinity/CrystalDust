@@ -581,7 +581,7 @@ void PlayBGM(u16 songNum)
     m4aSongNumStart(songNum, FlagGet(FLAG_SYS_GBS_ENABLED));
 }
 
-void PlaySE(u16 songNum)
+void PlaySE(u32 songNum)
 {
     m4aSongNumStart(songNum, FlagGet(FLAG_SYS_GBS_ENABLED));
 }

@@ -93,46 +93,46 @@ const struct TilesPal *GetWindowFrameTilesPal(u8 id)
         return &sWindowFrames[id];
 }
 
-void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
+void LoadMessageBoxGfx(u32 windowId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBox_Gfx, 0x280, destOffset);
     LoadPalette(GetTextWindowPalette(0), palOffset, 0x20);
 }
 
-void LoadSignMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
+void LoadSignMessageBoxGfx(u32 windowId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gSignMessageBox_Gfx, 0x260, destOffset);
     LoadPalette(GetTextWindowPalette(1), palOffset, 0x20);
 }
 
-void LoadThinWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset)
+void LoadThinWindowBorderGfx(u32 windowId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sTextWindowFrameThin_Gfx, 0x120, destOffset);
     LoadPalette(GetTextWindowPalette(3), palOffset, 0x20);
 }
 
-void LoadThinWindowBorderTiles(u8 windowId, u16 destOffset)
+void LoadThinWindowBorderTiles(u32 windowId, u16 destOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sTextWindowFrameThin_Gfx, 0x120, destOffset);
 }
 
-void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset)
+void LoadUserWindowBorderGfx_(u32 windowId, u16 destOffset, u8 palOffset)
 {
     LoadUserWindowBorderGfx(windowId, destOffset, palOffset);
 }
 
-void LoadWindowGfx(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset)
+void LoadWindowGfx(u32 windowId, u8 frameId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sWindowFrames[frameId].tiles, 0x120, destOffset);
     LoadPalette(sWindowFrames[frameId].pal, palOffset, 0x20);
 }
 
-void LoadUserWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset)
+void LoadUserWindowBorderGfx(u32 windowId, u16 destOffset, u8 palOffset)
 {
     LoadWindowGfx(windowId, gSaveBlock2Ptr->optionsWindowFrameType, destOffset, palOffset);
 }
 
-void DrawTextBorderOuter(u8 windowId, u16 tileNum, u8 palNum)
+void DrawTextBorderOuter(u32 windowId, u16 tileNum, u8 palNum)
 {
     u8 bgLayer = GetWindowAttribute(windowId, WINDOW_BG);
     u16 tilemapLeft = GetWindowAttribute(windowId, WINDOW_TILEMAP_LEFT);
@@ -150,7 +150,7 @@ void DrawTextBorderOuter(u8 windowId, u16 tileNum, u8 palNum)
     FillBgTilemapBufferRect(bgLayer, tileNum + 8, tilemapLeft + width,  tilemapTop + height,    1,      1,      palNum);
 }
 
-void DrawTextBorderInner(u8 windowId, u16 tileNum, u8 palNum)
+void DrawTextBorderInner(u32 windowId, u16 tileNum, u8 palNum)
 {
     u8 bgLayer = GetWindowAttribute(windowId, WINDOW_BG);
     u16 tilemapLeft = GetWindowAttribute(windowId, WINDOW_TILEMAP_LEFT);
@@ -168,7 +168,7 @@ void DrawTextBorderInner(u8 windowId, u16 tileNum, u8 palNum)
     FillBgTilemapBufferRect(bgLayer, tileNum + 8, tilemapLeft + width - 1,  tilemapTop + height - 1,    1,          1,          palNum);
 }
 
-void rbox_fill_rectangle(u8 windowId)
+void rbox_fill_rectangle(u32 windowId)
 {
     u8 bgLayer = GetWindowAttribute(windowId, WINDOW_BG);
     u16 tilemapLeft = GetWindowAttribute(windowId, WINDOW_TILEMAP_LEFT);

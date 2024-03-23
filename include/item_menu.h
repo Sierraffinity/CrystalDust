@@ -124,7 +124,7 @@ void CloseItemMessage(u8 taskId);
 
 // bag.c functions
 void LoadBagMenuTextWindows(void);
-void BagMenu_Print(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorIndex);
+void BagMenu_Print(u32 windowId, u8 fontId, const u8 *str, u8 left, u8 top, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorIndex);
 /*void BagDrawDepositItemTextBox(void);*/
 u8 BagMenu_AddWindow(u8 windowType, u8 nItems);
 void BagMenu_RemoveWindow(u8 windowType);
@@ -134,7 +134,7 @@ u8 BagMenu_GetWindowId(u8 windowType);
 void BagMenu_YesNo(u8 taskId, const struct YesNoFuncTable * ptrs);
 void BagMenu_YesNoTopRight(u8 taskId, const struct YesNoFuncTable * ptrs);
 void DisplayCurrentMoneyWindow(void);
-void BagDrawTextBoxOnWindow(u8 windowId);
+void BagDrawTextBoxOnWindow(u32 windowId);
 
 #endif //GUARD_ITEM_MENU_H
 

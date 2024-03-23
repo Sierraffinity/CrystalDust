@@ -99,7 +99,7 @@ static void BlinkTimeColon(void);
 static void CB2_TrainerCard(void);
 static void CloseTrainerCard(u8 task);
 static bool8 PrintAllOnCardFront(void);
-static void DrawTrainerCardWindow(u8);
+static void DrawTrainerCardWindow(u32);
 static void CreateTrainerCardTrainerPic(void);
 static void DrawCardScreenBackground(u16*);
 static void DrawCardFrontOrBack(u16*);
@@ -1619,8 +1619,8 @@ static void PrintBattleTowerStringOnCard(u8 slot)
 static void PrintPokemonIconsOnCard(void)
 {
     u32 i;
-    u8 paletteSlots[PARTY_SIZE] = {5, 6, 7, 8, 9, 10};
-    u8 xOffsets[PARTY_SIZE] = {0, 4, 8, 12, 16, 20};
+    u32 paletteSlots[PARTY_SIZE] = {5, 6, 7, 8, 9, 10};
+    u32 xOffsets[PARTY_SIZE] = {0, 4, 8, 12, 16, 20};
 
     if (sData->cardType == CARD_TYPE_CRYSTALDUST || sData->cardType == CARD_TYPE_FRLG)
     {
@@ -1628,7 +1628,7 @@ static void PrintPokemonIconsOnCard(void)
         {
             if (sData->trainerCard.monSpecies[i])
             {
-                u8 monSpecies = GetMonIconPaletteIndexFromSpecies(sData->trainerCard.monSpecies[i]);
+                u32 monSpecies = GetMonIconPaletteIndexFromSpecies(sData->trainerCard.monSpecies[i]);
                 WriteSequenceToBgTilemapBuffer(3, 16 * i + 224, xOffsets[i] + 3, 15, 4, 4, paletteSlots[monSpecies], 1);
             }
         }
@@ -1688,7 +1688,7 @@ static void LoadStickerGfx(void)
     LoadBgTiles(3, sData->stickerTiles, 1024, 128);
 }
 
-static void DrawTrainerCardWindow(u8 windowId)
+static void DrawTrainerCardWindow(u32 windowId)
 {
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);

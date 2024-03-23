@@ -1225,7 +1225,7 @@ void DrawMainBattleBackground(void)
     }*/
 }
 
-static void DrawBattleActionsTextBorder(u8 windowId, u16 tileNum, u8 palNum)
+static void DrawBattleActionsTextBorder(u32 windowId, u16 tileNum, u8 palNum)
 {
     u8 bgLayer = GetWindowAttribute(windowId, WINDOW_BG);
     u16 width = GetWindowAttribute(windowId, WINDOW_WIDTH) + 1;

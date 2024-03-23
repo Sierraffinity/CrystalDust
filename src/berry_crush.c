@@ -1589,7 +1589,7 @@ static void FramesToMinSec(struct BerryCrushGame_Gfx *gfx, u16 frames)
     gfx->secondsFrac = fractionalFrames / 1000000;
 }
 
-static void PrintTextCentered(u8 windowId, u8 left, u8 colorId, const u8 *string)
+static void PrintTextCentered(u32 windowId, u8 left, u8 colorId, const u8 *string)
 {
     left = (left * 4) - (GetStringWidth(2, string, -1) / 2u);
     AddTextPrinterParameterized3(windowId, 2, left, 0, sTextColorTable[colorId], 0, string);

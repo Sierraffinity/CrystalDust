@@ -494,7 +494,7 @@ void PrintMysteryGiftOrEReaderTopMenu(bool8 mg_or_ereader, bool32 usePickOkCance
     PutWindowTilemap(0);
 }
 
-void MG_DrawTextBorder(u8 windowId)
+void MG_DrawTextBorder(u32 windowId)
 {
     DrawTextBorderOuter(windowId, 0x01, 0xF);
 }

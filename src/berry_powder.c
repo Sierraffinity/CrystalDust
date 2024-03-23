@@ -202,13 +202,13 @@ u32 GetBerryPowder(void)
     return DecryptBerryPowder(powder);
 }
 
-static void PrintBerryPowderAmount(u8 windowId, int amount, u8 x, u8 y, u8 speed)
+static void PrintBerryPowderAmount(u32 windowId, int amount, u8 x, u8 y, u8 speed)
 {
     ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_RIGHT_ALIGN, 5);
     AddTextPrinterParameterized(windowId, 2, gStringVar1, x, y, speed, NULL);
 }
 
-static void DrawPlayerPowderAmount(u8 windowId, u16 baseTileOffset, u8 paletteNum, u32 amount)
+static void DrawPlayerPowderAmount(u32 windowId, u16 baseTileOffset, u8 paletteNum, u32 amount)
 {
     DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, baseTileOffset, paletteNum);
     AddTextPrinterParameterized(windowId, 2, gText_Powder, 0, 1, TEXT_SPEED_FF, NULL);

@@ -24,9 +24,9 @@
 
 // static functions
 static void InitMomBankMenu(u8 taskId);
-static void MomBank_PrintMainWindow(u8 windowId, u32 depositedMoney, u32 heldMoney);
-static void MomBank_PrintTransactionQuantity(u8 windowId, u32 amount, bool32 isDeposit);
-static void MomBank_Print(u8 windowId, u32 depositedMoney, u32 heldMoney);
+static void MomBank_PrintMainWindow(u32 windowId, u32 depositedMoney, u32 heldMoney);
+static void MomBank_PrintTransactionQuantity(u32 windowId, u32 amount, bool32 isDeposit);
+static void MomBank_Print(u32 windowId, u32 depositedMoney, u32 heldMoney);
 static void MomBank_CreateCursor(u8 taskId);
 static void MomBank_ProcessInput(u8 taskId);
 static void MomBank_Exit(u8 taskId);
@@ -169,7 +169,7 @@ static void InitMomBankMenu(u8 taskId)
     gTasks[taskId].func = MomBank_ProcessInput;
 }
 
-static void MomBank_PrintMainWindow(u8 windowId, u32 depositedMoney, u32 heldMoney)
+static void MomBank_PrintMainWindow(u32 windowId, u32 depositedMoney, u32 heldMoney)
 {
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PrintMoneyAmount(windowId, 58, 12, depositedMoney, 0);
@@ -178,14 +178,14 @@ static void MomBank_PrintMainWindow(u8 windowId, u32 depositedMoney, u32 heldMon
     AddTextPrinterParameterized5(windowId, 2, gText_HeldMoney, 0, 25, 0, NULL, 0, 2);
 }
 
-void MomBank_PrintMoneyAmountLeadingZeroes(u8 windowId, u8 x, u8 y, u32 amount, u8 speed)
+void MomBank_PrintMoneyAmountLeadingZeroes(u32 windowId, u8 x, u8 y, u32 amount, u8 speed)
 {
     ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEADING_ZEROS, 6);
     StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
     AddTextPrinterParameterized(windowId, 2, gStringVar4, x, y, speed, NULL);
 }
 
-static void MomBank_PrintTransactionQuantity(u8 windowId, u32 amount, bool32 isDeposit)
+static void MomBank_PrintTransactionQuantity(u32 windowId, u32 amount, bool32 isDeposit)
 {
     u8 colors[] = {0, 2, 3};
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));

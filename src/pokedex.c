@@ -257,8 +257,8 @@ static void PrintMonInfo(u32 num, u32, u32 owned, u32 newEntry);
 static void PrintMonHeight(u16 height, u8 left, u8 top);
 static void PrintMonWeight(u16 weight, u8 left, u8 top);
 static void ResetOtherVideoRegisters(u16);
-static u8 PrintCryScreenSpeciesName(u8, u16, u8, u8);
-static void PrintFootprint(u8 windowId, u16 dexNum);
+static u8 PrintCryScreenSpeciesName(u32, u16, u8, u8);
+static void PrintFootprint(u32 windowId, u16 dexNum);
 static u16 CreateMonSpriteFromNationalDexNumberAutoPaletteSlot(u16 nationalNum, s16 x, s16 y);
 static u16 CreateSizeScreenTrainerPic(u16, s16, s16, s8);
 static u16 GetNextPosition(u8, u16, u16, u16);
@@ -2232,7 +2232,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     }
 }
 
-static void PrintMonDexNumAndName(u8 windowId, u8 fontId, const u8* str, u8 left, u8 top)
+static void PrintMonDexNumAndName(u32 windowId, u8 fontId, const u8* str, u8 left, u8 top)
 {
     u8 color[3];
 
@@ -4273,7 +4273,7 @@ static void ResetOtherVideoRegisters(u16 a)
     }
 }
 
-static void PrintInfoSubMenuText(u8 windowId, const u8 *str, u8 left, u8 top)
+static void PrintInfoSubMenuText(u32 windowId, const u8 *str, u8 left, u8 top)
 {
     u8 color[3];
     color[0] = TEXT_COLOR_TRANSPARENT;
@@ -4283,7 +4283,7 @@ static void PrintInfoSubMenuText(u8 windowId, const u8 *str, u8 left, u8 top)
     AddTextPrinterParameterized4(windowId, 2, left, top, 0, 0, color, -1, str);
 }
 
-static void UnusedPrintNum(u8 windowId, u16 num, u8 left, u8 top)
+static void UnusedPrintNum(u32 windowId, u16 num, u8 left, u8 top)
 {
     u8 str[4];
 
@@ -4294,7 +4294,7 @@ static void UnusedPrintNum(u8 windowId, u16 num, u8 left, u8 top)
     PrintInfoSubMenuText(windowId, str, left, top);
 }
 
-static u8 PrintCryScreenSpeciesName(u8 windowId, u16 num, u8 left, u8 top)
+static u8 PrintCryScreenSpeciesName(u32 windowId, u16 num, u8 left, u8 top)
 {
     u8 str[POKEMON_NAME_LENGTH + 1];
     u32 i;
@@ -4317,7 +4317,7 @@ static u8 PrintCryScreenSpeciesName(u8 windowId, u16 num, u8 left, u8 top)
     return i;
 }
 
-static void UnusedPrintMonName(u8 windowId, const u8* name, u8 left, u8 top)
+static void UnusedPrintMonName(u32 windowId, const u8* name, u8 left, u8 top)
 {
     u8 str[POKEMON_NAME_LENGTH + 1];
     u32 i;
@@ -4337,7 +4337,7 @@ static void UnusedPrintMonName(u8 windowId, const u8* name, u8 left, u8 top)
     PrintInfoSubMenuText(windowId, str, left, top);
 }
 
-static void UnusedPrintDecimalNum(u8 windowId, u16 b, u8 left, u8 top)
+static void UnusedPrintDecimalNum(u32 windowId, u16 b, u8 left, u8 top)
 {
     u8 str[6];
     bool8 outputted = FALSE;
@@ -4374,7 +4374,7 @@ static void UnusedPrintDecimalNum(u8 windowId, u16 b, u8 left, u8 top)
     PrintInfoSubMenuText(windowId, str, left, top);
 }
 
-static void PrintFootprint(u8 windowId, u16 dexNum)
+static void PrintFootprint(u32 windowId, u16 dexNum)
 {
     u8 image[32 * 4];
     const u8 * r12 = gMonFootprintTable[NationalPokedexNumToSpecies(dexNum)];

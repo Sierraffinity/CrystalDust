@@ -8,6 +8,7 @@
 * The GB Sounds table is not entirely filled out yet. Some songs that should have a GBS equivalent are not assigned.
 * Learning a TM cuts off the bag message box when you press yes.
 * Port FRLG Itemfinder field effects. The FRLG Itemfinder does **not** pick up regular items underfoot. In fact, if the player's on top of a hidden item, it'll show the arrows in their facing direction instead of printing any indication that they're right on top of it. Change this to mention that the player is on top of an item like in RSE when porting, since this is stupid.
+* The `B_TRANSITION_WAVE` battle transition is broken and jumbles the transition. The other battle transitions are fine.
 
 ### Johto
 * Azalea Town map name popup instantly dismisses in the outdoor town (Celebi event scripting mistake).

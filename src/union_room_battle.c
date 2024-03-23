@@ -73,7 +73,7 @@ static void CB2_SetUpPartiesAndStartBattle(void)
     SetMainCallback2(CB2_InitBattle);
 }
 
-static void AddTextPrinterForUnionRoomBattle(u8 windowId, const u8 * str, u8 x, u8 y, s32 speed)
+static void AddTextPrinterForUnionRoomBattle(u32 windowId, const u8 * str, u8 x, u8 y, s32 speed)
 {
     s32 letterSpacing = 0;
     s32 lineSpacing = 1;

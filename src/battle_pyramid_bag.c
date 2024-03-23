@@ -88,15 +88,15 @@ static void CopyBagItemName(u8 *, u16);
 static void FreeItemIconSpriteByAltId(u8);
 static void PrintItemDescription(s32);
 static void PrintSelectorArrowAtPos(u8, u8);
-static void PrintOnWindow_Font1(u8, const u8 *, u8, u8, u8, u8, u8, u8);
-static void PrintOnWindow_Font7(u8, const u8 *, u8, u8, u8, u8, u8, u8);
+static void PrintOnWindow_Font1(u32, const u8 *, u8, u8, u8, u8, u8, u8);
+static void PrintOnWindow_Font7(u32, const u8 *, u8, u8, u8, u8, u8, u8);
 static u8 OpenMenuActionWindowById(u8);
 static void CloseMenuActionWindowById(u8);
-static void PrintMenuActionText_SingleRow(u8);
-static void PrintMenuActionText_MultiRow(u8, u8, u8);
+static void PrintMenuActionText_SingleRow(u32);
+static void PrintMenuActionText_MultiRow(u32, u8, u8);
 static bool8 IsValidMenuAction(s8);
 static void CreatePyramidBagYesNo(u8, const struct YesNoFuncTable *);
-static void DrawTossNumberWindow(u8);
+static void DrawTossNumberWindow(u32);
 static void UpdateSwapLinePos(u8);
 static void SetSwapLineInvisibility(bool8);
 static void SpriteCB_BagWaitForShake(struct Sprite *);
@@ -106,7 +106,7 @@ static void BagAction_Give(u8);
 static void BagAction_Cancel(u8);
 static void BagAction_UseInBattle(u8);
 static void BagCursorMoved(s32, bool8, struct ListMenu *);
-static void PrintItemQuantity(u8 windowId, u16 index, s32 itemIndex, u8 y);
+static void PrintItemQuantity(u32 windowId, u16 index, s32 itemIndex, u8 y);
 static void TossItem(u8);
 static void DontTossItem(u8);
 
@@ -651,7 +651,7 @@ static void BagCursorMoved(s32 itemIndex, bool8 onInit, struct ListMenu *list)
     }
 }
 
-static void PrintItemQuantity(u8 windowId, u16 index, s32 itemIndex, u8 y)
+static void PrintItemQuantity(u32 windowId, u16 index, s32 itemIndex, u8 y)
 {
     s32 xAlign;
     if (itemIndex == LIST_CANCEL)
@@ -976,13 +976,13 @@ static void OpenContextMenu(u8 taskId)
         gTasks[taskId].func = HandleMenuActionInput_SingleRow;
 }
 
-static void PrintMenuActionText_SingleRow(u8 windowId)
+static void PrintMenuActionText_SingleRow(u32 windowId)
 {
     AddItemMenuActionTextPrinters(windowId, 7, 8, 1, 0, 0x10, gPyramidBagMenu->menuActionsCount, sMenuActions, gPyramidBagMenu->menuActionIds);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 1, 16, gPyramidBagMenu->menuActionsCount, 0);
 }
 
-static void PrintMenuActionText_MultiRow(u8 windowId, u8 horizontalCount, u8 verticalCount)
+static void PrintMenuActionText_MultiRow(u32 windowId, u8 horizontalCount, u8 verticalCount)
 {
     PrintMenuActionGrid(windowId, 7, 8, 1, 56, horizontalCount, verticalCount, sMenuActions, gPyramidBagMenu->menuActionIds);
     InitMenuActionGrid(windowId, 56, horizontalCount, verticalCount, 0);
@@ -1454,17 +1454,17 @@ static void InitPyramidBagWindows(void)
     ScheduleBgCopyTilemapToVram(1);
 }
 
-static void PrintOnWindow_Font1(u8 windowId, const u8 *src, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorTableId)
+static void PrintOnWindow_Font1(u32 windowId, const u8 *src, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorTableId)
 {
     AddTextPrinterParameterized4(windowId, 2, x, y, letterSpacing, lineSpacing, sTextColors[colorTableId], speed, src);
 }
 
-static void PrintOnWindow_Font7(u8 windowId, const u8 *src, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorTableId)
+static void PrintOnWindow_Font7(u32 windowId, const u8 *src, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorTableId)
 {
     AddTextPrinterParameterized4(windowId, 7, x, y, letterSpacing, lineSpacing, sTextColors[colorTableId], speed, src);
 }
 
-static void DrawTossNumberWindow(u8 windowId)
+static void DrawTossNumberWindow(u32 windowId)
 {
     DrawStdFrameWithCustomTileAndPalette(windowId, 0, 1, 0xE);
     ScheduleBgCopyTilemapToVram(1);

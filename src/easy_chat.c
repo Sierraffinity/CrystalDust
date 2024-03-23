@@ -200,7 +200,7 @@ static void PrintWordSelectNextRowUp(void);
 static int GetLowerWindowScrollOffset(void);
 static void PrintWordSelectRowsPageDown(void);
 static void PrintWordSelectRowsPageUp(void);
-static void PrintEasyChatTextWithColors(u8, u8, const u8 *, u8, u8, u8, u8, u8, u8);
+static void PrintEasyChatTextWithColors(u32, u8, const u8 *, u8, u8, u8, u8, u8, u8);
 static void ResetLowerWindowScroll(void);
 static void PrintKeyboardGroupNames(void);
 static void PrintKeyboardAlphabet(void);
@@ -3967,12 +3967,12 @@ static void PrintTitle(void)
     CopyWindowToVram(0, 3);
 }
 
-static void PrintEasyChatText(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16))
+static void PrintEasyChatText(u32 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16))
 {
     AddTextPrinterParameterized(windowId, fontId, str, x, y, speed, callback);
 }
 
-static void PrintEasyChatTextWithColors(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top, u8 speed, u8 bg, u8 fg, u8 shadow)
+static void PrintEasyChatTextWithColors(u32 windowId, u8 fontId, const u8 *str, u8 left, u8 top, u8 speed, u8 bg, u8 fg, u8 shadow)
 {
     u8 color[3];
     color[0] = bg;

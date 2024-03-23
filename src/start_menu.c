@@ -240,7 +240,7 @@ static const struct WindowTemplate sSaveInfoWindowTemplate = {
 
 // Local functions
 static void BuildStartMenuActions(void);
-static void AddStartMenuAction(u8 action);
+static void AddStartMenuAction(u32 action);
 static void BuildNormalStartMenu(void);
 static void BuildSafariZoneStartMenu(void);
 static void BuildBugCatchingContestStartMenu(void);
@@ -318,7 +318,7 @@ static void BuildStartMenuActions(void)
     }
 }
 
-static void AddStartMenuAction(u8 action)
+static void AddStartMenuAction(u32 action)
 {
     AppendToList(sCurrentStartMenuActions, &sNumStartMenuActions, action);
 }
@@ -1475,7 +1475,7 @@ static void HideStartMenuWindow(void)
     ScriptContext2_Disable();
 }
 
-void AppendToList(u8 *list, u8 *pos, u8 newEntry)
+void AppendToList(u8 *list, u8 *pos, u32 newEntry)
 {
     list[*pos] = newEntry;
     (*pos)++;

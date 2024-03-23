@@ -461,7 +461,7 @@ static int GetMaxWidthInDebugMenuTable(const struct DebugMenuAction *str, int ar
     return ConvertPixelWidthToTileWidth(var);
 }
 
-static void MultichoiceList_PrintDebugItems(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 itemCount, const struct DebugMenuAction *strs, u8 letterSpacing, u8 lineSpacing)
+static void MultichoiceList_PrintDebugItems(u32 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 itemCount, const struct DebugMenuAction *strs, u8 letterSpacing, u8 lineSpacing)
 {
     u32 i;
 
@@ -560,7 +560,7 @@ static void DebugMenu_Exit(u8 taskId)
     DestroyTask(taskId);
 }
 
-static void DebugMenu_SetFlag_PrintStatus(u8 windowId, u16 flagId)
+static void DebugMenu_SetFlag_PrintStatus(u32 windowId, u16 flagId)
 {
     FillWindowPixelBuffer(windowId, 0x11);
     ConvertIntToHexStringN(gStringVar1, flagId, STR_CONV_MODE_LEADING_ZEROS, 3);
@@ -662,7 +662,7 @@ static void DebugMenu_SetFlag_ProcessInput(u8 taskId)
 #undef tFlagNum
 #undef tWhichDigit
 
-static void DebugMenu_SetVar_PrintStatus(u8 windowId, u16 varId, u16 varVal)
+static void DebugMenu_SetVar_PrintStatus(u32 windowId, u16 varId, u16 varVal)
 {
     FillWindowPixelBuffer(windowId, 0x11);
     ConvertIntToHexStringN(gStringVar1, varId, STR_CONV_MODE_LEADING_ZEROS, 4);
@@ -818,7 +818,7 @@ static void DebugMenu_SetVar_ProcessInputVal(u8 taskId)
 #undef tVarVal
 #undef tWhichDigit
 
-static void DebugMenu_AddItem_PrintStatus(u8 windowId, u16 itemId, u16 itemCount)
+static void DebugMenu_AddItem_PrintStatus(u32 windowId, u16 itemId, u16 itemCount)
 {
     FillWindowPixelBuffer(windowId, 0x11);
     ConvertIntToDecimalStringN(gStringVar1, itemId, STR_CONV_MODE_LEADING_ZEROS, 4);
@@ -1001,7 +1001,7 @@ static void DebugMenu_100Or0CatchRate(u8 taskId)
     gCatchDebugStatus = (gCatchDebugStatus + 1) % 3;
 }
 
-static void DebugMenu_BattleTerrain_PrintStatus(u8 windowId, u16 terrain)
+static void DebugMenu_BattleTerrain_PrintStatus(u32 windowId, u16 terrain)
 {
     FillWindowPixelBuffer(windowId, 0x11);
     if (terrain > 0)
@@ -1168,7 +1168,7 @@ static void DebugMenu_BecomeChampion(u8 taskId)
     SetChampionSaveWarp();
 }
 
-static void DebugMenu_LottoNumber_PrintStatus(u8 windowId, u32 lottoNum)
+static void DebugMenu_LottoNumber_PrintStatus(u32 windowId, u32 lottoNum)
 {
     FillWindowPixelBuffer(windowId, 0x11);
     ConvertIntToDecimalStringN(gStringVar1, lottoNum, STR_CONV_MODE_LEADING_ZEROS, 5);
@@ -1284,7 +1284,7 @@ static void DebugMenu_ToggleOverride(u8 taskId)
     ProcessImmediateTimeEvents();
 }
 
-static void DebugMenu_TimeCycle_PrintStatus(u8 windowId, s16 timePeriod)
+static void DebugMenu_TimeCycle_PrintStatus(u32 windowId, s16 timePeriod)
 {
     FillWindowPixelBuffer(windowId, 0x11);
     WriteTimeString(gStringVar1,
@@ -1374,7 +1374,7 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
 
 #undef tDeltaIndex
 
-static void DebugMenu_CraftDNTint_PrintStatus(u8 windowId, u16 tintR, u16 tintG, u16 tintB)
+static void DebugMenu_CraftDNTint_PrintStatus(u32 windowId, u16 tintR, u16 tintG, u16 tintB)
 {
     FillWindowPixelBuffer(windowId, 0x11);
     ConvertQ88ToDecimalStringN(gStringVar1, tintR, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -1471,7 +1471,7 @@ static void DebugMenu_Pokedex_ToggleNationalDex(u8 taskId)
         EnableNationalPokedex();
 }
 
-static void DebugMenu_Pokedex_ProfOakRating_PrintStatus(u8 windowId, u16 flagId)
+static void DebugMenu_Pokedex_ProfOakRating_PrintStatus(u32 windowId, u16 flagId)
 {
     FillWindowPixelBuffer(windowId, 0x11);
     ConvertUIntToDecimalStringN(gStringVar1, flagId, STR_CONV_MODE_LEADING_ZEROS, 3);
@@ -1617,7 +1617,7 @@ static void DebugMenu_FlyMenu(u8 taskId)
     SetMainCallback2(CB2_OpenFlyMap);
 }
 
-static void DebugMenu_SetRespawn_PrintStatus(u8 windowId, u8 respawnPoint)
+static void DebugMenu_SetRespawn_PrintStatus(u32 windowId, u8 respawnPoint)
 {
     FillWindowPixelBuffer(windowId, 0x11);
     ConvertIntToDecimalStringN(gStringVar1, respawnPoint, STR_CONV_MODE_LEFT_ALIGN, 2);
@@ -1682,7 +1682,7 @@ static void DebugMenu_SetRespawn_ProcessInput(u8 taskId)
     }
 }
 
-static void DebugMenu_TestFanfares_PrintStatus(u8 windowId, u8 fanfareNum)
+static void DebugMenu_TestFanfares_PrintStatus(u32 windowId, u8 fanfareNum)
 {
     FillWindowPixelBuffer(windowId, 0x11);
     ConvertIntToDecimalStringN(gStringVar1, fanfareNum, STR_CONV_MODE_LEFT_ALIGN, 2);

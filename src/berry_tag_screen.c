@@ -374,7 +374,7 @@ static void HandleInitWindows(void)
     ScheduleBgCopyTilemapToVram(1);
 }
 
-static void PrintTextInBerryTagScreen(u8 windowId, const u8 *text, u8 x, u8 y, s32 speed, u8 colorStructId)
+static void PrintTextInBerryTagScreen(u32 windowId, const u8 *text, u8 x, u8 y, s32 speed, u8 colorStructId)
 {
     AddTextPrinterParameterized4(windowId, 2, x, y, 0, 0, sTextColors[colorStructId], speed, text);
 }

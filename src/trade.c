@@ -1935,7 +1935,7 @@ static void BufferTradeMonMoves(u8 *str, u8 whichParty, u8 partyIdx)
     }
 }
 
-static void PrintMonNicknameForTradeMenu(u8 whichParty, u8 windowId, u8 *nickname)
+static void PrintMonNicknameForTradeMenu(u8 whichParty, u32 windowId, u8 *nickname)
 {
     u8 xPos;
     windowId += (whichParty * PARTY_SIZE) + 2;
@@ -5043,7 +5043,7 @@ void InitTradeBg(void)
     InitTradeBgInternal();
 }
 
-void DrawTextOnTradeWindow(u8 windowId, const u8 *str, u8 speed)
+void DrawTextOnTradeWindow(u32 windowId, const u8 *str, u8 speed)
 {
     FillWindowPixelBuffer(windowId, PIXEL_FILL(15));
     sTradeData->textColors[0] = TEXT_DYNAMIC_COLOR_6;

@@ -174,7 +174,7 @@ static void InitPocketScrollPositions(void);
 static u8 CreateBagInputHandlerTask(u8);
 static void DrawItemListBgRow(u8);
 static void BagMenu_MoveCursorCallback(s32 itemIndex, bool8 onInit, struct ListMenu *unused);
-void BagMenu_ItemPrintCallback(u8 windowId, u16 index, s32 itemIndex, u8 a);
+void BagMenu_ItemPrintCallback(u32 windowId, u16 index, s32 itemIndex, u8 a);
 static void ItemMenu_UseOutOfBattle(u8 taskId);
 static void ItemMenu_Toss(u8 taskId);
 static void ItemMenu_Register(u8 taskId);
@@ -799,7 +799,7 @@ static void BagMenu_MoveCursorCallback(s32 itemIndex, bool8 onInit, struct ListM
     }
 }
 
-void BagMenu_ItemPrintCallback(u8 windowId, u16 index, s32 itemIndex, u8 y)
+void BagMenu_ItemPrintCallback(u32 windowId, u16 index, s32 itemIndex, u8 y)
 {
     u16 itemId, itemQuantity;
 
@@ -1435,7 +1435,7 @@ static void InitQuantityToTossOrDeposit(u16 cursorPos, const u8 *str)
 
 static void UpdateQuantityToTossOrDeposit(s16 value, u8 ndigits)
 {
-    u8 windowId = BagMenu_GetWindowId(ITEMWIN_QUANTITY);
+    u32 windowId = BagMenu_GetWindowId(ITEMWIN_QUANTITY);
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     ConvertIntToDecimalStringN(gStringVar1, value, STR_CONV_MODE_LEADING_ZEROS, ndigits);
@@ -1451,7 +1451,7 @@ static void DrawItemListBgRow(u8 frame)
 
 static void OpenContextMenu(u8 taskId)
 {
-    u8 windowId;
+    u32 windowId;
 
     switch (gBagPosition.location)
     {
@@ -1949,7 +1949,7 @@ static void CancelSell(u8 taskId)
 static void InitSellHowManyInput(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
-    u8 windowId = BagMenu_AddWindow(ITEMWIN_QUANTITY, 1);
+    u32 windowId = BagMenu_AddWindow(ITEMWIN_QUANTITY, 1);
 
     PrintItemSoldAmount(windowId, 1, (ItemId_GetPrice(gSpecialVar_ItemId) / 2) * tItemCount);
     DisplayCurrentMoneyWindow();
@@ -2465,7 +2465,7 @@ void LoadBagMenuTextWindows(void)
     memset(gBagMenu->windowIds, 0xFF, sizeof(gBagMenu->windowIds));
 }
 
-void BagMenu_Print(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorIndex)
+void BagMenu_Print(u32 windowId, u8 fontId, const u8 *str, u8 left, u8 top, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorIndex)
 {
     AddTextPrinterParameterized4(windowId, fontId, left, top, letterSpacing, lineSpacing, sFontColorTable[colorIndex], speed, str);
 }
@@ -2546,7 +2546,7 @@ void DisplayCurrentMoneyWindow(void)
     //AddMoneyLabelObject(19, 11);
 }
 
-void BagDrawTextBoxOnWindow(u8 windowId)
+void BagDrawTextBoxOnWindow(u32 windowId)
 {
     DrawTextBorderOuter(windowId, 0x64, 0xE);
 }

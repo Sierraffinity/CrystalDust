@@ -44,11 +44,11 @@ struct ConditionGraph
 };
 
 bool8 MailboxMenu_Alloc(u8 count);
-u8 MailboxMenu_AddWindow(u8 windowIdx);
+u8 MailboxMenu_AddWindow(u32 windowIdx);
 u8 MailboxMenu_CreateList(struct PlayerPCItemPageStruct *page);
 void MailboxMenu_AddScrollArrows(struct PlayerPCItemPageStruct *page);
 void MailboxMenu_Free(void);
-void MailboxMenu_RemoveWindow(u8 windowIdx);
+void MailboxMenu_RemoveWindow(u32 windowIdx);
 void InitConditionGraphData(struct ConditionGraph *graph);
 void sub_81D2108(struct ConditionGraph *graph);
 void SetConditionGraphIOWindows(u8 bg);

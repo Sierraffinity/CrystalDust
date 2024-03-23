@@ -190,7 +190,7 @@ static struct WirelessLink_Group *sGroup;
 static struct WirelessLink_URoom *sURoom;
 
 // this file's functions
-static void UR_AddTextPrinterParameterized(u8, u8, const u8 *, u8, u8, u8);
+static void UR_AddTextPrinterParameterized(u32, u8, const u8 *, u8, u8, u8);
 static u16 ReadAsU16(const u8 *);
 static void Task_TryBecomeLinkLeader(u8);
 static void Task_TryJoinLinkGroup(u8);
@@ -211,14 +211,14 @@ static void IntlConvPartnerUname7(u8 *, struct UnkStruct_x20 *);
 static void Leader_DestroyResources(struct WirelessLink_Leader *);
 static void CreateTask_RunScriptAndFadeToActivity(void);
 static u8 LeaderUpdateGroupMembership(struct UnkStruct_Main0 *);
-static void PrintGroupMemberCandidateOnWindowWithColor(u8, u8, u8, struct UnkStruct_x20 *, u8, u8 );
+static void PrintGroupMemberCandidateOnWindowWithColor(u32, u8, u8, struct UnkStruct_x20 *, u8, u8 );
 static u32 Findx20Inx1CArray(struct UnkStruct_x20 *, struct UnkStruct_x1C *);
 static u8 Appendx1Ctox20(struct UnkStruct_x20 *, struct UnkStruct_x1C *, u8);
 static u8 GetNewLeaderCandidate(void);
 static u32 IsTryingToTradeAcrossVersionTooSoon(struct WirelessLink_Group *, s32);
 static void AskToJoinRfuGroup(struct WirelessLink_Group *, s32);
 static void JoinGroup_EnableScriptContexts(void);
-static void PrintUnionRoomGroupOnWindow(u8, u8, u8, struct UnkStruct_x20 *, u8, u8);
+static void PrintUnionRoomGroupOnWindow(u32, u8, u8, struct UnkStruct_x20 *, u8, u8);
 static bool32 AreUnionRoomPlayerGnamesDifferent(struct WirelessGnameUnamePair *, struct WirelessGnameUnamePair *);
 static u32 GetPartyPositionOfRegisteredMon(struct UnionRoomTrade *, u8);
 static void ResetUnionRoomTrade(struct UnionRoomTrade *);
@@ -253,15 +253,15 @@ static bool32 UR_PrintFieldMessage(const u8 *);
 static s32 GetChatLeaderActionRequestMessage(u8 *, u32, u16 *, struct WirelessLink_URoom *);
 static void Task_InitUnionRoom(u8 taskId);
 static bool8 AreGnameUnameDifferent(struct WirelessGnameUnamePair*, const struct WirelessGnameUnamePair*);
-static void ItemPrintFunc_PossibleGroupMembers(u8, u16, s32, u8);
-static void ListMenuItemPrintFunc_UnionRoomGroups(u8, u16, s32, u8);
-static void TradeBoardListMenuItemPrintFunc(u8, u16, s32, u8);
-static void nullsub_14(u8, u16, s32, u8);
+static void ItemPrintFunc_PossibleGroupMembers(u32, u16, s32, u8);
+static void ListMenuItemPrintFunc_UnionRoomGroups(u32, u16, s32, u8);
+static void TradeBoardListMenuItemPrintFunc(u32, u16, s32, u8);
+static void nullsub_14(u32, u16, s32, u8);
 
 #include "data/union_room.h"
 
 // code
-static void PrintNumPlayersWaitingForMsg(u8 windowId, u8 capacityCode, u8 stringId)
+static void PrintNumPlayersWaitingForMsg(u32 windowId, u8 capacityCode, u8 stringId)
 {
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     switch (capacityCode << 8)
@@ -286,7 +286,7 @@ static void PrintNumPlayersWaitingForMsg(u8 windowId, u8 capacityCode, u8 string
     CopyWindowToVram(windowId, 2);
 }
 
-static void PrintPlayerNameAndIdOnWindow(u8 windowId)
+static void PrintPlayerNameAndIdOnWindow(u32 windowId)
 {
     u8 text[30];
     u8 *txtPtr;
@@ -831,7 +831,7 @@ static bool8 Leader_SetStateIfMemberListChanged(struct WirelessLink_Leader *data
     return FALSE;
 }
 
-static void ItemPrintFunc_PossibleGroupMembers(u8 windowId, u16 index, s32 id, u8 y)
+static void ItemPrintFunc_PossibleGroupMembers(u32 windowId, u16 index, s32 id, u8 y)
 {
     struct WirelessLink_Leader *data = sWirelessLinkMain.leader;
     u8 colorIdx = UR_COLOR_DKE_WHT_LTE;
@@ -1360,7 +1360,7 @@ static u8 URoomGroupListGetTextColor(struct WirelessLink_Group *data, u32 id)
     return UR_COLOR_DKE_WHT_LTE;
 }
 
-static void ListMenuItemPrintFunc_UnionRoomGroups(u8 windowId, u16 index, s32 id, u8 y)
+static void ListMenuItemPrintFunc_UnionRoomGroups(u32 windowId, u16 index, s32 id, u8 y)
 {
     struct WirelessLink_Group *data = sWirelessLinkMain.group;
     u8 colorId = URoomGroupListGetTextColor(data, id);
@@ -3622,7 +3622,7 @@ static s8 UnionRoomHandleYesNo(u8 *state, bool32 noDraw)
 
 static u8 CreateTradeBoardWindow(const struct WindowTemplate * template)
 {
-    u8 windowId = AddWindow(template);
+    u32 windowId = AddWindow(template);
     DrawStdWindowFrame(windowId, FALSE);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(15));
     UR_AddTextPrinterParameterized(windowId, 2, sText_NameWantedOfferLv, 8, 1, 6);
@@ -3631,7 +3631,7 @@ static u8 CreateTradeBoardWindow(const struct WindowTemplate * template)
     return windowId;
 }
 
-static void DeleteTradeBoardWindow(u8 windowId)
+static void DeleteTradeBoardWindow(u32 windowId)
 {
     RemoveWindow(windowId);
 }
@@ -3752,7 +3752,7 @@ static void JoinGroup_EnableScriptContexts(void)
     EnableBothScriptContexts();
 }
 
-static void UR_AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 colorIdx)
+static void UR_AddTextPrinterParameterized(u32 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 colorIdx)
 {
     struct TextPrinterTemplate printerTemplate;
 
@@ -3945,7 +3945,7 @@ static u8 Appendx1Ctox20(struct UnkStruct_x20 *arg0, struct UnkStruct_x1C *arg1,
     return 0xFF;
 }
 
-static void PrintUnionRoomGroupOnWindow(u8 windowId, u8 x, u8 y, struct UnkStruct_x20 *group, u8 colorIdx, u8 id)
+static void PrintUnionRoomGroupOnWindow(u32 windowId, u8 x, u8 y, struct UnkStruct_x20 *group, u8 colorIdx, u8 id)
 {
     u8 activity;
     u8 trainerId[6];
@@ -3967,7 +3967,7 @@ static void PrintUnionRoomGroupOnWindow(u8 windowId, u8 x, u8 y, struct UnkStruc
     }
 }
 
-static void PrintGroupMemberCandidateOnWindowWithColor(u8 windowId, u8 x, u8 y, struct UnkStruct_x20 *group, u8 colorIdx, u8 id)
+static void PrintGroupMemberCandidateOnWindowWithColor(u32 windowId, u8 x, u8 y, struct UnkStruct_x20 *group, u8 colorIdx, u8 id)
 {
     u8 trainerId[6];
 
@@ -4073,11 +4073,11 @@ static s32 UnionRoomGetPlayerInteractionResponse(struct UnkStruct_Main0 *main0, 
     }
 }
 
-void nullsub_14(u8 windowId, u16 index, s32 itemId, u8 y)
+void nullsub_14(u32 windowId, u16 index, s32 itemId, u8 y)
 {
 }
 
-static void TradeBoardPrintItemInfo(u8 windowId, u8 y, struct GFtgtGname * gname, const u8 * uname, u8 colorIdx)
+static void TradeBoardPrintItemInfo(u32 windowId, u8 y, struct GFtgtGname * gname, const u8 * uname, u8 colorIdx)
 {
     u8 levelStr[4];
     u16 species = gname->species;
@@ -4098,7 +4098,7 @@ static void TradeBoardPrintItemInfo(u8 windowId, u8 y, struct GFtgtGname * gname
     }
 }
 
-static void TradeBoardListMenuItemPrintFunc(u8 windowId, u16 index, s32 itemId, u8 y)
+static void TradeBoardListMenuItemPrintFunc(u32 windowId, u16 index, s32 itemId, u8 y)
 {
     struct WirelessLink_Leader *data = sWirelessLinkMain.leader;
     struct GFtgtGname *rfu;

@@ -63,7 +63,7 @@ static bool8 ItemPc_LoadGraphics(void);
 static bool8 ItemPc_AllocateResourcesForListMenu(void);
 static void ItemPc_BuildListMenuTemplate(void);
 static void ItemPc_MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMenu * list);
-static void ItemPc_ItemPrintFunc(u8 windowId, u16 index, s32 itemId, u8 y);
+static void ItemPc_ItemPrintFunc(u32 windowId, u16 index, s32 itemId, u8 y);
 static void ItemPc_PrintOrRemoveCursorAt(u8 y, u8 state);
 static void ItemPc_PrintWithdrawItem(void);
 static void ItemPc_PlaceTopMenuScrollIndicatorArrows(void);
@@ -91,8 +91,8 @@ static void Task_ItemPcGive(u8 taskId);
 static void Task_ItemPcWaitButtonAndExitSubmenu(u8 taskId);
 static void Task_ItemPcCancel(u8 taskId);
 static void ItemPc_InitWindows(void);
-static void ItemPc_AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 * str, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorIdx);
-static void ItemPc_SetBorderStyleOnWindow(u8 windowId);
+static void ItemPc_AddTextPrinterParameterized(u32 windowId, u8 fontId, const u8 * str, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorIdx);
+static void ItemPc_SetBorderStyleOnWindow(u32 windowId);
 static u8 ItemPc_GetOrCreateSubwindow(u8 idx);
 static void ItemPc_DestroySubwindow(u8 idx);
 static void ItemPc_PrintOnWindow5WithContinueTask(u8 taskId, const u8 * str, TaskFunc taskFunc);
@@ -529,7 +529,7 @@ static void ItemPc_MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMenu *
     }
 }
 
-static void ItemPc_ItemPrintFunc(u8 windowId, u16 index, s32 itemId, u8 y)
+static void ItemPc_ItemPrintFunc(u32 windowId, u16 index, s32 itemId, u8 y)
 {
     if (sStateDataPtr->moveModeOrigPos != 0xFF)
     {
@@ -826,7 +826,7 @@ static void ItemPc_MoveItemModeCancel(u8 taskId, u32 pos)
 static void Task_ItemPcSubmenuInit(u8 taskId)
 {
     s16 * data = gTasks[taskId].data;
-    u8 windowId;
+    u32 windowId;
 
     ItemPc_SetBorderStyleOnWindow(4);
     windowId = ItemPc_GetOrCreateSubwindow(0);
@@ -883,7 +883,7 @@ static void ItemPc_DoWithdraw(u8 taskId)
 {
     s16 * data = gTasks[taskId].data;
     u16 itemId = ItemPc_GetItemIdBySlotId(data[1]);
-    u8 windowId;
+    u32 windowId;
 
     if (AddBagItem(itemId, data[8]) == TRUE)
     {
@@ -1068,7 +1068,7 @@ static void ItemPc_InitWindows(void)
         sSubmenuWindowIds[i] = 0xFF;
 }
 
-static void unused_ItemPc_AddTextPrinterParameterized(u8 windowId, const u8 * string, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed)
+static void unused_ItemPc_AddTextPrinterParameterized(u32 windowId, const u8 * string, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed)
 {
     struct TextPrinterTemplate template;
 
@@ -1088,12 +1088,12 @@ static void unused_ItemPc_AddTextPrinterParameterized(u8 windowId, const u8 * st
     AddTextPrinter(&template, speed, NULL);
 }
 
-static void ItemPc_AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 * str, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorIdx)
+static void ItemPc_AddTextPrinterParameterized(u32 windowId, u8 fontId, const u8 * str, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorIdx)
 {
     AddTextPrinterParameterized4(windowId, fontId, x, y, letterSpacing, lineSpacing, sTextColors[colorIdx], speed, str);
 }
 
-static void ItemPc_SetBorderStyleOnWindow(u8 windowId)
+static void ItemPc_SetBorderStyleOnWindow(u32 windowId)
 {
     DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x3C0, 0x0E);
 }

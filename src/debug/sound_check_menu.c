@@ -152,8 +152,8 @@ static void Task_HandleDrawingSoundCheckMenuText(u8);
 static void Task_ProcessSoundCheckMenuInputAndRedraw(u8);
 static void Task_ExitToTitleScreen(u8);
 static void HighlightSelectedWindow(u8);
-static void PrintSoundNumber(u16, u8);
-static void PrintPaddedString(const u8 *const, u8);
+static void PrintSoundNumber(u16, u32);
+static void PrintPaddedString(const u8 *const, u32);
 static void Task_DrawSubmenu(u8);
 static void Task_ProcessDriverTestInput(u8);
 static void AdjustSelectedDriverParam(s8);
@@ -166,8 +166,8 @@ static void PrintPanTestMenuText(void);
 static void InitGpuRegs(void);
 static void ClearTasksAndGraphicalStructs(void);
 static void SetupDispcnt(void);
-static void DestroyWindow(u8 windowId);
-static void PutWindowTilemapAndCopyWindowToVram(u8 windowId);
+static void DestroyWindow(u32 windowId);
+static void PutWindowTilemapAndCopyWindowToVram(u32 windowId);
 
 static void CB2_SoundCheckMenu(void)
 {
@@ -440,7 +440,7 @@ static void Task_ProcessSoundCheckMenuInputAndRedraw(u8 taskId) // sub_080E8878
 
 static void Task_ExitToTitleScreen(u8 taskId) // sub_080E88A8
 {
-    u8 windowId;
+    u32 windowId;
 
     if (!gPaletteFade.active)
     {
@@ -468,7 +468,7 @@ static void HighlightSelectedWindow(u8 windowType) // sub_080E88E8
     }
 }
 
-static void PrintSoundNumber(u16 soundIndex, u8 windowId) // sub_080E8928
+static void PrintSoundNumber(u16 soundIndex, u32 windowId) // sub_080E8928
 {
     ConvertIntToDecimalStringN(gStringVar1, soundIndex, STR_CONV_MODE_RIGHT_ALIGN, 3);
     
@@ -479,7 +479,7 @@ static void PrintSoundNumber(u16 soundIndex, u8 windowId) // sub_080E8928
     PutWindowTilemapAndCopyWindowToVram(windowId);
 }
 
-static void PrintPaddedString(const u8 *const string, u8 windowId) // sub_080E8978
+static void PrintPaddedString(const u8 *const string, u32 windowId) // sub_080E8978
 {
     u32 i;
     u8 str[32];
@@ -498,7 +498,7 @@ static void PrintPaddedString(const u8 *const string, u8 windowId) // sub_080E89
 
 static void Task_DrawSubmenu(u8 taskId) // sub_080E89EC
 {
-    u8 windowId;
+    u32 windowId;
 
     switch (gTasks[taskId].tState)
     {
@@ -1012,13 +1012,13 @@ static void SetupDispcnt(void) // sub_080E96C8
                                   DISPCNT_WIN1_ON);
 }
 
-static void PutWindowTilemapAndCopyWindowToVram(u8 windowId) // sub_080E9734
+static void PutWindowTilemapAndCopyWindowToVram(u32 windowId) // sub_080E9734
 {
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
 }
 
-static void DestroyWindow(u8 windowId) // sub_080E9750
+static void DestroyWindow(u32 windowId) // sub_080E9750
 {
     FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
     ClearWindowTilemap(windowId);
