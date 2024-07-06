@@ -701,11 +701,11 @@ static void LoadWavePattern(struct GBSTrack *track, int patternID)
         *length = 0x3F;
         *control = 0x40; // Stop channel and choose other wave bank so we can write into the first one
 
-        if (patternID < ARRAY_COUNT(sWaveTrackPatterns) && soundInfo->cgbChans[CGBCHANNEL_WAVE].currentPointer != (u32)sWaveTrackPatterns[patternID])
+        if (patternID < ARRAY_COUNT(sWaveTrackPatterns) && soundInfo->cgbChans[CGBCHANNEL_WAVE].currentPointer != (u32 *)sWaveTrackPatterns[patternID])
         {
             u32* mainPattern = (u32 *)(REG_ADDR_WAVE_RAM0);
             memcpy(mainPattern, sWaveTrackPatterns[patternID], sizeof(sWaveTrackPatterns[patternID]));
-            soundInfo->cgbChans[CGBCHANNEL_WAVE].currentPointer = (u32)sWaveTrackPatterns[patternID];
+            soundInfo->cgbChans[CGBCHANNEL_WAVE].currentPointer = (u32 *)sWaveTrackPatterns[patternID];
         }
 
         *velocity = track->velocity << 5;
