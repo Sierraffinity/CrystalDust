@@ -881,11 +881,13 @@ static void Task_Pokegear3(u8 taskId)
             PlaySE(SE_POKENAV_OFF);
             return;
         }
-        else if (JOY_NEW(START_BUTTON))
+        else if (JOY_NEW(START_BUTTON)
+            || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
         {
             newCard = ChangeCardWithDelta(-1, sPokegearStruct.currentCard);
         }
-        else if (JOY_NEW(SELECT_BUTTON))
+        else if (JOY_NEW(SELECT_BUTTON)
+            || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
         {
             newCard = ChangeCardWithDelta(1, sPokegearStruct.currentCard);
         }
@@ -953,11 +955,13 @@ static void Task_SwapCards(u8 taskId)
     s16 *data = gTasks[taskId].data;
     u8 newCard = tNewCard;
 
-    if (JOY_NEW(START_BUTTON))
+    if (JOY_NEW(START_BUTTON)
+            || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
     {
         newCard = ChangeCardWithDelta(-1, tNewCard);
     }
-    else if (JOY_NEW(SELECT_BUTTON))
+    else if (JOY_NEW(SELECT_BUTTON)
+            || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
     {
         newCard = ChangeCardWithDelta(1, tNewCard);
     }

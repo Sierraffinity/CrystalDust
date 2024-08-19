@@ -44,3 +44,4 @@ data/scripts/move_tutors.inc
 src/data/wild_encounters.h
 berry_fix/ld_script.sed
 berry_fix/payload/ld_script.sed
+*.ase
